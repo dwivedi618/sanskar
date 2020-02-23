@@ -1,0 +1,27 @@
+<!-- top most navigation menu -->
+<app-navigation (sidenavToggle)="sidenav.toggle()">
+
+</app-navigation>
+
+<mat-sidenav-container class="example-container">
+
+   
+    <mat-sidenav position="start" [mode]="isLargeScreen() ? 'side' : 'over'" #sidenav class="sidenav-full-open">
+
+    </mat-sidenav>
+
+
+
+
+    <!-- ------------ -->
+    <mat-sidenav-content class="container">
+        <!-- the main content injected in router-outlet -->
+        <main>
+            <router-outlet>
+                <!--every singal content other than side navigation will be injected in this section-->
+
+
+            </router-outlet>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

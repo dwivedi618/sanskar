@@ -11,7 +11,7 @@ export class NavigationComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private document: any
   ) { }
-  @Output() sidenavToggle = new EventEmitter<void>();
+  @Output() sidenavToggle = new EventEmitter();
 
 
     
@@ -31,7 +31,7 @@ export class NavigationComponent implements OnInit {
   onToggleSidenav(){
   
     (this.isOpen) = !(this.isOpen);
-    this.sidenavToggle.emit();
+    this.sidenavToggle.emit(this.isOpen);
     
   }
 

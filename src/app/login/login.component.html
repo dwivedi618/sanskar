@@ -1,15 +1,17 @@
 <div class="container-fluid ">
 <div class="row ">
-    <div class="col-6 col-md-6 mycol1">
-        
-        <img class="img-fluid "src="https://images.pexels.com/photos/1640877/pexels-photo-1640877.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500" alt="">
+    <div class="col-md-6 mycol1">
+       <div class="mycol1_img">
+
+       </div>
+        <img  src="https://images.pexels.com/photos/2187622/pexels-photo-2187622.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
         
     </div>
 
-    <div class="col-6 col-md-6 mycol2">
+    <div class="col-md-6 mycol2">
         
-            <div class="login_container red_center">
-
+            <div class="login_container red_center text-center">
+                <p mat-line>Login as a Admin User</p>
                 <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login_form_container">
                     <p>
                         <mat-form-field appearance="outline" class="input_field">

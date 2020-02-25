@@ -6,12 +6,17 @@ import { AppRoutingModule } from './app-routing.module';
 // import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
+
+
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { SidenavComponent } from './sidenav/sidenav.component';
+import { SidenavmenusComponent } from './sidenav/sidenavmenus/sidenavmenus.component';
+
 import { NavigationComponent } from './navigation/navigation.component';
 import { AboutComponent } from './about/about.component';
-import { SignupComponent } from './signup/signup.component';
+
 import { LoginComponent } from './login/login.component';
+import { StudentsComponent } from './students/students.component';
 
 
 
@@ -19,10 +24,12 @@ import { LoginComponent } from './login/login.component';
   declarations: [
     AppComponent,
     SidenavComponent,
+    SidenavmenusComponent,
     NavigationComponent,
     AboutComponent,
     LoginComponent,
-    SignupComponent,
+    StudentsComponent,
+    
     
   ],
   imports: [
@@ -31,11 +38,14 @@ import { LoginComponent } from './login/login.component';
     ReactiveFormsModule,
     AppRoutingModule,
     MaterialModule,
+    
     FormsModule,
+    
   ],
   exports: [
     ReactiveFormsModule,
     MaterialModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidenavComponent implements OnInit {
   login = false;
+  isFullOpen = true;
+  contentMargin = 16;
+  showFiller = false;
   constructor() { }
 
   ngOnInit() {
@@ -17,6 +20,16 @@ export class SidenavComponent implements OnInit {
         return true;
     } else {
         return false;
+    }
+  }
+  mySidenavToggle(){
+    
+    this.isFullOpen = !this.isFullOpen;
+    if(!this.isFullOpen){
+      this.contentMargin = 4;
+
+    }else{
+      this.contentMargin = 16;
     }
   }
   

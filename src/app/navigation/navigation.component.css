@@ -1,7 +1,4 @@
 
-mat-toolbar-row{
-    box-shadow: 0 0 1px black;
-  }
   .example-icon {
     padding: 0 14px;
   }
@@ -22,7 +19,7 @@ mat-toolbar-row{
     text-decoration: none;
   } */
   .example-header {
-    position: fixed;
+    position: absolute;
     padding: 0;
     margin: 0;
     top: 0px;
@@ -30,154 +27,34 @@ mat-toolbar-row{
     width: 100%;
     min-height: 3rem;
     max-height: 3rem;
+    width: 100%;  
+    box-shadow: 0px 1px 4px rgba(102, 102, 102, 0.5);
+  }
+  .example-header:hover{
 
-  
-    
-    /* background-color:#222222; */
-    background-color:white;
-  
-    /* topmost navigation backgroud color  */
-  
-    /* box-shadow: 0 1px 6px 0 rgba(32,33,36,0.28); */
-    
-  
+    box-shadow: 0px 1px 4px rgba(102, 102, 102, 0.5);
+    transition: .1s all;
+
   }
   mat-toolbar{
     height: 3rem;
-  
-    
-    
-  
-    
-  
+    display: flex;
   }
   
   
-  .topnav-left{
-    position: absolute;
-    padding: 0;
-    margin: 0;
-    height: 100%;
-  
-  
-    /* background-color: #F15500; */
-    background-color: white;
-    /* background-color: #0aabba; */
-    width: 5rem;
-    left: 0px;
-    text-align: center;
-    
-  }
+ 
   .brand_name{
     position: relative;
     font-size: 1rem;
     font-weight: bolder;
   }
-  .selected-option-container{
-    /* position: relative; */
-    display: inline-block;
-    margin-left: 89px;
-    position: fixed;
-    z-index: 10000;
-  
-  }
-  .selected-option{
-    color: #222;
-    font-size: 1rem;
-    text-transform: uppercase;
-  }
-  .icon-small{
-    font-size: 1rem;
-  }
-  .icon-small:hover{
-    color: #ccc;
-    transition: .2s all;
-  }
-  /* button,mat-icon{
-    line-height: normal !important;
-  } */
-  
-  
-  .username-email-container{
-    position: relative;
-    width: 100%;
-    
-    padding: 0rem 1rem 0em 1rem;
-    text-overflow: ellipsis;
-  }
-  .username{
-    position: relative;
-    display: block;
-    color: #222222;
-    font-size: 1rem;
-    font-weight: bold !important;
-    margin: 0;
-    padding: 0;
-    line-height: normal;
-  }
-  .session-username{
-    color: #ccc;
-    font-size: .8rem;
-  }
-  .email{
-    text-overflow: ellipsis;
-  
-    display: block;
-    
-    margin: 0;
-    color: #666666;
-    margin-top: .02rem;
-    line-height: normal;
-  }
-  
-  /* button a{
-    text-decoration: none;
-    color: black;
-  } */
+
+ 
   button:focus{
     outline: none;
     border: none;
   }
-  
-  .center {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    -ms-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-  }
-  .vertical-center {
-    margin: 0;
-    position: absolute;
-    display: inline-block;
-    top: 50%;
-    -ms-transform: translateY(-50%);
-    transform: translateY(-50%);
-  }
-  .mat-menu-account{
-    position: relative;
-    width: auto;
-    padding: 1rem;
-  
-  }
-  #mini-profile-container{
-    width: 40vw;
-    height: auto;
-    padding: .5rem;
-    display: block;
-    background-color: #E8E8E8;
-    text-overflow: ellipsis;
-  
-  }
-  mat-menu-item .account{
-    position: relative;
-  }
-  .avatar-big{
-    width: 5rem;
-    height: 5rem;
-    vertical-align: middle;
-  }
+
   @media (max-width:420px){
     button.mat-menu-item{
       width: 70vw !important;

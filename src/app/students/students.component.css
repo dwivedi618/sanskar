@@ -1,0 +1,44 @@
+.table_container {
+    min-height: 441px;
+    max-height: 441px;
+    overflow: auto;
+  }
+  
+  table {
+    width: 100%;
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.25)!important;
+  }
+  table tr:hover{
+    box-shadow: 0px 2px 4px #222!important;
+  }
+  .filter_field{
+    position: relative;
+    
+    width: 100%;
+    display: block;
+    
+  
+    
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
+    clear: both;
+  }
+  .filter_field:hover{
+    box-shadow: 0px 4px 10px rgba(0,0,0,0.25)!important;
+  }
+  .paginator{
+    position: fixed;
+    width: 100%;
+    bottom: 10px;
+  }
+  .example_full_width{
+      width: 100%;
+  }
+  .mat-form-field-wrapper {
+    margin:  0!important;
+}
+  
+input{
+    height: 1rem !important;
+    margin: 0 ;
+
+}

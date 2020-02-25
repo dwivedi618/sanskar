@@ -1,40 +1,47 @@
-<!-- this mat-card only used here because mat-card-avatar is used for  circular img icon -->
-<mat-card class="no-effect-card">
-    <!-- mat-toolbar is main container for all navigation menus -->
-    <mat-toolbar role="heading" class="example-header">
+<!-- mat-toolbar is main container for all navigation menus -->
+<mat-toolbar role="heading" class="example-header">
 
-        <mat-toolbar-row>
-            <!-- button form sidenav open and close -->
-            <button mat-icon-button (click)="onToggleSidenav()" matTooltip="main menu">
-                <mat-icon>menu</mat-icon>
-            </button>
-            <button mat-icon-button aria-label="Example icon-button with a heart icon">
-                <mat-icon>favorite</mat-icon>
-              </button>
-            <!-- ---------------------------------- -->
-            <a [routerLink]="['./about']" routerLinkActive="router-link-active">
-                <div fxLayout="row" class="logo_and_brand_name">
-
-                    <!-- <div class="logo" fxLayoutAlign="center">
-            <img src="../assets/qbase48.png" alt="sanskar">
-          </div> -->
-
-                    <div fxLayoutAlign="center center">
-                        <h1 class="brand_name">sanskar</h1>
-                    </div>
-
+    <mat-toolbar-row>
+        <!-- button form sidenav open and close -->
+        <!-- <button mat-icon-button (click)="onToggleSidenav()" matTooltip="main menu">
+            <mat-icon>menu</mat-icon>
+        </button> -->
+        <button mat-icon-button aria-label="Example icon-button with a heart icon">
+            <mat-icon>favorite</mat-icon>
+        </button>
+        <!-- ---------------------------------- -->
+                <div fxLayoutAlign="center center">
+                    <h1 class="brand_name">sanskar</h1>
                 </div>
-            </a>
+        <span class="example-spacer"></span>
+        <div>
+            <mat-card class="remove_shadow">
+                
+                    <button mat-icon-button [matMenuTriggerFor]="menu" 
+                    aria-label="Example icon-button with a menu">
+                    <div mat-card-avatar class="example-avatar-image"></div>
+                   </button>
+                
+            </mat-card>
+        
 
-            <span class="example-spacer"></span>
-            
-           <div>
-               <mat-card class="remove_shadow">
-                <div mat-card-avatar class="example-avatar-image"></div>
-               </mat-card>
-           </div>
-        </mat-toolbar-row>
-    </mat-toolbar>
-    
-
-</mat-card>
+                
+              
+              <mat-menu #menu="matMenu">
+                <button mat-menu-item>
+                  <mat-icon>dialpad</mat-icon>
+                  <span>Redial</span>
+                </button>
+                <button mat-menu-item disabled>
+                  <mat-icon>voicemail</mat-icon>
+                  <span>Check voice mail</span>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon>notifications_off</mat-icon>
+                  <span>Disable alerts</span>
+                </button>
+              </mat-menu>
+              
+        </div>
+    </mat-toolbar-row>
+</mat-toolbar>

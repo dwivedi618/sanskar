@@ -1,0 +1,7 @@
+.sidenav_menus:hover mat-sidenav.sidenav_half_open{
+    width: 16rem!important;
+}
+a{
+    text-decoration: none;
+}
+mat-list-item:hover mat-icon { color: #673ab7; }

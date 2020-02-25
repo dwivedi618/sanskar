@@ -19,11 +19,7 @@
     text-decoration: none;
   } */
   .example-header {
-    position: absolute;
-    padding: 0;
-    margin: 0;
-    top: 0px;
-    left: 0;
+   
     width: 100%;
     min-height: 3rem;
     max-height: 3rem;

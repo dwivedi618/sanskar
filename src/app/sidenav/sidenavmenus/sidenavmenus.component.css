@@ -1,5 +1,5 @@
-.sidenav_menus:hover mat-sidenav.sidenav_half_open{
-    width: 16rem!important;
+.sidenav_menus{
+    overflow-x: hidden!important;
 }
 a{
     text-decoration: none;

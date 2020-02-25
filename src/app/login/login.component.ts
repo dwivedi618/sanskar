@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-// import { FormGroup, FormControl } from '@angular/forms';
-import { FormBuilder } from '@angular/forms';
-import { Validators } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+
+
+
 import { Router } from '@angular/router';
 
 @Component({
@@ -10,24 +11,33 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
+  registerForm: FormGroup;
+  submitted = false;
   constructor(
-    private fb:FormBuilder,
+    private formBuilder: FormBuilder,
     private router: Router
     ) { }
 
-  loginForm = this.fb.group({
-    email: ['', Validators.required],
-    password: ['',Validators.required],
+    ngOnInit() {
+      this.registerForm = this.formBuilder.group({
+        // firstName: ['', Validators.required],
+        // lastName: ['', Validators.required],
+        email: ['', [Validators.required, Validators.email]],
+        password: ['', [Validators.required, Validators.minLength(6)]]
+    });
+    }
+     // convenience getter for easy access to form fields
+  get f() { return this.registerForm.controls; }
 
-  });
   onSubmit() {
-    // TODO: Use EventEmitter with form value
-    console.warn(this.loginForm.value);
-    this.router.navigate(['/home']);
-  }
+      this.submitted = true;
 
-  ngOnInit() {
+      // stop here if form is invalid
+      if (this.registerForm.invalid) {
+          return;
+      }
+
+      alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
   }
 
 }

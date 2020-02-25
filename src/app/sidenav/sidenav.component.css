@@ -4,18 +4,21 @@
     z-index: 98;
     width: 100%;
     top:0rem;
-    bottom: 0px;
+    bottom: 1.5rem;
     left: 0;
     right: 0;
     
   }
   
   .example-sidenav {
-    height: 100%;
+    max-height: 100%;
     display: flex;
     align-items: center;
     justify-content: center; 
   
+  }
+  .sidenav_content{
+    height: 100%;
   }
   .mytoggle_button{
     padding: 0px 16px;
@@ -50,6 +53,7 @@
      */
     mat-sidenav{    
     overflow-y: none;
+    overflow-x: hidden;
     background: rgb(255, 255, 255);
     }
   
@@ -57,17 +61,31 @@
   
     .sidenav_half_open{
       width: 4rem;
-
+      overflow-x: hidden;
     }    
     .sidenav_full_open{
      width:16rem; 
      box-shadow: -6px 50px 11px 1px #222;
+     overflow-x: hidden;
     }
     .sidenav_full_open:hover{
       width:16rem; 
       box-shadow: -6px 55px 11px 4px #666;
       transition: .1s all;
      }
+.footer,mat-toolbar,mat-toolbar-row{
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  max-height: 1.5rem;
+  min-height: 1.5rem;
+  background: teal;  /* fallback for old browsers */
+
+  clear: both;
+  z-index: 45555555555555;
+
+
+}
     @media only screen and (max-width: 320px) {
       mat-sidenav{
         

@@ -29,7 +29,7 @@ background-color: cadetblue;
 }
 .mycol1{
      /* top, transparent red, faked with gradient */ 
-    
+    /* position: relative; */
     background: #06beb6;  
     background: -webkit-linear-gradient(to bottom, #48b1bf, #06beb6); 
     background: linear-gradient(to bottom, #48b1bf, #06beb6);
@@ -40,7 +40,7 @@ background-color: cadetblue;
     
     padding: 0;
     width: 100%;
-    height: 100vh;
+    height: 89.2vh;
     overflow: hidden;
 }
 /* .mycol1_img{
@@ -70,8 +70,8 @@ background: -webkit-linear-gradient(to right, #243B55, #141E30);
 background: linear-gradient(to right, #243B55, #141E30); */
 
     width: 100%;
-    height: 100vh;
-    box-shadow: 8px 0px 20px 0px black;
+    height:89.2h;
+    /* box-shadow: 8px 0px 20px 0px black; */
 }
 
 .login_container{

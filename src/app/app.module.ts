@@ -17,6 +17,7 @@ import { AboutComponent } from './about/about.component';
 
 import { LoginComponent } from './login/login.component';
 import { StudentsComponent } from './students/students.component';
+import { AdmissionComponent } from './admission/admission.component';
 
 
 
@@ -29,6 +30,7 @@ import { StudentsComponent } from './students/students.component';
     AboutComponent,
     LoginComponent,
     StudentsComponent,
+    AdmissionComponent,
     
     
   ],

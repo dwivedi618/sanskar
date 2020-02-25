@@ -8,16 +8,22 @@ import { SidenavComponent } from './sidenav/sidenav.component';
 import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { StudentsComponent } from './students/students.component';
+import { AdmissionComponent } from './admission/admission.component';
+
 
 
 
 
 
 const routes: Routes = [
-  {path: 'home',component: SidenavComponent},
+  // {path: '',component: SidenavComponent},
+  // {path: 'home',component: SidenavComponent},
+
+  {path:'admission',component:AdmissionComponent},
   {path:'students',component:StudentsComponent},
+
+  { path : 'login' ,component: LoginComponent},
   { path : '**' ,component: LoginComponent},
-  // { path : 'login' ,component: LoginComponent}
 
 
 ];

@@ -1,14 +1,14 @@
 <mat-list class="sidenav_menus">
 
   <a routerLink="['/admission']" router-Link-Active="router-Link-active">
-    <mat-list-item>
+    <mat-list-item  matTooltip="Admission" matTooltipPosition="right">
       <mat-icon mat-list-icon>school</mat-icon>
       <p mat-line>Admission</p>
     </mat-list-item>
   </a>
 
   <a [routerLink]="['./students']" router-Link-Active="router-Link-active">
-    <mat-list-item>
+    <mat-list-item matTooltip="Student Details"  matTooltipPosition="right">
       <mat-icon mat-list-icon>perm_contact_calendar</mat-icon>
       <p mat-line>Students</p>
     </mat-list-item>

@@ -68,12 +68,12 @@
   
     .sidenav_half_open{
       width: 4rem;
-      overflow-x: hidden;
+      
     }    
     .sidenav_full_open{
      width:16rem; 
      box-shadow: -6px 50px 11px 1px #222;
-     overflow-x: hidden;
+     
     }
     .sidenav_full_open:hover{
       width:16rem; 

@@ -19,7 +19,8 @@
     text-decoration: none;
   } */
   .example-header {
-   
+   position:sticky;
+   z-index: 98;
     width: 100%;
     min-height: 3rem;
     max-height: 3rem;
@@ -60,6 +61,16 @@
   }
   
   .remove_shadow{
+    
+    box-shadow: none;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    
+  }
+  .primary_avatar_card{
     max-width: 54px;
     min-width: 2rem;
     max-height: 54px;
@@ -70,13 +81,41 @@
     border: none;
     padding: 0;
     margin: 0;
-    
+
   }
-  .example-avatar-image {
+  .primary_avatar_image {
     max-width: 2rem;
     max-height: 2rem;
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
     box-shadow: 0px 0px 1px #222,0px 2px 4px #ccc;
+  }
+  .secondary_avatar_card{
+    max-width: 100%;
+    min-width: 8rem;
+    max-height: 6rem;
+    min-height: 4rem;
+    box-shadow: none;
+    outline: none;
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: rgba(0, 0, 0, 0.103);
+
+  }
+  .secondary_avatar_image {
+    max-width: 6rem;
+    max-height: 6rem;
+    min-width: 6rem;
+    min-height: 6rem;
+    margin: 0rem auto;
+    background-position: center;
+    background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+    background-size: cover;
+    box-shadow: 0px 0px 1px #222,0px 2px 4px #ccc;
+  }
+  mat-grid-tile {
+    background: lightblue;
   }
   

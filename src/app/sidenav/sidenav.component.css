@@ -1,20 +1,25 @@
 
 .example-container {
     position: absolute;
-    z-index: 98;
+    /* z-index: 98; */
     width: 100%;
-    top:0rem;
-    bottom: 1.5rem;
+    top:3rem;
+    bottom: 0rem;
     left: 0;
     right: 0;
+    padding-bottom: 1rem;
+    overflow: hidden;
     
   }
   
   .example-sidenav {
-    max-height: 100%;
     display: flex;
     align-items: center;
     justify-content: center; 
+    height: 100%;
+    overflow: hidden!important;
+   
+   
   
   }
   .sidenav_content{
@@ -27,15 +32,17 @@
     max-height: 3rem;
   }
   .cover_or_logo{
+    position: sticky;
     
-    display: block;
     top: 0;
+    right: 0;
+    left: 0;
     
     flex: 1;
     min-height: 50px;
     max-height: 150px;;
     background-color: #222;
-    clear: both;
+    
     overflow: hidden;
 
   }
@@ -44,7 +51,7 @@
 
 }
 .sidenav_menus{
-  position: relative;
+  padding: 2rem 0rem;
 }
 /* .sidenav_half_open:hover{
       width: 16rem!important;
@@ -52,11 +59,11 @@
   }
      */
     mat-sidenav{    
-    overflow-y: none;
-    overflow-x: hidden;
-    background: rgb(255, 255, 255);
+    overflow-y: hidden!important;
+    overflow-x: hidden !important;
+    
     }
-  
+
    
   
     .sidenav_half_open{
@@ -83,7 +90,6 @@
 
   clear: both;
   z-index: 45555555555555;
-
 
 }
     @media only screen and (max-width: 320px) {

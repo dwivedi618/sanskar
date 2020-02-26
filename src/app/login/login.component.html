@@ -1,60 +1,98 @@
-<div class="container-fluid ">
-<div class="row ">
-    <div class="col-md-6 mycol1">
-       <div class="mycol1_img">
 
-       </div>
-        <img  src="https://images.pexels.com/photos/2187622/pexels-photo-2187622.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="">
-        
-    </div>
+    <div class="container">
+        <div class="row">
 
-    <div class="col-md-6 mycol2">
-        
-            <div class="login_container red_center text-center">
-                <p mat-line>Login as a Admin User</p>
-                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="login_form_container">
-                    <!-- <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                            <div *ngIf="f.firstName.errors.required">First Name is required</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-                        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
-                        </div>
-                    </div> -->
-                    
-                        <mat-form-field >
+            <div class=".col-md-6 mycol1 ">
+                <!-- <div class="mycol1_img">
+
+                    <img class=" rounded img-thumbnail"
+                        src="https://images.pexels.com/photos/2187622/pexels-photo-2187622.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940"
+                        alt="">
+                </div>
+
+
+
+                <div class="form-group text-center">
+                    <p mat-line>Login as a Admin User</p>
+                    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="login_form_container">
+
+
+                        <mat-form-field class="example-full-width">
                             <mat-label>Email</mat-label>
-                        <input matInput type="text" formControlName="email"  [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                            <div *ngIf="f.email.errors.required">Email is required</div>
-                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-                        </div>
+                            <input matInput type="text" formControlName="email"
+                                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                            </div>
                         </mat-form-field>
-                    
-                    
-                        <mat-form-field  >
-                            <mat-label>Password</mat-label>
-                        <input matInput type="password" formControlName="password"  [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                            <div *ngIf="f.password.errors.required">Password is required</div>
-                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-                        </div>
-                    
-                        </mat-form-field>
-                       
-                    <div class="form-group">
-                        <button mat-raised-button color="primary">Login</button>
-                    </div>
-                </form>
-            </div>
-        
 
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Password</mat-label>
+                            <input matInput type="password" formControlName="password"
+                                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">Password is required</div>
+                                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                            </div>
+
+                        </mat-form-field>
+
+                        <div class="form-group">
+                            <button mat-raised-button color="primary">Login</button>
+                        </div>
+                    </form>
+                </div> -->
+
+
+
+                <div class="main">
+                    <div class="left">
+                        <h1>Login</h1>
+                        <p><i>Administrator</i></p>
+                        <!-- <p class="or"><i>or</i></p> -->
+                         <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" class="login_form_container">
+
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Email</mat-label>
+                            <input matInput type="text" formControlName="email"
+                                [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
+                            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+                                <div *ngIf="f.email.errors.required">Email is required</div>
+                                <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
+                            </div>
+                        </mat-form-field>
+
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Password</mat-label>
+                            <input matInput type="password" formControlName="password"
+                                [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+                            <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+                                <div *ngIf="f.password.errors.required">Password is required</div>
+                                <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
+                            </div>
+
+                        </mat-form-field>
+
+                        <div class="form-group">
+                            <button mat-raised-button color="primary">Login</button>
+                        </div>
+                    </form>
+                        <p class="forgot">Forgot Password?</p>
+            
+                    </div>
+                    <div class="right center-text">
+                        
+                        <p class="quotes"><i>“Life is really simple, but men insist on making it complicated.” <strong>— Confucius</strong></i></p>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
     </div>
-</div>
-</div>

@@ -1,4 +1,6 @@
 
+<app-navigation (sidenavToggle)="sidenav.toggle()" >
+</app-navigation>
 <mat-sidenav-container class="example-container" >
     <mat-sidenav position="start" [mode]="isLargeScreen() ? 'side' : 'over'"
      #sidenav 
@@ -11,14 +13,13 @@
        <div class="cover_or_logo">
         <img class="img-fluid" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
        </div>
-       <div class="sidenav_menus">
+       
            <app-sidenavmenus></app-sidenavmenus>
-       </div>
+       
     </mat-sidenav>
     <!-- ------------ -->
     <mat-sidenav-content class="sidenav_content" [ngStyle]="{'margin-left.rem':contentMargin}">
-        <app-navigation (sidenavToggle)="sidenav.toggle()" >
-        </app-navigation>
+        
         <main>
             
             <router-outlet>
@@ -30,6 +31,6 @@
 </mat-sidenav-container>
 <footer class="footer text-center">
 
-            &copy;copyright @2020
+            <p style="margin:0;padding:0;">&copy;copyright 2020</p>
        
 </footer>

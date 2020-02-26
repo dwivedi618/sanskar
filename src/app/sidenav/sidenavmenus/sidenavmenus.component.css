@@ -1,6 +1,11 @@
 .sidenav_menus{
     overflow-x: hidden!important;
+    min-height: 60vh;
+    max-height: 60vh;
+    overflow-y: auto;
+  
 }
+
 a{
     text-decoration: none;
 }

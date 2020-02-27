@@ -1,0 +1,28 @@
+.row{
+    padding: 10px;
+}
+
+.card{
+    margin: 10px;
+}
+
+.material-icons{
+    font-size: 30px;
+}
+
+button span{
+    font-size: 22px;
+}
+
+.action-buttons button{
+    margin : 5px;
+}
+.mat-radio-button {
+    margin: 0 12px;
+  }
+  .example-full-width {
+    width: 100%;
+  }
+  td {
+    padding-right: 8px;
+  }

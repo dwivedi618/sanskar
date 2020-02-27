@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Admission, Experience, Education, Skill } from './admission';
+
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
@@ -7,6 +9,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
   styleUrls: ['./admission.component.css']
 })
 export class AdmissionComponent implements OnInit {
+  admission = new Admission();
   registerForm: FormGroup;
   submitted = false;
 
@@ -16,8 +19,39 @@ export class AdmissionComponent implements OnInit {
       this.registerForm = this.formBuilder.group({
           firstName: ['', Validators.required],
           lastName: ['', Validators.required],
-          email: ['', [Validators.required, Validators.email]],
-          password: ['', [Validators.required, Validators.minLength(6)]]
+          gender: ['Male'],
+          dateOfBirth: [new Date()],
+          fatherName: ['', Validators.required],
+          motherName: ['', Validators.required],
+          fatherEducation : [''],
+          fatherOccupation : [''],
+          motherEducation : [''],
+          motherOccupation :[''],
+          permanentAddress: this.formBuilder.group({
+            village: [''],
+            district: [''],
+            state: [''],
+            post: ['']
+          }),
+          localAddress: this.formBuilder.group({
+            village: [''],
+            district: [''],
+            state: [''],
+            post: ['']
+          }),
+          guardianName : [''],
+          contactNumber :[''],
+          nationality : ['Indian'],
+          healthStatus : [''],
+          bloodGroup : [''],
+          admissionIn : [''],
+          convenience : ['Yes'],
+          place : ['']
+           
+
+
+          // email: ['', [Validators.required, Validators.email]],
+          // password: ['', [Validators.required, Validators.minLength(6)]]
       });
   }
 

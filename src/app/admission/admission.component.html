@@ -2,44 +2,309 @@
 <div class="jumbotron">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 offset-md-3">
-                <h3>addmission form</h3>
+            <div class="col-lg-12">
+                <h3>Addmission form</h3>
                 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                    <div class="form-group">
-                        <label>First Name</label>
-                        <input type="text" formControlName="firstName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                        <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                            <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                    <div class="card p-4">
+                        <div class="form-group">
+                            <label class="h4 mb-3" for="">photo</label>
+                            <input type="file" class="form-control-file" (change)="fileChanged($event)"
+                                aria-describedby="fileHelpId">
+                        </div>
+                        <img *ngIf="admission.profilePic" [src]="admission.profilePic" class="img-thumbnail">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- firstName -->
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>First name</mat-label>
+                                    <input matInput type="text" formControlName="firstName" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
+                                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
+                                        <div *ngIf="f.firstName.errors.required">First Name is required</div>
+                                    </div>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- lastName -->
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Last Name</mat-label>
+                                    <input matInput type="text" formControlName="lastName" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
+                                        <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                                    </div>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- Gender -->
+                            <mat-label>Gender</mat-label>
+                            <div class="form-group">
+                                <div>
+
+                                    <mat-radio-group formControlName="gender" aria-label="Gender">
+                                        <mat-radio-button value="Male">Male</mat-radio-button>
+                                        <mat-radio-button value="Female">Female</mat-radio-button>
+                                    </mat-radio-group>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- dateOfBirth -->
+                            <div class="form-group">
+                                <mat-form-field>
+                                    <mat-label>Date of Birth</mat-label>
+                                    <input matInput formControlName="dateOfBirth" [matDatepicker]="picker">
+                                    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                    <mat-datepicker #picker></mat-datepicker>
+                                </mat-form-field>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- fatherName -->
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Father's Name</mat-label>
+                                    <input matInput type="text" formControlName="fatherName" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                                    <div *ngIf="submitted && f.fatherName.errors" class="invalid-feedback">
+                                        <div *ngIf="f.fatherName.errors.required">Father's Name is required</div>
+                                    </div>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- motherName -->
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Mother's Name</mat-label>
+                                    <input matInput type="text" formControlName="motherName" class="form-control"
+                                        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
+                                    <div *ngIf="submitted && f.motherName.errors" class="invalid-feedback">
+                                        <div *ngIf="f.motherName.errors.required">Mother's Name is required</div>
+                                    </div>
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- fatherEducation -->
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Father's Education</mat-label>
+                                    <input matInput type="text" formControlName="fatherEducation">
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- fatherOccupation -->
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Father's Occupation</mat-label>
+                                    <input matInput type="text" formControlName="fatherOccupation">
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <!-- motherEducation -->
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Mother's Education</mat-label>
+                                    <input matInput type="text" formControlName="motherEducation">
+
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <!-- mother Ouccpation -->
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Mother's Occupation</mat-label>
+                                    <input matInput type="text" formControlName="motherOccupation">
+
+                                </mat-form-field>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <!-- permanent Address -->
+                    <div class="row">
+                        <mat-label>Permanent Address</mat-label>
+                    </div>
+
+                    <div class="row" formGroupName="permanentAddress">
+
+                        <!-- village -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Village</mat-label>
+                                    <input matInput type="text" formControlName="village">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <!-- District -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>District</mat-label>
+                                    <input matInput type="text" formControlName="district">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <!-- State -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>State</mat-label>
+                                    <input matInput type="text" formControlName="state">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <!-- post -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Post</mat-label>
+                                    <input matInput type="text" formControlName="post">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- local Address -->
+                    <div class="row">
+                        <mat-label>Local Address</mat-label>
+                    </div>
+
+                    <div class="row" formGroupName="localAddress">
+
+                        <!-- village -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Village</mat-label>
+                                    <input matInput type="text" formControlName="village">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <!-- District -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>District</mat-label>
+                                    <input matInput type="text" formControlName="district">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <!-- State -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>State</mat-label>
+                                    <input matInput type="text" formControlName="state">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <!-- post -->
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Post</mat-label>
+                                    <input matInput type="text" formControlName="post">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- guradianName -->
+                    <div class="row">
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Guardian Name</mat-label>
+                                <input matInput type="text" formControlName="guardianName">
+
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Conatact Number</mat-label>
+                                <input matInput type="tel" formControlName="contactNumber">
+
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- nationality -->
+                        <div class="col-md-12">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Nationality</mat-label>
+                                <input matInput type="text" formControlName="nationality">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <!-- healthStatus -->
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Health Status</mat-label>
+                                <input matInput type="text" formControlName="healthStatus">
+                            </mat-form-field>
+                        </div>
+                        <!-- bloodGroup -->
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Blood Group</mat-label>
+                                <input matInput type="text" formControlName="bloodGroup">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- admissionIn -->
+                    <div class="row">
+                        <div class="col-md-12">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Addmission In</mat-label>
+                                <input matInput type="text" formControlName="admissionIn">
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <!-- -->
+                    <div class="row">
+                        <!-- convenience -->
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Convenience(Yes/No)</mat-label>
+                                <input matInput type="text" formControlName="admissionIn">
+                            </mat-form-field>
+                        </div>
+                        <!-- place -->
+                        <div class="col-md-6">
+                            <mat-form-field class="example-full-width">
+                                <mat-label>Place</mat-label>
+                                <input matInput type="text" formControlName="place">
+                            </mat-form-field>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label>Last Name</label>
-                        <input type="text" formControlName="lastName" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-                        <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                            <div *ngIf="f.lastName.errors.required">Last Name is required</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="text" formControlName="email" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.email.errors }" />
-                        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
-                            <div *ngIf="f.email.errors.required">Email is required</div>
-                            <div *ngIf="f.email.errors.email">Email must be a valid email address</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Password</label>
-                        <input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
-                        <div *ngIf="submitted && f.password.errors" class="invalid-feedback">
-                            <div *ngIf="f.password.errors.required">Password is required</div>
-                            <div *ngIf="f.password.errors.minlength">Password must be at least 6 characters</div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary">Register</button>
+                        <button type="submit" class="btn btn-primary">Register</button>
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
-</div>

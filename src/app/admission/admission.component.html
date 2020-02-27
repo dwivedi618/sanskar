@@ -3,16 +3,19 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                <h3>Addmission form</h3>
+                <div class="row text">
+                    <h3>Addmission form</h3>
+                </div>
+                
                 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                    <div class="card p-4">
+                    <!-- <div class="card p-4">
                         <div class="form-group">
                             <label class="h4 mb-3" for="">photo</label>
-                            <input type="file" class="form-control-file" (change)="fileChanged($event)"
+                            <input type="file" class="form-control-file" 
                                 aria-describedby="fileHelpId">
                         </div>
                         <img *ngIf="admission.profilePic" [src]="admission.profilePic" class="img-thumbnail">
-                    </div>
+                    </div> -->
                     <div class="row">
                         <div class="col-md-6">
                             <!-- firstName -->
@@ -154,7 +157,7 @@
                     <div class="row" formGroupName="permanentAddress">
 
                         <!-- village -->
-                        <div class="col-md-4">
+                        <div class="col-lg-3 ">
                             <div class="form-group">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Village</mat-label>
@@ -163,7 +166,7 @@
                             </div>
                         </div>
                         <!-- District -->
-                        <div class="col-md-4">
+                        <div class="col-lg-3">
                             <div class="form-group">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>District</mat-label>
@@ -172,7 +175,7 @@
                             </div>
                         </div>
                         <!-- State -->
-                        <div class="col-md-4">
+                        <div class="col-lg-3">
                             <div class="form-group">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>State</mat-label>
@@ -181,7 +184,7 @@
                             </div>
                         </div>
                         <!-- post -->
-                        <div class="col-md-4">
+                        <div class="col-lg-3">
                             <div class="form-group">
                                 <mat-form-field class="example-full-width">
                                     <mat-label>Post</mat-label>

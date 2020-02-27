@@ -17,7 +17,7 @@
                         <img *ngIf="admission.profilePic" [src]="admission.profilePic" class="img-thumbnail">
                     </div> -->
                     <div class="row">
-                        <div class="col-md-6">
+                        <div class="col-md-4">
                             <!-- firstName -->
                             <div class="form-group">
                                 <mat-form-field class="example-full-width">
@@ -30,7 +30,18 @@
                                 </mat-form-field>
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <!-- middle_name -->
+                        <div class="col-md-4">
+                            <!-- firstName -->
+                            <div class="form-group">
+                                <mat-form-field class="example-full-width">
+                                    <mat-label>Middle name</mat-label>
+                                    <input matInput type="text" formControlName="middleName" class="form-control"/>
+                                   
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <!-- lastName -->
                             <div class="form-group">
                                 <mat-form-field class="example-full-width">

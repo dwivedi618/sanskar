@@ -9,6 +9,8 @@ import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { StudentsComponent } from './students/students.component';
 import { AdmissionComponent } from './admission/admission.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { StudentcompletedetailsComponent } from './studentcompletedetails/studentcompletedetails.component'
 
 
 
@@ -16,14 +18,14 @@ import { AdmissionComponent } from './admission/admission.component';
 
 
 const routes: Routes = [
-  // {path: '',component: SidenavComponent},
-  // {path: 'home',component: SidenavComponent},
+  {path: 'studentcompletedetails',component: StudentcompletedetailsComponent},
+  {path: 'dashboard',component: DashboardComponent},
 
   {path:'admission',component:AdmissionComponent},
   {path:'students',component:StudentsComponent},
 
-  { path : 'login' ,component: LoginComponent},
-  { path : '**' ,component: LoginComponent},
+  // { path : 'login' ,component: LoginComponent},
+  // { path : '**' ,component: LoginComponent},
 
 
 ];
@@ -32,6 +34,7 @@ const routes: Routes = [
   imports: [
     MaterialModule,
     CommonModule,
+    RouterModule,
    
     RouterModule.forRoot(routes),
     

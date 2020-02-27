@@ -31,6 +31,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
   styleUrls: ['./students.component.css']
 })
 export class StudentsComponent implements OnInit {
+ 
   displayedColumns: string[] = ['select', 'subject', 'question', 'level', 'topic'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
@@ -64,19 +65,20 @@ export class StudentsComponent implements OnInit {
       this.dataSource.filter = value.trim().toLocaleLowerCase();
     }
 
-    // // // sorting
+    // sorting
     // @ViewChild(MatSort) sort: MatSort;
     // @ViewChild(MatPaginator) paginator: MatPaginator;
     
   constructor() {}
   // ngAfterViewInit(): void {
-  //   // this.dataSource.sort = this.sort;
+  //   this.dataSource.sort = this.sort;
   //   this.dataSource.paginator = this.paginator;
   // }
   ngOnInit() {
 
   }
 
+  
   
 
 }

@@ -18,6 +18,8 @@ import { AboutComponent } from './about/about.component';
 import { LoginComponent } from './login/login.component';
 import { StudentsComponent } from './students/students.component';
 import { AdmissionComponent } from './admission/admission.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { StudentcompletedetailsComponent } from './studentcompletedetails/studentcompletedetails.component';
 
 
 
@@ -31,6 +33,8 @@ import { AdmissionComponent } from './admission/admission.component';
     LoginComponent,
     StudentsComponent,
     AdmissionComponent,
+    DashboardComponent,
+    StudentcompletedetailsComponent,
     
     
   ],

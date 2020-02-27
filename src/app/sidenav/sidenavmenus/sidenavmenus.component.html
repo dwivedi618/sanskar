@@ -1,87 +1,32 @@
 <mat-list class="sidenav_menus">
 
-  <a routerLink="['/admission']" router-Link-Active="router-Link-active">
+  <a href="#" routerLink="/dashboard" routerLinkActive="active">
     <mat-list-item  matTooltip="Admission" matTooltipPosition="right">
-      <mat-icon mat-list-icon>school</mat-icon>
-      <p mat-line>Admission</p>
+    <mat-icon mat-list-icon>desktop_mac</mat-icon>
+    <p mat-line>Dashboard</p>
     </mat-list-item>
   </a>
 
-  <a [routerLink]="['./students']" router-Link-Active="router-Link-active">
+  <a href="#" routerLink="/admission" routerLinkActive="active">
+    <mat-list-item  matTooltip="Admission" matTooltipPosition="right">
+    <mat-icon mat-list-icon>create</mat-icon>
+    <p mat-line>Admission</p>
+    </mat-list-item>
+  </a>
+
+  <a [routerLink]="['./students']" routerLinkActive="active">
     <mat-list-item matTooltip="Student Details"  matTooltipPosition="right">
-      <mat-icon mat-list-icon>perm_contact_calendar</mat-icon>
+      <mat-icon mat-list-icon>contacts</mat-icon>
       <p mat-line>Students</p>
     </mat-list-item>
   </a>
-  <a routerLink="['/admission']" router-Link-Active="router-Link-active">
-    <mat-list-item>
-      <mat-icon mat-list-icon>school</mat-icon>
-      <p mat-line>Admission</p>
+  <a [routerLink]="['./studentcompletedetails']" routerLinkActive="active">
+    <mat-list-item matTooltip="Student Details"  matTooltipPosition="right">
+      <mat-icon mat-list-icon>contacts</mat-icon>
+      <p mat-line>student detailed info</p>
     </mat-list-item>
   </a>
 
-  <a [routerLink]="['./students']" router-Link-Active="router-Link-active">
-    <mat-list-item>
-      <mat-icon mat-list-icon>perm_contact_calendar</mat-icon>
-      <p mat-line>Students</p>
-    </mat-list-item>
-  </a>
-
-  <a routerLink="['/admission']" router-Link-Active="router-Link-active">
-    <mat-list-item>
-      <mat-icon mat-list-icon>school</mat-icon>
-      <p mat-line>Admission</p>
-    </mat-list-item>
-  </a>
-
-  <a [routerLink]="['./students']" router-Link-Active="router-Link-active">
-    <mat-list-item>
-      <mat-icon mat-list-icon>perm_contact_calendar</mat-icon>
-      <p mat-line>Students</p>
-    </mat-list-item>
-  </a>
-
-  <a routerLink="['/admission']" router-Link-Active="router-Link-active">
-    <mat-list-item>
-      <mat-icon mat-list-icon>school</mat-icon>
-      <p mat-line>Admission</p>
-    </mat-list-item>
-  </a>
-
-  <a [routerLink]="['./students']" router-Link-Active="router-Link-active">
-    <mat-list-item>
-      <mat-icon mat-list-icon>perm_contact_calendar</mat-icon>
-      <p mat-line>Students</p>
-    </mat-list-item>
-  </a>
-
-  <a routerLink="['/admission']" router-Link-Active="router-Link-active">
-    <mat-list-item>
-      <mat-icon mat-list-icon>school</mat-icon>
-      <p mat-line>Admission</p>
-    </mat-list-item>
-  </a>
-
-  <a [routerLink]="['./students']" router-Link-Active="router-Link-active">
-    <mat-list-item>
-      <mat-icon mat-list-icon>perm_contact_calendar</mat-icon>
-      <p mat-line>Students</p>
-    </mat-list-item>
-  </a>
-
-  <a routerLink="['/admission']" router-Link-Active="router-Link-active">
-    <mat-list-item>
-      <mat-icon mat-list-icon>school</mat-icon>
-      <p mat-line>Admission</p>
-    </mat-list-item>
-  </a>
-
-  <a [routerLink]="['./students']" router-Link-Active="router-Link-active">
-    <mat-list-item>
-      <mat-icon mat-list-icon>perm_contact_calendar</mat-icon>
-      <p mat-line>Students</p>
-    </mat-list-item>
-  </a>
 
 
 </mat-list>

@@ -17,7 +17,7 @@
     align-items: center;
     justify-content: center; 
     height: 100%;
-    overflow: hidden!important;
+    
    
    
   
@@ -58,14 +58,12 @@
       transition: .5s all;
   }
      */
-    mat-sidenav{    
-    overflow-y: hidden!important;
-    overflow-x: hidden !important;
-    
-    }
-
-   
-  
+     .mat-drawer-inner-container {
+      width: 100%;
+      height: 100%;
+      overflow: hidden!important;
+      
+  }
     .sidenav_half_open{
       width: 4rem;
       
@@ -86,7 +84,8 @@
   bottom: 0;
   max-height: 1.5rem;
   min-height: 1.5rem;
-  background: teal;  /* fallback for old browsers */
+  background: #242939; 
+  color:#B9BEBC;
 
   clear: both;
   z-index: 45555555555555;

@@ -18,6 +18,7 @@ export class AdmissionComponent implements OnInit {
   ngOnInit() {
       this.registerForm = this.formBuilder.group({
           firstName: ['', Validators.required],
+          middleName: [''],
           lastName: ['', Validators.required],
           gender: ['Male'],
           dateOfBirth: [new Date()],

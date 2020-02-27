@@ -2,7 +2,9 @@
 <app-navigation (sidenavToggle)="sidenav.toggle()" >
 </app-navigation>
 <mat-sidenav-container class="example-container" >
-    <mat-sidenav position="start" [mode]="isLargeScreen() ? 'side' : 'over'"
+    <mat-sidenav class="mat-drawer-inner-container"
+        
+    position="start" [mode]="isLargeScreen() ? 'side' : 'over'"
      #sidenav 
      [class.sidenav_half_open]="!isFullOpen"
      [class.sidenav_full_open]="isFullOpen"

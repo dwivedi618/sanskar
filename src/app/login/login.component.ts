@@ -33,11 +33,12 @@ export class LoginComponent implements OnInit {
       this.submitted = true;
 
       // stop here if form is invalid
-      if (this.registerForm.invalid) {
-          return;
-      }
-
-      alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
+      // if (this.registerForm.invalid) {
+      //     return;
+      // }
+      console.log("sidena on login")
+    this.router.navigate['/sidenav'];
+      // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
   }
 
 }

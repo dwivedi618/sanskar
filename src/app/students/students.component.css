@@ -42,3 +42,16 @@ input{
     margin: 0 ;
 
 }
+.primary_avatar_card{
+  max-width: 54px;
+  min-width: 2rem;
+  max-height: 54px;
+  min-height: 2rem;
+  /* box-shadow: none; */
+  outline: none;
+  background-color: transparent;
+  /* border */
+  padding: 0;
+  margin: 0;
+
+}

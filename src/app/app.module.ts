@@ -20,6 +20,8 @@ import { StudentsComponent } from './students/students.component';
 import { AdmissionComponent } from './admission/admission.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StudentcompletedetailsComponent } from './studentcompletedetails/studentcompletedetails.component';
+import { FeestructureComponent } from './feestructure/feestructure.component';
+import { FeesComponent } from './fees/fees.component';
 
 
 
@@ -35,6 +37,8 @@ import { StudentcompletedetailsComponent } from './studentcompletedetails/studen
     AdmissionComponent,
     DashboardComponent,
     StudentcompletedetailsComponent,
+    FeestructureComponent,
+    FeesComponent,
     
     
   ],

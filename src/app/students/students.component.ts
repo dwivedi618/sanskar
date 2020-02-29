@@ -3,25 +3,31 @@ import {Component,OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource, MatSort, MatPaginator} from '@angular/material';
 
 export interface PeriodicElement {
-  question: string;
-  subject: string;
-  level: string;
-  topic: string;
+  fatherName: string;
+  studentName: string;
+  standard: string;
+  address: string;
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'medium', topic: 'B'},
-  {subject: 'Data structure', question: 'Differentiate between file and structure storage structure.', level: 'high', topic: 'He'},
-  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'medium', topic: 'B'},
-  {subject: 'Data structure', question: 'When is a binary search best applied?', level: 'medium', topic: 'Li'},
-  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'low', topic: 'B'},
-  {subject: 'Data structure', question: 'How do you reference all the elements in a one-dimension array?', level: 'high', topic: 'Be'},
-  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'low', topic: 'B'},
-  {subject: 'Data structure', question: 'Which data structures are applied when dealing with a recursive function?', level: 'high', topic: 'C'},
-  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'low', topic: 'B'},
-  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'low', topic: 'B'},
-  {subject: 'Data structure', question: 'What is data structure?', level: 'low', topic: 'H'},
-  {subject: 'Software engineering', question: 'What is Software Engineering?', level: 'low', topic: 'B'},
+  {studentName: 'shivendra', fatherName: 'Manoj Dwivedi', standard: '10th', address: 'Bankatiya Dubey'},
+ 
+  {studentName: 'Darshan Pandey', fatherName: 'Shashichadra Pandey', standard: '3rd', address: 'Bankata'},
+  {studentName: 'shivendra', fatherName: 'Manoj Dwivedi', standard: '10th', address: 'Bankatiya Dubey'},
+ 
+  {studentName: 'Darshan Pandey', fatherName: 'Shashichadra Pandey', standard: '3rd', address: 'Bankata'},
+  {studentName: 'shivendra', fatherName: 'Manoj Dwivedi', standard: '10th', address: 'Bankatiya Dubey'},
+ 
+  {studentName: 'Darshan Pandey', fatherName: 'Shashichadra Pandey', standard: '3rd', address: 'Bankata'},
+  {studentName: 'shivendra', fatherName: 'Manoj Dwivedi', standard: '10th', address: 'Bankatiya Dubey'},
+ 
+  {studentName: 'Darshan Pandey', fatherName: 'Shashichadra Pandey', standard: '3rd', address: 'Bankata'},
+  {studentName: 'shivendra', fatherName: 'Manoj Dwivedi', standard: '10th', address: 'Bankatiya Dubey'},
+ 
+  {studentName: 'Darshan Pandey', fatherName: 'Shashichadra Pandey', standard: '3rd', address: 'Bankata'},
+  {studentName: 'shivendra', fatherName: 'Manoj Dwivedi', standard: '10th', address: 'Bankatiya Dubey'},
+ 
+  {studentName: 'Darshan Pandey', fatherName: 'Shashichadra Pandey', standard: '3rd', address: 'Bankata'},
 ];
 
 
@@ -32,7 +38,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class StudentsComponent implements OnInit {
  
-  displayedColumns: string[] = ['select', 'subject', 'question', 'level', 'topic'];
+  displayedColumns: string[] = ['select', 'studentName', 'fatherName', 'standard', 'address'];
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
 
@@ -55,7 +61,7 @@ export class StudentsComponent implements OnInit {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.subject + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.studentName + 1}`;
   }
 
   // filtering

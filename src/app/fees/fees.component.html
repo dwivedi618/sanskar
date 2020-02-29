@@ -1,0 +1,71 @@
+<div class="container">
+    <div class="row">
+        <div class="col-md-6">
+            <h1>Payment receipt</h1>
+            <div class="jumbotron">
+                <div>
+                    <p mat-line class="float-left">Tution Fees</p>
+                    <small class="float-right">{{totalFees}}</small>
+                </div>
+                <div>
+                    <p mat-line class="float-left">Total Fees</p>
+                    <small class="float-right">{{totalFees}}</small>
+                </div>
+                <div>
+                    <p mat-line class="float-left">Previous Submited Fees</p>
+                    <small class="float-right">{{previousSubmittedFees}}</small>
+                </div>
+                <div>
+                    <p mat-line class="float-left">Current Submited Fees</p>
+                    <small class="float-right">{{submittedFees}}</small>
+                </div>
+                <div>
+                    <p mat-line class="float-left">Current Dues</p>
+                    <small class="float-right">{{currentDues}}</small>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="jumbotron">
+                <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+                    <h1>Payment Details</h1>
+
+                    <mat-form-field appearance="outline" class="example-full-width">
+                        <!-- <mat-label>First name</mat-label> -->
+                        <input matInput type="text" placeholder="Student Name" formControlName="studentName">
+                        <mat-error *ngIf="paymentForm.get('studentName').hasError('required')">Student Name required
+                        </mat-error>
+                    </mat-form-field>
+                    <!-- standard -->
+                    <mat-form-field appearance="outline" class="example-full-width">
+                        <!-- <mat-label>Standard</mat-label> -->
+                        <input matInput type="number" placeholder="10" formControlName="standard">
+                        <mat-error *ngIf="paymentForm.get('standard').hasError('required')">Payment for standard
+                        </mat-error>
+                    </mat-form-field>
+                    <!-- fathername-->
+                    <mat-form-field appearance="outline" class="example-full-width">
+                        <!-- <mat-label>Father's Name</mat-label> -->
+                        <input matInput type="text" placeholder="Father's Name " formControlName="fatherName">
+                        <mat-error *ngIf="paymentForm.get('fatherName').hasError('required')">Father Name</mat-error>
+                    </mat-form-field>
+                    <!-- Submitted fee-->
+                    <mat-form-field appearance="outline" class="example-full-width">
+                        <!-- <mat-label>Submitted Fees</mat-label> -->
+                        <input matInput type="number" placeholder="500" formControlName="submittedFees">
+                        <mat-error *ngIf="paymentForm.get('submittedFees').hasError('required')">Amount In rupee
+                        </mat-error>
+                    </mat-form-field>
+
+
+                    <div class="float-right">
+                        <button type="reset" mat-stroked-button color="warn">Reset</button>
+                        <button type="submit" mat-raised-button color="primary">Accept Payment</button>
+                        
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

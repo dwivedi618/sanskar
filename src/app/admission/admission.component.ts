@@ -19,7 +19,7 @@ export class AdmissionComponent implements OnInit {
       this.registerForm = this.formBuilder.group({
           firstName: ['', Validators.required],
           middleName: [''],
-          lastName: ['', Validators.required],
+          lastName: [''],
           gender: ['Male'],
           dateOfBirth: [new Date()],
           fatherName: ['', Validators.required],
@@ -29,10 +29,10 @@ export class AdmissionComponent implements OnInit {
           motherEducation : [''],
           motherOccupation :[''],
           permanentAddress: this.formBuilder.group({
-            village: [''],
-            district: [''],
-            state: [''],
-            post: ['']
+            village: ['',Validators.required],
+            district: ['',Validators.required],
+            state: ['',Validators.required],
+            post: ['',Validators.required]
           }),
           localAddress: this.formBuilder.group({
             village: [''],
@@ -40,12 +40,12 @@ export class AdmissionComponent implements OnInit {
             state: [''],
             post: ['']
           }),
-          guardianName : [''],
-          contactNumber :[''],
+          guardianName : ['', Validators.required],
+          contactNumber :['', Validators.required,Validators.maxLength(10)],
           nationality : ['Indian'],
           healthStatus : [''],
           bloodGroup : [''],
-          admissionIn : [''],
+          standard : ['',Validators.required],//admission In
           convenience : ['Yes'],
           place : ['']
            
@@ -58,6 +58,8 @@ export class AdmissionComponent implements OnInit {
 
   // convenience getter for easy access to form fields
   get f() { return this.registerForm.controls; }
+  get ff(){ return this.registerForm.get(['permanentAddress'])['controls']; }//for accessing nested form permanentAddress
+  get fff(){ return this.registerForm.get(['localAddress'])['controls']; }//for accessing nested form localAddress
 
   onSubmit() {
       this.submitted = true;

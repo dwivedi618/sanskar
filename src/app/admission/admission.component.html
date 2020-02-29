@@ -19,40 +19,34 @@
                     <div class="row">
                         <div class="col-md-4">
                             <!-- firstName -->
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>First name</mat-label>
-                                    <input matInput type="text" formControlName="firstName" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }" />
-                                    <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                                        <div *ngIf="f.firstName.errors.required">First Name is required</div>
-                                    </div>
+                            
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <!-- <mat-label>First name</mat-label> -->
+                                    <input matInput placeholder="First Name"type="text" formControlName="firstName">
+                                   <mat-error *ngIf="f.firstName.hasError('required')">First Name Required</mat-error>
                                 </mat-form-field>
-                            </div>
+                                
                         </div>
                         <!-- middle_name -->
                         <div class="col-md-4">
                             <!-- firstName -->
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Middle name</mat-label>
-                                    <input matInput type="text" formControlName="middleName" class="form-control"/>
+                            
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                   
+                                    <input matInput placeholder="Middle Name" type="text" formControlName="middleName" >
                                    
                                 </mat-form-field>
-                            </div>
+                            
                         </div>
                         <div class="col-md-4">
                             <!-- lastName -->
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Last Name</mat-label>
-                                    <input matInput type="text" formControlName="lastName" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-                                    <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                                        <div *ngIf="f.lastName.errors.required">Last Name is required</div>
-                                    </div>
+                            
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <!-- <mat-label>Last Name</mat-label> -->
+                                    <input placeholder="Last Name " matInput type="text" formControlName="lastName" >
+                                     
                                 </mat-form-field>
-                            </div>
+                            
                         </div>
                     </div>
 
@@ -60,102 +54,96 @@
                         <div class="col-md-6">
                             <!-- Gender -->
                             <mat-label>Gender</mat-label>
-                            <div class="form-group">
                                 <div>
 
                                     <mat-radio-group formControlName="gender" aria-label="Gender">
                                         <mat-radio-button value="Male">Male</mat-radio-button>
                                         <mat-radio-button value="Female">Female</mat-radio-button>
+                                        <mat-radio-button value="Other">Other</mat-radio-button>
                                     </mat-radio-group>
-                                </div>
+     
                             </div>
                         </div>
                         <div class="col-md-6">
                             <!-- dateOfBirth -->
-                            <div class="form-group">
-                                <mat-form-field>
+                            
+                                <mat-form-field appearance="outline">
                                     <mat-label>Date of Birth</mat-label>
                                     <input matInput formControlName="dateOfBirth" [matDatepicker]="picker">
                                     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                                     <mat-datepicker #picker></mat-datepicker>
                                 </mat-form-field>
 
-                            </div>
+                            
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
                             <!-- fatherName -->
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Father's Name</mat-label>
-                                    <input matInput type="text" formControlName="fatherName" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-                                    <div *ngIf="submitted && f.fatherName.errors" class="invalid-feedback">
-                                        <div *ngIf="f.fatherName.errors.required">Father's Name is required</div>
-                                    </div>
+                            
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <!-- <mat-label>Father's Name</mat-label> -->
+                                    <input matInput placeholder="Father's Name" type="text" formControlName="fatherName" >
+                                    <mat-error *ngIf="f.fatherName.hasError('required')">Father's name Required</mat-error>
                                 </mat-form-field>
-                            </div>
+                          
                         </div>
                         <div class="col-md-6">
                             <!-- motherName -->
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Mother's Name</mat-label>
-                                    <input matInput type="text" formControlName="motherName" class="form-control"
-                                        [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }" />
-                                    <div *ngIf="submitted && f.motherName.errors" class="invalid-feedback">
-                                        <div *ngIf="f.motherName.errors.required">Mother's Name is required</div>
-                                    </div>
+                            
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <!-- <mat-label>Mother's Name</mat-label> -->
+                                    <input matInput placeholder="Mother's Name" type="text" formControlName="motherName">
+                                   <mat-error *ngIf="f.motherName.hasError('required')">Mother's Name Required</mat-error>
                                 </mat-form-field>
-                            </div>
+                            
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
                             <!-- fatherEducation -->
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Father's Education</mat-label>
-                                    <input matInput type="text" formControlName="fatherEducation">
+                            
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <!-- <mat-label>Father's Education</mat-label> -->
+                                    <input matInput placeholder="Father's Education" type="text" formControlName="fatherEducation">
 
                                 </mat-form-field>
-                            </div>
+                          
                         </div>
                         <div class="col-md-6">
                             <!-- fatherOccupation -->
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Father's Occupation</mat-label>
-                                    <input matInput type="text" formControlName="fatherOccupation">
+                           
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <!-- <mat-label>Father's Occupation</mat-label> -->
+                                    <input matInput placeholder="Father's Occupation" type="text" formControlName="fatherOccupation">
 
                                 </mat-form-field>
-                            </div>
+                            
                         </div>
                     </div>
 
                     <div class="row">
                         <div class="col-md-6">
                             <!-- motherEducation -->
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Mother's Education</mat-label>
-                                    <input matInput type="text" formControlName="motherEducation">
+                            
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <!-- <mat-label>Mother's Education</mat-label> -->
+                                    <input matInput placeholder="Mother's Education" type="text" formControlName="motherEducation">
 
                                 </mat-form-field>
-                            </div>
+                           
                         </div>
                         <div class="col-md-6">
                             <!-- mother Ouccpation -->
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Mother's Occupation</mat-label>
-                                    <input matInput type="text" formControlName="motherOccupation">
+                            
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <!-- <mat-label>Mother's Occupation</mat-label> -->
+                                    <input matInput placeholder="Mother's Occupation" type="text" formControlName="motherOccupation">
 
                                 </mat-form-field>
-                            </div>
+                           
 
                         </div>
                     </div>
@@ -169,134 +157,146 @@
 
                         <!-- village -->
                         <div class="col-lg-3 ">
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Village</mat-label>
-                                    <input matInput type="text" formControlName="village">
+                            
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <!-- <mat-label>Village</mat-label> -->
+                                    <input matInput placeholder="Village"type="text" formControlName="village">
+                                    <mat-error *ngIf="ff.village.hasError('required')">You Must Enter Village Name </mat-error>
                                 </mat-form-field>
-                            </div>
+                            
                         </div>
                         <!-- District -->
                         <div class="col-lg-3">
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>District</mat-label>
-                                    <input matInput type="text" formControlName="district">
+                            
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <!-- <mat-label>District</mat-label> -->
+                                    <input matInput type="text"placeholder="District" formControlName="district">
+                                    <mat-error *ngIf="ff.district.hasError('required')">District </mat-error>
                                 </mat-form-field>
-                            </div>
+                          
                         </div>
                         <!-- State -->
                         <div class="col-lg-3">
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>State</mat-label>
-                                    <input matInput type="text" formControlName="state">
+                            
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <!-- <mat-label>State</mat-label> -->
+                                    <input matInput placeholder="State" type="text" formControlName="state">
+                                    <mat-error *ngIf="ff.state.hasError('required')">State required</mat-error>
                                 </mat-form-field>
-                            </div>
+                         
                         </div>
                         <!-- post -->
                         <div class="col-lg-3">
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Post</mat-label>
-                                    <input matInput type="text" formControlName="post">
+                           
+                                <mat-form-field appearance="outline" class="example-full-width">
+                                    <!-- <mat-label>Post</mat-label> -->
+                                    <input matInput type="text" placeholder="Post" formControlName="post">
+                                    <mat-error *ngIf="ff.post.hasError('required')">Post required </mat-error>
                                 </mat-form-field>
-                            </div>
+                            
                         </div>
                     </div>
+    <!-- permanent Address -->
+    <div class="row">
+        <mat-label>Local Address</mat-label>
+    </div>
 
-                    <!-- local Address -->
-                    <div class="row">
-                        <mat-label>Local Address</mat-label>
-                    </div>
+    <div class="row" formGroupName="localAddress">
 
-                    <div class="row" formGroupName="localAddress">
+        <!-- village -->
+        <div class="col-lg-3 ">
+            
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <!-- <mat-label>Village</mat-label> -->
+                    <input matInput placeholder="Village"type="text" formControlName="village">
+                    <!-- <mat-error *ngIf="ff.village.hasError('required')">village required </mat-error> -->
+                </mat-form-field>
+            
+        </div>
+        <!-- District -->
+        <div class="col-lg-3">
+            
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <!-- <mat-label>District</mat-label> -->
+                    <input matInput type="text"placeholder="District" formControlName="district">
+                    <!-- <mat-error *ngIf="ff.district.hasError('required')">District </mat-error> -->
+                </mat-form-field>
+          
+        </div>
+        <!-- State -->
+        <div class="col-lg-3">
+            
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <!-- <mat-label>State</mat-label> -->
+                    <input matInput placeholder="State" type="text" formControlName="state">
+                    <!-- <mat-error *ngIf="ff.state.hasError('required')">State required</mat-error> -->
+                </mat-form-field>
+         
+        </div>
+        <!-- post -->
+        <div class="col-lg-3">
+           
+                <mat-form-field appearance="outline" class="example-full-width">
+                    <!-- <mat-label>Post</mat-label> -->
+                    <input matInput type="text" placeholder="Post" formControlName="post">
+                    <!-- <mat-error *ngIf="ff.post.hasError('required')">Post required </mat-error> -->
+                </mat-form-field>
+            
+        </div>
+    </div>
 
-                        <!-- village -->
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Village</mat-label>
-                                    <input matInput type="text" formControlName="village">
-                                </mat-form-field>
-                            </div>
-                        </div>
-                        <!-- District -->
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>District</mat-label>
-                                    <input matInput type="text" formControlName="district">
-                                </mat-form-field>
-                            </div>
-                        </div>
-                        <!-- State -->
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>State</mat-label>
-                                    <input matInput type="text" formControlName="state">
-                                </mat-form-field>
-                            </div>
-                        </div>
-                        <!-- post -->
-                        <div class="col-md-4">
-                            <div class="form-group">
-                                <mat-form-field class="example-full-width">
-                                    <mat-label>Post</mat-label>
-                                    <input matInput type="text" formControlName="post">
-                                </mat-form-field>
-                            </div>
-                        </div>
-                    </div>
+    
+                    
                     <!-- guradianName -->
                     <div class="row">
                         <div class="col-md-6">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Guardian Name</mat-label>
-                                <input matInput type="text" formControlName="guardianName">
+                            <mat-form-field appearance="outline" class="example-full-width">
+                                <!-- <mat-label>Guardian Name</mat-label> -->
+                                <input matInput  placeholder="Guardiuan" type="text" formControlName="guardianName">
+                                <mat-error *ngIf="f.guardianName.hasError('required')">Guardian Name Required</mat-error>
 
                             </mat-form-field>
                         </div>
                         <div class="col-md-6">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Conatact Number</mat-label>
-                                <input matInput type="tel" formControlName="contactNumber">
-
+                            <mat-form-field appearance="outline" class="example-full-width">
+                                <!-- <mat-label>Conatact Number</mat-label> -->
+                                <input matInput placeholder="Contact " type="number"  formControlName="contactNumber">
+<mat-error *ngIf="f.contactNumber.hasError('required') ">Contact Number required</mat-error>
                             </mat-form-field>
                         </div>
                     </div>
                     <div class="row">
                         <!-- nationality -->
                         <div class="col-md-12">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Nationality</mat-label>
-                                <input matInput type="text" formControlName="nationality">
+                            <mat-form-field appearance="outline" class="example-full-width">
+                                <!-- <mat-label>Nationality</mat-label> -->
+                                <input matInput placeholder="Nationality" type="text" formControlName="nationality">
                             </mat-form-field>
                         </div>
                     </div>
                     <div class="row">
                         <!-- healthStatus -->
                         <div class="col-md-6">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Health Status</mat-label>
-                                <input matInput type="text" formControlName="healthStatus">
+                            <mat-form-field appearance="outline" class="example-full-width">
+                                <!-- <mat-label>Health Status</mat-label> -->
+                                <input matInput placeholder="Health Status" type="text" formControlName="healthStatus">
                             </mat-form-field>
                         </div>
                         <!-- bloodGroup -->
                         <div class="col-md-6">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Blood Group</mat-label>
-                                <input matInput type="text" formControlName="bloodGroup">
+                            <mat-form-field appearance="outline" class="example-full-width">
+                                <!-- <mat-label>Blood Group</mat-label> -->
+                                <input matInput Placeholder="Blood Group"type="text" formControlName="bloodGroup">
                             </mat-form-field>
                         </div>
                     </div>
                     <!-- admissionIn -->
                     <div class="row">
                         <div class="col-md-12">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Addmission In</mat-label>
-                                <input matInput type="text" formControlName="admissionIn">
+                            <mat-form-field appearance="outline" class="example-full-width">
+                                <!-- <mat-label>Addmission In</mat-label> -->
+                                <input matInput placeholder="AddmissionIn"type="text" formControlName="standard">
+                                <mat-error *ngIf="f.standard.hasError('required')">Admission In Class?</mat-error>
                             </mat-form-field>
                         </div>
                     </div>
@@ -304,21 +304,23 @@
                     <div class="row">
                         <!-- convenience -->
                         <div class="col-md-6">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Convenience(Yes/No)</mat-label>
-                                <input matInput type="text" formControlName="admissionIn">
+                            <mat-form-field appearance="outline" class="example-full-width">
+                                <!-- <mat-label>Convenience(Yes/No)</mat-label> -->
+                                <input matInput placeholder="Convenience" type="text" formControlName="convenience">
                             </mat-form-field>
                         </div>
                         <!-- place -->
                         <div class="col-md-6">
-                            <mat-form-field class="example-full-width">
-                                <mat-label>Place</mat-label>
-                                <input matInput type="text" formControlName="place">
+                            <mat-form-field appearance="outline" class="example-full-width">
+                                <!-- <mat-label>Place</mat-label> -->
+                                <input matInput placeHolder="Place"type="text" formControlName="place">
                             </mat-form-field>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <button type="submit" class="btn btn-primary">Register</button>
+                    <div class="float-right">
+                        <button mat-stroked-button color="warn">Reset</button>
+                        <button type="submit" mat-raised-button color="primary">Register</button>
+                        
                     </div>
                 </form>
             </div>

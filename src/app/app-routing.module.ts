@@ -11,6 +11,9 @@ import { StudentsComponent } from './students/students.component';
 import { AdmissionComponent } from './admission/admission.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StudentcompletedetailsComponent } from './studentcompletedetails/studentcompletedetails.component'
+import { FeestructureComponent } from './feestructure/feestructure.component';
+import { FeesComponent } from './fees/fees.component';
+
 
 
 
@@ -23,6 +26,9 @@ const routes: Routes = [
 
   {path:'admission',component:AdmissionComponent},
   {path:'students',component:StudentsComponent},
+  { path: 'feestructure',component:FeestructureComponent},
+  { path: 'fees',component:FeesComponent},
+
 
   // { path : 'login' ,component: LoginComponent},
   // { path : '**' ,component: LoginComponent},

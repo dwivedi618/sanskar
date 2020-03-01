@@ -26,3 +26,22 @@ button span{
   td {
     padding-right: 8px;
   }
+  .student_image{
+      max-width: 10rem;
+      min-width: 10rem;
+      max-height: 10rem;
+      min-height: 10rem;
+      overflow: hidden;
+  }
+  .student_image img{
+      background-position: center;
+      background-size: cover;
+  }
+  button{
+      margin-left: 1rem;
+      
+  }
+ mat-form-field{
+     height: 2rem;
+     background-color: aliceblue;
+ }

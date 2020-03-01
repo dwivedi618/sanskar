@@ -1,5 +1,5 @@
 <!-- main app container -->
-<div class="jumbotron">
+<!-- <div class="jumbotron"> -->
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
@@ -8,15 +8,18 @@
                 </div>
                 
                 <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                    <!-- <div class="card p-4">
+                    <div class="card p-4">
                         <div class="form-group">
                             <label class="h4 mb-3" for="">photo</label>
-                            <input type="file" class="form-control-file" 
+                            <input type="file" (change)="onImagePicked($event)"class="form-control-file" 
                                 aria-describedby="fileHelpId">
                         </div>
-                        <img *ngIf="admission.profilePic" [src]="admission.profilePic" class="img-thumbnail">
-                    </div> -->
-                    <div class="row">
+                        <div *ngIf="imagePreview!=='' && imagePreview" class="student_image ">
+                            <img  [src]="imagePreview" [alt]="registerForm.value.firstName" class=" img-thumbnail" >
+
+                        </div>
+                    </div>
+                    <div class="row jumbotron">
                         <div class="col-md-4">
                             <!-- firstName -->
                             
@@ -318,9 +321,12 @@
                         </div>
                     </div>
                     <div class="float-right">
-                        <button mat-stroked-button color="warn">Reset</button>
+                        <button type="reset" mat-stroked-button color="warn">Reset</button>
                         <button type="submit" mat-raised-button color="primary">Register</button>
                         
                     </div>
                 </form>
             </div>
+            </div>
+            </div>
+            

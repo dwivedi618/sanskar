@@ -7,7 +7,8 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-
+username= 'John Doeeeeeeeeeeeeeeeeeeee';
+email = 'johnDoe@gmail.commmmmmmmmmmmmmm'
   constructor(
     @Inject(DOCUMENT) private document: any
   ) { }

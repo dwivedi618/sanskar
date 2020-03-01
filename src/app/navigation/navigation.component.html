@@ -15,41 +15,41 @@
                 </div>
         <span class="example-spacer"></span>
         <div>
+          
             <mat-card class="remove_shadow primary_avatar_card">
-                
                     <button mat-icon-button [matMenuTriggerFor]="menu" 
                     aria-label=" icon-button with a menu">
                     <div mat-card-avatar class="primary_avatar_image"></div>
                    </button>
-                
             </mat-card>
-        
-
-                
-              
               <mat-menu #menu="matMenu" >
-                
-                  <mat-card class="remove_shadow secondary_avatar_card">
-                    <div mat-card-avatar class="secondary_avatar_image"></div>
+                <div  class="profile">
+                  <div class="float-left">
+                    <mat-card class="remove_shadow " routerLink='/profile'>
+                      <div mat-card-avatar class="secondary_avatar_image"></div>
+                    </mat-card>
+                  </div>
+                <div class="float-right username_email_container">
+                      <button mat-menu-item routerLink='/profile'>
+                      <h3 mat-line>{{username}}</h3>
+                      </button>
+                      <button mat-menu-item routerLink='/profile' >
+                        <h6 mat-line><small>{{email}}</small></h6>
+                    </button>
 
-            </mat-card>
-                
-                <button mat-menu-item class="text-center" >
-             
-                  <span >Manoj Dwivedi</span>
-                </button>
-                <button mat-menu-item class="text-center" >
-                  
-                  <h6><small>mkd@gmail.com</small></h6>
-                </button>
-                <button mat-menu-item >
-                  <mat-icon>logout</mat-icon>
-                  <span>logout</span>
-                </button>
-                <button mat-menu-item >
-                  <mat-icon>settings</mat-icon>
-                  <span>settings</span>
-                </button>
+                </div>
+                </div>
+<mat-divider></mat-divider>
+                <div mat-menu-item class="logoutsetting">
+                  <button  mat-raised-button color='warn' class="float-left">
+                    <mat-icon>logout</mat-icon>
+                    <span>logout</span>
+                  </button>
+                  <button  mat-raised-button color='primary' class="float-right">
+                    <mat-icon>settings</mat-icon>
+                    <span>settings</span>
+                  </button>
+                </div>
               </mat-menu>
               
         </div>

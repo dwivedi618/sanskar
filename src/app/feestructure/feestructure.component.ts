@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-feestructure',
@@ -7,9 +8,15 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeestructureComponent implements OnInit {
 
-  constructor() { }
+  feeStructureForm : FormGroup;
+  constructor(private formBuilder:FormBuilder) { }
 
   ngOnInit() {
+    this.feeStructureForm = this.formBuilder.group({
+     standard : ['',Validators.required],
+     tutionFees : ['',Validators.required],
+
+    });
   }
 
 }

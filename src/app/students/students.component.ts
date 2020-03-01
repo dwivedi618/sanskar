@@ -72,8 +72,8 @@ export class StudentsComponent implements OnInit {
     }
 
     // sorting
-    // @ViewChild(MatSort) sort: MatSort;
-    // @ViewChild(MatPaginator) paginator: MatPaginator;
+    // @ViewChild(MatSort,true) sort: MatSort;
+    // @ViewChild(MatPaginator,true) paginator: MatPaginator;
     
   constructor() {}
   // ngAfterViewInit(): void {

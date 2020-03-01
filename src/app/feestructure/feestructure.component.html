@@ -1,1 +1,33 @@
-<p>feestructure works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+        <form [formGroup]="feeStructureForm" (ngSubmit)="onSubmit()">
+        <div class="col-md-3 ">
+            <!-- <mat-label>Standard</mat-label> -->
+            <mat-form-field class="example_full_width">
+                <input type="text" matInput placeholder="UKG" formControlName="standard">
+            </mat-form-field>
+        </div>
+        <div class="col-lg-3">
+            <!-- <mat-label>Tution Fee</mat-label> -->
+            <mat-form-field class="example_full_width">
+                <input type="text" matInput placeholder="UKG" formControlName="tutionFee">
+            </mat-form-field>
+        </div>
+        <div class="col-lg-3">
+            <!-- <mat-label>Convenience Fees</mat-label> -->
+            <mat-form-field class="example_full_width">
+                <input type="text" matInput placeholder="" formControlName="convenienceFee">
+            </mat-form-field>
+        </div>
+        <div class="col-lg-3">
+            <!-- <mat-label>Other Fees</mat-label> -->
+            <mat-form-field class="example_full_width">
+                <input type="text" matInput placeholder="UKG" formControlName="otherFees">
+            </mat-form-field>
+        </div>
+        <button type="submit" color="primary">Done</button>
+        </form>
+        </div>
+    </div>
+</div>

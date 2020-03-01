@@ -22,6 +22,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StudentcompletedetailsComponent } from './studentcompletedetails/studentcompletedetails.component';
 import { FeestructureComponent } from './feestructure/feestructure.component';
 import { FeesComponent } from './fees/fees.component';
+import { ProfileComponent } from './profile/profile.component';
+import { EditComponent } from './profile/edit/edit.component';
 
 
 
@@ -39,6 +41,8 @@ import { FeesComponent } from './fees/fees.component';
     StudentcompletedetailsComponent,
     FeestructureComponent,
     FeesComponent,
+    ProfileComponent,
+    EditComponent,
     
     
   ],

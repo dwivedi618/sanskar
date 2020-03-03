@@ -10,9 +10,10 @@ import { CommonService } from '../services/common.service';
   styleUrls: ['./admission.component.css']
 })
 export class AdmissionComponent implements OnInit {
-  admission = new Admission();
+  
   registerForm: FormGroup;
   submitted = false;
+  imagePreview: any;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -21,6 +22,7 @@ export class AdmissionComponent implements OnInit {
 
   ngOnInit() {
       this.registerForm = this.formBuilder.group({
+        image: ['',Validators.required],
           firstName: ['', Validators.required],
           middleName: [''],
           lastName: [''],
@@ -65,6 +67,19 @@ export class AdmissionComponent implements OnInit {
   get ff(){ return this.registerForm.get(['permanentAddress'])['controls']; }//for accessing nested form permanentAddress
   get fff(){ return this.registerForm.get(['localAddress'])['controls']; }//for accessing nested form localAddress
 
+  onImagePicked(event : Event){
+    const file = (event.target as HTMLInputElement).files[0];
+    this.registerForm.patchValue({image : file});
+    this.registerForm.get('image').updateValueAndValidity();
+    // console.log(file);
+    // console.log(this.registerForm);
+    const reader = new FileReader();
+    reader.onload = ()=>{
+      this.imagePreview = reader.result;
+    }
+    reader.readAsDataURL(file);
+
+  }
   onSubmit() {
       this.submitted = true;
 

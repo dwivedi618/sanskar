@@ -25,8 +25,13 @@
     min-height: 3rem;
     max-height: 3rem;
     width: 100%;  
+<<<<<<< HEAD
      
     
+=======
+    /* background: #242939;  */
+    color: #121212;
+>>>>>>> bd9253f6ca3e744b0a259d876816fa57ad04bf5c
     box-shadow: 0px 1px 4px rgba(102, 102, 102, 0.5);
   }
   .example-header:hover{
@@ -64,9 +69,10 @@
   
   .remove_shadow{
     
-    box-shadow: none;
+    box-shadow: none!important;
     outline: none;
-    background-color: transparent;
+    background: transparent;
+    background-color: transparent!important;
     border: none;
     padding: 0;
     margin: 0;
@@ -93,31 +99,51 @@
     box-shadow: 0px 0px 1px #222,0px 2px 4px #ccc;
   }
   .secondary_avatar_card{
-    max-width: 100%;
-    min-width: 8rem;
-    max-height: 6rem;
-    min-height: 4rem;
+    
+    
     box-shadow: none;
     outline: none;
     background-color: transparent;
     border: none;
     padding: 0;
     margin: 0;
-    background: rgba(0, 0, 0, 0.103);
+    
 
   }
   .secondary_avatar_image {
+    clear: both!important;
     max-width: 6rem;
     max-height: 6rem;
     min-width: 6rem;
     min-height: 6rem;
-    margin: 0rem auto;
+    /* margin: 0rem auto; */
     background-position: center;
     background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
     background-size: cover;
     box-shadow: 0px 0px 1px #222,0px 2px 4px #ccc;
   }
-  mat-grid-tile {
-    background: lightblue;
-  }
-  
+mat-menu,mat-menu-item,mat-menu-content{
+  min-width: 10rem!important;
+}
+.logoutsetting{
+  margin-top: .5rem;
+}
+.conatiner-sm div{
+  clear: both;
+}
+div.profile{
+  padding: 0rem 1rem;
+  margin: 0 auto;
+  min-height: 8rem;
+  min-width: 10rem;
+  clear: both;
+
+}
+div.username_email_container{
+ 
+  margin: .5rem auto;
+  max-height: 8rem;
+ 
+  max-width: 60%;
+  min-width: 60%;
+}

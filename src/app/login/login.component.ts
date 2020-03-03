@@ -4,6 +4,8 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 
 
 import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
+import { MatSnackBar } from '@angular/material';
 
 @Component({
   selector: 'app-login',
@@ -11,15 +13,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  registerForm: FormGroup;
+
+  loginForm: FormGroup;
   submitted = false;
+  user :any;
+
   constructor(
+    private snackBar: MatSnackBar,
     private formBuilder: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthenticationService
     ) { }
 
     ngOnInit() {
-      this.registerForm = this.formBuilder.group({
+      this.loginForm = this.formBuilder.group({
         // firstName: ['', Validators.required],
         // lastName: ['', Validators.required],
         email: ['', [Validators.required, Validators.email]],
@@ -27,18 +34,32 @@ export class LoginComponent implements OnInit {
     });
     }
      // convenience getter for easy access to form fields
-  get f() { return this.registerForm.controls; }
+  get f() { return this.loginForm.controls; }
 
   onSubmit() {
       this.submitted = true;
 
       // stop here if form is invalid
-      // if (this.registerForm.invalid) {
+      // if (this.loginForm.invalid) {
       //     return;
       // }
-      console.log("sidena on login")
-    this.router.navigate['/sidenav'];
-      // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
+      this.authService.login(this.loginForm.value.email,this.loginForm.value.password)
+      .subscribe(result => {
+        console.log("sidena on login",result)
+        this.router.navigate['/sidenav'];
+      }, error => {
+        console.log("EERRRRRROOOORRRRR",error)
+      })
+
+  
+      // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.loginForm.value))
   }
 
+  getErrorMessage() {
+    if (this.f.email.hasError('required')) {
+      return 'You must enter a value';
+    }
+
+    return this.f.email.hasError('email') ? 'Not a valid email' : '';
+  }
 }

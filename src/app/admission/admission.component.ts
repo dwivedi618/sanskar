@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Admission, Experience, Education, Skill } from './admission';
 
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { CommonService } from '../services/common.service';
 
 @Component({
   selector: 'app-admission',
@@ -13,7 +14,10 @@ export class AdmissionComponent implements OnInit {
   registerForm: FormGroup;
   submitted = false;
 
-  constructor(private formBuilder: FormBuilder) { }
+  constructor(
+    private formBuilder: FormBuilder,
+    private commonService: CommonService
+    ) { }
 
   ngOnInit() {
       this.registerForm = this.formBuilder.group({
@@ -68,7 +72,13 @@ export class AdmissionComponent implements OnInit {
       if (this.registerForm.invalid) {
           return;
       }
-
-      alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
+      console.log("Before submit",this.registerForm.value);
+      this.commonService.postData(this.registerForm.value)
+      .subscribe((result) => {
+        console.log("rrrrrrrreeeeeesssssulllttt",result)
+      },
+      (error) => {
+        console.log("errrrrrorrrrr",error);
+      });
   }
 }

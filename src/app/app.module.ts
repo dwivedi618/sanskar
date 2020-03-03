@@ -24,6 +24,9 @@ import { FeestructureComponent } from './feestructure/feestructure.component';
 import { FeesComponent } from './fees/fees.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditComponent } from './profile/edit/edit.component';
+import { AuthenticationService } from './services/authentication.service';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { SettingsComponent } from './settings/settings.component';
 
 
 
@@ -43,6 +46,7 @@ import { EditComponent } from './profile/edit/edit.component';
     FeesComponent,
     ProfileComponent,
     EditComponent,
+    SettingsComponent,
     
     
   ],
@@ -52,7 +56,7 @@ import { EditComponent } from './profile/edit/edit.component';
     ReactiveFormsModule,
     AppRoutingModule,
     MaterialModule,
-    
+    HttpClientModule,
     FormsModule,
     
   ],
@@ -61,7 +65,7 @@ import { EditComponent } from './profile/edit/edit.component';
     MaterialModule,
     
   ],
-  providers: [],
+  providers: [AuthenticationService,HttpClient],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

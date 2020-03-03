@@ -13,6 +13,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import { StudentcompletedetailsComponent } from './studentcompletedetails/studentcompletedetails.component'
 import { FeestructureComponent } from './feestructure/feestructure.component';
 import { FeesComponent } from './fees/fees.component';
+import { SettingsComponent } from './settings/settings.component';
 
 
 
@@ -21,6 +22,7 @@ import { FeesComponent } from './fees/fees.component';
 
 
 const routes: Routes = [
+  // {path: 'sidenav', component: SidenavComponent},
   {path: 'studentcompletedetails',component: StudentcompletedetailsComponent},
   {path: 'dashboard',component: DashboardComponent},
 
@@ -28,10 +30,10 @@ const routes: Routes = [
   {path:'students',component:StudentsComponent},
   { path: 'feestructure',component:FeestructureComponent},
   { path: 'fees',component:FeesComponent},
+{path:'settings',component:SettingsComponent},
 
-
-  // { path : 'login' ,component: LoginComponent},
-  // { path : '**' ,component: LoginComponent},
+  { path : 'login' ,component: LoginComponent},
+  // { path : '' ,component: LoginComponent},
 
 
 ];

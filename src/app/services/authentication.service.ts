@@ -22,7 +22,6 @@ export class AuthenticationService {
                     localStorage.setItem('name',user.name);
                     localStorage.setItem('email',user.email);
                 }
-
                 return user;
             }));
     }

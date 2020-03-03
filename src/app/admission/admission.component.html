@@ -1,62 +1,53 @@
 <!-- main app container -->
 <!-- <div class="jumbotron"> -->
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="row text">
-                    <h3>Addmission form</h3>
-                </div>
-                
-                <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-                    <div class="card p-4">
-                        <div class="form-group">
-                            <label class="h4 mb-3" for="">photo</label>
-                            <input type="file" (change)="onImagePicked($event)"class="form-control-file" 
-                                aria-describedby="fileHelpId">
-                        </div>
-                        <div *ngIf="imagePreview!=='' && imagePreview" class="student_image ">
-                            <img  [src]="imagePreview" [alt]="registerForm.value.firstName" class=" img-thumbnail" >
+<div class="container ">
 
-                        </div>
-                    </div>
-                    <div class="row jumbotron">
-                        <div class="col-md-4">
-                            <!-- firstName -->
-                            
+    <div class="col-md-12 card ">
+        <div class="card-header ">
+            <h3 style="text-align: center">Addmission form</h3>
+        </div>
+        <div class="card-body">
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+                <div class="row ">
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <!-- firstName -->
+
                                 <mat-form-field appearance="outline" class="example-full-width">
                                     <!-- <mat-label>First name</mat-label> -->
-                                    <input matInput placeholder="First Name"type="text" formControlName="firstName">
-                                   <mat-error *ngIf="f.firstName.hasError('required')">First Name Required</mat-error>
+                                    <input matInput placeholder="First Name" type="text" formControlName="firstName">
+                                    <mat-error *ngIf="f.firstName.hasError('required')">First Name Required</mat-error>
                                 </mat-form-field>
-                                
-                        </div>
-                        <!-- middle_name -->
-                        <div class="col-md-4">
-                            <!-- firstName -->
-                            
+
+                            </div>
+                            <!-- middle_name -->
+                            <div class="col-md-4">
+                                <!-- firstName -->
+
                                 <mat-form-field appearance="outline" class="example-full-width">
-                                   
-                                    <input matInput placeholder="Middle Name" type="text" formControlName="middleName" >
-                                   
+
+                                    <input matInput placeholder="Middle Name" type="text" formControlName="middleName">
+
                                 </mat-form-field>
-                            
-                        </div>
-                        <div class="col-md-4">
-                            <!-- lastName -->
-                            
+
+                            </div>
+                            <div class="col-md-4">
+                                <!-- lastName -->
+
                                 <mat-form-field appearance="outline" class="example-full-width">
                                     <!-- <mat-label>Last Name</mat-label> -->
-                                    <input placeholder="Last Name " matInput type="text" formControlName="lastName" >
-                                     
-                                </mat-form-field>
-                            
-                        </div>
-                    </div>
+                                    <input placeholder="Last Name " matInput type="text" formControlName="lastName">
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <!-- Gender -->
-                            <mat-label>Gender</mat-label>
+                                </mat-form-field>
+
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <!-- Gender -->
+                                <mat-label>Gender</mat-label>
                                 <div>
 
                                     <mat-radio-group formControlName="gender" aria-label="Gender">
@@ -64,12 +55,12 @@
                                         <mat-radio-button value="Female">Female</mat-radio-button>
                                         <mat-radio-button value="Other">Other</mat-radio-button>
                                     </mat-radio-group>
-     
+
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6">
-                            <!-- dateOfBirth -->
-                            
+                            <div class="col-md-3">
+                                <!-- dateOfBirth -->
+
                                 <mat-form-field appearance="outline">
                                     <mat-label>Date of Birth</mat-label>
                                     <input matInput formControlName="dateOfBirth" [matDatepicker]="picker">
@@ -77,256 +68,284 @@
                                     <mat-datepicker #picker></mat-datepicker>
                                 </mat-form-field>
 
-                            
+
+                            </div>
                         </div>
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <!-- fatherName -->
-                            
-                                <mat-form-field appearance="outline" class="example-full-width">
-                                    <!-- <mat-label>Father's Name</mat-label> -->
-                                    <input matInput placeholder="Father's Name" type="text" formControlName="fatherName" >
-                                    <mat-error *ngIf="f.fatherName.hasError('required')">Father's name Required</mat-error>
-                                </mat-form-field>
-                          
+                    <div class="col-md-3 ">
+                        <div class=" card bg-dark text-white mycard">
+                            <div *ngIf="imagePreview!=='' && imagePreview">
+                                <img [src]="imagePreview" [alt]="registerForm.value.firstName" class="card-img-top">
+                            </div>
+                            <div class="card-body">
+                                <button mat-raised-button type="button" color="primary" matTooltip="Upload Image"
+                                    class="upload_button " (click)="fileUpload.click()">
+                                    Upload Image
+                                </button>
+                                <input type="file" #fileUpload (change)="onImagePicked($event)">
+                            </div>
                         </div>
-                        <div class="col-md-6">
-                            <!-- motherName -->
-                            
-                                <mat-form-field appearance="outline" class="example-full-width">
-                                    <!-- <mat-label>Mother's Name</mat-label> -->
-                                    <input matInput placeholder="Mother's Name" type="text" formControlName="motherName">
-                                   <mat-error *ngIf="f.motherName.hasError('required')">Mother's Name Required</mat-error>
-                                </mat-form-field>
-                            
-                        </div>
+
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <!-- fatherEducation -->
-                            
-                                <mat-form-field appearance="outline" class="example-full-width">
-                                    <!-- <mat-label>Father's Education</mat-label> -->
-                                    <input matInput placeholder="Father's Education" type="text" formControlName="fatherEducation">
 
-                                </mat-form-field>
-                          
-                        </div>
-                        <div class="col-md-6">
-                            <!-- fatherOccupation -->
-                           
-                                <mat-form-field appearance="outline" class="example-full-width">
-                                    <!-- <mat-label>Father's Occupation</mat-label> -->
-                                    <input matInput placeholder="Father's Occupation" type="text" formControlName="fatherOccupation">
+                </div>
 
-                                </mat-form-field>
-                            
-                        </div>
+
+                <div class="row">
+                    <mat-label>Parent Details</mat-label>
+                </div>
+                <div class="row">
+                    <div class="col-md-4">
+                        <!-- fatherName -->
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Father's Name</mat-label> -->
+                            <input matInput placeholder="Father's Name" type="text" formControlName="fatherName">
+                            <mat-error *ngIf="f.fatherName.hasError('required')">Father's name Required</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <div class="col-md-4">
+                        <!-- fatherEducation -->
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Father's Education</mat-label> -->
+                            <input matInput placeholder="Father's Education" type="text"
+                                formControlName="fatherEducation">
+
+                        </mat-form-field>
+
+                    </div>
+                    <div class="col-md-4">
+                        <!-- fatherOccupation -->
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Father's Occupation</mat-label> -->
+                            <input matInput placeholder="Father's Occupation" type="text"
+                                formControlName="fatherOccupation">
+
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <!-- motherName -->
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Mother's Name</mat-label> -->
+                            <input matInput placeholder="Mother's Name" type="text" formControlName="motherName">
+                            <mat-error *ngIf="f.motherName.hasError('required')">Mother's Name Required</mat-error>
+                        </mat-form-field>
+
                     </div>
 
-                    <div class="row">
-                        <div class="col-md-6">
-                            <!-- motherEducation -->
-                            
-                                <mat-form-field appearance="outline" class="example-full-width">
-                                    <!-- <mat-label>Mother's Education</mat-label> -->
-                                    <input matInput placeholder="Mother's Education" type="text" formControlName="motherEducation">
 
-                                </mat-form-field>
-                           
-                        </div>
-                        <div class="col-md-6">
-                            <!-- mother Ouccpation -->
-                            
-                                <mat-form-field appearance="outline" class="example-full-width">
-                                    <!-- <mat-label>Mother's Occupation</mat-label> -->
-                                    <input matInput placeholder="Mother's Occupation" type="text" formControlName="motherOccupation">
 
-                                </mat-form-field>
-                           
+                    <div class="col-md-4">
+                        <!-- motherEducation -->
 
-                        </div>
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Mother's Education</mat-label> -->
+                            <input matInput placeholder="Mother's Education" type="text"
+                                formControlName="motherEducation">
+
+                        </mat-form-field>
+
                     </div>
+                    <div class="col-md-4">
+                        <!-- mother Ouccpation -->
 
-                    <!-- permanent Address -->
-                    <div class="row">
-                        <mat-label>Permanent Address</mat-label>
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Mother's Occupation</mat-label> -->
+                            <input matInput placeholder="Mother's Occupation" type="text"
+                                formControlName="motherOccupation">
+
+                        </mat-form-field>
+
+
                     </div>
+                </div>
 
-                    <div class="row" formGroupName="permanentAddress">
+                <!-- permanent Address -->
+                <div class="row">
+                    <mat-label>Permanent Address</mat-label>
+                </div>
 
-                        <!-- village -->
-                        <div class="col-lg-3 ">
-                            
-                                <mat-form-field appearance="outline" class="example-full-width">
-                                    <!-- <mat-label>Village</mat-label> -->
-                                    <input matInput placeholder="Village"type="text" formControlName="village">
-                                    <mat-error *ngIf="ff.village.hasError('required')">You Must Enter Village Name </mat-error>
-                                </mat-form-field>
-                            
-                        </div>
-                        <!-- District -->
-                        <div class="col-lg-3">
-                            
-                                <mat-form-field appearance="outline" class="example-full-width">
-                                    <!-- <mat-label>District</mat-label> -->
-                                    <input matInput type="text"placeholder="District" formControlName="district">
-                                    <mat-error *ngIf="ff.district.hasError('required')">District </mat-error>
-                                </mat-form-field>
-                          
-                        </div>
-                        <!-- State -->
-                        <div class="col-lg-3">
-                            
-                                <mat-form-field appearance="outline" class="example-full-width">
-                                    <!-- <mat-label>State</mat-label> -->
-                                    <input matInput placeholder="State" type="text" formControlName="state">
-                                    <mat-error *ngIf="ff.state.hasError('required')">State required</mat-error>
-                                </mat-form-field>
-                         
-                        </div>
-                        <!-- post -->
-                        <div class="col-lg-3">
-                           
-                                <mat-form-field appearance="outline" class="example-full-width">
-                                    <!-- <mat-label>Post</mat-label> -->
-                                    <input matInput type="text" placeholder="Post" formControlName="post">
-                                    <mat-error *ngIf="ff.post.hasError('required')">Post required </mat-error>
-                                </mat-form-field>
-                            
-                        </div>
+                <div class="row" formGroupName="permanentAddress">
+
+                    <!-- village -->
+                    <div class="col-lg-3 ">
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Village</mat-label> -->
+                            <input matInput placeholder="Village" type="text" formControlName="village">
+                            <mat-error *ngIf="ff.village.hasError('required')">You Must Enter Village Name </mat-error>
+                        </mat-form-field>
+
                     </div>
-    <!-- permanent Address -->
-    <div class="row">
-        <mat-label>Local Address</mat-label>
+                    <!-- District -->
+                    <div class="col-lg-3">
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>District</mat-label> -->
+                            <input matInput type="text" placeholder="District" formControlName="district">
+                            <mat-error *ngIf="ff.district.hasError('required')">District </mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <!-- State -->
+                    <div class="col-lg-3">
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>State</mat-label> -->
+                            <input matInput placeholder="State" type="text" formControlName="state">
+                            <mat-error *ngIf="ff.state.hasError('required')">State required</mat-error>
+                        </mat-form-field>
+
+                    </div>
+                    <!-- post -->
+                    <div class="col-lg-3">
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Post</mat-label> -->
+                            <input matInput type="text" placeholder="Post" formControlName="post">
+                            <mat-error *ngIf="ff.post.hasError('required')">Post required </mat-error>
+                        </mat-form-field>
+
+                    </div>
+                </div>
+                <!-- permanent Address -->
+                <div class="row">
+                    <mat-label>Local Address</mat-label>
+                </div>
+
+                <div class="row" formGroupName="localAddress">
+
+                    <!-- village -->
+                    <div class="col-lg-3 ">
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Village</mat-label> -->
+                            <input matInput placeholder="Village" type="text" formControlName="village">
+                            <!-- <mat-error *ngIf="ff.village.hasError('required')">village required </mat-error> -->
+                        </mat-form-field>
+
+                    </div>
+                    <!-- District -->
+                    <div class="col-lg-3">
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>District</mat-label> -->
+                            <input matInput type="text" placeholder="District" formControlName="district">
+                            <!-- <mat-error *ngIf="ff.district.hasError('required')">District </mat-error> -->
+                        </mat-form-field>
+
+                    </div>
+                    <!-- State -->
+                    <div class="col-lg-3">
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>State</mat-label> -->
+                            <input matInput placeholder="State" type="text" formControlName="state">
+                            <!-- <mat-error *ngIf="ff.state.hasError('required')">State required</mat-error> -->
+                        </mat-form-field>
+
+                    </div>
+                    <!-- post -->
+                    <div class="col-lg-3">
+
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Post</mat-label> -->
+                            <input matInput type="text" placeholder="Post" formControlName="post">
+                            <!-- <mat-error *ngIf="ff.post.hasError('required')">Post required </mat-error> -->
+                        </mat-form-field>
+
+                    </div>
+                </div>
+
+
+
+                <!-- guradianName -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Guardian Name</mat-label> -->
+                            <input matInput placeholder="Guardiuan" type="text" formControlName="guardianName">
+                            <mat-error *ngIf="f.guardianName.hasError('required')">Guardian Name Required</mat-error>
+
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Conatact Number</mat-label> -->
+                            <input matInput placeholder="Contact " type="number" formControlName="contactNumber">
+                            <mat-error *ngIf="f.contactNumber.hasError('required') ">Contact Number required</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- nationality -->
+                    <div class="col-md-12">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Nationality</mat-label> -->
+                            <input matInput placeholder="Nationality" type="text" formControlName="nationality">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <!-- healthStatus -->
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Health Status</mat-label> -->
+                            <input matInput placeholder="Health Status" type="text" formControlName="healthStatus">
+                        </mat-form-field>
+                    </div>
+                    <!-- bloodGroup -->
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Blood Group</mat-label> -->
+                            <input matInput placeholder="Blood Group" type="text" formControlName="bloodGroup">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- admissionIn -->
+                <div class="row">
+                    <div class="col-md-12">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Addmission In</mat-label> -->
+                            <input matInput placeholder="AddmissionIn" type="text" formControlName="standard">
+                            <mat-error *ngIf="f.standard.hasError('required')">Admission In Class?</mat-error>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <!-- -->
+                <div class="row">
+                    <!-- convenience -->
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <mat-label>Convenience(Yes/No)</mat-label>
+                            <input matInput placeholder="Convenience" type="text" formControlName="convenience">
+                        </mat-form-field>
+                    </div>
+                    <!-- place -->
+                    <div class="col-md-6">
+                        <mat-form-field appearance="outline" class="example-full-width">
+                            <!-- <mat-label>Place</mat-label> -->
+                            <input matInput placeholder="Place" type="text" formControlName="place">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="float-right">
+                    <button type="reset" mat-stroked-button color="warn">Reset</button>
+                    <button type="submit" mat-raised-button color="primary">Register</button>
+
+                </div>
+            </form>
+        </div>
     </div>
 
-    <div class="row" formGroupName="localAddress">
-
-        <!-- village -->
-        <div class="col-lg-3 ">
-            
-                <mat-form-field appearance="outline" class="example-full-width">
-                    <!-- <mat-label>Village</mat-label> -->
-                    <input matInput placeholder="Village"type="text" formControlName="village">
-                    <!-- <mat-error *ngIf="ff.village.hasError('required')">village required </mat-error> -->
-                </mat-form-field>
-            
-        </div>
-        <!-- District -->
-        <div class="col-lg-3">
-            
-                <mat-form-field appearance="outline" class="example-full-width">
-                    <!-- <mat-label>District</mat-label> -->
-                    <input matInput type="text"placeholder="District" formControlName="district">
-                    <!-- <mat-error *ngIf="ff.district.hasError('required')">District </mat-error> -->
-                </mat-form-field>
-          
-        </div>
-        <!-- State -->
-        <div class="col-lg-3">
-            
-                <mat-form-field appearance="outline" class="example-full-width">
-                    <!-- <mat-label>State</mat-label> -->
-                    <input matInput placeholder="State" type="text" formControlName="state">
-                    <!-- <mat-error *ngIf="ff.state.hasError('required')">State required</mat-error> -->
-                </mat-form-field>
-         
-        </div>
-        <!-- post -->
-        <div class="col-lg-3">
-           
-                <mat-form-field appearance="outline" class="example-full-width">
-                    <!-- <mat-label>Post</mat-label> -->
-                    <input matInput type="text" placeholder="Post" formControlName="post">
-                    <!-- <mat-error *ngIf="ff.post.hasError('required')">Post required </mat-error> -->
-                </mat-form-field>
-            
-        </div>
-    </div>
-
-    
-                    
-                    <!-- guradianName -->
-                    <div class="row">
-                        <div class="col-md-6">
-                            <mat-form-field appearance="outline" class="example-full-width">
-                                <!-- <mat-label>Guardian Name</mat-label> -->
-                                <input matInput  placeholder="Guardiuan" type="text" formControlName="guardianName">
-                                <mat-error *ngIf="f.guardianName.hasError('required')">Guardian Name Required</mat-error>
-
-                            </mat-form-field>
-                        </div>
-                        <div class="col-md-6">
-                            <mat-form-field appearance="outline" class="example-full-width">
-                                <!-- <mat-label>Conatact Number</mat-label> -->
-                                <input matInput placeholder="Contact " type="number"  formControlName="contactNumber">
-<mat-error *ngIf="f.contactNumber.hasError('required') ">Contact Number required</mat-error>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- nationality -->
-                        <div class="col-md-12">
-                            <mat-form-field appearance="outline" class="example-full-width">
-                                <!-- <mat-label>Nationality</mat-label> -->
-                                <input matInput placeholder="Nationality" type="text" formControlName="nationality">
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <!-- healthStatus -->
-                        <div class="col-md-6">
-                            <mat-form-field appearance="outline" class="example-full-width">
-                                <!-- <mat-label>Health Status</mat-label> -->
-                                <input matInput placeholder="Health Status" type="text" formControlName="healthStatus">
-                            </mat-form-field>
-                        </div>
-                        <!-- bloodGroup -->
-                        <div class="col-md-6">
-                            <mat-form-field appearance="outline" class="example-full-width">
-                                <!-- <mat-label>Blood Group</mat-label> -->
-                                <input matInput Placeholder="Blood Group"type="text" formControlName="bloodGroup">
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <!-- admissionIn -->
-                    <div class="row">
-                        <div class="col-md-12">
-                            <mat-form-field appearance="outline" class="example-full-width">
-                                <!-- <mat-label>Addmission In</mat-label> -->
-                                <input matInput placeholder="AddmissionIn"type="text" formControlName="standard">
-                                <mat-error *ngIf="f.standard.hasError('required')">Admission In Class?</mat-error>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <!-- -->
-                    <div class="row">
-                        <!-- convenience -->
-                        <div class="col-md-6">
-                            <mat-form-field appearance="outline" class="example-full-width">
-                                <!-- <mat-label>Convenience(Yes/No)</mat-label> -->
-                                <input matInput placeholder="Convenience" type="text" formControlName="convenience">
-                            </mat-form-field>
-                        </div>
-                        <!-- place -->
-                        <div class="col-md-6">
-                            <mat-form-field appearance="outline" class="example-full-width">
-                                <!-- <mat-label>Place</mat-label> -->
-                                <input matInput placeHolder="Place"type="text" formControlName="place">
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <div class="float-right">
-                        <button type="reset" mat-stroked-button color="warn">Reset</button>
-                        <button type="submit" mat-raised-button color="primary">Register</button>
-                        
-                    </div>
-                </form>
-            </div>
-            </div>
-            </div>
-            
+</div>

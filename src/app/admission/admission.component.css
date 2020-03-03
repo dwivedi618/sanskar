@@ -27,11 +27,7 @@ button span{
     padding-right: 8px;
   }
   .student_image{
-      max-width: 10rem;
-      min-width: 10rem;
-      max-height: 10rem;
-      min-height: 10rem;
-      overflow: hidden;
+      
   }
   .student_image img{
       background-position: center;
@@ -41,7 +37,33 @@ button span{
       margin-left: 1rem;
       
   }
- mat-form-field{
-     height: 2rem;
-     background-color: aliceblue;
- }
+  button.upload_button{
+      position: absolute;
+      bottom: .5rem;
+      margin: 0rem!important;
+      left: 50%;
+      transform: translate(-50%);
+  }
+  div.mycard{
+      margin-top: .5rem;
+      
+      max-height: 15rem;
+      min-height: 15rem;
+      overflow: hidden;
+  }
+  @media only screen and (max-width: 600px) {
+    div.card {
+      margin-top: 1rem;
+      margin-left: 0px;
+      margin-right: 0px;
+      
+    }
+    div.container{
+        margin: 0;
+        padding: 0;
+    }
+  }
+  input[type="file"]
+{
+    visibility: hidden;
+}

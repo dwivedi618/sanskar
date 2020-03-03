@@ -10,7 +10,7 @@ export interface PeriodicElement {
 }
 
 const ELEMENT_DATA: PeriodicElement[] = [
-  {studentName: 'shivendra', fatherName: 'Manoj Dwivedi', standard: '10th', address: 'Bankatiya Dubey'},
+  {studentName: 'Manoj Dwivedi', fatherName: 'vyash', standard: '10th', address: 'Bankatiya Dubey'},
  
   {studentName: 'Darshan Pandey', fatherName: 'Shashichadra Pandey', standard: '3rd', address: 'Bankata'},
   {studentName: 'shivendra', fatherName: 'Manoj Dwivedi', standard: '10th', address: 'Bankatiya Dubey'},
@@ -39,6 +39,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
 export class StudentsComponent implements OnInit {
  
   displayedColumns: string[] = ['select', 'studentName', 'fatherName', 'standard', 'address'];
+  filterColumns: string[] = ['studentName', 'fatherName', 'standard', 'address'];
+
   dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
   selection = new SelectionModel<PeriodicElement>(true, []);
 
@@ -67,21 +69,28 @@ export class StudentsComponent implements OnInit {
   // filtering
 
   3
-  public doFilter = (value: string) => {
-      this.dataSource.filter = value.trim().toLocaleLowerCase();
+  // public doFilter = (value: string) => {
+  //     this.dataSource.filter = value.trim().toLocaleLowerCase();
+  //   }
+    applyFilter(filterValue: string) {
+      console.log(filterValue);
+      this.dataSource.filter = filterValue.trim().toLowerCase();
+  
+      if (this.dataSource.paginator) {
+        this.dataSource.paginator.firstPage();
+      }
     }
-
     // sorting
     // @ViewChild(MatSort) sort: MatSort;
     // @ViewChild(MatPaginator) paginator: MatPaginator;
     
   constructor() {}
   // ngAfterViewInit(): void {
-  //   this.dataSource.sort = this.sort;
-  //   this.dataSource.paginator = this.paginator;
+   
   // }
   ngOnInit() {
-
+    // this.dataSource.paginator = this.paginator;
+    // this.dataSource.sort = this.sort;
   }
 
   

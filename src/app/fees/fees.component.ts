@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
+interface FeeInstallment {
+  value: string;
+  viewValue: string;
+}
 
 @Component({
   selector: 'app-fees',
@@ -13,7 +17,12 @@ export class FeesComponent implements OnInit {
   paymentForm : FormGroup;
   submitted = false;
   totalFees = 455;
+  tutionFee = 777;
+  convenienceFee = 345;
   submittedFees = 0;
+  studentName= "Vaibhav Pandey";
+  fatherName ="Ajay Pandey"
+  standard="10"
   currentDues = (this.totalFees) - (this.submittedFees);
   constructor(private formBuilder:FormBuilder) { }
 
@@ -41,5 +50,12 @@ export class FeesComponent implements OnInit {
 
       alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.paymentForm.value))
   }
+
+  fees: FeeInstallment[] = [
+    {value: 'perOneMonth', viewValue: '1 Month'},
+    {value: 'perThreeMonth', viewValue: '3 Month'},
+    {value: 'perSixMonth', viewValue: '6 Month'},
+    {value: 'perYear', viewValue: 'Complete Year'}
+  ];
 
 }

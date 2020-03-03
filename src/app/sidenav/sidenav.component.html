@@ -12,7 +12,7 @@
      <div class="mytoggle_button">
        <button mat-icon-button (click)="mySidenavToggle()" ><mat-icon>menu</mat-icon></button>
      </div>
-       <div class="cover_or_logo">
+       <div *ngIf="isFullOpen" class="cover_or_logo">
         <img class="img-fluid" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
        </div>
        
@@ -23,16 +23,20 @@
     <mat-sidenav-content class="sidenav_content" [ngStyle]="{'margin-left.rem':contentMargin}">
         
         <main>
-            
+                <div class="conatiner">
             <router-outlet>
+                
+
+                
               
             </router-outlet>
+        </div>
         </main>
     </mat-sidenav-content>
     
 </mat-sidenav-container>
-<footer class="footer text-center">
+<!-- <footer class="footer text-center">
 
             <p style="margin:0;padding:0;">&copy;copyright 2020</p>
        
-</footer>
+</footer> -->

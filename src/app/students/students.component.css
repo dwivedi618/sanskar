@@ -55,3 +55,7 @@ input{
   margin: 0;
 
 }
+img.row_avatar_img{
+  margin-right: 1rem;
+  padding: .5rem;
+}

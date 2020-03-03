@@ -1,71 +1,155 @@
 <div class="container">
     <div class="row">
-        <div class="col-md-6">
-            <h1>Payment receipt</h1>
-            <div class="jumbotron">
-                <div>
-                    <p mat-line class="float-left">Tution Fees</p>
-                    <small class="float-right">{{totalFees}}</small>
+            <div class="col-md-4">
+                <div class="card">
+                <div class="card-header">
+                        <h5 class="card-title">Accademic Fees For</h5>
+                    <mat-list>
+                        <mat-list-item>
+                            <h3 mat-line>Student<small> {{studentName}}</small></h3>
+                            
+                        </mat-list-item>
+                        <mat-list-item>
+                                <h3 mat-line>S/o <small> {{fatherName}}</small></h3>
+                                
+                        </mat-list-item>
+                        <mat-list-item>
+                                <h3 mat-line>Standard <small> {{standard}}</small></h3>
+                                
+                        </mat-list-item>
+                        <mat-form-field class="example-full-width">
+                                <mat-label>Fee Per {{installment}}</mat-label>
+                                <mat-select>
+                                  <mat-option *ngFor="let fee of fees" [value]="fee.value">
+                                    {{fee.viewValue}}
+                                  </mat-option>
+                                </mat-select>
+                              </mat-form-field>
+                    </mat-list>
+                    
+                    
+                   
                 </div>
-                <div>
-                    <p mat-line class="float-left">Total Fees</p>
-                    <small class="float-right">{{totalFees}}</small>
-                </div>
-                <div>
-                    <p mat-line class="float-left">Previous Submited Fees</p>
-                    <small class="float-right">{{previousSubmittedFees}}</small>
-                </div>
-                <div>
-                    <p mat-line class="float-left">Current Submited Fees</p>
-                    <small class="float-right">{{submittedFees}}</small>
-                </div>
-                <div>
-                    <p mat-line class="float-left">Current Dues</p>
-                    <small class="float-right">{{currentDues}}</small>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-6">
-            <div class="jumbotron">
-                <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
-                    <h1>Payment Details</h1>
-
-                    <mat-form-field appearance="outline" class="example-full-width">
-                        <!-- <mat-label>First name</mat-label> -->
-                        <input matInput type="text" placeholder="Student Name" formControlName="studentName">
-                        <mat-error *ngIf="paymentForm.get('studentName').hasError('required')">Student Name required
-                        </mat-error>
-                    </mat-form-field>
-                    <!-- standard -->
-                    <mat-form-field appearance="outline" class="example-full-width">
-                        <!-- <mat-label>Standard</mat-label> -->
-                        <input matInput type="number" placeholder="10" formControlName="standard">
-                        <mat-error *ngIf="paymentForm.get('standard').hasError('required')">Payment for standard
-                        </mat-error>
-                    </mat-form-field>
-                    <!-- fathername-->
-                    <mat-form-field appearance="outline" class="example-full-width">
-                        <!-- <mat-label>Father's Name</mat-label> -->
-                        <input matInput type="text" placeholder="Father's Name " formControlName="fatherName">
-                        <mat-error *ngIf="paymentForm.get('fatherName').hasError('required')">Father Name</mat-error>
-                    </mat-form-field>
-                    <!-- Submitted fee-->
-                    <mat-form-field appearance="outline" class="example-full-width">
-                        <!-- <mat-label>Submitted Fees</mat-label> -->
-                        <input matInput type="number" placeholder="500" formControlName="submittedFees">
-                        <mat-error *ngIf="paymentForm.get('submittedFees').hasError('required')">Amount In rupee
-                        </mat-error>
-                    </mat-form-field>
-
-
-                    <div class="float-right">
-                        <button type="reset" mat-stroked-button color="warn">Reset</button>
-                        <button type="submit" mat-raised-button color="primary">Accept Payment</button>
+                <div class="card-body">
+                    <mat-list>
+                        <mat-list-item>
+                            <mat-checkbox labelPosition="before" checked >₹{{tutionFee}}</mat-checkbox>
+                            <p mat-line>Tution Fees</p>
+                        </mat-list-item>
+                        <mat-list-item>
+                                <mat-checkbox labelPosition="before" >₹{{convenienceFee}}</mat-checkbox>
+                                <p mat-line>Convenience Fee</p>
+                        </mat-list-item>
+                        <mat-list-item>
+                                <mat-checkbox labelPosition="before" >₹{{otherFees}}</mat-checkbox>
+                                <p mat-line>Other Fees</p>
+                        </mat-list-item>
+                    </mat-list>
+                        <div class="card-footer bg-transparent border-success">
+                            <mat-list>
+                                <mat-list-item>
+                                        <p >₹{{totalFees}}</p>
+                                        <p mat-line>Total</p>
+                                </mat-list-item>
+                            </mat-list>
+                        </div>
                         
-                    </div>
+                        
 
-                </form>
+                </div>
+                </div>
             </div>
+        <div class="col-md-4">
+                <div class="card ">
+                        <div class="card-header">
+                            <h4>Receipt</h4>
+                        </div>
+                        <div class="card-body">
+                            <mat-list>
+                                <mat-list-item>
+                                    <p mat-line class="float-left">Tution Fees</p>
+                                    <small class="float-right">{{totalFees}}</small>
+                                </mat-list-item>
+                                <mat-list-item>
+                                    <p mat-line class="float-left">Total Fees</p>
+                                    <small class="float-right">{{totalFees}}</small>
+                                </mat-list-item>
+                                <mat-list-item>
+                                    <p mat-line class="float-left">Previous Submited Fees</p>
+                                    <small class="float-right">{{previousSubmittedFees}}</small>
+                                </mat-list-item>
+                                <mat-list-item>
+                                    <p mat-line class="float-left">Current Submited Fees</p>
+                                    <small class="float-right">{{submittedFees}}</small>
+                                </mat-list-item>
+                                <mat-list-item>
+                                    <p mat-line class="float-left">Current Dues</p>
+                                    <small class="float-right">{{currentDues}}</small>
+                                </mat-list-item>
+                            </mat-list>
+        
+                        </div>
+                    </div>
         </div>
-    </div>
-</div>
+        <div class="col-md-4">
+                <div class="card">
+                        <div class="card-header">
+                            <h4>Payment </h4>
+                        </div>
+                        <div class="card-body">
+                            <form [formGroup]="paymentForm" (ngSubmit)="onSubmit()">
+                                <div class="col-md-12">
+                                    <mat-form-field appearance="outline" class="example-full-width">
+                                        <!-- <mat-label>First name</mat-label> -->
+                                        <input matInput type="text" placeholder="Student Name"
+                                            formControlName="studentName">
+                                        <mat-error *ngIf="paymentForm.get('studentName').hasError('required')">Student Name
+                                            required
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-12">
+                                    <!-- standard -->
+                                    <mat-form-field appearance="outline" class="example-full-width">
+                                        <!-- <mat-label>Standard</mat-label> -->
+                                        <input matInput type="number" placeholder="10" formControlName="standard">
+                                        <mat-error *ngIf="paymentForm.get('standard').hasError('required')">Payment for
+                                            standard
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-12">
+                                    <!-- fathername-->
+                                    <mat-form-field appearance="outline" class="example-full-width">
+                                        <!-- <mat-label>Father's Name</mat-label> -->
+                                        <input matInput type="text" placeholder="Father's Name "
+                                            formControlName="fatherName">
+                                        <mat-error *ngIf="paymentForm.get('fatherName').hasError('required')">Father Name
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+                                <div class="col-md-12">
+                                    <!-- Submitted fee-->
+                                    <mat-form-field appearance="outline" class="example-full-width">
+                                        <!-- <mat-label>Submitted Fees</mat-label> -->
+                                        <input matInput type="number" placeholder="500" formControlName="submittedFees">
+                                        <mat-error *ngIf="paymentForm.get('submittedFees').hasError('required')">Amount In
+                                            rupee
+                                        </mat-error>
+                                    </mat-form-field>
+                                </div>
+    
+                                <div class="col-md-12 float-right">
+                                    <button type="reset" mat-stroked-button color="warn">Reset</button>
+                                    <button type="submit" mat-raised-button color="primary">Accept Payment</button>
+    
+                                </div>
+    
+                            </form>
+                        </div>
+                    </div>
+        </div>
+        
+     </div>
+   </div>
+    

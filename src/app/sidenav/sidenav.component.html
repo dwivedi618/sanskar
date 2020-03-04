@@ -1,21 +1,26 @@
-
+<!-- 
 <app-navigation (sidenavToggle)="sidenav.toggle()" >
+</app-navigation> -->
+<div class="mytoggle_button">
+    <button mat-icon-button (click)="mySidenavToggle()" ><mat-icon>menu</mat-icon></button>
+  </div>
+<app-navigation >
 </app-navigation>
+<!-- <app-navigation (sidenavToggle)="sidenav.toggle()" (click)="mySidenavToggle()">
+</app-navigation> -->
 <mat-sidenav-container class="example-container" >
     <mat-sidenav class="mat-drawer-inner-container"
         
     position="start" [mode]="isLargeScreen() ? 'side' : 'over'"
      #sidenav 
-     [class.sidenav_half_open]="!isFullOpen"
-     [class.sidenav_full_open]="isFullOpen"
+     [class.sidenav_half_open]="!isFullOpen && isLargeScreen"
+     [class.sidenav_full_open]="isFullOpen && isLargeScreen"
      opened>
-     <div class="mytoggle_button">
-       <button mat-icon-button (click)="mySidenavToggle()" ><mat-icon>menu</mat-icon></button>
-     </div>
-       <div *ngIf="isFullOpen" class="cover_or_logo">
+     
+       <!-- <div *ngIf="isFullOpen" class="cover_or_logo">
         <img class="img-fluid" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
        </div>
-       
+        -->
            <app-sidenavmenus></app-sidenavmenus>
        
     </mat-sidenav>

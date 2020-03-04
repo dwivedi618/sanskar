@@ -26,3 +26,6 @@ button:focus{
 {
 	background-color: hsl(0, 0%, 54%);
 }
+.card{
+	margin-top: 1rem!important;
+}

@@ -26,7 +26,13 @@
     height: 100%;
   }
   .mytoggle_button{
-    padding: 0px 16px;
+    position: absolute;
+    top: 4px;
+    left: 12px;
+    display: inline-block;
+    color: red;
+    z-index: 44556565;
+    /* padding: 0px 16px; */
     margin: 0;
     min-height: 3rem;
     max-height: 3rem;
@@ -70,12 +76,12 @@
     }    
     .sidenav_full_open{
      width:16rem; 
-     box-shadow: -6px 50px 11px 1px #222;
+     box-shadow: -6px 5px 11px 1px #222;
      
     }
     .sidenav_full_open:hover{
       width:16rem; 
-      box-shadow: -6px 55px 11px 4px #666;
+      box-shadow: -6px 5px 11px 4px #666;
       transition: .1s all;
      }
 .footer,mat-toolbar,mat-toolbar-row{

@@ -1,4 +1,8 @@
 
+  div.margin_left{
+    margin-left: 1rem;
+    width: 1rem;
+  }
   .example-icon {
     padding: 0 14px;
   }
@@ -11,6 +15,17 @@
     line-height: 24px !important;
   
   
+  }
+  div.logo{
+    max-width: 32px;
+    max-height: 32px;
+
+  }
+  div.logo img{
+    max-width: 32px;
+    max-height: 32px;
+    background-size: cover;
+    background-position: center;
   }
   /* a{
     text-decoration: none;
@@ -25,14 +40,10 @@
     min-height: 3rem;
     max-height: 3rem;
     width: 100%;  
-<<<<<<< HEAD
-     
-    
-=======
-    /* background: #242939;  */
+    background: white; 
     color: #121212;
->>>>>>> bd9253f6ca3e744b0a259d876816fa57ad04bf5c
-    box-shadow: 0px 1px 4px rgba(102, 102, 102, 0.5);
+    box-shadow: 0 0 1px 0px black;
+    /* box-shadow: 0px 1px 4px rgba(102, 102, 102, 0.5); */
   }
   .example-header:hover{
 

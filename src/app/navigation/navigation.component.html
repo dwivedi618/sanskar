@@ -3,15 +3,16 @@
 
     <mat-toolbar-row>
         <!-- button form sidenav open and close -->
-        <button mat-icon-button (click)="onToggleSidenav()" matTooltip="main menu">
+        <!-- <button mat-icon-button (click)="onToggleSidenav()" matTooltip="main menu">
             <mat-icon>menu</mat-icon>
-        </button>
-        <button mat-icon-button aria-label="Example icon-button with a heart icon">
-            <mat-icon>favorite</mat-icon>
-        </button>
+        </button> -->
+        <div class="margin_left"></div>
+        <div class="logo">
+            <img src="../assets/sanskar.jpg" alt="logo">
+        </div>
         <!-- ---------------------------------- -->
                 <div fxLayoutAlign="center center">
-                    <h1 class="brand_name">sanskar</h1>
+                    <h1 class="brand_name">Sanskar Public School</h1>
                 </div>
         <span class="example-spacer"></span>
         <div>
@@ -19,7 +20,10 @@
             <mat-card class="remove_shadow primary_avatar_card">
                     <button mat-icon-button [matMenuTriggerFor]="menu" 
                     aria-label=" icon-button with a menu">
-                    <div mat-card-avatar class="primary_avatar_image"></div>
+                    <div >
+                      <img mat-card-avatar src="../assets/sanskar.jpg" alt="logo">
+                    </div>
+                    <!-- user profileimage -->
                    </button>
             </mat-card>
               <mat-menu #menu="matMenu" >

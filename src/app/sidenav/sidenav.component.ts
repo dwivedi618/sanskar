@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FornavbarServices, FornavbarService } from '../fornavbar.service';
 
 @Component({
   selector: 'app-sidenav',
@@ -10,7 +11,7 @@ export class SidenavComponent implements OnInit {
   isFullOpen = true;
   contentMargin = 16;
   showFiller = false;
-  constructor() { }
+  constructor(private fornavbarServices : FornavbarService) { }
 
   ngOnInit() {
   }

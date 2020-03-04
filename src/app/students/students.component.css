@@ -3,7 +3,15 @@
     max-height: 441px;
     overflow: auto;
   }
-  
+  .row{
+    margin: 0 15px!important;
+  }
+  .filterdropdown{
+    line-height: 1.5px;
+  }
+  .filtersearch{
+    line-height: 1.5px;
+  }
   table {
     width: 100%;
     box-shadow: 0px 1px 4px rgba(0,0,0,0.25)!important;

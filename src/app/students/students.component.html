@@ -1,27 +1,19 @@
 <!-- filtering field -->
-<div class="filter_field">
-  <!-- <div fxLayout="row" fxLayoutAlign="center center" >
-    <mat-form-field fxFlex="50%" appearance="outline">
-      <input matInput type="text" (keyup)="doFilter($event.target.value)" placeholder="Filter">
-    </mat-form-field>
-  </div> -->
-  <div class="col-sm-6 col-md-6">
-      <mat-form-field>
+<div class="row ">
+  <div class="col-md-8">
+      <mat-form-field class="filtersearch">
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
         <mat-icon matSuffix>search</mat-icon>
      </mat-form-field>
-    </div>
-    <div class="col-sm-4 col-md-4">
-        <mat-form-field >
+      <mat-form-field class="filtersearch">
             <mat-select #select placeholder="Student Name" (selectionChange)="applyFilter($event.value)">
               <mat-option *ngFor="let i of filterColumns" [value]="i">
                 {{i}}
               </mat-option>
             </mat-select>
-          </mat-form-field>
-    </div>
-  
+      </mat-form-field>
   </div>
+</div>
   <div class="table_container">
     
   

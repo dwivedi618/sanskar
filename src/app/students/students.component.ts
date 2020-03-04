@@ -11,13 +11,8 @@ export interface PeriodicElement {
   address: string;
 }
 
-<<<<<<< HEAD
-const ELEMENT_DATA: PeriodicElement[] = [
-  {studentName: 'Manoj Dwivedi', fatherName: 'vyash', standard: '10th', address: 'Bankatiya Dubey'},
-=======
 // const ELEMENT_DATA: PeriodicElement[] = [
 //   {studentName: 'shivendra', fatherName: 'Manoj Dwivedi', standard: '10th', address: 'Bankatiya Dubey'},
->>>>>>> bd9253f6ca3e744b0a259d876816fa57ad04bf5c
  
 //   {studentName: 'Darshan Pandey', fatherName: 'Shashichadra Pandey', standard: '3rd', address: 'Bankata'},
 //   {studentName: 'shivendra', fatherName: 'Manoj Dwivedi', standard: '10th', address: 'Bankatiya Dubey'},
@@ -72,13 +67,7 @@ export class StudentsComponent implements OnInit {
   }
 
   displayedColumns: string[] = ['select', 'studentName', 'fatherName', 'standard', 'address'];
-<<<<<<< HEAD
-  filterColumns: string[] = ['studentName', 'fatherName', 'standard', 'address'];
-
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-=======
   dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
->>>>>>> bd9253f6ca3e744b0a259d876816fa57ad04bf5c
   selection = new SelectionModel<PeriodicElement>(true, []);
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -124,15 +113,7 @@ export class StudentsComponent implements OnInit {
   // ngAfterViewInit(): void {
    
   // }
-<<<<<<< HEAD
-  ngOnInit() {
-    // this.dataSource.paginator = this.paginator;
-    // this.dataSource.sort = this.sort;
-  }
-
-=======
   
->>>>>>> bd9253f6ca3e744b0a259d876816fa57ad04bf5c
   
   
 

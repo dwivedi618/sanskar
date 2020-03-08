@@ -1,16 +1,16 @@
 .table_container {
-    min-height: 441px;
-    max-height: 441px;
+  width: 90vw;
+  min-height: 75vh;
     overflow: auto;
   }
   .row{
     margin: 0 15px!important;
   }
   .filterdropdown{
-    line-height: 1.5px;
+    
   }
   .filtersearch{
-    line-height: 1.5px;
+    
   }
   table {
     width: 100%;

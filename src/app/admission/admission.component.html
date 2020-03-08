@@ -1,12 +1,13 @@
-<div class="card stepper_card">
+<div class="stepper_card">
         <!-- <img class="card_img" src="https://static.vecteezy.com/system/resources/previews/000/174/803/original/vector-office-work-space-illustration.jpg" class="card-img-top" alt="..."> -->
 
-    <mat-horizontal-stepper  #stepper>
-        <mat-step [stepControl]="studentForm">
-            <form [formGroup]="studentForm" (ngSubmit)="onStudentSubmit()">
+    <mat-horizontal-stepper class="card" #stepper>
+            
+        <mat-step [stepControl]="studentForm" >
+            <form class="stepper_form" [formGroup]="studentForm" (ngSubmit)="onStudentSubmit()">
                 <ng-template matStepLabel>Required Student Details</ng-template>
-
                 <div class="row">
+                
                     <div class="col-md-4">
                         <div class="col-md-12">
                             <mat-form-field appearance="outline" class="example-full-width">
@@ -123,14 +124,15 @@
                         
                     </div>
                     
-</div>
-<div class="float-right save_and_next_button">
+                </div>
+<div class="save_and_next_button">
         <button mat-raised-button type="submit" color="accent" matStepperNext>Save and Next</button>
 </div>
 </form>
 </mat-step>
+
 <mat-step [stepControl]="parentForm">
-    <form [formGroup]="parentForm" (ngSubmit)=onParentSubmit()>
+    <form class="stepper_form" [formGroup]="parentForm" (ngSubmit)=onParentSubmit()>
         <ng-template matStepLabel>Parents Details</ng-template>
         <div class="row">
             <mat-label>Parent Details</mat-label>
@@ -233,15 +235,14 @@
             </mat-form-field>
         </div>
 </div>
-        <div class="float-right save_and_next_button">
+          <div class="save_and_next_button">
             <button mat-raised-button matStepperPrevious>Back</button>
             <button mat-raised-button matStepperNext color="accent">Save and Next</button>
           </div>
-
     </form>
 </mat-step>
 <mat-step [stepControl]="addressForm">
-    <form [formGroup]="addressForm" (ngSubmit)="onAddressSubmit()">
+    <form class="stepper_form" [formGroup]="addressForm" (ngSubmit)="onAddressSubmit()">
         <ng-template matStepLabel>Address</ng-template>
     <!-- permanent Address -->
                      <div class="row">
@@ -339,7 +340,7 @@
         
                              </div>
                          </div>
-                         <div class="float-right save_and_next_button">
+                         <div class="save_and_next_button">
                              <button mat-stroked-button matStepperPrevious>Back</button>
                              <button mat-raised-button matStepperNext color="accent">Save And Next</button>
                          </div>
@@ -348,7 +349,7 @@
 
 <mat-step >
     <ng-template matStepLabel>Submit Fee</ng-template>
-    
+    <img class="last_stepper_img img-fluid" src="../../assets/cover1.jpg" alt="">
     
           <button mat-raised-button color="accent" (click)="openDialog()">proceed to pay</button>
           <button mat-raised-button color="accent" (click)="generatePdf()">Print Form</button>
@@ -356,7 +357,7 @@
          
 
     
-    <div class="float-right save_and_next_button">
+    <div class="text-center">
             <button mat-raised-button matStepperPrevious >Back</button>
             <button mat-raised-button color="primary"  (click)="onAdmissionComplete()">Done</button>
     </div>

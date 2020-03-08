@@ -14,14 +14,12 @@
   z-index: 95;
   top: 3rem;
   width: 100%;
-  height: 100vh;
+  height: 100%;
 }
 .content{
   display: flex;
   flex:1;
   height: 100%;
-  /* align-items: center; */
-  justify-content: center;
   padding-bottom: 3rem;
 }
 @media(min-width: 320px){

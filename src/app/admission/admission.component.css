@@ -1,5 +1,11 @@
-.mat-stepper-horizontal {
+.stepper_card{
+  
+    width: 100%;
+    min-height: 80vh;
     
+}
+.mat-stepper-horizontal {
+   
     margin: .8rem;
     background: transparent;
   }
@@ -8,6 +14,9 @@
     z-index: -1;
     float: left;
     height: 200px;
+  }
+  .stepper_form{
+    position: relative;
   }
   ::ng-deep .mat-step-header:hover,.mat-step-header:active {
     border-radius: 50px!important;
@@ -22,25 +31,18 @@
 .row{
     padding: 1rem;
 }
-.save_and_next_button{
-  position: absolute;
-  bottom: 2rem;
-  right: 2rem;
-}
+
 .card{
+  position: relative;
     margin: 1rem;
-}
-.stepper_card{
-    width: 93vw;
-    height: 95%;
+
 }
 @media only screen and (max-width: 600px) {
-  .stepper_card {
-    width: 100%;
-    margin-top: 1rem;
-    margin-left: 0px;
-    margin-right: 0px;
-    height: auto;
+  .card {
+    margin: 0;
+    padding: 0;
+    margin-top: 0!important;
+    
   } 
   }
 .material-icons{
@@ -50,7 +52,13 @@
 button span{
     font-size: 22px;
 }
-
+.save_and_next_button{
+height: 2rem;
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+  
+}
 .action-buttons button{
     margin : 5px;
 }
@@ -104,4 +112,13 @@ button span{
   input[type="file"]
 {
     visibility: hidden;
+}
+.last_stepper_img{
+  align-self: center;
+  opacity: .5;
+  position: absolute;
+  z-index: -1;
+  max-height: 70vh;
+  background-size: cover;
+  background-position: center;
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit, EventEmitter, Output, Inject } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
+import { ToggleService } from "../services/toggle.service";
 
 @Component({
   selector: 'app-navigation',
@@ -7,15 +8,16 @@ import { DOCUMENT } from '@angular/common';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-username= 'John Doeeeeeeeeeeeeeeeeeeee';
-email = 'johnDoe@gmail.commmmmmmmmmmmmmm'
+  username = 'John Doeeeeeeeeeeeeeeeeeeee';
+  email = 'johnDoe@gmail.commmmmmmmmmmmmmm'
   constructor(
+    private toggleService: ToggleService,
     @Inject(DOCUMENT) private document: any
   ) { }
   @Output() sidenavToggle = new EventEmitter();
 
 
-    
+
   ngOnInit() {
     this.elem = document.documentElement;
     // this.name = localStorage.getItem('name');
@@ -23,17 +25,17 @@ email = 'johnDoe@gmail.commmmmmmmmmmmmmm'
     // console.log("helllooooooooooooooooooooooooo",this.name)
 
   }
-  elem : any;
-  isOpen = false;
+  elem: any;
+  // isOpen = false;
   userActive = true;
   show_fullscreen = true;
   close_fullscreen = false;
 
-  onToggleSidenav(){
-  
-    (this.isOpen) = !(this.isOpen);
-    this.sidenavToggle.emit(this.isOpen);
+  toggleSidenav() {
+
     
+    this.toggleService.toggleSidenav();
+
   }
 
   openFullscreen() {

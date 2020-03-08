@@ -1,7 +1,7 @@
 .sidenav_menus{
     overflow-x: hidden!important;
     min-height: 60vh;
-    max-height: 60vh;
+    max-height: 90vh;
     overflow-y: auto;
   
 }
@@ -17,3 +17,10 @@ mat-list-item:hover{
       background: rgba(102, 102, 102, 0.096);
       color:  #673ab7;
     }
+mat-list.sidenav_menus a:active {
+     
+        border-right: solid #673ab7 ;
+        /* transition: .5s ; */
+        background: rgba(102, 102, 102, 0.096);
+        color:  #673ab7;
+      }    

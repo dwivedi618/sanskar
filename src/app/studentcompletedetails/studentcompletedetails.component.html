@@ -1,50 +1,46 @@
-<div class="container">
-        <div class="col-md-12 card ">
-        <div class="row ">
-            <div class="col-md-3">
-                <div class=" card bg-dark text-white mycard">
-                    <div>
-                        <img src="https://im0-tub-com.yandex.net/i?id=a616d8c71a8741ca685aa7f725707598&n=13"
-                            class="card-img-top">
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">           
-                    <h5>Shivendra Kumar Dwivedi</h5>
-                    <h6> class 10th</h6>
-                     <p mat-line>convenience : <span>Yes</span></p>
-            </div>
-          </div>
-        <div class="row">
-               
-            
+
                         <!-- //////////////////////////////////// -->
                        
-                        <mat-sidenav-container class="example-container">
+                        <mat-sidenav-container class="example-container card">
                             <mat-sidenav mode="side" opened>
-                                <div class="">
-                                    <div class="profile-work">
-                                        <p>Credentials</p>
-                                        <a href="">Fees</a><br />
-                                        <a href="">Bus</a><br />
-                                        <a href="">other</a>
-                                        <p>Performance</p>
-                                        <a href="">results</a><br />
-                                        <a href="">marks</a><br />
-                                        <a href="">prize</a><br />
-                                        <a href="">Ranking</a><br />
+                                    <div class="student_profile_img">
+                                            <div class="card ">
+                                                <div>
+                                                    <img src="https://im0-tub-com.yandex.net/i?id=a616d8c71a8741ca685aa7f725707598&n=13"
+                                                        class="card-img-top">
+                                                </div>
+                                                <div class="card-body">
+                                                        <h5>Shivendra Kumar Dwivedi</h5>
+                                                        <h6> class 10th</h6>
+                                                         <p mat-line>convenience : <span>Yes</span></p>
+                                                </div>
+                                            </div>
+                                    </div>
+                                    <div class="student_profile_menu">
+                                        <mat-list>                                        
+                                                <a routerLink="./about">
+                                                    <mat-list-item> 
+                                                        <p mat-line>About</p>
+                                                        <mat-icon>person</mat-icon>
+                                                    </mat-list-item>
+                                                </a>                                           
+                                        </mat-list>
+                                        
+                                        
+                                        
 
                                     </div>
-                                </div>
+                                
 
                             </mat-sidenav>
                             <mat-sidenav-content>
 
-                               somthin
+                             <router-outlet>
+
+                             </router-outlet>
                             </mat-sidenav-content>
                         </mat-sidenav-container>
                         
                         <!-- //////////////////////////////////// -->
-        </div>
-    </div>
-</div>
+
+ 

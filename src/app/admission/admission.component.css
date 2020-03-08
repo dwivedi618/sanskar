@@ -1,11 +1,48 @@
+.mat-stepper-horizontal {
+    
+    margin: .8rem;
+    background: transparent;
+  }
+  .card_img{
+    position: absolute;
+    z-index: -1;
+    float: left;
+    height: 200px;
+  }
+  ::ng-deep .mat-step-header:hover,.mat-step-header:active {
+    border-radius: 50px!important;
+    height: 3rem;
+    background-color: rgba(0,0,0,.04);
+  }
+  mat-step-header:hover {
+    border-radius: 50px!important;
+    height: 3rem;
+    background-color: rgba(0,0,0,.04);
+  }
 .row{
-    padding: 10px;
+    padding: 1rem;
 }
-
+.save_and_next_button{
+  position: absolute;
+  bottom: 2rem;
+  right: 2rem;
+}
 .card{
-    margin: 10px;
+    margin: 1rem;
 }
-
+.stepper_card{
+    width: 93vw;
+    height: 95%;
+}
+@media only screen and (max-width: 600px) {
+  .stepper_card {
+    width: 100%;
+    margin-top: 1rem;
+    margin-left: 0px;
+    margin-right: 0px;
+    height: auto;
+  } 
+  }
 .material-icons{
     font-size: 30px;
 }
@@ -46,12 +83,13 @@ button span{
   }
   div.mycard{
       margin-top: .5rem;
-      
+      width: 15rem;
       max-height: 15rem;
       min-height: 15rem;
       overflow: hidden;
   }
-  @media only screen and (max-width: 600px) {
+  @media only screen and (max-width: 768
+  px) {
     div.card {
       margin-top: 1rem;
       margin-left: 0px;

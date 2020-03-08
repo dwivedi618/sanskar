@@ -3,9 +3,9 @@
 
     <mat-toolbar-row>
         <!-- button form sidenav open and close -->
-        <!-- <button mat-icon-button (click)="onToggleSidenav()" matTooltip="main menu">
+        <button mat-icon-button (click)="toggleSidenav()" matTooltip="menu">
             <mat-icon>menu</mat-icon>
-        </button> -->
+        </button>
         <div class="margin_left"></div>
         <div class="logo">
             <img src="../assets/sanskar.jpg" alt="logo">
@@ -45,16 +45,18 @@
                 </div>
 <mat-divider></mat-divider>
 
-                <div mat-menu-item class="logoutsetting">
-                  <button  mat-raised-button color='warn' class="float-left">
+               
+                  <button  mat-raised-button color='accent'>
                     <mat-icon>logout</mat-icon>
                     <span>logout</span>
                   </button>
-                  <button routerLink='/settings' mat-raised-button color='primary' class="float-right">
+               
+                
+                  <button  routerLink='/settings' mat-raised-button color='primary' >
                     <mat-icon>settings</mat-icon>
                     <span>settings</span>
                   </button>
-                </div>
+                
               </mat-menu>
               
         </div>

@@ -148,6 +148,15 @@ input{
     background-color:#fff;
     position: relative;
   }
+  @media(max-width : 640px){
+    .main{
+      height: 100vh;
+      margin: 0px;
+    }
+    .left{
+      width: 51%;
+    }
+  }
   .left h1{
     text-align: center;
     /*padding-left:120px;*/

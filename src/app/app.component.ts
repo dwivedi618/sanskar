@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToggleService } from "./services/toggle.service";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,7 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'sanskar';
+  isAppOpen= true; 
+  constructor(private toggleService : ToggleService){}
+
 }

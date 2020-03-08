@@ -1,114 +1,31 @@
 
-.example-container {
-    position: absolute;
-    /* z-index: 98; */
-    width: 100%;
-    top:3rem;
-    bottom: 0rem;
-    left: 0;
-    right: 0;
-    padding-bottom: 1rem;
-    overflow: hidden;
-    
-  }
-  
-  .example-sidenav {
-    display: flex;
-    align-items: center;
-    justify-content: center; 
-    height: 100%;
-    
-   
-   
-  
-  }
-  .sidenav_content{
-    height: 100%;
-  }
-  .mytoggle_button{
-    position: absolute;
-    top: 4px;
-    left: 12px;
-    display: inline-block;
-    color: red;
-    z-index: 44556565;
-    /* padding: 0px 16px; */
-    margin: 0;
-    min-height: 3rem;
-    max-height: 3rem;
-  }
-  .cover_or_logo{
-    position: sticky;
-    
-    top: 0;
-    right: 0;
-    left: 0;
-    
-    flex: 1;
-    min-height: 50px;
-    max-height: 150px;;
-    background-color: #222;
-    
-    overflow: hidden;
-
-  }
-  .mat-card-image:first-child {
-    margin-top: 0px!important;
-
+.sidenav_half{
+  width: 4rem;
 }
-.sidenav_menus{
-  padding: 2rem 0rem;
+.sidenav_full{
+  width: 16rem;
 }
-/* .sidenav_half_open:hover{
-      width: 16rem!important;
-      transition: .5s all;
-  }
-     */
-     .mat-drawer-inner-container {
-      width: 100%;
-      height: 100%;
-      overflow: hidden!important;
-      
-  }
-    .sidenav_half_open{
-      width: 4rem;
-      
-    }    
-    .sidenav_full_open{
-     width:16rem; 
-     box-shadow: -6px 5px 11px 1px #222;
-     
-    }
-    .sidenav_full_open:hover{
-      width:16rem; 
-      box-shadow: -6px 5px 11px 4px #666;
-      transition: .1s all;
-     }
-.footer,mat-toolbar,mat-toolbar-row{
-  position: absolute;
+.margin-top{
+  margin-top: 2rem auto;
+}
+.example-container{
+  
+  position: fixed;
+  z-index: 95;
+  top: 3rem;
   width: 100%;
-  bottom: 0;
-  max-height: 1.5rem;
-  min-height: 1.5rem;
-  background: #242939; 
-  color:#B9BEBC;
-
-  clear: both;
-  z-index: 45555555555555;
-
+  height: 100vh;
 }
-    @media only screen and (max-width: 320px) {
-      mat-sidenav{
-        
-          width: 70vw;
-        }
-    }
-    @media only screen and (max-width: 420px) {
-      mat-sidenav{
-        
-          width: 70vw;
-        }
-    }
-  
-  
-  
+.content{
+  display: flex;
+  flex:1;
+  height: 100%;
+  /* align-items: center; */
+  justify-content: center;
+  padding-bottom: 3rem;
+}
+@media(min-width: 320px){
+  .content{
+    padding-bottom:3rem; 
+  }
+}

@@ -38,18 +38,24 @@ export class LoginComponent implements OnInit {
 
   onSubmit() {
       this.submitted = true;
+      
+      
+      this.router.navigate(['']);
+      console.log("EERRRRRROOOORRRRR")
+      this.router.navigate[''];
+      console.log("derrror")
 
       // stop here if form is invalid
       // if (this.loginForm.invalid) {
       //     return;
       // }
-      this.authService.login(this.loginForm.value.email,this.loginForm.value.password)
-      .subscribe(result => {
-        console.log("sidena on login",result)
-        this.router.navigate['/sidenav'];
-      }, error => {
-        console.log("EERRRRRROOOORRRRR",error)
-      })
+      // this.authService.login(this.loginForm.value.email,this.loginForm.value.password)
+      // .subscribe(result => {
+      //   console.log("sidena on login",result)
+      //   this.router.navigate['/sidenav'];
+      // }, error => {
+      //   console.log("EERRRRRROOOORRRRR",error)
+      // })
 
   
       // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.loginForm.value))
@@ -57,7 +63,7 @@ export class LoginComponent implements OnInit {
 
   getErrorMessage() {
     if (this.f.email.hasError('required')) {
-      return 'You must enter a value';
+      return 'Email Required';
     }
 
     return this.f.email.hasError('email') ? 'Not a valid email' : '';

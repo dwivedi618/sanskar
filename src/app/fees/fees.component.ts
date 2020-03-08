@@ -20,6 +20,7 @@ export class FeesComponent implements OnInit {
   tutionFee = 777;
   convenienceFee = 345;
   submittedFees = 0;
+  previousSubmittedFees=567;
   studentName= "Vaibhav Pandey";
   fatherName ="Ajay Pandey"
   standard="10"

@@ -8,15 +8,11 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 })
 export class FeestructureComponent implements OnInit {
 
-  feeStructureForm : FormGroup;
+  // feeStructureForm : FormGroup;
   constructor(private formBuilder:FormBuilder) { }
 
   ngOnInit() {
-    this.feeStructureForm = this.formBuilder.group({
-     standard : ['',Validators.required],
-     tutionFees : ['',Validators.required],
-
-    });
+    
   }
 
 }

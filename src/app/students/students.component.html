@@ -8,9 +8,9 @@
      </mat-form-field>
       <mat-form-field class="filtersearch">
             <mat-select #select placeholder="Student Name" (selectionChange)="applyFilter($event.value)">
-              <mat-option *ngFor="let i of filterColumns" [value]="i">
+              <!-- <mat-option *ngFor="let i of filterColumns" [value]="i">
                 {{i}}
-              </mat-option>
+              </mat-option> -->
             </mat-select>
       </mat-form-field>
   </div>

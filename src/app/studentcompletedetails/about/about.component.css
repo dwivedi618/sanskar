@@ -1,0 +1,20 @@
+.profile_data_container{
+margin-top: 3rem;
+}
+.data_row{
+    justify-content: center;
+}
+strong.profile_data{
+    margin-left:2rem;
+    font-weight: 200;
+    color:#00b7ff;
+    display: inline-block;
+    
+}
+strong.profile_data_label{
+    color:#222;
+    font-weight: 400;
+    display: inline-block;
+    justify-content: flex-start;
+   
+}

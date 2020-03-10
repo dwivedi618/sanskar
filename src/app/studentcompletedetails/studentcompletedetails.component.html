@@ -1,46 +1,59 @@
-
-                        <!-- //////////////////////////////////// -->
-                       
-                        <mat-sidenav-container class="example-container card">
-                            <mat-sidenav mode="side" opened>
-                                    <div class="student_profile_img">
-                                            <div class="card ">
-                                                <div>
-                                                    <img src="https://im0-tub-com.yandex.net/i?id=a616d8c71a8741ca685aa7f725707598&n=13"
-                                                        class="card-img-top">
-                                                </div>
-                                                <div class="card-body">
-                                                        <h5>Shivendra Kumar Dwivedi</h5>
-                                                        <h6> class 10th</h6>
-                                                         <p mat-line>convenience : <span>Yes</span></p>
-                                                </div>
-                                            </div>
-                                    </div>
-                                    <div class="student_profile_menu">
-                                        <mat-list>                                        
-                                                <a routerLink="./about">
-                                                    <mat-list-item> 
-                                                        <p mat-line>About</p>
-                                                        <mat-icon>person</mat-icon>
-                                                    </mat-list-item>
-                                                </a>                                           
-                                        </mat-list>
-                                        
-                                        
-                                        
-
-                                    </div>
-                                
-
-                            </mat-sidenav>
-                            <mat-sidenav-content>
-
-                             <router-outlet>
-
-                             </router-outlet>
-                            </mat-sidenav-content>
-                        </mat-sidenav-container>
-                        
-                        <!-- //////////////////////////////////// -->
-
- 
+<div class="layout">
+    <div class="profile">
+        <div class="row">
+        <div class="col-md-4">
+            <div class="profile__picture"><img src="../../assets/photo.png" alt="student photo" /></div>
+        </div>
+        <div class="col-md-8">
+            <div class="col-sm-12">
+                <div class="row profile__header">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="profile__account">
+                        <h4 class="profile__username">Shivendra Kumar Dwivedi</h4>
+                    </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="profile__edit"><a routerLink="" class="profile__button" >Edit Profile</a></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="profile__stats">
+                    <div class="profile__stat">
+                        <div class="profile__icon profile__icon--gold"><i class="fas fa-wallet"></i></div>
+                        <div class="profile__value">16
+                            <div class="profile__key">Age</div>
+                        </div>
+                    </div>
+                    <div class="profile__stat">
+                        <div class="profile__icon profile__icon--blue"><i class='fas fa-user-graduate'></i></div>
+                        <div class="profile__value">10
+                            <div class="profile__key">Standard</div>
+                        </div>
+                    </div>
+                    <div class="profile__stat">
+                        <div class="profile__icon profile__icon--pink"><i class="fas fa-heart"></i></div>
+                        <div class="profile__value">4
+                            <div class="profile__key">Lives</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+             <mat-tab-group  mat-align-tabs="center" animationDuration="0ms" >
+                    <mat-tab label="About" >
+                            <ng-template matTabContent>
+                              <app-about></app-about>
+                            </ng-template>
+                          </mat-tab>
+                          <mat-tab label="Academic">
+                            <ng-template matTabContent>
+                              The Second Content
+                            </ng-template>
+                          </mat-tab>
+              </mat-tab-group>
+        </div>
+    </div>
+</div>

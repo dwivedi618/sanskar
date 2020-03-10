@@ -2,15 +2,15 @@
 <div class="container-fluid card">
 <div class="row ">
   <div class="col-md-8">
-      <mat-form-field class="filtersearch">
+      <mat-form-field class=" example_full_width">
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
         <mat-icon matSuffix>search</mat-icon>
      </mat-form-field>
-      <mat-form-field class="filtersearch">
+      <mat-form-field class=" example_full_width">
             <mat-select #select placeholder="Student Name" (selectionChange)="applyFilter($event.value)">
-              <!-- <mat-option *ngFor="let i of filterColumns" [value]="i">
+              <mat-option *ngFor="let i of displayedColumns" [value]="i">
                 {{i}}
-              </mat-option> -->
+              </mat-option>
             </mat-select>
       </mat-form-field>
   </div>
@@ -18,7 +18,7 @@
   <div class="table_container">
     
   
-  <table mat-table [dataSource]="dataSource" class=" mat-elevation-z8" matSort>
+  <table mat-table [dataSource]="students" class=" mat-elevation-z8" matSort>
   
      <!-- Checkbox Column -->
      <ng-container matColumnDef="select">
@@ -38,16 +38,16 @@
        </td>
      </ng-container>
    
-     <!-- studentName Column -->
-     <ng-container matColumnDef="studentName">
+     <!-- firstName Column -->
+     <ng-container  matColumnDef="firstName">
        <th mat-header-cell *matHeaderCellDef mat-sort-header> Student Name </th>
        
        <td mat-cell *matCellDef="let element">
          
          <img mat-card-avatar class="row_avatar_img" src="https://persianv.com/ravanshenasi/wp-content/uploads/sites/22/2017/10/532432787-taknaz-ir.jpg" >
-         {{element.studentName}} </td>
+         {{element.firstName}} </td>
      </ng-container>
-   
+
      <!-- Name Column -->
      <ng-container matColumnDef="fatherName">
        <th mat-header-cell *matHeaderCellDef mat-sort-header> Father'sName</th>

@@ -1,7 +1,8 @@
-<div class="stepper_card">
+<div class="layout">
+<div class="my_shadow_container">
         <!-- <img class="card_img" src="https://static.vecteezy.com/system/resources/previews/000/174/803/original/vector-office-work-space-illustration.jpg" class="card-img-top" alt="..."> -->
 
-    <mat-horizontal-stepper class="card" #stepper>
+    <mat-horizontal-stepper #stepper>
             
         <mat-step [stepControl]="studentForm" >
             <form class="stepper_form" [formGroup]="studentForm" (ngSubmit)="onStudentSubmit()">
@@ -101,9 +102,9 @@
                     <div class="col-md-4  ">
                         <div class="col-md-12 text-center">
                             <h3>Candidate Photo</h3>
-                            <div class=" card bg-dark text-white mycard">
-                                <div *ngIf="imagePreview!=='' && imagePreview">
-                                    <img [src]="imagePreview"  class="card-img-top">
+                            
+                                <div *ngIf="imagePreview!=='' && imagePreview" >
+                                    <img [src]="imagePreview" class="img-thumbnail">
                                 </div>
                                 <div class="card-body">
                                     <button mat-raised-button type="button" color="primary" matTooltip="Upload Image" class="upload_button "
@@ -112,7 +113,7 @@
                                     </button>
                                     <input type="file" #fileUpload (change)="onImagePicked($event)">
                                 </div>
-                            </div>
+                            
                         </div>
                         <!-- place -->
                         <div class="col-md-12">
@@ -361,8 +362,10 @@
             <button mat-raised-button matStepperPrevious >Back</button>
             <button mat-raised-button color="primary"  (click)="onAdmissionComplete()">Done</button>
     </div>
+    <div id="iframeContainer"></div>
 </mat-step>
 
 </mat-horizontal-stepper>
 
+</div>
 </div>

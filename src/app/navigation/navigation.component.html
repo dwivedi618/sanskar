@@ -45,18 +45,20 @@
                 </div>
 <mat-divider></mat-divider>
 
-               
-                  <button  mat-raised-button color='accent'>
-                    <mat-icon>logout</mat-icon>
-                    <span>logout</span>
-                  </button>
-               
-                
-                  <button  routerLink='/settings' mat-raised-button color='primary' >
+               <mat-list> 
+               <a  routerLink='/settings' >
+                 <mat-list-item>
                     <mat-icon>settings</mat-icon>
-                    <span>settings</span>
-                  </button>
-                
+                    <p mat-line>Settings</p>
+                 </mat-list-item>
+               </a>
+               <a  routerLink='/login' >
+                <mat-list-item>
+                   <mat-icon>logout</mat-icon>
+                   <p mat-line>Logout</p>
+                </mat-list-item>
+              </a>
+              </mat-list>
               </mat-menu>
               
         </div>

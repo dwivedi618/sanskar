@@ -37,7 +37,7 @@ export class AdmissionComponent implements OnInit {
   animal: string;
   name: string;
   admission: StudentForm;
-  
+  applicationNumber= 1;
   studentForm : FormGroup;
   parentForm : FormGroup;
   addressForm : FormGroup;
@@ -96,46 +96,6 @@ export class AdmissionComponent implements OnInit {
             })
 
     });
-
-      // this.registerForm = this.formBuilder.group({
-      //   image: ['',Validators.required],
-      //     firstName: ['', Validators.required],
-      //     middleName: [''],
-      //     lastName: [''],
-      //     gender: ['Male'],
-      //     dateOfBirth: [new Date()],
-      //     fatherName: ['', Validators.required],
-      //     motherName: ['', Validators.required],
-      //     fatherEducation : [''],
-      //     fatherOccupation : [''],
-      //     motherEducation : [''],
-      //     motherOccupation :[''],
-      //     permanentAddress: this.formBuilder.group({
-      //       village: ['',Validators.required],
-      //       district: ['',Validators.required],
-      //       state: ['',Validators.required],
-      //       post: ['',Validators.required]
-      //     }),
-      //     localAddress: this.formBuilder.group({
-      //       village: [''],
-      //       district: [''],
-      //       state: [''],
-      //       post: ['']
-      //     }),
-      //     guardianName : ['', Validators.required],
-      //     contactNumber :['', Validators.required,Validators.maxLength(10)],
-      //     nationality : ['Indian'],
-      //     healthStatus : [''],
-      //     bloodGroup : [''],
-      //     standard : ['',Validators.required],//admission In
-      //     convenience : ['Yes'],
-      //     place : ['']
-           
-
-
-      //     // email: ['', [Validators.required, Validators.email]],
-      //     // password: ['', [Validators.required, Validators.minLength(6)]]
-      // });
   }
 
   // convenience getter for easy access to form fields
@@ -153,7 +113,7 @@ export class AdmissionComponent implements OnInit {
     if (this.imagePreview) {
       return {
         image: this.imagePreview,
-        width: 75,
+        width: 150,
         alignment : 'right'
       };
     }
@@ -206,14 +166,20 @@ export class AdmissionComponent implements OnInit {
  }
  async generatePdf(){
   const documentDefinition = this.getDocumentDefinition();
-  pdfMake.createPdf(documentDefinition).open();
+  const pdfDocGenerator = pdfMake.createPdf(documentDefinition).print();
+//     pdfDocGenerator.getDataUrl((dataUrl) => {
+// 	const targetElement = document.querySelector('#iframeContainer');
+// 	const iframe = document.createElement('iframe');
+// 	iframe.src = dataUrl;
+// 	targetElement.appendChild(iframe);
+// });
  }
  getDocumentDefinition() {
    
   return {
     content: [
-      {
-        columns: [
+      { 
+        columns: [   
           {
             // auto-sized columns have their widths based on their content
             width: '*',
@@ -222,9 +188,7 @@ export class AdmissionComponent implements OnInit {
             fit:[100,100],          
             alignment: 'center',
           },
-          
          [
-          
           {            
             // % width
             width:'*',
@@ -255,16 +219,13 @@ export class AdmissionComponent implements OnInit {
             fontSize: 10,
             // margin: [0, 0, 0, 20]
           },
-          
-          
          ],
-          
         ],
         // optional space between columns
         // columnGap: 10,
         // decoration:'underline',
       },
-      
+      {canvas: [{ type: 'line', x1: 0, y1: 5, x2: 595-2*40, y2: 5, lineWidth: 2 }]},
       
     { 
       
@@ -272,243 +233,402 @@ export class AdmissionComponent implements OnInit {
       bold: true,
       color: '#222',
       fontSize: 16,
-      
       alignment: 'center',
-      margin: [0, 0, 0, 20]
+      margin: [6, 6, 6, 6]
     },
-    
-    
-    
-    {
-    columns: [
-      [{
-        text: 'Name of the Candidate : ' + this.studentForm.value.firstName +' '+this.studentForm.value.middleName+' '+this.studentForm.value.lastName
-      },
-      {
-        text: 'Gender: ' + this.studentForm.value.gender,
-        style:'name'
-      },
-      {
-        text: 'Date Of Birth : ' + this.studentForm.value.dateOfBirth
-      },
-      {
-        text:"Father's Name :"+ this.parentForm.value.fatherName
-      },
-      {
-        text:"Mother's Name :"+ this.parentForm.value.motherName
-      },
-      {
-        text:"Father's Education :"+ this.parentForm.value.fatherEducation
-      },
-      {
-        text:"Mother's Name :"+ this.parentForm.value.motherEducation
-      },
-      {
-        text:"Permanent Address :"
-      },
-      {
-        text:"Village :"+ this.addressForm.get(['permanentAddress']).value.village
-      },
-      {
-        text:"District :"+ this.addressForm.get(['permanentAddress']).value.district
-      },
-      {
-        text:"state :"+ this.addressForm.get(['permanentAddress']).value.state
-      },
-      {
-        text:"Post :"+ this.addressForm.get(['permanentAddress']).value.post
-      },
-      {
-        text:"Local Address :"
-      },
-      {
-        text:"Village :"+ this.addressForm.get(['localAddress']).value.village
-      },
-      {
-        text:"District :"+ this.addressForm.get(['localAddress']).value.district
-      },
-      {
-        text:"state :"+ this.addressForm.get(['localAddress']).value.state
-      },
-      {
-        text:"Post :"+ this.addressForm.get(['localAddress']).value.post
-      },
-      
-      {
-        text: 'Nationality : ' + this.studentForm.value.nationality
-      },
-      
-      ] ,
-      [
-        this.getProfilePicObject()
+    // -----------------------
+    { 
+      columns: [   
+        {
+          // auto-sized columns have their widths based on their content
+          width: '*',
+          text:'Application No. :'+this.applicationNumber,
+          style:'input',
+          
+        },
+       [
+        {            
+          // % width
+          width:'*',
+          text: this.studentForm.value.dateOfBirth,
+          style:'data',
+          fit:[150,150]   ,  
+        },
+        [
+          this.getProfilePicObject(),
+        ],
+       ],
       ],
-      
-     ]
-    }],
-    styles: {
-      name: {
-        fontSize: 30,
-        bold: true
-    }
-  }
-};
-}
-//  generatePdf(action = 'open') {
-//   const documentDefinition = this.getDocumentDefinition();
+      // optional space between columns
+      // columnGap: 10,
+      // decoration:'underline',
+    },
+    // -----------------------
+    { 
+      columns: [   
+        {
+          // auto-sized columns have their widths based on their content
+          width: '*',
+          text:'Name of the Candidate :',
+          style:'input',
+          
+        },
+       [
+        {            
+          // % width
+          width:'*',
+          text: this.studentForm.value.firstName+' '+ this.studentForm.value.middleName+' '+ this.studentForm.value.lastName,
+          style:'data',     
+        },
+       ],
+      ],
+      // optional space between columns
+      // columnGap: 10,
+      // decoration:'underline',
 
-//   switch (action) {
-//     case 'open': pdfMake.createPdf(documentDefinition).open(); break;
-//     case 'print': pdfMake.createPdf(documentDefinition).print(); break;
-//     case 'download': pdfMake.createPdf(documentDefinition).download(); break;
+    },
+    // -----------------------
+    { 
+      columns: [   
+        {
+          // auto-sized columns have their widths based on their content
+          width: '*',
+          text:'Gender :',
+          style:'input',
+          
+        },
+       [
+        {            
+          // % width
+          width:'*',
+          text: this.studentForm.value.gender,
+          style:'data',     
+        },
+       ],
+      ],
+      // optional space between columns
+      // columnGap: 10,
+      // decoration:'underline',
+    },
+    // -----------------------
+    { 
+      columns: [   
+        {
+          // auto-sized columns have their widths based on their content
+          text:'Date of Birth :',
+          width: '*',
+          style:'input',
+          
+        },
+       [
+        {            
+          // % width
+          text: this.studentForm.value.dateOfBirth,
+          width:'*',
+          style:'data',     
+        },
+       ],
+      ],
+      // optional space between columns
+      // columnGap: 10,
+      // decoration:'underline',
+    },
+    // -----------------------
+    { 
+      columns: [   
+        {
+          // auto-sized columns have their widths based on their content
+          width: '*',
+          text:"Father's Name :",
+          style:'input',
+          
+        },
+       [
+        {            
+          // % width
+          width:'*',
+          text: this.parentForm.value.fatherName,
+          style:'data',     
+        },
+       ],
+      ],
+      // optional space between columns
+      // columnGap: 10,
+      // decoration:'underline',
+    },
+    // -----------------------
+    { 
+      columns: [   
+        {
+          // auto-sized columns have their widths based on their content
+          width: '*',
+          text:"Mother's Name :",
+          style:'input',
+          
+        },
+       [
+        {            
+          // % width
+          width:'*',
+          text: this.parentForm.value.motherName,
+          style:'data',     
+        },
+       ],
+      ],
+      // optional space between columns
+      // columnGap: 10,
+      // decoration:'underline',
+    },
+    // -----------------------
+    {
+      columns:[
+      {
+        text:"Father's Education :",
+        width: '*',
+        style:'input',
+      },
+      {
+        text:this.parentForm.value.fatherEducation,
+        width: '*',
+        style:'input',
+      },
+      [
+        
+        { 
+          columns: [   
+            {
+              // auto-sized columns have their widths based on their content
+              width: '*',
+              text:"Occupation :",
+              style:'input',
+              
+            },
+           [
+            {            
+              // % width
+              width:'*',
+              text: this.parentForm.value.fatherOccupation,
+              style:'data',     
+            },
+           ],
+          ],
+          // optional space between columns
+          // columnGap: 10,
+          // decoration:'underline',
+        },
+        // -----------------------
+        
+        { 
+          columns: [   
+            {
+              // auto-sized columns have their widths based on their content
+              width: '*',
+              text:"District :",
+              style:'input',
+              
+            },
+           [
+            {            
+              // % width
+              width:'*',
+              text: this.addressForm.get(['permanentAddress']).value.district,
+              style:'data',     
+            },
+           ],
+          ],
+          // optional space between columns
+          // columnGap: 10,
+          // decoration:'underline',
+        },
+        // -----------------------
+        { 
+          columns: [   
+            {
+              // auto-sized columns have their widths based on their content
+              width: '*',
+              text:"State :",
+              style:'input',
+              
+            },
+           [
+            {            
+              // % width
+              width:'*',
+              text: this.addressForm.get(['permanentAddress']).value.state,
+              style:'data',     
+            },
+           ],
+          ],
+          // optional space between columns
+          // columnGap: 10,
+          // decoration:'underline',
+        },
+        // -----------------------
+        { 
+          columns: [   
+            {
+              // auto-sized columns have their widths based on their content
+              width: '*',
+              text:"Post :",
+              style:'input',
+              
+            },
+           [
+            {            
+              // % width
+              width:'*',
+              text: this.addressForm.get(['permanentAddress']).value.post,
+              style:'data',     
+            },
+           ],
+          ],
+          // optional space between columns
+          // columnGap: 10,
+          // decoration:'underline',
+        },
+        // -----------------------
+    ],
+  ]
+  },
+    // ---------------------
 
-//     default: pdfMake.createPdf(documentDefinition).open(); break;
-//   }
+    {
+      columns:[
+      {
+        text:"Permanent Address :",
+        width: '*',
+        style:'input',
+      },
+      [
+        
+        { 
+          columns: [   
+            {
+              // auto-sized columns have their widths based on their content
+              width: '*',
+              text:"Village :",
+              style:'input',
+              
+            },
+           [
+            {            
+              // % width
+              width:'*',
+              text: this.addressForm.get(['permanentAddress']).value.village,
+              style:'data',     
+            },
+           ],
+          ],
+          // optional space between columns
+          // columnGap: 10,
+          // decoration:'underline',
+        },
+        // -----------------------
+        
+        { 
+          columns: [   
+            {
+              // auto-sized columns have their widths based on their content
+              width: '*',
+              text:"District :",
+              style:'input',
+              
+            },
+           [
+            {            
+              // % width
+              width:'*',
+              text: this.addressForm.get(['permanentAddress']).value.district,
+              style:'data',     
+            },
+           ],
+          ],
+          // optional space between columns
+          // columnGap: 10,
+          // decoration:'underline',
+        },
+        // -----------------------
+        { 
+          columns: [   
+            {
+              // auto-sized columns have their widths based on their content
+              width: '*',
+              text:"State :",
+              style:'input',
+              
+            },
+           [
+            {            
+              // % width
+              width:'*',
+              text: this.addressForm.get(['permanentAddress']).value.state,
+              style:'data',     
+            },
+           ],
+          ],
+          // optional space between columns
+          // columnGap: 10,
+          // decoration:'underline',
+        },
+        // -----------------------
+        { 
+          columns: [   
+            {
+              // auto-sized columns have their widths based on their content
+              width: '*',
+              text:"Post :",
+              style:'input',
+              
+            },
+           [
+            {            
+              // % width
+              width:'*',
+              text: this.addressForm.get(['permanentAddress']).value.post,
+              style:'data',     
+            },
+           ],
+          ],
+          // optional space between columns
+          // columnGap: 10,
+          // decoration:'underline',
+        },
+        // -----------------------
+    ],
+  ]
+  },
+    // ---------------------
 
-// }
+// ---------------------------------
+],//content Ends
+                styles: {
+                  input: {
+                    fontSize: 16,
+                    bold: true,
+                    lineWidth: 3,
+                    color:'#222',
+                    margin:[0 ,10,0,0],
+                },
+                data: {
+                  fontSize: 16,
+                  bold: true,
+                  margin:[0 ,10,0,0],
+                  decoration: 'underline',
+                  decorationStyle: 'dotted',
+                  italics:true,
+              },
+              alignRight: {
+                
+                alignment: 'right'
+              },
+              alignLeft: {
+                
+                alignment: 'left'
+              }
 
-// getDocumentDefinition() {
-//   sessionStorage.setItem('admission', JSON.stringify(this.admission));
-//   return {
-//     content: [
-//       {
-//         text: 'admission',
-//         bold: true,
-//         fontSize: 20,
-//         alignment: 'center',
-//         margin: [0, 0, 0, 20]
-//       },
-//       {
-//         columns: [
-//           [{
-//             text: this.admission.name,
-//             style: 'name'
-//           },
-//           {
-//             text: this.admission.address
-//           },
-//           {
-//             text: 'Email : ' + this.admission.email,
-//           },
-//           {
-//             text: 'Contant No : ' + this.admission.contactNo,
-//           },
-//           {
-//             text: 'GitHub: ' + this.admission.socialadmission,
-//             link: this.admission.socialadmission,
-//             color: 'blue',
-//           }
-//           ],
-//           [
-//             this.getadmissionPicObject()
-//           ]
-//         ]
-//       },
-//       {
-//         text: 'Skills',
-//         style: 'header'
-//       },
-//       {
-//         columns : [
-//           {
-//             ul : [
-//               ...this.admission.skills.filter((value, index) => index % 3 === 0).map(s => s.value)
-//             ]
-//           },
-//           {
-//             ul : [
-//               ...this.admission.skills.filter((value, index) => index % 3 === 1).map(s => s.value)
-//             ]
-//           },
-//           {
-//             ul : [
-//               ...this.admission.skills.filter((value, index) => index % 3 === 2).map(s => s.value)
-//             ]
-//           }
-//         ]
-//       },
-//       {
-//         text: 'Experience',
-//         style: 'header'
-//       },
-//       this.getExperienceObject(this.admission.experiences),
-
-//       {
-//         text: 'Education',
-//         style: 'header'
-//       },
-//       this.getEducationObject(this.admission.educations),
-//       {
-//         text: 'Other Details',
-//         style: 'header'
-//       },
-//       {
-//         text: this.admission.otherDetails
-//       },
-//       {
-//         text: 'Signature',
-//         style: 'sign'
-//       },
-//       {
-//         columns : [
-//             { qr: this.admission.name + ', Contact No : ' + this.admission.contactNo, fit : 100 },
-//             {
-//             text: `(${this.admission.name})`,
-//             alignment: 'right',
-//             }
-//         ]
-//       }
-//     ],
-//     info: {
-//       title: this.admission.name + '_admission',
-//       author: this.admission.name,
-//       subject: 'admission',
-//       keywords: 'admission, ONLINE admission',
-//     },
-//       styles: {
-//         header: {
-//           fontSize: 18,
-//           bold: true,
-//           margin: [0, 20, 0, 10],
-//           decoration: 'underline'
-//         },
-//         name: {
-//           fontSize: 16,
-//           bold: true
-//         },
-//         jobTitle: {
-//           fontSize: 14,
-//           bold: true,
-//           italics: true
-//         },
-//         sign: {
-//           margin: [0, 50, 0, 10],
-//           alignment: 'right',
-//           italics: true
-//         },
-//         tableHeader: {
-//           bold: true,
-//         }
-//       }
-//   };
-// }
-
-
-  // onSubmit() {
-  //     this.submitted = true;
-
-  //     // stop here if form is invalid
-  //     if (this.registerForm.invalid) {
-  //         return;
-  //     }
-  //     console.log("Before submit",this.registerForm.value);
-  //     this.commonService.postData(this.registerForm.value)
-  //     .subscribe((result) => {
-  //       console.log("rrrrrrrreeeeeesssssulllttt",result)
-  //     },
-  //     (error) => {
-  //       console.log("errrrrrorrrrr",error);
-  //     });
-  // }
+              }
+};//return ends
+}//document definition ends
 
   openDialog(): void {
     const dialogRef = this.dialog.open(FeesComponent, {

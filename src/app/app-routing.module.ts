@@ -11,7 +11,8 @@ import { StudentsComponent } from './students/students.component';
 import { AdmissionComponent } from './admission/admission.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { StudentcompletedetailsComponent } from './studentcompletedetails/studentcompletedetails.component'
-import { AboutComponent } from './studentcompletedetails/about/about.component'
+import { AboutComponent } from './studentcompletedetails/about/about.component';
+import { ParentsComponent} from './studentcompletedetails/parents/parents.component';
 
 import { FeestructureComponent } from './feestructure/feestructure.component';
 import { FeesComponent } from './fees/fees.component';
@@ -38,7 +39,8 @@ const routes: Routes = [
       { 
         path: 'studentcompletedetails', component: StudentcompletedetailsComponent,
         children:[
-          { path: 'about', component: AboutComponent }
+          { path: 'about', component: AboutComponent },
+          { path:'parents',component:ParentsComponent},
         ]
       },
     ]

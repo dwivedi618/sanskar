@@ -2,8 +2,12 @@
 .sidenav_half{
   width: 4rem;
 }
+.sidenav_half:hover{
+  width: 14rem;
+  transition: .6s all;
+}
 .sidenav_full{
-  width: 16rem;
+  width: 14rem;
 }
 .margin-top{
   margin-top: 2rem auto;
@@ -16,12 +20,10 @@
   width: 100%;
   height: 100%;
 }
-.content{
-  display: flex;
-  flex:1;
-  height: 100%;
-  padding-bottom: 3rem;
+mat-sidenav-content{
+  position: relative;
 }
+
 @media(min-width: 320px){
   .content{
     padding-bottom:3rem; 

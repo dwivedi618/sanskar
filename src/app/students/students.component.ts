@@ -4,33 +4,14 @@ import {MatTableDataSource, MatSort, MatPaginator} from '@angular/material';
 import { getTreeNoValidDataSourceError } from '@angular/cdk/tree';
 import { CommonService } from '../services/common.service';
 
-export interface PeriodicElement {
+export interface Student {
+  firstName: string;
   fatherName: string;
-  studentName: string;
   standard: string;
   address: string;
 }
 
-// const ELEMENT_DATA: PeriodicElement[] = [
-//   {studentName: 'shivendra', fatherName: 'Manoj Dwivedi', standard: '10th', address: 'Bankatiya Dubey'},
- 
-//   {studentName: 'Darshan Pandey', fatherName: 'Shashichadra Pandey', standard: '3rd', address: 'Bankata'},
-//   {studentName: 'shivendra', fatherName: 'Manoj Dwivedi', standard: '10th', address: 'Bankatiya Dubey'},
- 
-//   {studentName: 'Darshan Pandey', fatherName: 'Shashichadra Pandey', standard: '3rd', address: 'Bankata'},
-//   {studentName: 'shivendra', fatherName: 'Manoj Dwivedi', standard: '10th', address: 'Bankatiya Dubey'},
- 
-//   {studentName: 'Darshan Pandey', fatherName: 'Shashichadra Pandey', standard: '3rd', address: 'Bankata'},
-//   {studentName: 'shivendra', fatherName: 'Manoj Dwivedi', standard: '10th', address: 'Bankatiya Dubey'},
- 
-//   {studentName: 'Darshan Pandey', fatherName: 'Shashichadra Pandey', standard: '3rd', address: 'Bankata'},
-//   {studentName: 'shivendra', fatherName: 'Manoj Dwivedi', standard: '10th', address: 'Bankatiya Dubey'},
- 
-//   {studentName: 'Darshan Pandey', fatherName: 'Shashichadra Pandey', standard: '3rd', address: 'Bankata'},
-//   {studentName: 'shivendra', fatherName: 'Manoj Dwivedi', standard: '10th', address: 'Bankatiya Dubey'},
 
-//   {studentName: 'Darshan Pandey', fatherName: 'Shashichadra Pandey', standard: '3rd', address: 'Bankata'},
-// ];
 
 
 @Component({
@@ -39,7 +20,7 @@ export interface PeriodicElement {
   styleUrls: ['./students.component.css']
 })
 export class StudentsComponent implements OnInit {
-  ELEMENT_DATA: PeriodicElement[];
+  students: Student[];
   
   constructor(
     private commonService: CommonService
@@ -47,28 +28,29 @@ export class StudentsComponent implements OnInit {
   ngOnInit() {
     this.commonService.getData()
       .subscribe((result) => {
-        let students = result.students;
+        this.students = result.students;
         let temp : any[];
-        for (let i = 0; i < students.length ; i++){
-          temp.push({
-            fatherName: "Manoj kumar dwivedi",
-            studentName: students[i].firstName + students[i].middleName + students[i].lastName,
-            standard: students[i].standard,
-            address: "Bankatiya"
-          });
+        
+        for (let i = 0; i < this.students.length ; i++){
+          // temp.push({
+          //   fatherName: "Manoj kumar dwivedi",
+          //   firstName: students[i].firstName + students[i].middleName + students[i].lastName,
+          //   standard: students[i].standard,
+          //   address: "Bankatiya"
+          // });
         }
         
         
-        console.log("INSIDE stuident resssuullt",temp);
+        console.log("INSIDE stuident resssuullt",this.students);
 
       },(error) => {
         console.log("INSIDE stuident eerroor",error);
       })
   }
 
-  displayedColumns: string[] = ['select', 'studentName', 'fatherName', 'standard', 'address'];
-  dataSource = new MatTableDataSource<PeriodicElement>(this.ELEMENT_DATA);
-  selection = new SelectionModel<PeriodicElement>(true, []);
+  displayedColumns: string[] = ['select', 'firstName', 'fatherName', 'standard', 'address'];
+  dataSource = new MatTableDataSource<Student>(this.students);
+  selection = new SelectionModel<Student>(true, []);
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -85,11 +67,11 @@ export class StudentsComponent implements OnInit {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: PeriodicElement): string {
+  checkboxLabel(row?: Student): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.studentName + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.firstName + 1}`;
   }
 
   // filtering

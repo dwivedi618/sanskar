@@ -23,6 +23,7 @@ import { EditComponent } from './profile/edit/edit.component';
 import { AuthenticationService } from './services/authentication.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SettingsComponent } from './settings/settings.component';
+import { ParentsComponent } from './studentcompletedetails/parents/parents.component';
 
 
 
@@ -42,7 +43,8 @@ import { SettingsComponent } from './settings/settings.component';
     FeesComponent,
     ProfileComponent,
     EditComponent,
-    SettingsComponent,  
+    SettingsComponent,
+    ParentsComponent,  
   ],
   imports: [
     BrowserAnimationsModule,

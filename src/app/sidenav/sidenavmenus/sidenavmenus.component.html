@@ -1,37 +1,42 @@
 <mat-list class="sidenav_menus">
-
+    <div class=" my_shadow1">
+        <div class="profile__picture"><img src="../assets/photo.png" alt="student photo" /></div>
+    </div>
   <a  routerLink="/dashboard" routerLinkActive="myactive">
     <mat-list-item  matTooltip="Analytics" matTooltipPosition="right" routerLinkActive="myactive">
     <mat-icon mat-list-icon>desktop_mac</mat-icon>
     <p mat-line>Dashboard</p>
     </mat-list-item>
   </a>
-
+<mat-divider></mat-divider>
   <a routerLink="/admission" routerLinkActive="myactive">
     <mat-list-item  matTooltip="Admission" matTooltipPosition="right" routerLinkActive="myactive">
     <mat-icon mat-list-icon>create</mat-icon>
     <p mat-line>Admission</p>
     </mat-list-item>
   </a>
+  <mat-divider></mat-divider>
   <a routerLink="/login" routerLinkActive="myactive">
     <mat-list-item  matTooltip="login" matTooltipPosition="right" routerLinkActive="myactive">
     <mat-icon mat-list-icon>face</mat-icon>
     <p mat-line>login</p>
     </mat-list-item>
   </a>
-
+  <mat-divider></mat-divider>
   <a [routerLink]="['/students']" routerLinkActive="myactive">
     <mat-list-item matTooltip="Student list"  matTooltipPosition="right" routerLinkActive="myactive">
       <mat-icon mat-list-icon> people_outline</mat-icon>
       <p mat-line>Student list</p>
     </mat-list-item>
   </a>
+  <mat-divider></mat-divider>
   <a [routerLink]="['/studentcompletedetails']" >
     <mat-list-item matTooltip="Student profile"  matTooltipPosition="right" routerLinkActive="myactive">
       <mat-icon mat-list-icon>perm_identity</mat-icon>
       <p mat-line>student detailed info</p>
     </mat-list-item>
   </a>
+  <mat-divider></mat-divider>
   <!-- definefeeStructure -->
   <a [routerLink]="['/feestructure']" >
     <mat-list-item matTooltip="Fee Structure"  matTooltipPosition="right" routerLinkActive="myactive">
@@ -39,6 +44,7 @@
       <p mat-line>Set Fee Structure</p>
     </mat-list-item>
   </a>
+  <mat-divider></mat-divider>
   <!-- fees -->
   <!-- definefeeStructure -->
   <a [routerLink]="['/fees']" >
@@ -48,6 +54,6 @@
     </mat-list-item>
   </a>
 
-
+  <mat-divider></mat-divider>
 
 </mat-list>

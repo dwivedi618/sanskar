@@ -1,23 +1,24 @@
 <!-- filtering field -->
-<div class="container-fluid card">
-<div class="row ">
-  <div class="col-md-8">
-      <mat-form-field class=" example_full_width">
-        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search">
-        <mat-icon matSuffix>search</mat-icon>
-     </mat-form-field>
-      <mat-form-field class=" example_full_width">
-            <mat-select #select placeholder="Student Name" (selectionChange)="applyFilter($event.value)">
-              <mat-option *ngFor="let i of displayedColumns" [value]="i">
-                {{i}}
-              </mat-option>
-            </mat-select>
-      </mat-form-field>
-  </div>
-</div>
-  <div class="table_container">
+<div class="">
+
+  <div class="table_container my_shadow">
     
-  
+      <div class="row ">
+          <div class="col-md-12">
+            <div class="search_container">
+              <div class="mysearch">
+                <input  type="search" (keyup)="applyFilter($event.target.value)" placeholder="Search for">
+                
+                
+                <mat-select #select placeholder="Filter by" (selectionChange)="applyFilter($event.value)">
+                  <mat-option *ngFor="let i of displayedColumns" [value]="i">
+                    {{i}}
+                  </mat-option>
+                </mat-select>
+              </div>
+              </div>
+          </div>
+        </div>
   <table mat-table [dataSource]="students" class=" mat-elevation-z8" matSort>
   
      <!-- Checkbox Column -->

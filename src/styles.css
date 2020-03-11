@@ -40,5 +40,8 @@ input:-webkit-autofill:active  {
 }
 .my_shadow{
 
-box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.17);
+box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.17) !important;
+}
+.my_shadow1{
+	box-shadow: 0 0 10px #00000017!important;
 }

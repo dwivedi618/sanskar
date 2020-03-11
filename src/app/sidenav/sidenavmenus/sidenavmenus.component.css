@@ -1,7 +1,7 @@
 .sidenav_menus{
     overflow-x: hidden!important;
     min-height: 60vh;
-    max-height: 90vh;
+    /* max-height: 90vh; */
     overflow-y: auto;
   
 }
@@ -14,13 +14,58 @@ mat-list-item:hover{
      
       border-right: solid #673ab7 ;
       /* transition: .5s ; */
-      background: rgba(102, 102, 102, 0.096);
+      background: #ffffff;
+      box-shadow: 0 0 10px #00000017;
       color:  #673ab7;
     }
 .myactive{
      
         border-right: solid #673ab7 ;
         /* transition: .5s ; */
-        background: rgba(102, 102, 102, 0.096);
+        background: #ffffff;
+      box-shadow: 0 0 10px #00000017;
         color:  #673ab7;
       }    
+mat-icon{
+    /* font-size: small!important; */
+}
+p{
+    font-size: small!important;
+}
+mat-divider{
+    opacity: .2;
+    width: 90%;
+    margin: 0 auto;
+}
+
+.profile__picture {
+    background: #ffffff;
+    border-radius: 100px;
+    border: 10px solid #ffffff;
+    height: 10rem;
+    /* position: absolute; */
+    top: 0px;
+    left: 4px;
+    width: 10rem;
+    margin: 0 auto;
+  }
+  /* .profile__picture:before {
+    border-radius: 100px;
+    box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.17);
+    content: "";
+    height: calc(100% + 20px);
+    left: -10px;
+    position: absolute;
+    top: -10px;
+    width: calc(100% + 20px);
+    z-index: -1;
+  } */
+  .profile__picture img {
+    border-radius: 100px;
+    height: 100%;
+    width: 100%;
+  }
+  mat-list{
+      margin-top: 0px!important;
+      padding-top: 0px!important;
+  }

@@ -1,6 +1,6 @@
 .table_container {
-  width: 90vw;
-  min-height: 75vh;
+  width: 100%;
+  height: 100%;
     overflow: auto;
   }
   .row{
@@ -14,11 +14,9 @@
   }
   table {
     width: 100%;
-    box-shadow: 0px 1px 4px rgba(0,0,0,0.25)!important;
+    box-shadow: 0 0 0px #ffffff03;
   }
-  table tr:hover{
-    box-shadow: 0px 2px 4px #222!important;
-  }
+  
   .filter_field{
     position: relative;
     
@@ -74,4 +72,50 @@ input:-webkit-autofill:hover,
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active  {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
+}
+input[type="search"]{
+ border:none;
+ background: transparent;
+ width: 200px;
+ outline: none;
+ position: relative;
+ width: 100%;
+padding: 0 1rem;
+ 
+ 
+}
+.search_container{
+  width: 100%;
+  min-height:5rem;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  -webkit-box-align: center;
+  align-items: center;
+display: -webkit-box;
+display: flex;
+-webkit-box-pack: center;
+  justify-content: center;
+}
+.mysearch{
+  width:30rem;
+  height: 3rem;
+  border-radius: 5rem;
+  box-shadow: 0 0 10px #00000017;
+  margin: 0 auto ;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  -webkit-box-align: center;
+  align-items: center;
+display: -webkit-box;
+display: flex;
+-webkit-box-pack: center;
+  justify-content: center;
+  padding: 0 1rem;
+  
+}
+mat-select{
+  border-left: 1px;
+  border-left-color: #ccc;
 }

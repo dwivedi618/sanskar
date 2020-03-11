@@ -95,12 +95,13 @@
   -webkit-animation: popUp ease-in-out 350ms;
           animation: popUp ease-in-out 350ms;
   background: #ffffff;
-  border-radius: 25px;
-  box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.17);
+  border-radius: 8px;
+  /* box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.17); */
   margin-top: 40px;
   padding: 1rem 1rem 1rem 1rem;
   position: relative;
   width: 70vw;
+  min-height:85vh;
 }
 .profile__account {
   align-self: center;

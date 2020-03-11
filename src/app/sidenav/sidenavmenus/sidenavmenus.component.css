@@ -17,7 +17,7 @@ mat-list-item:hover{
       background: rgba(102, 102, 102, 0.096);
       color:  #673ab7;
     }
-mat-list.sidenav_menus a:active {
+.myactive{
      
         border-right: solid #673ab7 ;
         /* transition: .5s ; */

@@ -38,3 +38,7 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active  {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
+.my_shadow{
+
+box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.17);
+}

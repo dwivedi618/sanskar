@@ -133,7 +133,7 @@ input{
     width:700px;
     /* border:1px solid #fff; */
     margin:6% auto;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.507);
+    /* box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.507); */
   }
   .main div{
     display: inline-block;

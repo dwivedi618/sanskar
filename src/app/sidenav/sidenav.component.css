@@ -9,6 +9,16 @@
 .sidenav_full{
   width: 14rem;
 }
+@media(min-width:720px){
+  mat-sidenav{
+    position: fixed;
+    top: 1rem;
+    left: 1rem; 
+    bottom: 1rem;
+    border-radius: 10px;
+  }
+}
+
 .margin-top{
   margin-top: 2rem auto;
 }
@@ -20,6 +30,7 @@
   width: 100%;
   height: 100%;
 }
+
 mat-sidenav-content{
   position: relative;
   background: #ffffff;

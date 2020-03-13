@@ -1,7 +1,7 @@
 <div class="container">
     <div class="row">
             <div class="col-md-4">
-                <div class="card">
+                <div class="card my_shadow">
                 <div class="card-header">
                         <h5 class="card-title">Accademic Fees For</h5>
                     <mat-list>
@@ -27,12 +27,18 @@
                 <div class="card-body">
                     <mat-list>
                         <mat-list-item>
-                            <mat-checkbox labelPosition="before" checked >₹{{tutionFee}}</mat-checkbox>
+                            <mat-checkbox labelPosition="before" checked="true" disabled="true">₹{{tutionFee}}</mat-checkbox>
                             <p mat-line>Tution Fees</p>
                         </mat-list-item>
-                        <mat-list-item>
-                                <mat-checkbox labelPosition="before" >₹{{convenienceFee}}</mat-checkbox>
-                                <p mat-line>Convenience Fee</p>
+                        <mat-list-item *ngFor="let item of fees">
+                                <!-- <div *ngFor="let item of data; let i = index;">
+                                        <mat-checkbox [checked]="item.checked" (change)="onChange($event, i, item)">
+                                          {{item.value}}
+                                        </mat-checkbox>
+                                    </div> -->
+                                  
+                                <mat-checkbox labelPosition="before" [(ngModel)]="checked" (change)=onChange($event)>₹{{item.convenienceFee}}</mat-checkbox>
+                                <p mat-line>{{item.convenienceFeeName}}</p>
                         </mat-list-item>
                         
                     </mat-list>
@@ -51,7 +57,7 @@
                 </div>
             </div>
         <div class="col-md-4">
-                <div class="card ">
+                <div class="card my_shadow">
                         <div class="card-header">
                             <h4>Receipt</h4>
                         </div>
@@ -83,7 +89,7 @@
                     </div>
         </div>
         <div class="col-md-4">
-                <div class="card">
+                <div class="card my_shadow">
                         <div class="card-header">
                             <h4>Payment </h4>
                         </div>

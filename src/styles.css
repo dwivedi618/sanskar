@@ -12,19 +12,24 @@ button:focus{
   /* styling global scroler */
 *::-webkit-scrollbar-track
 {
-	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-	background-color: #F5F5F5;
+	/* -webkit-box-shadow: inset 0 0 6px rgba(102, 102, 102, 0.3); */
+	/* background-color: #F5F5F5; */
+
 }
 
 *::-webkit-scrollbar
 {
 	width: 6px;
-	background-color: #F5F5F5;
+	/* background-color: #F5F5F5; */
+	background-color: transparent;
 }
 
-*::-webkit-scrollbar-thumb
+::-webkit-scrollbar-thumb
 {
-	background-color: hsl(0, 0%, 54%);
+	/* visibility: hidden; */
+	opacity: .5;
+	background-color: #ccc;
+	
 }
 .card{
 	/* margin-top: 1rem!important; */
@@ -44,4 +49,33 @@ box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.17) !important;
 }
 .my_shadow1{
 	box-shadow: 0 0 10px #00000017!important;
+}
+
+.layout {
+  -webkit-box-align: center;
+          align-items: center;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+          justify-content: center;
+  /* height: 100vh; */
+}
+
+.bar{
+  min-width:10rem;
+  height: 3rem;
+  border-radius: 5rem;
+  box-shadow: 0 0 10px #00000017;
+  margin: 0 auto ;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  -webkit-box-align: center;
+  align-items: center;
+display: -webkit-box;
+display: flex;
+-webkit-box-pack: center;
+  justify-content: center;
+  padding: 0 1rem;
+  
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-interface FeeInstallment {
-  value: string;
-  viewValue: string;
+interface ConvenienceFee {
+  convenienceFee: Number;
+  convenienceFeeName: string;
 }
 
 @Component({
@@ -13,11 +13,11 @@ interface FeeInstallment {
 })
 export class FeesComponent implements OnInit {
 
-  
   paymentForm : FormGroup;
+  checked=false;
   submitted = false;
-  totalFees = 455;
-  tutionFee = 777;
+  tutionFee = 654;
+  totalFees = this.tutionFee;
   convenienceFee = 345;
   submittedFees = 0;
   previousSubmittedFees=567;
@@ -51,12 +51,21 @@ export class FeesComponent implements OnInit {
 
       alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.paymentForm.value))
   }
+  onChange($event){
+    this.totalFees = this.tutionFee
+    if(this.checked){
+    this.totalFees =  this.totalFees + this.convenienceFee;
+    console.log("total fee on checked",this.totalFees);}
+    else{
+      this.totalFees =  this.totalFees - this.convenienceFee;
+      console.log("total fee on unchecked",this.totalFees);
+    }
+  }
+  fees : ConvenienceFee[] = [
+    { convenienceFee: 233, convenienceFeeName:'fee1' },
+    { convenienceFee: 333, convenienceFeeName:'fee2' },
+    
+    ];
 
-  fees: FeeInstallment[] = [
-    {value: 'perOneMonth', viewValue: '1 Month'},
-    {value: 'perThreeMonth', viewValue: '3 Month'},
-    {value: 'perSixMonth', viewValue: '6 Month'},
-    {value: 'perYear', viewValue: 'Complete Year'}
-  ];
 
 }

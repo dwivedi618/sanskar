@@ -1,6 +1,6 @@
 
 .sidenav_half{
-  width: 14rem;
+  width: 4rem;
 }
 /* .sidenav_half:hover{
   width: 14rem;
@@ -9,13 +9,45 @@
 .sidenav_full{
   width: 14rem;
 }
+.example-icon {
+  padding: 0 14px;
+}
+@media(max-width:320px){
+  mat-sidenav{
+    border-radius: none!important;
+  }
+}
 @media(min-width:720px){
   mat-sidenav{
     position: fixed;
     top: 1rem;
     left: 1rem; 
+    margin-right: 1rem;
     bottom: 1rem;
-    border-radius: 10px;
+    overflow-x: hidden;
+    /* background: #232526; 
+background: -webkit-linear-gradient(to bottom, #414345, #232526); 
+background: linear-gradient(to bottom, #4143456b, #23252671); */
+
+    color: #ccc!important;
+    /* border-radius: 6px;overflow: hidden; */
+    /* background-image: linear-gradient(to right bottom, rgba(26,0,0,0.8), rgba(0,0,0,0.8)), url(../../assets/cover.jpg);
+    background-color: rgba(0,0,0,.8);
+    
+    background-size: cover;
+    
+    background-position: center; */
+    /* clip-path: polygon(0 0,100% 0%,100% 85vh,0% 100%); */
+  }
+  mat-sidenav-content{
+    /* margin-left: 0px */
+    padding: 1rem 1rem 1rem 1rem;
+    overflow: scroll;
+   
+
+  }
+  .sidenav_toolbar{
+    overflow: hidden;
   }
 }
 
@@ -29,15 +61,44 @@
   top: 0rem;
   width: 100%;
   height: 100%;
+  /* background-image: linear-gradient(to right bottom, rgba(26,0,0,0.8), rgba(0,0,0,0.8)), url(../../assets/cover.jpg);
+    background-color: rgba(0,0,0,.8);
+    color: #ccc;
+    background-size: cover;
+    
+    background-position: center; */
 }
 
 mat-sidenav-content{
-  position: relative;
-  background: #ffffff;
+  /* position: relative; */
+  /* background: #ffffff; */
 }
 
 @media(min-width: 320px){
   .content{
     padding-bottom:3rem; 
   }
+}
+
+
+div.logo{
+  max-width: 32px;
+  max-height: 32px;
+  margin: 0 auto;
+
+}
+div.logo img{
+  max-width: 32px;
+  max-height: 32px;
+  background-size: cover;
+  background-position: center;
+}
+
+.brand{
+  padding-top: 1rem;
+  color: #222!important;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.171)
+}
+.example-spacer {
+  flex: 1 1 auto;
 }

@@ -1,90 +1,82 @@
 <!-- filtering field -->
-<div class="">
 
-  <div class="table_container my_shadow">
+
+    <div class="search_container">
+        <div class="mysearch">
+            <input type="search" (keyup)="applyFilter($event.target.value)" placeholder="Search for">
     
-      <div class="row ">
-          <div class="col-md-12">
-             
-            <div class="search_container">
-              <div class="mysearch">
-                <input  type="search" (keyup)="applyFilter($event.target.value)" placeholder="Search for">
-                
-                <div class="filter">
-                  <mat-select #select placeholder="Filter by" (selectionChange)="applyFilter($event.value)">
+            <div class="filter">
+                <mat-select #select placeholder="Filter by" (selectionChange)="applyFilter($event.value)">
                     <mat-option *ngFor="let i of displayedColumns" [value]="i">
-                    {{i}}
-                  </mat-option>
+                        {{i}}
+                    </mat-option>
                 </mat-select>
-              </div>
             </div>
-            <div class="bar">
-              <!-- toggle icon for fullscreen /exit -->
+        </div>
+        <div class="bar">
+            <!-- toggle icon for fullscreen /exit -->
             <div class="border_right">
-            <button *ngIf="show_fullscreen" mat-icon-button (click)="openFullscreen()"
-               matTooltip="Fullscreen" >
-              <mat-icon>fullscreen</mat-icon>
-             </button>
-             <button *ngIf="close_fullscreen" mat-icon-button (click)="closeFullscreen()"
-               matTooltip="Exit Fullscreen" >
-              <mat-icon>fullscreen_exit</mat-icon>
-             </button>
+                <button *ngIf="show_fullscreen" mat-icon-button (click)="openFullscreen()" matTooltip="Fullscreen">
+                    <mat-icon>fullscreen</mat-icon>
+                </button>
+                <button *ngIf="close_fullscreen" mat-icon-button (click)="closeFullscreen()" matTooltip="Exit Fullscreen">
+                    <mat-icon>fullscreen_exit</mat-icon>
+                </button>
             </div>
-             <!-- --------- -->
-              <div class="toggle_button border_right">
-                  <mat-slide-toggle>Dark</mat-slide-toggle>
-              </div>
-                <div>
-                    <div class="layout ">
-                            <button mat-icon-button [matMenuTriggerFor]="menu" 
-                            aria-label=" icon-button with a menu">
-                            <div >
-                              <img class="avatar" src="../assets/sanskar.jpg" alt="logo">
-                            </div>
-                            <!-- user profileimage -->
-                           </button>
-                    </div>
-                      <mat-menu #menu="matMenu" >
-                        <div  class="profile">
-                          <div class="float-left">
+            <!-- --------- -->
+            <div class="toggle_button border_right">
+                <mat-slide-toggle>Dark</mat-slide-toggle>
+            </div>
+            <div>
+                <div class="layout ">
+                    <button mat-icon-button [matMenuTriggerFor]="menu" aria-label=" icon-button with a menu">
+                        <div>
+                            <img class="avatar" src="../assets/sanskar.jpg" alt="logo">
+                        </div>
+                        <!-- user profileimage -->
+                    </button>
+                </div>
+                <mat-menu #menu="matMenu">
+                    <div class="profile">
+                        <div class="float-left">
                             <mat-card class="remove_shadow " routerLink='/profile'>
-                              <div mat-card-avatar class="secondary_avatar_image"></div>
+                                <div mat-card-avatar class="secondary_avatar_image"></div>
                             </mat-card>
-                          </div>
+                        </div>
                         <div class="float-right username_email_container">
-                              <button mat-menu-item routerLink='/profile'>
-                              <h3 mat-line>{{username}}</h3>
-                              </button>
-                              <button mat-menu-item routerLink='/profile' >
+                            <button mat-menu-item routerLink='/profile'>
+                                <h3 mat-line>{{username}}</h3>
+                            </button>
+                            <button mat-menu-item routerLink='/profile'>
                                 <h6 mat-line><small>{{email}}</small></h6>
                             </button>
-        
+    
                         </div>
-                        </div>
-        <mat-divider></mat-divider>
-        
-                       <mat-list> 
-                       <a  routerLink='/settings' >
-                         <mat-list-item>
-                            <mat-icon>settings</mat-icon>
-                            <p mat-line>Settings</p>
-                         </mat-list-item>
-                       </a>
-                       <a  routerLink='/login' >
-                        <mat-list-item>
-                           <mat-icon>logout</mat-icon>
-                           <p mat-line>Logout</p>
-                        </mat-list-item>
-                      </a>
-                      </mat-list>
-                      </mat-menu>
-                      
-                </div>
+                    </div>
+                    <mat-divider></mat-divider>
+    
+                    <mat-list>
+                        <a routerLink='/settings'>
+                            <mat-list-item>
+                                <mat-icon>settings</mat-icon>
+                                <p mat-line>Settings</p>
+                            </mat-list-item>
+                        </a>
+                        <a routerLink='/login'>
+                            <mat-list-item>
+                                <mat-icon>logout</mat-icon>
+                                <p mat-line>Logout</p>
+                            </mat-list-item>
+                        </a>
+                    </mat-list>
+                </mat-menu>
+    
             </div>
-              </div>
-          </div>
         </div>
-  <table mat-table [dataSource]="students" class=" mat-elevation-z8" matSort>
+    </div>
+  <div class="table_container my_shadow1">
+<mat-spinner color="accent" *ngIf="isLoading"></mat-spinner>
+  <table mat-table [dataSource]="students" class=" mat-elevation-z8" matSort *ngIf="!isLoading">
   
      <!-- Checkbox Column -->
      <ng-container matColumnDef="select">
@@ -110,14 +102,14 @@
        
        <td mat-cell *matCellDef="let element">
          
-         <img mat-card-avatar class="row_avatar_img" src="https://persianv.com/ravanshenasi/wp-content/uploads/sites/22/2017/10/532432787-taknaz-ir.jpg" >
+         <!-- <img class="avatar" src="https://persianv.com/ravanshenasi/wp-content/uploads/sites/22/2017/10/532432787-taknaz-ir.jpg" > -->
          {{element.firstName}} </td>
      </ng-container>
 
      <!-- Name Column -->
      <ng-container matColumnDef="fatherName">
        <th mat-header-cell *matHeaderCellDef mat-sort-header> Father'sName</th>
-       <td mat-cell *matCellDef="let element"> {{element.fatherName}} </td>
+       <td mat-cell *matCellDef="let element"> {{element.parent.fatherName}} </td>
      </ng-container>
    
      <!-- standard Column -->
@@ -136,8 +128,9 @@
      <tr mat-row *matRowDef="let row; columns: displayedColumns;"
          (click)="selection.toggle(row)">
      </tr>
+   
    </table>
   
    </div>
   
-  </div>
+  

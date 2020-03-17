@@ -1,19 +1,39 @@
-<!-- 
-<app-navigation (click)="sidenav.toggle()">
+
+<!-- <app-navigation (click)="sidenav.toggle()">
 </app-navigation> -->
+<mat-sidenav-container class="example-container" autosize>
+    
+    <mat-sidenav  [class.sidenav_half]=" !isFullOpen"
+    #sidenav 
+    [class.sidenav_full]="isFullOpen"
+    class="my_shadow1"
+    position="start"  [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="(isHandset$ | async) === false">
+<mat-toolbar class="sidenav_toolbar">
+    <mat-toolbar-row>
+        <button *ngIf="(isHandset$ | async) === false" mat-icon-button (click)="sidenavToggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+            
+        <a  routerLink=" " class="example-icon" >
+            <div class="logo layout">
+                <img src="../assets/sanskar.jpg" alt="logo">
+            </div> 
+        </a>
+                    <span class="example-spacer"></span>
+                   
+                  
+       
+                  <span mat-line>Sanskar</span>
+                  
+                
+                    <!-- <a  routerLink="/profile" routerLinkActive="myactive">
+                    <div class="profile__picture"><img src="../assets/photo.png" alt="student photo" /></div>
+                    </a> -->
+                
 
-
-<mat-sidenav-container class="example-container" >
-    <mat-sidenav  [class.sidenav_half]=" isLargeScreen() "
-        class="my_shadow1"
-    position="start" [mode]="isLargeScreen() ? 'side' : 'over'"
-     #sidenav 
-     
-     opened>
-     
-       <!-- <div *ngIf="isFullOpen" class="cover_or_logo">
-        <img class="img-fluid" src="https://material.angular.io/assets/img/examples/shiba2.jpg" alt="Photo of a Shiba Inu">
-       </div> -->
+    </mat-toolbar-row>
+</mat-toolbar>
        
            <app-sidenavmenus></app-sidenavmenus>
        
@@ -21,7 +41,19 @@
    
     <!-- ------------ -->
     <mat-sidenav-content >
-        
+    <mat-toolbar color="primary" *ngIf="isHandset$ | async">
+            <button
+              type="button"
+              aria-label="Toggle sidenav"
+              mat-icon-button
+              (click)="sidenav.toggle()">
+              
+              <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <div class="layout brand">
+                    
+                    </div>
+          </mat-toolbar>
         <main>
                
             <router-outlet>

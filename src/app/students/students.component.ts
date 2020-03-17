@@ -25,18 +25,19 @@ export class StudentsComponent implements OnInit {
   elem:any;
   show_fullscreen = true;
   close_fullscreen = false;
-  
+  isLoading = false;
   constructor(
     @Inject(DOCUMENT) private document: any,
     private commonService: CommonService
   ) {}
   ngOnInit() {
     this.elem = document.documentElement;
+    this.isLoading = true;
     this.commonService.getData()
       .subscribe((result) => {
         this.students = result.students;
         let temp : any[];
-        
+        this.isLoading= false;
         for (let i = 0; i < this.students.length ; i++){
           // temp.push({
           //   fatherName: "Manoj kumar dwivedi",

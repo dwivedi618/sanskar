@@ -46,7 +46,8 @@ export class AdmissionComponent implements OnInit {
   
   submitted = false;
   imagePreview: any;
-  
+  student : any;
+  route = 'student/register-student';  
 
   constructor(
     public dialog: MatDialog,
@@ -151,14 +152,45 @@ export class AdmissionComponent implements OnInit {
             console.log("form Invalid");
         }
         this.studentForm.value.dateOfBirth = this.studentForm.value.dateOfBirth.toLocaleDateString();
-    console.log("Before submitstudent",this.studentForm.value);
+        this.studentForm.value.requestType = "student";
+        this.studentForm.value.image = this.imagePreview;
+        console.log("Before submitstudent",this.studentForm.value);
+        this.commonService.postData(this.route,this.studentForm.value)
+          .subscribe((result) => {
+            this.student = result.result;
+            console.log("result",result);
+          },(error) => {
+            console.log("error",error);
+          });
   }
   onParentSubmit(){
+    this.parentForm.value.requestType = "parent";
+    this.parentForm.value.studentID = this.student.id;
+    console.log("studentId from Student",this.student);
+
     console.log("Before submitparent",this.parentForm.value);
+    this.commonService.postData(this.route,this.parentForm.value)
+          .subscribe((result) => {
+            
+            console.log("result",result);
+          },(error) => {
+            console.log("error",error);
+          });
+
   }
   onAddressSubmit(){
+    this.addressForm.value.requestType = "address";
+    this.addressForm.value.studentID = this.student.id;
+
     console.log("before permanent Address ",this.addressForm.get(['permanentAddress']).value);
     console.log("before local Address ",this.addressForm.get(['localAddress']).value);
+    this.commonService.postData(this.route,this.addressForm.value)
+          .subscribe((result) => {
+            
+            console.log("result",result);
+          },(error) => {
+            console.log("error",error);
+          });
   }
  onAdmissionComplete(){
    console.log("admission has been Completed navigating to student admission");

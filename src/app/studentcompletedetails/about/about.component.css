@@ -1,5 +1,7 @@
 .profile_data_container{
+    width: 100%;
 margin-top: 3rem;
+overflow-x: hidden;
 }
 .data_row{
     justify-content: center;

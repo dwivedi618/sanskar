@@ -30,6 +30,14 @@
                             </mat-form-field>
                         </div>
                         <div class="col-md-12">
+                            <mat-form-field appearance="outline" class="example-full-width">
+                                <mat-label>Date of Birth</mat-label>
+                                <input matInput formControlName="dateOfBirth" [matDatepicker]="picker">
+                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                                <mat-datepicker #picker></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div class="col-md-12">
                             <mat-label>Gender</mat-label>
                             <div>
                                 <mat-radio-group formControlName="gender" aria-label="Gender">
@@ -38,14 +46,6 @@
                                     <mat-radio-button value="Other">Other</mat-radio-button>
                                 </mat-radio-group>
                             </div>
-                        </div>
-                        <div class="col-md-12">
-                            <mat-form-field appearance="outline">
-                                <mat-label>Date of Birth</mat-label>
-                                <input matInput formControlName="dateOfBirth" [matDatepicker]="picker">
-                                <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                                <mat-datepicker #picker></mat-datepicker>
-                            </mat-form-field>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -136,14 +136,14 @@
     <form class="stepper_form" [formGroup]="parentForm" (ngSubmit)=onParentSubmit()>
         <ng-template matStepLabel>Parents Details</ng-template>
         <div class="row">
-            <mat-label>Parent Details</mat-label>
+            <mat-label>Parents Details</mat-label>
         </div>
         <div class="row">
             <div class="col-md-4">
                 <!-- fatherName -->
 
                 <mat-form-field appearance="outline" class="example-full-width">
-                    <!-- <mat-label>Father's Name</mat-label> -->
+                    <mat-label>Father's Name</mat-label>
                     <input matInput placeholder="Father's Name" type="text" formControlName="fatherName">
                     <mat-error *ngIf="f2.fatherName.hasError('required')">Father's name Required</mat-error>
                 </mat-form-field>
@@ -153,7 +153,7 @@
                 <!-- fatherEducation -->
 
                 <mat-form-field appearance="outline" class="example-full-width">
-                    <!-- <mat-label>Father's Education</mat-label> -->
+                    <mat-label>Father's Education</mat-label>
                     <input matInput placeholder="Father's Education" type="text"
                         formControlName="fatherEducation">
 
@@ -164,7 +164,7 @@
                 <!-- fatherOccupation -->
 
                 <mat-form-field appearance="outline" class="example-full-width">
-                    <!-- <mat-label>Father's Occupation</mat-label> -->
+                    <mat-label>Father's Occupation</mat-label>
                     <input matInput placeholder="Father's Occupation" type="text"
                         formControlName="fatherOccupation">
 
@@ -178,7 +178,7 @@
                 <!-- motherName -->
 
                 <mat-form-field appearance="outline" class="example-full-width">
-                    <!-- <mat-label>Mother's Name</mat-label> -->
+                    <mat-label>Mother's Name</mat-label>
                     <input matInput placeholder="Mother's Name" type="text" formControlName="motherName">
                     <mat-error *ngIf="f2.motherName.hasError('required')">Mother's Name Required</mat-error>
                 </mat-form-field>
@@ -191,7 +191,7 @@
                 <!-- motherEducation -->
 
                 <mat-form-field appearance="outline" class="example-full-width">
-                    <!-- <mat-label>Mother's Education</mat-label> -->
+                    <mat-label>Mother's Education</mat-label>
                     <input matInput placeholder="Mother's Education" type="text"
                         formControlName="motherEducation">
 
@@ -202,7 +202,7 @@
                 <!-- mother Ouccpation -->
 
                 <mat-form-field appearance="outline" class="example-full-width">
-                    <!-- <mat-label>Mother's Occupation</mat-label> -->
+                    <mat-label>Mother's Occupation</mat-label>
                     <input matInput placeholder="Mother's Occupation" type="text"
                         formControlName="motherOccupation">
 
@@ -215,7 +215,7 @@
 <div class="row">
     <div class="col-md-4">
         <mat-form-field appearance="outline" class="example-full-width">
-            <!-- <mat-label>Guardian Name</mat-label> -->
+            <mat-label>Guardian Name</mat-label>
             <input matInput placeholder="Guardian Name" type="text" formControlName="guardianName">
             <mat-error *ngIf="f2.guardianName.hasError('required')">Guardian Name Required</mat-error>
 

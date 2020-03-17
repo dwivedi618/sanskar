@@ -48,7 +48,8 @@ input:-webkit-autofill:active  {
 box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.17) !important;
 }
 .my_shadow1{
-	box-shadow: 0 0 10px #00000017!important;
+  box-shadow: 0 0 10px #00000017!important;
+  /* border-radius: 4px; */
 }
 
 .layout {
@@ -66,6 +67,7 @@ box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.17) !important;
   height: 3rem;
   border-radius: 5rem;
   box-shadow: 0 0 10px #00000017;
+  background: white;
   margin: 0 auto ;
   justify-content: center;
   align-items: center;

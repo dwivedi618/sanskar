@@ -18,6 +18,10 @@ import { FeestructureComponent } from './feestructure/feestructure.component';
 import { FeesComponent } from './fees/fees.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
+import { NewdashboardComponent } from './newdashboard/newdashboard.component';
+import { HomeComponent } from './home/home.component';
+import { AddressComponent} from './address/address.component'
+
 
 
 
@@ -30,6 +34,12 @@ const routes: Routes = [
     path: '', component: SidenavComponent,
     children:[
       { path: 'dashboard', component: DashboardComponent },
+      { path: 'newdashboard', component: NewdashboardComponent },
+      { path: 'home', component: HomeComponent },
+      { path: 'address', component: AddressComponent },
+
+
+
       { path: 'admission', component: AdmissionComponent },
       { path: 'students', component: StudentsComponent },
       { path: 'feestructure', component: FeestructureComponent },

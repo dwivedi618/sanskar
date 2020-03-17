@@ -19,7 +19,8 @@
   .profile {
     border-radius: 0px!important;
     margin-top: 0px!important;
-    width: 100vw!important;
+    width: 100%!important;
+    overflow-x: hidden;
   }
   .profile__picture{
     box-align: center!important;

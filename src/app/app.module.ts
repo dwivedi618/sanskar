@@ -24,6 +24,22 @@ import { AuthenticationService } from './services/authentication.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SettingsComponent } from './settings/settings.component';
 import { ParentsComponent } from './studentcompletedetails/parents/parents.component';
+import { NavComponent } from './nav/nav.component';
+import { NewdashboardComponent } from './newdashboard/newdashboard.component';
+import { MatGridListModule } from '@angular/material/grid-list';
+import { MatCardModule } from '@angular/material/card';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatButtonModule } from '@angular/material/button';
+import { LayoutModule } from '@angular/cdk/layout';
+import { HomeComponent } from './home/home.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatListModule } from '@angular/material/list';
+import { AddressComponent } from './address/address.component';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 
@@ -44,7 +60,11 @@ import { ParentsComponent } from './studentcompletedetails/parents/parents.compo
     ProfileComponent,
     EditComponent,
     SettingsComponent,
-    ParentsComponent,  
+    ParentsComponent,
+    NavComponent,
+    NewdashboardComponent,
+    HomeComponent,
+    AddressComponent,  
   ],
   imports: [
     BrowserAnimationsModule,
@@ -54,6 +74,18 @@ import { ParentsComponent } from './studentcompletedetails/parents/parents.compo
     MaterialModule,
     HttpClientModule,
     FormsModule,
+    MatGridListModule,
+    MatCardModule,
+    MatMenuModule,
+    MatIconModule,
+    MatButtonModule,
+    LayoutModule,
+    MatToolbarModule,
+    MatSidenavModule,
+    MatListModule,
+    MatInputModule,
+    MatSelectModule,
+    MatRadioModule,
     
   ],
   exports: [

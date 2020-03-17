@@ -19,8 +19,8 @@ export class CommonService {
     return this.http.get<any>(`${environment.apiUrl}/student/get-student-details`);
   }
 
-  postData(data){
-    return this.http.post<any>(`${environment.apiUrl}/student/register-student`,data);
+  postData(route,data){
+    return this.http.post<any>(`${environment.apiUrl}/${route}`,data);
 
   }
 

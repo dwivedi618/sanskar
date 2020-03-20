@@ -1,1 +1,79 @@
-<p>student-profile works!</p>
+<div class="layout">
+      
+    <mat-card class="card border-0 profile my_shadow1">
+        <div class="row">
+        <div class="col-md-4">
+            <div class="profile__picture"><img src="../../assets/photo.png" alt="student photo" /></div>
+        </div>
+        <div class="col-md-8">
+            <div class="col-sm-12">
+                <div class="row profile__header">
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="profile__account">
+                        <h5 class="profile__username">Shivendra Dwivedi</h5>
+                    </div>
+                        </div>
+                        <div class="col-sm-12 col-md-6 col-lg-6">
+                    <div class="profile__edit">
+                        <!-- <a routerLink="" class="profile__button" > -->
+                        <a routerLink=""  >
+
+                       <button mat-icon-button>update
+                           <mat-icon>edit</mat-icon>
+                       </button> </a>
+                    </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12">
+                <div class="profile__stats">
+                    <div class="profile__stat">
+                        <div class="profile__icon profile__icon--gold"><i class="fas fa-wallet"></i></div>
+                        <div class="profile__value">16
+                            <div class="profile__key">Age</div>
+                        </div>
+                    </div>
+                    <div class="profile__stat">
+                        <div class="profile__icon profile__icon--blue"><i class='fas fa-user-graduate'></i></div>
+                        <div class="profile__value">10
+                            <div class="profile__key">Standard</div>
+                        </div>
+                    </div>
+                    <div class="profile__stat">
+                        <div class="profile__icon profile__icon--pink"><i class="fas fa-eart"></i></div>
+                        <div class="profile__value">2020
+                            <div class="profile__key">Student Id</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+        <div class="row">
+             <mat-tab-group  mat-align-tabs="center" animationDuration="0ms" >
+                    <mat-tab label="About" >
+                            <ng-template matTabContent>
+                                    <div class="container">
+                                            <div class="profile_data_container">
+                                                <div class="data_row">
+                                                    <strong class="profile_data_label">Father's Name :</strong>
+                                                    <strong class="profile_data">Manoj Dwivedi</strong>
+                                                </div>
+                                                <div class="data_row">
+                                                    <strong class="profile_data_label">Mother's Name:</strong>
+                                                    <strong class="profile_data">Alka Dwivedi</strong>
+                                                </div>
+                                            </div>
+                                        </div>
+                            </ng-template>
+                          </mat-tab>
+                          <mat-tab label="Academic">
+                            <ng-template matTabContent>
+                              The Second Content
+                            </ng-template>
+                          </mat-tab>
+              </mat-tab-group>
+        </div>
+    </mat-card>
+    
+</div>

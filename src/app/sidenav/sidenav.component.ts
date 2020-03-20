@@ -3,6 +3,7 @@ import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { map, shareReplay } from 'rxjs/operators';
 import { ToggleService} from "../services/toggle.service";
+import { UiService } from '../services/ui.service';
 
 
 @Component({
@@ -13,6 +14,8 @@ import { ToggleService} from "../services/toggle.service";
 export class SidenavComponent implements OnInit {
   login = false;
   isFullOpen = true;
+  isDarkTheme = false;
+  isUnicornDarkTheme = true;
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
   .pipe(
     map(result => result.matches),
@@ -22,11 +25,18 @@ export class SidenavComponent implements OnInit {
     
 
   constructor(
+    private uiService : UiService,
     private breakpointObserver: BreakpointObserver,
     private toggleService:ToggleService) { }
 
   ngOnInit() {
+
   }
+  ngOnChanges(){
+    this.isUnicornDarkTheme = this.uiService.isDarkTheme;
+    console.log("from Sidenav isUnicornDarkTheme",this.isUnicornDarkTheme);
+  }
+ 
   sidenavToggle(){
       this.isFullOpen = !this.isFullOpen;
        console.log("full Open",this.isFullOpen);

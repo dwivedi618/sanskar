@@ -1,8 +1,8 @@
-<div class="layout">
-<div class="my_shadow_container">
+<div class="layout ">
+<mat-card class="card border-0 ">
         <!-- <img class="card_img" src="https://static.vecteezy.com/system/resources/previews/000/174/803/original/vector-office-work-space-illustration.jpg" class="card-img-top" alt="..."> -->
 
-    <mat-horizontal-stepper #stepper>
+    <mat-horizontal-stepper #stepper >
             
         <mat-step [stepControl]="studentForm" >
             <form class="stepper_form" [formGroup]="studentForm" (ngSubmit)="onStudentSubmit()">
@@ -367,5 +367,5 @@
 
 </mat-horizontal-stepper>
 
-</div>
+</mat-card>
 </div>

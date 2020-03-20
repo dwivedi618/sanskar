@@ -3,7 +3,8 @@ import {SelectionModel} from '@angular/cdk/collections';
 import {Component,OnInit, Inject,ViewChild} from '@angular/core';
 import {MatTableDataSource, MatSort, MatPaginator} from '@angular/material';
 import { getTreeNoValidDataSourceError } from '@angular/cdk/tree';
-import { CommonService } from '../services/common.service';
+import { CommonService } from '../../services/common.service';
+
 
 export interface Student {
   firstName: string;
@@ -11,16 +12,20 @@ export interface Student {
   standard: string;
   address: string;
 }
-
-
-
-
 @Component({
-  selector: 'app-students',
-  templateUrl: './students.component.html',
-  styleUrls: ['./students.component.css']
+  selector: 'app-students-list',
+  templateUrl: './students-list.component.html',
+  styleUrls: ['./students-list.component.css']
 })
-export class StudentsComponent implements OnInit {
+export class StudentsListComponent implements OnInit {
+
+
+
+
+
+
+
+
   students: Student[];
   elem:any;
   show_fullscreen = true;

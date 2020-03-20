@@ -13,6 +13,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { CommonService } from '../services/common.service';
+import { UiService } from '../services/ui.service';
 
 export interface DialogData {
   animal: string;
@@ -53,7 +54,8 @@ export class AdmissionComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private formBuilder: FormBuilder,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private uiService : UiService,
     ) { }
 
   ngOnInit() {
@@ -151,16 +153,20 @@ export class AdmissionComponent implements OnInit {
             return;
             console.log("form Invalid");
         }
+        if(this.studentForm.value.dateOfBirth != ''){
         this.studentForm.value.dateOfBirth = this.studentForm.value.dateOfBirth.toLocaleDateString();
+        }
         this.studentForm.value.requestType = "student";
         this.studentForm.value.image = this.imagePreview;
         console.log("Before submitstudent",this.studentForm.value);
         this.commonService.postData(this.route,this.studentForm.value)
           .subscribe((result) => {
             this.student = result.result;
+            this.uiService.openSnackBar(result.firstName,null);
             console.log("result",result);
           },(error) => {
             console.log("error",error);
+            this.uiService.openSnackBar(error.message,null);
           });
   }
   onParentSubmit(){

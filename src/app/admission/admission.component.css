@@ -53,7 +53,7 @@
 .my_shadow_container{
   -webkit-animation: popUp ease-in-out 350ms;
           animation: popUp ease-in-out 350ms;
-  background: #ffffff;
+  /* background: #ffffff; */
   border-radius: 6px;
   box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.17);
   /* margin-top: 40px; */
@@ -65,7 +65,7 @@
   
 }
 .profile__picture {
-  background: #ffffff;
+  /* background: #ffffff; */
   border-radius: 100px;
   border: 10px solid #ffffff;
   height: 200px;
@@ -100,7 +100,7 @@
     background-color: rgba(0,0,0,.04);
   }
   ::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
-::ng-deep .mat-form-field-label-wrapper { top: -1.5em; }
+::ng-deep .mat-form-field-label-wrapper { top: -1.2em; }
 
 ::ng-deep .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
     transform: translateY(-1.1em) scale(.75);

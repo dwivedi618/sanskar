@@ -1,23 +1,23 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MaterialModule } from './material.module';
 
-import { CommonModule } from '@angular/common';
 // ng generate  mycomponent_name --module app-routing 
 import { SidenavComponent } from './sidenav/sidenav.component';
 
 import { LoginComponent } from './login/login.component';
-import { StudentsComponent } from './students/students.component';
-import { AdmissionComponent } from './admission/admission.component';
+
+
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { StudentcompletedetailsComponent } from './studentcompletedetails/studentcompletedetails.component'
-import { AboutComponent } from './studentcompletedetails/about/about.component';
-import { ParentsComponent} from './studentcompletedetails/parents/parents.component';
+
 
 import { FeestructureComponent } from './feestructure/feestructure.component';
 import { FeesComponent } from './fees/fees.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AdmissionComponent } from './admission/admission.component';
+
+import { AdmissionModule } from './admission/admission.module';
+
 
 
 
@@ -33,21 +33,19 @@ const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent },
   
 
+      { path: 'admission',component : AdmissionComponent},
 
-
-      { path: 'admission', component: AdmissionComponent },
-      { path: 'students', component: StudentsComponent },
+      { 
+        path: 'studentcompletedetails', loadChildren: './studentcompletedetails/studentcompletedetails.module#StudentcompletedetailsModule',
+        
+      },
+{ path : 'student' ,loadChildren : './student/student.module#StudentModule'},
+      
+      
       { path: 'feestructure', component: FeestructureComponent },
       { path: 'fees', component: FeesComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'profile' , component:ProfileComponent},
-      { 
-        path: 'studentcompletedetails', component: StudentcompletedetailsComponent,
-        children:[
-          { path: 'about', component: AboutComponent },
-          { path:'parents',component:ParentsComponent},
-        ]
-      },
     ]
   },
   
@@ -60,8 +58,9 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    MaterialModule,
-    CommonModule,
+    
+    AdmissionModule,
+    
     RouterModule,
 
     RouterModule.forRoot(routes),

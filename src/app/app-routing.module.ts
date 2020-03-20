@@ -29,38 +29,34 @@ import { AdmissionModule } from './admission/admission.module';
 const routes: Routes = [
   {
     path: '', component: SidenavComponent,
-    children:[
+    children: [
       { path: 'dashboard', component: DashboardComponent },
-  
 
-      { path: 'admission',component : AdmissionComponent},
 
-      { 
-        path: 'studentcompletedetails', loadChildren: './studentcompletedetails/studentcompletedetails.module#StudentcompletedetailsModule',
-        
-      },
-{ path : 'student' ,loadChildren : './student/student.module#StudentModule'},
-      
-      
+      { path: 'admission', component: AdmissionComponent },
+
+      { path: 'student', loadChildren: './student/student.module#StudentModule' },
+
+
       { path: 'feestructure', component: FeestructureComponent },
       { path: 'fees', component: FeesComponent },
       { path: 'settings', component: SettingsComponent },
-      { path: 'profile' , component:ProfileComponent},
+      { path: 'profile', component: ProfileComponent },
     ]
   },
-  
+
 
   { path: 'login', component: LoginComponent },
-  { path : '**' ,component: LoginComponent},
+  { path: '**', component: LoginComponent },
 
 
 ];
 
 @NgModule({
   imports: [
-    
+
     AdmissionModule,
-    
+
     RouterModule,
 
     RouterModule.forRoot(routes),

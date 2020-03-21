@@ -5,7 +5,7 @@
 
     <mat-sidenav [class.sidenav_half]=" !isFullOpen" #sidenav [class.sidenav_full]="isFullOpen" class="my_shadow1"
         position="start" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
-        <mat-toolbar class="sidenav_toolbar" color="accent">
+        <mat-toolbar style="min-height: 45px!important;" class="sidenav_toolbar" color="accent">
             <mat-toolbar-row>
                 <button *ngIf="(isHandset$ | async) === false" mat-icon-button (click)="sidenavToggle()">
                     <mat-icon>menu</mat-icon>
@@ -46,7 +46,7 @@
             <app-nav></app-nav>
         </mat-toolbar-row>
         </mat-toolbar>
-        <mat-toolbar *ngIf="(isHandset$ | async) === false" color="primary" >
+        <mat-toolbar style="min-height: 45px!important;" *ngIf="(isHandset$ | async) === false" color="primary"  >
                 <mat-toolbar-row>
             
             <div class="example-spacer" style="flex: 1 1 auto"></div>

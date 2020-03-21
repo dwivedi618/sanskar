@@ -40,6 +40,9 @@ background: linear-gradient(to bottom, #4143456b, #23252671); */
     background-position: center; */
     /* clip-path: polygon(0 0,100% 0%,100% 85vh,0% 100%); */
   }
+ mat-toolbar{
+   height: 2rem!important;
+ }
   mat-sidenav-content{
     /* margin-left: 0px */
     /* padding: 1rem 1rem 1rem 1rem; */

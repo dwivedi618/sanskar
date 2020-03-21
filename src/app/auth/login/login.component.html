@@ -1,4 +1,4 @@
-
+<!-- 
     <div class="container">
         <div class="row">
 
@@ -7,8 +7,8 @@
                 <div class="main my_shadow">
                     <div class="left">
                         <h1>Login</h1>
-                        <!-- <p><i>Administrator</i></p> -->
-                        <!-- <p class="or"><i>or</i></p> -->
+                        <p><i>Administrator</i></p>
+                        <p class="or"><i>or</i></p>
                          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login_form_container" autocomplete="off">
 
 
@@ -43,4 +43,38 @@
 
 
         </div>
-    </div>
+    </div> -->
+
+<div class="jumbotron">
+    <mat-card class="card border-0 layout">
+            <div class="left card border-0">
+            
+                    <h1>Login</h1>
+                    <!-- <p><i>Administrator</i></p> -->
+                    <!-- <p class="or"><i>or</i></p> -->
+                     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login_form_container" autocomplete="off">
+
+
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Email</mat-label>
+                        <input matInput type="text" formControlName="email">
+                        <mat-error *ngIf="f.email.invalid">{{getErrorMessage()}}</mat-error>
+                    </mat-form-field>
+
+
+                    <mat-form-field class="example-full-width">
+                        <mat-label>Password</mat-label>
+                        <input matInput type="password" formControlName="password">
+                        <mat-error *ngIf="f.password.hasError('required') ">Password Required</mat-error>
+                    </mat-form-field>
+
+                    <div class="form-group">
+                        <button mat-raised-button color="primary" >Login</button>
+                    </div>
+                </form>
+                    <p class="forgot">Forgot Password?</p>
+        
+                </div>
+
+    </mat-card>
+</div>

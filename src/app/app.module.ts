@@ -10,7 +10,7 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 import { SidenavComponent } from './sidenav/sidenav.component';
 import { SidenavmenusComponent } from './sidenav/sidenavmenus/sidenavmenus.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { LoginComponent } from './login/login.component';
+
 // import { AdmissionComponent } from './admission/admission.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
   
@@ -35,7 +35,7 @@ import { AdmissionModule } from './admission/admission.module'
     SidenavmenusComponent,
     NavigationComponent,
     
-    LoginComponent,
+    
     DashboardComponent,
     
     FeestructureComponent,

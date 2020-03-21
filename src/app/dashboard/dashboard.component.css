@@ -14,3 +14,6 @@ mat-card{
   -webkit-animation: popUp ease-in-out 350ms;
       animation: popUp ease-in-out 350ms;
 }
+.container{
+  padding-top: 1rem;
+}

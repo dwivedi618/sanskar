@@ -4,7 +4,7 @@ import { Routes, RouterModule } from '@angular/router';
 // ng generate  mycomponent_name --module app-routing 
 import { SidenavComponent } from './sidenav/sidenav.component';
 
-import { LoginComponent } from './login/login.component';
+
 
 
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -46,8 +46,8 @@ const routes: Routes = [
   },
 
 
-  { path: 'login', component: LoginComponent },
-  { path: '**', component: LoginComponent },
+  { path: 'login', loadChildren: './auth/auth.module#AuthModule' },
+  { path: '**',  loadChildren: './auth/auth.module#AuthModule'},
 
 
 ];

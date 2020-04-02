@@ -33,9 +33,7 @@ mat-list-item:hover{
       box-shadow: 0 0 10px #00000017;
         color:  #673ab7;
       }    
-mat-icon{
-    /* font-size: small!important; */
-}
+
 p{
     font-size: small!important;
 }

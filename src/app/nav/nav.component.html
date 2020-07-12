@@ -1,5 +1,5 @@
-<!-- <div class="box">
-<div class="search_container">
+<div class="unicorn-dark-theme">
+<!-- <div class="search_container">
     <div class="mysearch">
         <input type="search" (keyup)="applyFilter($event.target.value)" placeholder="Search for">
 
@@ -10,8 +10,8 @@
                 </mat-option>
             </mat-select>
         </div>
-    </div>
-    <div class="bar">
+    </div> -->
+    <mat-card class="mini_nav">
         
         <div class="border_right">
             <button *ngIf="show_fullscreen" mat-icon-button (click)="openFullscreen()" matTooltip="Fullscreen">
@@ -23,25 +23,25 @@
         </div>
         
         <div class="toggle_button border_right">
-            <mat-slide-toggle>Dark</mat-slide-toggle>
+            <mat-slide-toggle><h6 >Dark</h6></mat-slide-toggle>
         </div>
         <div>
             <div class="layout ">
                 <button mat-icon-button [matMenuTriggerFor]="menu" aria-label=" icon-button with a menu">
-                    <div>
-                        <img class="avatar" src="../assets/sanskar.jpg" alt="logo">
+                    <div class="avatar">
+                        <img  src="../assets/sanskar.jpg" alt="logo">
                     </div>
                     
                 </button>
             </div>
             <mat-menu #menu="matMenu">
-                <div class="profile">
-                    <div class="float-left">
-                        <mat-card class="remove_shadow " routerLink='/profile'>
-                            <div mat-card-avatar class="secondary_avatar_image"></div>
-                        </mat-card>
+                <div class="">
+                    <div class="" routerLink='/profile'>
+                       
+                            <img mat-card-avatar src="../assets/sanskar.jpg">
+                        
                     </div>
-                    <div class="float-right username_email_container">
+                    <!-- <div class="float-right username_email_container">
                         <button mat-menu-item routerLink='/profile'>
                             <h3 mat-line>{{username}}</h3>
                         </button>
@@ -49,7 +49,7 @@
                             <h6 mat-line><small>{{email}}</small></h6>
                         </button>
 
-                    </div>
+                    </div> -->
                 </div>
                 <mat-divider></mat-divider>
 
@@ -70,6 +70,5 @@
             </mat-menu>
 
         </div>
-    </div>
+    </mat-card>
 </div>
-</div> -->

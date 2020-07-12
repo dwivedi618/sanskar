@@ -1,8 +1,9 @@
-<div class="scrollbox">
+<div class="unicorn-dark-theme">
+
 <mat-list class="sidenav_menus">
    
   <a  routerLink="/dashboard" >
-    <mat-list-item  matTooltip="Analytics" matTooltipPosition="right" routerLinkActive="myactive">
+    <mat-list-item matRipple matTooltip="Analytics" matTooltipPosition="right" routerLinkActive="myactive">
     <mat-icon mat-list-icon>desktop_mac</mat-icon>
     <p mat-line>Dashboard</p>
     </mat-list-item>
@@ -22,15 +23,15 @@
     </mat-list-item>
   </a>
   <mat-divider></mat-divider>
-  <a [routerLink]="['/students']" routerLinkActive="myactive">
-    <mat-list-item matTooltip="Student list"  matTooltipPosition="right" routerLinkActive="myactive">
-      <mat-icon mat-list-icon> people_outline</mat-icon>
-      <p mat-line>Student list</p>
+  <a [routerLink]="['/student']" routerLinkActive="myactive">
+    <mat-list-item matRipple matTooltip="Student list"  matTooltipPosition="right" routerLinkActive="myactive">
+      <mat-icon mat-list-icon>search</mat-icon>
+      <p mat-line>Student</p>
     </mat-list-item>
   </a>
   <mat-divider></mat-divider>
-  <a [routerLink]="['/studentcompletedetails']" >
-    <mat-list-item matTooltip="Student profile"  matTooltipPosition="right" routerLinkActive="myactive">
+  <a [routerLink]="['student-profile']" >
+    <mat-list-item matRipple matTooltip="Student profile"  matTooltipPosition="right" routerLinkActive="myactive">
       <mat-icon mat-list-icon>perm_identity</mat-icon>
       <p mat-line>student detailed info</p>
     </mat-list-item>
@@ -38,7 +39,7 @@
   <mat-divider></mat-divider>
   <!-- definefeeStructure -->
   <a [routerLink]="['/feestructure']" >
-    <mat-list-item matTooltip="Fee Structure"  matTooltipPosition="right" routerLinkActive="myactive">
+    <mat-list-item matRipple matTooltip="Fee Structure"  matTooltipPosition="right" routerLinkActive="myactive">
       <mat-icon mat-list-icon>receipt</mat-icon>
       <p mat-line>Set Fee Structure</p>
     </mat-list-item>
@@ -47,7 +48,7 @@
   <!-- fees -->
   <!-- definefeeStructure -->
   <a [routerLink]="['/fees']" >
-    <mat-list-item matTooltip="Student Fees"  matTooltipPosition="right" routerLinkActive="myactive">
+    <mat-list-item matRipple matTooltip="Student Fees"  matTooltipPosition="right" routerLinkActive="myactive">
       <mat-icon mat-list-icon>assignment</mat-icon>
       <p mat-line>Fees</p>
     </mat-list-item>

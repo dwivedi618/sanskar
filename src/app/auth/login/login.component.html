@@ -1,0 +1,76 @@
+<!-- 
+    <div class="container">
+        <div class="row">
+
+            <div class=".col-md-6 mycol1 ">
+    
+                <div class="main my_shadow">
+                    <div class="left">
+                        <h1>Login</h1>
+                        <p><i>Administrator</i></p>
+                        <p class="or"><i>or</i></p>
+                         <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login_form_container" autocomplete="off">
+
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Email</mat-label>
+                            <input matInput type="text" formControlName="email">
+                            <mat-error *ngIf="f.email.invalid">{{getErrorMessage()}}</mat-error>
+                        </mat-form-field>
+
+
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Password</mat-label>
+                            <input matInput type="password" formControlName="password">
+                            <mat-error *ngIf="f.password.hasError('required') ">Password Required</mat-error>
+                        </mat-form-field>
+
+                        <div class="form-group">
+                            <button mat-raised-button color="primary" >Login</button>
+                        </div>
+                    </form>
+                        <p class="forgot">Forgot Password?</p>
+            
+                    </div>
+                    <div class="right center-text">
+                        
+                        <p class="quotes"><i>“Life is really simple, but men insist on making it complicated.” <strong>— Confucius</strong></i></p>
+                        
+                    </div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div> -->
+
+<div class="bg-light h-100 layout" style="height: 100vh;">
+    <mat-card class="layout mx-auto">
+        <div class="p-4 text-center">
+            <div mat-line class="w-100 text-center mt-2 mb-4">
+                <h3>Login</h3>
+            </div>
+            <form class="p-4" [formGroup]="loginForm" (ngSubmit)="onSubmit()" 
+                  class="login_form_container"
+                autocomplete="off">
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Email</mat-label>
+                    <input matInput type="email" formControlName="email">
+                    <mat-error *ngIf="f.email.invalid">{{getErrorMessage()}}</mat-error>
+                </mat-form-field>
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                    <mat-error *ngIf="f.password.hasError('required') ">Password Required</mat-error>
+                </mat-form-field>
+                <div class="form-group ">
+                    <button mat-raised-button color="primary" class="w-100">Login</button>
+                </div>
+            </form>
+            <small class="text-muted">Forgot Password?</small>
+
+        </div>
+
+    </mat-card>
+</div>

@@ -1,7 +1,90 @@
 /* You can add global styles to this file, and also import other style files */
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import "~material-icons/iconfont/material-icons.css";
 
+@-webkit-keyframes popUp {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes popUp {
+  from {
+    -webkit-transform: scale(0);
+            transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: scale(1);
+            transform: scale(1);
+    opacity: 1;
+  }
+}
+@-webkit-keyframes slideUp {
+  from {
+    -webkit-transform: translateY(5px);
+            transform: translateY(5px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    opacity: 1;
+  }
+}
+@keyframes slideUp {
+  from {
+    -webkit-transform: translateY(5px);
+            transform: translateY(5px);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: translateY(0px);
+            transform: translateY(0px);
+    opacity: 1;
+  }
+}
+.slideUp{
+  -webkit-animation: fadeIn ease-in-out 450ms;
+        animation: fadeIn ease-in-out 450ms;
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.fadeIn{
+  -webkit-animation: fadeIn ease-in-out 450ms;
+        animation: fadeIn ease-in-out 450ms;
+}
+@keyframes spin {
+  from {transform:rotate(0deg);}
+  to {transform:rotate(360deg);}
+}
+.spin{
+  -webkit-animation: spin .5s infinite linear;
+  animation: spin .5s infinite linear;
+}
+@keyframes shake {
+  from {
+    -webkit-transform: rotate(10deg);
+  }
+  to {
+   -webkit-transform-origin:center center;
+   -webkit-transform: rotate(-10deg);
+  }
+}
+mat-card{
+  -webkit-animation: popUp ease-in-out 350ms;
+      animation: popUp ease-in-out 350ms;
+}
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;}
 button:focus{
@@ -22,14 +105,27 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active  {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
-.my_shadow{
+.box_shadow_4{
+  box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
+}
 
-box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.17) !important;
+.box_shadow_3{
+    box-shadow: 0 0 10px 0 #00000015
+    !important;
+  }
+.box_shadow_2{
+    box-sizing: border-box;
+    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.31) 0px 0px 1px;
+    margin: 0px auto 16px;
+    padding: 24px;
+    transition: box-shadow 0.25s ease 0s;
 }
-.my_shadow1{
-  box-shadow: 0 0 10px #00000017!important;
-  /* border-radius: 4px; */
-}
+.box_shadow_1{
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.25)!important;
+  }
+.box_shadow_0{
+    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.164)!important;
+  }
 
 .layout {
   -webkit-box-align: center;
@@ -46,7 +142,7 @@ box-shadow: 0 0 40px 0px rgba(0, 0, 0, 0.17) !important;
   height: 3rem;
   border-radius: 5rem;
   box-shadow: 0 0 10px #00000017;
-  background: white;
+  /* background: #424242; */
   margin: 0 auto ;
   justify-content: center;
   align-items: center;

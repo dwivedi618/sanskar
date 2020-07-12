@@ -1,70 +1,78 @@
-
 <!-- <app-navigation (click)="sidenav.toggle()">
 </app-navigation> -->
+<div [ngClass]="{'unicorn-dark-theme': isUnicornDarkTheme}" >
 <mat-sidenav-container class="example-container" autosize>
-    
-    <mat-sidenav  [class.sidenav_half]=" !isFullOpen"
-    #sidenav 
-    [class.sidenav_full]="isFullOpen"
-    class="my_shadow1"
-    position="start"  [mode]="(isHandset$ | async) ? 'over' : 'side'"
-    [opened]="(isHandset$ | async) === false">
-<mat-toolbar class="sidenav_toolbar">
-    <mat-toolbar-row>
-        <button *ngIf="(isHandset$ | async) === false" mat-icon-button (click)="sidenavToggle()">
-            <mat-icon>menu</mat-icon>
-        </button>
-            
-        <a  routerLink=" " class="example-icon" >
-            <div class="logo layout">
-                <img src="../assets/sanskar.jpg" alt="logo">
-            </div> 
-        </a>
-                    <span class="example-spacer"></span>
-                   
-                  
-       
-                  <span mat-line>Sanskar</span>
-                  
-                
-                    <!-- <a  routerLink="/profile" routerLinkActive="myactive">
+
+    <mat-sidenav [class.sidenav_half]=" !isFullOpen" #sidenav [class.sidenav_full]="isFullOpen" class="my_shadow1"
+        position="start" [mode]="(isHandset$ | async) ? 'over' : 'side'" [opened]="(isHandset$ | async) === false">
+        <mat-toolbar style="min-height: 45px!important;" class="sidenav_toolbar" >
+            <mat-toolbar-row>
+                <button *ngIf="(isHandset$ | async) === false" mat-icon-button (click)="sidenavToggle()">
+                    <mat-icon>menu</mat-icon>
+                </button>
+
+                <a routerLink=" " class="example-icon">
+                    <div class="logo layout">
+                        <img src="../assets/sanskar.jpg" alt="logo">
+                    </div>
+                </a>
+                <span class="example-spacer"></span>
+
+
+
+                <span mat-line>Sanskar</span>
+
+
+                <!-- <a  routerLink="/profile" routerLinkActive="myactive">
                     <div class="profile__picture"><img src="../assets/photo.png" alt="student photo" /></div>
                     </a> -->
-                
 
-    </mat-toolbar-row>
-</mat-toolbar>
-       
-           <app-sidenavmenus></app-sidenavmenus>
-       
-    </mat-sidenav>
-   
-    <!-- ------------ -->
-    <mat-sidenav-content >
-    <mat-toolbar color="primary" *ngIf="isHandset$ | async">
-            <button
-              type="button"
-              aria-label="Toggle sidenav"
-              mat-icon-button
-              (click)="sidenav.toggle()">
-              
-              <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-            </button>
-            <div class="layout brand">
-                    
-                    </div>
-          </mat-toolbar>
-        <main>
-               
-            <router-outlet>
-                
 
-                
-              
-            </router-outlet>
+            </mat-toolbar-row>
+        </mat-toolbar>
         
+            <app-sidenavmenus></app-sidenavmenus>
+        
+    </mat-sidenav>
+
+    <!-- ------------ -->
+    <mat-sidenav-content>
+        <mat-toolbar  *ngIf="isHandset$ | async">
+                <mat-toolbar-row>
+            <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()">
+                <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+            </button>
+            <div class="example-spacer" style="flex: 1 1 auto"></div>
+            <app-nav></app-nav>
+        </mat-toolbar-row>
+        </mat-toolbar>
+        <mat-toolbar style="min-height: 45px!important;" *ngIf="(isHandset$ | async) === false"  class="bg-light" >
+                <mat-toolbar-row>
+            
+            <div class="example-spacer" style="flex: 1 1 auto"></div>
+            <app-nav></app-nav>
+        </mat-toolbar-row>
+        </mat-toolbar>
+        <main>
+<!-- <div style="margin:0px auto"><img class="bg img-fluid" 
+    style="position: absolute;
+    background-size: cover;
+    
+    background-position: center;
+            z-index: -1;
+            height: 90vh;
+            margin:0px auto;"
+     src="../../assets/cover1.jpg"></div> -->
+       <div class="container">   
+     <router-outlet>
+
+
+
+
+            </router-outlet>
+        </div> 
         </main>
     </mat-sidenav-content>
-    
-</mat-sidenav-container>
 
+</mat-sidenav-container>
+</div>

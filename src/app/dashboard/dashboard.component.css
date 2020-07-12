@@ -3,9 +3,17 @@
       margin: 0;
       padding: 0;
       margin-top: 0!important;
-      
+     
     } 
     }
     .row{
       background-color: transparent!important;
+      
     }
+mat-card{
+  -webkit-animation: popUp ease-in-out 350ms;
+      animation: popUp ease-in-out 350ms;
+}
+.container{
+  padding-top: 1rem;
+}

@@ -1,0 +1,76 @@
+<!-- filtering field -->
+
+
+<div class="search_container">
+    <mat-card class="mysearch">
+        <input type="search" (keyup)="applyFilter($event.target.value)" placeholder="Search for">
+
+        <div class="filter">
+            <mat-select #select placeholder="Filter by" (selectionChange)="applyFilter($event.value)">
+                <mat-option *ngFor="let i of displayedColumns" [value]="i">
+                    {{i}}
+                </mat-option>
+            </mat-select>
+        </div>
+    </mat-card>
+    
+</div>
+<mat-spinner color="accent" *ngIf="isLoading"></mat-spinner>
+<mat-card *ngIf="!isLoading" class="table_container my_shadow1">
+<table  mat-table [dataSource]="students" class=" mat-elevation-z8" matSort >
+
+ <!-- Checkbox Column -->
+ <ng-container matColumnDef="select">
+   <th mat-header-cell *matHeaderCellDef >
+     <mat-checkbox (change)="$event ? masterToggle() : null"
+                   [checked]="selection.hasValue() && isAllSelected()"
+                   [indeterminate]="selection.hasValue() && !isAllSelected()"
+                   [aria-label]="checkboxLabel()">
+     </mat-checkbox>
+   </th>
+   <td mat-cell *matCellDef="let row">
+     <mat-checkbox (click)="$event.stopPropagation()"
+                   (change)="$event ? selection.toggle(row) : null"
+                   [checked]="selection.isSelected(row)"
+                   [aria-label]="checkboxLabel(row)">
+     </mat-checkbox>
+   </td>
+ </ng-container>
+
+ <!-- firstName Column -->
+ <ng-container  matColumnDef="firstName">
+   <th mat-header-cell *matHeaderCellDef mat-sort-header> Student Name </th>
+   
+   <td mat-cell *matCellDef="let element">
+     
+     <!-- <img class="avatar" src="https://persianv.com/ravanshenasi/wp-content/uploads/sites/22/2017/10/532432787-taknaz-ir.jpg" > -->
+     {{element.firstName}} </td>
+ </ng-container>
+
+ <!-- Name Column -->
+ <ng-container matColumnDef="fatherName">
+   <th mat-header-cell *matHeaderCellDef mat-sort-header> Father'sName</th>
+   <td mat-cell *matCellDef="let element"> {{element.parent.fatherName}} </td>
+ </ng-container>
+
+ <!-- standard Column -->
+ <ng-container matColumnDef="standard">
+   <th mat-header-cell *matHeaderCellDef mat-sort-header> Standard </th>
+   <td mat-cell *matCellDef="let element"> {{element.standard}} </td>
+ </ng-container>
+
+ <!-- address Column -->
+ <ng-container matColumnDef="address">
+   <th mat-header-cell *matHeaderCellDef mat-sort-header> Address </th>
+   <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+ </ng-container>
+
+ <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+ <tr mat-row *matRowDef="let row; columns: displayedColumns;"
+     (click)="selection.toggle(row)">
+ </tr>
+
+</table>
+
+</mat-card>
+

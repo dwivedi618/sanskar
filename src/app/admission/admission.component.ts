@@ -1,4 +1,4 @@
-import { Inject} from '@angular/core';
+import { Inject, ViewChild} from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StudentForm} from './admission';
@@ -13,6 +13,7 @@ import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog
 
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { CommonService } from '../services/common.service';
+import { UiService } from '../services/ui.service';
 
 export interface DialogData {
   animal: string;
@@ -53,7 +54,8 @@ export class AdmissionComponent implements OnInit {
     public dialog: MatDialog,
     private router: Router,
     private formBuilder: FormBuilder,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private uiService : UiService,
     ) { }
 
   ngOnInit() {
@@ -109,7 +111,12 @@ export class AdmissionComponent implements OnInit {
   
  
 
-
+  fileUploadReset(){
+if(this.imagePreview){
+  this.imagePreview = '';
+  this.studentForm.value.image = '';
+}
+  }
   getProfilePicObject() {
     if (this.imagePreview) {
       return {
@@ -130,7 +137,6 @@ export class AdmissionComponent implements OnInit {
       this.imagePreview = reader.result as string;
     }
     reader.readAsDataURL(file);
-
   }
     getBase64(file) {
     const reader = new FileReader();
@@ -138,6 +144,7 @@ export class AdmissionComponent implements OnInit {
     reader.onload = () => {
       console.log(reader.result);
       this.imagePreview = reader.result as string;
+      // this.studentForm.value.image = this.imagePreview;
     };
     reader.onerror = (error) => {
       console.log('Error: ', error);
@@ -151,16 +158,20 @@ export class AdmissionComponent implements OnInit {
             return;
             console.log("form Invalid");
         }
+        if(this.studentForm.value.dateOfBirth != ''){
         this.studentForm.value.dateOfBirth = this.studentForm.value.dateOfBirth.toLocaleDateString();
+        }
         this.studentForm.value.requestType = "student";
         this.studentForm.value.image = this.imagePreview;
         console.log("Before submitstudent",this.studentForm.value);
         this.commonService.postData(this.route,this.studentForm.value)
           .subscribe((result) => {
             this.student = result.result;
+            this.uiService.openSnackBar(result.firstName,null);
             console.log("result",result);
           },(error) => {
             console.log("error",error);
+            this.uiService.openSnackBar(error.message,null);
           });
   }
   onParentSubmit(){

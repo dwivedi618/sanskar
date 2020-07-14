@@ -93,8 +93,8 @@ button:focus{
   }
 
 
-.card{
-	/* margin-top: 1rem!important; */
+.spacer{
+	flex: 1 1 auto;
 }
 
 
@@ -105,6 +105,15 @@ input:-webkit-autofill:focus,
 input:-webkit-autofill:active  {
     -webkit-box-shadow: 0 0 0 30px white inset !important;
 }
+input[type="search"]{
+  border:none;
+  background: transparent;
+  
+  outline: none;
+  position: relative;
+  width: 100%;
+ padding: 0 1rem;
+ }
 .box_shadow_4{
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
 }

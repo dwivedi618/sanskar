@@ -9,7 +9,8 @@ const studentroutes: Routes = [
         path:'', component : StudentComponent,
         children:[
         { path:'', component : StudentsListComponent},
-         { path:'student-profile', component : StudentProfileComponent},]
+        //  { path:'student-profile', component : StudentProfileComponent},
+        ]
     }
 
 

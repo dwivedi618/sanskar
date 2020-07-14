@@ -3,7 +3,15 @@
 * {
   box-sizing: border-box;
 }
-
+::ng-deep .mat-dialog-container{
+  padding: 0 24px!important;
+}
+::ng-deep .mat-dialog-container .mat-dialog-content{
+  padding: 24px 0!important;
+}
+#about mat-icon{
+  font-size: 1rem;
+}
 @media(max-width:600px){
   .col-md-4,.col-sm-12,.col-md-8{ padding: 0!important;
   text-align: center;}
@@ -168,7 +176,7 @@
 .profile__picture {
   /* background: #ffffff; */
   border-radius: 6px;
-  border: .5rem solid #00B7FF;
+  border: .5rem solid rgb(255, 255, 255);
   height: 200px;
   /* position: absolute; */
   top: 0px;

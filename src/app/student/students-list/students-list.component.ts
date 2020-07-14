@@ -2,8 +2,12 @@ import { DOCUMENT } from '@angular/common';
 import {SelectionModel} from '@angular/cdk/collections';
 import {Component,OnInit, Inject,ViewChild} from '@angular/core';
 import {MatTableDataSource, MatSort, MatPaginator} from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog'
 import { getTreeNoValidDataSourceError } from '@angular/cdk/tree';
 import { CommonService } from '../../services/common.service';
+import { FeesComponent } from 'src/app/fees/fees.component';
+import { StudentProfileComponent } from '../student-profile/student-profile.component';
+import { TransactionComponent } from '../transaction/transaction.component';
 
 
 export interface Student {
@@ -27,44 +31,56 @@ export class StudentsListComponent implements OnInit {
 
 
   students: Student[];
-  elem:any;
+  adjustScreen:any;
   show_fullscreen = true;
   close_fullscreen = false;
   isLoading = false;
   constructor(
     @Inject(DOCUMENT) private document: any,
+    private dialog : MatDialog,
     private commonService: CommonService
   ) {}
   ngOnInit() {
-    this.elem = document.documentElement;
-    this.isLoading = true;
-    this.commonService.getData()
-      .subscribe((result) => {
-        this.students = result.students;
-        let temp : any[];
-        this.isLoading= false;
-        for (let i = 0; i < this.students.length ; i++){
-          // temp.push({
-          //   fatherName: "Manoj kumar dwivedi",
-          //   firstName: students[i].firstName + students[i].middleName + students[i].lastName,
-          //   standard: students[i].standard,
-          //   address: "Bankatiya"
-          // });
-        }
-        
-        
-        console.log("INSIDE stuident resssuullt",this.students);
-
-      },(error) => {
-        console.log("INSIDE stuident eerroor",error);
-      })
+    this.adjustScreen = document.documentElement;
+    this.getStudents();
   }
+getStudents(){
+  this.isLoading = true;
+  this.commonService.getData()
+    .subscribe((result) => {
+      this.students = result.students;
+      let temp : any[];
+      this.isLoading= false;
+      console.log("service student",this.students);
+    },(error) => {
+      console.log("error",error);
+    })
+}
+openFeeSubmition(obj){
+obj.action = 'submitFee';
+   const dialogRef = this.dialog.open(TransactionComponent,{
+     width:'50vw',
+     maxWidth: '100%',
+     data : {obj}
+   })
 
+}
+openStudentProfile(obj){
+  obj.action = 'profile';
+     const dialogRef = this.dialog.open(StudentProfileComponent,{
+       width:'100vw',
+       maxWidth: '100%',
+       height:'100vh',
+       maxHeight:'100vh',
+       data : {obj}
+     })
+  
+  }
   displayedColumns: string[] = ['select', 'firstName', 'fatherName', 'standard', 'address'];
   dataSource = new MatTableDataSource<Student>(this.students);
   selection = new SelectionModel<Student>(true, []);
 
-  /** Whether the number of selected elements matches the total number of rows. */
+  /** Whether the number of selected adjustScreenents matches the total number of rows. */
   isAllSelected() {
     const numSelected = this.selection.selected.length;
     const numRows = this.dataSource.data.length;
@@ -88,7 +104,7 @@ export class StudentsListComponent implements OnInit {
 
   // filtering
 
-  3
+  
   // public doFilter = (value: string) => {
   //     this.dataSource.filter = value.trim().toLocaleLowerCase();
   //   }
@@ -100,37 +116,29 @@ export class StudentsListComponent implements OnInit {
         this.dataSource.paginator.firstPage();
       }
     }
-    // sorting
-    // @ViewChild(MatSort,true) sort: MatSort;
-    // @ViewChild(MatPaginator,true) paginator: MatPaginator;
-    
-  // ngAfterViewInit(): void {
-   
-  // }
-  
+
   openFullscreen() {
-    if (this.elem.requestFullscreen) {
-      this.elem.requestFullscreen();
+    if (this.adjustScreen.requestFullscreen) {
+      this.adjustScreen.requestFullscreen();
       this.show_fullscreen = false;
       this.close_fullscreen = true;
-    } else if (this.elem.mozRequestFullScreen) {
+    } else if (this.adjustScreen.mozRequestFullScreen) {
       /* Firefox */
-      this.elem.mozRequestFullScreen();
+      this.adjustScreen.mozRequestFullScreen();
       this.show_fullscreen = false;
       this.close_fullscreen = true;
-    } else if (this.elem.webkitRequestFullscreen) {
+    } else if (this.adjustScreen.webkitRequestFullscreen) {
       /* Chrome, Safari and Opera */
-      this.elem.webkitRequestFullscreen();
+      this.adjustScreen.webkitRequestFullscreen();
       this.show_fullscreen = false;
       this.close_fullscreen = true;
-    } else if (this.elem.msRequestFullscreen) {
+    } else if (this.adjustScreen.msRequestFullscreen) {
       /* IE/Edge */
-      this.elem.msRequestFullscreen();
+      this.adjustScreen.msRequestFullscreen();
       this.show_fullscreen = false;
       this.close_fullscreen = true;
     }
   }
-
   /* Close fullscreen */
   closeFullscreen() {
     if (this.document.exitFullscreen) {
@@ -154,6 +162,4 @@ export class StudentsListComponent implements OnInit {
       this.close_fullscreen = false;
     }
   }
-  
-
 }

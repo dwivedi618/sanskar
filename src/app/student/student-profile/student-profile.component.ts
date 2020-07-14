@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,Inject, Optional } from '@angular/core';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { inject } from '@angular/core/testing';
+import { TransactionComponent } from '../transaction/transaction.component';
+
 
 @Component({
   selector: 'app-student-profile',
@@ -6,10 +10,30 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./student-profile.component.css']
 })
 export class StudentProfileComponent implements OnInit {
-
-  constructor() { }
+  local_data:any;
+  action : any;
+  constructor(
+    private dialog: MatDialog,
+    private dialogRef : MatDialogRef<StudentProfileComponent>,
+    @Optional() @Inject(MAT_DIALOG_DATA) public data :any
+  ) {
+    this.local_data = data.obj;
+    this.action = data.obj.action;
+    console.log("local data : ",this.local_data);
+   }
 
   ngOnInit() {
   }
-
+  openFeeSubmition(obj){
+    obj.action = 'submitFee';
+       const dialogRef = this.dialog.open(TransactionComponent,{
+         width:'50vw',
+         maxWidth: '100%',
+         data : {obj}
+       })
+    
+    }
+  closeProfile(){
+    this.dialogRef.close();
+  }
 }

@@ -1,0 +1,11 @@
+::ng-deep .mat-dialog-container{
+    padding: 0 0px!important;
+  }
+  /* ::ng-deep .mat-dialog-container .mat-dialog-content{
+    padding: 24px 0!important;
+  } */
+
+  button.mini_icon_button{
+  width: 2rem;
+  height: 2rem;
+  }

@@ -1,22 +1,24 @@
 <!-- filtering field -->
 
 
-<div class="search_container">
-    <mat-card class="mysearch">
-        <input type="search" (keyup)="applyFilter($event.target.value)" placeholder="Search for">
 
+<!-- <mat-spinner color="accent" *ngIf="isLoading"></mat-spinner> -->
+<mat-card  class="table_container my_shadow1">
+  <div class="search_container p-0 m-0">
+    <mat-card class="mysearch">
+        <input type="search" (keyup)="applyFilter($event.target.value)" placeholder="search...">
         <div class="filter">
-            <mat-select #select placeholder="Filter by" (selectionChange)="applyFilter($event.value)">
+            <mat-select #select placeholder="Filter by" (keyup)="applyFilter($event.value)">
                 <mat-option *ngFor="let i of displayedColumns" [value]="i">
                     {{i}}
                 </mat-option>
             </mat-select>
         </div>
     </mat-card>
+    <button mat-icon-button matTooltip="Submit Fee" (click)="openFeeSubmition({})"><mat-icon>add_circle</mat-icon></button>
+    <button mat-icon-button matTooltip="student profile" (click)="openStudentProfile({})"><mat-icon>add_circle</mat-icon></button>
     
 </div>
-<mat-spinner color="accent" *ngIf="isLoading"></mat-spinner>
-<mat-card *ngIf="!isLoading" class="table_container my_shadow1">
 <table  mat-table [dataSource]="students" class=" mat-elevation-z8" matSort >
 
  <!-- Checkbox Column -->

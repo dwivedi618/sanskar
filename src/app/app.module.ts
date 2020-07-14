@@ -15,7 +15,7 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
   
 import { FeestructureComponent } from './feestructure/feestructure.component';
-import { FeesComponent } from './fees/fees.component';
+
 import { ProfileComponent } from './profile/profile.component';
 import { EditComponent } from './profile/edit/edit.component';
 import { AuthenticationService } from './services/authentication.service';
@@ -24,6 +24,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { NavComponent } from './nav/nav.component';
 
 import { AdmissionModule } from './admission/admission.module'
+import { SharedModule } from './shared/shared.module';
 
 
 
@@ -39,7 +40,7 @@ import { AdmissionModule } from './admission/admission.module'
     DashboardComponent,
     
     FeestructureComponent,
-    FeesComponent,
+    // FeesComponent,
     ProfileComponent,
     EditComponent,
     SettingsComponent,
@@ -54,6 +55,7 @@ import { AdmissionModule } from './admission/admission.module'
     AppRoutingModule,
     MaterialModule,
     HttpClientModule,
+    SharedModule,
     FormsModule,
     AdmissionModule,
     
@@ -62,9 +64,10 @@ import { AdmissionModule } from './admission/admission.module'
   exports: [
     ReactiveFormsModule,
     MaterialModule,
+    SharedModule,
     
   ],
-  entryComponents: [ FeesComponent],
+  // entryComponents: [ FeesComponent],
   providers: [AuthenticationService,HttpClient],
   bootstrap: [AppComponent]
 })

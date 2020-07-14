@@ -39,7 +39,7 @@ const routes: Routes = [
 
 
       { path: 'feestructure', component: FeestructureComponent },
-      { path: 'fees', component: FeesComponent },
+      
       { path: 'settings', component: SettingsComponent },
       { path: 'profile', component: ProfileComponent },
     ]

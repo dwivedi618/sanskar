@@ -1,28 +1,25 @@
-@-webkit-keyframes popUp {
-  from {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-    opacity: 0;
-  }
-  to {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    opacity: 1;
-  }
+::ng-deep .mat-dialog-container{
+  padding: 0 24px!important;
+}
+/* // custom scrollbar for sidenav-content */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+  /* // background-color: rgba(146, 146, 146, 0.37); */
+  visibility: hidden;
+}
+:hover::-webkit-scrollbar{
+  visibility: visible;
+}
+::-webkit-scrollbar-thumb {
+  background-color: rgba(146, 146, 146, 0.404); 
+  border-radius: 6rem;
+  visibility: hidden;
+}
+:hover::-webkit-scrollbar-thumb {
+  visibility: visible;
 }
 
-@keyframes popUp {
-  from {
-    -webkit-transform: scale(0);
-            transform: scale(0);
-    opacity: 0;
-  }
-  to {
-    -webkit-transform: scale(1);
-            transform: scale(1);
-    opacity: 1;
-  }
-}
 
 @media(max-width:600px){
   .col-md-4,.col-sm-12,.col-md-8{ padding: 0!important;
@@ -51,8 +48,6 @@
   /* height: 100%; */
 }
 .my_shadow_container{
-  -webkit-animation: popUp ease-in-out 350ms;
-          animation: popUp ease-in-out 350ms;
   /* background: #ffffff; */
   border-radius: 6px;
   box-shadow: 0 0 10px 0px rgba(0, 0, 0, 0.17);

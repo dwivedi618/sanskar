@@ -114,6 +114,16 @@ input[type="search"]{
   width: 100%;
  padding: 0 1rem;
  }
+ button.mini_icon_button{
+  width: 2rem;
+  height: 2rem;
+  }
+.bg-mydark{
+  background: #000000;  
+background: -webkit-linear-gradient(to top, #434343, #000000a2, #434343,);  
+background: linear-gradient(to top, #434343, #000000);
+
+}
 .box_shadow_4{
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
 }

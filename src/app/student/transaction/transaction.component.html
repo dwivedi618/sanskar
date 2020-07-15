@@ -1,8 +1,23 @@
-<div mat-dialog-title class="bg-secondary pt-n4">Transcation 
-    <button mat-icon-button [mat-dialog-close]="true" class="mini_icon_button float-right"><mat-icon style="font-size:1rem">clear</mat-icon> </button>
+<div mat-dialog-title class="bg-mydark pt-n4 mr-n4 ml-n4"><small class="text-white-50 px-2">Transaction</small> 
+    <button mat-icon-button [mat-dialog-close]="true" class="mini_icon_button float-right text-white-50"><mat-icon style="font-size:1rem">clear</mat-icon> </button>
 </div>
 <div mat-dialog-content style="margin:0px!important;">
-    <div>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis, natus. Aut quibusdam nulla consequatur harum. Ex necessitatibus consequuntur, delectus voluptatibus, quis accusantium optio nobis eius vitae officiis, adipisci numquam possimus?</p>
+    <div class="d-flex justify-content-center ">
+        <div class="col-sm-12 col-md-6 col-lg-6">
+            <form >
+            <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Payment For</mat-label>
+                <textarea matInput type="text" ></textarea>
+            </mat-form-field>
+            <mat-form-field class="w-100" appearance="outline">
+                <mat-label>Amount</mat-label>
+                <input matInput type="number" >
+            </mat-form-field>
+            <div class="mb-4">
+
+                <button mat-raised-button color="primary"  class="w-100">Submit</button>
+            </div>
+        </form>
+        </div>
     </div>
 </div>

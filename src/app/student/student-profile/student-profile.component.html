@@ -14,39 +14,36 @@
                     <div class="row profile__header">
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="profile__account">
-                                <h5 class="profile__username">Shivendra Dwivedi</h5>
+                                <h5 class="profile__username">{{(local_data.firstName + local_data.middleName + local_data.lastName) | titlecase}}</h5>
                             </div>
                         </div>
                         <div class="col-sm-12 col-md-6 col-lg-6">
                             <div class="profile__edit">
-                                <!-- <a routerLink="" class="profile__button" > -->
-                                <a routerLink="">
-
-                                    <button mat-icon-button>update
-                                        <mat-icon>edit</mat-icon>
-                                    </button> </a>
+                                    <button mat-button color="primary" (click)="onUpdateStudentProfile({})">update
+                                       
+                                    </button> 
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="col-sm-12">
                     <div class="profile__stats">
-                        <div class="profile__stat">
+                        <!-- <div class="profile__stat">
                             <div class="profile__icon profile__icon--gold"><i class="fas fa-wallet"></i></div>
-                            <div class="profile__value">16
+                            <div class="profile__value">{{local_data.dateOfBirth? local_data.dateOfBirth : '' | date}}
                                 <div class="profile__key">Age</div>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="profile__stat">
                             <div class="profile__icon profile__icon--blue"><i class='fas fa-user-graduate'></i></div>
-                            <div class="profile__value">10
+                            <div class="profile__value">{{local_data.standard | titlecase}}
                                 <div class="profile__key">Standard</div>
                             </div>
                         </div>
                         <div class="profile__stat">
                             <div class="profile__icon profile__icon--pink"><i class="fas fa-eart"></i></div>
-                            <div class="profile__value">2020
-                                <div class="profile__key">Student Id</div>
+                            <div class="profile__value">{{local_data.createdAt | date}}
+                                <div class="profile__key">Registration Date</div>
                             </div>
                         </div>
                     </div>
@@ -64,7 +61,7 @@
                                         <div class="col-md-6">
                                             <mat-list-item matRipple>
                                                 <mat-icon mat-list-icon>perm_identity</mat-icon>
-                                                <p mat-line>Shivendra Kumar Dwivedi</p>
+                                                <p mat-line>{{(local_data.firstName + local_data.middleName + local_data.lastName) | titlecase}}</p>
                                             </mat-list-item>
 
                                             <mat-list-item matRipple>
@@ -77,25 +74,25 @@
                                             </mat-list-item>
                                             <mat-list-item matRipple>
                                                 <mat-icon mat-list-icon>card_giftcard</mat-icon>
-                                                <p mat-line>27/02/2000</p>
+                                                <p mat-line>{{local_data.dateOfBirth | date}}</p>
                                             </mat-list-item>
                                         </div>
                                         <div class="col-md-6">
                                             <mat-list-item matRipple>
                                                 <mat-icon mat-list-icon>bubble_chart</mat-icon>
-                                                <p mat-line> Gender : Male</p>
+                                                <p mat-line> Gender : {{local_data.gender}}</p>
                                             </mat-list-item>
                                             <mat-list-item matRipple>
                                                 <mat-icon mat-list-icon>grain</mat-icon>
-                                                <p mat-line> Blood Group : O- </p>
+                                                <p mat-line> Blood Group : {{ local_data.bloodGroup? local_data.bloodGroup: 'N/A'}}</p>
                                             </mat-list-item>
                                             <mat-list-item matRipple>
                                                 <mat-icon mat-list-icon>healing</mat-icon>
-                                                <p mat-line> Health Status : Normal </p>
+                                                <p mat-line> Health Status : {{local_data.healthStatus? local_data.healthStatus : 'N/A'}}</p>
                                             </mat-list-item>
                                             <mat-list-item matRipple>
                                                 <mat-icon mat-list-icon>business</mat-icon>
-                                                <p mat-line> Nationality : Indian </p>
+                                                <p mat-line> Nationality : {{local_data.nationality? local_data.nationality : 'N/A'}} </p>
                                             </mat-list-item>
                                         </div>
                                     </div>
@@ -104,35 +101,35 @@
                                 <mat-list>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <mat-label>Father's Details</mat-label>
+                                            <mat-label class="text-primary px-4 mb-2">Father's Details</mat-label>
                                             <mat-list-item matRipple>
                                                 <mat-icon mat-list-icon>people</mat-icon>
-                                                <p mat-line>Manoj Dwivedi</p>
+                                                <p mat-line>{{local_data.parent.fatherName? local_data.fatherName : 'N/A'}}</p>
                                             </mat-list-item>
                                             <!-- <mat-label>Father's Qualification</mat-label> -->
                                             <mat-list-item matRipple>
                                                 <mat-icon mat-list-icon>school</mat-icon>
-                                                <p mat-line>Qualification : B.A</p>
+                                                <p mat-line>Qualification : {{local_data.parent.fatherEducation? local_data.fatherEducation: 'N/A' | titlecase}}</p>
                                             </mat-list-item>
                                             <mat-list-item matRipple>
                                                 <mat-icon mat-list-icon>work</mat-icon>
-                                                <p mat-line>Occupation : Teacher</p>
+                                                <p mat-line>Occupation : {{local_data.parent.fatherOccupation? local_data.parent.fatherOccupation : 'N/A' | titlecase}}</p>
                                             </mat-list-item>
                                         </div>
                                         <div class="col-md-6">
-                                            <mat-label>Mother's Details</mat-label>
+                                            <mat-label class="text-primary px-4 mb-2">Mother's Details</mat-label>
                                             <mat-list-item matRipple>
                                                 <mat-icon mat-list-icon>people</mat-icon>
-                                                <p mat-line>Alka Dwivedi</p>
+                                                <p mat-line>{{local_data.parent.motherName? local_data.parent.motherName:'N/A' | titlecase}}</p>
                                             </mat-list-item>
                                             <!-- <mat-label>Father's Qualification</mat-label> -->
                                             <mat-list-item matRipple>
                                                 <mat-icon mat-list-icon>school</mat-icon>
-                                                <p mat-line>Qualification : M.A</p>
+                                                <p mat-line>Qualification : {{local_data.parent.motherEducation? local_data.parent.motherEducation : 'N/A' | titlecase}}</p>
                                             </mat-list-item>
                                             <mat-list-item matRipple>
                                                 <mat-icon mat-list-icon>work</mat-icon>
-                                                <p mat-line>Occupation : Housewife</p>
+                                                <p mat-line>Occupation : {{local_data.parent.motherOccupation? local_data.parent.motherOccupation:'N/A'}}</p>
                                             </mat-list-item>
                                         </div>
                                     </div>
@@ -141,24 +138,28 @@
                                 <mat-list>
                                     <div class="row">
                                         <div class="col-md-6">
-                                            <mat-label>Local Guardian</mat-label>
+                                            <mat-label class="text-primary px-4 mb-2">Local Guardian</mat-label>
                                             <mat-list-item matRipple>
                                                 <mat-icon mat-list-icon>people</mat-icon>
-                                                <p mat-line>Manoj Dwivedi</p>
+                                                <!-- <p mat-line>{{local_data.parent.guardianName | titlecase}}</p> -->
+                                                <p mat-line >{{local_data.parent.guardianName? local_data.parent.guardianName: 'N/A'| titlecase}}</p>
+
+
                                             </mat-list-item>
                                         </div>
                                         <div class="col-md-6">
-                                            <mat-label></mat-label>
+                                            <mat-label class="text-primary px-4 mb-2">Guardian Contact
+                                                </mat-label>
                                             <mat-list-item matRipple>
                                                 <mat-icon mat-list-icon>phone</mat-icon>
-                                                <p mat-line>9415828709</p>
+                                                <p mat-line>{{local_data.parent.guardianContact? local_data.parent.guardianContact : 'N/A'}}</p>
                                             </mat-list-item>
                                         </div>
                                     </div>
                                 </mat-list>
                                 <mat-divider></mat-divider>
                                 <mat-list>
-                                    <mat-label>Contacts</mat-label>
+                                    <mat-label class="text-primary px-4 mb-2">Contact</mat-label>
                                     <mat-list-item matRipple>
                                         <mat-icon mat-list-icon>phone</mat-icon>
                                         <p mat-line>9415828709</p>
@@ -169,7 +170,7 @@
                                     <div class="row">
                                         <div class="col-md-6">
                                             <address>
-                                                <mat-label>Permanent Address</mat-label>
+                                                <mat-label class="text-primary px-4 mb-2">Permanent Address</mat-label>
                                                 <mat-list-item matRipple>
                                                     <mat-icon mat-list-icon>location_on</mat-icon>
                                                     <p mat-line>Village : Bankatiya Dubey <br>Post: Inguri Baazar,</p>
@@ -183,7 +184,7 @@
                                         </div>
                                         <div class="col-md-6">
                                             <address>
-                                                <mat-label>Local Address</mat-label>
+                                                <mat-label class="text-primary px-4 mb-2">Local Address</mat-label>
                                                 <mat-list-item matRipple>
                                                     <mat-icon mat-list-icon>location_on</mat-icon>
                                                     <p mat-line>Village : Bankatiya Dubey <br>Post: Inguri Baazar,</p>

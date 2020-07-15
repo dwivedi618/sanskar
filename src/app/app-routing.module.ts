@@ -11,7 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 import { FeestructureComponent } from './feestructure/feestructure.component';
-import { FeesComponent } from './fees/fees.component';
+
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AdmissionComponent } from './admission/admission.component';

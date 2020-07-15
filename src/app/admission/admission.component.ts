@@ -1,4 +1,4 @@
-import { Inject, ViewChild} from '@angular/core';
+import { Inject, ViewChild, Optional} from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StudentForm} from './admission';
@@ -8,7 +8,7 @@ import pdfFonts from "pdfmake/build/vfs_fonts";
 
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-import {FeesComponent } from "../fees/fees.component";
+
 import {MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog'
 
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
@@ -49,6 +49,8 @@ export class AdmissionComponent implements OnInit {
   imagePreview: any;
   student : any;
   route = 'student/register-student';  
+  local_data:any;
+  action: any;
 
   constructor(
     public dialog: MatDialog,
@@ -56,7 +58,12 @@ export class AdmissionComponent implements OnInit {
     private formBuilder: FormBuilder,
     private commonService: CommonService,
     private uiService : UiService,
-    ) { }
+    @Optional() @Inject(MAT_DIALOG_DATA) public data:any
+    ) {
+      this.local_data = data.obj;
+      this.action = data.obj.action;
+      console.log("update Registration :",this.local_data)
+     }
 
   ngOnInit() {
     this.studentForm = this.formBuilder.group({
@@ -673,17 +680,7 @@ if(this.imagePreview){
 };//return ends
 }//document definition ends
 
-  openDialog(): void {
-    const dialogRef = this.dialog.open(FeesComponent, {
-      width: '80vw',height:'80vh',
-      data: {name: this.name, animal: this.animal}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
-    });
-  }
+ 
   standards: Standard[] = [
     {value: 'UKG', viewValue: 'UKG'},
     {value: 'LKG', viewValue: 'LKG'},

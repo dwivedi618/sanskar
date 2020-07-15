@@ -9,19 +9,11 @@
     </mat-list-item>
   </a>
 <mat-divider></mat-divider>
-  <a routerLink="/admission" router-Link-Active="myactive">
-    <mat-list-item  matTooltip="Admission" matTooltipPosition="right" routerLinkActive="myactive">
+    <mat-list-item (click)="newRegistration({})" matTooltip="New Student Registration" matTooltipPosition="right" routerLinkActive="myactive">
     <mat-icon mat-list-icon>create</mat-icon>
     <p mat-line>Admission</p>
     </mat-list-item>
-  </a>
-  <mat-divider></mat-divider>
-  <a routerLink="/login" router-Link-Active="myactive">
-    <mat-list-item  matTooltip="login" matTooltipPosition="right" routerLinkActive="myactive">
-    <mat-icon mat-list-icon>face</mat-icon>
-    <p mat-line>login</p>
-    </mat-list-item>
-  </a>
+
   <mat-divider></mat-divider>
   <a [routerLink]="['/student']" routerLinkActive="myactive">
     <mat-list-item matRipple matTooltip="Student list"  matTooltipPosition="right" routerLinkActive="myactive">
@@ -30,13 +22,8 @@
     </mat-list-item>
   </a>
   <mat-divider></mat-divider>
-  <a [routerLink]="['student-profile']" >
-    <mat-list-item matRipple matTooltip="Student profile"  matTooltipPosition="right" routerLinkActive="myactive">
-      <mat-icon mat-list-icon>perm_identity</mat-icon>
-      <p mat-line>student detailed info</p>
-    </mat-list-item>
-  </a>
-  <mat-divider></mat-divider>
+
+ 
   <!-- definefeeStructure -->
   <a [routerLink]="['/feestructure']" >
     <mat-list-item matRipple matTooltip="Fee Structure"  matTooltipPosition="right" routerLinkActive="myactive">
@@ -47,12 +34,7 @@
   <mat-divider></mat-divider>
   <!-- fees -->
   <!-- definefeeStructure -->
-  <a [routerLink]="['/fees']" >
-    <mat-list-item matRipple matTooltip="Student Fees"  matTooltipPosition="right" routerLinkActive="myactive">
-      <mat-icon mat-list-icon>assignment</mat-icon>
-      <p mat-line>Fees</p>
-    </mat-list-item>
-  </a>
+ 
 
   <mat-divider></mat-divider>
 

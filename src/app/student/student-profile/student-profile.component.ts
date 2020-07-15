@@ -2,6 +2,7 @@ import { Component, OnInit,Inject, Optional } from '@angular/core';
 import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 import { inject } from '@angular/core/testing';
 import { TransactionComponent } from '../transaction/transaction.component';
+import { AdmissionComponent } from 'src/app/admission/admission.component';
 
 
 @Component({
@@ -23,6 +24,17 @@ export class StudentProfileComponent implements OnInit {
    }
 
   ngOnInit() {
+  }
+  onUpdateStudentProfile(obj){
+    obj = this.local_data
+    obj.action = 'update';
+       const dialogRef = this.dialog.open(AdmissionComponent,{
+         width:'70vw',
+         maxWidth: '100%',
+        //  height:'100vh',
+         data : {obj}
+       })
+       this.closeProfile();
   }
   openFeeSubmition(obj){
     obj.action = 'submitFee';

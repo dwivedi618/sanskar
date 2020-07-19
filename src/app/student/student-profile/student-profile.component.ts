@@ -39,8 +39,8 @@ export class StudentProfileComponent implements OnInit {
   openFeeSubmition(obj){
     obj.action = 'submitFee';
        const dialogRef = this.dialog.open(TransactionComponent,{
-         width:'50vw',
-         maxWidth: '100%',
+         width:'30rem',
+         maxWidth: '100vw',
          data : {obj}
        })
     

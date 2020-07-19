@@ -4,20 +4,27 @@
    
   <a  routerLink="/dashboard" >
     <mat-list-item matRipple matTooltip="Analytics" matTooltipPosition="right" routerLinkActive="myactive">
-    <mat-icon mat-list-icon>desktop_mac</mat-icon>
+    <!-- <mat-icon mat-list-icon>desktop_mac</mat-icon> -->
+    <span mat-list-icon class="material-icons">assessment</span>
+    <!-- <img mat-list-icon class="invert" src="../../../assets/icons/dashboard.svg" width="22" style="border-radius:0px!important;"> -->
     <p mat-line>Dashboard</p>
+
     </mat-list-item>
   </a>
 <mat-divider></mat-divider>
     <mat-list-item (click)="newRegistration({})" matTooltip="New Student Registration" matTooltipPosition="right" routerLinkActive="myactive">
-    <mat-icon mat-list-icon>create</mat-icon>
-    <p mat-line>Admission</p>
+    <!-- <mat-icon mat-list-icon>create</mat-icon>   -->
+    <span mat-list-icon class="material-icons">school</span>
+
+      <!-- <img mat-list-icon class="invert " src="../../../assets/icons/admission.svg" width="22" style="border-radius:0px!important;"> -->
+      <p mat-line>Admission</p>
     </mat-list-item>
 
   <mat-divider></mat-divider>
   <a [routerLink]="['/student']" routerLinkActive="myactive">
     <mat-list-item matRipple matTooltip="Student list"  matTooltipPosition="right" routerLinkActive="myactive">
-      <mat-icon mat-list-icon>search</mat-icon>
+      <!-- <mat-icon mat-list-icon>search</mat-icon> -->
+      <span mat-list-icon class="material-icons">search</span>
       <p mat-line>Student</p>
     </mat-list-item>
   </a>

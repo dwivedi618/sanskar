@@ -44,6 +44,9 @@ export class StudentsListComponent implements OnInit {
     this.dataSource.sort = this.sort;
     this.getStudents();
   }
+  refresh(){
+    this.getStudents();
+  }
 getStudents(){
   this.isLoading = true;
   this.commonService.getData()
@@ -66,6 +69,7 @@ obj.action = 'submitFee';
    const dialogRef = this.dialog.open(TransactionComponent,{
      width:'50vw',
      maxWidth: '100vw',
+     maxHeight:'100vh',
      data : {obj}
    })
 

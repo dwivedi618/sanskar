@@ -7,6 +7,7 @@ import { SharedModule } from '../shared/shared.module';
 import { StudentRoutingModule } from './student-routing.module';
 
 import { TransactionComponent } from './transaction/transaction.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 
 
 
@@ -22,6 +23,8 @@ import { TransactionComponent } from './transaction/transaction.component';
   imports: [
     SharedModule,
     StudentRoutingModule,
+    ReactiveFormsModule,
+    FormsModule
     
   ],
   exports : [

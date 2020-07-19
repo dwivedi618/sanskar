@@ -19,8 +19,8 @@ export class SidenavmenusComponent implements OnInit {
     
     obj.action = 'registration';
        const dialogRef = this.dialog.open(AdmissionComponent,{
-         width:'70vw',
-         maxWidth: '100%',
+         width:'50rem',
+         maxWidth: '100vw',
          disableClose: true,
          data : {obj}
        })

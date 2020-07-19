@@ -1,77 +1,78 @@
-.sidenav_menus{
-    /* overflow-x: hidden!important; */
-    min-height: 60vh;
-    /* max-height: 90vh; */
-    width: 100%;
-    
-    overflow-x: hidden;
+.sidenav_menus {
+  /* overflow-x: hidden!important; */
+  min-height: 60vh;
+  /* max-height: 90vh; */
+  width: 100%;
+  overflow-x: hidden;
 }
 
-a{
-    text-decoration: none;
+a {
+  text-decoration: none;
 }
-mat-list-item:hover mat-icon { 
-  /* color: #673ab7; */
- }
-mat-list-item:hover{
-     
-      /* border-right: solid #673ab7 ; */
-      /* transition: .5s ; */
-      /* background: #212121; */
-      box-shadow: 0 0 10px #00000017;
-      color:  #673ab7;
-    }
-.myactive{
-     
-        /* border-right: solid #673ab7 ; */
-        /* transition: .5s ; */
-        /* background: #30303077; */
-      box-shadow: 0 0 10px #00000017;
-        color:  #673ab7;
-      }    
+mat-list-item{
+  color: rgba(255, 255, 255, 0.5)!important;
+}
+mat-icon {
+  color: rgba(255, 255, 255, 0.5)!important;
+}
 
-p{
-    font-size: small!important;
+mat-list-item:hover mat-icon {
+  color: #3a8fb7!important;
 }
-mat-divider{
-    opacity: .2;
-    width: 90%;
-    margin: 0 auto;
+
+mat-list-item:hover {
+  box-shadow: 0 0 10px #00000017;
+  color: #3a8fb7!important;
+}
+
+.myactive {
+  box-shadow: 0 0 10px #00000017;
+  color: #3a8fb7!important;
+}
+
+p {
+  font-size: small!important;
+}
+
+mat-divider {
+  opacity: .2;
+  width: 90%;
+  margin: 0 auto;
 }
 
 .profile__picture {
-    background: #ffffff;
-    border-radius: 100px;
-    border: 10px solid #ffffff;
-    height: 10rem;
-    /* position: absolute; */
-    /* top: 0px;
+  background: #ffffff;
+  border-radius: 100px;
+  border: 10px solid #ffffff;
+  height: 10rem;
+  /* position: absolute; */
+  /* top: 0px;
     left: 4px; */
-    width: 10rem;
-    margin: 0 auto;
-    padding: 1rem;
-  }
+  width: 10rem;
+  margin: 0 auto;
+  padding: 1rem;
+}
 
-  .profile__picture img {
-    border-radius: 100px;
-    height: 100%;
-    width: 100%;
-  }
-  div.logo{
-    max-width: 32px;
-    max-height: 32px;
-    margin: 0 auto;
+.profile__picture img {
+  border-radius: 100px;
+  height: 100%;
+  width: 100%;
+}
 
-  }
-  div.logo img{
-    max-width: 32px;
-    max-height: 32px;
-    background-size: cover;
-    background-position: center;
-  }
-  mat-list{
-    
-      margin-top: 0px!important;
-      padding-top: 0px!important;
-  }
- 
+div.logo {
+  max-width: 32px;
+  max-height: 32px;
+  margin: 0 auto;
+}
+
+div.logo img {
+  max-width: 32px;
+  max-height: 32px;
+  background-size: cover;
+  background-position: center;
+}
+
+mat-list {
+  margin-top: 0px!important;
+  padding-top: 0px!important;
+}

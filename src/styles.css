@@ -96,7 +96,7 @@ button:focus{
 .spacer{
 	flex: 1 1 auto;
 }
-
+.invert { filter: invert(100%)!important; }
 
 /* Change the white to any color ;) */
 input:-webkit-autofill,
@@ -155,7 +155,13 @@ background: linear-gradient(to top, #434343, #000000);
           justify-content: center;
   /* height: 100vh; */
 }
-
+.bg-mydark-1{
+  color:rgba(0,0,0,.5)!important;
+  background-color: rgb(31, 38, 49)!important;
+}
+.bg-mydark-1 mat-icon{
+          color:rgba(0,0,0,.5)!important;
+        }
 .bar{
   min-width:10rem;
   height: 3rem;

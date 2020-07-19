@@ -51,6 +51,7 @@ export class AdmissionComponent implements OnInit {
   route = 'student/register-student';  
   local_data:any;
   action: any;
+  parents: any;
 
   constructor(
     public dialog: MatDialog,
@@ -62,34 +63,39 @@ export class AdmissionComponent implements OnInit {
     ) {
       this.local_data = data.obj;
       this.action = data.obj.action;
-      console.log("update Registration :",this.local_data)
+      if(data.obj.parent){
+      this.parents = data.obj.parent;
+      }else {this.parents = [null]}
+      console.log("local_data :",this.local_data);
+      console.log(" parents:",this.parents);
+
      }
 
   ngOnInit() {
     this.studentForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      middleName: [''],
-      lastName: [''],
-      gender: ['Male'],
-      dateOfBirth: [''],
-      image: [''],
+      firstName: [this.local_data.firstName, Validators.required],
+      middleName: [this.local_data.middleName],
+      lastName: [this.local_data.lastName],
+      gender: [this.local_data.gender],
+      dateOfBirth: [this.local_data.dateOfBirth],
+      image: [this.local_data.image],
       nationality : ['Indian'],
-          healthStatus : [''],
-          bloodGroup : [''],
-          standard : ['',Validators.required],//admission In
-          convenience : ['Yes',Validators.required],
-          place : ['']
+          healthStatus : [this.local_data.healthStatus],
+          bloodGroup : [this.local_data.bloodGroup],
+          standard : [this.local_data.standard,Validators.required],//admission In
+          convenience : [this.local_data.convenience,Validators.required],
+          place : [this.local_data.place]
     });
     this.parentForm = this.formBuilder.group({
-      fatherName: ['', Validators.required],
-          motherName: ['', Validators.required],
-          fatherEducation : [''],
-          fatherOccupation : [''],
-          motherEducation : [''],
-          motherOccupation :[''],
-          parentContact: [''],
-          guardianName : ['', Validators.required],
-          guardianContact :['', Validators.required]
+      fatherName: [this.parents.fatherName, Validators.required],
+          motherName: [this.parents.motherName, Validators.required],
+          fatherEducation : [this.parents.fatherEducation],
+          fatherOccupation : [this.parents.fatherOccupation],
+          motherEducation : [this.parents.motherEducation],
+          motherOccupation :[this.parents.motherOccupation],
+          parentContact: [this.parents.parentContact],
+          guardianName : [this.parents.guardianName, Validators.required],
+          guardianContact :[this.parents.guardianContact, Validators.required]
     });
     this.addressForm = this.formBuilder.group({
       permanentAddress: this.formBuilder.group({
@@ -165,9 +171,7 @@ if(this.imagePreview){
             return;
             console.log("form Invalid");
         }
-        if(this.studentForm.value.dateOfBirth != ''){
-        this.studentForm.value.dateOfBirth = this.studentForm.value.dateOfBirth.toLocaleDateString();
-        }
+       
         this.studentForm.value.requestType = "student";
         this.studentForm.value.image = this.imagePreview;
         console.log("Before submitstudent",this.studentForm.value);

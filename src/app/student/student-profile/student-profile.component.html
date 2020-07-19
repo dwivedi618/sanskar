@@ -1,10 +1,14 @@
-<div mat-dialog-content class="" style="max-height: 100vh;">
-    <div mat-dialog-title class=" float-right">
+<div mat-dialog-content class="bg-light" style="max-height: 100vh;">
+    <div mat-dialog-title class="d-flex justify-content-around">
+        <button mat-button (click)="closeProfile()">
+            <span class="material-icons">navigate_before</span>BACK
+        </button>
+        <div class="spacer"></div>
         <button mat-icon-button (click)="closeProfile()" matTooltip="close" cdkFocusInitial>
             <mat-icon style="font-size: 1rem;"> clear</mat-icon>
         </button>
     </div>
-    <mat-card class="mx-auto profile my_shadow1 mb-0">
+    <mat-card class="mx-auto card  profile my_shadow1 mb-0">
         <div class="row bg-light">
             <div class="col-md-4">
                 <div class="profile__picture"><img src="../../../assets/cover.jpg" style="border-radius: 4px;"></div>

@@ -2,7 +2,7 @@
     <button mat-icon-button [mat-dialog-close]="true" class="mini_icon_button float-right text-white-50"><mat-icon style="font-size:1rem">clear</mat-icon> </button>
 </div>
 <div mat-dialog-content class="fadeIn" style="max-height: 100vh;">
-    <mat-card class="card border-0 box_shadow_3" >
+    <mat-card class="card border-0  p-0" >
         <!-- <img class="card_img" src="https://static.vecteezy.com/system/resources/previews/000/174/803/original/vector-office-work-space-illustration.jpg" class="card-img-top" alt="..."> -->
 
         <mat-horizontal-stepper #stepper>
@@ -11,7 +11,10 @@
                 <form class="stepper_form my-4 py-2" [formGroup]="studentForm" (ngSubmit)="onStudentSubmit()">
                     <ng-template matStepLabel>Required Student Details</ng-template>
                     <div class=" d-flex justify-content-center">
-                        <div class="col-sm-12 col-md-8 col-lg-8">
+                        <div class="col-sm-12 col-md-10 col-lg-10">
+                            <div class="mb-2">
+                                <mat-label class="text-primary">Student's Information</mat-label>
+                            </div>
                             <div class="row">
                                 <div class="col-md-6">
                                     <mat-form-field appearance="outline" class="example-full-width">
@@ -63,9 +66,10 @@
                                                 </div>
                                                 <div *ngIf="!imagePreview" (click)="fileUpload.click()"
                                                     style="cursor: pointer;">
-                                                    <button mat-icon-button class="m-0">
+                                                    <!-- <button mat-icon-button class="m-0">
                                                         <mat-icon>add_circle</mat-icon>
-                                                    </button>
+                                                    </button> -->
+                                                    <img src="../../assets/icons/persion.svg" width="40">
                                                     <p mat-line class="text-muted py-2">Candidate Photo</p>
 
                                                 </div>
@@ -127,7 +131,9 @@
                                 <input matInput placeholder="Health Status" type="text" formControlName="healthStatus">
                             </mat-form-field>
 
-
+                            <div class="mb-2">
+                                <mat-label class="text-primary">Accademics</mat-label>
+                            </div>
                             <mat-form-field appearance="outline" class="example-full-width">
                                 <mat-label>Addmission In</mat-label>
                                 <mat-select formControlName="standard" required>
@@ -156,7 +162,7 @@
                                 <input matInput placeholder="Place" type="text" formControlName="place">
                             </mat-form-field>
 
-                            <div class="d-flex justify-content-end">
+                            <div class="d-flex justify-content-end my-4">
                                 <button mat-raised-button type="submit" color="primary" matStepperNext>Save and
                                     Next</button>
                             </div>
@@ -171,7 +177,7 @@
                     <div class=" d-flex justify-content-center">
                         <div class="col-sm-12 col-md-8 col-lg-8">
                             <div class="mb-2">
-                                <mat-label class="text-info">Father's Information</mat-label>
+                                <mat-label class="text-primary">Father's Information</mat-label>
                             </div>
                             <mat-form-field appearance="outline" class="example-full-width">
                                 <mat-label>Father's Name</mat-label>
@@ -199,7 +205,7 @@
                             </div>
 
                             <div class="mb-2">
-                                <mat-label class="text-info">Mother's Information</mat-label>
+                                <mat-label class="text-primary">Mother's Information</mat-label>
                             </div>
                             <mat-form-field appearance="outline" class="example-full-width">
                                 <mat-label>Mother's Name</mat-label>
@@ -233,7 +239,7 @@
 
                             </div>
                             <div class="mb-2">
-                                <mat-label class="text-info">Guardian's Information</mat-label>
+                                <mat-label class="text-primary">Guardian's Information</mat-label>
                             </div>
                             <mat-form-field appearance="outline" class="example-full-width">
                                 <mat-label>Guardian Name</mat-label>
@@ -243,7 +249,7 @@
 
                             </mat-form-field>
                             <div class="mb-2">
-                                <mat-label class="text-info">Contacts</mat-label>
+                                <mat-label class="text-primary">Contacts</mat-label>
                             </div>
                             <div class="row">
 
@@ -269,7 +275,7 @@
                                     </mat-form-field>
                                 </div>
                             </div>
-                            <div class="d-flex justify-content-around">
+                            <div class="d-flex justify-content-around my-4">
                                 <button mat-raised-button matStepperPrevious>Back</button>
                                 <div class="spacer"></div>
                                 <button mat-raised-button matStepperNext color="primary">Save and Next</button>
@@ -285,7 +291,7 @@
                         <div class="col-sm-12 col-md-8 col-lg-8">
                           
                             <div class="mb-2">
-                                <mat-label class="text-info">Permanent Address</mat-label>
+                                <mat-label class="text-primary">Permanent Address</mat-label>
                             </div>
 
                             <div class="" formGroupName="permanentAddress">
@@ -327,7 +333,7 @@
                             </div>
                         
                             <div class="mb-2">
-                                <mat-label class="text-info">Local Address</mat-label>
+                                <mat-label class="text-primary">Local Address</mat-label>
                             </div>
 
                             <div class="" formGroupName="localAddress">
@@ -362,7 +368,7 @@
 
 
                             </div>
-                            <div class="d-flex justify-content-around">
+                            <div class="d-flex justify-content-around my-4">
                                 <button mat-stroked-button matStepperPrevious>Back</button>
                                 <div class="spacer"></div>
                                 <button mat-raised-button matStepperNext color="primary">Save And Next</button>

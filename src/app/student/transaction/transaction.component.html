@@ -1,23 +1,33 @@
-<div mat-dialog-title class="bg-mydark pt-n4 mr-n4 ml-n4"><small class="text-white-50 px-2">Transaction</small> 
-    <button mat-icon-button [mat-dialog-close]="true" class="mini_icon_button float-right text-white-50"><mat-icon style="font-size:1rem">clear</mat-icon> </button>
+<div mat-dialog-title class="bg-mydark pt-n4 mr-n4 ml-n4"><small class="text-white-50 px-2">Transaction</small>
+    <button mat-icon-button [mat-dialog-close]="true" class="mini_icon_button float-right text-white-50">
+        <mat-icon style="font-size:1rem">clear</mat-icon>
+    </button>
 </div>
 <div mat-dialog-content style="margin:0px!important;">
+    <form [formGroup]="payment">
     <div class="d-flex justify-content-center ">
-        <div class="col-sm-12 col-md-6 col-lg-6">
-            <form >
-            <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Payment For</mat-label>
-                <textarea matInput type="text" ></textarea>
-            </mat-form-field>
-            <mat-form-field class="w-100" appearance="outline">
-                <mat-label>Amount</mat-label>
-                <input matInput type="number" >
-            </mat-form-field>
-            <div class="mb-4">
+        <div class=" col-md-10 col-lg-6">
 
-                <button mat-raised-button color="primary"  class="w-100">Submit</button>
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Payment For</mat-label>
+                    <textarea matInput type="text" formControlName="paymentFor"></textarea>
+                </mat-form-field>
+                
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Amount</mat-label>
+                    <input matInput type="number" formControlName="amount">
+                </mat-form-field>
+
+                <mat-form-field class="w-100" appearance="outline">
+                    <mat-label>Payment Date</mat-label>
+                    <input matInput type="date" formControlName="paymentDate">
+                </mat-form-field>
+                <div class="mb-4">
+
+                    <button mat-raised-button color="primary" (click)="submitPayment()" class="w-100">Submit</button>
+                </div>
+               
             </div>
-        </form>
         </div>
-    </div>
+    </form>
 </div>

@@ -102,12 +102,12 @@ mat-spinner{
     justify-content: center;
   }
   .mysearch{
-    width:30rem;
+    /* width:30rem; */
     height: 3rem;
-    border-radius: 5rem;
+    /* border-radius: 5rem; */
     box-shadow: 0 0 10px #00000017;
     
-    margin: 0 auto ;
+    /* margin: 0 auto ; */
     justify-content: center;
     align-items: center;
     text-align: center;

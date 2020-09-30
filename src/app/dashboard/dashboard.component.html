@@ -1,4 +1,9 @@
 <div class=" container">
+  <div class="jumbotron">
+    <app-image-viewer [images]=""
+    [idContainer]="'idOnHTML'"
+    [loadOnInit]="true"></app-image-viewer>
+  </div>
     <div class="row ">
       <div class="col-md-6 col-lg-3 mb-4">
         <mat-card class=" border-0 rounded-4 my_shadow1">
@@ -22,7 +27,7 @@
           </div>
         </mat-card>
       </div>
-  
+    
       <div class="col-md-6 col-lg-3 mb-4">
         <mat-card class="card border-0 rounded-4 my_shadow1">
           <div class="card-body">

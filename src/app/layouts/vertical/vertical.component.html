@@ -4,7 +4,7 @@
     <div >
         <mat-sidenav-container class="example-container" autosize>
 
-            <mat-sidenav [class.sidenav_half]=" !isFullOpen" #sidenav [class.sidenav_full]="isFullOpen"
+            <mat-sidenav #sidenav
                 class=" my_shadow1" position="start" [mode]="(isHandset$ | async) ? 'over' : 'side'" opened>
                 <app-sidenavmenus></app-sidenavmenus>
             </mat-sidenav>

@@ -1,12 +1,14 @@
 import { DOCUMENT } from '@angular/common';
 import {SelectionModel} from '@angular/cdk/collections';
 import {Component,OnInit, Inject,ViewChild} from '@angular/core';
-import {MatTableDataSource, MatSort, MatPaginator} from '@angular/material';
-import { MatDialogRef, MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog'
-import { getTreeNoValidDataSourceError } from '@angular/cdk/tree';
+import { MatDialog } from '@angular/material/dialog';
+
 import { CommonService } from '../../services/common.service';
 import { StudentProfileComponent } from '../student-profile/student-profile.component';
 import { TransactionComponent } from '../transaction/transaction.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
 
 
 export interface Student {

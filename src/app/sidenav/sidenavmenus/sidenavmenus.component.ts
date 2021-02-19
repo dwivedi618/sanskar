@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { AdmissionComponent } from 'src/app/admission/admission.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-sidenavmenus',

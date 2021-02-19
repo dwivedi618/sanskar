@@ -1,6 +1,6 @@
 import { Component, OnInit,Inject, Optional } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { inject } from '@angular/core/testing';
+import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+
 import { TransactionComponent } from '../transaction/transaction.component';
 import { AdmissionComponent } from 'src/app/admission/admission.component';
 

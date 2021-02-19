@@ -32,7 +32,7 @@ interface BloodGroup{
 @Component({
   selector: 'app-admission',
   templateUrl: './admission.component.html',
-  styleUrls: ['./admission.component.css']
+  styleUrls: ['./admission.component.scss']
 })
 export class AdmissionComponent implements OnInit {
   animal: string;

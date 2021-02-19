@@ -12,7 +12,6 @@ import { SidenavmenusComponent } from './sidenav/sidenavmenus/sidenavmenus.compo
 import { NavigationComponent } from './navigation/navigation.component';
 
 // import { AdmissionComponent } from './admission/admission.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
   
 import { FeestructureComponent } from './feestructure/feestructure.component';
 
@@ -24,8 +23,12 @@ import { SettingsComponent } from './settings/settings.component';
 import { NavComponent } from './nav/nav.component';
 
 import { AdmissionModule } from './admission/admission.module'
-import { SharedModule } from './shared/shared.module';
+
 import { ImageViewerModule } from 'ng2-image-viewer';
+import { LayoutComponent } from './layouts/layout/layout.component';
+import { VerticalComponent } from './layouts/vertical/vertical.component';
+import { SharedModule } from './layouts/shared/shared.module';
+
 
 
 
@@ -36,10 +39,6 @@ import { ImageViewerModule } from 'ng2-image-viewer';
     SidenavComponent,
     SidenavmenusComponent,
     NavigationComponent,
-    
-    
-    DashboardComponent,
-    
     FeestructureComponent,
     // FeesComponent,
     ProfileComponent,
@@ -47,6 +46,11 @@ import { ImageViewerModule } from 'ng2-image-viewer';
     SettingsComponent,
     
     NavComponent,
+    
+    LayoutComponent,
+    
+    VerticalComponent,
+
   
   ],
   imports: [

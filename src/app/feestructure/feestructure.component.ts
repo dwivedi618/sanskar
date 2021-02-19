@@ -4,7 +4,9 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 @Component({
   selector: 'app-feestructure',
   templateUrl: './feestructure.component.html',
-  styleUrls: ['./feestructure.component.css']
+
+
+  styleUrls: ['./feestructure.component.scss']
 })
 export class FeestructureComponent implements OnInit {
 

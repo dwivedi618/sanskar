@@ -4,31 +4,15 @@
     <mat-sidenav-container class="example-container" autosize>
 
         <mat-sidenav [class.sidenav_half]=" !isFullOpen" #sidenav [class.sidenav_full]="isFullOpen"
-            class="bg-mydark-1 my_shadow1" position="start" [mode]="(isHandset$ | async) ? 'over' : 'side'"
-            [opened]="(isHandset$ | async) === false">
+            class=" my_shadow1" position="start" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+            opened>
             <mat-toolbar style="min-height: 45px!important;" class="bg-mydark-1 sidenav_toolbar">
                 <mat-toolbar-row>
                     <button *ngIf="(isHandset$ | async) === false" mat-icon-button (click)="sidenavToggle()">
                         <!-- <mat-icon style="color:rgba(255, 255, 255, 0.5)!important;">menu</mat-icon> -->
                         <img class="invert" src="../../assets/icons/menu.svg" width="24">
                     </button>
-
-                    <!-- <a routerLink=" " class="example-icon">
-                    <div class="logo layout">
-                        <img src="../assets/sanskar.jpg" alt="logo">
-                    </div>
-                </a> -->
-
-
-
-
                     <span mat-line class="px-2 text-white">Sanskar</span>
-
-
-                    <!-- <a  routerLink="/profile" routerLinkActive="myactive">
-                    <div class="profile__picture"><img src="../assets/photo.png" alt="student photo" /></div>
-                    </a> -->
-
 
                 </mat-toolbar-row>
             </mat-toolbar>
@@ -39,7 +23,7 @@
 
         <!-- ------------ -->
         <mat-sidenav-content>
-            <mat-toolbar *ngIf="isHandset$ | async" class="">
+            <mat-toolbar *ngIf="isHandset$ | async" >
                 <mat-toolbar-row>
                     <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()">
                         <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
@@ -55,9 +39,7 @@
                 </mat-toolbar-row>
             </mat-toolbar>
             <main>
-                <!-- <div style="margin:0px auto">
-                    <img class="bg img-fluid" style="position: absolute;background-size: cover;background-position: center;z-index: -1;height:90vh;margin:0px auto;" src="../../assets/cover1.jpg">
-                </div> -->
+             
                 <div class="container">
                     <router-outlet></router-outlet>
                 </div>

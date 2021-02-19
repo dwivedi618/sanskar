@@ -5,7 +5,7 @@ import { MatDialog } from '@angular/material';
 @Component({
   selector: 'app-sidenavmenus',
   templateUrl: './sidenavmenus.component.html',
-  styleUrls: ['./sidenavmenus.component.css']
+  styleUrls: ['./sidenavmenus.component.scss']
 })
 export class SidenavmenusComponent implements OnInit {
 

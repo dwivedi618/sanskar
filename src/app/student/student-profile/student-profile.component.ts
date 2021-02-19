@@ -8,7 +8,7 @@ import { AdmissionComponent } from 'src/app/admission/admission.component';
 @Component({
   selector: 'app-student-profile',
   templateUrl: './student-profile.component.html',
-  styleUrls: ['./student-profile.component.css']
+  styleUrls: ['./student-profile.component.scss']
 })
 export class StudentProfileComponent implements OnInit {
   local_data:any;

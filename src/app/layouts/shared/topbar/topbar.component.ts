@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { ToggleService } from './../../../services/toggle.service';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
   selector: 'app-topbar',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private toggleService : ToggleService
+  ) { }
 
   ngOnInit() {
+  }
+  /**
+   * menu sidebar open and close state control
+   */
+  private toggleLeftSidebar(){
+    this.toggleService.leftSidebarToggle.emit()
   }
 
 }

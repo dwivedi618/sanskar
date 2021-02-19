@@ -7,6 +7,7 @@ import { ProfileComponent } from './profile/profile.component';
 import { AdmissionComponent } from './admission/admission.component';
 import { LayoutComponent } from './layouts/layout/layout.component';
 
+
 // import { AdmissionModule } from './admission/admission.module';
 
 const routes: Routes = [
@@ -14,6 +15,7 @@ const routes: Routes = [
     path: '', component: LayoutComponent,
     children: [
       { path: 'admission', component: AdmissionComponent },
+      { path: 'faculty', loadChildren : './faculty/faculty.module#FacultyModule' },
       { path: 'student', loadChildren: './student/student.module#StudentModule' },
       { path: 'feestructure', component: FeestructureComponent },
       { path: 'settings', component: SettingsComponent },

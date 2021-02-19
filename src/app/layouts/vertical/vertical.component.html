@@ -1,39 +1,21 @@
 <div class="layout-wrapper">
-    <app-navigation (click)="sidenav.toggle()">
-</app-navigation>
-    <div >
-        <mat-sidenav-container class="example-container" autosize>
-
-            <mat-sidenav #sidenav
-                class=" my_shadow1" position="start" [mode]="(isHandset$ | async) ? 'over' : 'side'" opened>
-                <app-sidenavmenus></app-sidenavmenus>
-            </mat-sidenav>
-
-            <!-- ------------ -->
-            <mat-sidenav-content>
-                <mat-toolbar *ngIf="isHandset$ | async">
-                    <mat-toolbar-row>
-                        <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()">
-                            <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
-                        </button>
-                        <div class="example-spacer" style="flex: 1 1 auto"></div>
-                        <app-nav></app-nav>
-                    </mat-toolbar-row>
-                </mat-toolbar>
-                <mat-toolbar style="min-height: 45px!important;" *ngIf="(isHandset$ | async) === false" class="">
-                    <mat-toolbar-row>
-                        <div class="spacer"></div>
-                        <app-nav></app-nav>
-                    </mat-toolbar-row>
-                </mat-toolbar>
-                <main>
-
-                    <div class="container">
-                        <router-outlet></router-outlet>
-                    </div>
-                </main>
-            </mat-sidenav-content>
-
-        </mat-sidenav-container>
-    </div>
+    <app-topbar></app-topbar>
+    <mat-sidenav-container class="sidenav-container" autosize>
+        <mat-sidenav #sidenav class="leftsidebar" position="start" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+            opened>
+            <app-left-sidebar-menu></app-left-sidebar-menu>
+        </mat-sidenav>
+        <mat-sidenav #sidenav class="rightsidebar" position="end" [mode]="(isHandset$ | async) ? 'over' : 'side'"
+            opened>
+            <app-left-sidebar-menu></app-left-sidebar-menu>
+        </mat-sidenav>
+        <mat-sidenav-content>
+           
+            <main>
+                <div class="">
+                    <router-outlet></router-outlet>
+                </div>
+            </main>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
 </div>

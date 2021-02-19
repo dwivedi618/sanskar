@@ -32,10 +32,7 @@ export class NavigationComponent implements OnInit {
   close_fullscreen = false;
 
   toggleSidenav() {
-
-    
     this.toggleService.toggleSidenav();
-
   }
 
   openFullscreen() {

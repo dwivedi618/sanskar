@@ -28,6 +28,8 @@ import { AdmissionModule } from './admission/admission.module'
 import { LayoutComponent } from './layouts/layout/layout.component';
 import { VerticalComponent } from './layouts/vertical/vertical.component';
 import { SharedModule } from './layouts/shared/shared.module';
+import { LayoutModule } from './layouts/layout/layout.module';
+
 
 
 
@@ -50,8 +52,7 @@ import { SharedModule } from './layouts/shared/shared.module';
     LayoutComponent,
     
     VerticalComponent,
-
-  
+    
   ],
   imports: [
     BrowserAnimationsModule,
@@ -63,6 +64,7 @@ import { SharedModule } from './layouts/shared/shared.module';
     SharedModule,
     FormsModule,
     AdmissionModule,
+    LayoutModule,
 
     
     

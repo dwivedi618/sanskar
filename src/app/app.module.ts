@@ -24,7 +24,7 @@ import { NavComponent } from './nav/nav.component';
 
 import { AdmissionModule } from './admission/admission.module'
 
-import { ImageViewerModule } from 'ng2-image-viewer';
+
 import { LayoutComponent } from './layouts/layout/layout.component';
 import { VerticalComponent } from './layouts/vertical/vertical.component';
 import { SharedModule } from './layouts/shared/shared.module';
@@ -63,7 +63,7 @@ import { SharedModule } from './layouts/shared/shared.module';
     SharedModule,
     FormsModule,
     AdmissionModule,
-    ImageViewerModule
+
     
     
   ],

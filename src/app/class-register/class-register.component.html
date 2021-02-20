@@ -1,0 +1,80 @@
+<mat-tab-group mat-align-tabs="start">
+    <mat-tab label="USERS">
+        <div class="container py-4">
+            <div class="row">
+                <div class="col-sm-8">
+                    <form class="form-inline md-form mr-auto mb-4">
+                        <input class="form-control mr-sm-2 w-50" type="text" placeholder="Search by name,email or role"
+                            aria-label="Search">
+                        <button mat-raised-button color="primary">
+                            <mat-icon>search</mat-icon>
+                        </button>
+                    </form>
+                </div>
+                <div class="col-sm-4" >
+                    <span class="px-2" style="color: rgb(250, 250, 250);">
+                        <button mat-stroked-button style="background-color: rgb(126, 126, 126);" (click)="openDialog()">
+                            Invite Users
+                        </button>
+                    </span>
+                    <span class="px-0" style="color: rgb(255, 255, 255);">
+                        <button mat-stroked-button style="background-color: rgb(46, 130, 163);" (click)="openDialog()">
+                            Manage Roles
+                        </button>
+                    </span>                              
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <h4>Team Members</h4>   
+            <hr>
+            <h5 style="font-size: small;font-weight: bold; color: rgb(126, 126, 126);">USERS</h5>
+            <div class="container" *ngFor="let user of userData" class="py-2">
+                <div class="container">                                                             
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <div class="row">                                
+                                <div class="col-sm-6" >
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <li style=" list-style-type: none; "> <img mat-card-avatar src="../../../assets/qbase32.png" alt=""></li>
+                                        </div>
+                                        <div class="col-9">
+                                            <li style=" list-style-type: none; ">{{user.name}}</li>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <span class="text px-4"
+                                        style="font-size: small;font-weight: bold; color: rgb(126, 126, 126);">{{user.email}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-6">
+                            <span class="px-4">
+                                <span>
+                                    <button mat-stroked-button style="color: rgb(29, 199, 230);">
+                                        Admin
+                                    </button>
+                                </span>
+                                <span class="px-2" style="color: rgb(224, 70, 70);">
+                                    <button mat-stroked-button>
+                                        Billing
+                                    </button>
+                                </span>
+                                <span class="px-0" style="color: rgb(85, 218, 114);">
+                                    <button mat-stroked-button>
+                                        Developer
+                                    </button>
+                                </span>
+                            </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </mat-tab>
+    <mat-tab label="GROUP">Content 2</mat-tab>
+</mat-tab-group>

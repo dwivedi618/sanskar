@@ -6,6 +6,7 @@ import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';
 import { AdmissionComponent } from './admission/admission.component';
 import { LayoutComponent } from './layouts/layout/layout.component';
+import { ClassRegisterComponent } from './class-register/class-register.component';
 
 
 // import { AdmissionModule } from './admission/admission.module';
@@ -20,6 +21,8 @@ const routes: Routes = [
       { path: 'feestructure', component: FeestructureComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'profile', component: ProfileComponent },
+      { path: 'class-registration', component: ClassRegisterComponent },
+
     ]
   },
 

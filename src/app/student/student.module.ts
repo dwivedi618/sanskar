@@ -25,7 +25,8 @@ import { SharedModule } from '../layouts/shared/shared.module';
     SharedModule,
     StudentRoutingModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    
     
   ],
   exports : [

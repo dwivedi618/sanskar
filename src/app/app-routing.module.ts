@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { SidenavComponent } from './sidenav/sidenav.component';
+
 import { FeestructureComponent } from './feestructure/feestructure.component';
 import { SettingsComponent } from './settings/settings.component';
 import { ProfileComponent } from './profile/profile.component';

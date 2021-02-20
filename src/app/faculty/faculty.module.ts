@@ -9,12 +9,14 @@ import { SharedModule } from '../layouts/shared/shared.module';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { AddFacultyComponent } from './add-faculty/add-faculty.component';
 
 
 @NgModule({
   declarations: [
     FacultyListComponent,
     FacultyLayoutComponent,
+    AddFacultyComponent,
     
   ],
   imports: [

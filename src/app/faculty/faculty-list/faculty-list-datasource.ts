@@ -46,39 +46,6 @@ const EXAMPLE_DATA: FacultyListItem[] = [
     id: 1,
     name: 'Thor',
     thumbnail: '../../../../assets/user_profiles/thor.jpeg',
-  },  {
-    id: 1,
-    name: 'Thor',
-    thumbnail: '../../../../assets/user_profiles/profile1.jpeg',
-
-  },  {
-    id: 1,
-    name: 'Thor',
-    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
-  },  {
-    id: 1,
-    name: 'Thor',
-    thumbnail: '../../../../assets/user_profiles/profile1.jpeg',
-  },  {
-    id: 1,
-    name: 'Thor',
-    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
-  },  {
-    id: 1,
-    name: 'Thor',
-    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
-  },  {
-    id: 1,
-    name: 'Thor',
-    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
-  },  {
-    id: 1,
-    name: 'Thor',
-    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
-  },  {
-    id: 1,
-    name: 'Thor',
-    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
   },
 
 

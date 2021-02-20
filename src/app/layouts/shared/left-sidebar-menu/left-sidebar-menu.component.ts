@@ -11,5 +11,6 @@ export class LeftSidebarMenuComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  newRegistration(){}
 
 }

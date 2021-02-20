@@ -149,4 +149,12 @@ export class FacultyListComponent implements AfterViewInit, OnInit {
   newFaculty(){
     this.router.navigate(['faculty/add-faculty']);
   }
+
+  /**
+   * route to add faculty profile page
+   * @param faculty id,name,email
+   */
+  openFacultyProfile(profile){
+    this.router.navigate(['faculty/profile']);
+  }
 }

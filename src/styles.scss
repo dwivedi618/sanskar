@@ -233,6 +233,13 @@ strong{
 .text-box mat-toolbar:not(.toolbar-1){
   height: 48px;
 }
+// .avatar-lg{
+//   height: 140px;
+//   width: 140px;
+//   border-radius: 50%;
+//   flex-shrink: 0;
+//   object-fit: cover;
+// }
 .avatar-md{
   height: 40px;
   width: 40px;
@@ -256,6 +263,13 @@ strong{
 .thumbnail-md{
   height: 6rem;
   width: 6rem;
+  border-radius: 0.2rem;
+  flex-shrink: 0;
+  object-fit: cover;
+}
+.thumbnail-lg{
+  height: 10rem;
+  width: 10rem;
   border-radius: 0.2rem;
   flex-shrink: 0;
   object-fit: cover;

@@ -10,6 +10,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { AddFacultyComponent } from './add-faculty/add-faculty.component';
+import { FacultyProfileComponent } from './faculty-profile/faculty-profile.component';
 
 
 @NgModule({
@@ -17,6 +18,7 @@ import { AddFacultyComponent } from './add-faculty/add-faculty.component';
     FacultyListComponent,
     FacultyLayoutComponent,
     AddFacultyComponent,
+    FacultyProfileComponent,
     
   ],
   imports: [

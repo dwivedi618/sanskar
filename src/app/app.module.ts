@@ -29,6 +29,7 @@ import { VerticalComponent } from './layouts/vertical/vertical.component';
 import { SharedModule } from './layouts/shared/shared.module';
 import { LayoutModule } from './layouts/layout/layout.module';
 import { ClassRegisterComponent } from './class-register/class-register.component';
+import { NewClassComponent } from './class-register/new-class/new-class.component';
 
 
 
@@ -53,6 +54,8 @@ import { ClassRegisterComponent } from './class-register/class-register.componen
     VerticalComponent,
     
     ClassRegisterComponent,
+    
+    NewClassComponent,
     
   ],
   imports: [

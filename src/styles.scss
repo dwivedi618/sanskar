@@ -154,9 +154,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   .mat-icon-light{
     color: rgb(55, 54, 58)!important;
   }
-
+a{text-decoration: none;}
   .active{
     color: orangered !important;
+
   }
   .active_sublink{
     color: orangered !important;
@@ -224,22 +225,10 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
   transition: 10ms all;
 }
 strong{
-  font-size: 1rem;
+  font-weight: 600;
 }
 
-.text-box ::ng-deep mat-toolbar mat-toolbar-row .mat-toolbar-row:not(.toolbar-row-1){
-  max-height: 48px;
-}
-.text-box mat-toolbar:not(.toolbar-1){
-  height: 48px;
-}
-// .avatar-lg{
-//   height: 140px;
-//   width: 140px;
-//   border-radius: 50%;
-//   flex-shrink: 0;
-//   object-fit: cover;
-// }
+
 .avatar-md{
   height: 40px;
   width: 40px;
@@ -274,10 +263,7 @@ strong{
   flex-shrink: 0;
   object-fit: cover;
 }
-small.strong{
-  font-weight:900;
-  font-size: 0.8rem;
-}
+
 small.small{
   color : rgb(121, 121, 121);
   font-size: 0.7rem;

@@ -1,21 +1,23 @@
-<mat-list class="sidenav_menus">
-    <mat-list-item (click)="newRegistration({})" matTooltip="New Student Registration" matTooltipPosition="right"
-        routerLinkActive="myactive">
-        <span mat-list-icon class="material-icons">school</span>
-        <p mat-line>Admission</p>
-    </mat-list-item>
+<mat-nav-list class="sidenav_menus">
+    <a [routerLink]="['/admission']">
+        <mat-list-item routerLinkActive="active">
+            <span mat-list-icon class="material-icons">school</span>
+            <small mat-line>Admission</small>
+        </mat-list-item>
+    </a>
 
 
-    <a [routerLink]="['/student']" routerLinkActive="myactive">
-        <mat-list-item matRipple matTooltip="Student list" matTooltipPosition="right" routerLinkActive="myactive">
+    <a [routerLink]="['/student']">
+        <mat-list-item routerLinkActive="active">
             <span mat-list-icon class="material-icons">search</span>
-            <p mat-line>Student</p>
+            <small mat-line>Student</small>
         </mat-list-item>
     </a>
-    <a [routerLink]="['/faculty']" routerLinkActive="myactive">
-        <mat-list-item matRipple matTooltip="Student list" matTooltipPosition="right" routerLinkActive="myactive">
+    <a [routerLink]="['/faculty']">
+        <mat-list-item routerLinkActive="active">
             <span mat-list-icon class="material-icons">groups</span>
-            <p mat-line>Faculty</p>
+            <small mat-line>Faculty</small>
         </mat-list-item>
     </a>
-</mat-list>
+
+</mat-nav-list>

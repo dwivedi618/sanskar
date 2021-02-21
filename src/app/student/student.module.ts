@@ -9,17 +9,17 @@ import { StudentRoutingModule } from './student-routing.module';
 import { TransactionComponent } from './transaction/transaction.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../layouts/shared/shared.module';
+import { StudentLayoutComponent } from './student-layout/student-layout.component';
 
 
 
 
 @NgModule({
   declarations: [
-    StudentComponent,
     StudentsListComponent,
     StudentProfileComponent,
-
-     TransactionComponent
+    TransactionComponent,
+    StudentLayoutComponent
     ],
   imports: [
     SharedModule,

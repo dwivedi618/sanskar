@@ -1,79 +1,187 @@
-<!-- filtering field -->
+<div class="">
+  <div class="py-4 bg-white">
+    <div class="row ">
+      <div class="col-md-6 mr-auto">
+        <form class="d-flex  mb-4 w-100">
+          <input class="form-control mr-sm-2 w-75" type="search" placeholder="Find by student id , name or roll" 
+            aria-label="Search" (keyup)="applyFilter($event)">
+          <div class="25">
+            <button mat-raised-button color="primary">
+              <!-- <mat-icon class="mat-icon-sm">search</mat-icon> -->
+              <small>Search</small>
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="col-md-5 text-right">
+             <span class="px-1" >
+                <button mat-raised-button color="primary"  (click)="newAdmission()" >
+                  <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
+                    <small>
+                      New addmission
+                    </small>
+                </button>
+            </span>
+            <span class="px-1" >
+              <button mat-raised-button color="primary" [matMenuTriggerFor]="session" #t="matMenuTrigger">
+                <small>
+                  2021-2022
+                </small>
+                <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
+              </button>
+              <mat-menu #session="matMenu" hasBackdrop="true">
+                <button mat-menu-item>
+                  <mat-icon class="mat-icon-sm pt-1 text-success">check_box</mat-icon>
+                  <small class="pr-2">2018-2019</small>
+                </button>
+                <button mat-menu-item>
+                  <mat-icon class="mat-icon-sm pt-1 text-mylight">check_box_outline_blank</mat-icon>
+                  <small class="pr-2">2019-2020</small>
+                </button> <button mat-menu-item>
+                  <mat-icon class="mat-icon-sm pt-1 text-mylight">check_box_outline_blank</mat-icon>
+                  <small class="pr-2">2020-2021</small>
+                </button>
+              </mat-menu>
 
+            </span>
+                                        
+        
+      </div>
+    </div>
+  </div>
+  <!-- <mat-toolbar class="bg-white ">
+    <mat-toolbar-row>
+      <nav mat-tab-nav-bar class="w-100">
+        <a  mat-tab-link >All</a>
+        <a  mat-tab-link>Disabled Link</a>
+        <a  mat-tab-link>Disabled Link</a>
+        <a  mat-tab-link >Disabled Link</a>
+        <a  mat-tab-link >Disabled Link</a>
+        <a  mat-tab-link >Disabled Link</a>
+        <a  mat-tab-link >Disabled Link</a>
+      </nav>
+    </mat-toolbar-row>
+  </mat-toolbar> -->
+  <!--table heading-->
+  <mat-toolbar class="bg-white">
+    <mat-toolbar-row>
+      <small class="strong">Student</small>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <!--more action on selected row-->
+  <mat-toolbar class="bg-white">
+    <mat-toolbar-row>
+      <div class="px-1 " *ngIf="!this.selection.selected.length">
+        <button mat-icon-button>
+          <mat-icon class="mat-icon-md mat-icon-light pt-0">refresh</mat-icon>
+        </button>
+      </div>
+      <div class="px-1" *ngIf="this.selection.selected.length">
+        <button mat-icon-button>
+          <mat-icon class="mat-icon-md mat-icon-light pt-0">delete</mat-icon>
+        </button>
+      </div>
+      <div class="px-1" *ngIf="this.selection.selected.length">
+        <button mat-icon-button>
+          <mat-icon class="mat-icon-md mat-icon-light pt-0">add_moderator</mat-icon>
+        </button>
+      </div>
+      <div class="px-1" *ngIf="this.selection.selected.length">
+        <button mat-icon-button>
+          <mat-icon class="mat-icon-md mat-icon-light pt-0">email</mat-icon>
+        </button>
+      </div>
+      <div class="px-1" *ngIf="this.selection.selected.length">
+        <button mat-icon-button>
+          <mat-icon class="mat-icon-md  mat-icon-light pt-0">textsms</mat-icon>
+        </button>
+      </div>
+      <div class="px-1">
+        <button mat-icon-button>
+          <mat-icon class="mat-icon-md mat-icon-light pt-0">more_vert</mat-icon>
+        </button>
+      </div>
+      <div class="spacer"></div>
+      <div>
+        <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" 
+          >
+        </mat-paginator>
+      </div>
+      
+    </mat-toolbar-row>
+  </mat-toolbar>
+<table  mat-table [dataSource]="dataSource" class="w-100 " matSort >
 
-
-<!-- <mat-spinner color="accent" *ngIf="isLoading"></mat-spinner> -->
-<mat-card  class="table_container my_shadow1">
-  <div class=" p-0 m-0">
-    <mat-card class="mysearch ">
-        <input type="search" (keyup)="applyFilter($event.target.value)" placeholder="search...">
-        <div class="filter w-25">
-            <mat-select #select placeholder="Filter by" (keyup)="applyFilter($event.value)">
-                <mat-option *ngFor="let i of displayedColumns" [value]="i">
-                    {{i}}
-                </mat-option>
-            </mat-select>
-        </div>
-    </mat-card>
-    <button mat-icon-button matTooltip="Submit Fee" (click)="openFeeSubmition({})"><mat-icon>payments</mat-icon></button>
-    <button mat-icon-button matTooltip="refresh" (click)="refresh()" >
-      <mat-icon *ngIf="isLoading" class="spin">refresh</mat-icon>
-      <mat-icon *ngIf="!isLoading" class="">refresh</mat-icon>
-
-    </button>
-    
-</div>
-<table  mat-table [dataSource]="dataSource" class=" mat-elevation-z8" matSort >
-
- <!-- Checkbox Column -->
- <!-- <ng-container matColumnDef="select">
-   <th mat-header-cell *matHeaderCellDef >
-     <mat-checkbox (change)="$event ? masterToggle() : null"
-                   [checked]="selection.hasValue() && isAllSelected()"
-                   [indeterminate]="selection.hasValue() && !isAllSelected()"
-                   [aria-label]="checkboxLabel()">
-     </mat-checkbox>
-   </th>
-   <td mat-cell *matCellDef="let row">
-     <mat-checkbox (click)="$event.stopPropagation()"
-                   (change)="$event ? selection.toggle(row) : null"
-                   [checked]="selection.isSelected(row)"
-                   [aria-label]="checkboxLabel(row)">
-     </mat-checkbox>
-   </td>
- </ng-container> -->
+<!-- Checkbox Column -->
+<ng-container matColumnDef="select">
+  <th mat-header-cell *matHeaderCellDef>
+    <div class="layout">
+      <mat-checkbox (change)="$event ? masterToggle() : null" class="mb-n2 pr-1"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()"
+                    [aria-label]="checkboxLabel()">
+      </mat-checkbox>
+    </div>
+  </th>
+  <td mat-cell *matCellDef="let row" style="width: 2rem;">
+    <div class="layout">
+      <mat-checkbox (click)="$event.stopPropagation()" class="mb-n2 pr-1 "
+                    (change)="$event ? selection.toggle(row) : null"
+                    [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+      </mat-checkbox>
+    </div>
+  </td>
+</ng-container>
 
  <!-- firstName Column -->
  <ng-container  matColumnDef="firstName">
-   <th mat-header-cell *matHeaderCellDef mat-sort-header> Student Name </th>
+   <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
    
-   <td mat-cell *matCellDef="let element">
-     
-     <!-- <img class="avatar" src="https://persianv.com/ravanshenasi/wp-content/uploads/sites/22/2017/10/532432787-taknaz-ir.jpg" > -->
-     {{element.firstName | titlecase}} </td>
+   <td mat-cell *matCellDef="let row">
+    <div class="d-flex my-1 align-items-center">
+      <div style="width: 32px;min-width: 32px; height: 32px;border-radius: 1rem;background-color: #d3ac8c;"
+        class="layout">
+        <img class="avatar-sm" src="{{row?.thumbnail}}">
+      </div>
+      <div class="d-flex flex-column py-1 pl-1">
+        <small style="line-height: 10px;" class="text-link py-1 text-wrap-md">{{row.firstName || 'syncing...'}}</small>
+        <small style="line-height: 10px; font-size: 10px; "
+          class=" text-mylight py-1 text-wrap-md">{{row.role || ''}}</small>
+      </div>
+    </div>
+  </td>
  </ng-container>
 
  <!-- Name Column -->
  <ng-container matColumnDef="fatherName">
-   <th mat-header-cell *matHeaderCellDef mat-sort-header> Father'sName</th>
-   <td mat-cell *matCellDef="let element"> {{element.parent.fatherName | titlecase}} </td>
+   <th mat-header-cell *matHeaderCellDef mat-sort-header> Father/Mother</th>
+   <td mat-cell *matCellDef="let element"> {{element.parent?.fatherName | titlecase}} </td>
  </ng-container>
 
  <!-- standard Column -->
  <ng-container matColumnDef="standard">
    <th mat-header-cell *matHeaderCellDef mat-sort-header> Standard </th>
-   <td mat-cell *matCellDef="let element"> {{element.standard}} </td>
+   <td mat-cell *matCellDef="let element"> {{element?.standard}} </td>
  </ng-container>
 
  <!-- address Column -->
  <ng-container matColumnDef="action" >
-   <th mat-header-cell *matHeaderCellDef >Actions</th>
-   <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()">
-     <div class="d-flex" >
-     <button mat-button color="primary" (click)="openStudentProfile(element)">view</button>
-     <button mat-button color="primary">edit</button>
-     <button mat-icon-button color="primary"><mat-icon>delete_outline</mat-icon></button>
-</div>
+   <th mat-header-cell *matHeaderCellDef class="text-right">Actions</th>
+   <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()" class="text-right">
+     <button mat-icon-button [matMenuTriggerFor]="moreAction">
+       <mat-icon class="text-mylight">more_horiz</mat-icon>
+     </button>
+     <mat-menu #moreAction="matMenu">
+       <button mat-menu-item (click)="openStudentProfile(element)">
+         <mat-icon class="mat-icon-sm pt-1">launch</mat-icon>
+         <small class="pr-2">open in another tab</small>
+       </button>
+       <button mat-menu-item>
+        <mat-icon class="mat-icon-sm pt-1">delete_outline</mat-icon>
+        <small class="pr-2">delete</small>
+        </button>
+     </mat-menu>
    </td>
   
  </ng-container>
@@ -84,9 +192,8 @@
  </tr>
 
 </table>
-<div *ngIf="displayNoRecords" class="d-flex justify-content-center mt-5">
-        
-  <p class="text-muted "> No matching records found!</p>
+<div *ngIf="displayNoRecords" class="layout h-25">     
+  <p class="" style="font-size: 1.5rem;color:#ccc;font-weight: 600;"> No matching records found!</p>
 </div>
-</mat-card>
+</div>
 

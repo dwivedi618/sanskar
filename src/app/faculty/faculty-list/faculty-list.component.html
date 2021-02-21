@@ -1,11 +1,11 @@
 <div class="">
   <div class="py-4">
     <div class="row">
-      <div class="col-6 col-auto mr-auto">
-        <form class="d-flex  mb-4 ">
-          <input class="form-control mr-sm-2 w-100" type="text" placeholder="Find by name, email or role"
+      <div class="col-md-6 mr-auto">
+        <form class="d-flex  mb-4 w-100">
+          <input class="form-control mr-sm-2 w-75" type="search" placeholder="Find by name, email or role"
             aria-label="Search" (keyup)="applyFilter($event)">
-          <div>
+          <div class="w-25">
             <button mat-raised-button color="primary">
               <!-- <mat-icon class="mat-icon-sm">search</mat-icon> -->
               <small>Search</small>
@@ -13,7 +13,7 @@
           </div>
         </form>
       </div>
-      <div class="col-auto">
+      <div class="col-md-6 text-right">
              <span class="px-1" >
                 <button mat-raised-button color="primary"  (click)="newFaculty()" >
                   <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
@@ -97,11 +97,11 @@
       
     </mat-toolbar-row>
   </mat-toolbar>
-  <table mat-table class="full-width-table" matSort aria-label="Elements">
+  <table mat-table class="w-100" matSort aria-label="Elements">
 
  <!-- Checkbox Column -->
  <ng-container matColumnDef="select">
-  <th mat-header-cell *matHeaderCellDef>
+  <th mat-header-cell *matHeaderCellDef class="text-left">
     <div class="layout">
       <mat-checkbox (change)="$event ? masterToggle() : null" class="mb-n2 pr-1"
                     [checked]="selection.hasValue() && isAllSelected()"
@@ -110,7 +110,7 @@
       </mat-checkbox>
     </div>
   </th>
-  <td mat-cell *matCellDef="let row" style="width: 2rem;">
+  <td mat-cell *matCellDef="let row" style="width: 2rem;" class="text-left">
     <div class="layout">
       <mat-checkbox (click)="$event.stopPropagation()" class="mb-n2 pr-1 "
                     (change)="$event ? selection.toggle(row) : null"
@@ -140,8 +140,8 @@
 
         <!-- Action Column -->
         <ng-container matColumnDef="action" >
-          <th mat-header-cell *matHeaderCellDef mat-sort-header >Action</th>
-          <td mat-cell *matCellDef="let row" >
+          <th mat-header-cell *matHeaderCellDef class="text-right">Action</th>
+          <td mat-cell *matCellDef="let row" (click)="$event.stopPropagation()" class="text-right">
             <button mat-icon-button>
               <mat-icon class="text-mylight">more_horiz</mat-icon>
             </button>

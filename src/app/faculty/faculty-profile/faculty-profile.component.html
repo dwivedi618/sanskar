@@ -1,0 +1,140 @@
+<section style="min-height: calc(100vh-6rem);">
+    <mat-toolbar class="bg-white">
+        <mat-toolbar-row>
+          <div class="px-1 ml-n2" >
+            <button mat-icon-button routerLink='..'>
+              <mat-icon class="mat-icon-md mat-icon-light pt-0">arrow_back</mat-icon>
+            </button>
+          </div>
+          <div class="spacer"></div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <div class="row justify-content-center py-5">
+          <div class="col-md-4">
+              <figure>
+                  <img class="thumbnail-lg" src="../../../assets/user_profiles/thor.jpeg" alt="">
+              </figure>
+          </div>
+          <div class="col-md-4 layout text-left">
+              <div class="d-flex flex-column">
+                  <h6>Shivam kumar dwivedi</h6>
+                  <small class="text-mylight">shivamdwivedi618@gmail.com</small>
+                  <small class="text-mylight">7827458618</small>
+              </div>
+          </div>
+      </div>
+      <mat-tab-group dynamicHeight animationDuration="0ms">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="mat-icon-sm pt-1 mr-2">menu_book</mat-icon>
+            Overview
+          </ng-template>
+          <ng-template matTabContent>
+               <div class="container my-5 py-5">
+          <div class="row justify-content-center mb-5">
+              <div class="col-md-6 ">
+                <div class="px-4">
+                <h6 mat-subtitle>Add new faculty or staff</h6>
+                <small>A faculty could have more details, manage from faculty  details page</small>
+                </div>
+              </div>
+          </div>
+          <div class="row justify-content-center mb-5">
+              <div class="col-md-6">
+                <div style="font-size: 12px">
+                    <div class="px-4">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>Full name</mat-label>
+                      <input matInput placeholder="Jane Doe">
+                    </mat-form-field>
+                </div>
+                  
+                <div class="px-4">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>email</mat-label>
+                      <input matInput placeholder="you@youremail.com">
+                    </mat-form-field>
+                </div>
+                <div class="px-4">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>contact</mat-label>
+                      <input matInput placeholder="Ex:7827458618">
+                    </mat-form-field>
+                </div>
+
+                <div class="px-4">
+                    <button mat-raised-button color="primary" (click)="submit()">
+                        <small>submit</small>
+                    </button>
+                </div>
+                  
+                  </div>                  
+              </div>
+          </div>
+      </div>
+      <div class="container my-5 py-5">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-6 ">
+              <div class="px-4">
+              <h6 mat-subtitle>Add new faculty or staff</h6>
+              <small>A faculty could have more details, manage from faculty  details page</small>
+              </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-6">
+              <div style="font-size: 12px">
+                  <div class="px-4">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Full name</mat-label>
+                    <input matInput placeholder="Jane Doe">
+                  </mat-form-field>
+              </div>
+                
+              <div class="px-4">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>email</mat-label>
+                    <input matInput placeholder="you@youremail.com">
+                  </mat-form-field>
+              </div>
+              <div class="px-4">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>contact</mat-label>
+                    <input matInput placeholder="Ex:7827458618">
+                  </mat-form-field>
+              </div>
+
+              <div class="px-4">
+                  <button mat-raised-button color="primary" (click)="submit()">
+                      <small>submit</small>
+                  </button>
+              </div>
+                
+                </div>                  
+            </div>
+        </div>
+    </div>
+          </ng-template>
+        </mat-tab>
+      
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="mat-icon-sm pt-1 mr-2">money</mat-icon>
+            Salary
+          </ng-template>
+          Attendence
+        </mat-tab>
+      
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="mat-icon-sm pt-1 mr-2">work</mat-icon>
+            Attendence
+          </ng-template>
+      
+          Content 3
+        </mat-tab>
+      </mat-tab-group>
+      
+
+     
+</section>

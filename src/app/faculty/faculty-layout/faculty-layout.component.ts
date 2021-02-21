@@ -1,3 +1,4 @@
+import { ExpandInOutAnimation } from './../../services/animation/dropdown-animation';
 import { BreakpointObserver } from '@angular/cdk/layout';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
@@ -6,7 +7,8 @@ import { filter } from 'rxjs/operators';
 @Component({
   selector: 'app-faculty-layout',
   templateUrl: './faculty-layout.component.html',
-  styleUrls: ['./faculty-layout.component.css']
+  styleUrls: ['./faculty-layout.component.css'],
+  animations : [ExpandInOutAnimation]
 })
 export class FacultyLayoutComponent implements OnInit {
 
@@ -17,6 +19,7 @@ export class FacultyLayoutComponent implements OnInit {
   ];
 
   activeLink = this.links[0].path;
+  expandAnimation = "collapsed";
 
   constructor(
     public route: Router,
@@ -39,6 +42,12 @@ export class FacultyLayoutComponent implements OnInit {
   ngOnInit() {
   this.activeLink = this.links[0].path;
 
+  }
+  toggleAnimation(divName: string) {
+    if (divName === 'divA') {
+      this.expandAnimation = this.expandAnimation === 'expanded' ? 'collapsed' : 'expanded';
+      console.log(this.expandAnimation);
+    }
   }
 
 }

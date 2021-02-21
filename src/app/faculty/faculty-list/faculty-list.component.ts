@@ -1,8 +1,13 @@
+import { AddFacultyComponent } from './../add-faculty/add-faculty.component';
+import { MatDialog } from '@angular/material/dialog';
+import { ExpandInOutAnimation } from './../../services/animation/dropdown-animation';
 import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { param } from 'jquery';
 
 export interface FacultyListItem {
   name: string;
@@ -51,7 +56,8 @@ const EXAMPLE_DATA: FacultyListItem[] = [
 @Component({
   selector: 'app-faculty-list',
   templateUrl: './faculty-list.component.html',
-  styleUrls: ['./faculty-list.component.css']
+  styleUrls: ['./faculty-list.component.css'],
+  animations : [ ExpandInOutAnimation]
 })
 export class FacultyListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
@@ -86,6 +92,11 @@ export class FacultyListComponent implements AfterViewInit, OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
+  constructor(
+    private dialog : MatDialog,
+    private router : Router
+  ){}
+
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
     console.log("selection",this.selection.selected)
@@ -109,5 +120,41 @@ export class FacultyListComponent implements AfterViewInit, OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+  expandAnimation ='collapsed' ;
+
+  toggleAnimation(divName: string) {
+    if (divName === 'divA') {
+      this.expandAnimation = this.expandAnimation === 'expanded' ? 'collapsed' : 'expanded';
+      console.log(this.expandAnimation);
+    }
+  }
+
+  openDialog(){
+    const  data = {}
+    const dialogRef = this.dialog.open(AddFacultyComponent,{
+      width : '50rem',
+      maxWidth : '100vw',
+      minHeight : '40rem',
+      maxHeight : '100vh',
+      hasBackdrop : false,
+      data : data
+    })
+  }
+
+  /**
+   * route to add faculty page
+   */
+  newFaculty(){
+    this.router.navigate(['faculty/add-faculty']);
+  }
+
+  /**
+   * route to add faculty profile page
+   * @param faculty id,name,email
+   */
+  openFacultyProfile(profile){
+    this.router.navigate(['faculty/profile']);
   }
 }

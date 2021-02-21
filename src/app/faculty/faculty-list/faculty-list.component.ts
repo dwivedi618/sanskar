@@ -2,8 +2,51 @@ import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTable } from '@angular/material/table';
-import { FacultyListDataSource, FacultyListItem } from './faculty-list-datasource';
+import { MatTable, MatTableDataSource } from '@angular/material/table';
+
+export interface FacultyListItem {
+  name: string;
+  id: number;
+  thumbnail:any;
+  role:any;
+}
+
+// TODO: replace this with real data from your application
+const EXAMPLE_DATA: FacultyListItem[] = [
+  {
+    id: 1,
+    name: 'Thor',
+    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
+    role: 'science teacher'
+  },
+  
+ {
+    id: 2,
+    name: 'Kungfu panda',
+    thumbnail: '../../../../assets/user_profiles/profile1.jpeg',
+    role: 'Not assigned'
+
+  },  {
+    id: 3,
+    name: 'Stark tony ',
+    thumbnail: '../../../../assets/user_profiles/profile2.jpg',
+    role: 'Not assigned'
+
+  },  {
+    id: 4,
+    name: 'Thor',
+    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
+    role: 'Manager'
+
+  },  {
+    id: 5,
+    name: 'Marvel in universe',
+    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
+    role: 'admin'
+
+  },  
+
+];
 
 @Component({
   selector: 'app-faculty-list',
@@ -14,7 +57,7 @@ export class FacultyListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<FacultyListItem>;
-  dataSource: FacultyListDataSource;
+  dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['select','name','action'];
@@ -32,6 +75,7 @@ export class FacultyListComponent implements AfterViewInit, OnInit {
     this.isAllSelected() ?
         this.selection.clear() :
         this.dataSource.data.forEach(row => this.selection.select(row));
+        console.log("selection",this.selection.selected);
   }
 
   /** The label for the checkbox on the passed row */
@@ -43,12 +87,27 @@ export class FacultyListComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit() {
-    this.dataSource = new FacultyListDataSource();
+    this.dataSource = new MatTableDataSource();
+    console.log("selection",this.selection.selected)
+    this.getFacultyList();
+  }
+
+  getFacultyList(){
+    this.dataSource.data = EXAMPLE_DATA;
   }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+  }
+
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    console.log("filterValue",filterValue)
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
   }
 }

@@ -7,8 +7,7 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 
-import { SidenavComponent } from './sidenav/sidenav.component';
-import { SidenavmenusComponent } from './sidenav/sidenavmenus/sidenavmenus.component';
+
 import { NavigationComponent } from './navigation/navigation.component';
 
 // import { AdmissionComponent } from './admission/admission.component';
@@ -39,8 +38,7 @@ import { ClassRegisterComponent } from './class-register/class-register.componen
   declarations: [
     
     AppComponent,
-    SidenavComponent,
-    SidenavmenusComponent,
+   
     NavigationComponent,
     FeestructureComponent,
     // FeesComponent,

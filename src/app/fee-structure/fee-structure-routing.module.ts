@@ -1,3 +1,4 @@
+import { ManageFeeCategoryComponent } from './manage-fee-category/manage-fee-category.component';
 import { FeeStructureListComponent } from './fee-structure-list/fee-structure-list.component';
 import { FeeStructureLayoutComponent } from './fee-structure-layout/fee-structure-layout.component';
 import { NgModule } from '@angular/core';
@@ -10,6 +11,7 @@ const routes: Routes = [
     { path : '' ,component : FeeStructureListComponent },
     { path : ':new' ,component : ManageFeeStructureComponent },
     { path : ':edit' ,component : ManageFeeStructureComponent },
+    { path : 'fee-category/:new',component : ManageFeeCategoryComponent}
   ]
 }
 ];

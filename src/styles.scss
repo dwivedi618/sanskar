@@ -103,6 +103,12 @@ mat-card{
 background: -webkit-linear-gradient(to top, #434343, #000000a2, #434343,);  
 background: linear-gradient(to top, #434343, #000000);
 }
+.bg-dark-300{
+  background-color: #333333;
+}
+.bg-dark-400{
+  background-color: #424242;
+}
 .box_shadow_4{
   box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
 }
@@ -343,4 +349,31 @@ p{
 // }
 .mat-tab-link{
   min-width: 54px;
+}
+
+.glass{
+background: rgb(255, 255, 255);
+// box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
+backdrop-filter: blur( 10.0px );
+-webkit-backdrop-filter: blur( 20.0px );
+border-radius: 10px;
+border: 1px solid rgba( 255, 255, 255, 0.18 );
+.mat-dialog-container{
+  // padding: 0;
+  // margin: 0;
+  overflow: hidden;
+  background-color: transparent;
+  backdrop-filter: blur( 10.0px );
+  .mat-dialog-content{
+    padding: 0;
+    margin: 0;
+  }
+
+}
+}
+
+.dialog-container-pt-0{
+  .mat-dialog-container{
+    padding-top: 0;
+  }
 }

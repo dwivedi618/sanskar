@@ -17,29 +17,30 @@
                   <button mat-raised-button color="primary"  (click)="newFeeStructure()" >
                     <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
                       <small>
-                        Add new fee
+                        Add Fee Structure
                       </small>
                   </button>
               </span>
               <span class="px-1" >
-                <button mat-raised-button color="primary" [matMenuTriggerFor]="session" #t="matMenuTrigger">
+                <button mat-raised-button color="primary"  (click)="manageFeeCategory()" >
+                  <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
+                    <small>
+                      New Fee Category
+                    </small>
+                </button>
+             </span>
+              <span class="px-1" >
+                <button mat-raised-button color="primary" [matMenuTriggerFor]="session" #t="matMenuTrigger" [matMenuTriggerData]="menuDataSession">
                   <small>
-                    2021-2022
+                    <small>{{menuDataSession[0]}}</small>
                   </small>
                   <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
                 </button>
                 <mat-menu #session="matMenu" hasBackdrop="true">
-                  <button mat-menu-item>
+                  <button mat-menu-item *ngFor="let session of menuDataSession">
                     <mat-icon class="mat-icon-sm pt-1 text-success">check_box</mat-icon>
-                    <small>2018-2019</small>
-                  </button>
-                  <button mat-menu-item>
-                    <mat-icon class="mat-icon-sm pt-1 text-mylight">check_box_outline_blank</mat-icon>
-                    <small>2019-2020</small>
-                  </button> <button mat-menu-item>
-                    <mat-icon class="mat-icon-sm pt-1 text-mylight">check_box_outline_blank</mat-icon>
-                    <small>2020-2021</small>
-                  </button>
+                    <small>{{session}}</small>
+                  </button>              
                 </mat-menu>
   
               </span>

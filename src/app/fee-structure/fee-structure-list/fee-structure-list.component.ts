@@ -1,3 +1,4 @@
+import { ManageFeeCategoryComponent } from './../manage-fee-category/manage-fee-category.component';
 
 import { MatDialog } from '@angular/material/dialog';
 import { ExpandInOutAnimation } from './../../services/animation/dropdown-animation';
@@ -92,6 +93,8 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
   }
 
+  menuDataSession = ['2019-2020','2020-2021','2021-2022'];
+  selectedSession = this.menuDataSession[0]
   constructor(
     private dialog : MatDialog,
     private router : Router
@@ -133,12 +136,29 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
 
 
   /**
-   * route to add faculty page
+   * route to add new FeeStructure page where admin can define fee for any courses/classes/standards
    */
   newFeeStructure(){
     this.router.navigate(['fee-structure/' ,'new' ]);
   }
-
+  /**
+   * route to fee category , where user can add fee category
+   */
+  newFeeCategory(){
+    this.router.navigate(['fee-structure/fee-category','new'])
+  }
+  manageFeeCategory(){
+    const data = {}
+    const dialogRef = this.dialog.open(ManageFeeCategoryComponent,{
+      width : '40rem',
+      maxWidth : '100vw',
+      
+      maxHeight : '100vh',
+      hasBackdrop : false,
+      // panelClass : 'dialog-container-pt-0',
+      data : data
+    })
+  }
   /**
    * route to add faculty profile page
    * @param faculty id,name,email

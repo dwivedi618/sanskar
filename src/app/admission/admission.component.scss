@@ -38,15 +38,7 @@
     min-height: 80vh;
     
 }
-.layout {
-  -webkit-box-align: center;
-          align-items: center;
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: center;
-          justify-content: center;
-  /* height: 100%; */
-}
+
 .my_shadow_container{
   /* background: #ffffff; */
   border-radius: 6px;
@@ -75,9 +67,9 @@
   height: 100%;
   width: 100%;
 }
-.mat-stepper-horizontal {
+.mat-vertical-stepper {
    
-    margin: .8rem;
+    // margin: .8rem;
     /* background: transparent; */
   }
   .card_img{
@@ -89,11 +81,11 @@
   .stepper_form{
     position: relative;
   }
-  ::ng-deep .mat-step-header:hover,.mat-step-header:active {
-    border-radius: 50px!important;
-    height: 3rem;
-    background-color: rgba(0,0,0,.04);
-  }
+  // ::ng-deep .mat-step-header:hover,.mat-step-header:active {
+  //   border-radius: 50px!important;
+  //   height: 3rem;
+  //   background-color: rgba(0,0,0,.04);
+  // }
   /* ::ng-deep .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
 ::ng-deep .mat-form-field-label-wrapper { top: -1.2em; }
 
@@ -103,7 +95,7 @@
 } */
   mat-step-header:hover {
     border-radius: 50px!important;
-    height: 3rem;
+    // height: 3rem;
     background-color: rgba(0,0,0,.04);
   }
 

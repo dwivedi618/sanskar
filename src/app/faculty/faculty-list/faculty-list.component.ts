@@ -22,7 +22,8 @@ const EXAMPLE_DATA: FacultyListItem[] = [
     id: 1,
     name: 'Thor',
     thumbnail: '../../../../assets/user_profiles/thor.jpeg',
-    role: 'science teacher'
+    role: 'science teacher',
+    
   },
   
  {

@@ -17,6 +17,7 @@ const routes: Routes = [
       { path: 'admission', component: AdmissionComponent },
       { path: 'faculty', loadChildren : './faculty/faculty.module#FacultyModule' },
       { path: 'student', loadChildren: './student/student.module#StudentModule' },
+      { path : 'fee-structure' , loadChildren : './fee-structure/fee-structure.module#FeeStructureModule'},
       { path: 'feestructure', component: FeestructureComponent },
       { path: 'settings', component: SettingsComponent },
       { path: 'profile', component: ProfileComponent },

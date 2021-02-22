@@ -7,7 +7,6 @@
             aria-label="Search" (keyup)="applyFilter($event)">
           <div class="w-25">
             <button mat-raised-button color="primary">
-              <!-- <mat-icon class="mat-icon-sm">search</mat-icon> -->
               <small>Search</small>
             </button>
           </div>
@@ -151,8 +150,6 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;" (click)="openFacultyProfile(row)"></tr>
   </table>
-
-
 </div>
 
 <section [@detailExpand]="expandAnimation" id="preview" class="bg-white w-100" style="min-height : calc( 100vh - 6rem);position: absolute;top: 0;z-index: 5;">

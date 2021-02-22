@@ -1,0 +1,65 @@
+<section style="min-height: calc(100vh-6rem);">
+    <mat-toolbar class="bg-white">
+        <mat-toolbar-row>
+            <div class="px-1 ml-n2">
+                <button mat-icon-button routerLink='..'>
+                    <mat-icon class="mat-icon-md mat-icon-light pt-0">arrow_back</mat-icon>
+                </button>
+            </div>
+            <div class="spacer"></div>
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-6 ">
+                <div class="px-4">
+                    <h6 mat-subtitle>Add new fee stucture</h6>
+                    <small>Fee structute can be only define for current and future sessions</small>
+                </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-6">
+                <div style="font-size: 12px">
+                    <div class="px-4">
+                        <h6 mat-subtitle>session</h6>
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>session</mat-label>
+                            <mat-select>
+                                <mat-option value="2020-2021" selected>2020-2021</mat-option>
+                                <mat-option value="2020-2021">2021-2022</mat-option>
+                            </mat-select>
+                            <mat-hint>By default seesion is current</mat-hint>                         
+                        </mat-form-field>
+                    </div>
+                    <div class="px-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Full name</mat-label>
+                            <input matInput placeholder="Jane Doe">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="px-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>email</mat-label>
+                            <input matInput placeholder="you@youremail.com">
+                        </mat-form-field>
+                    </div>
+                    <div class="px-4">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>contact</mat-label>
+                            <input matInput placeholder="Ex:7827458618">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="px-4">
+                        <button mat-raised-button color="primary" (click)="submit()">
+                            <small>submit</small>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

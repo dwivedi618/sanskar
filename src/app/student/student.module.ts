@@ -1,6 +1,4 @@
 import { NgModule } from '@angular/core';
-
-import { StudentComponent } from './student.component';
 import { StudentsListComponent } from './students-list/students-list.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
 

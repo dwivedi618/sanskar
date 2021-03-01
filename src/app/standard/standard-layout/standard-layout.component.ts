@@ -2,16 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-fee-structure-layout',
-  templateUrl: './fee-structure-layout.component.html',
-  styleUrls: ['./fee-structure-layout.component.css']
+  selector: 'app-standard-layout',
+  templateUrl: './standard-layout.component.html',
+  styleUrls: ['./standard-layout.component.css']
 })
-export class FeeStructureLayoutComponent implements OnInit {
+export class StandardLayoutComponent implements OnInit {
 
   links = [
-    { path: 'master-fee-structure', name: 'Master Fee Structure' },
-    { path: 'master-fee-category', name: 'Master Fee Category' },
-
+    { path: 'master-standard', name: 'Master Standard' },
+    // { path: 'master-fee-category', name: 'Master Fee Category' },
   ];
 
   activeLink = this.links[0].path;
@@ -26,3 +25,4 @@ export class FeeStructureLayoutComponent implements OnInit {
   }
 
 }
+

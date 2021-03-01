@@ -1,5 +1,3 @@
-import { ManageFeeCategoryComponent } from './../manage-fee-category/manage-fee-category.component';
-
 import { MatDialog } from '@angular/material/dialog';
 import { ExpandInOutAnimation } from './../../services/animation/dropdown-animation';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -8,9 +6,10 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { param } from 'jquery';
+import { ManageMasterStandardComponent } from '../manage-master-standard/manage-master-standard.component';
 
-export interface FacultyListItem {
+
+export interface MasterStandardList {
   name: string;
   id: number;
   thumbnail:any;
@@ -18,7 +17,7 @@ export interface FacultyListItem {
 }
 
 // TODO: replace this with real data from your application
-const EXAMPLE_DATA: FacultyListItem[] = [
+const EXAMPLE_DATA: MasterStandardList[] = [
   {
     id: 1,
     name: 'Thor',
@@ -55,20 +54,20 @@ const EXAMPLE_DATA: FacultyListItem[] = [
 ];
 
 @Component({
-  selector: 'app-fee-structure-list',
-  templateUrl: './fee-structure-list.component.html',
-  styleUrls: ['./fee-structure-list.component.css']
+  selector: 'app-master-standard',
+  templateUrl: './master-standard.component.html',
+  styleUrls: ['./master-standard.component.css']
 })
 
-export class FeeStructureListComponent implements AfterViewInit, OnInit {
+export class MasterStandardComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<FacultyListItem>;
+  @ViewChild(MatTable) table: MatTable<MasterStandardList>;
   dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['select','name','action'];
-  selection = new SelectionModel<FacultyListItem>(true, []);
+  selection = new SelectionModel<MasterStandardList>(true, []);
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -86,7 +85,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: FacultyListItem): string {
+  checkboxLabel(row?: MasterStandardList): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
@@ -103,10 +102,10 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
     console.log("selection",this.selection.selected)
-    this.getFacultyList();
+    this.getMasterStandardList();
   }
 
-  getFacultyList(){
+  getMasterStandardList(){
     this.dataSource.data = EXAMPLE_DATA;
   }
 
@@ -135,36 +134,17 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   }
 
 
-  /**
-   * route to add new FeeStructure page where admin can define fee for any courses/classes/standards
-   */
-  newFeeStructure(){
-    this.router.navigate(['fee-structure/' ,'new' ]);
-  }
-  /**
-   * route to fee category , where user can add fee category
-   */
-  newFeeCategory(){
-    this.router.navigate(['fee-structure/master-fee-category','new'])
-  }
-  manageFeeCategory(){
+  manageMasterStandard(){
     const data = {}
-    const dialogRef = this.dialog.open(ManageFeeCategoryComponent,{
+    const dialogRef = this.dialog.open(ManageMasterStandardComponent,{
       width : '40rem',
-      maxWidth : '100vw',
-      
+      maxWidth : '100vw',     
       maxHeight : '100vh',
       hasBackdrop : false,
       // panelClass : 'dialog-container-pt-0',
       data : data
     })
   }
-  /**
-   * route to add faculty profile page
-   * @param faculty id,name,email
-   */
-  openFacultyProfile(profile){
-    this.router.navigate(['faculty/profile']);
-  }
+
 }
 

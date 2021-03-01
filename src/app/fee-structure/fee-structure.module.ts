@@ -7,10 +7,11 @@ import { FeeStructureListComponent } from './fee-structure-list/fee-structure-li
 import { FeeStructureLayoutComponent } from './fee-structure-layout/fee-structure-layout.component';
 import { ManageFeeStructureComponent } from './manage-fee-structure/manage-fee-structure.component';
 import { ManageFeeCategoryComponent } from './manage-fee-category/manage-fee-category.component';
+import { FeeCategoryComponent } from './fee-category/fee-category.component';
 
 
 @NgModule({
-  declarations: [FeeStructureListComponent, FeeStructureLayoutComponent, ManageFeeStructureComponent, ManageFeeCategoryComponent],
+  declarations: [FeeStructureListComponent, FeeStructureLayoutComponent, ManageFeeStructureComponent, ManageFeeCategoryComponent, FeeCategoryComponent],
   imports: [
     CommonModule,
     MaterialModule,

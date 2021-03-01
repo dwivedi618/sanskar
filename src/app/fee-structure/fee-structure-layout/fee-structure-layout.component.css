@@ -2,3 +2,16 @@
     width: calc(100vw - 15rem - 4rem);
     height: 100%;
 }
+a{
+    text-decoration: none;
+}
+::ng-deep mat-toolbar mat-toolbar-row  {
+
+    max-height: 48px;
+    padding: 0;
+}
+::ng-deep mat-toolbar.mat-toolbar-multiple-rows {
+    max-height: 48px;
+    min-height: 48px;
+    padding: 0;
+}

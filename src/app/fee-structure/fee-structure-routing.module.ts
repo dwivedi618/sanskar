@@ -4,14 +4,17 @@ import { FeeStructureLayoutComponent } from './fee-structure-layout/fee-structur
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { ManageFeeStructureComponent } from './manage-fee-structure/manage-fee-structure.component';
+import { FeeCategoryComponent } from './fee-category/fee-category.component';
 
 const routes: Routes = [
   { path : '' ,component : FeeStructureLayoutComponent,
   children : [
     { path : '' ,component : FeeStructureListComponent },
+    { path : 'master-fee-structure' ,component : FeeStructureListComponent },
+    { path : 'master-fee-category' ,component : FeeCategoryComponent },
     { path : ':new' ,component : ManageFeeStructureComponent },
     { path : ':edit' ,component : ManageFeeStructureComponent },
-    { path : 'fee-category/:new',component : ManageFeeCategoryComponent}
+    { path : 'master-fee-category/:new',component : ManageFeeCategoryComponent}
   ]
 }
 ];

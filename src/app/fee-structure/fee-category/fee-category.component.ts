@@ -1,5 +1,4 @@
 import { ManageFeeCategoryComponent } from './../manage-fee-category/manage-fee-category.component';
-
 import { MatDialog } from '@angular/material/dialog';
 import { ExpandInOutAnimation } from './../../services/animation/dropdown-animation';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -55,12 +54,12 @@ const EXAMPLE_DATA: FacultyListItem[] = [
 ];
 
 @Component({
-  selector: 'app-fee-structure-list',
-  templateUrl: './fee-structure-list.component.html',
-  styleUrls: ['./fee-structure-list.component.css']
+  selector: 'app-fee-category',
+  templateUrl: './fee-category.component.html',
+  styleUrls: ['./fee-category.component.css']
 })
 
-export class FeeStructureListComponent implements AfterViewInit, OnInit {
+export class FeeCategoryComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<FacultyListItem>;
@@ -145,7 +144,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
    * route to fee category , where user can add fee category
    */
   newFeeCategory(){
-    this.router.navigate(['fee-structure/master-fee-category','new'])
+    this.router.navigate(['fee-structure/fee-category','new'])
   }
   manageFeeCategory(){
     const data = {}

@@ -12,7 +12,6 @@ import { NavigationComponent } from './navigation/navigation.component';
 
 // import { AdmissionComponent } from './admission/admission.component';
   
-import { FeestructureComponent } from './feestructure/feestructure.component';
 
 import { ProfileComponent } from './profile/profile.component';
 import { EditComponent } from './profile/edit/edit.component';
@@ -39,7 +38,6 @@ import { LayoutModule } from './layouts/layout/layout.module';
     AppComponent,
    
     NavigationComponent,
-    FeestructureComponent,
     // FeesComponent,
     ProfileComponent,
     EditComponent,
@@ -50,6 +48,8 @@ import { LayoutModule } from './layouts/layout/layout.module';
     LayoutComponent,
     
     VerticalComponent,
+    
+   
     
   ],
   imports: [

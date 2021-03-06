@@ -11,28 +11,24 @@ export class CommonService {
     private http: HttpClient
   ) { }
 
-  getData(){
-    return this.http.get<any>(`${environment.apiUrl}/student/get-students`);
+
+
+  masterstandard(standard) {
+    return this.http.post<any>(`${environment.apiUrl}/v1/master/standard`, standard)
   }
-
-  getDataById(){
-    return this.http.get<any>(`${environment.apiUrl}/student/get-student-details`);
+  masterFee(fee) {
+    return this.http.post<any>(`${environment.apiUrl}/v1/master/fee`, fee)
   }
-
-  postData(route,data){
-    return this.http.post<any>(`${environment.apiUrl}/${route}`,data);
-
+  masterFeeStructure(feeStructure) {
+    return this.http.post<any>(`${environment.apiUrl}/v1/master/fee-structure`, feeStructure)
   }
+  studentRecord(formData) {
+    return this.http.post<any>(`${environment.apiUrl}/v1/student`, formData)
+  } 
+  parentRecord(studentId , parentRecord) {
+    return this.http.post<any>(`${environment.apiUrl}v1/student/${studentId}`, parentRecord)
+  } 
 
-  putData(){
 
-  }
-
-  patchData(){
-
-  }
-
-  deleteData(){
-
-  }
+  
 }

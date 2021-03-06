@@ -52,6 +52,7 @@ export class AdmissionComponent implements OnInit {
   local_data:any;
   action: any;
   parents: any;
+  studentId: any;
 
   constructor(
     public dialog: MatDialog,
@@ -178,7 +179,7 @@ if(this.imagePreview){
         this.studentForm.value.requestType = "student";
         this.studentForm.value.image = this.imagePreview;
         console.log("Before submitstudent",this.studentForm.value);
-        this.commonService.postData(this.route,this.studentForm.value)
+        this.commonService.studentRecord(this.studentForm.value)
           .subscribe((result) => {
             this.student = result.result;
             this.uiService.openSnackBar(result.firstName,null);
@@ -190,11 +191,11 @@ if(this.imagePreview){
   }
   onParentSubmit(){
     this.parentForm.value.requestType = "parent";
-    this.parentForm.value.studentID = this.student.id;
+    this.studentId = this.student.id;
     console.log("studentId from Student",this.student);
 
     console.log("Before submitparent",this.parentForm.value);
-    this.commonService.postData(this.route,this.parentForm.value)
+    this.commonService.parentRecord(this.studentId,this.parentForm.value)
           .subscribe((result) => {
             
             console.log("result",result);
@@ -209,7 +210,7 @@ if(this.imagePreview){
 
     console.log("before permanent Address ",this.addressForm.get(['permanentAddress']).value);
     console.log("before local Address ",this.addressForm.get(['localAddress']).value);
-    this.commonService.postData(this.route,this.addressForm.value)
+    this.commonService.studentRecord(this.addressForm.value)
           .subscribe((result) => {
             
             console.log("result",result);

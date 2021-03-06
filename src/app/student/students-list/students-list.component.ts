@@ -102,7 +102,8 @@ export class StudentsListComponent implements OnInit {
   getStudents() {
     this.dataSource.data = EXAMPLE_STUDENT;
     this.isLoading = true;
-    this.commonService.getData()
+    const formData = []
+    this.commonService.masterFeeStructure(formData)
       .subscribe((result) => {
         const studentList = result.students;
         this.dataSource.data = studentList;

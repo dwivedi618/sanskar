@@ -1,3 +1,4 @@
+
 import { MatDialog } from '@angular/material/dialog';
 import { ExpandInOutAnimation } from './../../services/animation/dropdown-animation';
 import { SelectionModel } from '@angular/cdk/collections';
@@ -7,6 +8,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ManageMasterStandardComponent } from '../manage-master-standard/manage-master-standard.component';
+import { CommonService } from 'src/app/services/common.service';
 
 
 export interface MasterStandardList {
@@ -96,7 +98,8 @@ export class MasterStandardComponent implements AfterViewInit, OnInit {
   selectedSession = this.menuDataSession[0]
   constructor(
     private dialog : MatDialog,
-    private router : Router
+    private router : Router,
+    public commonService : CommonService
   ){}
 
   ngOnInit() {
@@ -107,6 +110,15 @@ export class MasterStandardComponent implements AfterViewInit, OnInit {
 
   getMasterStandardList(){
     this.dataSource.data = EXAMPLE_DATA;
+    
+      this.commonService.getMasterStandard().subscribe((result)=>{
+        console.log("master student Form result",result);
+        const standardList = result['data'] || null;
+        this.dataSource.data = standardList
+      },(error)=>{
+        console.log("master student Form error",error);
+      })
+    
   }
 
   ngAfterViewInit() {

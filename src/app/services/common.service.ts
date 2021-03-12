@@ -16,6 +16,9 @@ export class CommonService {
   masterstandard(standard) {
     return this.http.post<any>(`${environment.apiUrl}/v1/master/standard`, standard)
   }
+  getMasterStandard(standard) {
+    return this.http.get<any>(`${environment.apiUrl}/v1/master/standard`)
+  }
   masterFee(fee) {
     return this.http.post<any>(`${environment.apiUrl}/v1/master/fee`, fee)
   }

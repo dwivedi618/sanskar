@@ -28,6 +28,9 @@ import { VerticalComponent } from './layouts/vertical/vertical.component';
 import { SharedModule } from './layouts/shared/shared.module';
 import { LayoutModule } from './layouts/layout/layout.module';
 
+import { AlertService } from './services/alert.service';
+import { AlertComponent } from './alert/alert.component';
+
 
 
 
@@ -48,6 +51,7 @@ import { LayoutModule } from './layouts/layout/layout.module';
     LayoutComponent,
     
     VerticalComponent,
+ 
     
    
     
@@ -74,7 +78,7 @@ import { LayoutModule } from './layouts/layout/layout.module';
     
   ],
   // entryComponents: [ FeesComponent],
-  providers: [AuthenticationService,HttpClient],
+  providers: [AuthenticationService,HttpClient,AlertService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -7,20 +7,33 @@
 </div>
 <div mat-dialog-content>
     <div class="row justify-content-center py-5">
-        <div class="col-md-6">
-            <div class="">
-                <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Fee name</mat-label>
-                    <input matInput placeholder="Ex:Examination Fee">
-                  </mat-form-field>
-            </div>
-            <div class="">
-                <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Description</mat-label>
-                    <textarea matInput placeholder="Ex:description"></textarea>
-                    <mat-hint>You can skip fee description</mat-hint>
-                  </mat-form-field>
-            </div>
+        <div class="col-md-8">
+            <form [formGroup]="masterFeeCategoryForm" class="w-100">
+                <div class="row ">
+                    <div class="col-3 text-left justify-content-center">
+                        <small>Fee Category</small>
+                    </div>
+                    <div class="col-9 text-left">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Fee category</mat-label>
+                            <input matInput placeholder="Ex:Examination Fee" formControlName="name">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 text-left">
+                        <small>Description</small>
+                    </div>
+                    <div class="col-9 text-left">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Description</mat-label>
+                            <textarea matInput placeholder="Ex:description" formControlName="description"></textarea>
+                            <mat-hint>You can skip fee description</mat-hint>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+            
         </div>
     </div>
 

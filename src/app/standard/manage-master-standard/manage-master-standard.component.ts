@@ -1,3 +1,4 @@
+import { AlertService } from './../../services/alert.service';
 
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,8 @@ export class ManageMasterStandardComponent implements OnInit {
   masterStandardForm : FormGroup
   constructor(
     private fb : FormBuilder,
-    private commonService : CommonService
+    private commonService : CommonService,
+    private alertService : AlertService
   ) { 
     this.masterStandardForm = this.fb.group({
       name : [,Validators.required],
@@ -33,31 +35,12 @@ export class ManageMasterStandardComponent implements OnInit {
   
   submit(){
     this.commonService.masterstandard(this.masterStandardForm.value).subscribe((result)=>{
-      console.log("master student Form result",result);
+      console.log("master result",result);
+      this.alertService.alertComponent(result.message || 'Submitted');
     },(error)=>{
       console.log("master student Form error",error);
     })
   }
 
-  dateInputChangeStart(event){
-    console.log('Start',event.value);
-    if(this.range.value.start){
-      // this.range.patchValue({'end': new Date(24/10/2021)})
-    }
 
-  }
-  dateInputChangeEnd(event){
-    console.log('End',event.value);
-    if(this.range.value.start){
-      // this.range.patchValue({'end': new Date(24/10/2021)})
-    }
-
-  }
-  onClose(){
-    console.log("date Picker close");
-    const today = new Date();
-    if(!this.range.value.end){
-      this.range.patchValue({'end': today})
-    }
-  }
 }

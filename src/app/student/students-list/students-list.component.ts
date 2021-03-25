@@ -123,18 +123,13 @@ export class StudentsListComponent implements OnInit {
     })
 
   }
-  openStudentProfile(obj) {
-    obj.action = 'profile';
-    const dialogRef = this.dialog.open(StudentProfileComponent, {
-      width: '100vw',
-      maxWidth: '100%',
-      height: '100vh',
-      maxHeight: '100vh',
-      data: { obj }
-    })
-
+  /**
+   * route to add student profile page
+   * @param profile id,name,email
+   */
+  openStudentProfile(profile){
+    this.router.navigate(['student/profile']);
   }
-
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     console.log("filterValue", filterValue)

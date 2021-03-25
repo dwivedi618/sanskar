@@ -1,291 +1,140 @@
-<div mat-dialog-content class="bg-light" style="max-height: 100vh;">
-    <div mat-dialog-title class="d-flex justify-content-around">
-        <button mat-button (click)="closeProfile()">
-            <span class="material-icons">navigate_before</span>BACK
-        </button>
-        <div class="spacer"></div>
-        <button mat-icon-button (click)="closeProfile()" matTooltip="close" cdkFocusInitial>
-            <mat-icon style="font-size: 1rem;"> clear</mat-icon>
-        </button>
+<section style="min-height: calc(100vh-6rem);">
+    <mat-toolbar class="bg-white">
+        <mat-toolbar-row>
+          <div class="px-1 ml-n2" >
+            <button mat-icon-button routerLink='..'>
+              <mat-icon class="mat-icon-md mat-icon-light pt-0">arrow_back</mat-icon>
+            </button>
+          </div>
+          <div class="spacer"></div>
+        </mat-toolbar-row>
+      </mat-toolbar>
+      <div class="row justify-content-center py-5">
+          <div class="col-md-4">
+              <figure>
+                  <img class="thumbnail-lg" src="../../../assets/user_profiles/thor.jpeg" alt="">
+              </figure>
+          </div>
+          <div class="col-md-4 layout text-left">
+              <div class="d-flex flex-column">
+                  <h6>Shivam kumar dwivedi</h6>
+                  <small class="text-mylight">shivamdwivedi618@gmail.com</small>
+                  <small class="text-mylight">7827458618</small>
+              </div>
+          </div>
+      </div>
+      <mat-tab-group dynamicHeight animationDuration="0ms" mat-align-tabs="center">
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="mat-icon-sm pt-1 mr-2">menu_book</mat-icon>
+            Overview
+          </ng-template>
+          <ng-template matTabContent>
+               <div class="container my-5 py-5">
+          <div class="row justify-content-center mb-5">
+              <div class="col-md-6 ">
+                <div class="px-4">
+                <h6 mat-subtitle>Add new faculty or staff</h6>
+                <small>A faculty could have more details, manage from faculty  details page</small>
+                </div>
+              </div>
+          </div>
+          <div class="row justify-content-center mb-5">
+              <div class="col-md-6">
+                <div style="font-size: 12px">
+                    <div class="px-4">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>Full name</mat-label>
+                      <input matInput placeholder="Jane Doe">
+                    </mat-form-field>
+                </div>
+                  
+                <div class="px-4">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>email</mat-label>
+                      <input matInput placeholder="you@youremail.com">
+                    </mat-form-field>
+                </div>
+                <div class="px-4">
+                    <mat-form-field appearance="outline" class="w-100">
+                      <mat-label>contact</mat-label>
+                      <input matInput placeholder="Ex:7827458618">
+                    </mat-form-field>
+                </div>
+
+                <div class="px-4">
+                    <button mat-raised-button color="primary" (click)="submit()">
+                        <small>submit</small>
+                    </button>
+                </div>
+                  
+                  </div>                  
+              </div>
+          </div>
+      </div>
+      <div class="container my-5 py-5">
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-6 ">
+              <div class="px-4">
+              <h6 mat-subtitle>Add new faculty or staff</h6>
+              <small>A faculty could have more details, manage from faculty  details page</small>
+              </div>
+            </div>
+        </div>
+        <div class="row justify-content-center mb-5">
+            <div class="col-md-6">
+              <div style="font-size: 12px">
+                  <div class="px-4">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>Full name</mat-label>
+                    <input matInput placeholder="Jane Doe">
+                  </mat-form-field>
+              </div>
+                
+              <div class="px-4">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>email</mat-label>
+                    <input matInput placeholder="you@youremail.com">
+                  </mat-form-field>
+              </div>
+              <div class="px-4">
+                  <mat-form-field appearance="outline" class="w-100">
+                    <mat-label>contact</mat-label>
+                    <input matInput placeholder="Ex:7827458618">
+                  </mat-form-field>
+              </div>
+
+              <div class="px-4">
+                  <button mat-raised-button color="primary" (click)="submit()">
+                      <small>submit</small>
+                  </button>
+              </div>
+                
+                </div>                  
+            </div>
+        </div>
     </div>
-    <mat-card class="mx-auto card  profile my_shadow1 mb-0">
-        <div class="row bg-light">
-            <div class="col-md-4">
-                <div class="profile__picture"><img src="../../../assets/cover.jpg" style="border-radius: 4px;"></div>
-            </div>
-            <div class="col-md-8">
-                <div class="col-sm-12">
-                    <div class="row profile__header">
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <div class="profile__account">
-                                <h5 class="profile__username">{{(local_data.firstName + local_data.middleName + local_data.lastName) | titlecase}}</h5>
-                            </div>
-                        </div>
-                        <div class="col-sm-12 col-md-6 col-lg-6">
-                            <div class="profile__edit">
-                                    <button mat-button color="primary" (click)="onUpdateStudentProfile({})">update
-                                       
-                                    </button> 
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm-12">
-                    <div class="profile__stats">
-                        <!-- <div class="profile__stat">
-                            <div class="profile__icon profile__icon--gold"><i class="fas fa-wallet"></i></div>
-                            <div class="profile__value">{{local_data.dateOfBirth? local_data.dateOfBirth : '' | date}}
-                                <div class="profile__key">Age</div>
-                            </div>
-                        </div> -->
-                        <div class="profile__stat">
-                            <div class="profile__icon profile__icon--blue"><i class='fas fa-user-graduate'></i></div>
-                            <div class="profile__value">{{local_data.standard | titlecase}}
-                                <div class="profile__key">Standard</div>
-                            </div>
-                        </div>
-                        <div class="profile__stat">
-                            <div class="profile__icon profile__icon--pink"><i class="fas fa-eart"></i></div>
-                            <div class="profile__value">{{local_data.createdAt | date}}
-                                <div class="profile__key">Registration Date</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <mat-tab-group mat-align-tabs="center" animationDuration="0ms">
-                <mat-tab label="About">
-                    <ng-template matTabContent class="d-flex justify-content-center">
-                        <div>
-                            <div class="profile_data_container" id="about">
-                                <mat-list>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <mat-list-item matRipple>
-                                                <mat-icon mat-list-icon>perm_identity</mat-icon>
-                                                <p mat-line>{{(local_data.firstName + local_data.middleName + local_data.lastName) | titlecase}}</p>
-                                            </mat-list-item>
+          </ng-template>
+        </mat-tab>
+      
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="mat-icon-sm pt-1 mr-2">money</mat-icon>
+            Salary
+          </ng-template>
+          Attendence
+        </mat-tab>
+      
+        <mat-tab>
+          <ng-template mat-tab-label>
+            <mat-icon class="mat-icon-sm pt-1 mr-2">work</mat-icon>
+            Attendence
+          </ng-template>
+      
+          Content 3
+        </mat-tab>
+      </mat-tab-group>
+      
 
-                                            <mat-list-item matRipple>
-                                                <mat-icon mat-list-icon>location_on</mat-icon>
-                                                <p mat-line>H28 , Bankatiya Dubey,<br> 274704 , Deoria</p>
-                                            </mat-list-item>
-                                            <mat-list-item matRipple>
-                                                <mat-icon mat-list-icon>phone</mat-icon>
-                                                <p mat-line>7827458618</p>
-                                            </mat-list-item>
-                                            <mat-list-item matRipple>
-                                                <mat-icon mat-list-icon>card_giftcard</mat-icon>
-                                                <p mat-line>{{local_data.dateOfBirth | date}}</p>
-                                            </mat-list-item>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <mat-list-item matRipple>
-                                                <mat-icon mat-list-icon>bubble_chart</mat-icon>
-                                                <p mat-line> Gender : {{local_data.gender}}</p>
-                                            </mat-list-item>
-                                            <mat-list-item matRipple>
-                                                <mat-icon mat-list-icon>grain</mat-icon>
-                                                <p mat-line> Blood Group : {{ local_data.bloodGroup? local_data.bloodGroup: 'N/A'}}</p>
-                                            </mat-list-item>
-                                            <mat-list-item matRipple>
-                                                <mat-icon mat-list-icon>healing</mat-icon>
-                                                <p mat-line> Health Status : {{local_data.healthStatus? local_data.healthStatus : 'N/A'}}</p>
-                                            </mat-list-item>
-                                            <mat-list-item matRipple>
-                                                <mat-icon mat-list-icon>business</mat-icon>
-                                                <p mat-line> Nationality : {{local_data.nationality? local_data.nationality : 'N/A'}} </p>
-                                            </mat-list-item>
-                                        </div>
-                                    </div>
-                                </mat-list>
-                                <mat-divider></mat-divider>
-                                <mat-list>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <mat-label class="text-primary px-4 mb-2">Father's Details</mat-label>
-                                            <mat-list-item matRipple>
-                                                <mat-icon mat-list-icon>people</mat-icon>
-                                                <p mat-line>{{local_data.parent.fatherName? local_data.fatherName : 'N/A'}}</p>
-                                            </mat-list-item>
-                                            <!-- <mat-label>Father's Qualification</mat-label> -->
-                                            <mat-list-item matRipple>
-                                                <mat-icon mat-list-icon>school</mat-icon>
-                                                <p mat-line>Qualification : {{local_data.parent.fatherEducation? local_data.fatherEducation: 'N/A' | titlecase}}</p>
-                                            </mat-list-item>
-                                            <mat-list-item matRipple>
-                                                <mat-icon mat-list-icon>work</mat-icon>
-                                                <p mat-line>Occupation : {{local_data.parent.fatherOccupation? local_data.parent.fatherOccupation : 'N/A' | titlecase}}</p>
-                                            </mat-list-item>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <mat-label class="text-primary px-4 mb-2">Mother's Details</mat-label>
-                                            <mat-list-item matRipple>
-                                                <mat-icon mat-list-icon>people</mat-icon>
-                                                <p mat-line>{{local_data.parent.motherName? local_data.parent.motherName:'N/A' | titlecase}}</p>
-                                            </mat-list-item>
-                                            <!-- <mat-label>Father's Qualification</mat-label> -->
-                                            <mat-list-item matRipple>
-                                                <mat-icon mat-list-icon>school</mat-icon>
-                                                <p mat-line>Qualification : {{local_data.parent.motherEducation? local_data.parent.motherEducation : 'N/A' | titlecase}}</p>
-                                            </mat-list-item>
-                                            <mat-list-item matRipple>
-                                                <mat-icon mat-list-icon>work</mat-icon>
-                                                <p mat-line>Occupation : {{local_data.parent.motherOccupation? local_data.parent.motherOccupation:'N/A'}}</p>
-                                            </mat-list-item>
-                                        </div>
-                                    </div>
-                                </mat-list>
-                                <mat-divider></mat-divider>
-                                <mat-list>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <mat-label class="text-primary px-4 mb-2">Local Guardian</mat-label>
-                                            <mat-list-item matRipple>
-                                                <mat-icon mat-list-icon>people</mat-icon>
-                                                <!-- <p mat-line>{{local_data.parent.guardianName | titlecase}}</p> -->
-                                                <p mat-line >{{local_data.parent.guardianName? local_data.parent.guardianName: 'N/A'| titlecase}}</p>
-
-
-                                            </mat-list-item>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <mat-label class="text-primary px-4 mb-2">Guardian Contact
-                                                </mat-label>
-                                            <mat-list-item matRipple>
-                                                <mat-icon mat-list-icon>phone</mat-icon>
-                                                <p mat-line>{{local_data.parent.guardianContact? local_data.parent.guardianContact : 'N/A'}}</p>
-                                            </mat-list-item>
-                                        </div>
-                                    </div>
-                                </mat-list>
-                                <mat-divider></mat-divider>
-                                <mat-list>
-                                    <mat-label class="text-primary px-4 mb-2">Contact</mat-label>
-                                    <mat-list-item matRipple>
-                                        <mat-icon mat-list-icon>phone</mat-icon>
-                                        <p mat-line>9415828709</p>
-                                    </mat-list-item>
-                                </mat-list>
-                                <mat-divider></mat-divider>
-                                <mat-list>
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <address>
-                                                <mat-label class="text-primary px-4 mb-2">Permanent Address</mat-label>
-                                                <mat-list-item matRipple>
-                                                    <mat-icon mat-list-icon>location_on</mat-icon>
-                                                    <p mat-line>Village : Bankatiya Dubey <br>Post: Inguri Baazar,</p>
-                                                </mat-list-item>
-
-                                                <mat-list-item matRipple>
-                                                    <mat-icon mat-list-icon></mat-icon>
-                                                    <p mat-line>District : Deoria <br>State: Uttar Pradesh</p>
-                                                </mat-list-item>
-                                            </address>
-                                        </div>
-                                        <div class="col-md-6">
-                                            <address>
-                                                <mat-label class="text-primary px-4 mb-2">Local Address</mat-label>
-                                                <mat-list-item matRipple>
-                                                    <mat-icon mat-list-icon>location_on</mat-icon>
-                                                    <p mat-line>Village : Bankatiya Dubey <br>Post: Inguri Baazar,</p>
-                                                </mat-list-item>
-                                                <mat-list-item matRipple>
-                                                    <mat-icon mat-list-icon></mat-icon>
-                                                    <p mat-line>District : Deoria <br>State: Uttar Pradesh</p>
-                                                </mat-list-item>
-                                            </address>
-                                        </div>
-                                    </div>
-                                </mat-list>
-
-
-
-                            </div>
-                        </div>
-                    </ng-template>
-                </mat-tab>
-                <mat-tab label="Academic">
-                    <ng-template matTabContent>
-                        <div class="container">
-
-                        </div>
-                    </ng-template>
-                </mat-tab>
-                <mat-tab label="Transactions">
-                    <ng-template matTabContent>
-                        <div class="d-flex ion-justify-content-around px-4">
-                        <div class="search_container py-2 m-0">
-                            <div class="box_shadow_0 rounded-lg" >
-                                <input type="search"  style="height: 2.5rem;" placeholder="search...">
-                            </div>
-                        </div>
-                        <div class="spacer"></div>
-                        <div>
-                            <button mat-icon-button matTooltip="New Payment" (click)="openFeeSubmition({})"> <mat-icon>add_circle</mat-icon></button>
-                        </div>
-                        </div>
-                        <div class="container">
-
-                            <mat-card class="box_shadow_3 my-4">
-                                <mat-card-header class="d-flex ion-justify-content-around">
-                                    <div mat-line>
-                                        <mat-card-title>Order No #1 </mat-card-title>
-                                        <mat-card-subtitle>10:38 PM 2 JUL 2020</mat-card-subtitle>
-                                    </div>
-                                    <div class="spacer"></div>
-                                    <div>
-                                        <b class="float-right">555</b>
-                                    </div>
-                                </mat-card-header>
-                                <mat-card-content>
-                                    <div class="d-flex justify-content-around">
-                                        <div mat-line>
-                                           <p mat-line> Payment for Examination Fee</p> 
-                                          
-                                        </div>                  
-                                        <div class="spacer"></div>
-                                        <div>
-                                        <div mat-line>555</div>
-                                        <small mat-line class="text-success">success</small>
-                                        </div>
-                                    </div>
-                                </mat-card-content>
-                            </mat-card>
-                            <mat-card class="box_shadow_3 my-4">
-                                <mat-card-header class="d-flex ion-justify-content-around">
-                                    <div mat-line>
-                                        <mat-card-title>Order No #2 </mat-card-title>
-                                        <mat-card-subtitle>11:38 PM 20 JUL 2020</mat-card-subtitle>
-                                    </div>
-                                    <div class="spacer"></div>
-                                    <div>
-                                        <b class="float-right">1255</b>
-                                    </div>
-                                </mat-card-header>
-                                <mat-card-content>
-                                    <div class="d-flex justify-content-around">
-                                        <div mat-line>
-                                           <p mat-line> Payment for Examination Fee</p> 
-                                          
-                                        </div>                  
-                                        <div class="spacer"></div>
-                                        <div>
-                                        <div mat-line>1255</div>
-                                        <small mat-line class="text-success">success</small>
-                                        </div>
-                                    </div>
-                                </mat-card-content>
-                            </mat-card>
-                        </div>
-                    </ng-template>
-                </mat-tab>
-
-            </mat-tab-group>
-        </div>
-    </mat-card>
-
-</div>
+     
+</section>

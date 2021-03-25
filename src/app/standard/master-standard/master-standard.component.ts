@@ -18,42 +18,6 @@ export interface MasterStandardList {
   role:any;
 }
 
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: MasterStandardList[] = [
-  {
-    id: 1,
-    name: 'Thor',
-    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
-    role: 'science teacher'
-  },
-  
- {
-    id: 2,
-    name: 'Kungfu panda',
-    thumbnail: '../../../../assets/user_profiles/profile1.jpeg',
-    role: 'Not assigned'
-
-  },  {
-    id: 3,
-    name: 'Stark tony ',
-    thumbnail: '../../../../assets/user_profiles/profile2.jpg',
-    role: 'Not assigned'
-
-  },  {
-    id: 4,
-    name: 'Thor',
-    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
-    role: 'Manager'
-
-  },  {
-    id: 5,
-    name: 'Marvel in universe',
-    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
-    role: 'admin'
-
-  },  
-
-];
 
 @Component({
   selector: 'app-master-standard',
@@ -109,8 +73,6 @@ export class MasterStandardComponent implements AfterViewInit, OnInit {
   }
 
   getMasterStandardList(){
-    this.dataSource.data = EXAMPLE_DATA;
-    
       this.commonService.getMasterStandard().subscribe((result)=>{
         console.log("master student Form result",result);
         const standardList = result['data'] || null;

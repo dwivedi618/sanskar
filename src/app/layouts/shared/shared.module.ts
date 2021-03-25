@@ -5,9 +5,10 @@ import { FormsModule } from '@angular/forms';
 import { TopbarComponent } from './topbar/topbar.component';
 import { MaterialModule } from 'src/app/material.module';
 import { LeftSidebarMenuComponent } from './left-sidebar-menu/left-sidebar-menu.component';
+import { AlertComponent } from 'src/app/alert/alert.component';
 
 @NgModule({
-  declarations: [TopbarComponent, LeftSidebarMenuComponent],
+  declarations: [TopbarComponent, LeftSidebarMenuComponent,AlertComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -19,6 +20,7 @@ import { LeftSidebarMenuComponent } from './left-sidebar-menu/left-sidebar-menu.
     FormsModule,
     TopbarComponent,
     LeftSidebarMenuComponent,
+    AlertComponent,
     RouterModule
   ]
 })

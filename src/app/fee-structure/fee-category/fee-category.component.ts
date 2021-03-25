@@ -1,3 +1,4 @@
+
 import { ManageFeeCategoryComponent } from './../manage-fee-category/manage-fee-category.component';
 import { MatDialog } from '@angular/material/dialog';
 import { ExpandInOutAnimation } from './../../services/animation/dropdown-animation';
@@ -8,6 +9,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { param } from 'jquery';
+import { CommonService } from 'src/app/services/common.service';
 
 export interface FacultyListItem {
   name: string;
@@ -96,17 +98,23 @@ export class FeeCategoryComponent implements AfterViewInit, OnInit {
   selectedSession = this.menuDataSession[0]
   constructor(
     private dialog : MatDialog,
-    private router : Router
+    private router : Router,
+    private commonService : CommonService
   ){}
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
     console.log("selection",this.selection.selected)
-    this.getFacultyList();
+    this.getFeeStructureList();
   }
 
-  getFacultyList(){
-    this.dataSource.data = EXAMPLE_DATA;
+  getFeeStructureList(){
+      this.commonService.getMasterFee().subscribe((result)=>{
+        console.log("getMasterFee result",result);
+        this.dataSource.data = result['data'] || null;
+      },(error)=>{
+        console.log("getMasterFee error",error);
+      }) 
   }
 
   ngAfterViewInit() {

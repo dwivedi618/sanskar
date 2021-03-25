@@ -1,3 +1,4 @@
+
 import { ManageFeeCategoryComponent } from './../manage-fee-category/manage-fee-category.component';
 
 import { MatDialog } from '@angular/material/dialog';
@@ -9,6 +10,7 @@ import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { param } from 'jquery';
+import { CommonService } from 'src/app/services/common.service';
 
 export interface FacultyListItem {
   name: string;
@@ -97,17 +99,27 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   selectedSession = this.menuDataSession[0]
   constructor(
     private dialog : MatDialog,
-    private router : Router
-  ){}
+    private router : Router,
+    private commonService : CommonService
+    ){}
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
     console.log("selection",this.selection.selected)
-    this.getFacultyList();
+    this.getFeeStructureList();
   }
 
-  getFacultyList(){
-    this.dataSource.data = EXAMPLE_DATA;
+  getFeeStructureList(){
+    
+    
+      this.commonService.getMasterStandard().subscribe((result)=>{
+        console.log("master student Form result",result);
+        const standardList = result['data'] || null;
+        this.dataSource.data = standardList
+      },(error)=>{
+        console.log("master student Form error",error);
+      })
+    
   }
 
   ngAfterViewInit() {

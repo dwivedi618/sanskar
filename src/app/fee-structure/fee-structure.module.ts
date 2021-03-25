@@ -8,6 +8,7 @@ import { FeeStructureLayoutComponent } from './fee-structure-layout/fee-structur
 import { ManageFeeStructureComponent } from './manage-fee-structure/manage-fee-structure.component';
 import { ManageFeeCategoryComponent } from './manage-fee-category/manage-fee-category.component';
 import { FeeCategoryComponent } from './fee-category/fee-category.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -15,6 +16,8 @@ import { FeeCategoryComponent } from './fee-category/fee-category.component';
   imports: [
     CommonModule,
     MaterialModule,
+    FormsModule,
+    ReactiveFormsModule,
     FeeStructureRoutingModule
   ]
 })

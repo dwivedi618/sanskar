@@ -1,9 +1,9 @@
-<div class="bg-white">
+<div class="">
     <div class="py-4">
       <div class="row">
         <div class="col-md-6 mr-auto">
           <form class="d-flex  mb-4 w-100">
-            <input class="form-control mr-sm-2 w-75" type="search" placeholder="Find Standard"
+            <input class="form-control mr-sm-2 w-75" type="search" placeholder="Find by name, email or role"
               aria-label="Search" (keyup)="applyFilter($event)">
             <div class="w-25">
               <button mat-raised-button color="primary">
@@ -13,43 +13,47 @@
           </form>
         </div>
         <div class="col-md-6 text-right">
-               
-              <span class="px-1" >
-                <button mat-raised-button color="primary"  (click)="manageMasterStandard()" >
+               <span class="px-1" >
+                  <button mat-raised-button color="primary"  (click)="newFeeStructure()" >
+                    <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
+                      <small>
+                        Add Fee Structure
+                      </small>
+                  </button>
+              </span>
+              <!-- <span class="px-1" >
+                <button mat-raised-button color="primary"  (click)="manageFeeCategory()" >
                   <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
                     <small>
-                      Master standard
+                      New Fee Category
                     </small>
                 </button>
-             </span>
-              
-                                          
-          
+             </span> -->
         </div>
       </div>
     </div>
-    <!--table heading-->
-    <mat-toolbar class="bg-white">
-      <mat-toolbar-row>
-        <small class="strong">Master standards</small>
-        <div class="spacer"></div>
-        <span class="px-1" >
-            <button mat-button [matMenuTriggerFor]="session" #t="matMenuTrigger" [matMenuTriggerData]="menuDataSession">
-              
-                <small>{{selectedSession || 'syncing...'}}</small>
-              
-              <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
-            </button>
-            <mat-menu #session="matMenu" hasBackdrop="true">
-              <button mat-menu-item *ngFor="let session of menuDataSession" (click)="selectedSession = session">
-                <mat-icon class="mat-icon-sm pt-1 " [class.text-success]="selectedSession == session">{{selectedSession == session ? 'check_box':'check_box_outline_blank'}}</mat-icon>
-                <small>{{session}}</small>
-              </button>              
-            </mat-menu>
+ <!--table heading-->
+ <mat-toolbar class="bg-white">
+  <mat-toolbar-row>
+    <small class="strong">Mater Fee Structure</small>
+    <div class="spacer"></div>
+    <span class="px-1" >
+        <button mat-button [matMenuTriggerFor]="session" #t="matMenuTrigger" [matMenuTriggerData]="menuDataSession">
+          
+            <small>{{selectedSession || 'syncing...'}}</small>
+          
+          <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
+        </button>
+        <mat-menu #session="matMenu" hasBackdrop="true">
+          <button mat-menu-item *ngFor="let session of menuDataSession" (click)="selectedSession = session">
+            <mat-icon class="mat-icon-sm pt-1 " [class.text-success]="selectedSession == session">{{selectedSession == session ? 'check_box':'check_box_outline_blank'}}</mat-icon>
+            <small>{{session}}</small>
+          </button>              
+        </mat-menu>
 
-          </span>
-      </mat-toolbar-row>
-    </mat-toolbar>
+      </span>
+  </mat-toolbar-row>
+</mat-toolbar>
     <!--more action on selected row-->
     <mat-toolbar class="bg-white">
       <mat-toolbar-row>
@@ -92,7 +96,7 @@
         
       </mat-toolbar-row>
     </mat-toolbar>
-    <table mat-table class="w-100" matSort aria-label="Elements">
+    <table mat-table class="w-100  mb-5" matSort aria-label="Elements">
   
    <!-- Checkbox Column -->
    <ng-container matColumnDef="select">
@@ -117,16 +121,9 @@
   </ng-container>
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Select All</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
         <td mat-cell *matCellDef="let row">
-          <div class="d-flex my-1 align-items-center">
-            
-            <div class="d-flex flex-column py-1 pl-1">
-              <small style="line-height: 10px;" class="text-link py-1 text-wrap-md">{{row.name || 'syncing...'}}</small>
-              <small style="line-height: 10px; font-size: 10px; "
-                class=" text-mylight py-1 text-wrap-md">{{row.role || ''}}</small>
-            </div>
-          </div>
+         <small>{{row.name || '...'}}</small>
         </td>
       </ng-container>
   

@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FeeCategoryComponent } from './fee-category.component';
+import { MasterStandardListComponent } from './master-standard-list.component';
 
-describe('FeeCategoryComponent', () => {
-  let component: FeeCategoryComponent;
-  let fixture: ComponentFixture<FeeCategoryComponent>;
+describe('MasterStandardListComponent', () => {
+  let component: MasterStandardListComponent;
+  let fixture: ComponentFixture<MasterStandardListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FeeCategoryComponent ]
+      declarations: [ MasterStandardListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FeeCategoryComponent);
+    fixture = TestBed.createComponent(MasterStandardListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

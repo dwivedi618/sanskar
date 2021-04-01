@@ -1,7 +1,6 @@
 
-import { ManageFeeCategoryComponent } from './../manage-fee-category/manage-fee-category.component';
+
 import { MatDialog } from '@angular/material/dialog';
-import { ExpandInOutAnimation } from './../../services/animation/dropdown-animation';
 import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -10,6 +9,7 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { param } from 'jquery';
 import { CommonService } from 'src/app/services/common.service';
+import { ManageFeeCategoryComponent } from '../manage-fee-category/manage-fee-category.component';
 
 export interface FacultyListItem {
   name: string;
@@ -56,12 +56,12 @@ const EXAMPLE_DATA: FacultyListItem[] = [
 ];
 
 @Component({
-  selector: 'app-fee-category',
-  templateUrl: './fee-category.component.html',
-  styleUrls: ['./fee-category.component.css']
+  selector: 'app-master-fee-category-list',
+  templateUrl: './master-fee-category-list.component.html',
+  styleUrls: ['./master-fee-category-list.component.css']
 })
 
-export class FeeCategoryComponent implements AfterViewInit, OnInit {
+export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<FacultyListItem>;

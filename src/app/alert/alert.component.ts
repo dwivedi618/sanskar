@@ -9,7 +9,7 @@ import { MatSnackBar, MatSnackBarRef, MAT_SNACK_BAR_DATA } from '@angular/materi
 export class AlertComponent implements OnInit {
   local_data: string;
   message: any;
-  username: any;
+  status: number;
 
   constructor(
     public snackBar: MatSnackBar,
@@ -19,9 +19,9 @@ export class AlertComponent implements OnInit {
       // this.local_data = data;
       if(data){
         this.message = data['message'];
-        this.username = data['user'] || '';
+        this.status = data['status'] || '';
       }
-      console.log(data,this.message,this.username);
+      console.log(data,this.message,this.status);
 
     }
 

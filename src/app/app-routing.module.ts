@@ -16,8 +16,8 @@ const routes: Routes = [
       { path: 'admission', component: AdmissionComponent },
       { path: 'faculty', loadChildren : './faculty/faculty.module#FacultyModule' },
       { path: 'student', loadChildren: './student/student.module#StudentModule' },
-      { path : 'fee-structure' , loadChildren : './fee-structure/fee-structure.module#FeeStructureModule'},
-      { path : 'standard' , loadChildren : './standard/standard.module#StandardModule'},
+     
+      { path : 'master' , loadChildren : './master-data/master-data.module#MasterDataModule'},
 
       { path: 'settings', component: SettingsComponent },
       { path: 'profile', component: ProfileComponent },

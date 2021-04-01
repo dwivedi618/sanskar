@@ -1,39 +1,76 @@
 
+
 import { MatDialog } from '@angular/material/dialog';
-import { ExpandInOutAnimation } from './../../services/animation/dropdown-animation';
+import { ExpandInOutAnimation } from '../../../services/animation/dropdown-animation';
 import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { ManageMasterStandardComponent } from '../manage-master-standard/manage-master-standard.component';
+import { param } from 'jquery';
 import { CommonService } from 'src/app/services/common.service';
+import { ManageFeeCategoryComponent } from '../../fee-category/manage-fee-category/manage-fee-category.component';
 
-
-export interface MasterStandardList {
+export interface FacultyListItem {
   name: string;
   id: number;
   thumbnail:any;
   role:any;
 }
 
+// TODO: replace this with real data from your application
+const EXAMPLE_DATA: FacultyListItem[] = [
+  {
+    id: 1,
+    name: 'Thor',
+    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
+    role: 'science teacher'
+  },
+  
+ {
+    id: 2,
+    name: 'Kungfu panda',
+    thumbnail: '../../../../assets/user_profiles/profile1.jpeg',
+    role: 'Not assigned'
+
+  },  {
+    id: 3,
+    name: 'Stark tony ',
+    thumbnail: '../../../../assets/user_profiles/profile2.jpg',
+    role: 'Not assigned'
+
+  },  {
+    id: 4,
+    name: 'Thor',
+    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
+    role: 'Manager'
+
+  },  {
+    id: 5,
+    name: 'Marvel in universe',
+    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
+    role: 'admin'
+
+  },  
+
+];
 
 @Component({
-  selector: 'app-master-standard',
-  templateUrl: './master-standard.component.html',
-  styleUrls: ['./master-standard.component.css']
+  selector: 'app-fee-structure-list',
+  templateUrl: './fee-structure-list.component.html',
+  styleUrls: ['./fee-structure-list.component.css']
 })
 
-export class MasterStandardComponent implements AfterViewInit, OnInit {
+export class FeeStructureListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<MasterStandardList>;
+  @ViewChild(MatTable) table: MatTable<FacultyListItem>;
   dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['select','name','action'];
-  selection = new SelectionModel<MasterStandardList>(true, []);
+  selection = new SelectionModel<FacultyListItem>(true, []);
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -51,7 +88,7 @@ export class MasterStandardComponent implements AfterViewInit, OnInit {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: MasterStandardList): string {
+  checkboxLabel(row?: FacultyListItem): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
@@ -63,16 +100,18 @@ export class MasterStandardComponent implements AfterViewInit, OnInit {
   constructor(
     private dialog : MatDialog,
     private router : Router,
-    public commonService : CommonService
-  ){}
+    private commonService : CommonService
+    ){}
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
     console.log("selection",this.selection.selected)
-    this.getMasterStandardList();
+    this.getFeeStructureList();
   }
 
-  getMasterStandardList(){
+  getFeeStructureList(){
+    
+    
       this.commonService.getMasterStandard().subscribe((result)=>{
         console.log("master student Form result",result);
         const standardList = result['data'] || null;
@@ -108,17 +147,36 @@ export class MasterStandardComponent implements AfterViewInit, OnInit {
   }
 
 
-  manageMasterStandard(){
+  /**
+   * route to add new FeeStructure page where admin can define fee for any courses/classes/standards
+   */
+  newFeeStructure(){
+    this.router.navigate(['master/fee-structure/' ,'new' ]);
+  }
+  /**
+   * route to fee category , where user can add fee category
+   */
+  newFeeCategory(){
+    this.router.navigate(['fee-structure/master-fee-category','new'])
+  }
+  manageFeeCategory(){
     const data = {}
-    const dialogRef = this.dialog.open(ManageMasterStandardComponent,{
+    const dialogRef = this.dialog.open(ManageFeeCategoryComponent,{
       width : '40rem',
-      maxWidth : '100vw',     
+      maxWidth : '100vw',
+      
       maxHeight : '100vh',
       hasBackdrop : false,
       // panelClass : 'dialog-container-pt-0',
       data : data
     })
   }
-
+  /**
+   * route to add faculty profile page
+   * @param faculty id,name,email
+   */
+  openFacultyProfile(profile){
+    this.router.navigate(['faculty/profile']);
+  }
 }
 

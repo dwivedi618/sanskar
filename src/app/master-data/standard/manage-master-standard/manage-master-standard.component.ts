@@ -1,4 +1,4 @@
-import { AlertService } from './../../services/alert.service';
+import { AlertService } from '../../../services/alert.service';
 
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';

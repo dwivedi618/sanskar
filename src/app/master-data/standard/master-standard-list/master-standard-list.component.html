@@ -3,7 +3,7 @@
       <div class="row">
         <div class="col-md-6 mr-auto">
           <form class="d-flex  mb-4 w-100">
-            <input class="form-control mr-sm-2 w-75" type="search" placeholder="Find Fee Category"
+            <input class="form-control mr-sm-2 w-75" type="search" placeholder="Find Standard"
               aria-label="Search" (keyup)="applyFilter($event)">
             <div class="w-25">
               <button mat-raised-button color="primary">
@@ -15,10 +15,10 @@
         <div class="col-md-6 text-right">
                
               <span class="px-1" >
-                <button mat-raised-button color="primary"  (click)="manageFeeCategory()" >
+                <button mat-raised-button color="primary"  (click)="manageMasterStandard()" >
                   <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
                     <small>
-                      New Fee Category
+                      Master standard
                     </small>
                 </button>
              </span>
@@ -31,7 +31,7 @@
     <!--table heading-->
     <mat-toolbar class="bg-white">
       <mat-toolbar-row>
-        <small class="strong">Mater Fee Category</small>
+        <small class="strong">Master standards</small>
         <div class="spacer"></div>
         <span class="px-1" >
             <button mat-button [matMenuTriggerFor]="session" #t="matMenuTrigger" [matMenuTriggerData]="menuDataSession">
@@ -92,7 +92,7 @@
         
       </mat-toolbar-row>
     </mat-toolbar>
-    <table mat-table class="w-100" matSort aria-label="Elements">
+    <table mat-table class="w-100 mb-5" matSort aria-label="Elements">
   
    <!-- Checkbox Column -->
    <ng-container matColumnDef="select">
@@ -117,19 +117,9 @@
   </ng-container>
       <!-- Name Column -->
       <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Select All</th>
         <td mat-cell *matCellDef="let row">
-          <div class="d-flex my-1 align-items-center">
-            <div style="width: 32px;min-width: 32px; height: 32px;border-radius: 1rem;background-color: #d3ac8c;"
-              class="layout">
-              <img class="avatar-sm" src="{{row.thumbnail}}">
-            </div>
-            <div class="d-flex flex-column py-1 pl-1">
-              <small style="line-height: 10px;" class="text-link py-1 text-wrap-md">{{row.name || 'syncing...'}}</small>
-              <small style="line-height: 10px; font-size: 10px; "
-                class=" text-mylight py-1 text-wrap-md">{{row.role || ''}}</small>
-            </div>
-          </div>
+         <small>{{row.name || '...'}}</small>
         </td>
       </ng-container>
   

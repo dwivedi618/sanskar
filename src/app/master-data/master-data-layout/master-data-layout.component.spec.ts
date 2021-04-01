@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FeeStructureLayoutComponent } from './fee-structure-layout.component';
+import { MasterDataLayoutComponent } from './master-data-layout.component';
 
-describe('FeeStructureLayoutComponent', () => {
-  let component: FeeStructureLayoutComponent;
-  let fixture: ComponentFixture<FeeStructureLayoutComponent>;
+describe('MasterDataLayoutComponent', () => {
+  let component: MasterDataLayoutComponent;
+  let fixture: ComponentFixture<MasterDataLayoutComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ FeeStructureLayoutComponent ]
+      declarations: [ MasterDataLayoutComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(FeeStructureLayoutComponent);
+    fixture = TestBed.createComponent(MasterDataLayoutComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

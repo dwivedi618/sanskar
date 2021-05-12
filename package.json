@@ -24,7 +24,7 @@
     "@angular/router": "~8.2.9",
     "base64-img": "^1.0.4",
     "bootstrap": "^4.4.1",
-    "chart.js": "^2.9.3",
+    "chart.js": "^2.9.4",
     "express": "^4.17.1",
     "file-system": "^2.2.2",
     "fs": "0.0.1-security",

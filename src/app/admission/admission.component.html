@@ -25,26 +25,13 @@
                                 <div class="row">
                                     <div class="col-md-6">
                                         <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>First Name</mat-label>
+                                            <mat-label>Full Name</mat-label>
                                             <input matInput placeholder="First Name" type="text"
-                                                formControlName="firstName" required>
-                                            <mat-error *ngIf="f1.firstName.hasError('required')">First Name Required
+                                                formControlName="name" required>
+                                            <mat-error *ngIf="f1.name.hasError('required')">Name Required
                                             </mat-error>
                                         </mat-form-field>
-
-
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>Middle Name</mat-label>
-                                            <input matInput placeholder="Middle Name" type="text"
-                                                formControlName="middleName">
-                                        </mat-form-field>
-
-
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>Last Name</mat-label>
-                                            <input placeholder="Last Name " matInput type="text"
-                                                formControlName="lastName">
-                                        </mat-form-field>
+           
                                     </div>
                                     <div class="col-md-6  ">
                                         <div class="d-flex justify-content-center text-center">
@@ -119,9 +106,9 @@
                                 <div class="my-4">
                                     <mat-label mat-line>Gender</mat-label>
                                     <mat-radio-group formControlName="gender" aria-label="Gender">
-                                        <mat-radio-button value="Male">Male</mat-radio-button>
-                                        <mat-radio-button value="Female">Female</mat-radio-button>
-                                        <mat-radio-button value="Other">Other</mat-radio-button>
+                                        <mat-radio-button value="MALE">Male</mat-radio-button>
+                                        <mat-radio-button value="FEMALE">Female</mat-radio-button>
+                                        <mat-radio-button value="OTHER">Other</mat-radio-button>
                                     </mat-radio-group>
                                 </div>
 
@@ -153,13 +140,13 @@
                                         </div> -->
                                         <mat-form-field appearance="outline" class="example-full-width">
                                             <mat-label>Addmission In</mat-label>
-                                            <mat-select formControlName="standard" required>
-                                                <mat-option *ngFor="let standard of standards" [value]="standard.value">
-                                                    {{standard.viewValue}}
+                                            <mat-select formControlName="standardId" required>
+                                                <mat-option *ngFor="let standard of standards" [value]="standard.id">
+                                                    {{standard.name}}
                                                 </mat-option>
                                             </mat-select>
                                             <!-- <input matInput placeholder="AddmissionIn" type="text" formControlName="standard"> -->
-                                            <mat-error *ngIf="f1.standard.hasError('required')">Admission In Class?
+                                            <mat-error *ngIf="f1.standardId.hasError('required')">Admission In Class?
                                             </mat-error>
                                         </mat-form-field>
                                     </div>
@@ -167,9 +154,14 @@
                                         <!-- convenience -->
 
                                         <mat-form-field appearance="outline" class="example-full-width">
+
                                             <mat-label>Convenience(Yes/No)</mat-label>
-                                            <input matInput placeholder="Convenience" type="text"
-                                                formControlName="convenience" required>
+                                            <mat-select  formControlName="convenience" required>
+                                                <mat-option value="YES">Yes</mat-option>
+                                                <mat-option value="NO">No</mat-option>
+
+                                            </mat-select>
+                                            
                                             <mat-error *ngIf="f1.convenience.hasError('required')">Required</mat-error>
                                         </mat-form-field>
                                         <!-- place -->
@@ -357,6 +349,14 @@
                                                 </mat-error>
                                             </mat-form-field>
                                         </div>
+                                        <div class="col-md-6">
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <mat-label>Pin</mat-label>
+                                                <input matInput type="number" placeholder="PIN" formControlName="pin">
+                                                <mat-error *ngIf="f3.pin.hasError('required')">Pin required
+                                                </mat-error>
+                                            </mat-form-field>
+                                        </div>
 
                                     </div>
                                     <mat-form-field appearance="outline" class="w-100">
@@ -391,6 +391,14 @@
                                                 <mat-label>Post</mat-label>
                                                 <input matInput type="text" placeholder="Post" formControlName="post">
                                                 <!-- <mat-error *ngIf="f4.post.hasError('required')">Post required </mat-error> -->
+                                            </mat-form-field>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <mat-label>Pin</mat-label>
+                                                <input matInput type="number" placeholder="PIN" formControlName="pin">
+                                                <mat-error *ngIf="f4.pin.hasError('required')">Pin required
+                                                </mat-error>
                                             </mat-form-field>
                                         </div>
                                     </div>

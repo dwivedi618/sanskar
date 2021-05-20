@@ -25,6 +25,24 @@
             <small mat-line>Manage</small>
         </mat-list-item>
     </a>
+
+    <mat-accordion class="mat-elevation-z0">
+        <mat-expansion-panel (opened)="panelOpenState = true" class="mat-elevation-z0"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+            <span mat-list-icon class="material-icons">settings</span>
+
+              Configuration
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <a mat-list-item routerLink="/master">Fee Structure </a>
+          <a mat-list-item routerLink="./master/master-fee-category">Fee category</a>
+          <a mat-list-item routerLink="./master/master-fee-category" [queryParams]="{serviceType : 'household'}">Product</a>
+          <a mat-list-item routerLink="subproducts" [queryParams]="{serviceType : 'household'}">Sub-Product</a>
+          <a mat-list-item routerLink="transitpoints">TransitPoints</a>
+        </mat-expansion-panel>
+      </mat-accordion>
   
 
 

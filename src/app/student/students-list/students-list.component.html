@@ -72,7 +72,7 @@
   <mat-toolbar class="bg-white">
     <mat-toolbar-row>
       <div class="px-1 " *ngIf="!this.selection.selected.length">
-        <button mat-icon-button>
+        <button mat-icon-button (click)="refresh()">
           <mat-icon class="mat-icon-md mat-icon-light pt-0">refresh</mat-icon>
         </button>
       </div>
@@ -110,12 +110,12 @@
       
     </mat-toolbar-row>
   </mat-toolbar>
-<table  mat-table [dataSource]="dataSource" class="w-100 " matSort >
+<table  mat-table [dataSource]="dataSource" class="w-100 mb-5" matSort *ngIf="dataSource.data.length != 0">
 
 <!-- Checkbox Column -->
-<ng-container matColumnDef="select">
+<ng-container matColumnDef="select"> 
   <th mat-header-cell *matHeaderCellDef>
-    <div class="layout">
+    <div class="d-flex justify-content-start align-items-center">
       <mat-checkbox (change)="$event ? masterToggle() : null" class="mb-n2 pr-1"
                     [checked]="selection.hasValue() && isAllSelected()"
                     [indeterminate]="selection.hasValue() && !isAllSelected()"
@@ -124,7 +124,7 @@
     </div>
   </th>
   <td mat-cell *matCellDef="let row" style="width: 2rem;">
-    <div class="layout">
+    <div class="d-flex justify-content-start align-items-center">
       <mat-checkbox (click)="$event.stopPropagation()" class="mb-n2 pr-1 "
                     (change)="$event ? selection.toggle(row) : null"
                     [checked]="selection.isSelected(row)"
@@ -135,29 +135,28 @@
 </ng-container>
 
  <!-- firstName Column -->
- <ng-container  matColumnDef="firstName">
+ <ng-container  matColumnDef="name">
    <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
    
    <td mat-cell *matCellDef="let row">
     <div class="d-flex my-1 align-items-center">
-      <div style="width: 32px;min-width: 32px; height: 32px;border-radius: 1rem;background-color: #d3ac8c;"
+      <mat-icon *ngIf="!row.image" class="text-mylight"><span class="material-icons">
+        account_circle
+        </span></mat-icon>
+      <div *ngIf="row.image" style="width: 32px;min-width: 32px; height: 32px;border-radius: 1rem;background-color: #ffffff;"
         class="layout">
-        <img class="avatar-sm" src="{{row?.thumbnail}}">
+        <img class="avatar-sm" src="{{row?.image}}">
       </div>
       <div class="d-flex flex-column py-1 pl-1">
-        <small style="line-height: 10px;" class="text-link py-1 text-wrap-md">{{row.firstName || 'syncing...'}}</small>
+        <small style="line-height: 10px;" class="text-link py-1 text-wrap-md">{{row.name || '...'}}</small>
         <small style="line-height: 10px; font-size: 10px; "
-          class=" text-mylight py-1 text-wrap-md">{{row.role || ''}}</small>
+          class=" text-mylight py-1 text-wrap-md">{{row.standard || ''}}</small>
       </div>
     </div>
   </td>
  </ng-container>
 
- <!-- Name Column -->
- <ng-container matColumnDef="fatherName">
-   <th mat-header-cell *matHeaderCellDef mat-sort-header> Father/Mother</th>
-   <td mat-cell *matCellDef="let element"> {{element.parent?.fatherName | titlecase}} </td>
- </ng-container>
+
 
  <!-- standard Column -->
  <ng-container matColumnDef="standard">
@@ -167,7 +166,7 @@
 
  <!-- address Column -->
  <ng-container matColumnDef="action" >
-   <th mat-header-cell *matHeaderCellDef class="text-right">Actions</th>
+   <th mat-header-cell *matHeaderCellDef class="text-right"></th>
    <td mat-cell *matCellDef="let element" (click)="$event.stopPropagation()" class="text-right">
      <button mat-icon-button [matMenuTriggerFor]="moreAction">
        <mat-icon class="text-mylight">more_horiz</mat-icon>
@@ -177,6 +176,10 @@
          <mat-icon class="mat-icon-sm pt-1">launch</mat-icon>
          <small class="pr-2">open in another tab</small>
        </button>
+       <button mat-menu-item>
+        <mat-icon class="mat-icon-sm pt-1">edit_outline</mat-icon>
+        <small class="pr-2">update</small>
+        </button>
        <button mat-menu-item>
         <mat-icon class="mat-icon-sm pt-1">delete_outline</mat-icon>
         <small class="pr-2">delete</small>
@@ -192,8 +195,26 @@
  </tr>
 
 </table>
+
+<div *ngIf="dataSource.data.length == 0" class="d-flex flex-column justify-content-center align-items-center h-50 w-100">     
+  <small class="mat-caption" > You don’t have any records</small><br>
+  <small class="strong" style="color:#ccc;"> You don’t have any records</small>
+  <a routerLink="/admission">
+    <small>new admission</small>
+  </a>
+</div>
+
 <div *ngIf="displayNoRecords" class="layout h-25">     
   <p class="" style="font-size: 1.5rem;color:#ccc;font-weight: 600;"> No matching records found!</p>
+</div>
+
+<div class="d-flex " style="position: fixed;z-index: 10000000;right:40%;bottom: 0;">
+  <div class="d-flex glass px-4 py-2">
+    <div class="m-auto pr-2">
+    <mat-spinner diameter=20></mat-spinner>
+    </div>
+    <small class="strong">Loading...</small>
+  </div>
 </div>
 </div>
 

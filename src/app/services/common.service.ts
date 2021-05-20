@@ -1,3 +1,4 @@
+import { Student } from './../student/students-list/students-list.component';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
@@ -16,13 +17,18 @@ export class CommonService {
   masterstandard(standard) {
     return this.http.post<any>(`${environment.apiUrl}/v1/master/standard`, standard)
   }
+
+
   getMasterStandard() {
     return this.http.get<any>(`${environment.apiUrl}/v1/master/standard`)
   }
 
+
   masterFee(fee) {
     return this.http.post<any>(`${environment.apiUrl}/v1/master/fee`, fee)
   }
+
+
   getMasterFee() {
     return this.http.get<any>(`${environment.apiUrl}/v1/master/fee`)
   }
@@ -31,6 +37,8 @@ export class CommonService {
   masterFeeStructure(feeStructure) {
     return this.http.post<any>(`${environment.apiUrl}/v1/master/fee-structure`, feeStructure)
   }
+
+
   getMasterFeeStructure() {
     return this.http.get<any>(`${environment.apiUrl}/v1/master/fee-structure`)
   }
@@ -39,10 +47,22 @@ export class CommonService {
   studentRecord(formData) {
     return this.http.post<any>(`${environment.apiUrl}/v1/student`, formData)
   } 
+
+  getStudentRecord() {
+    return this.http.get<any>(`${environment.apiUrl}/v1/student`)
+  } 
+  getStudentRecordById(studentId) {
+    return this.http.get<any>(`${environment.apiUrl}/v1/student/${studentId}`)
+  } 
+  
   parentRecord(studentId , parentRecord) {
-    return this.http.post<any>(`${environment.apiUrl}v1/student/${studentId}`, parentRecord)
+    console.log("parentRecord",studentId,parentRecord)
+    return this.http.post<any>(`${environment.apiUrl}/v1/student/${studentId}/parents`, parentRecord)
   } 
 
+  studentAddress(studentId , address) {
+    console.log("parentRecord",studentId,address)
+    return this.http.post<any>(`${environment.apiUrl}/v1/student/${studentId}/address`, address)
+  } 
 
-  
 }

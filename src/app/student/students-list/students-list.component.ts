@@ -21,26 +21,7 @@ export interface Student {
   thumbnail : any;
 }
 
-const EXAMPLE_STUDENT: Student [] = [
-  {
-    id :1,
-    firstName: 'John',
-    fatherName: 'Doe',
-    standard: '12',
-    address: 'D4 ,32street 9/2b',
-    thumbnail: '../../../../assets/user_profiles/profile2.jpg',
 
-  },
-  {
-    id :2,
-    firstName: 'Monty',
-    fatherName: 'duobwa',
-    standard: '12',
-    address: 'D4 ,32street 9/2b',
-    thumbnail: '../../../../assets/user_profiles/profile2.jpg',
-
-  }
-]
 @Component({
   selector: 'app-students-list',
   templateUrl: './students-list.component.html',
@@ -49,7 +30,7 @@ const EXAMPLE_STUDENT: Student [] = [
 export class StudentsListComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  displayedColumns: string[] = ['select','firstName', 'fatherName', 'standard', 'action'];
+  displayedColumns: string[] = ['select','name', 'standard', 'action'];
   dataSource = new MatTableDataSource<Student>();
   selection = new SelectionModel<Student>(true, []);
 
@@ -100,17 +81,22 @@ export class StudentsListComponent implements OnInit {
     this.getStudents();
   }
   getStudents() {
-    this.dataSource.data = EXAMPLE_STUDENT;
+    console.log("dataSource", this.dataSource.data);
+
+    // this.dataSource.data = EXAMPLE_STUDENT;
     this.isLoading = true;
-    const formData = []
-    this.commonService.masterFeeStructure(formData)
+    
+    this.commonService.getStudentRecord()
       .subscribe((result) => {
-        const studentList = result.students;
-        this.dataSource.data = studentList;
+        console.log("all student", result);
+        this.dataSource.data = result.data || null;
+        console.log("dataSource", this.dataSource.data);
+
         this.isLoading = false;
-        console.log("service student", this.dataSource.data);
       }, (error) => {
         console.log("error", error);
+        console.log("dataSource", this.dataSource.data);
+
       })
   }
   openFeeSubmition(obj) {
@@ -128,7 +114,7 @@ export class StudentsListComponent implements OnInit {
    * @param profile id,name,email
    */
   openStudentProfile(profile){
-    this.router.navigate(['student/profile']);
+    this.router.navigate(['student/profile'] ,{queryParams : {id : profile.id}});
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -145,5 +131,18 @@ export class StudentsListComponent implements OnInit {
 
   newAdmission(){
     this.router.navigate(['/admission']);
+  }
+
+  getThumbnail(blob){
+    if(blob != null){
+      console.log("getThumbnail",blob);
+    var reader = new FileReader();
+    reader.readAsDataURL(blob); 
+    reader.onloadend = function() {
+        var base64data = reader.result;                
+        console.log(base64data);
+        // return base64data;
+    }
+  }
   }
 }

@@ -13,6 +13,8 @@ export class StudentProfileComponent implements OnInit {
   studentId: any;
   isLoading: boolean;
   studentData: any;
+  parentData: any;
+  addressData: any;
 
   constructor(
     private activatedRoute : ActivatedRoute,
@@ -34,6 +36,9 @@ export class StudentProfileComponent implements OnInit {
       .subscribe((result) => {
         console.log("Student profile", result);
         this.studentData = result.data || null;
+        this.parentData = this.studentData['parents'] || null;
+        this.addressData = this.studentData['address'] || null;
+
         this.isLoading = false;
       }, (error) => {
         console.log("error", error);
@@ -42,6 +47,10 @@ export class StudentProfileComponent implements OnInit {
 
   updateProfile(){
     this.router.navigate(['/admission'],{queryParams : {id : this.studentId , action : 'update'}})
+  }
+
+  printProfile(){
+    console.log("print profile")
   }
   
 }

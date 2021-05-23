@@ -44,7 +44,7 @@ export class AdmissionComponent implements OnInit {
   registerForm: FormGroup;
 
   submitted = false;
-  imagePreview: any;
+  imagePreview = '';
   student: any;
   route = 'student/register-student';
   local_data: any;
@@ -116,7 +116,7 @@ export class AdmissionComponent implements OnInit {
     });
     this.addressForm = this.formBuilder.group({
       permanentAddress: this.formBuilder.group({
-
+        addressType : ['PERMANENT'],
         village: ['', Validators.required],
         district: ['', Validators.required],
         state: ['', Validators.required],
@@ -125,6 +125,7 @@ export class AdmissionComponent implements OnInit {
 
       }),
       localAddress: this.formBuilder.group({
+        addressType : ['LOCAL'],
         village: [''],
         district: [''],
         state: [''],
@@ -204,12 +205,16 @@ export class AdmissionComponent implements OnInit {
     this.addressForm.get(['permanentAddress']).patchValue({ state : address1.state });
     this.addressForm.get(['permanentAddress']).patchValue({ post : address1.post });
     this.addressForm.get(['permanentAddress']).patchValue({ pin : address1.pin });
+    this.addressForm.get(['permanentAddress']).patchValue({ addressType : address1.addressType });
+
 
     this.addressForm.get(['localAddress']).patchValue({ village : address2.village });
     this.addressForm.get(['localAddress']).patchValue({ district : address2.district });
     this.addressForm.get(['localAddress']).patchValue({ state : address2.state });
     this.addressForm.get(['localAddress']).patchValue({ post : address2.post });
     this.addressForm.get(['localAddress']).patchValue({ pin : address2.pin });
+    this.addressForm.get(['localAddress']).patchValue({ addressType : address2.addressType });
+
 }
 
 /**
@@ -244,13 +249,11 @@ getStandardList(){
   onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.getBase64(file);
-    this.studentForm.patchValue({ image: file });
-    this.studentForm.get('image').updateValueAndValidity();
-    const reader = new FileReader();
-    reader.onload = () => {
-      this.imagePreview = reader.result as string;
-    }
-    reader.readAsDataURL(file);
+    // const reader = new FileReader();
+    // reader.onload = () => {
+    //   this.imagePreview = reader.result as string;
+    // }
+    // reader.readAsDataURL(file);
   }
   getBase64(file) {
     const reader = new FileReader();
@@ -258,24 +261,37 @@ getStandardList(){
     reader.onload = () => {
       console.log(reader.result);
       this.imagePreview = reader.result as string;
-      // this.studentForm.value.image = this.imagePreview;
+      // this.studentForm.patchValue({ image : reader.result as string})
     };
     reader.onerror = (error) => {
       console.log('Error: ', error);
     };
   }
   onStudentSubmit() {
+    console.log("studentForm",this.studentForm.value)
     this.submitted = true;
 
     //     // stop here if form is invalid
     if (this.studentForm.invalid) {
+      console.log("studentForm Invalid");
       return;
-      console.log("form Invalid");
     }
 
     this.studentForm.value.requestType = "student";
-    this.studentForm.value.image = this.imagePreview;
+    // this.studentForm.patchValue({ image : this.imagePreview })
     console.log("Before submitstudent", this.studentForm.value);
+    if(this.action === 'update'){
+      this.commonService.updateStudentRecord(this.studentForm.value,this.studentId)
+      .subscribe((result) => {
+        this.studentId = result.data.id;
+        this.alertService.alertComponent(result.message || '')
+        console.log("result", result);
+      }, (error) => {
+        console.log("error", error);
+        this.uiService.openSnackBar(error.statusText, null);
+      });
+    
+    }else{
     this.commonService.studentRecord(this.studentForm.value)
       .subscribe((result) => {
         this.studentId = result.data.id;
@@ -285,44 +301,58 @@ getStandardList(){
         console.log("error", error);
         this.uiService.openSnackBar(error.statusText, null);
       });
+    }
   }
   onParentSubmit() {
     this.parentForm.value.requestType = "parent";
-
     console.log("studentId ", this.studentId);
-
     console.log("Before submitparent", this.parentForm.value);
-    this.commonService.parentRecord(this.studentId, this.parentForm.value)
+    if(this.action == 'update'){
+      this.commonService.updateParentRecord(this.studentId, this.parentForm.value)
       .subscribe((result) => {
-
         console.log("result", result);
         this.alertService.alertComponent(result.message || '');
-
       }, (error) => {
         console.log("error", error);
       });
+    }else{
+    this.commonService.parentRecord(this.studentId, this.parentForm.value)
+      .subscribe((result) => {
+        console.log("result", result);
+        this.alertService.alertComponent(result.message || '');
+      }, (error) => {
+        console.log("error", error);
+      });
+    }
 
   }
   onAddressSubmit() {
-    this.addressForm.value.requestType = "address";
-
+    this.addressForm.value.requestType = "address"
     let address = [
       this.addressForm.get(['localAddress']).value,
       this.addressForm.get(['permanentAddress']).value
     ]
     console.log("before permanent Address ", this.addressForm.get(['permanentAddress']).value);
     console.log("before local Address ", this.addressForm.get(['localAddress']).value);
-    this.commonService.studentAddress(this.studentId, address)
-
+    if(this.action === 'update'){
+      this.commonService.updateStudentAddress(this.studentId, address)
       .subscribe((result) => {
-
         console.log("result", result);
         this.alertService.alertComponent(result.message || '');
-
       }, (error) => {
         console.log("error", error);
       });
+    }else{
+    this.commonService.studentAddress(this.studentId, address)
+      .subscribe((result) => {
+        console.log("result", result);
+        this.alertService.alertComponent(result.message || '');
+      }, (error) => {
+        console.log("error", error);
+      });
+    }
   }
+
   onAdmissionComplete() {
     console.log("admission has been Completed navigating to student admission");
     this.router.navigate['studentcompletedetails'];

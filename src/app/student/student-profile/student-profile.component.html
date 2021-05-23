@@ -1,144 +1,333 @@
 <section style="min-height: calc(100vh-6rem);">
-    <mat-toolbar class="bg-white">
-        <mat-toolbar-row>
-          <div class="px-1 ml-n2" >
-            <button mat-icon-button routerLink='..'>
-              <mat-icon class="mat-icon-md mat-icon-light pt-0">arrow_back</mat-icon>
-            </button>
-          </div>
-          <div class="spacer"></div>
-        </mat-toolbar-row>
-      </mat-toolbar>
-      <div class="row justify-content-center py-5">
-          <div class="col-md-4">
-              <figure>
-                  <img class="thumbnail-lg" src="../../../assets/user_profiles/thor.jpeg" alt="">
-              </figure>
-          </div>
-          <div class="col-md-4 layout text-left">
-              <div class="d-flex flex-column">
-                  <h6>Shivam kumar dwivedi</h6>
-                  <small class="text-mylight">shivamdwivedi618@gmail.com</small>
-                  <small class="text-mylight">7827458618</small>
-                  <button mat-stroked-button (click)="updateProfile()">
-                    <small class="text-mylight" >UPDATE</small>
-                  </button>
-
-              </div>
-          </div>
+  <mat-toolbar class="bg-white">
+    <mat-toolbar-row>
+      <div class="px-1 ml-n2">
+        <button mat-icon-button routerLink='..'>
+          <mat-icon class="mat-icon-md mat-icon-light pt-0">arrow_back</mat-icon>
+        </button>
       </div>
-      <mat-tab-group dynamicHeight animationDuration="0ms" mat-align-tabs="center">
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="mat-icon-sm pt-1 mr-2">menu_book</mat-icon>
-            Overview
-          </ng-template>
-          <ng-template matTabContent>
-               <div class="container my-5 py-5">
-          <div class="row justify-content-center mb-5">
-              <div class="col-md-6 ">
-                <div class="px-4">
-                <h6 mat-subtitle>Add new faculty or staff</h6>
-                <small>A faculty could have more details, manage from faculty  details page</small>
-                </div>
-              </div>
-          </div>
-          <div class="row justify-content-center mb-5">
-              <div class="col-md-6">
-                <div style="font-size: 12px">
-                    <div class="px-4">
-                    <mat-form-field appearance="outline" class="w-100">
-                      <mat-label>Full name</mat-label>
-                      <input matInput placeholder="Jane Doe">
-                    </mat-form-field>
-                </div>
-                  
-                <div class="px-4">
-                    <mat-form-field appearance="outline" class="w-100">
-                      <mat-label>email</mat-label>
-                      <input matInput placeholder="you@youremail.com">
-                    </mat-form-field>
-                </div>
-                <div class="px-4">
-                    <mat-form-field appearance="outline" class="w-100">
-                      <mat-label>contact</mat-label>
-                      <input matInput placeholder="Ex:7827458618">
-                    </mat-form-field>
-                </div>
-
-                <div class="px-4">
-                    <button mat-raised-button color="primary" (click)="submit()">
-                        <small>submit</small>
-                    </button>
-                </div>
-                  
-                  </div>                  
-              </div>
-          </div>
-      </div>
-      <div class="container my-5 py-5">
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-6 ">
-              <div class="px-4">
-              <h6 mat-subtitle>Add new faculty or staff</h6>
-              <small>A faculty could have more details, manage from faculty  details page</small>
-              </div>
-            </div>
-        </div>
-        <div class="row justify-content-center mb-5">
-            <div class="col-md-6">
-              <div style="font-size: 12px">
-                  <div class="px-4">
-                  <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>Full name</mat-label>
-                    <input matInput placeholder="Jane Doe">
-                  </mat-form-field>
-              </div>
-                
-              <div class="px-4">
-                  <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>email</mat-label>
-                    <input matInput placeholder="you@youremail.com">
-                  </mat-form-field>
-              </div>
-              <div class="px-4">
-                  <mat-form-field appearance="outline" class="w-100">
-                    <mat-label>contact</mat-label>
-                    <input matInput placeholder="Ex:7827458618">
-                  </mat-form-field>
-              </div>
-
-              <div class="px-4">
-                  <button mat-raised-button color="primary" (click)="submit()">
-                      <small>submit</small>
-                  </button>
-              </div>
-                
-                </div>                  
-            </div>
-        </div>
+      <div class="spacer"></div>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <div class="row justify-content-center py-5">
+    <div class="col-md-4">
+      <figure>
+        <img class="thumbnail-lg" src="../../../assets/user_profiles/thor.jpeg" alt="">
+      </figure>
     </div>
-          </ng-template>
-        </mat-tab>
-      
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="mat-icon-sm pt-1 mr-2">money</mat-icon>
-            Salary
-          </ng-template>
-          Attendence
-        </mat-tab>
-      
-        <mat-tab>
-          <ng-template mat-tab-label>
-            <mat-icon class="mat-icon-sm pt-1 mr-2">work</mat-icon>
-            Attendence
-          </ng-template>
-      
-          Content 3
-        </mat-tab>
-      </mat-tab-group>
-      
+    <div class="col-md-6  text-left">
+      <div class="d-flex flex-column">
+        <h3 class="py-0 my-0">{{ this.studentData?.name | titlecase}}</h3>
+        <div class="row">
+          <div class="col-2 text-left">
+            <small class="text-mylight">S/o -</small>
+          </div>
+          <div class="col-9 text-left">
+            <small class="text-mylight">{{ this.parentData?.fatherName}}</small>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-2 text-left">
+            <small class="text-mylight">Div -</small>
+          </div>
+          <div class="col-9 text-left">
+            <small class="text-mylight">{{this.studentData?.standard.name}}</small>
+          </div>
+        </div>
 
-     
+        <div class="d-flex my-2">
+          <button mat-stroked-button (click)="updateProfile()" class="mr-1">
+            <mat-icon class="mat-icon-sm pt-1 mr-2">edit</mat-icon>
+            <small class="text-mylight">UPDATE</small>
+          </button>
+          <button mat-stroked-button (click)="printProfile()" class="mx-1">
+            <mat-icon class="mat-icon-sm pt-1 mr-2">print</mat-icon>
+            <small class="text-mylight">Print</small>
+          </button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+  <mat-tab-group dynamicHeight animationDuration="0ms" mat-align-tabs="center">
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="mat-icon-sm pt-1 mr-2">menu_book</mat-icon>
+        Overview
+      </ng-template>
+      <ng-template matTabContent>
+        <div class="container mt-2 mb-2 pt-4 ">
+          <div class="row justify-content-center mb-5">
+            <div class="col-md-3 ">
+              <div class="px-4 d-flex align-items-center">
+                <span class="material-icons-outlined">
+                  person
+                  </span>
+                <h4 mat-subtitle class="m-0 p-0">Student</h4>
+              </div>
+            </div>
+            <div class="col-md-9 ">
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>Name</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ this.studentData?.name | titlecase}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>Blood group</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ this.studentData?.bloodGroup | titlecase}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>Convenience</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ this.studentData?.convenience | titlecase}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>Gender</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ this.studentData?.gender | titlecase}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>Health status</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ this.studentData?.healthStatus | titlecase}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>Date of birth</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ this.studentData?.dateOfBirth | date}}</p>
+                </div>
+              </div>
+
+
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>Nationality</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ this.studentData?.nationality | titlecase}}</p>
+                </div>
+              </div>
+
+
+            </div>
+          </div>
+
+        </div>
+
+        <div class="container mb-2 pt-2">
+          <div class="row justify-content-center mb-5">
+            <div class="col-md-3 ">
+              <div class="px-4 d-flex align-items-center">
+                <span class="material-icons-outlined">
+                  group
+                  </span>
+                <h4 mat-subtitle class="m-0 p-0">Parents</h4>
+              </div>
+            </div>
+            <div class="col-md-9 ">
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>Father</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ this.parentData?.fatherName | titlecase}}</p>
+                  <p>{{ this.parentData?.fatherOccupation | titlecase}}</p>
+                  <p>{{ this.parentData?.fatherEducation | titlecase}}</p>
+                </div>
+              </div>
+              <!-- <div class="row">
+                <div class="col-6 text-left">
+                  <p>fatherOccupation</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ this.parentData?.fatherOccupation | titlecase}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>fatherEducation</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ this.parentData?.fatherEducation | titlecase}}</p>
+                </div>
+              </div> -->
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>Mother</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ this.parentData?.motherName | titlecase}}</p>
+                  <p>{{ this.parentData?.motherOccupation | titlecase}}</p>
+                  <p>{{ this.parentData?.motherEducation | titlecase}}</p>
+                </div>
+              </div>
+              <!-- <div class="row">
+                <div class="col-6 text-left">
+                  <p>motherOccupation</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ this.parentData?.motherOccupation | titlecase}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>motherEducation</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ this.parentData?.motherEducation | titlecase}}</p>
+                </div>
+              </div> -->
+              
+             
+
+
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>Contact</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ this.parentData?.parentContact | titlecase}}</p>
+                </div>
+              </div>
+              
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>Guardian contact</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ this.parentData?.guardianContact | titlecase}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>Email</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ this.parentData?.email | titlecase}}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <hr class="py-2">
+        <div class="container mb-2 pt-2">
+          <div class="row justify-content-center mb-5" *ngFor="let addr of addressData">
+            <div class="col-md-3 ">
+              
+              <div class="px-4 d-flex align-items-center">
+                <span class="material-icons-outlined">
+                  place
+                  </span>
+                <h4 mat-subtitle class="m-0 p-0">{{addr?.addressType | titlecase }} Address</h4>
+              </div>
+            </div>
+            <div class="col-md-9 ">
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>Village</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ addr?.village | titlecase}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>Post</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ addr?.post | titlecase}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>District</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ addr?.district | titlecase}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>State</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ addr?.state | titlecase}}</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-6 text-left">
+                  <p>Pin</p>
+                </div>
+                <div class="col-6 text-left">
+                  <p>{{ addr?.pin }}</p>
+                </div>
+              </div>
+              
+
+
+            </div>
+          </div>
+
+        </div>
+
+      </ng-template>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="mat-icon-sm pt-1 mr-2">money</mat-icon>
+        Fee
+      </ng-template>
+      <div class="container mt-4 pt-2 mb-2" style="min-height: 50vh;">
+        <div  class="d-flex flex-column justify-content-center align-items-center h-50 w-100">     
+          <small class="mat-caption" > You don’t have any fee records</small><br>
+          <small class="strong" style="color:#ccc;"> You don’t have any records</small>
+          <a routerLink="/admission">
+            <small>Submit Fee</small>
+          </a>
+        </div>
+      </div>
+    </mat-tab>
+
+    <mat-tab>
+      <ng-template mat-tab-label>
+        <mat-icon class="mat-icon-sm pt-1 mr-2">school</mat-icon>
+        Accademic
+      </ng-template>
+
+      <div class="container mt-4 pt-2 mb-2" style="min-height: 50vh;">
+        <div  class="d-flex flex-column justify-content-center align-items-center h-50 w-100">     
+          <small class="mat-caption" > You don’t have any accademic records</small><br>
+          <small class="strong" style="color:#ccc;"> You don’t have any records</small>
+          <a routerLink="/admission">
+            <small></small>
+          </a>
+        </div>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+
+
+
 </section>

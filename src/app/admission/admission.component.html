@@ -15,7 +15,7 @@
             <mat-vertical-stepper #stepper>
 
                 <mat-step [stepControl]="studentForm">
-                    <form class="stepper_form my-4 py-2" [formGroup]="studentForm" (ngSubmit)="onStudentSubmit()">
+                    <form class="stepper_form my-4 py-2" [formGroup]="studentForm" >
                         <ng-template matStepLabel>Required Student Details</ng-template>
                         <div class=" d-flex justify-content-center">
                             <div class="col-sm-12 col-md-10 col-lg-10">
@@ -33,7 +33,7 @@
                                         </mat-form-field>
            
                                     </div>
-                                    <div class="col-md-6  ">
+                                    <div class="col-md-6  g-2">
                                         <div class="d-flex justify-content-center text-center">
                                             <div>
 
@@ -81,8 +81,8 @@
                                 </div>
 
 
-                                <div class="row">
-                                    <div class="col-md-6">
+                                <div class="row my-4">
+                                    <div class="col-md-6 g-2">
                                         <mat-form-field appearance="outline" class="example-full-width">
                                             <mat-label>Date of Birth</mat-label>
                                             <input matInput type="date" formControlName="dateOfBirth">
@@ -184,7 +184,7 @@
                                 </mat-form-field>
 
                                 <div class="d-flex justify-content-end my-4">
-                                    <button mat-raised-button type="submit" color="primary" matStepperNext>Save and
+                                    <button mat-raised-button type="submit" color="primary" (click)="onStudentSubmit()" matStepperNext>Save and
                                         Next</button>
                                 </div>
                             </div>

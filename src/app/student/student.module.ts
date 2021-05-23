@@ -8,6 +8,7 @@ import { TransactionComponent } from './transaction/transaction.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../layouts/shared/shared.module';
 import { StudentLayoutComponent } from './student-layout/student-layout.component';
+import { AdmissionFormPrintLayoutComponent } from './admission-form-print-layout/admission-form-print-layout.component';
 
 
 
@@ -17,7 +18,8 @@ import { StudentLayoutComponent } from './student-layout/student-layout.componen
     StudentsListComponent,
     StudentProfileComponent,
     TransactionComponent,
-    StudentLayoutComponent
+    StudentLayoutComponent,
+    AdmissionFormPrintLayoutComponent
     ],
   imports: [
     SharedModule,

@@ -1,0 +1,76 @@
+.printLayout{
+    width :794px ; 
+    height :1123px;
+}
+#parallelogram {
+    width: 450px;
+    height: 105px;
+    transform: skew(-20deg);
+    background:white;
+    position: absolute;
+    left: 100px;
+  }
+  #parallelogram1 {
+    width: 30px;
+    height: 30px;
+    transform: skew(-20deg);
+    background:rgb(255, 255, 255);
+    position: absolute;
+    left: 10px;
+    z-index: 0;
+  }
+
+.school-name-container{
+    position:absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+}
+.school-name-container  h3{
+    font-family: 'Pattaya', sans-serif!important;
+    font-size: 1.6rem;
+}
+.title-bar {
+    height: 2rem;
+    width: 30%;
+    min-width: 200px;
+    background: #333;
+    border-radius: 10rem;
+    
+    align-self: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    
+}
+.title-bar .title-bar-text{
+  
+    text-transform: uppercase;
+    font-family: 'Yanone Kaffeesatz', sans-serif!important;
+    letter-spacing: 3px;
+    color: white;
+    margin: 0;
+    padding: 0;
+}
+p{
+    margin: 0;
+    padding: 0;
+    
+}
+section.student-infromation{
+    text-transform: capitalize;
+    font-size: 12px;
+   
+}
+section.parents-information,.address-information{
+    text-transform: capitalize;
+    font-size: 12px;
+   
+}
+section div.acknowledgement{
+    text-transform: none!important; 
+    font-family: 'Yanone Kaffeesatz', sans-serif!important;
+    letter-spacing: .1px;
+
+}

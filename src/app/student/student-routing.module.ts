@@ -3,6 +3,7 @@ import { Routes,RouterModule } from "@angular/router";
 import { StudentsListComponent } from './students-list/students-list.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component'
 import { StudentLayoutComponent } from './student-layout/student-layout.component';
+import { AdmissionFormPrintLayoutComponent } from './admission-form-print-layout/admission-form-print-layout.component';
 
 const studentroutes: Routes = [
     { 
@@ -10,6 +11,8 @@ const studentroutes: Routes = [
         children:[
         { path:'', component : StudentsListComponent},
         { path:'profile', component : StudentProfileComponent},
+        { path:'print', component : AdmissionFormPrintLayoutComponent},
+
         
         ]
     }

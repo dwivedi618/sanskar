@@ -2,6 +2,7 @@
 @import '@angular/material/prebuilt-themes/deeppurple-amber.css';
 @import '~bootstrap/dist/css/bootstrap.min.css';
 @import "~material-icons/iconfont/material-icons.css";
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&display=swap');
 
 @-webkit-keyframes popUp {
   from {
@@ -134,7 +135,14 @@ background: linear-gradient(to top, #434343, #000000);
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
+*{
+  margin: 0;
+  padding: 0;
+}
+form{
+  padding: 0;
+  margin: 0;
+}
 .spacer{
     flex: 1 1 auto;
   }
@@ -394,3 +402,33 @@ backdrop-filter: blur( 4px );
 border-radius: 10px;
 border: 1px solid rgba( 255, 255, 255, 0.18 );
 }
+
+.mybg-primary{
+  color: #ffffff!important;
+background: #00467F;  /* fallback for old browsers */
+background: -webkit-linear-gradient(90deg #333,#00467F, #333)!important;  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(90deg, #333,#00467F,  #333)!important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.mybg-primary-1{
+  color: #ffffff!important;
+background: #00467F;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to bottom,#00467F ,#00467F )!important;  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(180deg , #00467F 15%,#032744 )!important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.bg-mysecondary{
+  color: white!important;
+  background: #333!important; 
+}
+
+.mat-icon-button {
+  padding: 0;
+  min-width: 0;
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  line-height: 40px;
+  border-radius: 1%!important;
+}
+

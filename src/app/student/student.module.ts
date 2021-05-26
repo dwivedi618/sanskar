@@ -1,3 +1,4 @@
+import { MaterialModule } from './../material.module';
 import { NgModule } from '@angular/core';
 import { StudentsListComponent } from './students-list/students-list.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component';
@@ -23,6 +24,7 @@ import { AdmissionFormPrintLayoutComponent } from './admission-form-print-layout
     ],
   imports: [
     SharedModule,
+    MaterialModule,
     StudentRoutingModule,
     ReactiveFormsModule,
     FormsModule,

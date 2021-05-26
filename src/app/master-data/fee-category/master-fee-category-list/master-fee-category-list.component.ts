@@ -105,15 +105,15 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
     console.log("selection",this.selection.selected)
-    this.getFeeStructureList();
+    this.getFeeCategoryList();
   }
 
-  getFeeStructureList(){
+  getFeeCategoryList(){
       this.commonService.getMasterFee().subscribe((result)=>{
-        console.log("getMasterFee result",result);
+        console.log("getMasterFeeCategory result",result);
         this.dataSource.data = result['data'] || null;
       },(error)=>{
-        console.log("getMasterFee error",error);
+        console.log("getMasterFeeCategory error",error);
       }) 
   }
 

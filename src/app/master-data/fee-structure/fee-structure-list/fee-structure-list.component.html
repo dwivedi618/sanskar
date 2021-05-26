@@ -1,41 +1,12 @@
 <div class="">
-    <div class="py-4">
-      <div class="row">
-        <div class="col-md-6 mr-auto">
-          <form class="d-flex  mb-4 w-100">
-            <input class="form-control mr-sm-2 w-75" type="search" placeholder="Find by name, email or role"
-              aria-label="Search" (keyup)="applyFilter($event)">
-            <div class="w-25">
-              <button mat-raised-button color="primary">
-                <small>Search</small>
-              </button>
-            </div>
-          </form>
-        </div>
-        <div class="col-md-6 text-right">
-               <span class="px-1" >
-                  <button mat-raised-button color="primary"  (click)="newFeeStructure()" >
-                    <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
-                      <small>
-                        Add Fee Structure
-                      </small>
-                  </button>
-              </span>
-              <!-- <span class="px-1" >
-                <button mat-raised-button color="primary"  (click)="manageFeeCategory()" >
-                  <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
-                    <small>
-                      New Fee Category
-                    </small>
-                </button>
-             </span> -->
-        </div>
-      </div>
-    </div>
  <!--table heading-->
- <mat-toolbar class="bg-white">
+ <mat-toolbar class="bg-mysecondary">
   <mat-toolbar-row>
-    <small class="strong">Mater Fee Structure</small>
+    <div class="" style="font-size:12px">
+      <span  class="m-0 p-0">Fee Stucture</span>
+      <!-- <small>You can be only set master fee structure for current and future sessions</small> -->
+  </div>
+   
     <div class="spacer"></div>
     <span class="px-1" >
         <button mat-button [matMenuTriggerFor]="session" #t="matMenuTrigger" [matMenuTriggerData]="menuDataSession">
@@ -45,13 +16,36 @@
           <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
         </button>
         <mat-menu #session="matMenu" hasBackdrop="true">
-          <button mat-menu-item *ngFor="let session of menuDataSession" (click)="selectedSession = session">
+          <button mat-menu-item *ngFor="let session of menuDataSession" (click)="selectedSession = session;onStandardChange()">
             <mat-icon class="mat-icon-sm pt-1 " [class.text-success]="selectedSession == session">{{selectedSession == session ? 'check_box':'check_box_outline_blank'}}</mat-icon>
             <small>{{session}}</small>
           </button>              
         </mat-menu>
 
       </span>
+      <span class="px-1" >
+        <button mat-button [matMenuTriggerFor]="standards" #t="matMenuTrigger" [matMenuTriggerData]="menuDataStandard">
+          
+            <small>{{selectedStandard?.name || 'syncing...'}}</small>
+          
+          <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
+        </button>
+        <mat-menu #standards="matMenu" hasBackdrop="true">
+          <button mat-menu-item *ngFor="let data of standardList" (click)="selectedStandard = data.id;onStandardChange();">
+            <mat-icon class="mat-icon-sm pt-1 " [class.text-success]="selectedStandard == data.id">{{selectedStandard == data.id ? 'check_box':'check_box_outline_blank'}}</mat-icon>
+            <small>{{data.name}}</small>
+          </button>              
+        </mat-menu>
+
+      </span>
+      <span class="px-1" >
+        <button mat-raised-button color="primary"  (click)="newFeeStructure()" >
+          <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
+            <small>
+              Add Fee Structure
+            </small>
+        </button>
+    </span>
   </mat-toolbar-row>
 </mat-toolbar>
     <!--more action on selected row-->
@@ -88,15 +82,26 @@
           </button>
         </div>
         <div class="spacer"></div>
-        <div>
+        <!-- <div>
           <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" 
             >
           </mat-paginator>
+        </div> -->
+        <div class="d-flex align-items-center float-end">
+          <form class="d-flex align-items-center w-100">
+            <input class="form-control mr-sm-2 w-100" type="search" placeholder="Filter"
+              aria-label="Search" (keyup)="applyFilter($event)">
+            <div class="w-25">
+              <button mat-raised-button color="primary">
+                <small>Search</small>
+              </button>
+            </div>
+          </form>
         </div>
         
       </mat-toolbar-row>
     </mat-toolbar>
-    <table mat-table class="w-100  mb-5" matSort aria-label="Elements">
+    <table mat-table  class="w-100  mb-5" matSort aria-label="Elements">
   
    <!-- Checkbox Column -->
    <ng-container matColumnDef="select">
@@ -123,7 +128,7 @@
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
         <td mat-cell *matCellDef="let row">
-         <small>{{row.name || '...'}}</small>
+         <small>{{row.Fee.name || '...'}}</small>
         </td>
       </ng-container>
   
@@ -140,4 +145,11 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
     </table>
+    <div *ngIf="dataSource.data.length == 0" class="d-flex flex-column justify-content-center align-items-center h-50 w-100">     
+      <small class="mat-caption" > You don’t have any records</small><br>
+      <small class="strong" style="color:#ccc;"> You don’t have any records</small>
+      <a routerLink="/admission">
+        <small>new admission</small>
+      </a>
+    </div>
   </div>

@@ -7,7 +7,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { param } from 'jquery';
 import { CommonService } from 'src/app/services/common.service';
 import { ManageFeeCategoryComponent } from '../../fee-category/manage-fee-category/manage-fee-category.component';
@@ -71,6 +71,8 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['select','name','action'];
   selection = new SelectionModel<FacultyListItem>(true, []);
+  standardList: any;
+  selectedStandard = <any>{};
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -96,31 +98,56 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   }
 
   menuDataSession = ['2019-2020','2020-2021','2021-2022'];
-  selectedSession = this.menuDataSession[0]
+  selectedSession = this.menuDataSession[2]
   constructor(
     private dialog : MatDialog,
     private router : Router,
+    private activatedRoute : ActivatedRoute,
     private commonService : CommonService
-    ){}
+    ){
+      this.activatedRoute.queryParams.subscribe(data=>{
+        if(data && data.year && data.standardId){
+        this.selectedSession = data.year ?  data.year : this.selectedSession
+        this.selectedStandard = data.standardId ?  data.standardId : this.selectedStandard.id
+        this.getFeeStructureList()
+      }
+      })
+    }
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
     console.log("selection",this.selection.selected)
-    this.getFeeStructureList();
+    this.getMasterStandardList();
+    
   }
 
   getFeeStructureList(){
-    
-    
-      this.commonService.getMasterStandard().subscribe((result)=>{
-        console.log("master student Form result",result);
-        const standardList = result['data'] || null;
-        this.dataSource.data = standardList
+      this.commonService.getMasterFeeStructure(this.selectedSession,this.selectedStandard).subscribe((result)=>{
+        console.log("Fee Structure result",result);
+        const structureList = result['data'] || null;
+        this.dataSource.data = structureList
       },(error)=>{
-        console.log("master student Form error",error);
+        console.log(" error",error);
       })
-    
   }
+ 
+  onStandardChange(){
+    this.router.navigate([],{queryParams :{ year : this.selectedSession , standardId : this.selectedStandard.id}})
+    // this.getFeeStructureList();
+  }
+
+  getMasterStandardList(){
+    this.commonService.getMasterStandard().subscribe((result)=>{
+      console.log("classes",result);
+      this.standardList = result['data'] || [];
+      if(this.standardList.length){
+        this.selectedStandard = this.standardList[0]
+      }
+      
+    },(error)=>{
+      console.log("error",error);
+    })
+}
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;

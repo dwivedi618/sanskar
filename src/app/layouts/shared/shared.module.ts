@@ -6,9 +6,11 @@ import { TopbarComponent } from './topbar/topbar.component';
 import { MaterialModule } from 'src/app/material.module';
 import { LeftSidebarMenuComponent } from './left-sidebar-menu/left-sidebar-menu.component';
 import { AlertComponent } from 'src/app/alert/alert.component';
+import { SearchComponent } from './search/search.component';
+import { RightSidebarMenuComponent } from './right-sidebar-menu/right-sidebar-menu.component';
 
 @NgModule({
-  declarations: [TopbarComponent, LeftSidebarMenuComponent,AlertComponent],
+  declarations: [TopbarComponent, LeftSidebarMenuComponent,AlertComponent, SearchComponent, RightSidebarMenuComponent],
   imports: [
     CommonModule,
     MaterialModule,
@@ -20,6 +22,8 @@ import { AlertComponent } from 'src/app/alert/alert.component';
     FormsModule,
     TopbarComponent,
     LeftSidebarMenuComponent,
+    RightSidebarMenuComponent,
+    SearchComponent,
     AlertComponent,
     RouterModule
   ]

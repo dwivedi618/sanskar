@@ -26,7 +26,7 @@ export class ManageFeeCategoryComponent implements OnInit {
 
   
   submit(){
-    this.commonService.masterFee(this.masterFeeCategoryForm.value).subscribe((result)=>{
+    this.commonService.addMasterFeeCategory(this.masterFeeCategoryForm.value).subscribe((result)=>{
       console.log("masterFeeCategoryForm",result);
     },(error)=>{
       console.log("masterFeeCategoryForm",error);

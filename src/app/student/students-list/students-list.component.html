@@ -1,71 +1,43 @@
 <div class="">
-  <div class="py-4 bg-white">
-    <div class="row ">
-      <div class="col-md-6 mr-auto">
-        <form class="d-flex  mb-4 w-100">
-          <input class="form-control mr-sm-2 w-75" type="search" placeholder="Find by student id , name or roll" 
-            aria-label="Search" (keyup)="applyFilter($event)">
-          <div class="25">
-            <button mat-raised-button color="primary">
-              <!-- <mat-icon class="mat-icon-sm">search</mat-icon> -->
-              <small>Search</small>
-            </button>
-          </div>
-        </form>
-      </div>
-      <div class="col-md-5 text-right">
-             <span class="px-1" >
-                <button mat-raised-button color="primary"  (click)="newAdmission()" >
-                  <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
-                    <small>
-                      New addmission
-                    </small>
-                </button>
-            </span>
-            <span class="px-1" >
-              <button mat-raised-button color="primary" [matMenuTriggerFor]="session" #t="matMenuTrigger">
-                <small>
-                  2021-2022
-                </small>
-                <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
-              </button>
-              <mat-menu #session="matMenu" hasBackdrop="true">
-                <button mat-menu-item>
-                  <mat-icon class="mat-icon-sm pt-1 text-success">check_box</mat-icon>
-                  <small class="pr-2">2018-2019</small>
-                </button>
-                <button mat-menu-item>
-                  <mat-icon class="mat-icon-sm pt-1 text-mylight">check_box_outline_blank</mat-icon>
-                  <small class="pr-2">2019-2020</small>
-                </button> <button mat-menu-item>
-                  <mat-icon class="mat-icon-sm pt-1 text-mylight">check_box_outline_blank</mat-icon>
-                  <small class="pr-2">2020-2021</small>
-                </button>
-              </mat-menu>
-
-            </span>
-                                        
-        
-      </div>
+ 
+  <mat-toolbar class="bg-mysecondary">
+    <mat-toolbar-row>
+      <div class="" style="font-size:12px">
+        <span  class="m-0 p-0">Registered Students</span>
+        <!-- <small>You can be only set master fee structure for current and future sessions</small> -->
     </div>
-  </div>
-  <!-- <mat-toolbar class="bg-white ">
-    <mat-toolbar-row>
-      <nav mat-tab-nav-bar class="w-100">
-        <a  mat-tab-link >All</a>
-        <a  mat-tab-link>Disabled Link</a>
-        <a  mat-tab-link>Disabled Link</a>
-        <a  mat-tab-link >Disabled Link</a>
-        <a  mat-tab-link >Disabled Link</a>
-        <a  mat-tab-link >Disabled Link</a>
-        <a  mat-tab-link >Disabled Link</a>
-      </nav>
-    </mat-toolbar-row>
-  </mat-toolbar> -->
-  <!--table heading-->
-  <mat-toolbar class="bg-white">
-    <mat-toolbar-row>
-      <small class="strong">Student</small>
+   
+      <div class="spacer"></div>
+      <span class="px-1" >
+        <button mat-raised-button color="primary" [matMenuTriggerFor]="session" #t="matMenuTrigger">
+          <small>
+            2021-2022
+          </small>
+          <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
+        </button>
+        <mat-menu #session="matMenu" hasBackdrop="true">
+          <button mat-menu-item>
+            <mat-icon class="mat-icon-sm pt-1 text-success">check_box</mat-icon>
+            <small class="pr-2">2018-2019</small>
+          </button>
+          <button mat-menu-item>
+            <mat-icon class="mat-icon-sm pt-1 text-mylight">check_box_outline_blank</mat-icon>
+            <small class="pr-2">2019-2020</small>
+          </button> <button mat-menu-item>
+            <mat-icon class="mat-icon-sm pt-1 text-mylight">check_box_outline_blank</mat-icon>
+            <small class="pr-2">2020-2021</small>
+          </button>
+        </mat-menu>
+
+      </span>
+      <span class="px-1" >
+        <button mat-raised-button color="primary"  (click)="newAdmission()" >
+          <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
+            <small>
+              New addmission
+            </small>
+        </button>
+    </span>
     </mat-toolbar-row>
   </mat-toolbar>
   <!--more action on selected row-->
@@ -102,10 +74,22 @@
         </button>
       </div>
       <div class="spacer"></div>
-      <div>
+      <!-- <div>
         <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" 
           >
         </mat-paginator>
+      </div> -->
+
+      <div class="d-flex align-items-center float-end">
+        <form class="d-flex align-items-center w-100">
+          <input class="form-control mr-sm-2 w-100" type="search" placeholder="Filter"
+            aria-label="Search" (keyup)="applyFilter($event)">
+          <div class="w-25">
+            <button mat-raised-button color="primary">
+              <small>Search</small>
+            </button>
+          </div>
+        </form>
       </div>
       
     </mat-toolbar-row>

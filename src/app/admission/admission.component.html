@@ -1,4 +1,4 @@
-<section style="min-height: calc(100vh-6rem);">
+<section style="min-height: calc(100vh-6rem);" style="margin-bottom: 5rem;">
     <!-- <mat-toolbar class="bg-white">
         <mat-toolbar-row>
             <div class="px-1 ml-n2">
@@ -31,6 +31,31 @@
                                             <mat-error *ngIf="f1.name.hasError('required')">Name Required
                                             </mat-error>
                                         </mat-form-field>
+
+                                        <mat-form-field appearance="outline" class="example-full-width">
+                                            <mat-label>Date of Birth</mat-label>
+                                            <input matInput type="date" formControlName="dateOfBirth">
+                                        </mat-form-field>
+
+                                        <!-- bloodGroup -->
+                                        <mat-form-field appearance="outline" class="example-full-width">
+                                            <mat-label>Blood Group </mat-label>
+                                            <mat-select placeholder="Blood Group" formControlName="bloodGroup">
+                                                <mat-option *ngFor="let bloodGroup of bloodGroups"
+                                                    [value]="bloodGroup.value">
+                                                    {{bloodGroup.viewValue}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+
+                                        <div class="my-4">
+                                            <mat-label mat-line>Gender</mat-label>
+                                            <mat-radio-group formControlName="gender" aria-label="Gender">
+                                                <mat-radio-button value="MALE">Male</mat-radio-button>
+                                                <mat-radio-button value="FEMALE">Female</mat-radio-button>
+                                                <mat-radio-button value="OTHER">Other</mat-radio-button>
+                                            </mat-radio-group>
+                                        </div>
            
                                     </div>
                                     <div class="col-md-6  g-2">
@@ -81,36 +106,9 @@
                                 </div>
 
 
-                                <div class="row my-4">
-                                    <div class="col-md-6 g-2">
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>Date of Birth</mat-label>
-                                            <input matInput type="date" formControlName="dateOfBirth">
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
+                  
 
-                                        <!-- bloodGroup -->
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>Blood Group </mat-label>
-                                            <mat-select placeholder="Blood Group" formControlName="bloodGroup">
-                                                <mat-option *ngFor="let bloodGroup of bloodGroups"
-                                                    [value]="bloodGroup.value">
-                                                    {{bloodGroup.viewValue}}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </div>
-                                </div>
-
-                                <div class="my-4">
-                                    <mat-label mat-line>Gender</mat-label>
-                                    <mat-radio-group formControlName="gender" aria-label="Gender">
-                                        <mat-radio-button value="MALE">Male</mat-radio-button>
-                                        <mat-radio-button value="FEMALE">Female</mat-radio-button>
-                                        <mat-radio-button value="OTHER">Other</mat-radio-button>
-                                    </mat-radio-group>
-                                </div>
+                               
 
                                 <div class="row">
                                     <div class="col-md-6">

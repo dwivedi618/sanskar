@@ -1,6 +1,10 @@
 .printLayout{
     width :794px ; 
     height :1123px;
+    min-width :794px ; 
+    min-height :1123px;
+    max-width :794px ; 
+    max-height :1123px;
 }
 #parallelogram {
     width: 450px;
@@ -73,4 +77,8 @@ section div.acknowledgement{
     font-family: 'Yanone Kaffeesatz', sans-serif!important;
     letter-spacing: .1px;
 
+}
+
+input[type=text]{
+ width: 100%;
 }

@@ -51,6 +51,7 @@ export class StudentProfileComponent implements OnInit {
 
   printProfile(){
     console.log("print profile")
+    this.router.navigate(['./student/print'],{queryParams : {id : this.studentId , action : 'print'}})
   }
   
 }

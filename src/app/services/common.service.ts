@@ -24,7 +24,7 @@ export class CommonService {
   }
 
 
-  masterFee(fee) {
+  addMasterFeeCategory(fee) {
     return this.http.post<any>(`${environment.apiUrl}/v1/master/fee`, fee)
   }
 
@@ -32,15 +32,18 @@ export class CommonService {
   getMasterFee() {
     return this.http.get<any>(`${environment.apiUrl}/v1/master/fee`)
   }
+  getMasterFeeCategory() {
+    return this.http.get<any>(`${environment.apiUrl}/v1/master/fee`)
+  }
 
 
-  masterFeeStructure(feeStructure) {
+  addMasterFeeStructure(feeStructure) {
     return this.http.post<any>(`${environment.apiUrl}/v1/master/fee-structure`, feeStructure)
   }
 
 
-  getMasterFeeStructure() {
-    return this.http.get<any>(`${environment.apiUrl}/v1/master/fee-structure`)
+  getMasterFeeStructure(session,standardId) {
+    return this.http.get<any>(`${environment.apiUrl}/v1/master/fee-structure?year=${session}&standardId=${standardId}`)
   }
 
 

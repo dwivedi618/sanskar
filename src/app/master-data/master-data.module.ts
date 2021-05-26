@@ -1,3 +1,4 @@
+import { SharedModule } from './../layouts/shared/shared.module';
 import { FeeStructureListComponent } from './fee-structure/fee-structure-list/fee-structure-list.component';
 import { MasterFeeCategoryListComponent } from './fee-category/master-fee-category-list/master-fee-category-list.component';
 import { MasterDataLayoutComponent } from './master-data-layout/master-data-layout.component';
@@ -27,6 +28,7 @@ import { ManageMasterStandardComponent } from './standard/manage-master-standard
   ],
   imports: [
     CommonModule,
+    SharedModule,
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,

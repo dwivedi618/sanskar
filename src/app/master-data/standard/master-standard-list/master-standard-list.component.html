@@ -1,37 +1,13 @@
 <div class="bg-white">
-    <div class="py-4">
-      <div class="row">
-        <div class="col-md-6 mr-auto">
-          <form class="d-flex  mb-4 w-100">
-            <input class="form-control mr-sm-2 w-75" type="search" placeholder="Find Standard"
-              aria-label="Search" (keyup)="applyFilter($event)">
-            <div class="w-25">
-              <button mat-raised-button color="primary">
-                <small>Search</small>
-              </button>
-            </div>
-          </form>
-        </div>
-        <div class="col-md-6 text-right">
-               
-              <span class="px-1" >
-                <button mat-raised-button color="primary"  (click)="manageMasterStandard()" >
-                  <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
-                    <small>
-                      Master standard
-                    </small>
-                </button>
-             </span>
-              
-                                          
-          
-        </div>
-      </div>
-    </div>
+
     <!--table heading-->
-    <mat-toolbar class="bg-white">
+    <mat-toolbar class="bg-mysecondary">
       <mat-toolbar-row>
-        <small class="strong">Master standards</small>
+        <div class="" style="font-size:12px">
+          <span  class="m-0 p-0">Registered Classes</span>
+          <!-- <small>You can be only set master fee structure for current and future sessions</small> -->
+      </div>
+
         <div class="spacer"></div>
         <span class="px-1" >
             <button mat-button [matMenuTriggerFor]="session" #t="matMenuTrigger" [matMenuTriggerData]="menuDataSession">
@@ -48,6 +24,15 @@
             </mat-menu>
 
           </span>
+
+          <span class="px-1" >
+            <button mat-raised-button color="primary"  (click)="manageMasterStandard()" >
+              <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
+                <small>
+                  Master standard
+                </small>
+            </button>
+         </span>
       </mat-toolbar-row>
     </mat-toolbar>
     <!--more action on selected row-->
@@ -84,10 +69,21 @@
           </button>
         </div>
         <div class="spacer"></div>
-        <div>
+        <!-- <div>
           <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" 
             >
           </mat-paginator>
+        </div> -->
+        <div class="d-flex align-items-center float-end">
+          <form class="d-flex align-items-center w-100">
+            <input class="form-control mr-sm-2 w-100" type="search" placeholder="Filter"
+              aria-label="Search" (keyup)="applyFilter($event)">
+            <div class="w-25">
+              <button mat-raised-button color="primary">
+                <small>Search</small>
+              </button>
+            </div>
+          </form>
         </div>
         
       </mat-toolbar-row>
@@ -136,4 +132,11 @@
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
     </table>
+    <div *ngIf="dataSource.data.length == 0" class="d-flex flex-column justify-content-center align-items-center h-50 w-100">     
+      <small class="mat-caption" > You don’t have any records</small><br>
+      <small class="strong" style="color:#ccc;"> You don’t have any records</small>
+      <a routerLink="/admission">
+        <small>Register New Class/Standard</small>
+      </a>
+    </div>
   </div>

@@ -1,15 +1,24 @@
-
-<mat-toolbar role="heading" class="topbar box-shadow-0 bg-white" >
-    <mat-toolbar-row>
+<header >
+<mat-toolbar role="heading" class=" box-shadow-0 mybg-primary" >
+<mat-toolbar-row>
       <button mat-icon-button (click)="toggleLeftSidebar()" matTooltip="menu">
         <mat-icon>menu</mat-icon>
       </button>
       <button mat-icon-button>
           <img class="avatar-sm " src="../assets/sanskar.jpg" height="32">
       </button>
-      
+      <div class="d-flex align-items-center justify-content-center w-100" style="position: relative;">
+        <app-search></app-search>
+      </div>
       <div class="spacer"></div>
-      <small>Sanskar Public School</small>
+      <div>
+        <button mat-icon-button color="primary" class="mx-2 mat-elevation-z1 text-light "  >
+            <mat-icon class="mat-icon-sm pt-0">notifications</mat-icon>
+        </button>
+
+    </div>
+            <!-- <small>Sanskar Public School</small> -->
     
     </mat-toolbar-row>
 </mat-toolbar>
+</header>

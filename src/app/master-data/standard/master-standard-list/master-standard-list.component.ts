@@ -82,7 +82,6 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
       },(error)=>{
         console.log("master student Form error",error);
       })
-    
   }
 
   ngAfterViewInit() {

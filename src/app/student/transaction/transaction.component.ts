@@ -5,7 +5,7 @@ import { AlertService } from 'src/app/services/alert.service';
 @Component({
   selector: 'app-transaction',
   templateUrl: './transaction.component.html',
-  styleUrls: ['./transaction.component.scss']
+  styleUrls: ['./transaction.component.css']
 })
 export class TransactionComponent implements OnInit {
 

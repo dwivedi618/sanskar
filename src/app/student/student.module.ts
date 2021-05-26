@@ -10,6 +10,8 @@ import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { SharedModule } from '../layouts/shared/shared.module';
 import { StudentLayoutComponent } from './student-layout/student-layout.component';
 import { AdmissionFormPrintLayoutComponent } from './admission-form-print-layout/admission-form-print-layout.component';
+import { FeeDepositComponent } from './fee-deposit/fee-deposit.component';
+import { CommonModule } from '@angular/common';
 
 
 
@@ -20,9 +22,11 @@ import { AdmissionFormPrintLayoutComponent } from './admission-form-print-layout
     StudentProfileComponent,
     TransactionComponent,
     StudentLayoutComponent,
-    AdmissionFormPrintLayoutComponent
+    AdmissionFormPrintLayoutComponent,
+    FeeDepositComponent
     ],
   imports: [
+    CommonModule,
     SharedModule,
     MaterialModule,
     StudentRoutingModule,
@@ -36,7 +40,7 @@ import { AdmissionFormPrintLayoutComponent } from './admission-form-print-layout
     StudentRoutingModule
   ],
   entryComponents: [
-    TransactionComponent,StudentProfileComponent
+    TransactionComponent,StudentProfileComponent,FeeDepositComponent
   ],
   
 })

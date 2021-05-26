@@ -3,12 +3,7 @@
 * {
   box-sizing: border-box;
 }
-::ng-deep .mat-dialog-container{
-  padding: 0 24px!important;
-}
-::ng-deep .mat-dialog-container .mat-dialog-content{
-  padding: 24px 0!important;
-}
+
 #about mat-icon{
   font-size: 1rem;
 }

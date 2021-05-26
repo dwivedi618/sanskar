@@ -14,13 +14,13 @@
 
             <mat-vertical-stepper #stepper>
 
-                <mat-step [stepControl]="studentForm">
-                    <form class="stepper_form my-4 py-2" [formGroup]="studentForm" >
+                <mat-step [stepControl]="studentForm" class="">
+                    <form class="stepper_form my-4 py-2 " [formGroup]="studentForm" >
                         <ng-template matStepLabel>Required Student Details</ng-template>
                         <div class=" d-flex justify-content-center">
                             <div class="col-sm-12 col-md-10 col-lg-10">
                                 <div class="mb-2">
-                                    <mat-label class="text-primary">Student's Information</mat-label>
+                                    <mat-label class="text-primary ">Student's Information</mat-label>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
@@ -120,12 +120,11 @@
                                         </mat-form-field>
                                     </div>
                                     <div class="col-md-6">
-                                        <!-- healthStatus -->
+                                        
 
                                         <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>Health Status</mat-label>
-                                            <input matInput placeholder="Health Status" type="text"
-                                                formControlName="healthStatus">
+                                            <mat-label>Place</mat-label>
+                                            <input matInput placeholder="Place" type="text" formControlName="place">
                                         </mat-form-field>
 
                                     </div>
@@ -174,12 +173,13 @@
 
 
 
-
-
                                 <mat-form-field appearance="outline" class="example-full-width">
-                                    <mat-label>Place</mat-label>
-                                    <input matInput placeholder="Place" type="text" formControlName="place">
+                                    <mat-label>Health Status</mat-label>
+                                    <input matInput placeholder="Health Status" type="text"
+                                        formControlName="healthStatus">
                                 </mat-form-field>
+
+                               
 
                                 <div class="d-flex justify-content-end my-4">
                                     <button mat-raised-button type="submit" color="primary" (click)="onStudentSubmit()" matStepperNext>Save and

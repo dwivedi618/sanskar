@@ -22,7 +22,7 @@
 
           </span>
           <span class="px-1" >
-            <button mat-raised-button color="primary"  (click)="manageFeeCategory()" >
+            <button mat-stroked-button color=""  (click)="manageFeeCategory()" >
               <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
                 <small>
                   New Fee Category
@@ -71,14 +71,13 @@
           </mat-paginator>
         </div> -->
         <div class="d-flex align-items-center float-end">
-          <form class="d-flex align-items-center w-100">
-            <input class="form-control mr-sm-2 w-100" type="search" placeholder="Filter"
+          <form class="d-flex align-items-center w-100" style="position: relative;">
+            <input class="form-control mr-sm-2 w-100 pl-5" type="search" placeholder="Filter"
               aria-label="Search" (keyup)="applyFilter($event)">
-            <div class="w-25">
-              <button mat-raised-button color="primary">
-                <small>Search</small>
+              <button mat-icon-button color="primary" style="position: absolute;">
+                <mat-icon class="mat-icon-sm pt-0">search</mat-icon>
+                <!-- <small>Search</small> -->
               </button>
-            </div>
           </form>
         </div>
         

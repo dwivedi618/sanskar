@@ -28,6 +28,13 @@ export class CommonService {
     return this.http.post<any>(`${environment.apiUrl}/v1/master/fee`, fee)
   }
 
+  studentFeeDeposit(studentId,fee) {
+    return this.http.post<any>(`${environment.apiUrl}/v1/student/${studentId}/fee-deposit`, fee)
+  }
+  studentFeeDetails(studentId) {
+    return this.http.get<any>(`${environment.apiUrl}/v1/student/${studentId}/fee-detail`)
+  }
+
 
   getMasterFee() {
     return this.http.get<any>(`${environment.apiUrl}/v1/master/fee`)

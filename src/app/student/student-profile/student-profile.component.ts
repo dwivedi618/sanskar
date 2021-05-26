@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from 'src/app/services/common.service';
+import { FeeDepositComponent } from '../fee-deposit/fee-deposit.component';
+import { TransactionComponent } from '../transaction/transaction.component';
 
 
 
@@ -15,16 +18,19 @@ export class StudentProfileComponent implements OnInit {
   studentData: any;
   parentData: any;
   addressData: any;
+  studentFeeDetails: any;
 
   constructor(
     private activatedRoute : ActivatedRoute,
     private router : Router,
+    private dialog : MatDialog,
     private commonService: CommonService
   ) { 
     this.activatedRoute.queryParams.subscribe((data)=>{
       console.log("activated route data",data);
       this.studentId = data.id;
       this.getProfile();
+      this.getFeeDetails();
     })
   }
 
@@ -45,6 +51,17 @@ export class StudentProfileComponent implements OnInit {
       })
   }
 
+  getFeeDetails(){
+    this.commonService.studentFeeDetails(this.studentId)
+      .subscribe((result) => {
+        console.log("Student profile", result);
+        this.studentFeeDetails = result.data || null;
+        this.isLoading = false;
+      }, (error) => {
+        console.log("error", error);
+      })
+  }
+
   updateProfile(){
     this.router.navigate(['/admission'],{queryParams : {id : this.studentId , action : 'update'}})
   }
@@ -52,6 +69,22 @@ export class StudentProfileComponent implements OnInit {
   printProfile(){
     console.log("print profile")
     this.router.navigate(['./student/print'],{queryParams : {id : this.studentId , action : 'print'}})
+  }
+
+  openfeeDeposit(){
+    const data = <any>{}
+    data.studentId = this.studentId
+    const dialogRef = this.dialog.open(FeeDepositComponent,{
+      width : '40rem',
+      maxWidth : '100vw',
+      maxHeight : '100vh',
+      hasBackdrop : false,
+      data : data
+    })
+
+    dialogRef.afterClosed().subscribe((status : Boolean )=>{
+      this.getFeeDetails();
+    })
   }
   
 }

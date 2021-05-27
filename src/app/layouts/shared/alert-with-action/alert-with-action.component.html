@@ -1,0 +1,18 @@
+<mat-dialog-content class="text-center">
+    <div class="text-center d-flex justify-centent-start align-items-center mb-2">
+        <span class="material-icons-outlined text-warning">
+            lightbulb
+        </span>
+        <small class="px-2 ">{{message}}</small>
+    </div>
+    
+</mat-dialog-content>
+<div mat-dialog-action class="d-flex">
+    <button  mat-button (click)="snackBarRef.dismiss(3);" class="w-50 mr-1">
+        <small>Close</small>
+    </button>
+    <button mat-button  (click)="snackBarRef.dismissWithAction();" class="w-50 btn-mydark" cdkFocusInitial>
+        <small>{{action | titlecase}}</small>
+    </button>
+</div>
+

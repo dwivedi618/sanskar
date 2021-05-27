@@ -8,15 +8,23 @@ import { LeftSidebarMenuComponent } from './left-sidebar-menu/left-sidebar-menu.
 import { AlertComponent } from 'src/app/alert/alert.component';
 import { SearchComponent } from './search/search.component';
 import { RightSidebarMenuComponent } from './right-sidebar-menu/right-sidebar-menu.component';
+import { AlertWithActionComponent } from './alert-with-action/alert-with-action.component';
 
 @NgModule({
-  declarations: [TopbarComponent, LeftSidebarMenuComponent,AlertComponent, SearchComponent, RightSidebarMenuComponent],
+  declarations: [
+    TopbarComponent,
+    LeftSidebarMenuComponent,
+    AlertComponent,
+    SearchComponent,
+    RightSidebarMenuComponent,
+    AlertWithActionComponent
+  ],
   imports: [
     CommonModule,
     MaterialModule,
     FormsModule,
   ],
-  exports : [
+  exports: [
     CommonModule,
     MaterialModule,
     FormsModule,
@@ -25,6 +33,7 @@ import { RightSidebarMenuComponent } from './right-sidebar-menu/right-sidebar-me
     RightSidebarMenuComponent,
     SearchComponent,
     AlertComponent,
+    AlertWithActionComponent,
     RouterModule
   ]
 })

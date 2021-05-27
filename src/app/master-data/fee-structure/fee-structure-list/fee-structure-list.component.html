@@ -8,38 +8,41 @@
   </div>
    
     <div class="spacer"></div>
-    <span class="px-1" >
-        <button mat-stroked-button [matMenuTriggerFor]="session" #t="matMenuTrigger" [matMenuTriggerData]="menuDataSession">
-          
-            <small>{{selectedSession || 'syncing...'}}</small>
+    <span class="px-2" >
+      <small style="font-size: 12px;">session : </small>
+        <button mat-stroked-button [matMenuTriggerFor]="session" class="btn-mydark" 
+        #t="matMenuTrigger" [matMenuTriggerData]="menuDataSession">
+        
+            <small>{{selectedSession || 'Select'}}</small>
           
           <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
         </button>
         <mat-menu #session="matMenu" hasBackdrop="true">
-          <button mat-menu-item *ngFor="let session of menuDataSession" (click)="selectedSession = session;onStandardChange()">
-            <mat-icon class="mat-icon-sm pt-1 " [class.text-success]="selectedSession == session">{{selectedSession == session ? 'check_box':'check_box_outline_blank'}}</mat-icon>
-            <small>{{session}}</small>
+          <button mat-menu-item *ngFor="let session of sessionLists" (click)="onSessionChange(session)">
+            <mat-icon class="mat-icon-sm pt-1 " [class.text-success]="selectedSession == session.viewValue">{{selectedSession == session.viewValue ? 'check_box':'check_box_outline_blank'}}</mat-icon>
+            <small>{{session.viewValue}}</small>
           </button>              
         </mat-menu>
 
       </span>
-      <span class="px-1" >
-        <button mat-stroked-button [matMenuTriggerFor]="standards" #t="matMenuTrigger" [matMenuTriggerData]="menuDataStandard">
+      <span class="px-2" style="min-width: 8rem;">
+        <small style="font-size: 12px;">standard : </small>
+        <button style="min-width: 8rem;" class="btn-mydark"  mat-stroked-button [matMenuTriggerFor]="standards" #t="matMenuTrigger" [matMenuTriggerData]="menuDataStandard">
           
-            <small>{{selectedStandard?.name || 'syncing...'}}</small>
+            <small>{{(selectedStandardName | titlecase )|| 'Select'}}</small>
           
           <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
         </button>
-        <mat-menu #standards="matMenu" hasBackdrop="true">
-          <button mat-menu-item *ngFor="let data of standardList" (click)="selectedStandard = data.id;onStandardChange();">
-            <mat-icon class="mat-icon-sm pt-1 " [class.text-success]="selectedStandard == data.id">{{selectedStandard == data.id ? 'check_box':'check_box_outline_blank'}}</mat-icon>
+        <mat-menu #standards="matMenu" hasBackdrop="true" class="w-100" style="min-width: 10rem;">
+          <button mat-menu-item *ngFor="let data of standardList" class="w-100" (click)="selectedStandard = data.name;onStandardChange(data);">
+            <mat-icon class="mat-icon-sm pt-1 " [class.text-success]="selectedStandard == data.id">{{standardId == data.id ? 'check_box':'check_box_outline_blank'}}</mat-icon>
             <small>{{data.name}}</small>
           </button>              
         </mat-menu>
 
       </span>
       <span class="px-1" >
-        <button mat-stroked-button color=""  (click)="newFeeStructure()" >
+        <button mat-stroked-button color="" class="btn-dark"   (click)="newFeeStructure()" >
           <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
             <small>
               Add Fee Structure
@@ -127,7 +130,7 @@
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Name</th>
         <td mat-cell *matCellDef="let row">
-         <small>{{row.Fee.name || '...'}}</small>
+         <small>{{row.fee.name || '...'}}</small>
         </td>
       </ng-container>
   

@@ -30,6 +30,8 @@ import { LayoutModule } from './layouts/layout/layout.module';
 
 import { AlertService } from './services/alert.service';
 import { AlertComponent } from './alert/alert.component';
+import { MatSnackBarRef } from '@angular/material/snack-bar';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 
 
@@ -78,7 +80,13 @@ import { AlertComponent } from './alert/alert.component';
     
   ],
   // entryComponents: [ FeesComponent],
-  providers: [AuthenticationService,HttpClient,AlertService],
+  providers: [AuthenticationService,HttpClient,AlertService,{
+    provide: MatSnackBarRef,
+    useValue: {}
+  },
+  { provide:MatDialogRef , useValue:{} },
+
+  { provide: MAT_DIALOG_DATA, useValue: {} },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

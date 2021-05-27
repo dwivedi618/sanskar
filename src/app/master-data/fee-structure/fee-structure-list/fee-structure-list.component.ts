@@ -5,7 +5,7 @@ import { filter } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ExpandInOutAnimation } from '../../../services/animation/dropdown-animation';
 import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -65,6 +65,7 @@ const EXAMPLE_DATA: FacultyListItem[] = [
 })
 
 export class FeeStructureListComponent implements AfterViewInit, OnInit {
+  @ViewChild('selectStandardbtn' ,{static : false}) selectStandardbtn : HTMLElement
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<FacultyListItem>;
@@ -152,6 +153,10 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     }else{
       this.alertService.alertWithAction("Do not forget to select standard/class",'select standard').subscribe(action =>{
         console.log("action----->",action)
+        let selectStandardbtn : HTMLElement = document.getElementById('selectStandardbtn') as HTMLElement
+        selectStandardbtn.click()
+  
+
       })
     }
   }
@@ -194,6 +199,9 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
+    
+      
+    
   }
 
   applyFilter(event: Event) {

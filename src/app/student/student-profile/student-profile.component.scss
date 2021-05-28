@@ -267,3 +267,12 @@ strong.profile_data_label{
     justify-content: flex-start;
    
 }
+tr.mat-footer-row {
+  font-weight: bold;
+}
+
+td.mat-cell {
+  padding: 0;
+  border-bottom-width: 1px;
+  border-bottom-style: none;
+}

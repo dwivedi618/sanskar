@@ -23,6 +23,7 @@ export class ManageFeeStructureComponent implements OnInit {
     { value: "YEARLY", viewValue: 12 },
   ]
   isSaving: boolean;
+  standardName : string
 
   constructor(
     private router: Router,
@@ -51,9 +52,18 @@ export class ManageFeeStructureComponent implements OnInit {
    */
   submit() {
     this.isSaving = true;
+    this.router.navigate(['./master'], { queryParams: { 
+      year: this.feeStructureForm.value.year,
+      standardId:  this.feeStructureForm.value.standardId  ,
+      n : this.standardName }})
     this.commonService.addMasterFeeStructure(this.feeStructureForm.value).subscribe(result=>{
     console.log("result",result);
     this.isSaving = false;
+    this.router.navigate(['./'], { queryParams: { 
+      year: this.feeStructureForm.value.year,
+      standardId:  this.feeStructureForm.value.standardId  ,
+      n : this.standardName }, queryParamsHandling: 'merge' })
+
     this.alertService.alertComponent(result.message || '')
 
     },error =>{

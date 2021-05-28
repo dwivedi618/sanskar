@@ -72,7 +72,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select', 'name', 'action'];
+  displayedColumns = ['select', 'name', 'frequency','amount','action'];
   selection = new SelectionModel<FacultyListItem>(true, []);
   standardList: any;
   selectedStandard: string;
@@ -117,12 +117,17 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     private commonService: CommonService
   ) {
     this.activatedRoute.queryParams.subscribe(data => {
-      if (data && data.year && data.standardId) {
+      if (data && data.year ) {
         this.selectedSession = data.year
-        this.standardId = data.standardId
-        this.selectedStandardName = data.n
-        this.getFeeStructureList()
+        if(data.standardId){
+          this.standardId = data.standardId
+          this.getFeeStructureList()
+        }
+        if(data.n){
+          this.selectedStandardName = data.n
+        }
       }
+        
     })
   }
 
@@ -211,6 +216,11 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
+  }
+
+   /** Gets the total cost of all transactions. */
+   getTotalCost() {
+    return this.dataSource.data.map(t => t.amount).reduce((acc, value) => acc + value, 0);
   }
 
   expandAnimation = 'collapsed';

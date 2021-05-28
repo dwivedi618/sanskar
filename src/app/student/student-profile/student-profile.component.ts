@@ -19,6 +19,10 @@ export class StudentProfileComponent implements OnInit {
   parentData: any;
   addressData: any;
   studentFeeDetails: any;
+  displayedColumns = ['name', 'frequency','amount','action'];
+
+  appliedFee: any;
+  totalFeeDeposit: any;
 
   constructor(
     private activatedRoute : ActivatedRoute,
@@ -55,11 +59,17 @@ export class StudentProfileComponent implements OnInit {
     this.commonService.studentFeeDetails(this.studentId)
       .subscribe((result) => {
         console.log("Student profile", result);
-        this.studentFeeDetails = result.data || null;
+        let studentFeeDetails = result.data || null;
+        this.appliedFee = studentFeeDetails['feeStructures']
+        this.totalFeeDeposit = studentFeeDetails['totalDeposited']
         this.isLoading = false;
       }, (error) => {
         console.log("error", error);
       })
+  }
+
+  getTotalCost(){
+    return this.appliedFee.map(t => t.amount).reduce((acc,value)=> acc + value,0)
   }
 
   updateProfile(){

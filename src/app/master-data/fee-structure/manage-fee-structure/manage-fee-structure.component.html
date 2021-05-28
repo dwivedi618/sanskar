@@ -63,8 +63,8 @@
                                     <h6 mat-subtitle>standard</h6>
                                     <mat-form-field appearance="outline" class="w-100">
                                         <mat-label>standard</mat-label>
-                                        <mat-select formControlName="standardId" required>
-                                            <mat-option *ngFor="let standard of standardLists" [value]="standard.id">
+                                        <mat-select formControlName="standardId"  required >
+                                            <mat-option *ngFor="let standard of standardLists" [value]="standard.id" (change)="standardName = standard.name">
                                                 {{standard.name}}
                                             </mat-option>
                                         </mat-select>

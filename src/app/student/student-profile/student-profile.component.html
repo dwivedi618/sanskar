@@ -1,14 +1,14 @@
 <section style="min-height: calc(100vh-6rem);">
   <mat-toolbar class="bg-mysecondary" style="max-height: 3rem;position:sticky;top:0;z-index: 2;">
-  
-      <div class="px-1 ml-n2">
-        <button mat-icon-button routerLink='..' class="text-mylight">
-          <mat-icon class="mat-icon-md text-mylight pt-0">arrow_back</mat-icon>
-          <span>Profile</span>
-        </button>
-      </div>
-      <div class="spacer"></div>
-    
+
+    <div class="px-1 ml-n2">
+      <button mat-icon-button routerLink='..' class="text-mylight">
+        <mat-icon class="mat-icon-md text-mylight pt-0">arrow_back</mat-icon>
+        <span>Profile</span>
+      </button>
+    </div>
+    <div class="spacer"></div>
+
   </mat-toolbar>
   <div class="row justify-content-center py-5">
     <div class="col-md-4">
@@ -66,7 +66,7 @@
                   <div class="px-4 d-flex align-items-center">
                     <span class="material-icons-outlined">
                       person
-                      </span>
+                    </span>
                     <h4 mat-subtitle class="m-0 p-0">Student</h4>
                   </div>
                 </div>
@@ -119,8 +119,8 @@
                       <p>{{ this.studentData?.dateOfBirth | date}}</p>
                     </div>
                   </div>
-    
-    
+
+
                   <div class="row">
                     <div class="col-6 text-left">
                       <p>Nationality</p>
@@ -129,8 +129,8 @@
                       <p>{{ this.studentData?.nationality | titlecase}}</p>
                     </div>
                   </div>
-    
-    
+
+
                 </div>
               </div>
             </div>
@@ -140,7 +140,7 @@
                   <div class="px-4 d-flex align-items-center">
                     <span class="material-icons-outlined">
                       group
-                      </span>
+                    </span>
                     <h4 mat-subtitle class="m-0 p-0">Parents</h4>
                   </div>
                 </div>
@@ -197,10 +197,10 @@
                       <p>{{ this.parentData?.motherEducation | titlecase}}</p>
                     </div>
                   </div> -->
-                  
-                 
-    
-    
+
+
+
+
                   <div class="row">
                     <div class="col-6 text-left">
                       <p>Contact</p>
@@ -209,7 +209,7 @@
                       <p>{{ this.parentData?.parentContact | titlecase}}</p>
                     </div>
                   </div>
-                  
+
                   <div class="row">
                     <div class="col-6 text-left">
                       <p>Guardian contact</p>
@@ -230,21 +230,21 @@
               </div>
             </div>
           </div>
-     
+
 
         </div>
 
-        
+
 
         <hr class="py-2">
         <div class="container mb-2 pt-2">
           <div class="row justify-content-center mb-5" *ngFor="let addr of addressData">
             <div class="col-md-3 ">
-              
+
               <div class="px-4 d-flex align-items-center">
                 <span class="material-icons-outlined">
                   place
-                  </span>
+                </span>
                 <h4 mat-subtitle class="m-0 p-0">{{addr?.addressType | titlecase }} Address</h4>
               </div>
             </div>
@@ -289,7 +289,7 @@
                   <p>{{ addr?.pin }}</p>
                 </div>
               </div>
-              
+
 
 
             </div>
@@ -306,62 +306,106 @@
         Applied Fee
       </ng-template>
 
-      <div class="container" style="min-height: 40vh;">
-        <div class="row">
-          <div class="col-md-6">
-            Item Details
-          </div>
-          <div class="col-md-2">
-            Qnty
-          </div>
-          <div class="col-md-2">
-            Wgt
-          </div>
-          <div class="col-md-2">
-            Amount
-          </div>
-        </div>
-        
-        <hr class="my-2">
-						<div class="row">
-							<div class="col-md-6">
-								
-							</div>
-							<div class="col-md-4">
-								Pending Payment Amount
-							</div>
-							<div class="col-md-2">
-								Rs. 100/-
-							</div>
-            </div>
-            <hr class="my-2">
-						<div class="row">
-							<div class="col-md-6">
-								
-							</div>
-							<div class="col-md-4">
-								Pending Payment Amount
-							</div>
-							<div class="col-md-2">
-								Rs. 100/-
-							</div>
-            </div>
-            <hr class="my-2">
-						<div class="row">
-							<div class="col-md-6">
-								
-							</div>
-							<div class="col-md-4">
-								Pending Payment Amount
-							</div>
-							<div class="col-md-2">
-								Rs. 100/-
-							</div>
-						</div>
+      <div class="container" style="min-height: 40vh;" *ngIf="appliedFee">
+
+        <table mat-table [dataSource]="appliedFee" class="w-100  mb-5" aria-label="Elements">
+
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef>Applied Fees</th>
+            <td mat-cell *matCellDef="let row">
+              <small>{{row.fee.name || '...'}}</small>
+            </td>
+
+            <td mat-footer-cell *matFooterCellDef> Total</td>
+            <td mat-footer-cell *matFooterCellDef> Total Depoist</td>
+          </ng-container>
+
+          <ng-container matColumnDef="frequency">
+            <th mat-header-cell *matHeaderCellDef>Frequency</th>
+            <td mat-cell *matCellDef="let row">
+              <small>{{row.frequency || '...'}}</small>
+            </td>
+
+            <td mat-footer-cell *matFooterCellDef> </td>
+            <td mat-footer-cell *matFooterCellDef> </td>
+          </ng-container>
+
+          <ng-container matColumnDef="amount">
+            <th mat-header-cell *matHeaderCellDef>Amount </th>
+            <td mat-cell *matCellDef="let row">
+              <small>{{(row.amount | currency:'INR') || '0'}}</small>
+            </td>
+
+            <td mat-footer-cell *matFooterCellDef> <strong>{{getTotalCost() | currency : 'INR'}}</strong> </td>
+            <td mat-footer-cell *matFooterCellDef> <strong>{{ totalFeeDeposit | currency : 'INR'}}</strong> </td>
+          </ng-container>
+
+          <!-- Action Column -->
+          <ng-container matColumnDef="action">
+            <th mat-header-cell *matHeaderCellDef class="text-right">Action</th>
+            <td mat-cell *matCellDef="let row" (click)="$event.stopPropagation()" class="text-right">
+              <button mat-icon-button>
+                <mat-icon class="text-mylight">more_horiz</mat-icon>
+              </button>
+            </td>
+            <td mat-footer-cell *matFooterCellDef></td>
+            <td mat-footer-cell *matFooterCellDef></td>
+
+          </ng-container>
+
+          <!-- Disclaimer column -->
+          <ng-container matColumnDef="disclaimer">
+           
+            <td mat-footer-cell *matFooterCellDef> Total Deposit</td>
+
+          </ng-container>
+          <ng-container matColumnDef="frequency1">
+           
+            <td mat-footer-cell *matFooterCellDef></td>
+
+          </ng-container>
+          <ng-container matColumnDef="amount1">
+           
+            <td mat-footer-cell *matFooterCellDef> <strong>{{ totalFeeDeposit | currency : 'INR'}}</strong></td>
+
+          </ng-container>
+          <ng-container matColumnDef="action1">
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
+
+           <!-- Disclaimer column -->
+           <ng-container matColumnDef="disclaimer2">
+           
+            <td mat-footer-cell *matFooterCellDef> Total Due</td>
+
+          </ng-container>
+          <ng-container matColumnDef="frequency2">
+           
+            <td mat-footer-cell *matFooterCellDef></td>
+
+          </ng-container>
+          <ng-container matColumnDef="amount2">
+            <td mat-footer-cell *matFooterCellDef> <strong>{{ getTotalCost() - totalFeeDeposit | currency : 'INR'}}</strong></td>
+          </ng-container>
+          <ng-container matColumnDef="action2">
+            <td mat-footer-cell *matFooterCellDef></td>
+          </ng-container>
+
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
+          <tr mat-footer-row *matFooterRowDef="['disclaimer','frequency1','amount1','action1']" class="example-second-footer-row"></tr>
+          <tr mat-footer-row *matFooterRowDef="['disclaimer2','frequency2','amount2','action2']" class="example-second-footer-row"></tr>
+
+        </table>
+
       </div>
       <div class="container mt-4 pt-2 mb-2" style="min-height: 50vh;">
-        <div  class="d-flex flex-column justify-content-center align-items-center h-50 w-100">     
-          <small class="mat-caption" > You don’t have any fee records</small><br>
+        <div class="d-flex flex-column justify-content-center align-items-center h-50 w-100">
+          <small class="mat-caption"> You don’t have any fee records</small><br>
           <small class="strong" style="color:#ccc;"> You don’t have any records</small>
           <button mat-button (click)="openfeeDeposit()">
             <small>Submit Fee</small>
@@ -376,8 +420,8 @@
         All Transactions
       </ng-template>
       <div class="container mt-4 pt-2 mb-2" style="min-height: 50vh;">
-        <div  class="d-flex flex-column justify-content-center align-items-center h-50 w-100">     
-          <small class="mat-caption" > You don’t have any fee records</small><br>
+        <div class="d-flex flex-column justify-content-center align-items-center h-50 w-100">
+          <small class="mat-caption"> You don’t have any fee records</small><br>
           <small class="strong" style="color:#ccc;"> You don’t have any records</small>
           <button mat-button (click)="openfeeDeposit()">
             <small>Submit Fee</small>
@@ -393,8 +437,8 @@
       </ng-template>
 
       <div class="container mt-4 pt-2 mb-2" style="min-height: 50vh;">
-        <div  class="d-flex flex-column justify-content-center align-items-center h-50 w-100">     
-          <small class="mat-caption" > You don’t have any accademic records</small><br>
+        <div class="d-flex flex-column justify-content-center align-items-center h-50 w-100">
+          <small class="mat-caption"> You don’t have any accademic records</small><br>
           <small class="strong" style="color:#ccc;"> You don’t have any records</small>
           <a routerLink="/admission">
             <small></small>

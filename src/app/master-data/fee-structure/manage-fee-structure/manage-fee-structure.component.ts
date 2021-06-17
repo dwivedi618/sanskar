@@ -51,6 +51,7 @@ export class ManageFeeStructureComponent implements OnInit {
    * submit new faculty router back to faculty list
    */
   submit() {
+  
     this.isSaving = true;
     this.router.navigate(['./master'], { queryParams: { 
       year: this.feeStructureForm.value.year,

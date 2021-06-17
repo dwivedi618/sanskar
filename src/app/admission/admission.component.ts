@@ -63,26 +63,20 @@ export class AdmissionComponent implements OnInit {
     private commonService: CommonService,
     private alertService: AlertService,
     private uiService: UiService,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data: any
+ 
   ) {
-    if (data) {
-      this.local_data = data.obj;
-      this.action = data.obj.action;
-      if (data.obj.parent) {
-        this.parents = data.obj.parent;
-      } else { this.parents = [null] }
-      console.log("local_data :", this.local_data);
-      console.log(" parents:", this.parents);
-    } else {
-      this.local_data = null
-    }
+    
     
     this.activatedRoute.queryParams.subscribe((data)=>{
-      console.log("activated route data",data);
-      this.action = data.action || 'add';
-      if(data.action === 'update'){
+      console.log("activated route data-----------",data);
+      
+      if(data && data.action === 'update'){
+      console.log("profile data update-----------",data);
+        this.action = data.action;
         this.studentId = data.id;
         this.getProfile();
+      }else{
+        this.action = data.action || 'add';
       }
     })
 
@@ -151,10 +145,11 @@ export class AdmissionComponent implements OnInit {
         console.log("Student profile", result);
         this.studentData = result.data || null;
         if(this.action == 'update'){
+    console.log("form patch prodifile ------------------");
+
           this.studentFormPatch( this.studentData['standard']);
           this.parentFormPatch( this.studentData['parents']);
           this.addressFormPatch( this.studentData['address'][0],this.studentData['address'][1]);
-
         }
 
         this.isLoading = false;
@@ -166,6 +161,8 @@ export class AdmissionComponent implements OnInit {
 
 
   studentFormPatch(standard){
+    console.log("form patch prodifile ------------------");
+    
     this.studentForm.patchValue({ name : this.studentData.name || '' });
     this.studentForm.patchValue({ gender : this.studentData.gender  || ''});
     this.studentForm.patchValue({ dateOfBirth : this.studentData.dateOfBirth  || ''});

@@ -51,8 +51,8 @@
       </div>
     </div>
   </div>
-  <mat-tab-group dynamicHeight animationDuration="0ms" mat-align-tabs="center">
-    <mat-tab>
+  <mat-tab-group dynamicHeight animationDuration="0ms" mat-align-tabs="center" (selectedTabChange)="selectedTabChange($event)" [selectedIndex]="selectedIndex">
+    <mat-tab >
       <ng-template mat-tab-label>
         <mat-icon class="mat-icon-sm pt-1 mr-2">menu_book</mat-icon>
         Overview
@@ -318,8 +318,8 @@
               <small>{{row.fee.name || '...'}}</small>
             </td>
 
-            <td mat-footer-cell *matFooterCellDef> Total</td>
-            <td mat-footer-cell *matFooterCellDef> Total Depoist</td>
+            <td mat-footer-cell *matFooterCellDef> Total Amount</td>
+            
           </ng-container>
 
           <ng-container matColumnDef="frequency">
@@ -329,17 +329,17 @@
             </td>
 
             <td mat-footer-cell *matFooterCellDef> </td>
-            <td mat-footer-cell *matFooterCellDef> </td>
+           
           </ng-container>
 
           <ng-container matColumnDef="amount">
             <th mat-header-cell *matHeaderCellDef>Amount </th>
             <td mat-cell *matCellDef="let row">
-              <small>{{(row.amount | currency:'INR') || '0'}}</small>
+              <small>{{(row.amount  || '0' ) | currency:'INR'}}</small>
             </td>
 
             <td mat-footer-cell *matFooterCellDef> <strong>{{getTotalCost() | currency : 'INR'}}</strong> </td>
-            <td mat-footer-cell *matFooterCellDef> <strong>{{ totalFeeDeposit | currency : 'INR'}}</strong> </td>
+            
           </ng-container>
 
           <!-- Action Column -->
@@ -351,7 +351,7 @@
               </button>
             </td>
             <td mat-footer-cell *matFooterCellDef></td>
-            <td mat-footer-cell *matFooterCellDef></td>
+            
 
           </ng-container>
 
@@ -403,7 +403,7 @@
         </table>
 
       </div>
-      <div class="container mt-4 pt-2 mb-2" style="min-height: 50vh;">
+      <div *ngIf="!appliedFee" class="container mt-4 pt-2 mb-2" style="min-height: 50vh;">
         <div class="d-flex flex-column justify-content-center align-items-center h-50 w-100">
           <small class="mat-caption"> You don’t have any fee records</small><br>
           <small class="strong" style="color:#ccc;"> You don’t have any records</small>

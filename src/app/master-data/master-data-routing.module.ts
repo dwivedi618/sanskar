@@ -6,11 +6,12 @@ import { MasterFeeCategoryListComponent } from './fee-category/master-fee-catego
 import { FeeStructureListComponent } from './fee-structure/fee-structure-list/fee-structure-list.component';
 import { ManageFeeStructureComponent } from './fee-structure/manage-fee-structure/manage-fee-structure.component';
 import { MasterDataLayoutComponent } from './master-data-layout/master-data-layout.component';
+import { ConfigurationHomeComponent } from './configuration-home/configuration-home.component';
 
 const routes: Routes = [
   { path : '' ,component : MasterDataLayoutComponent,
   children : [
-    { path : '' ,component : FeeStructureListComponent },
+    { path : '' ,component : ConfigurationHomeComponent },
     { path : 'fee-structure' ,component : FeeStructureListComponent },
     { path : 'master-standard' ,  component : MasterStandardListComponent},
     { path : 'master-fee-category' ,component : MasterFeeCategoryListComponent },

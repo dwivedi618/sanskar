@@ -1,6 +1,6 @@
-<mat-nav-list class="sidenav_menus " style="color: white!important;">
+<mat-nav-list class="sidenav_menus mx-2" style="color: white!important;">
     <a [routerLink]="['/admission']">
-        <mat-list-item routerLinkActive="active" class="text-white">
+        <mat-list-item routerLinkActive="bg-mygradient-primary" class="text-white  mx-auto rounded-lg">
             <mat-icon class="mat-icon-sm pt-1">school</mat-icon>
             <!-- <span mat-list-icon class="material-icons mat-icon-sm">school</span> -->
             <small >Admission</small>
@@ -9,22 +9,22 @@
 
 
     <a [routerLink]="['/student']">
-        <mat-list-item routerLinkActive="active" class="text-white">
-            <mat-icon class="mat-icon-sm pt-1">person</mat-icon>
+        <mat-list-item routerLinkActive="bg-mygradient-primary" class="text-white  mx-auto rounded-lg">
+            <mat-icon class="mat-icon-sm pt-1">search</mat-icon>
             <!-- <span mat-list-icon class="material-icons">person</span> -->
-            <small >Student</small>
+            <small >Find Student</small>
         </mat-list-item>
     </a>
     <!-- <a [routerLink]="['/faculty']">
-        <mat-list-item routerLinkActive="active">
+        <mat-list-item routerLinkActive="bg-mygradient-primary">
             <span mat-list-icon class="material-icons">groups</span>
             <small mat-line>Faculty</small>
         </mat-list-item>
     </a> -->
  
 
-    <mat-accordion class="mat-elevation-z0" style="border-radius: 0;">
-        <mat-expansion-panel (opened)="panelOpenState = true" class="mat-elevation-z0" style="border-radius: 0;"
+    <mat-accordion class="mat-elevation-z0 " style="border-radius: 0;">
+        <mat-expansion-panel (opened)="panelOpenState = true" class="mat-elevation-z0 bg-mygradient-primary rounded-lg" style="border-radius: 0;"
                              (closed)="panelOpenState = false">
           <mat-expansion-panel-header>
             <mat-panel-title class="text-white">
@@ -34,9 +34,9 @@
               <small >Configuration</small>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <a mat-list-item routerLink="/master" routerLinkActive="active" class="text-light"><small>Fee Structure </small></a>
-          <a mat-list-item routerLink="./master/master-fee-category" routerLinkActive="active" class="text-light"><small>Fee Category</small></a>
-          <a mat-list-item routerLink="./master/master-standard" routerLinkActive="active" class="text-light"><small>Registered Classes</small></a>
+          <a mat-list-item routerLink="/configuration" routerLinkActive="bg-mygradient-primary" class="text-light  mx-auto rounded-lg "><small>Fee Structure </small></a>
+          <a mat-list-item routerLink="./configuration/master-fee-category" routerLinkActive="bg-mygradient-primary  mx-auto rounded-lg" class="text-light"><small>Fee Category</small></a>
+          <a mat-list-item routerLink="./configuration/master-standard" routerLinkActive="bg-mygradient-primary  mx-auto rounded-lg" class="text-light"><small>Registered Classes</small></a>
           
         </mat-expansion-panel>
       </mat-accordion>

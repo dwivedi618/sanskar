@@ -17,7 +17,7 @@ const routes: Routes = [
       { path: 'faculty', loadChildren : './faculty/faculty.module#FacultyModule' },
       { path: 'student', loadChildren: './student/student.module#StudentModule' },
      
-      { path : 'master' , loadChildren : './master-data/master-data.module#MasterDataModule'},
+      { path : 'configuration' , loadChildren : './master-data/master-data.module#MasterDataModule'},
 
       { path: 'settings', component: SettingsComponent },
       { path: 'profile', component: ProfileComponent },

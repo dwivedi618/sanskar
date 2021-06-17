@@ -12,6 +12,7 @@ import { MaterialModule } from '../material.module';
 import { ManageFeeStructureComponent } from './fee-structure/manage-fee-structure/manage-fee-structure.component';
 import { MasterStandardListComponent } from './standard/master-standard-list/master-standard-list.component';
 import { ManageMasterStandardComponent } from './standard/manage-master-standard/manage-master-standard.component';
+import { ConfigurationHomeComponent } from './configuration-home/configuration-home.component';
 
 
 @NgModule({
@@ -23,7 +24,8 @@ import { ManageMasterStandardComponent } from './standard/manage-master-standard
     ManageFeeStructureComponent,
     MasterStandardListComponent,
     MasterStandardListComponent,
-    ManageMasterStandardComponent
+    ManageMasterStandardComponent,
+    ConfigurationHomeComponent
 
   ],
   imports: [

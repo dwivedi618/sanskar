@@ -23,6 +23,8 @@ export class StudentProfileComponent implements OnInit {
 
   appliedFee: any;
   totalFeeDeposit: any;
+  find: any;
+  selectedIndex : any;
 
   constructor(
     private activatedRoute : ActivatedRoute,
@@ -32,9 +34,14 @@ export class StudentProfileComponent implements OnInit {
   ) { 
     this.activatedRoute.queryParams.subscribe((data)=>{
       console.log("activated route data",data);
+      if(data && data.id){
       this.studentId = data.id;
       this.getProfile();
       this.getFeeDetails();
+      if(data.find){
+        this.selectedIndex = data.find
+      }
+    }
     })
   }
 
@@ -79,6 +86,12 @@ export class StudentProfileComponent implements OnInit {
   printProfile(){
     console.log("print profile")
     this.router.navigate(['./student/print'],{queryParams : {id : this.studentId , action : 'print'}})
+  }
+
+  selectedTabChange(event){
+console.log("tab change",event);
+this.selectedIndex = event.index
+this.router.navigate([],{queryParams : { find : this.selectedIndex },queryParamsHandling : 'merge'})
   }
 
   openfeeDeposit(){

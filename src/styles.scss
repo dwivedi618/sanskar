@@ -434,6 +434,20 @@ button.btn-mydark{
   color: white!important;
   background: #333!important; 
 }
+.bg-mygradient-primary{
+  color: white!important;
+  background: #00d2ff!important;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #3a7bd5, #00d2ff)!important;  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #3a7bd5, #00d2ff)!important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+.bg-mygradient-secondary{
+  color: white!important;
+background: #DE6262!important;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to left, #FFB88C, #DE6262)!important;  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to left, #FFB88C, #DE6262)!important; /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
 
 .mat-icon-button {
   padding: 0;

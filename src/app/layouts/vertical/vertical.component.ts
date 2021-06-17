@@ -2,7 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { Observable } from 'rxjs';
 import { filter, map, shareReplay } from 'rxjs/operators';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { Router, 
+  ActivatedRoute, 
+  NavigationStart, 
+  NavigationEnd,
+   NavigationError,
+    NavigationCancel,
+    Event } 
+    from '@angular/router';
 @Component({
   selector: 'app-vertical',
   templateUrl: './vertical.component.html',
@@ -24,6 +31,7 @@ export class VerticalComponent implements OnInit {
   ];
 
   activeLink = this.links[0].path;
+  routing: boolean;
 
   constructor(
     public route: Router,
@@ -41,9 +49,31 @@ export class VerticalComponent implements OnInit {
       console.log("activeLink", this.activeLink);
 
     });
+    this.routeChange()
   }
 
   ngOnInit() {
+  }
+
+  routeChange(){
+    this.route.events.subscribe((event:Event)=>{
+      switch(true){
+        case event instanceof NavigationStart : {
+          this.routing = true;
+          // console.log("homeRouterLoader",this.homeRouteLoader)
+          break;
+        }
+        case event instanceof NavigationEnd:
+        case event instanceof NavigationCancel:
+        case event instanceof NavigationError:{
+          this.routing = false ;
+          break;
+        }
+        default : {
+          break;
+        }
+      }
+    })
   }
 
 }

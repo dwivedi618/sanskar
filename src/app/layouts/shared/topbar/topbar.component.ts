@@ -17,7 +17,7 @@ export class TopbarComponent implements OnInit {
   /**
    * menu sidebar open and close state control
    */
-  private toggleLeftSidebar(){
+  public toggleLeftSidebar(){
     this.toggleService.leftSidebarToggle.emit()
   }
 

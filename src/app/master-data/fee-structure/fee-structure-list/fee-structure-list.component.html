@@ -11,7 +11,7 @@
     <span class="px-2" >
       <small style="font-size: 12px;">session : </small>
         <button mat-stroked-button [matMenuTriggerFor]="session" class="btn-mydark" 
-        #t="matMenuTrigger" [matMenuTriggerData]="menuDataSession">
+        #t="matMenuTrigger" >
         
             <small>{{selectedSession || 'Select'}}</small>
           
@@ -27,7 +27,7 @@
       </span>
       <span class="px-2" style="min-width: 8rem;">
         <small style="font-size: 12px;">standard : </small>
-        <button id="selectStandardbtn" style="min-width: 8rem;" class="btn-mydark"  mat-stroked-button [matMenuTriggerFor]="standards" #t="matMenuTrigger" [matMenuTriggerData]="menuDataStandard">
+        <button id="selectStandardbtn" style="min-width: 8rem;" class="btn-mydark"  mat-stroked-button [matMenuTriggerFor]="standards" #t="matMenuTrigger" >
           
             <small>{{(selectedStandardName | titlecase )|| 'Select'}}</small>
           

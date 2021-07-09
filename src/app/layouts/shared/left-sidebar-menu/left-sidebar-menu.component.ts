@@ -10,7 +10,7 @@ import { filter } from 'rxjs/operators';
   styleUrls: ['./left-sidebar-menu.component.css']
 })
 export class LeftSidebarMenuComponent implements OnInit {
-
+  panelOpenState :boolean
   configUrls = [
     { name : 'Fee Structure',url : './configuration/fee-structure' },
     { name : 'Fee Category',url : './configuration/master-fee-category' },

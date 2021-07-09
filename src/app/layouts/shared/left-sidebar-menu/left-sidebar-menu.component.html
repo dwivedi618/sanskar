@@ -1,4 +1,11 @@
 <mat-nav-list class="sidenav_menus mx-2" style="color: white!important;">
+    <a [routerLink]="''">
+        <mat-list-item [class.bg-mygradient-primary]="activeLink == ''" class="text-white  mx-auto rounded-lg">
+            <mat-icon class="mat-icon-sm pt-1">dashboard</mat-icon>
+            <small >Dashboard</small>
+        </mat-list-item>
+    </a>
+
     <a [routerLink]="['/admission']">
         <mat-list-item routerLinkActive="bg-mygradient-primary" class="text-white  mx-auto rounded-lg">
             <mat-icon class="mat-icon-sm pt-1">school</mat-icon>
@@ -39,7 +46,7 @@
           </mat-expansion-panel-header>
           <a *ngFor="let url of configUrls" (click)="$event.stopPropagation();"
           mat-list-item 
-          routerLink = {{url.url}}
+          routerLink = "{{url.url}}"
           routerLinkActive="bg-mygradient-primary  mx-auto rounded-lg" 
           class="text-light ">
           <small>{{url.name}}</small></a>

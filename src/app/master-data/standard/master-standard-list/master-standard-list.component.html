@@ -134,8 +134,11 @@
     <div *ngIf="dataSource.data.length == 0" class="d-flex flex-column justify-content-center align-items-center h-50 w-100">     
       <small class="mat-caption" > You don’t have any records</small><br>
       <small class="strong" style="color:#ccc;"> You don’t have any records</small>
-      <a routerLink="/admission">
+      <small class="strong" style="color:#ccc;"> OR</small>
+      <button mat-stroked-button class="btn-dark"  (click)="manageMasterStandard()">
         <small>Register New Class/Standard</small>
-      </a>
+
+      </button>
+  
     </div>
   </div>

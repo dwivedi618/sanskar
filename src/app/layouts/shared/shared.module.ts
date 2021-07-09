@@ -22,6 +22,7 @@ import { AlertWithActionComponent } from './alert-with-action/alert-with-action.
   imports: [
     CommonModule,
     MaterialModule,
+    RouterModule,
     FormsModule,
   ],
   exports: [

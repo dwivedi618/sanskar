@@ -17,22 +17,23 @@ export class MasterDataLayoutComponent implements OnInit {
 
 
   ];
+  activeLink: string;
 
-  activeLink = this.links[0].path;
+  // activeLink = this.links[0].path;
   constructor(
     private router : Router,
     private activatedRoute : ActivatedRoute,
   ) { 
-    router.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
+    // router.events.pipe(
+    //   filter(event => event instanceof NavigationEnd)
+    // ).subscribe((event: NavigationEnd) => {
 
-      const activeLinkWithParam = (event.url.split('/').pop())      
-      // console.log("activeLinkWithParam", activeLinkWithParam);
-      this.activeLink = activeLinkWithParam.split('?')[0]
-      console.log("activeLink", this.activeLink);
+    //   const activeLinkWithParam = (event.url.split('/').pop())      
+    //   // console.log("activeLinkWithParam", activeLinkWithParam);
+    //   this.activeLink = activeLinkWithParam.split('?')[0]
+    //   console.log("activeLink", this.activeLink);
 
-    });
+    // });
   }
 
   ngOnInit(): void {

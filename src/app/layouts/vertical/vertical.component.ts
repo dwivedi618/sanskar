@@ -24,13 +24,9 @@ export class VerticalComponent implements OnInit {
     );
 
  
-  links = [
-    { path: 'chat', name: 'Chat' },
-    { path: 'files', name: 'Files' },
-    { path: 'notes', name: 'Notes' },
-  ];
 
-  activeLink = this.links[0].path;
+
+  // activeLink = this.links[0].path;
   routing: boolean;
 
   constructor(
@@ -39,17 +35,17 @@ export class VerticalComponent implements OnInit {
     private breakpointObserver: BreakpointObserver,
 
   ) {
-    route.events.pipe(
-      filter(event => event instanceof NavigationEnd)
-    ).subscribe((event: NavigationEnd) => {
+    // route.events.pipe(
+    //   filter(event => event instanceof NavigationEnd)
+    // ).subscribe((event: NavigationEnd) => {
 
-      const activeLinkWithParam = (event.url.split('/').pop())      
-      console.log("activeLinkWithParam", activeLinkWithParam);
-      this.activeLink = activeLinkWithParam.split('?')[0]
-      console.log("activeLink", this.activeLink);
+    //   const activeLinkWithParam = (event.url.split('/').pop())      
+    //   console.log("activeLinkWithParam", activeLinkWithParam);
+    //   this.activeLink = activeLinkWithParam.split('?')[0]
+    //   console.log("activeLink", this.activeLink);
 
-    });
-    this.routeChange()
+    // });
+    // this.routeChange()
   }
 
   ngOnInit() {

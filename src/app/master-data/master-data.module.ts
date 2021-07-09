@@ -35,6 +35,16 @@ import { ConfigurationHomeComponent } from './configuration-home/configuration-h
     FormsModule,
     ReactiveFormsModule,
     MasterDataRoutingModule
+  ],exports : [
+    MasterDataLayoutComponent,
+    MasterFeeCategoryListComponent,
+    ManageFeeCategoryComponent,
+    FeeStructureListComponent,
+    ManageFeeStructureComponent,
+    MasterStandardListComponent,
+    MasterStandardListComponent,
+    ManageMasterStandardComponent,
+    ConfigurationHomeComponent
   ]
 })
 export class MasterDataModule { }

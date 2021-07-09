@@ -11,7 +11,7 @@ import { ConfigurationHomeComponent } from './configuration-home/configuration-h
 const routes: Routes = [
   { path : '' ,component : MasterDataLayoutComponent,
   children : [
-    { path : '' ,component : ConfigurationHomeComponent },
+    { path : '' ,component : ConfigurationHomeComponent ,},
     { path : 'fee-structure' ,component : FeeStructureListComponent },
     { path : 'master-standard' ,  component : MasterStandardListComponent},
     { path : 'master-fee-category' ,component : MasterFeeCategoryListComponent },

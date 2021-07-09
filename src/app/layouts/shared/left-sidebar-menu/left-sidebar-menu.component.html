@@ -23,10 +23,13 @@
     </a> -->
  
 
-    <mat-accordion class="mat-elevation-z0 " style="border-radius: 0;">
-        <mat-expansion-panel (opened)="panelOpenState = true" class="mat-elevation-z0 bg-mygradient-primary rounded-lg" style="border-radius: 0;"
+    <mat-accordion class="mat-elevation-z0 " style="border-radius: 0;" 
+    (click)="openConfigurationRoute($event)" 
+    
+    >
+        <mat-expansion-panel (opened)="panelOpenState = true"  class="mat-elevation-z0  rounded-lg" style="border-radius: 0;"
                              (closed)="panelOpenState = false">
-          <mat-expansion-panel-header>
+          <mat-expansion-panel-header  [class.bg-mygradient-primary]="activeLink == 'configuration'">
             <mat-panel-title class="text-white">
                 <mat-icon class="mat-icon-sm pt-1 ">settings</mat-icon>
 
@@ -34,9 +37,13 @@
               <small >Configuration</small>
             </mat-panel-title>
           </mat-expansion-panel-header>
-          <a mat-list-item routerLink="/configuration" routerLinkActive="bg-mygradient-primary" class="text-light  mx-auto rounded-lg "><small>Fee Structure </small></a>
-          <a mat-list-item routerLink="./configuration/master-fee-category" routerLinkActive="bg-mygradient-primary  mx-auto rounded-lg" class="text-light"><small>Fee Category</small></a>
-          <a mat-list-item routerLink="./configuration/master-standard" routerLinkActive="bg-mygradient-primary  mx-auto rounded-lg" class="text-light"><small>Registered Classes</small></a>
+          <a *ngFor="let url of configUrls" (click)="$event.stopPropagation();"
+          mat-list-item 
+          routerLink = {{url.url}}
+          routerLinkActive="bg-mygradient-primary  mx-auto rounded-lg" 
+          class="text-light ">
+          <small>{{url.name}}</small></a>
+      
           
         </mat-expansion-panel>
       </mat-accordion>

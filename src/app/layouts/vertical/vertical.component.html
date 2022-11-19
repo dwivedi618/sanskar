@@ -1,0 +1,26 @@
+<mat-progress-bar *ngIf="routing" style="position: fixed; top: 0;z-index: 1000;" mode="indeterminate"></mat-progress-bar>
+<div class="layout-wrapper">
+
+    <app-topbar></app-topbar>
+    <mat-sidenav-container class="sidenav-container" autosize>
+        <mat-sidenav #sidenav class="leftsidebar mybg-primary-1" position="start" [mode]="(isHandset$ | async) ? 'side' : 'side'"
+            opened>
+            <app-left-sidebar-menu></app-left-sidebar-menu>
+        </mat-sidenav>
+        <mat-sidenav #sidenav1 class="rightsidebar" position="end" [mode]="(isHandset$ | async) ? 'side' : 'side'"
+           opened>
+
+<app-right-sidebar-menu></app-right-sidebar-menu>
+        </mat-sidenav>
+        <mat-sidenav-content class="vertical-sidenav-content">
+           <!-- <div class="wallpaper">
+               <img class="img-fluid" src="../../../assets/river" alt="">
+           </div> -->
+            <main>
+                <div class="">
+                    <router-outlet></router-outlet>
+                </div>
+            </main>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

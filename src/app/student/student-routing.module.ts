@@ -2,14 +2,18 @@ import { NgModule } from '@angular/core';
 import { Routes,RouterModule } from "@angular/router";
 import { StudentsListComponent } from './students-list/students-list.component';
 import { StudentProfileComponent } from './student-profile/student-profile.component'
-import { StudentComponent } from './student.component';
+import { StudentLayoutComponent } from './student-layout/student-layout.component';
+import { AdmissionFormPrintLayoutComponent } from './admission-form-print-layout/admission-form-print-layout.component';
 
 const studentroutes: Routes = [
     { 
-        path:'', component : StudentComponent,
+        path:'', component : StudentLayoutComponent,
         children:[
         { path:'', component : StudentsListComponent},
-        //  { path:'student-profile', component : StudentProfileComponent},
+        { path:'profile', component : StudentProfileComponent},
+        { path:'print', component : AdmissionFormPrintLayoutComponent},
+
+        
         ]
     }
 

@@ -1,0 +1,60 @@
+<mat-nav-list class="sidenav_menus mx-2" style="color: white!important;">
+    <a [routerLink]="''">
+        <mat-list-item [class.bg-mygradient-primary]="activeLink == ''" class="text-white  mx-auto rounded-lg">
+            <mat-icon class="mat-icon-sm pt-1">dashboard</mat-icon>
+            <small >Dashboard</small>
+        </mat-list-item>
+    </a>
+
+    <a [routerLink]="['/admission']">
+        <mat-list-item routerLinkActive="bg-mygradient-primary" class="text-white  mx-auto rounded-lg">
+            <mat-icon class="mat-icon-sm pt-1">school</mat-icon>
+            <!-- <span mat-list-icon class="material-icons mat-icon-sm">school</span> -->
+            <small >Admission</small>
+        </mat-list-item>
+    </a>
+
+
+    <a [routerLink]="['/student']">
+        <mat-list-item routerLinkActive="bg-mygradient-primary" class="text-white  mx-auto rounded-lg">
+            <mat-icon class="mat-icon-sm pt-1">search</mat-icon>
+            <!-- <span mat-list-icon class="material-icons">person</span> -->
+            <small >Find Student</small>
+        </mat-list-item>
+    </a>
+    <!-- <a [routerLink]="['/faculty']">
+        <mat-list-item routerLinkActive="bg-mygradient-primary">
+            <span mat-list-icon class="material-icons">groups</span>
+            <small mat-line>Faculty</small>
+        </mat-list-item>
+    </a> -->
+ 
+
+    <mat-accordion class="mat-elevation-z0 " style="border-radius: 0;" 
+    (click)="openConfigurationRoute($event)" 
+    
+    >
+        <mat-expansion-panel (opened)="panelOpenState = true"  class="mat-elevation-z0  rounded-lg" style="border-radius: 0;"
+                             (closed)="panelOpenState = false">
+          <mat-expansion-panel-header  [class.bg-mygradient-primary]="activeLink == 'configuration'">
+            <mat-panel-title class="text-white">
+                <mat-icon class="mat-icon-sm pt-1 ">settings</mat-icon>
+
+            <!-- <span mat-list-icon class="material-icons mr-1">settings</span> -->
+              <small >Configuration</small>
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <a *ngFor="let url of configUrls" (click)="$event.stopPropagation();"
+          mat-list-item 
+          routerLink = "{{url.url}}"
+          routerLinkActive="bg-mygradient-primary  mx-auto rounded-lg" 
+          class="text-light ">
+          <small>{{url.name}}</small></a>
+      
+          
+        </mat-expansion-panel>
+      </mat-accordion>
+  
+
+
+</mat-nav-list>

@@ -1,0 +1,14 @@
+<form class="d-flex  m-0  p-0" style="position: relative;align-items: center;align-self: center;" >
+    <div>
+        <button mat-icon-button color="primary" class="mx-2 mat-elevation-z1 text-light " (click)="searchOptionsToggle = !searchOptionsToggle" >
+            <mat-icon class="mat-icon-sm pt-0">{{searchOptionsToggle? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
+        </button>
+    </div>
+    <input type="search" placeholder="Search">
+    <div>
+        <button mat-icon-button color="primary" class="mx-2 mat-elevation-z1 text-light "  >
+            <mat-icon class="mat-icon-sm pt-0">search</mat-icon>
+        </button>
+    </div>
+    
+</form>

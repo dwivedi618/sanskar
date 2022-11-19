@@ -7,14 +7,11 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
 
-import { SidenavComponent } from './sidenav/sidenav.component';
-import { SidenavmenusComponent } from './sidenav/sidenavmenus/sidenavmenus.component';
+
 import { NavigationComponent } from './navigation/navigation.component';
 
 // import { AdmissionComponent } from './admission/admission.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
   
-import { FeestructureComponent } from './feestructure/feestructure.component';
 
 import { ProfileComponent } from './profile/profile.component';
 import { EditComponent } from './profile/edit/edit.component';
@@ -24,8 +21,20 @@ import { SettingsComponent } from './settings/settings.component';
 import { NavComponent } from './nav/nav.component';
 
 import { AdmissionModule } from './admission/admission.module'
-import { SharedModule } from './shared/shared.module';
-import { ImageViewerModule } from 'ng2-image-viewer';
+
+
+import { LayoutComponent } from './layouts/layout/layout.component';
+import { VerticalComponent } from './layouts/vertical/vertical.component';
+import { SharedModule } from './layouts/shared/shared.module';
+import { LayoutModule } from './layouts/layout/layout.module';
+
+import { AlertService } from './services/alert.service';
+import { AlertComponent } from './alert/alert.component';
+import { MatSnackBarRef } from '@angular/material/snack-bar';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ImageUploaderComponent } from './uiComponents/image-uploader/image-uploader.component';
+
+
 
 
 
@@ -33,21 +42,24 @@ import { ImageViewerModule } from 'ng2-image-viewer';
   declarations: [
     
     AppComponent,
-    SidenavComponent,
-    SidenavmenusComponent,
+   
     NavigationComponent,
-    
-    
-    DashboardComponent,
-    
-    FeestructureComponent,
     // FeesComponent,
     ProfileComponent,
     EditComponent,
     SettingsComponent,
     
     NavComponent,
-  
+    
+    LayoutComponent,
+    
+    VerticalComponent,
+    
+    ImageUploaderComponent,
+ 
+    
+   
+    
   ],
   imports: [
     BrowserAnimationsModule,
@@ -59,7 +71,8 @@ import { ImageViewerModule } from 'ng2-image-viewer';
     SharedModule,
     FormsModule,
     AdmissionModule,
-    ImageViewerModule
+    LayoutModule,
+
     
     
   ],
@@ -70,7 +83,13 @@ import { ImageViewerModule } from 'ng2-image-viewer';
     
   ],
   // entryComponents: [ FeesComponent],
-  providers: [AuthenticationService,HttpClient],
+  providers: [AuthenticationService,HttpClient,AlertService,{
+    provide: MatSnackBarRef,
+    useValue: {}
+  },
+  { provide:MatDialogRef , useValue:{} },
+
+  { provide: MAT_DIALOG_DATA, useValue: {} },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

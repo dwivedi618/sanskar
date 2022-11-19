@@ -24,8 +24,7 @@
               "src/assets"
             ],
             "styles": [
-              
-              "src/styles.css",
+              "src/styles.scss",
               "src/my-dark-theme.scss"
             ],
             "scripts": []
@@ -130,5 +129,10 @@
       }
     }
   },
-  "defaultProject": "sanskar"
+  "defaultProject": "sanskar",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "scss"
+    }
+  }
 }

@@ -1,0 +1,49 @@
+<div mat-dialog-title class="d-flex align-items-center mt-n4 mr-n4 ml-n4 bg-dark-400">
+    <small class="strong text-light pr-3 pl-2">Master Standard</small>
+    <div class="spacer"></div>
+    <button mat-icon-button [mat-dialog-close]="true">
+        <mat-icon class="mat-icon-sm pt-0 material-icons-outlined text-mylight">close</mat-icon>
+    </button>
+</div>
+<div mat-dialog-content>
+    <div class="row justify-content-center py-5">
+        <div class="col-md-8">
+
+
+            <form [formGroup]="masterStandardForm" class="w-100">
+                <div class="row ">
+                    <div class="col-3 text-left justify-content-center">
+                        <small>Standard</small>
+                    </div>
+                    <div class="col-9 text-left">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Standard </mat-label>
+                            <input matInput placeholder="Ex:Class 8" formControlName="name">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 text-left">
+                        <small>Description</small>
+                    </div>
+                    <div class="col-9 text-left">
+                        <mat-form-field appearance="outline" class="w-100">
+                            <mat-label>Description</mat-label>
+                            <textarea matInput placeholder="Ex:description" formControlName="description"></textarea>
+                            <mat-hint>You can skip fee description</mat-hint>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" (click)="submit()" [disabled]="masterStandardForm.invalid">
+        <span *ngIf="!isSaving">Submit</span>
+        <span *ngIf="isSaving">Submitting...</span>
+
+    </button>
+
+</div>

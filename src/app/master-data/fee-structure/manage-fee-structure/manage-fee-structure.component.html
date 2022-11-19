@@ -1,0 +1,137 @@
+<section style="min-height: calc(100vh-6rem);">
+    <mat-toolbar class="bg-mysecondary text-mylight">
+        <mat-toolbar-row>
+            <div class="px-1 ml-n2">
+                <button mat-icon-button routerLink='..' class="text-mylight">
+                    <mat-icon class="mat-icon-md  pt-0">arrow_back</mat-icon>
+                </button>
+            </div>
+            <div class="row justify-content-center">
+                <div class="px-2">
+                    <div class="" style="font-size:12px">
+                        <span  class="m-0 p-0">Add master Fee Stucture</span>
+                        <!-- <small>You can be only set master fee structure for current and future sessions</small> -->
+                    </div>
+                </div>
+       
+            </div>
+            <div class="spacer"></div>
+           
+                <div class="">
+                    <button mat-stroked-button color="pary" class="float-end">
+                        <small>Cancel</small>
+                    </button>
+                    <button mat-raised-button color="primary" (click)="submit()">
+                        <small *ngIf="!isSaving">Save</small>
+                        <small *ngIf="isSaving">Saving...</small>
+
+                    </button>
+                </div>
+               
+            
+        </mat-toolbar-row>
+    </mat-toolbar>
+    <div class="" style="margin-bottom: 5rem;">
+        <!-- <div class="row justify-content-center mb-5">
+            <div class="col-6">
+                <div class="">
+                    <h6 mat-subtitle class="m-0 p-0">Add master fee stucture</h6>
+                    <small>You can be only set master fee structure for current and future sessions</small>
+                </div>
+            </div>
+   
+        </div> -->
+        <div class="row justify-content-center mb-5 mt-5">
+            <div class="col-md-10">
+                <div style="font-size: 12px">
+                    <form [formGroup]="feeStructureForm">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="">
+                                    <h6 mat-subtitle>session</h6>
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <mat-label>session</mat-label>
+                                        <mat-select formControlName="year">
+                                            <mat-option value="2020-2021" selected>2020-2021</mat-option>
+                                            <mat-option value="2020-2021">2021-2022</mat-option>
+                                        </mat-select>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="">
+                                    <h6 mat-subtitle>standard</h6>
+                                    <mat-form-field appearance="outline" class="w-100">
+                                        <mat-label>standard</mat-label>
+                                        <mat-select formControlName="standardId"  required >
+                                            <mat-option *ngFor="let standard of standardLists" [value]="standard.id" (change)="standardName = standard.name">
+                                                {{standard.name}}
+                                            </mat-option>
+                                        </mat-select>
+
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-100" *ngFor="let sub of feeStructure.controls">
+                            <div class="row" [formGroup]="sub">
+                                <div class="col-3">
+                                    <div class="">
+                                        <h6 mat-subtitle></h6>
+                                        <mat-form-field appearance="outline" class="w-100">
+                                            <mat-label>₹</mat-label>
+                                            <input matInput placeholder="₹24000" formControlName="amount">
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="">
+                                        <h6 mat-subtitle></h6>
+                                        <mat-form-field appearance="outline" class="w-100">
+                                            <mat-label>Fee For Months</mat-label>
+                                            <mat-select formControlName="frequency" required>
+                                                <mat-option *ngFor="let data of feeFrequency" [value]="data.value">
+                                                    {{data.viewValue}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="">
+                                        <h6 mat-subtitle></h6>
+                                        <mat-form-field appearance="outline" class="w-100">
+                                            <mat-label>Fee Category</mat-label>
+                                            <mat-select formControlName="feeId" required>
+                                                <mat-option *ngFor="let data of feeCategoryList" [value]="data.id">
+                                                    {{data.name}}
+                                                </mat-option>
+                                            </mat-select>
+                                        </mat-form-field>
+                                    </div>
+                                </div>
+                                <div class="col-3">
+                                    <div class="">
+                                        <h6 mat-subtitle></h6>
+                                        <mat-checkbox (change)="onCHeckBoxChange($event)" formControlName="required">Required</mat-checkbox>
+                                        <!-- <mat-form-field appearance="outline" class="w-100">
+                                    <mat-label>Required</mat-label>
+                                </mat-form-field> -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+              
+                <!-- <div class="px-4">
+                    <button mat-raised-button color="primary" (click)="submit()">
+                        <small>submit</small>
+                    </button>
+                </div> -->
+
+            </div>
+
+        </div>
+    </div>
+</section>

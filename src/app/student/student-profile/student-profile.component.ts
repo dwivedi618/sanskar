@@ -1,51 +1,113 @@
-import { Component, OnInit,Inject, Optional } from '@angular/core';
-import { MatDialog, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { inject } from '@angular/core/testing';
+import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
+import { CommonService } from 'src/app/services/common.service';
+import { FeeDepositComponent } from '../fee-deposit/fee-deposit.component';
 import { TransactionComponent } from '../transaction/transaction.component';
-import { AdmissionComponent } from 'src/app/admission/admission.component';
+
 
 
 @Component({
   selector: 'app-student-profile',
   templateUrl: './student-profile.component.html',
-  styleUrls: ['./student-profile.component.css']
+  styleUrls: ['./student-profile.component.scss']
 })
 export class StudentProfileComponent implements OnInit {
-  local_data:any;
-  action : any;
+  studentId: any;
+  isLoading: boolean;
+  studentData: any;
+  parentData: any;
+  addressData: any;
+  studentFeeDetails: any;
+  displayedColumns = ['name', 'frequency','amount','action'];
+
+  appliedFee: any;
+  totalFeeDeposit: any;
+  find: any;
+  selectedIndex : any;
+
   constructor(
-    private dialog: MatDialog,
-    private dialogRef : MatDialogRef<StudentProfileComponent>,
-    @Optional() @Inject(MAT_DIALOG_DATA) public data :any
-  ) {
-    this.local_data = data.obj;
-    this.action = data.obj.action;
-    console.log("local data : ",this.local_data);
-   }
+    private activatedRoute : ActivatedRoute,
+    private router : Router,
+    private dialog : MatDialog,
+    private commonService: CommonService
+  ) { 
+    this.activatedRoute.queryParams.subscribe((data)=>{
+      console.log("activated route data",data);
+      if(data && data.id){
+      this.studentId = data.id;
+      this.getProfile();
+      this.getFeeDetails();
+      if(data.find){
+        this.selectedIndex = data.find
+      }
+    }
+    })
+  }
 
   ngOnInit() {
   }
-  onUpdateStudentProfile(obj){
-    obj = this.local_data
-    obj.action = 'update';
-       const dialogRef = this.dialog.open(AdmissionComponent,{
-         width:'70vw',
-         maxWidth: '100%',
-        //  height:'100vh',
-         data : {obj}
-       })
-       this.closeProfile();
+
+  getProfile(){
+    this.commonService.getStudentRecordById(this.studentId)
+      .subscribe((result) => {
+        console.log("Student profile", result);
+        this.studentData = result.data || null;
+        this.parentData = this.studentData['parents'] || null;
+        this.addressData = this.studentData['address'] || null;
+
+        this.isLoading = false;
+      }, (error) => {
+        console.log("error", error);
+      })
   }
-  openFeeSubmition(obj){
-    obj.action = 'submitFee';
-       const dialogRef = this.dialog.open(TransactionComponent,{
-         width:'30rem',
-         maxWidth: '100vw',
-         data : {obj}
-       })
-    
-    }
-  closeProfile(){
-    this.dialogRef.close();
+
+  getFeeDetails(){
+    this.commonService.studentFeeDetails(this.studentId)
+      .subscribe((result) => {
+        console.log("Student profile", result);
+        let studentFeeDetails = result.data || null;
+        this.appliedFee = studentFeeDetails['feeStructures']
+        this.totalFeeDeposit = studentFeeDetails['totalDeposited']
+        this.isLoading = false;
+      }, (error) => {
+        console.log("error", error);
+      })
   }
+
+  getTotalCost(){
+    return this.appliedFee.map(t => t.amount).reduce((acc,value)=> acc + value,0)
+  }
+
+  updateProfile(){
+    this.router.navigate(['/admission'],{queryParams : {id : this.studentId , action : 'update'}})
+  }
+
+  printProfile(){
+    console.log("print profile")
+    this.router.navigate(['./student/print'],{queryParams : {id : this.studentId , action : 'print'}})
+  }
+
+  selectedTabChange(event){
+console.log("tab change",event);
+this.selectedIndex = event.index
+this.router.navigate([],{queryParams : { find : this.selectedIndex },queryParamsHandling : 'merge'})
+  }
+
+  openfeeDeposit(){
+    const data = <any>{}
+    data.studentId = this.studentId
+    const dialogRef = this.dialog.open(FeeDepositComponent,{
+      width : '40rem',
+      maxWidth : '100vw',
+      maxHeight : '100vh',
+      hasBackdrop : false,
+      data : data
+    })
+
+    dialogRef.afterClosed().subscribe((status : Boolean )=>{
+      this.getFeeDetails();
+    })
+  }
+  
 }

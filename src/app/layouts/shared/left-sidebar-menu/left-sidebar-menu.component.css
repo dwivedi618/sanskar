@@ -18,3 +18,14 @@
 /* mat-list-item{
     max-width: 95%;
 } */
+
+
+::ng-deep .mat-expansion-panel-content::after{
+    content: '';
+    position: absolute;
+    border-left: 5px solid !important;
+    height: 100%;
+    top: 0;
+    border-image-slice: 1;
+    border-image-source: linear-gradient(135deg, #3a7bd500,#3a7bd5, #d53a9d00);
+}

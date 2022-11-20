@@ -15,6 +15,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { CommonService } from '../services/common.service';
 import { UiService } from '../services/ui.service';
 import { AlertService } from '../services/alert.service';
+import { admissionFormFields } from './admissionFormFields';
 
 
 export interface DialogData {
@@ -55,6 +56,8 @@ export class AdmissionComponent implements OnInit {
   isLoading: boolean;
   studentData : any;
 
+  admissionFormFields = admissionFormFields;
+
   constructor(
     public dialog: MatDialog,
     private router: Router,
@@ -85,7 +88,9 @@ export class AdmissionComponent implements OnInit {
   ngOnInit() {
     this.getStandardList();
     this.studentForm = this.formBuilder.group({
-      name: ['', Validators.required],
+      firstName: ['', Validators.required],
+      middleName: ['', Validators.required],
+      lastName: ['', Validators.required],
       gender: [],
       dateOfBirth: [],
       image: [],
@@ -163,7 +168,10 @@ export class AdmissionComponent implements OnInit {
   studentFormPatch(standard){
     console.log("form patch prodifile ------------------");
     
-    this.studentForm.patchValue({ name : this.studentData.name || '' });
+    this.studentForm.patchValue({ firstName : this.studentData.name || '' });
+    this.studentForm.patchValue({ middleName : this.studentData.name || '' });
+    this.studentForm.patchValue({ lastName : this.studentData.name || '' });
+
     this.studentForm.patchValue({ gender : this.studentData.gender  || ''});
     this.studentForm.patchValue({ dateOfBirth : this.studentData.dateOfBirth  || ''});
     // this.studentForm.patchValue({ image : this.studentData.image || '' });
@@ -831,7 +839,6 @@ getStandardList(){
     { value: 'AB-', viewValue: 'AB' },
     { value: 'O+', viewValue: 'O+' },
     { value: 'O-', viewValue: 'O-' }
-
   ];
 
 }

@@ -3,6 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { AdmissionComponent } from 'src/app/admission/admission.component';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { MergeScanSubscriber } from 'rxjs/internal/operators/mergeScan';
+import {menus}  from '../../../config/menus';
 
 @Component({
   selector: 'app-left-sidebar-menu',
@@ -17,6 +19,7 @@ export class LeftSidebarMenuComponent implements OnInit {
     { name : 'Registered Classes',url : './configuration/master-standard' },
 
   ]
+  menus = menus;
   activeLink: any;
   constructor(
     private dialog : MatDialog,
@@ -36,6 +39,7 @@ export class LeftSidebarMenuComponent implements OnInit {
    }
 
   ngOnInit(): void {
+    // alert(JSON.stringify(menus,null,2))
   }
 
   newRegistration(obj){

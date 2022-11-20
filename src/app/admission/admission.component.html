@@ -11,9 +11,7 @@
     </mat-toolbar> -->
     <div class="fadeIn" style="max-height: 100vh;">
         <mat-card class="card border-0  p-0" style="font-size: 12px;">
-
             <mat-vertical-stepper #stepper>
-
                 <mat-step [stepControl]="studentForm" class="">
                     <form class="stepper_form my-4 py-2 " [formGroup]="studentForm">
                         <ng-template matStepLabel>Required Student Details</ng-template>
@@ -24,61 +22,57 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6">
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>Full Name</mat-label>
-                                            <input matInput placeholder="First Name" type="text" formControlName="name"
-                                                required>
-                                            <mat-error *ngIf="f1.name.hasError('required')">Name Required
-                                            </mat-error>
-                                        </mat-form-field>
-
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>Date of Birth</mat-label>
-                                            <input matInput type="date" formControlName="dateOfBirth">
-                                        </mat-form-field>
-
-                                        <!-- bloodGroup -->
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>Blood Group </mat-label>
-                                            <mat-select placeholder="Blood Group" formControlName="bloodGroup">
-                                                <mat-option *ngFor="let bloodGroup of bloodGroups"
-                                                    [value]="bloodGroup.value">
-                                                    {{bloodGroup.viewValue}}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-
-                                        <div class="my-4">
-                                            <div class="d-flex box_shadow_0 space-between" style="background: #00000005;">
-                                                <div
-                                                    class="form-row d-flex box_shadow_0 align-items-center justify-content-center">
-                                                    <input type="radio" formControlName="gender" value="MALE" id="Male"
-                                                        class="form-input">
-                                                    <span class="material-symbols-outlined fs-16 mr-1">
-                                                        male
-                                                    </span>
-                                                    <label for="Male" class="form-label">MALE</label>
+                                
+                                        <ng-container *ngFor="let field of admissionFormFields.staticFields.studentInfo">
+                                            <ng-container *ngIf="field.fieldType === 'text'">
+                                                <mat-form-field appearance="outline" class="example-full-width">
+                                                    <mat-label>{{field.label}}</mat-label>
+                                                    <input matInput placeholder={{field.label}} type="text" formControlName={{field.fieldName}} required>
+                                                    <!-- <mat-error *ngIf="{{`f1[${field.fieldName}].hasError('required')`}}">Name Required
+                                                    </mat-error> -->
+                                                </mat-form-field>
+                                            </ng-container>
+                                            <ng-container *ngIf="field.fieldType === 'date'">
+                                                <mat-form-field appearance="outline" class="example-full-width">
+                                                    <mat-label>{{field.label}}</mat-label>
+                                                    <input matInput type="date" formControlName="{{field.fieldName}}">
+                                                </mat-form-field>
+                                            </ng-container>
+                                            <ng-container *ngIf="field.fieldType === 'dropdown'">
+                                                <!-- bloodGroup -->
+                                                <mat-form-field appearance="outline" class="example-full-width">
+                                                    <mat-label>{{field.label}}</mat-label>
+                                                    <mat-select placeholder={{field.label}} formControlName="{{field.fieldName}}">
+                                                        <mat-option *ngFor="let opt of field.options" [value]="opt.value">
+                                                            {{opt.label}}
+                                                        </mat-option>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </ng-container>
+                                            <ng-container *ngIf="field.fieldType === 'radio'">
+                                                <div class="my-4">
+                                                    <div class="d-flex box_shadow_0 space-between" style="background: #00000005;">
+                                                        <div *ngFor="let opt of field.options"
+                                                            class="form-row d-flex box_shadow_0 align-items-center justify-content-center">
+                                                            <input type="radio" formControlName="{{field.fieldName}}" value="{{opt.value}}" id="{{opt.value}}"
+                                                                class="form-input">
+                                                            <span class="material-symbols-outlined fs-16 mr-1">
+                                                                {{opt.icon | lowercase}}
+                                                            </span>
+                                                            <label for="{{opt.value}}" class="form-label">{{opt.label | uppercase}}</label>
+                                                        </div>
+                                                    </div>
                                                 </div>
-                                                <div
-                                                    class="form-row d-flex box_shadow_0 align-items-center justify-content-center">
-                                                    <span class="material-symbols-outlined fs-16 mr-1">
-                                                        female
-                                                    </span>
-                                                    <input type="radio" formControlName="gender" value="FEMALE"
-                                                        id="Female" class="form-input">
-                                                    <label for="Female" class="form-label">FEMALE</label>
-                                                </div>
-                                                <div
-                                                    class="form-row d-flex box_shadow_0 align-items-center justify-content-center">
-                                                    <span class="material-symbols-outlined fs-14 mr-1">
-                                                        transgender
-                                                    </span>
-                                                    <input type="radio" formControlName="gender" id="other"
-                                                        value="OTHER" class="form-input">
-                                                    <label for="other" class="form-label">OTHER</label>
-                                                </div>
-                                            </div>
-                                        </div>
+                                            </ng-container>
+                                        </ng-container>
+                                        
+                                        
+
+                               
+
+                                        
+
+                                        
 
                                     </div>
                                     <div class="col-md-6  g-2">
@@ -114,95 +108,16 @@
                                                     </button> -->
                                                         <img src="../../assets/icons/persion.svg" width="40">
                                                         <p mat-line class="text-muted py-2">Candidate Photo</p>
-
                                                     </div>
                                                     <div *ngIf="imagePreview!=='' && imagePreview">
                                                         <img class="thumbnail-md" [src]="imagePreview"
                                                             style="border-radius: 4px;">
                                                     </div>
-
                                                 </div>
-
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-
-
-
-
-
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <!-- nationality -->
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>Nationality</mat-label>
-                                            <input matInput placeholder="Nationality" type="text"
-                                                formControlName="nationality">
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-
-
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>Place</mat-label>
-                                            <input matInput placeholder="Place" type="text" formControlName="place">
-                                        </mat-form-field>
-
-                                    </div>
-                                </div>
-
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <!-- <div class="mb-2">
-                                            <mat-label class="text-primary">Accademics</mat-label>
-                                        </div> -->
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>Addmission In</mat-label>
-                                            <mat-select formControlName="standardId" required>
-                                                <mat-option *ngFor="let standard of standards" [value]="standard.id">
-                                                    {{standard.name}}
-                                                </mat-option>
-                                            </mat-select>
-                                            <!-- <input matInput placeholder="AddmissionIn" type="text" formControlName="standard"> -->
-                                            <mat-error *ngIf="f1.standardId.hasError('required')">Admission In Class?
-                                            </mat-error>
-                                        </mat-form-field>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <!-- convenience -->
-
-                                        <mat-form-field appearance="outline" class="example-full-width">
-
-                                            <mat-label>Convenience(Yes/No)</mat-label>
-                                            <mat-select formControlName="convenience" required>
-                                                <mat-option value="YES">Yes</mat-option>
-                                                <mat-option value="NO">No</mat-option>
-
-                                            </mat-select>
-
-                                            <mat-error *ngIf="f1.convenience.hasError('required')">Required</mat-error>
-                                        </mat-form-field>
-                                        <!-- place -->
-                                    </div>
-                                </div>
-
-
-
-
-
-
-
-
-
-                                <mat-form-field appearance="outline" class="example-full-width">
-                                    <mat-label>Health Status</mat-label>
-                                    <input matInput placeholder="Health Status" type="text"
-                                        formControlName="healthStatus">
-                                </mat-form-field>
-
-
 
                                 <div class="d-flex justify-content-end my-4">
                                     <button mat-raised-button type="submit" color="primary" (click)="onStudentSubmit()"

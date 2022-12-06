@@ -16,6 +16,7 @@ import { CommonService } from '../services/common.service';
 import { UiService } from '../services/ui.service';
 import { AlertService } from '../services/alert.service';
 import { admissionFormFields } from './admissionFormFields';
+import { COMMON_CONFIG } from '../config/commonConfig';
 
 
 export interface DialogData {
@@ -57,6 +58,7 @@ export class AdmissionComponent implements OnInit {
   studentData : any;
 
   admissionFormFields = admissionFormFields;
+  commonConfig = COMMON_CONFIG
 
   constructor(
     public dialog: MatDialog,

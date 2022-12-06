@@ -8,6 +8,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CommonService {
 
+  configUrls = {
+    classConfig : environment.apiUrl + "/class-config",
+    feeConfig : environment.apiUrl + "/fee-config",
+
+
+  }
   constructor(
     private http: HttpClient
   ) { }
@@ -15,17 +21,21 @@ export class CommonService {
 
 
   masterstandard(standard) {
-    return this.http.post<any>(`${environment.apiUrl}/v1/master/standard`, standard)
+    return this.http.post<any>(this.configUrls.classConfig,standard);
   }
 
 
   getMasterStandard() {
-    return this.http.get<any>(`${environment.apiUrl}/v1/master/standard`)
+    return this.http.get<any>(this.configUrls.classConfig)
   }
 
 
-  addMasterFeeCategory(fee) {
-    return this.http.post<any>(`${environment.apiUrl}/v1/master/fee`, fee)
+
+  addMasterFeeCategory(data) {
+    return this.http.post<any>(this.configUrls.feeConfig,data)
+  }
+  getMasterFee(id:String = '') {
+    return this.http.get<any>(this.configUrls.feeConfig+'/'+id);
   }
 
   studentFeeDeposit(studentId,fee) {
@@ -36,9 +46,6 @@ export class CommonService {
   }
 
 
-  getMasterFee() {
-    return this.http.get<any>(`${environment.apiUrl}/v1/master/fee`)
-  }
   getMasterFeeCategory() {
     return this.http.get<any>(`${environment.apiUrl}/v1/master/fee`)
   }

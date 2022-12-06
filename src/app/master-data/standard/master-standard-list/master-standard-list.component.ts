@@ -75,6 +75,8 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
   }
 
   getMasterStandardList(){
+    console.log("111111111111");
+    
       this.commonService.getMasterStandard().subscribe((result)=>{
         console.log("master student Form result",result);
         const standardList = result['data'] || null;

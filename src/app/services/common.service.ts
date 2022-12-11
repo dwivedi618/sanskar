@@ -8,12 +8,13 @@ import { HttpClient } from '@angular/common/http';
 })
 export class CommonService {
 
-  configUrls = {
-    classConfig : environment.apiUrl + "/class-config",
-    feeConfig : environment.apiUrl + "/fee-config",
-
-
+  public API_ROUTES = {
+    fee: environment.apiUrl + '/' + 'fee',
+    class: environment.apiUrl + '/' + 'class',
+    feeStructure: environment.apiUrl + '/' + 'feeStructure',
+    student: environment.apiUrl + '/' + 'student'
   }
+ 
   constructor(
     private http: HttpClient
   ) { }
@@ -21,21 +22,21 @@ export class CommonService {
 
 
   masterstandard(standard) {
-    return this.http.post<any>(this.configUrls.classConfig,standard);
+    return this.http.post<any>(this.API_ROUTES.class,standard);
   }
 
 
   getMasterStandard() {
-    return this.http.get<any>(this.configUrls.classConfig)
+    return this.http.get<any>(this.API_ROUTES.class)
   }
 
 
 
   addMasterFeeCategory(data) {
-    return this.http.post<any>(this.configUrls.feeConfig,data)
+    return this.http.post<any>(this.API_ROUTES.fee,data)
   }
   getMasterFee(id:String = '') {
-    return this.http.get<any>(this.configUrls.feeConfig+'/'+id);
+    return this.http.get<any>(this.API_ROUTES.fee+'/'+id);
   }
 
   studentFeeDeposit(studentId,fee) {
@@ -56,8 +57,11 @@ export class CommonService {
   }
 
 
-  getMasterFeeStructure(session,standardId) {
-    return this.http.get<any>(`${environment.apiUrl}/v1/master/fee-structure?year=${session}&standardId=${standardId}`)
+  getMasterFeeStructure(session,classId) {
+    return this.http.get<any>(this.API_ROUTES.feeStructure)
+  }
+  getClassFeeById(session,classId='') {
+    return this.http.get<any>(`${this.API_ROUTES.class}?classId=${classId}&session=${session}`);
   }
 
 

@@ -175,8 +175,13 @@ form{
     color: rgb(55, 54, 58)!important;
   }
 a{text-decoration: none;}
-  .active{
+  .active,.selected{
     color: orangered !important;
+
+  }
+  .selected{
+    font-weight: 600;
+    color: rgb(0, 0, 0) !important;
 
   }
   .active_sublink{

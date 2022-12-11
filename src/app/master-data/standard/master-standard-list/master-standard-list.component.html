@@ -39,7 +39,7 @@
     <mat-toolbar class="bg-white">
       <mat-toolbar-row>
         <div class="px-1 " *ngIf="!this.selection.selected.length">
-          <button mat-icon-button>
+          <button mat-icon-button ngClick="getMasterStandardList()">
             <mat-icon class="mat-icon-md mat-icon-light pt-0">refresh</mat-icon>
           </button>
         </div>

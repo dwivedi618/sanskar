@@ -13,6 +13,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { merge, param } from 'jquery';
 import { CommonService } from 'src/app/services/common.service';
 import { ManageFeeCategoryComponent } from '../../fee-category/manage-fee-category/manage-fee-category.component';
+import { HELPER as HELPER } from 'src/app/utils/helpers';
+import { Class } from '../../standard/class.interface';
 
 export interface FacultyListItem {
   name: string;
@@ -72,13 +74,14 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select', 'name', 'frequency','amount','action'];
+  displayedColumns = ['select', 'name', 'frequency','optional','amount','action'];
   selection = new SelectionModel<FacultyListItem>(true, []);
   standardList: any;
   selectedStandard: string;
   standatdId: any;
   standardId: any;
   selectedStandardName: any;
+  fees: any;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -117,10 +120,12 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     private commonService: CommonService
   ) {
     this.activatedRoute.queryParams.subscribe(data => {
-      if (data && data.year ) {
+      if (data) {
         this.selectedSession = data.year
         if(data.standardId){
           this.standardId = data.standardId
+          console.log("this.standardId",this.standardId);
+          
           this.getFeeStructureList()
         }
         if(data.n){
@@ -135,16 +140,37 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     this.dataSource = new MatTableDataSource();
     console.log("selection", this.selection.selected)
     this.getMasterStandardList();
+    this.getFeeStructureList();
+    this.getFeeCategoryList();
   }
 
   getFeeStructureList() {
-    this.commonService.getMasterFeeStructure(this.selectedSession, this.standardId).subscribe((result) => {
+    this.commonService.getClassFeeById(this.selectedSession, this.standardId).subscribe((result) => {
+      console.log("this.standardId", this.standardId);
       console.log("Fee Structure result", result);
       const structureList = result['data'] || null;
-      this.dataSource.data = structureList
+      if(HELPER.isObject(structureList)){
+        this.dataSource.data = structureList?.fees || [];
+      }
+      if(HELPER.isArray(structureList)){
+        let allClasses = structureList ;
+        const defaultSelectedClass = allClasses.filter(classObj=>classObj._id === this.standardId)[0];
+        this.dataSource.data = defaultSelectedClass?.fees  || [];
+        console.log("defaultSelectedClass",defaultSelectedClass);
+        
+      }
+      
     }, (error) => {
       console.log(" error", error);
     })
+
+    // this.commonService.getMasterFeeStructure(this.selectedSession, this.standardId).subscribe((result) => {
+    //   console.log("Fee Structure result", result);
+    //   const structureList = result['data'] || null;
+    //   this.dataSource.data = structureList
+    // }, (error) => {
+    //   console.log(" error", error);
+    // })
   }
   /**
    * 
@@ -160,8 +186,6 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
         console.log("action----->",action)
         let selectStandardbtn : HTMLElement = document.getElementById('selectStandardbtn') as HTMLElement
         selectStandardbtn.click()
-  
-
       })
     }
   }
@@ -170,7 +194,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
    * @param data selectedStadard
    */
   onStandardChange(data) {
-    this.standardId = data.id
+    this.standardId = data._id
     this.selectedStandardName = data.name
     this.router.navigate([], { queryParams: { year: this.selectedSession, standardId: this.standardId ,n : this.selectedStandardName}, queryParamsHandling: 'merge' })
     this.getFeeStructureList();
@@ -182,12 +206,21 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     this.commonService.getMasterStandard().subscribe((result) => {
       console.log("classes", result);
       this.standardList = result['data'] || [];
-
-
     }, (error) => {
       console.log("error", error);
     })
   }
+
+  getFeeCategoryList(){
+    console.log("getMasterFeeCategory result");
+
+    this.commonService.getMasterFee().subscribe((result)=>{
+      console.log("getMasterFeeCategory result",result);
+      this.fees = result['data'] || null;
+    },(error)=>{
+      console.log("getMasterFeeCategory error",error);
+    }) 
+}
 
   getSelectedStandard(standardId) {
     let standardName = 'Select'

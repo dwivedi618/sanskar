@@ -10,50 +10,9 @@ import { Router } from '@angular/router';
 import { param } from 'jquery';
 import { CommonService } from 'src/app/services/common.service';
 import { ManageFeeCategoryComponent } from '../manage-fee-category/manage-fee-category.component';
+import { Fee } from '../fee.interface';
 
-export interface FacultyListItem {
-  name: string;
-  id: number;
-  thumbnail:any;
-  role:any;
-}
 
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: FacultyListItem[] = [
-  {
-    id: 1,
-    name: 'Thor',
-    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
-    role: 'science teacher'
-  },
-  
- {
-    id: 2,
-    name: 'Kungfu panda',
-    thumbnail: '../../../../assets/user_profiles/profile1.jpeg',
-    role: 'Not assigned'
-
-  },  {
-    id: 3,
-    name: 'Stark tony ',
-    thumbnail: '../../../../assets/user_profiles/profile2.jpg',
-    role: 'Not assigned'
-
-  },  {
-    id: 4,
-    name: 'Thor',
-    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
-    role: 'Manager'
-
-  },  {
-    id: 5,
-    name: 'Marvel in universe',
-    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
-    role: 'admin'
-
-  },  
-
-];
 
 @Component({
   selector: 'app-master-fee-category-list',
@@ -64,12 +23,12 @@ const EXAMPLE_DATA: FacultyListItem[] = [
 export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<FacultyListItem>;
+  @ViewChild(MatTable) table: MatTable<Fee>;
   dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select','name','action'];
-  selection = new SelectionModel<FacultyListItem>(true, []);
+  displayedColumns = ['select','name','frequency','optional','action'];
+  selection = new SelectionModel<Fee>(true, []);
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -87,11 +46,11 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: FacultyListItem): string {
+  checkboxLabel(row?: Fee): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${+row._id + 1}`;
   }
 
   menuDataSession = ['2019-2020','2020-2021','2021-2022'];

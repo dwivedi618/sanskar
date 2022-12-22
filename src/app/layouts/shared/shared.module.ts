@@ -11,6 +11,7 @@ import { RightSidebarMenuComponent } from './right-sidebar-menu/right-sidebar-me
 import { AlertWithActionComponent } from './alert-with-action/alert-with-action.component';
 import { JsonFormComponent } from './json-form/json-form.component';
 import { FeeFrequencyPipe } from './customPipes/fee-frequency.pipe';
+import { MenuButtonComponent } from './menu-button/menu-button.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +22,8 @@ import { FeeFrequencyPipe } from './customPipes/fee-frequency.pipe';
     RightSidebarMenuComponent,
     AlertWithActionComponent,
     JsonFormComponent,
-    FeeFrequencyPipe
+    FeeFrequencyPipe,
+    MenuButtonComponent
   ],
   imports: [
     CommonModule,
@@ -41,7 +43,8 @@ import { FeeFrequencyPipe } from './customPipes/fee-frequency.pipe';
     AlertWithActionComponent,
     JsonFormComponent,
     RouterModule,
-    FeeFrequencyPipe
+    FeeFrequencyPipe,
+    MenuButtonComponent
   ]
 })
 export class SharedModule { }

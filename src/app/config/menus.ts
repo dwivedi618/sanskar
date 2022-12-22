@@ -60,3 +60,19 @@ export const menus = [
 
     }
 ]
+export const ActionMenus = [
+    {
+        menuName: "Delete",
+        menuId: "DELETE",
+        icon: 'delete',
+        path: '',
+        url: ""
+    },
+    {
+        menuName: "Edit",
+        menuId: "EDIT",
+        icon: 'school',
+        path: '',
+        url: ""
+    }
+]

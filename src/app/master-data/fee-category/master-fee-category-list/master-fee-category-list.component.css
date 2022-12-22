@@ -1,0 +1,6 @@
+menuButton{
+    width: 4rem;
+    height: 4rem;
+    border: 2px solid red!important;
+    z-index: 1000;
+}

@@ -11,6 +11,8 @@ import { param } from 'jquery';
 import { CommonService } from 'src/app/services/common.service';
 import { ManageFeeCategoryComponent } from '../manage-fee-category/manage-fee-category.component';
 import { Fee } from '../fee.interface';
+import { JsonFormService } from 'src/app/services/json-form.service';
+import { FeeFrequencyPipe } from 'src/app/layouts/shared/customPipes/fee-frequency.pipe';
 
 
 
@@ -58,13 +60,15 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit {
   constructor(
     private dialog : MatDialog,
     private router : Router,
-    private commonService : CommonService
+    private commonService : CommonService,
+    private jsonFormService : JsonFormService
   ){}
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
     console.log("selection",this.selection.selected)
     this.getFeeCategoryList();
+    this.jsonFormService.getFeeFormJson().subscribe(data => console.log("data",data))
   }
 
   getFeeCategoryList(){
@@ -124,6 +128,10 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit {
       // panelClass : 'dialog-container-pt-0',
       data : data
     })
+    dialogRef.afterClosed().subscribe({next:()=>this.getFeeCategoryList()})
+  }
+  refresh(){
+    this.getFeeCategoryList()
   }
   /**
    * route to add faculty profile page

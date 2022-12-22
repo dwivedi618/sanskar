@@ -8,30 +8,47 @@
 <div mat-dialog-content>
     <div class="row justify-content-center py-5">
         <div class="col-md-8">
-            <form [formGroup]="masterFeeCategoryForm" class="w-100">
-                <div class="row ">
-                    <div class="col-3 text-left justify-content-center">
-                        <small>Fee Category</small>
+            <form [formGroup]="feeFromGroup"  class="w-100">
+                <ng-container *ngFor="let field of feeFormFields?.controls">
+                    <div class="row " *ngIf="field.type === 'text'">
+                        <div class="col-3 text-left justify-content-center">
+                            <small>{{field.label}}{{field.validators?.required ? '*' : ''}}</small>
+                        </div>
+                        <div class="col-9 text-left">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>{{field.label}}</mat-label>
+                                <input matInput placeholder="Ex:Examination Fee" [formControlName]="field.name" [value]="field.value">
+                            </mat-form-field>
+                        </div>
                     </div>
-                    <div class="col-9 text-left">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Fee category</mat-label>
-                            <input matInput placeholder="Ex:Examination Fee" formControlName="name">
-                        </mat-form-field>
+
+                    <div class="row" *ngIf="field.type === 'textarea'">
+                        <div class="col-3 text-left">
+                            <small>{{field.label}} {{field.validators?.required ? '*' : ''}}</small>
+                        </div>
+                        <div class="col-9 text-left">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>{{field.label}}</mat-label>
+                                <textarea matInput placeholder="Ex:description" [formControlName]="field.name"></textarea>
+                                <!-- <mat-hint>{{field.hint}}</mat-hint> -->
+                            </mat-form-field>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
-                    <div class="col-3 text-left">
-                        <small>Description</small>
-                    </div>
-                    <div class="col-9 text-left">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Description</mat-label>
-                            <textarea matInput placeholder="Ex:description" formControlName="description"></textarea>
-                            <mat-hint>You can skip fee description</mat-hint>
-                        </mat-form-field>
-                    </div>
-                </div>
+                    <ng-container *ngIf="field.type === 'radio'">
+                        <div class="row my-4">
+                            <div class="col-3 text-left">
+                                <small>{{field.label}} {{field.validators?.required ? '*' : ''}}</small>
+                            </div>
+                            <div class="col-9 text-left">
+                                <mat-radio-group [formControlName]="field.name">
+                                    <mat-radio-button class="mr-4 w-50" *ngFor="let opt of field.options" [value]="opt.value">
+                                        {{opt.label}}
+                                    </mat-radio-button>
+                                </mat-radio-group> 
+                            </div>
+                        </div>
+                    </ng-container>
+                </ng-container>
             </form>
             
         </div>
@@ -39,6 +56,6 @@
 
 </div>
 <div mat-dialog-actions align="end">
-  <button mat-raised-button color="primary" (click)="submit()">Submit</button>
+  <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="feeFromGroup.invalid">Submit</button>
 
 </div>

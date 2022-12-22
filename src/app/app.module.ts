@@ -33,6 +33,8 @@ import { AlertComponent } from './alert/alert.component';
 import { MatSnackBarRef } from '@angular/material/snack-bar';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ImageUploaderComponent } from './uiComponents/image-uploader/image-uploader.component';
+import { JsonFormComponent } from './layouts/shared/json-form/json-form.component';
+import { JsonFormService } from './services/json-form.service';
 
 
 
@@ -56,10 +58,6 @@ import { ImageUploaderComponent } from './uiComponents/image-uploader/image-uplo
     VerticalComponent,
     
     ImageUploaderComponent,
- 
-    
-   
-    
   ],
   imports: [
     BrowserAnimationsModule,
@@ -83,7 +81,7 @@ import { ImageUploaderComponent } from './uiComponents/image-uploader/image-uplo
     
   ],
   // entryComponents: [ FeesComponent],
-  providers: [AuthenticationService,HttpClient,AlertService,{
+  providers: [AuthenticationService,HttpClient,AlertService,JsonFormService,{
     provide: MatSnackBarRef,
     useValue: {}
   },

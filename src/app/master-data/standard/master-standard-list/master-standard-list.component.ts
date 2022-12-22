@@ -72,6 +72,7 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
     this.dataSource = new MatTableDataSource();
     console.log("selection",this.selection.selected)
     this.getMasterStandardList();
+    this.manageMasterStandard()
   }
 
   getMasterStandardList(){

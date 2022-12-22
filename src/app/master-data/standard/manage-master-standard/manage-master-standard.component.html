@@ -7,40 +7,69 @@
 </div>
 <div mat-dialog-content>
     <div class="row justify-content-center py-5">
-        <div class="col-md-8">
-
-
-            <form [formGroup]="masterStandardForm" class="w-100">
-                <div class="row ">
-                    <div class="col-3 text-left justify-content-center">
-                        <small>Standard</small>
+        <div class="col-md-10">
+<pre>{{classFromGroup.value|json}}</pre>
+            <form [formGroup]="classFromGroup" class="w-100">
+                <ng-container *ngFor="let field of classFormFields?.controls">
+                    <div class="row " *ngIf="field.type === 'text'">
+                        <div class="col-3 text-left justify-content-center">
+                            <small>{{field.label}}{{field.validators?.required ? '*' : ''}}</small>
+                        </div>
+                        <div class="col-9 text-left">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>{{field.label}}</mat-label>
+                                <input matInput placeholder="Ex:Examination Fee" [formControlName]="field.name" [value]="field.value">
+                            </mat-form-field>
+                        </div>
                     </div>
-                    <div class="col-9 text-left">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Standard </mat-label>
-                            <input matInput placeholder="Ex:Class 8" formControlName="name">
-                        </mat-form-field>
+
+                    <div class="row" *ngIf="field.type === 'textarea'">
+                        <div class="col-3 text-left">
+                            <small>{{field.label}} {{field.validators?.required ? '*' : ''}}</small>
+                        </div>
+                        <div class="col-9 text-left">
+                            <mat-form-field appearance="outline" class="w-100">
+                                <mat-label>{{field.label}}</mat-label>
+                                <textarea matInput #input placeholder="Ex:description" [formControlName]="field.name"></textarea>
+                                <mat-hint align="end">{{input.value.length}}/{{field.validators?.maxLength}}</mat-hint>
+                            </mat-form-field>
+                        </div>
                     </div>
-                </div>
-                <div class="row">
+                    <ng-container *ngIf="field.type === 'radio'">
+                        <div class="row my-4">
+                            <div class="col-3 text-left">
+                                <small>{{field.label}} {{field.validators?.required ? '*' : ''}}</small>
+                            </div>
+                            <div class="col-9 text-left">
+                                <mat-radio-group [formControlName]="field.name">
+                                    <mat-radio-button class="mr-4 w-50" *ngFor="let opt of field.options" [value]="opt.value">
+                                        {{opt.label}}
+                                    </mat-radio-button>
+                                </mat-radio-group> 
+                            </div>
+                        </div>
+                    </ng-container>
+
+                    
+                </ng-container>
+                <div class="row mb-4">
                     <div class="col-3 text-left">
-                        <small>Description</small>
+                        <small></small>
                     </div>
                     <div class="col-9 text-left">
-                        <mat-form-field appearance="outline" class="w-100">
-                            <mat-label>Description</mat-label>
-                            <textarea matInput placeholder="Ex:description" formControlName="description"></textarea>
-                            <mat-hint>You can skip fee description</mat-hint>
-                        </mat-form-field>
+                        <mat-slide-toggle class="example-margin" (change)="onChange($event.checked)">
+                            <small>Show fees</small>
+                        </mat-slide-toggle>
                     </div>
                 </div>
+                
             </form>
         </div>
     </div>
 
 </div>
 <div mat-dialog-actions align="end">
-    <button mat-raised-button color="primary" (click)="submit()" [disabled]="masterStandardForm.invalid">
+    <button mat-raised-button color="primary" (click)="submit()" [disabled]="classFromGroup.invalid">
         <span *ngIf="!isSaving">Submit</span>
         <span *ngIf="isSaving">Submitting...</span>
 

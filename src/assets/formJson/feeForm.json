@@ -1,0 +1,86 @@
+{
+    "controls": [
+        {
+            "name": "name",
+            "label": "Fee type",
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "maxLength": 50
+            }
+        },
+        {
+            "name": "description",
+            "label": "Description",
+            "value": "",
+            "type": "textarea",
+            "validators": {
+                "required": false,
+                "maxLength": 250
+            }
+        },
+        {
+            "name": "isOptional",
+            "label": "Optional",
+            "value": "",
+            "type": "radio",
+            "validators": {
+                "required": true
+            },
+            "options": [
+                {
+                    "value": true,
+                    "label": "YES",
+                    "icon": ""
+                },
+                {
+                    "value": false,
+                    "label": "NO",
+                    "icon": ""
+                }
+            ]
+        },
+        {
+            "name": "frequency",
+            "label": "Frequency",
+            "value": "",
+            "type": "radio",
+            "validators": {
+                "required": true
+            },
+            "options": [
+                {
+                    "value": 1,
+                    "label": "MONTHLY",
+                    "icon": ""
+                },
+                {
+                    "value": 2,
+                    "label": "BIMESTERLY",
+                    "icon": ""
+                },
+                {
+                    "value": 3,
+                    "label": "QUARTERLY",
+                    "icon": ""
+                },
+                {
+                    "value": 4,
+                    "label": "QUADRIMESTERLY",
+                    "icon": ""
+                },
+                {
+                    "value": 6,
+                    "label": "HALF-YEARLY",
+                    "icon": ""
+                },
+                {
+                    "value": 12,
+                    "label": "YEARLY",
+                    "icon": ""
+                }
+            ]
+        }
+    ]
+}

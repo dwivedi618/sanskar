@@ -1,0 +1,34 @@
+<ng-container >
+    <div class="row mb-4">
+        <div class="col-3 text-left">
+            <small></small>
+        </div>
+        <div class="col-9 text-left">
+            <mat-slide-toggle class="example-margin"  [checked]="checked" >
+                <small>Show fees</small>
+            </mat-slide-toggle>
+        </div>
+    </div>
+    <section [formArrayName]="fees" class="fee-container p-2">
+        <div *ngFor="let feesControls of feesFormArray?.controls;let index = index">
+            <ng-container [formGroupName]="index" *ngFor="let field of feesControls?.controls;let index=feeObj" >
+                <!-- <div [formGroupName]="feeObj"  class="row " *ngIf="field.name == 'amount'">
+                    <div class="col-3 text-left justify-content-center">
+                        <small></small>
+                    </div>
+                    <div class="col-9 text-left">
+                        <mat-form-field appearance="fill" floatLabel="always" class="w-100">
+                            <mat-label>{{field.label}}
+                                <span></span>
+                            </mat-label>
+                            <input matInput type="number" [formControlName]="amount"  class="example-right-align" />
+                            <strong matPrefix>Rs.&nbsp;</strong>
+                            <span matSuffix>/-</span>
+                          </mat-form-field>
+                    </div>
+                </div> -->
+                <pre>{{field | json}}</pre>
+            </ng-container>
+        </div>
+    </section>
+</ng-container>

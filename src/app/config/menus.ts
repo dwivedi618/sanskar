@@ -21,7 +21,7 @@ export const menus = [
         url: ""
     },
     {
-        menuName: "Configuration",
+        menuName: "My School",
         menuId: "configuration",
         icon: 'settings',
         path: 'configuration',
@@ -31,18 +31,9 @@ export const menus = [
                 
                 menuId: "configuration",
                 icon: '',
-                subMenuId: "fee-structure",
-                path: './configuration/fee-structure',
-                subMenuName: 'Fee Structure',
-                url: './configuration/fee-structure'
-            },
-            {
-                
-                menuId: "configuration",
-                icon: '',
                 subMenuId: "fee-category",
                 path: './configuration/master-fee-category',
-                subMenuName: 'Fee Category',
+                subMenuName: 'Fees',
                 url: './configuration/master-fee-category'
             },
             {
@@ -51,9 +42,20 @@ export const menus = [
                 subMenuId: "registered-classes",
                 icon: '',
                 path: './configuration/master-fee-category',
-                subMenuName: 'Registered Classes',
+                subMenuName: 'Classes',
                 url: './configuration/master-standard'
+            },
+            {
+                
+                menuId: "configuration",
+                icon: '',
+                subMenuId: "fee-structure",
+                path: './configuration/fee-structure',
+                subMenuName: 'Class wise fee',
+                url: './configuration/fee-structure'
             }
+            
+            
         ]
 
     }

@@ -1,0 +1,24 @@
+{
+    "controls": [
+        {
+            "name": "name",
+            "label": "Name",
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "maxLength": 50
+            }
+        },
+        {
+            "name": "description",
+            "label": "Description",
+            "value": "",
+            "type": "textarea",
+            "validators": {
+                "required": false,
+                "maxLength": 250
+            }
+        }
+    ]
+}

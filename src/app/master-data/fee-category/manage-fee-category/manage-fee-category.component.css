@@ -8,3 +8,60 @@
     min-height: 48px;
     padding: 0;
 }
+
+.form-row {
+	background: #ffffff;
+	border-radius: 4px;
+	height: 40px;
+	margin: 10px;
+	overflow: hidden;
+	position: relative;
+	width: 150px;
+}
+
+.form-input {
+	-webkit-appearance: none;
+	appearance: none;
+}
+
+.form-input::before {
+	content: '';
+	cursor: pointer;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.form-input:checked::before {
+	background: #21209c;
+}
+
+
+
+
+.form-label {
+	color: #21209c;
+	z-index: 1;
+  margin-bottom: 0;
+	/*position: absolute; This is an alternative option */
+}
+
+.form-input:checked ~ .form-label {
+	color: #ffffff;
+  
+}
+.form-input:checked ~ .material-symbols-outlined {
+	color: #ffffff;
+  
+}
+
+
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 20
+}

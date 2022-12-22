@@ -35,7 +35,7 @@
     <mat-toolbar class="bg-white">
       <mat-toolbar-row>
         <div class="px-1 " *ngIf="!this.selection.selected.length">
-          <button mat-icon-button>
+          <button mat-icon-button (click)="refresh()">
             <mat-icon class="mat-icon-md mat-icon-light pt-0">refresh</mat-icon>
           </button>
         </div>
@@ -117,7 +117,7 @@
       <ng-container matColumnDef="frequency">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Frequency (In Months)</th>
         <td mat-cell *matCellDef="let row">
-          <small>{{row.frequency || '...'}}</small>
+          <small>{{(row.frequency | feeFrequency) || '...'}}</small>
         </td>
       </ng-container>
 

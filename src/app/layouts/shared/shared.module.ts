@@ -9,6 +9,8 @@ import { AlertComponent } from 'src/app/alert/alert.component';
 import { SearchComponent } from './search/search.component';
 import { RightSidebarMenuComponent } from './right-sidebar-menu/right-sidebar-menu.component';
 import { AlertWithActionComponent } from './alert-with-action/alert-with-action.component';
+import { JsonFormComponent } from './json-form/json-form.component';
+import { FeeFrequencyPipe } from './customPipes/fee-frequency.pipe';
 
 @NgModule({
   declarations: [
@@ -17,7 +19,9 @@ import { AlertWithActionComponent } from './alert-with-action/alert-with-action.
     AlertComponent,
     SearchComponent,
     RightSidebarMenuComponent,
-    AlertWithActionComponent
+    AlertWithActionComponent,
+    JsonFormComponent,
+    FeeFrequencyPipe
   ],
   imports: [
     CommonModule,
@@ -35,7 +39,9 @@ import { AlertWithActionComponent } from './alert-with-action/alert-with-action.
     SearchComponent,
     AlertComponent,
     AlertWithActionComponent,
-    RouterModule
+    JsonFormComponent,
+    RouterModule,
+    FeeFrequencyPipe
   ]
 })
 export class SharedModule { }

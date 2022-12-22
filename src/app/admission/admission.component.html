@@ -36,7 +36,7 @@
                                                 <!-- bloodGroup -->
                                                 <mat-form-field appearance="outline" class="example-full-width">
                                                     <mat-label>{{field.label}}</mat-label>
-                                                    <mat-select placeholder={{field.label}} name="{{field.fieldName}}"
+                                                    <mat-select placeholder={{field.label}} 
                                                         value="{{field.value}}">
                                                         <mat-option *ngFor="let opt of field.options"
                                                             [value]="opt.value">
@@ -141,7 +141,7 @@
                                             <mat-label>{{field.label}}</mat-label>
                                             <input matInput placeholder={{field.label}} type="number"
                                                 name="{{field.fieldName}}" required="{{field.isMandatory}}"
-                                                disabled="{{!field.isEnabled}}" value={{field.value}} pattern="commonConfig.patterns[field.mobile]" maxlength="{{field.maxFieldLength}}">
+                                                disabled="{{!field.isEnabled}}" value={{field.value}} pattern="commonConfig.patterns[field.mobile]" maxLength="{{field.maxFieldLength}}">
                                             <!-- <mat-error *ngIf="{{`f1[${field.fieldName}].hasError('required')`}}">Name Required
                                             </mat-error> -->
                                         </mat-form-field>
@@ -160,7 +160,7 @@
                                         <mat-form-field appearance="outline" class="example-full-width">
                                             <mat-label>{{field.label}}</mat-label>
                                             <mat-select placeholder={{field.label}} required="{{field.isMandatory}}"
-                                                disabled="{{!field.isEnabled}}" name="{{field.fieldName}}"
+                                                disabled="{{!field.isEnabled}}" formControlName="{{field.fieldName}}"
                                                 value="{{field.value}}">
                                                 <mat-option *ngFor="let opt of field.options" [value]="opt.value">
                                                     {{opt.label}}
@@ -244,7 +244,7 @@
                                             <mat-select placeholder={{field.label}} 
                                                 required="{{field.isMandatory}}"
                                                 disabled="{{!field.isEnabled}}" 
-                                                name="{{field.fieldName}}"
+                                                formControlName="{{field.fieldName}}"
                                                 value="{{field.value}}">
                                                 <mat-option *ngFor="let opt of field.options" [value]="opt.value">
                                                     {{opt.label}}
@@ -320,7 +320,7 @@
                                             <mat-select placeholder={{field.label}} 
                                                 required="{{field.isMandatory}}"
                                                 disabled="{{!field.isEnabled}}" 
-                                                name="{{field.fieldName}}"
+                                                formControlName="{{field.fieldName}}"
                                                 value="{{field.value}}">
                                                 <mat-option *ngFor="let opt of field.options" [value]="opt.value">
                                                     {{opt.label}}

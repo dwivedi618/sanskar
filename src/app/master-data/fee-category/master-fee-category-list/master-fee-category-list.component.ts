@@ -13,6 +13,7 @@ import { ManageFeeCategoryComponent } from '../manage-fee-category/manage-fee-ca
 import { Fee } from '../fee.interface';
 import { JsonFormService } from 'src/app/services/json-form.service';
 import { FeeFrequencyPipe } from 'src/app/layouts/shared/customPipes/fee-frequency.pipe';
+import { FeeActionService } from '../services/fee-action.service';
 
 
 
@@ -61,7 +62,8 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit {
     private dialog : MatDialog,
     private router : Router,
     private commonService : CommonService,
-    private jsonFormService : JsonFormService
+    private jsonFormService : JsonFormService,
+    private feeActionService : FeeActionService
   ){}
 
   ngOnInit() {
@@ -139,6 +141,10 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit {
    */
   openFacultyProfile(profile){
     this.router.navigate(['faculty/profile']);
+  }
+
+  menuClickHandler(action){
+    
   }
 }
 

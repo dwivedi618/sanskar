@@ -24,7 +24,7 @@ export interface MasterStandardList {
 @Component({
   selector: 'app-master-standard-list',
   templateUrl: './master-standard-list.component.html',
-  styleUrls: ['./master-standard-list.component.css']
+  styleUrls: ['./master-standard-list.component.scss']
 })
 
 export class MasterStandardListComponent implements AfterViewInit, OnInit {
@@ -122,6 +122,10 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
       // panelClass : 'dialog-container-pt-0',
       data : data
     })
+  }
+  menuClickHandler(action,data){
+    console.log("data",action , data)
+    // this.feeActionService.actionTriggered(action,data);
   }
 
 }

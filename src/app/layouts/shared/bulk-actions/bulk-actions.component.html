@@ -1,0 +1,7 @@
+<div class="d-flex align-items-center justify-content-start">
+    <div class="px-1" *ngFor="let menu of menus">
+        <button mat-icon-button (click)="actionClickHandler(menu)">
+            <mat-icon class="mat-icon-md mat-icon-light pt-0">{{menu.icon || ''}}</mat-icon>
+        </button>
+    </div>
+</div>

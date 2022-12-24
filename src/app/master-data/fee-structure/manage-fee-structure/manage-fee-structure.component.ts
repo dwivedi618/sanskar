@@ -7,7 +7,7 @@ import { CommonService } from 'src/app/services/common.service';
 @Component({
   selector: 'app-manage-fee-structure',
   templateUrl: './manage-fee-structure.component.html',
-  styleUrls: ['./manage-fee-structure.component.css']
+  styleUrls: ['./manage-fee-structure.component.scss']
 })
 export class ManageFeeStructureComponent implements OnInit {
   standardLists: any;

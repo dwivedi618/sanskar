@@ -1,8 +1,8 @@
-<div mat-dialog-title class="d-flex align-items-center mt-n4 mr-n4 ml-n4 bg-dark-400">
-    <small class="strong text-light pr-3 pl-2">Master Standard</small>
+<div mat-dialog-title class="d-flex align-items-center mt-n4 mr-n4 ml-n4 bg-dark-400" >
+    <small  class="text-light pr-3 pl-2 fs-14">Manage standard</small> 
     <div class="spacer"></div>
-    <button mat-icon-button [mat-dialog-close]="true">
-        <mat-icon class="mat-icon-sm pt-0 material-icons-outlined text-mylight">close</mat-icon>
+    <button mat-mini-fab color="warn" [mat-dialog-close]="true" class="mat-elevation-z0">
+        <mat-icon class="material-icons-outlined ">close</mat-icon>
     </button>
 </div>
 <div mat-dialog-content>
@@ -69,10 +69,12 @@
 
 </div>
 <div mat-dialog-actions align="end">
+    <button mat-stroked-button color="warn" type="reset" (click)="classFromGroup.reset()" [disabled]="!classFromGroup.touched">
+        <span >Reset</span>
+    </button>
     <button mat-raised-button color="primary" (click)="submit()" [disabled]="classFromGroup.invalid">
         <span *ngIf="!isSaving">Submit</span>
         <span *ngIf="isSaving">Submitting...</span>
-
     </button>
 
 </div>

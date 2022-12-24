@@ -19,7 +19,7 @@
         </button>
         <mat-menu #standards="matMenu" hasBackdrop="true" class="w-100" style="min-width: 10rem;">
           <button mat-menu-item *ngFor="let data of standardList" class="w-100" (click)="selectedStandard = data.name;onStandardChange(data);">
-            <small [class.selected]="data._id == standardId">{{data.name}}</small>
+            <small [class.selected]="data._id == standardId">{{data.name | titlecase}}</small>
           </button>              
         </mat-menu>
 
@@ -94,7 +94,7 @@
           <span>Frequency<br>( In Months )</span>
         </th>
         <td mat-cell *matCellDef="let row">
-         <small>{{row.fee.frequency  || '...'}}</small>
+         <small>{{row?.fee?.frequency  || '...'}}</small>
         </td>
         <td mat-footer-cell *matFooterCellDef> </td>
       </ng-container>
@@ -102,7 +102,7 @@
       <ng-container matColumnDef="optional">
         <th mat-header-cell *matHeaderCellDef mat-sort-header>Optional</th>
         <td mat-cell *matCellDef="let row">
-         <small>{{row.fee.isOptional ? 'YES' : 'NO' || '...'}}</small>
+         <small>{{row?.fee?.isOptional ? 'YES' : 'NO' || '...'}}</small>
         </td>
         <td mat-footer-cell *matFooterCellDef> </td>
       </ng-container>
@@ -119,9 +119,7 @@
           <ng-container matColumnDef="action" >
             <th mat-header-cell *matHeaderCellDef class="text-right">Action</th>
             <td mat-cell *matCellDef="let row" (click)="$event.stopPropagation()" class="text-right">
-              <button mat-icon-button>
-                <mat-icon class="text-mylight">more_horiz</mat-icon>
-              </button>
+              <app-menu-button (onMenuClick)="menuClickHandler($event,row);"></app-menu-button>
             </td>
             <td mat-footer-cell *matFooterCellDef></td>
           </ng-container>

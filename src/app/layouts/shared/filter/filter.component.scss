@@ -1,0 +1,17 @@
+input::placeholder{
+    color: #666;
+    font-size: 14px;
+}
+input{
+    color: #666;
+    font-size: 14px;
+    outline: none;
+    border: none;
+    background: rgb(0 0 0 / 7%);
+    border-radius: 2px;
+}
+.reset-button{
+    position: absolute;right: 8px;
+    border-left: 1px solid #00000024;
+    height: 97%;
+}

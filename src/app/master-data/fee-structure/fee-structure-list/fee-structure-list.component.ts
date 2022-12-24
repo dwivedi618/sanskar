@@ -63,7 +63,7 @@ const EXAMPLE_DATA: FacultyListItem[] = [
 @Component({
   selector: 'app-fee-structure-list',
   templateUrl: './fee-structure-list.component.html',
-  styleUrls: ['./fee-structure-list.component.css']
+  styleUrls: ['./fee-structure-list.component.scss']
 })
 
 export class FeeStructureListComponent implements AfterViewInit, OnInit {
@@ -305,6 +305,10 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
    */
   openFacultyProfile(profile) {
     this.router.navigate(['faculty/profile']);
+  }
+  menuClickHandler(action,data){
+    console.log("data",action , data)
+    // this.feeActionService.actionTriggered(action,data);
   }
 }
 

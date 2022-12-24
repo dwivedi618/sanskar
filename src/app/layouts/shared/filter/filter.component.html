@@ -1,0 +1,9 @@
+<div class="d-flex align-items-center float-end">
+    <form class="d-flex align-items-center justify-content-between" style="position: relative;">
+      <input class=" mr-sm-2 w-100 pr-5 pl-2"  placeholder="Find" aria-label="filter"
+        (keyup)="onTyping($event)">
+      <button mat-icon-button color="primary" type="reset" class="reset-button" (click)="onTyping($event)">
+        <mat-icon class="mat-icon-sm pt-0">close</mat-icon>
+      </button>
+    </form>
+  </div>

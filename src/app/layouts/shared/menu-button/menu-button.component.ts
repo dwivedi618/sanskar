@@ -10,9 +10,9 @@ import { Menu } from './menu.type';
 })
 export class MenuButtonComponent{
   @Input() public menus:Menu[] = ActionMenus ;
-  @Output() click = new EventEmitter<Action>();
+  @Output() onMenuClick = new EventEmitter<Action>();
   constructor() { }
   actionClickHandler(menu:Menu){
-    this.click.emit(menu.menuId);
+    this.onMenuClick.emit(menu.menuId);
   }
 }

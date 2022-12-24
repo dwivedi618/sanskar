@@ -16,7 +16,7 @@ import { ConfigurationHomeComponent } from './configuration-home/configuration-h
 
 
 @NgModule({
-  declarations: [ 
+  declarations: [
     MasterDataLayoutComponent,
     MasterFeeCategoryListComponent,
     ManageFeeCategoryComponent,
@@ -35,7 +35,8 @@ import { ConfigurationHomeComponent } from './configuration-home/configuration-h
     FormsModule,
     ReactiveFormsModule,
     MasterDataRoutingModule
-  ],exports : [
+  ], 
+  exports: [
     MasterDataLayoutComponent,
     MasterFeeCategoryListComponent,
     ManageFeeCategoryComponent,

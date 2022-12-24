@@ -20,7 +20,7 @@ import { FeeActionService } from '../services/fee-action.service';
 @Component({
   selector: 'app-master-fee-category-list',
   templateUrl: './master-fee-category-list.component.html',
-  styleUrls: ['./master-fee-category-list.component.css']
+  styleUrls: ['./master-fee-category-list.component.scss']
 })
 
 export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit {
@@ -89,8 +89,7 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit {
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    console.log("filterValue",filterValue)
+    const filterValue = (event.target as HTMLInputElement).value || '';
     this.dataSource.filter = filterValue.trim().toLowerCase();
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -143,8 +142,9 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit {
     this.router.navigate(['faculty/profile']);
   }
 
-  menuClickHandler(action){
-    
+  menuClickHandler(action,data){
+    console.log("data",action , data)
+    this.feeActionService.actionTriggered(action,data);
   }
 }
 

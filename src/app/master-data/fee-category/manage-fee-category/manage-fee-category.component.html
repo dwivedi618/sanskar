@@ -1,9 +1,9 @@
-<div  mat-dialog-title class="d-flex align-items-center mt-n4 mr-n4 ml-n4 bg-dark-400" >
-    <small  class="strong text-light pr-3 pl-2">Master Fee Category</small> 
+<div mat-dialog-title class="d-flex align-items-center mt-n4 mr-n4 ml-n4 bg-dark-400" >
+    <small  class="text-light pr-3 pl-2 fs-14">Master Fee Category</small> 
     <div class="spacer"></div>
-    <button mat-icon-button [mat-dialog-close]="true" >
-        <mat-icon class="mat-icon-sm pt-0 material-icons-outlined text-mylight">close</mat-icon>
-     </button>
+    <button mat-mini-fab color="warn" [mat-dialog-close]="true" class="mat-elevation-z0">
+        <mat-icon class="material-icons-outlined ">close</mat-icon>
+    </button>
 </div>
 <div mat-dialog-content>
     <div class="row justify-content-center py-5">
@@ -42,7 +42,7 @@
                             <div class="col-9 text-left">
                                 <mat-radio-group [formControlName]="field.name">
                                     <mat-radio-button class="mr-4 w-50" *ngFor="let opt of field.options" [value]="opt.value">
-                                        {{opt.label}}
+                                        <span class="fs-14 ">{{opt.label}}</span>
                                     </mat-radio-button>
                                 </mat-radio-group> 
                             </div>
@@ -56,6 +56,6 @@
 
 </div>
 <div mat-dialog-actions align="end">
+  <button mat-stroked-button color="warn" type="reset" (click)="feeFromGroup.reset()" [disabled]="!feeFromGroup.touched">Reset</button>
   <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="feeFromGroup.invalid">Submit</button>
-
 </div>

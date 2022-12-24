@@ -12,6 +12,9 @@ import { AlertWithActionComponent } from './alert-with-action/alert-with-action.
 import { JsonFormComponent } from './json-form/json-form.component';
 import { FeeFrequencyPipe } from './customPipes/fee-frequency.pipe';
 import { MenuButtonComponent } from './menu-button/menu-button.component';
+import { FilterComponent } from './filter/filter.component';
+import { BulkActionsComponent } from './bulk-actions/bulk-actions.component';
+import { EmptyListComponent } from './empty-list/empty-list.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +26,10 @@ import { MenuButtonComponent } from './menu-button/menu-button.component';
     AlertWithActionComponent,
     JsonFormComponent,
     FeeFrequencyPipe,
-    MenuButtonComponent
+    MenuButtonComponent,
+    FilterComponent,
+    BulkActionsComponent,
+    EmptyListComponent
   ],
   imports: [
     CommonModule,
@@ -44,7 +50,10 @@ import { MenuButtonComponent } from './menu-button/menu-button.component';
     JsonFormComponent,
     RouterModule,
     FeeFrequencyPipe,
-    MenuButtonComponent
+    MenuButtonComponent,
+    FilterComponent,
+    BulkActionsComponent,
+    EmptyListComponent
   ]
 })
 export class SharedModule { }

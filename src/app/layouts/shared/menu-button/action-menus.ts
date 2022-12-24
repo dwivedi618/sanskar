@@ -11,7 +11,7 @@ export const ActionMenus = [
     {
         menuName: "Edit",
         menuId: Action.EDIT,
-        icon: 'school',
+        icon: 'edit',
         path: '',
         url: ""
     }

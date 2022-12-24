@@ -9,7 +9,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 @Component({
   selector: 'app-manage-fee-category',
   templateUrl: './manage-fee-category.component.html',
-  styleUrls: ['./manage-fee-category.component.css']
+  styleUrls: ['./manage-fee-category.component.scss']
 })
 export class ManageFeeCategoryComponent implements OnInit {
   feeFormFields: JsonFormData;

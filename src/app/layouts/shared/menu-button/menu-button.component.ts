@@ -1,16 +1,18 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ActionMenus } from 'src/app/config/menus';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ActionMenus } from './action-menus';
+import { Action } from './actions.enum';
+import { Menu } from './menu.type';
 
 @Component({
   selector: 'app-menu-button',
   templateUrl: './menu-button.component.html',
   styleUrls: ['./menu-button.component.scss']
 })
-export class MenuButtonComponent implements OnInit {
-  @Input() public menus = ActionMenus ;
+export class MenuButtonComponent{
+  @Input() public menus:Menu[] = ActionMenus ;
+  @Output() click = new EventEmitter<Action>();
   constructor() { }
-
-  ngOnInit(): void {
+  actionClickHandler(menu:Menu){
+    this.click.emit(menu.menuId);
   }
-
 }

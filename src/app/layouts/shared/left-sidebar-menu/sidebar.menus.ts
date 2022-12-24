@@ -53,26 +53,7 @@ export const menus = [
                 path: './configuration/fee-structure',
                 subMenuName: 'Class wise fee',
                 url: './configuration/fee-structure'
-            }
-            
-            
+            }   
         ]
-
-    }
-]
-export const ActionMenus = [
-    {
-        menuName: "Delete",
-        menuId: "DELETE",
-        icon: 'delete',
-        path: '',
-        url: ""
-    },
-    {
-        menuName: "Edit",
-        menuId: "EDIT",
-        icon: 'school',
-        path: '',
-        url: ""
     }
 ]

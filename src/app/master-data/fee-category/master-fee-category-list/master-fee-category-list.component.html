@@ -1,149 +1,149 @@
 <div class="bg-white">
-    
-    <!--table heading-->
-    <mat-toolbar class="bg-mysecondary">
-      <mat-toolbar-row>
-         <div class="" style="font-size:12px">
-          <span  class="m-0 p-0">Fee Category</span>
-          <!-- <small>You can be only set master fee structure for current and future sessions</small> -->
-      </div>
-        <div class="spacer"></div>
-        <span class="px-1" >
-            <button mat-button [matMenuTriggerFor]="session" #t="matMenuTrigger" [matMenuTriggerData]="menuDataSession">             
-                <small>{{selectedSession || 'syncing...'}}</small>             
-              <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
-            </button>
-            <mat-menu #session="matMenu" hasBackdrop="true">
-              <button mat-menu-item *ngFor="let session of menuDataSession" (click)="selectedSession = session">
-                <mat-icon class="mat-icon-sm pt-1 " [class.text-success]="selectedSession == session">{{selectedSession == session ? 'check_box':'check_box_outline_blank'}}</mat-icon>
-                <small>{{session}}</small>
-              </button>              
-            </mat-menu>
 
-          </span>
-          <span class="px-1" >
-            <button mat-stroked-button color="" #addFeeCategory  (click)="manageFeeCategory()" >
-              <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
-                <small>
-                  New Fee Category
-                </small>
-            </button>
-         </span>
-      </mat-toolbar-row>
-    </mat-toolbar>
-    <!--more action on selected row-->
-    <mat-toolbar class="bg-white">
-      <mat-toolbar-row>
-        <div class="px-1 " *ngIf="!this.selection.selected.length">
-          <button mat-icon-button (click)="refresh()">
-            <mat-icon class="mat-icon-md mat-icon-light pt-0">refresh</mat-icon>
+  <!--table heading-->
+  <mat-toolbar class="bg-mysecondary">
+    <mat-toolbar-row>
+      <div class="" style="font-size:12px">
+        <span class="m-0 p-0">Fee Category</span>
+        <!-- <small>You can be only set master fee structure for current and future sessions</small> -->
+      </div>
+      <div class="spacer"></div>
+      <span class="px-1">
+        <button mat-button [matMenuTriggerFor]="session" #t="matMenuTrigger" [matMenuTriggerData]="menuDataSession">
+          <small>{{selectedSession || 'syncing...'}}</small>
+          <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
+        </button>
+        <mat-menu #session="matMenu" hasBackdrop="true">
+          <button mat-menu-item *ngFor="let session of menuDataSession" (click)="selectedSession = session">
+            <mat-icon class="mat-icon-sm pt-1 " [class.text-success]="selectedSession == session">{{selectedSession ==
+              session ? 'check_box':'check_box_outline_blank'}}</mat-icon>
+            <small>{{session}}</small>
           </button>
-        </div>
-        <div class="px-1" *ngIf="this.selection.selected.length">
-          <button mat-icon-button>
-            <mat-icon class="mat-icon-md mat-icon-light pt-0">delete</mat-icon>
-          </button>
-        </div>
-        <div class="px-1" *ngIf="this.selection.selected.length">
-          <button mat-icon-button>
-            <mat-icon class="mat-icon-md mat-icon-light pt-0">add_moderator</mat-icon>
-          </button>
-        </div>
-        <div class="px-1" *ngIf="this.selection.selected.length">
-          <button mat-icon-button>
-            <mat-icon class="mat-icon-md mat-icon-light pt-0">email</mat-icon>
-          </button>
-        </div>
-        <div class="px-1" *ngIf="this.selection.selected.length">
-          <button mat-icon-button>
-            <mat-icon class="mat-icon-md  mat-icon-light pt-0">textsms</mat-icon>
-          </button>
-        </div>
-        <div class="px-1">
-          <button mat-icon-button>
-            <mat-icon class="mat-icon-md mat-icon-light pt-0">more_vert</mat-icon>
-          </button>
-        </div>
-        <div class="spacer"></div>
-        <!-- <div>
+        </mat-menu>
+
+      </span>
+      <span class="px-1">
+        <button mat-stroked-button color="" #addFeeCategory (click)="manageFeeCategory()">
+          <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
+          <small>
+            New Fee Category
+          </small>
+        </button>
+      </span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <!--more action on selected row-->
+  <mat-toolbar class="bg-white">
+    <mat-toolbar-row>
+      <div class="px-1 " *ngIf="!this.selection.selected.length">
+        <button mat-icon-button (click)="refresh()">
+          <mat-icon class="mat-icon-md mat-icon-light pt-0">refresh</mat-icon>
+        </button>
+      </div>
+      <div class="px-1" *ngIf="this.selection.selected.length">
+        <button mat-icon-button>
+          <mat-icon class="mat-icon-md mat-icon-light pt-0">delete</mat-icon>
+        </button>
+      </div>
+      <div class="px-1" *ngIf="this.selection.selected.length">
+        <button mat-icon-button>
+          <mat-icon class="mat-icon-md mat-icon-light pt-0">add_moderator</mat-icon>
+        </button>
+      </div>
+      <div class="px-1" *ngIf="this.selection.selected.length">
+        <button mat-icon-button>
+          <mat-icon class="mat-icon-md mat-icon-light pt-0">email</mat-icon>
+        </button>
+      </div>
+      <div class="px-1" *ngIf="this.selection.selected.length">
+        <button mat-icon-button>
+          <mat-icon class="mat-icon-md  mat-icon-light pt-0">textsms</mat-icon>
+        </button>
+      </div>
+      <div class="px-1">
+        <button mat-icon-button>
+          <mat-icon class="mat-icon-md mat-icon-light pt-0">more_vert</mat-icon>
+        </button>
+      </div>
+      <div class="spacer"></div>
+      <!-- <div>
           <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" 
             >
           </mat-paginator>
         </div> -->
-        <div class="d-flex align-items-center float-end">
-          <form class="d-flex align-items-center w-100" style="position: relative;">
-            <input class="form-control mr-sm-2 w-100 pl-5" type="search" placeholder="Filter"
-              aria-label="Search" (keyup)="applyFilter($event)">
-              <button mat-icon-button color="primary" style="position: absolute;">
-                <mat-icon class="mat-icon-sm pt-0">search</mat-icon>
-                <!-- <small>Search</small> -->
-              </button>
-          </form>
+      <div class="d-flex align-items-center float-end">
+        <form class="d-flex align-items-center w-100" style="position: relative;">
+          <input class="form-control mr-sm-2 w-100 pl-5" type="search" placeholder="Filter" aria-label="Search"
+            (keyup)="applyFilter($event)">
+          <button mat-icon-button color="primary" style="position: absolute;">
+            <mat-icon class="mat-icon-sm pt-0">search</mat-icon>
+            <!-- <small>Search</small> -->
+          </button>
+        </form>
+      </div>
+
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <table mat-table class="w-100 mb-5" matSort aria-label="Elements">
+
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+      <th mat-header-cell *matHeaderCellDef class="text-left">
+        <div class="layout">
+          <mat-checkbox (change)="$event ? masterToggle() : null" class="mb-n2 pr-1"
+            [checked]="selection.hasValue() && isAllSelected()"
+            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+          </mat-checkbox>
         </div>
-        
-      </mat-toolbar-row>
-    </mat-toolbar>
-    <table mat-table class="w-100 mb-5" matSort aria-label="Elements" >
-  
-   <!-- Checkbox Column -->
-   <ng-container matColumnDef="select">
-    <th mat-header-cell *matHeaderCellDef class="text-left">
-      <div class="layout">
-        <mat-checkbox (change)="$event ? masterToggle() : null" class="mb-n2 pr-1"
-                      [checked]="selection.hasValue() && isAllSelected()"
-                      [indeterminate]="selection.hasValue() && !isAllSelected()"
-                      [aria-label]="checkboxLabel()">
-        </mat-checkbox>
-      </div>
-    </th>
-    <td mat-cell *matCellDef="let row" style="width: 2rem;" class="text-left">
-      <div class="layout">
-        <mat-checkbox (click)="$event.stopPropagation()" class="mb-n2 pr-1 "
-                      (change)="$event ? selection.toggle(row) : null"
-                      [checked]="selection.isSelected(row)"
-                      [aria-label]="checkboxLabel(row)">
-        </mat-checkbox>
-      </div>
-    </td>
-  </ng-container>
-      <!-- Name Column -->
-      <ng-container matColumnDef="name">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Fee Type</th>
-        <td mat-cell *matCellDef="let row">
-          <small>{{row.name || '...'}}</small>
-        </td>
-      </ng-container>
+      </th>
+      <td mat-cell *matCellDef="let row" style="width: 2rem;" class="text-left">
+        <div class="layout">
+          <mat-checkbox (click)="$event.stopPropagation()" class="mb-n2 pr-1 "
+            (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+            [aria-label]="checkboxLabel(row)">
+          </mat-checkbox>
+        </div>
+      </td>
+    </ng-container>
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fee Type</th>
+      <td mat-cell *matCellDef="let row">
+        <small>{{row.name || '...'}}</small>
+      </td>
+    </ng-container>
 
-      <ng-container matColumnDef="frequency">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Frequency (In Months)</th>
-        <td mat-cell *matCellDef="let row">
-          <small>{{(row.frequency | feeFrequency) || '...'}}</small>
-        </td>
-      </ng-container>
+    <ng-container matColumnDef="frequency">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Frequency (In Months)</th>
+      <td mat-cell *matCellDef="let row">
+        <small>{{(row.frequency | feeFrequency) || '...'}}</small>
+      </td>
+    </ng-container>
 
-      <ng-container matColumnDef="optional">
-        <th mat-header-cell *matHeaderCellDef mat-sort-header>Optional</th>
-        <td mat-cell *matCellDef="let row">
-          <small>{{row.isOptional? 'YES' : 'NO' || '...'}}</small>
-        </td>
-      </ng-container>
-  
-          <!-- Action Column -->
-          <ng-container matColumnDef="action" >
-            <th mat-header-cell *matHeaderCellDef class="text-right">Action</th>
-            <td mat-cell *matCellDef="let row" (click)="$event.stopPropagation()" class="text-right">
-              <app-menu-button></app-menu-button>
-            </td>
-          </ng-container>
-  
-      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-      <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
-    </table>
-    <div *ngIf="dataSource.data.length == 0" class="d-flex flex-column justify-content-center align-items-center h-50 w-100">     
-      <small class="mat-caption" > You don’t have any records</small><br>
-      <small class="strong" style="color:#ccc;"> You don’t have any records</small>
-      <button mat-button (click)="manageFeeCategory()">
-        <small class="">Add Fee Category</small>
-      </button>
-    </div>
+    <ng-container matColumnDef="optional">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Optional</th>
+      <td mat-cell *matCellDef="let row">
+        <small>{{row.isOptional? 'YES' : 'NO' || '...'}}</small>
+      </td>
+    </ng-container>
+
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef class="text-right">Action</th>
+      <td mat-cell *matCellDef="let row" (click)="$event.stopPropagation()" class="text-right">
+        <app-menu-button></app-menu-button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+  <div *ngIf="dataSource.data.length == 0"
+    class="d-flex flex-column justify-content-center align-items-center h-50 w-100">
+    <small class="mat-caption"> You don’t have any records</small><br>
+    <small class="strong" style="color:#ccc;"> You don’t have any records</small>
+    <button mat-button (click)="manageFeeCategory()">
+      <small class="">Add Fee Category</small>
+    </button>
   </div>
+</div>

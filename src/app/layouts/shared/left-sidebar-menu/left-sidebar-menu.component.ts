@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { AdmissionComponent } from 'src/app/admission/admission.component';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
-import { MergeScanSubscriber } from 'rxjs/internal/operators/mergeScan';
-import {menus}  from '../../../config/menus';
+import { menus as menus} from './sidebar.menus';
 
 @Component({
   selector: 'app-left-sidebar-menu',

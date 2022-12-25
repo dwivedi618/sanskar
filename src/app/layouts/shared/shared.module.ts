@@ -16,6 +16,7 @@ import { FilterComponent } from './filter/filter.component';
 import { BulkActionsComponent } from './bulk-actions/bulk-actions.component';
 import { EmptyListComponent } from './empty-list/empty-list.component';
 import { LoaderComponent } from './loader/loader.component';
+import { ImagePickerComponent } from './image-picker/image-picker.component';
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { LoaderComponent } from './loader/loader.component';
     FilterComponent,
     BulkActionsComponent,
     EmptyListComponent,
-    LoaderComponent
+    LoaderComponent,
+    ImagePickerComponent
   ],
   imports: [
     CommonModule,
@@ -56,7 +58,8 @@ import { LoaderComponent } from './loader/loader.component';
     FilterComponent,
     BulkActionsComponent,
     EmptyListComponent,
-    LoaderComponent
+    LoaderComponent,
+    ImagePickerComponent
   ]
 })
 export class SharedModule { }

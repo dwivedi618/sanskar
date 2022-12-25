@@ -90,18 +90,25 @@
                                             <ng-container *ngIf="field.type === 'dropdown'">
                                                 <div class="row my-4">
                                                     <div class="col-3 text-left">
-                                                        <small>{{field.label}} {{field.validators?.required ? '*' :''}}</small>
+                                                        <small>{{field.label}} {{field.validators?.required ? '*'
+                                                            :''}}</small>
                                                     </div>
                                                     <div class="col-9 text-left">
-                                                        <mat-form-field appearance="outline" class="w-100" (click)="fetchValue(field)">
+                                                        <mat-form-field appearance="outline" class="w-100"
+                                                            (click)="fetchValue(field)">
                                                             <mat-select [formControlName]="field.name">
-                                                                <mat-option value="">Select {{field.label || ''}}</mat-option>
-                                                                <ng-container *ngIf="field?.hitHttp && field?.method;else options">
-                                                                    <mat-option *ngFor="let option of this.commonService.formOptions[field.method] | async" [value]="option.value">{{option.label}}
+                                                                <mat-option value="">Select {{field.label ||
+                                                                    ''}}</mat-option>
+                                                                <ng-container
+                                                                    *ngIf="field?.hitHttp && field?.method;else options">
+                                                                    <mat-option
+                                                                        *ngFor="let option of this.commonService.formOptions[field.method] | async"
+                                                                        [value]="option.value">{{option.label}}
                                                                     </mat-option>
                                                                 </ng-container>
                                                                 <ng-template #options>
-                                                                    <mat-option *ngFor="let option of field?.options" [value]="option.value">{{option.label}}
+                                                                    <mat-option *ngFor="let option of field?.options"
+                                                                        [value]="option.value">{{option.label}}
                                                                     </mat-option>
                                                                 </ng-template>
                                                             </mat-select>
@@ -110,45 +117,18 @@
                                                 </div>
 
                                             </ng-container>
-                                        </ng-container>
-                                    </div>
-                                    <div class="col-md-6  g-2">
-                                        <div class="d-flex justify-content-center text-center">
-                                            <div>
-                                                <div class="box_shadow_3 mx-auto layout rounded-lg"
-                                                    style="position:relative;width:200px;min-height: 200px;border: 1px solid #ccc ;">
-                                                    <div class="rounded-pill box_shadow_0 bg-white my-auto"
-                                                        style="position: absolute;left: -20px;">
-                                                        <div class="d-flex flex-column rounded-pill ">
-                                                            <button type="button" mat-icon-button class="m-0 p-0 bb"
-                                                                (click)="fileUpload.click()">
-                                                                <mat-icon style="font-size: 16px;">add_circle</mat-icon>
-                                                            </button>
-                                                            <button type="button" mat-icon-button class="m-0 p-0 bb">
-                                                                <mat-icon style="font-size: 16px;">crop</mat-icon>
-                                                            </button>
-                                                            <button type="button" mat-icon-button class="m-0 p-0"
-                                                                (click)="fileUploadReset()">
-                                                                <mat-icon style="font-size: 16px;">clear</mat-icon>
-                                                            </button>
-                                                        </div>
-                                                        <input type="file" formControlName="image" #fileUpload
-                                                            (change)="onImagePicked($event)"
-                                                            style="width: 0;height: 0;visibility: hidden;"
-                                                            accept="image/png,image/jpeg">
+                                            <ng-container *ngIf="field.type === 'image'">
+                                                <div class="row my-4">
+                                                    <div class="col-3 text-left">
+                                                        <small>{{field.label}} {{field.validators?.required ? '*' :
+                                                            ''}}</small>
                                                     </div>
-                                                    <div *ngIf="!imagePreview" (click)="fileUpload.click()"
-                                                        style="cursor: pointer;">
-                                                        <mat-icon style="color:#666;width: 100%;">add_a_photo</mat-icon>
-                                                        <p mat-line class="text-muted py-2">Upload Photo</p>
-                                                    </div>
-                                                    <div *ngIf="imagePreview!=='' && imagePreview">
-                                                        <img class="thumbnail-md" [src]="imagePreview"
-                                                            style="border-radius: 4px;">
+                                                    <div class="col-9 text-left">
+                                                        <app-image-picker (onImageSelect)="onImageSelect($event,field.name)"></app-image-picker>
                                                     </div>
                                                 </div>
-                                            </div>
-                                        </div>
+                                            </ng-container>
+                                        </ng-container>
                                     </div>
                                 </div>
 

@@ -91,8 +91,6 @@ export class AdmissionComponent implements OnInit {
     }
   }
 
-
-
   ngOnInit() {
     this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
       console.log("admission form", formJson)
@@ -130,6 +128,10 @@ export class AdmissionComponent implements OnInit {
     }, (error) => {
       console.log("error", error);
     })
+  }
+
+  onImageSelect(event,fieldName){
+    this.studentForm.patchValue({[fieldName]: event });
   }
 
   fileUploadReset() {

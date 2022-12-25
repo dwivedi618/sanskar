@@ -3,8 +3,7 @@ import { Observable, Subject } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarRef } from '@angular/material/snack-bar';
 import { AlertComponent } from '../alert/alert.component';
-import { AlertWithActionComponent } from '../layouts/shared/alert-with-action/alert-with-action.component';
-import { ThrowStmt } from '@angular/compiler';
+import { AlertWithActionComponent } from '../layouts/shared/uiComponents/alert-with-action/alert-with-action.component';
 
 @Injectable({
   providedIn: 'root'

@@ -1,4 +1,4 @@
-import { ToggleService } from './../../../services/toggle.service';
+import { ToggleService } from '../../../../services/toggle.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({

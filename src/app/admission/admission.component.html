@@ -76,12 +76,13 @@
                                                     </div>
                                                     <div class="col-9 text-left">
                                                         <mat-form-field appearance="outline" class="w-100">
-                                                            <input matInput [formControlName]="field.name"
+                                                            <input matInput [formControlName]="field.name" #input
                                                                 placeholder="MM/DD/YYYY" [matDatepicker]="dp3"
                                                                 [disabled]="true">
                                                             <mat-datepicker-toggle matSuffix
                                                                 [for]="dp3"></mat-datepicker-toggle>
                                                             <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                                                            <mat-hint *ngIf="input?.value">{{input?.value | age}} years</mat-hint>
                                                         </mat-form-field>
                                                     </div>
                                                 </div>

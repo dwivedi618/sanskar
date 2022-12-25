@@ -2,62 +2,36 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
-// import { Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { MaterialModule } from './material.module';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms'
-
-
 import { NavigationComponent } from './navigation/navigation.component';
-
-// import { AdmissionComponent } from './admission/admission.component';
-  
-
 import { ProfileComponent } from './profile/profile.component';
 import { EditComponent } from './profile/edit/edit.component';
 import { AuthenticationService } from './services/authentication.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SettingsComponent } from './settings/settings.component';
 import { NavComponent } from './nav/nav.component';
-
 import { AdmissionModule } from './admission/admission.module'
-
-
 import { LayoutComponent } from './layouts/layout/layout.component';
 import { VerticalComponent } from './layouts/vertical/vertical.component';
 import { SharedModule } from './layouts/shared/shared.module';
 import { LayoutModule } from './layouts/layout/layout.module';
-
 import { AlertService } from './services/alert.service';
-import { AlertComponent } from './alert/alert.component';
 import { MatSnackBarRef } from '@angular/material/snack-bar';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { ImageUploaderComponent } from './uiComponents/image-uploader/image-uploader.component';
-import { JsonFormComponent } from './layouts/shared/json-form/json-form.component';
 import { JsonFormService } from './services/json-form.service';
-
-
-
-
 
 @NgModule({
   declarations: [
-    
     AppComponent,
-   
     NavigationComponent,
-    // FeesComponent,
     ProfileComponent,
     EditComponent,
     SettingsComponent,
-    
     NavComponent,
-    
     LayoutComponent,
-    
     VerticalComponent,
-    
-    ImageUploaderComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -70,24 +44,18 @@ import { JsonFormService } from './services/json-form.service';
     FormsModule,
     AdmissionModule,
     LayoutModule,
-
-    
-    
   ],
   exports: [
     ReactiveFormsModule,
     MaterialModule,
     SharedModule,
-    
   ],
-  // entryComponents: [ FeesComponent],
-  providers: [AuthenticationService,HttpClient,AlertService,JsonFormService,{
+  providers: [AuthenticationService, HttpClient, AlertService, JsonFormService, {
     provide: MatSnackBarRef,
     useValue: {}
   },
-  { provide:MatDialogRef , useValue:{} },
-
-  { provide: MAT_DIALOG_DATA, useValue: {} },],
+    { provide: MatDialogRef, useValue: {} },
+    { provide: MAT_DIALOG_DATA, useValue: {} },],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

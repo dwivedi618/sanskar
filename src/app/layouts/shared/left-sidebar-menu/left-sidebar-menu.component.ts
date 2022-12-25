@@ -8,7 +8,7 @@ import { menus as menus} from './sidebar.menus';
 @Component({
   selector: 'app-left-sidebar-menu',
   templateUrl: './left-sidebar-menu.component.html',
-  styleUrls: ['./left-sidebar-menu.component.css']
+  styleUrls: ['./left-sidebar-menu.component.scss']
 })
 export class LeftSidebarMenuComponent implements OnInit {
   panelOpenState :boolean

@@ -1,0 +1,8 @@
+<div *ngIf="loader?.isLoading" class="d-flex " style="position: fixed;z-index: 10000000;right:40%;bottom: 2%;">
+    <div class="d-flex loader px-4 py-2">
+        <div class="m-auto pr-2">
+            <mat-spinner diameter=20></mat-spinner>
+        </div>
+        <small class="strong">{{loader?.oMessage}}</small>
+    </div>
+</div>

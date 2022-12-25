@@ -131,18 +131,7 @@
       <tr mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
       <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
     </table>
-    <div *ngIf="dataSource.data.length == 0" class="d-flex flex-column justify-content-center align-items-center h-50 w-100">     
-      <small class="mat-caption" > You don’t have any records</small><br>
-      <small class="strong" style="color:#ccc;"> Try selecting by <strong>session</strong> and <strong>standard</strong></small>
-      <small class="strong" style="color:#ccc;"> OR</small>
-
-      <span class="px-1" >
-        <button mat-stroked-button color="" class="btn-dark"   (click)="newFeeStructure()" >
-          <!-- <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon> -->
-            <small>
-              Add Fee Structure
-            </small>
-        </button>
-    </span>
-    </div>
+    <ng-container *ngIf="!dataSource.data.length">
+      <app-empty-list></app-empty-list>
+    </ng-container>
   </div>

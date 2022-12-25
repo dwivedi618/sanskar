@@ -15,6 +15,7 @@ import { MenuButtonComponent } from './menu-button/menu-button.component';
 import { FilterComponent } from './filter/filter.component';
 import { BulkActionsComponent } from './bulk-actions/bulk-actions.component';
 import { EmptyListComponent } from './empty-list/empty-list.component';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,8 @@ import { EmptyListComponent } from './empty-list/empty-list.component';
     MenuButtonComponent,
     FilterComponent,
     BulkActionsComponent,
-    EmptyListComponent
+    EmptyListComponent,
+    LoaderComponent
   ],
   imports: [
     CommonModule,
@@ -53,7 +55,8 @@ import { EmptyListComponent } from './empty-list/empty-list.component';
     MenuButtonComponent,
     FilterComponent,
     BulkActionsComponent,
-    EmptyListComponent
+    EmptyListComponent,
+    LoaderComponent
   ]
 })
 export class SharedModule { }

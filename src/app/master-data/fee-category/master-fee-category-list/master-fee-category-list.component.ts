@@ -2,7 +2,7 @@
 
 import { MatDialog } from '@angular/material/dialog';
 import { SelectionModel } from '@angular/cdk/collections';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
@@ -14,6 +14,7 @@ import { Fee } from '../fee.interface';
 import { JsonFormService } from 'src/app/services/json-form.service';
 import { FeeFrequencyPipe } from 'src/app/layouts/shared/customPipes/fee-frequency.pipe';
 import { FeeActionService } from '../services/fee-action.service';
+import { UiService } from 'src/app/services/ui.service';
 
 
 
@@ -23,7 +24,7 @@ import { FeeActionService } from '../services/fee-action.service';
   styleUrls: ['./master-fee-category-list.component.scss']
 })
 
-export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit {
+export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit,OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<Fee>;
@@ -63,14 +64,20 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit {
     private router : Router,
     private commonService : CommonService,
     private jsonFormService : JsonFormService,
-    private feeActionService : FeeActionService
+    private feeActionService : FeeActionService,
+    private uiService : UiService
   ){}
+  ngOnDestroy(): void {
+    this.uiService.loader.hide();
+  }
+
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
     console.log("selection",this.selection.selected)
     this.getFeeCategoryList();
     this.jsonFormService.getFeeFormJson().subscribe(data => console.log("data",data))
+    this.uiService.loader.show("Fetching fees...");
   }
 
   getFeeCategoryList(){

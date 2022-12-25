@@ -1,156 +1,343 @@
-
 {
-    "controls": [
-        {
-            "name": "firstName",
-            "label": "First name",
-            "value": "",
-            "type": "text",
-            "validators": {
-                "required": true,
-                "maxLength": 50
-            }
-        },
-        {
-            "name": "middleName",
-            "label": "Middle name",
-            "value": "",
-            "type": "text",
-            "validators": {
-                "required": false,
-                "maxLength": 50
-            }
-        },
-        {
-            "name": "lastName",
-            "label": "Last Name",
-            "value": "",
-            "type": "text",
-            "validators": {
-                "required": true,
-                "maxLength": 50
-            }
-        },
-        {
-            "name": "gender",
-            "label": "Gender",
-            "value": "",
-            "type": "radio",
-            "validators": {
-                "required": true
-            },
-            "options": [
-                {
-                    "value": "MALE",
-                    "label": "Male",
-                    "icon": "male"
-                },
-                {
-                    "value": "FEMALE",
-                    "label": "Female",
-                    "icon": "female"
-                },
-                {
-                    "value": "OTHER",
-                    "label": "Other",
-                    "icon": "transgender"
+    "studentForm": {
+        "controls": [
+            {
+                "name": "studentPhoto",
+                "label": "Student photo",
+                "value": "",
+                "type": "image",
+                "validators": {
+                    "required": false
                 }
-            ]
-        },
-        {
-            "name": "dateOfBirth",
-            "label": "Date of birth",
-            "value": "",
-            "type": "date",
-            "validators": {
-                "required": true
-            }
-        },
-        {
-            "name": "studentPhoto",
-            "label": "Student photo",
-            "value": "",
-            "type": "image",
-            "validators": {
-                "required": false
-            }
-        },
-        {
-            "name": "nationality",
-            "label": "Nationality",
-            "value": "India",
-            "type": "dropdown",
-            "validators": {
-                "required": false
             },
-            "options": [
-                { "value": "India", "label": "India","icon":"" }
-            ]
-        },
-        {
-            "name": "healthStatus",
-            "label": "Health Status",
-            "value": "",
-            "type": "text",
-            "validators": {
-                "required": false
+            {
+                "name": "firstName",
+                "label": "First name",
+                "value": "",
+                "type": "text",
+                "validators": {
+                    "required": true,
+                    "maxLength": 50
+                }
+            },
+            {
+                "name": "middleName",
+                "label": "Middle name",
+                "value": "",
+                "type": "text",
+                "validators": {
+                    "required": false,
+                    "maxLength": 50
+                }
+            },
+            {
+                "name": "lastName",
+                "label": "Last Name",
+                "value": "",
+                "type": "text",
+                "validators": {
+                    "required": true,
+                    "maxLength": 50
+                }
+            },
+            {
+                "name": "gender",
+                "label": "Gender",
+                "value": "",
+                "type": "radio",
+                "validators": {
+                    "required": true
+                },
+                "options": [
+                    {
+                        "value": "MALE",
+                        "label": "Male",
+                        "icon": "male"
+                    },
+                    {
+                        "value": "FEMALE",
+                        "label": "Female",
+                        "icon": "female"
+                    },
+                    {
+                        "value": "OTHER",
+                        "label": "Other",
+                        "icon": "transgender"
+                    }
+                ]
+            },
+            {
+                "name": "dateOfBirth",
+                "label": "Date of birth",
+                "value": "",
+                "type": "date",
+                "validators": {
+                    "required": true
+                }
+            },
+            
+            {
+                "name": "nationality",
+                "label": "Nationality",
+                "value": "India",
+                "type": "dropdown",
+                "validators": {
+                    "required": false
+                },
+                "options": [
+                    {
+                        "value": "India",
+                        "label": "India",
+                        "icon": ""
+                    }
+                ]
+            },
+            {
+                "name": "healthStatus",
+                "label": "Health Status",
+                "value": "",
+                "type": "text",
+                "validators": {
+                    "required": false
+                }
+            },
+            {
+                "name": "bloodGroup",
+                "label": "Blood Group",
+                "value": "",
+                "type": "dropdown",
+                "validators": {
+                    "required": false
+                },
+                "options": [
+                    {
+                        "value": "A+",
+                        "label": "A+"
+                    },
+                    {
+                        "value": "A-",
+                        "label": "A-"
+                    },
+                    {
+                        "value": "B+",
+                        "label": "B+"
+                    },
+                    {
+                        "value": "B-",
+                        "label": "B-"
+                    },
+                    {
+                        "value": "AB+",
+                        "label": "AB+"
+                    },
+                    {
+                        "value": "AB-",
+                        "label": "AB"
+                    },
+                    {
+                        "value": "O+",
+                        "label": "O+"
+                    },
+                    {
+                        "value": "O-",
+                        "label": "O-"
+                    }
+                ]
+            },
+            {
+                "name": "classId",
+                "label": "Admission In",
+                "value": "63948d487bd90996be350e6d",
+                "type": "dropdown",
+                "validators": {
+                    "required": true
+                },
+                "hitHttp": true,
+                "method": "getClasses",
+                "options": []
+            },
+            {
+                "name": "conveniance",
+                "label": "Conveniance",
+                "value": "",
+                "type": "dropdown",
+                "validators": {
+                    "required": false
+                },
+                "options": [
+                    {
+                        "value": true,
+                        "label": "YES"
+                    },
+                    {
+                        "value": false,
+                        "label": "NO"
+                    }
+                ]
+            },
+            {
+                "name": "place",
+                "label": "Place",
+                "value": "",
+                "type": "text",
+                "validators": {
+                    "required": true,
+                    "maxLength": 50
+                }
             }
-        },
-        {
-            "name": "bloodGroup",
-            "label": "Blood Group",
-            "value": "",
-            "type": "dropdown",
-            "validators": {
-                "required": false
+        ]
+    },
+    "parentForm" : {
+        "controls": [
+            {
+                "name": "fathersPhoto",
+                "label": "Father photo",
+                "value": "",
+                "type": "image",
+                "validators": {
+                    "required": false
+                }
             },
-            "options": [
-                { "value": "A+", "label": "A+" },
-                { "value": "A-", "label": "A-" },
-                { "value": "B+", "label": "B+" },
-                { "value": "B-", "label": "B-" },
-                { "value": "AB+", "label": "AB+" },
-                { "value": "AB-", "label": "AB" },
-                { "value": "O+", "label": "O+" },
-                { "value": "O-", "label": "O-" }
-            ]
-        },
-        {
-            "name": "classId",
-            "label": "Admission In",
-            "value": "63948d487bd90996be350e6d",
-            "type": "dropdown",
-            "validators": {
-                "required": true
+            {
+                "name": "father",
+                "label": "Father",
+                "value": "",
+                "type": "text",
+                "validators": {
+                    "required": true,
+                    "maxLength": 50
+                }
             },
-            "hitHttp" : true,
-            "method" : "getClasses",
-            "options": [
-            ]
-        },
-        {
-            "name": "conveniance",
-            "label": "Conveniance",
-            "value": "",
-            "type": "dropdown",
-            "validators": {
-                "required": false
+            {
+                "name": "mother",
+                "label": "Mother",
+                "value": "",
+                "type": "text",
+                "validators": {
+                    "required": false,
+                    "maxLength": 50
+                }
             },
-            "options": [
-                { "value": true, "label": "YES" },
-                { "value": false, "label": "NO" }
-            ]
-        },
-        {
-            "name": "place",
-            "label": "Place",
-            "value": "",
-            "type": "text",
-            "validators": {
-                "required": true,
-                "maxLength" : 50
+            {
+                "name": "fathersOccupation",
+                "label": "Father's cccupation",
+                "value": "",
+                "type": "text",
+                "validators": {
+                    "required": true,
+                    "maxLength": 50
+                }
+            },
+            {
+                "name": "mothersOccupation",
+                "label": "Mother's cccupation",
+                "value": "",
+                "type": "text",
+                "validators": {
+                    "required": true,
+                    "maxLength": 50
+                }
+            },
+            
+            {
+                "name": "gaurdian",
+                "label": "Local Gaurdian",
+                "value": "",
+                "type": "text",
+                "validators": {
+                    "required": true
+                }
+            },
+            
+            {
+                "name": "nationality",
+                "label": "Nationality",
+                "value": "India",
+                "type": "dropdown",
+                "validators": {
+                    "required": false
+                },
+                "options": [
+                    {
+                        "value": "India",
+                        "label": "India",
+                        "icon": ""
+                    }
+                ]
+            },
+            {
+                "name": "healthStatus",
+                "label": "Health Status",
+                "value": "",
+                "type": "text",
+                "validators": {
+                    "required": false
+                }
+            },
+            {
+                "name": "bloodGroup",
+                "label": "Blood Group",
+                "value": "",
+                "type": "dropdown",
+                "validators": {
+                    "required": false
+                },
+                "options": [
+                    {
+                        "value": "A+",
+                        "label": "A+"
+                    },
+                    {
+                        "value": "A-",
+                        "label": "A-"
+                    },
+                    {
+                        "value": "B+",
+                        "label": "B+"
+                    },
+                    {
+                        "value": "B-",
+                        "label": "B-"
+                    },
+                    {
+                        "value": "AB+",
+                        "label": "AB+"
+                    },
+                    {
+                        "value": "AB-",
+                        "label": "AB"
+                    },
+                    {
+                        "value": "O+",
+                        "label": "O+"
+                    },
+                    {
+                        "value": "O-",
+                        "label": "O-"
+                    }
+                ]
+            },
+            {
+                "name": "studentId",
+                "label": "Student Id",
+                "value": "",
+                "type": "text",
+                "validators": {
+                    "required": true
+                },
+                "options": []
+            },
+            
+            {
+                "name": "Contact",
+                "label": "Phone/Mobile Number",
+                "value": "",
+                "type": "tel",
+                "validators": {
+                    "required": true,
+                    "maxLength": 10
+                }
             }
-        }
-        
-    ]
+        ]
+    }
 }

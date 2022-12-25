@@ -3,16 +3,13 @@
         <mat-card class="card border-0  p-0" style="font-size: 12px;">
             <mat-vertical-stepper #stepper>
                 <mat-step [stepControl]="studentForm" class="">
-                    <form class="stepper_form my-4 py-2 " [formGroup]="studentForm">
+                    <form class="my-4 py-2 " [formGroup]="studentForm">
                         <ng-template matStepLabel>Required Student Details</ng-template>
                         <div class=" d-flex justify-content-center">
                             <div class="col-sm-12 col-md-10 col-lg-10">
-                                <div class="mb-2">
-                                    <mat-label class="text-primary ">Student's Information</mat-label>
-                                </div>
+                                
                                 <div class="row">
                                     <div class="col-md-6">
-
                                         <ng-container *ngFor="let field of admissionFormFields?.controls">
                                             <div class="row " *ngIf="
                                             [
@@ -26,8 +23,8 @@
                                             ].includes(field.type)
                                           ">
                                                 <div class="col-3 text-left justify-content-center">
-                                                    <small>{{field.label}}{{field?.validators?.required ? '*' :
-                                                        ''}}</small>
+                                                    <label>{{field.label}}{{field?.validators?.required ? '*' :
+                                                        ''}}</label>
                                                 </div>
                                                 <div class="col-9 text-left">
                                                     <mat-form-field appearance="outline" class="w-100">
@@ -40,8 +37,8 @@
 
                                             <div class="row" *ngIf="field.type === 'textarea'">
                                                 <div class="col-3 text-left">
-                                                    <small>{{field.label}} {{field.validators?.required ? '*' :
-                                                        ''}}</small>
+                                                    <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                        ''}}</label>
                                                 </div>
                                                 <div class="col-9 text-left">
                                                     <mat-form-field appearance="outline" class="w-100">
@@ -55,8 +52,8 @@
                                             <ng-container *ngIf="field.type === 'radio'">
                                                 <div class="row my-4">
                                                     <div class="col-3 text-left">
-                                                        <small>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</small>
+                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                            ''}}</label>
                                                     </div>
                                                     <div class="col-9 text-left">
                                                         <mat-radio-group [formControlName]="field.name">
@@ -71,8 +68,8 @@
                                             <ng-container *ngIf="field.type === 'date'">
                                                 <div class="row my-4">
                                                     <div class="col-3 text-left">
-                                                        <small>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</small>
+                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                            ''}}</label>
                                                     </div>
                                                     <div class="col-9 text-left">
                                                         <mat-form-field appearance="outline" class="w-100">
@@ -91,8 +88,8 @@
                                             <ng-container *ngIf="field.type === 'dropdown'">
                                                 <div class="row my-4">
                                                     <div class="col-3 text-left">
-                                                        <small>{{field.label}} {{field.validators?.required ? '*'
-                                                            :''}}</small>
+                                                        <label>{{field.label}} {{field.validators?.required ? '*'
+                                                            :''}}</label>
                                                     </div>
                                                     <div class="col-9 text-left">
                                                         <mat-form-field appearance="outline" class="w-100"
@@ -121,8 +118,8 @@
                                             <ng-container *ngIf="field.type === 'image'">
                                                 <div class="row my-4">
                                                     <div class="col-3 text-left">
-                                                        <small>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</small>
+                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                            ''}}</label>
                                                     </div>
                                                     <div class="col-9 text-left">
                                                         <app-image-picker (onImageSelect)="onImageSelect($event,field.name)"></app-image-picker>

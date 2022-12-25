@@ -9,6 +9,5 @@ import { Loader, UiService } from 'src/app/services/ui.service';
 export class LoaderComponent {
   @Input() loader: Loader = {isLoading : false,oMessage: "Loading..."}
   constructor(){
-    console.log("loader**component",this.loader)
   }
 }

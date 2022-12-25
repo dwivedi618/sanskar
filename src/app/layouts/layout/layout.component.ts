@@ -10,7 +10,7 @@ export class LayoutComponent implements OnInit {
   loader : Loader = { isLoading : false , oMessage : "Loading..."};
   constructor(private uiService : UiService) { }
   ngOnInit() {
-    this.uiService.loader.state.subscribe((loader: Loader) => { this.loader= loader;console.log("loader:::**::",loader)});
+    this.uiService.loader.state.subscribe((loader: Loader) => { this.loader= loader;});
 
   }
 

@@ -24,14 +24,14 @@ import { UiService } from 'src/app/services/ui.service';
   styleUrls: ['./master-fee-category-list.component.scss']
 })
 
-export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit,OnDestroy {
+export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit, OnDestroy {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<Fee>;
   dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select','name','frequency','optional','action'];
+  displayedColumns = ['select', 'name', 'frequency', 'optional', 'action'];
   selection = new SelectionModel<Fee>(true, []);
 
   /** Whether the number of selected elements matches the total number of rows. */
@@ -44,9 +44,9 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit,OnD
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
-        console.log("selection",this.selection.selected);
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+    console.log("selection", this.selection.selected);
   }
 
   /** The label for the checkbox on the passed row */
@@ -57,16 +57,16 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit,OnD
     return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${+row._id + 1}`;
   }
 
-  menuDataSession = ['2019-2020','2020-2021','2021-2022'];
+  menuDataSession = ['2019-2020', '2020-2021', '2021-2022'];
   selectedSession = this.menuDataSession[0]
   constructor(
-    private dialog : MatDialog,
-    private router : Router,
-    private commonService : CommonService,
-    private jsonFormService : JsonFormService,
-    private feeActionService : FeeActionService,
-    private uiService : UiService
-  ){}
+    private dialog: MatDialog,
+    private router: Router,
+    private commonService: CommonService,
+    private jsonFormService: JsonFormService,
+    private feeActionService: FeeActionService,
+    private uiService: UiService
+  ) { }
   ngOnDestroy(): void {
     this.uiService.loader.hide();
   }
@@ -74,19 +74,20 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit,OnD
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
-    console.log("selection",this.selection.selected)
+    console.log("selection", this.selection.selected)
     this.getFeeCategoryList();
-    this.jsonFormService.getFeeFormJson().subscribe(data => console.log("data",data))
-    this.uiService.loader.show("Fetching fees...");
+    this.jsonFormService.getFeeFormJson().subscribe(data => console.log("data", data))
   }
 
-  getFeeCategoryList(){
-      this.commonService.getMasterFee().subscribe((result)=>{
-        console.log("getMasterFeeCategory result",result);
-        this.dataSource.data = result['data'] || null;
-      },(error)=>{
-        console.log("getMasterFeeCategory error",error);
-      }) 
+  getFeeCategoryList() {
+    this.uiService.loader.show("Fetching fees...");
+    this.commonService.getMasterFee().subscribe((result) => {
+      this.dataSource.data = result['data'] || null;
+      this.uiService.loader.hide();
+    }, (error) => {
+      console.log("getMasterFeeCategory error", error);
+      this.uiService.loader.hide();
+    })
   }
 
   ngAfterViewInit() {
@@ -103,7 +104,7 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit,OnD
     }
   }
 
-  expandAnimation ='collapsed' ;
+  expandAnimation = 'collapsed';
 
   toggleAnimation(divName: string) {
     if (divName === 'divA') {
@@ -116,42 +117,42 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit,OnD
   /**
    * route to add new FeeStructure page where admin can define fee for any courses/classes/standards
    */
-  newFeeStructure(){
-    this.router.navigate(['fee-structure/' ,'new' ]);
+  newFeeStructure() {
+    this.router.navigate(['fee-structure/', 'new']);
   }
   /**
    * route to fee category , where user can add fee category
    */
-  newFeeCategory(){
-    this.router.navigate(['fee-structure/fee-category','new'])
+  newFeeCategory() {
+    this.router.navigate(['fee-structure/fee-category', 'new'])
   }
-  manageFeeCategory(){
+  manageFeeCategory() {
     const data = {}
-    const dialogRef = this.dialog.open(ManageFeeCategoryComponent,{
-      width : '40rem',
-      maxWidth : '100vw',
-      
-      maxHeight : '100vh',
-      hasBackdrop : false,
+    const dialogRef = this.dialog.open(ManageFeeCategoryComponent, {
+      width: '40rem',
+      maxWidth: '100vw',
+
+      maxHeight: '100vh',
+      hasBackdrop: false,
       // panelClass : 'dialog-container-pt-0',
-      data : data
+      data: data
     })
-    dialogRef.afterClosed().subscribe({next:()=>this.getFeeCategoryList()})
+    dialogRef.afterClosed().subscribe({ next: () => this.getFeeCategoryList() })
   }
-  refresh(){
+  refresh() {
     this.getFeeCategoryList()
   }
   /**
    * route to add faculty profile page
    * @param faculty id,name,email
    */
-  openFacultyProfile(profile){
+  openFacultyProfile(profile) {
     this.router.navigate(['faculty/profile']);
   }
 
-  menuClickHandler(action,data){
-    console.log("data",action , data)
-    this.feeActionService.actionTriggered(action,data);
+  menuClickHandler(action, data) {
+    console.log("data", action, data)
+    this.feeActionService.actionTriggered(action, data);
   }
 }
 

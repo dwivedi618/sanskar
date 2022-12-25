@@ -1,15 +1,13 @@
-import { Inject, ViewChild, Optional } from '@angular/core';
+import { ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentForm } from './admission';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
 
-
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
-
-import { MatDialog, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { MatDialog } from '@angular/material/dialog'
 
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { CommonService } from '../services/common.service';
@@ -17,8 +15,8 @@ import { UiService } from '../services/ui.service';
 import { AlertService } from '../services/alert.service';
 import { admissionFormFields } from './admissionFormFields';
 import { COMMON_CONFIG } from '../config/commonConfig';
-
-
+import { JsonFormService } from '../services/json-form.service';
+import { JsonFormControlOptions, JsonFormControls, JsonFormData } from '../layouts/shared/json-form/json-from.types';
 export interface DialogData {
   animal: string;
   name: string;
@@ -28,18 +26,18 @@ interface BloodGroup {
   viewValue: string;
 }
 
-
 @Component({
   selector: 'app-admission',
   templateUrl: './admission.component.html',
-  styleUrls: ['./admission.component.scss']
+  styleUrls: ['./admission.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdmissionComponent implements OnInit {
   animal: string;
   name: string;
   admission: StudentForm;
   applicationNumber = 1;
-  studentForm: FormGroup;
+  studentForm: FormGroup = this.fb.group({});
   parentForm: FormGroup;
   addressForm: FormGroup;
   otherForm: FormGroup;
@@ -55,108 +53,66 @@ export class AdmissionComponent implements OnInit {
   studentId: any;
   standards: any;
   isLoading: boolean;
-  studentData : any;
+  studentData: any;
 
-  admissionFormFields = admissionFormFields;
+  admissionFormFields: JsonFormData;
   commonConfig = COMMON_CONFIG
 
   constructor(
     public dialog: MatDialog,
     private router: Router,
-    private activatedRoute : ActivatedRoute,
-    private formBuilder: FormBuilder,
-    private commonService: CommonService,
+    private activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    public commonService: CommonService,
     private alertService: AlertService,
     private uiService: UiService,
- 
+    private jsonFormService: JsonFormService
+
   ) {
-    
-    
-    this.activatedRoute.queryParams.subscribe((data)=>{
-      console.log("activated route data-----------",data);
-      
-      if(data && data.action === 'update'){
-      console.log("profile data update-----------",data);
+
+
+    this.activatedRoute.queryParams.subscribe((data) => {
+
+      if (data && data.action === 'update') {
         this.action = data.action;
         this.studentId = data.id;
         this.getProfile();
-      }else{
+      } else {
         this.action = data.action || 'add';
       }
     })
 
   }
 
+  ngOnChanges(changes: SimpleChanges) {
+    if (!changes.admissionFormFields.firstChange) {
+      this.studentForm = this.jsonFormService.createForm(this.admissionFormFields.controls);
+
+    }
+  }
+
+
+
   ngOnInit() {
-    this.getStandardList();
-    this.studentForm = this.formBuilder.group({
-      firstName: ['', Validators.required],
-      middleName: ['', Validators.required],
-      lastName: ['', Validators.required],
-      gender: [],
-      dateOfBirth: [],
-      image: [],
-      nationality: ['Indian'],
-      healthStatus: [],
-      bloodGroup: [],
-      standardId: ['', Validators.required],//admission In
-      convenience: ['', Validators.required],
-      place: []
-    });
-    this.parentForm = this.formBuilder.group({
-      studentId: [],
-      fatherName: ['', Validators.required],
-      motherName: ['', Validators.required],
-      fatherEducation: [''],
-      fatherOccupation: [''],
-      motherEducation: [''],
-      motherOccupation: [''],
-      parentContact: [''],
-      guardianName: ['', Validators.required],
-      guardianContact: ['', Validators.required]
-    });
-    this.addressForm = this.formBuilder.group({
-      permanentAddress: this.formBuilder.group({
-        addressType : ['PERMANENT'],
-        village: ['', Validators.required],
-        district: ['', Validators.required],
-        state: ['', Validators.required],
-        post: ['', Validators.required],
-        pin: ['', Validators.required]
-
-      }),
-      localAddress: this.formBuilder.group({
-        addressType : ['LOCAL'],
-        village: [''],
-        district: [''],
-        state: [''],
-        post: [''],
-        pin: ['']
-
-      })
-
+    this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
+      console.log("admission form", formJson)
+      this.admissionFormFields = formJson;
+      this.studentForm = this.jsonFormService.createForm(this.admissionFormFields.controls);
     });
   }
 
-  // convenience getter for easy access to form fields
-  // get f() { return this.registerForm.controls; }
-  get f1() { return this.studentForm.controls; }
-  get f2() { return this.parentForm.controls; }
 
-  get f3() { return this.addressForm.get(['permanentAddress'])['controls']; }//for accessing nested form permanentAddress
-  get f4() { return this.addressForm.get(['localAddress'])['controls']; }//for accessing nested form localAddress
-
-  getProfile(){
+  getProfile() {
     this.commonService.getStudentRecordById(this.studentId)
       .subscribe((result) => {
         console.log("Student profile", result);
         this.studentData = result.data || null;
-        if(this.action == 'update'){
-    console.log("form patch prodifile ------------------");
+        if (this.action == 'update') {
+          console.log("form patch prodifile ------------------");
 
-          this.studentFormPatch( this.studentData['standard']);
-          this.parentFormPatch( this.studentData['parents']);
-          this.addressFormPatch( this.studentData['address'][0],this.studentData['address'][1]);
+          // this.studentFormPatch( this.studentData['standard']);
+          // this.parentFormPatch( this.studentData['parents']);
+          // this.addressFormPatch( this.studentData['address'][0],this.studentData['address'][1]);
         }
 
         this.isLoading = false;
@@ -166,76 +122,15 @@ export class AdmissionComponent implements OnInit {
   }
 
 
-
-  studentFormPatch(standard){
-    console.log("form patch prodifile ------------------");
-    
-    this.studentForm.patchValue({ firstName : this.studentData.name || '' });
-    this.studentForm.patchValue({ middleName : this.studentData.name || '' });
-    this.studentForm.patchValue({ lastName : this.studentData.name || '' });
-
-    this.studentForm.patchValue({ gender : this.studentData.gender  || ''});
-    this.studentForm.patchValue({ dateOfBirth : this.studentData.dateOfBirth  || ''});
-    // this.studentForm.patchValue({ image : this.studentData.image || '' });
-    this.studentForm.patchValue({ nationality : this.studentData.nationality  || ''});
-    this.studentForm.patchValue({ healthStatus : this.studentData.healthStatus || '' });
-    this.studentForm.patchValue({ bloodGroup : this.studentData.bloodGroup || '' });
-    this.studentForm.patchValue({ standardId : standard.id || '' });
-    this.studentForm.patchValue({ convenience : this.studentData.convenience || '' });
-    this.studentForm.patchValue({ place : this.studentData.place  || ''}); 
-}
-  /**
-   * @use patch parent data in parentForm 
-   * @param data parents data {}
-   */
-  parentFormPatch(data){
-    this.parentForm.patchValue({ studentId : this.studentId  }); 
-    this.parentForm.patchValue({ fatherName : data.fatherName || '' }); 
-    this.parentForm.patchValue({ motherName : data.motherName || '' }); 
-    this.parentForm.patchValue({ fatherEducation : data.fatherEducation || '' }); 
-    this.parentForm.patchValue({ fatherOccupation : data.fatherOccupation || '' }); 
-    this.parentForm.patchValue({ motherEducation : data.motherEducation || '' }); 
-    this.parentForm.patchValue({ motherOccupation : data.motherOccupation || '' }); 
-    this.parentForm.patchValue({ parentContact : data.parentContact || '' }); 
-    this.parentForm.patchValue({ guardianName : data.guardianName || '' });
-    this.parentForm.patchValue({ guardianContact : data.guardianContact || '' }); 
-}
-
-/**
- * 
- * @param address1 permanetAddress
- * @param address2 localAddress
- */
-  addressFormPatch(address1,address2){
-    this.addressForm.get(['permanentAddress']).patchValue({ village : address1.village });
-    this.addressForm.get(['permanentAddress']).patchValue({ district : address1.district });
-    this.addressForm.get(['permanentAddress']).patchValue({ state : address1.state });
-    this.addressForm.get(['permanentAddress']).patchValue({ post : address1.post });
-    this.addressForm.get(['permanentAddress']).patchValue({ pin : address1.pin });
-    this.addressForm.get(['permanentAddress']).patchValue({ addressType : address1.addressType });
-
-
-    this.addressForm.get(['localAddress']).patchValue({ village : address2.village });
-    this.addressForm.get(['localAddress']).patchValue({ district : address2.district });
-    this.addressForm.get(['localAddress']).patchValue({ state : address2.state });
-    this.addressForm.get(['localAddress']).patchValue({ post : address2.post });
-    this.addressForm.get(['localAddress']).patchValue({ pin : address2.pin });
-    this.addressForm.get(['localAddress']).patchValue({ addressType : address2.addressType });
-
-}
-
-/**
- * @use dropdown list of all standard (classes)
- */
-getStandardList(){
-  console.log("get Standard List")
-  this.commonService.getMasterStandard().subscribe((result)=>{
-    console.log("result",result);
-    this.standards = result.data || null;
-  },(error)=>{
-    console.log("error",error);
-  })
-}
+  getStandardList() {
+    console.log("get Standard List")
+    this.commonService.getMasterStandard().subscribe((result) => {
+      console.log("result", result);
+      this.standards = result.data || null;
+    }, (error) => {
+      console.log("error", error);
+    })
+  }
 
   fileUploadReset() {
     if (this.imagePreview) {
@@ -256,11 +151,6 @@ getStandardList(){
   onImagePicked(event: Event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.getBase64(file);
-    // const reader = new FileReader();
-    // reader.onload = () => {
-    //   this.imagePreview = reader.result as string;
-    // }
-    // reader.readAsDataURL(file);
   }
   getBase64(file) {
     const reader = new FileReader();
@@ -268,14 +158,16 @@ getStandardList(){
     reader.onload = () => {
       console.log(reader.result);
       this.imagePreview = reader.result as string;
-      // this.studentForm.patchValue({ image : reader.result as string})
+      this.studentForm.patchValue({ image: reader.result as string })
+      // this.studentForm.patchValue({ firstName : "heloo"})
+
     };
     reader.onerror = (error) => {
       console.log('Error: ', error);
     };
   }
   onStudentSubmit() {
-    console.log("studentForm",this.studentForm.value)
+    console.log("studentForm", this.studentForm.value)
     this.submitted = true;
 
     //     // stop here if form is invalid
@@ -284,52 +176,52 @@ getStandardList(){
       return;
     }
 
-    this.studentForm.value.requestType = "student";
+
     // this.studentForm.patchValue({ image : this.imagePreview })
     console.log("Before submitstudent", this.studentForm.value);
-    if(this.action === 'update'){
-      this.commonService.updateStudentRecord(this.studentForm.value,this.studentId)
-      .subscribe((result) => {
-        this.studentId = result.data.id;
-        this.alertService.alertComponent(result.message || '')
-        console.log("result", result);
-      }, (error) => {
-        console.log("error", error);
-        this.uiService.openSnackBar(error.statusText, null);
-      });
-    
-    }else{
-    this.commonService.studentRecord(this.studentForm.value)
-      .subscribe((result) => {
-        this.studentId = result.data.id;
-        this.alertService.alertComponent(result.message || '')
-        console.log("result", result);
-      }, (error) => {
-        console.log("error", error);
-        this.uiService.openSnackBar(error.statusText, null);
-      });
+    if (this.action === 'update') {
+      this.commonService.updateStudentRecord(this.studentForm.value, this.studentId)
+        .subscribe((result) => {
+          this.studentId = result.data.id;
+          this.alertService.alertComponent(result.message || '')
+          console.log("result", result);
+        }, (error) => {
+          console.log("error", error);
+          this.uiService.openSnackBar(error.statusText, null);
+        });
+
+    } else {
+      this.commonService.studentRecord(this.studentForm.value)
+        .subscribe((result) => {
+          this.studentId = result.data.id;
+          this.alertService.alertComponent(result.message || '')
+          console.log("result", result);
+        }, (error) => {
+          console.log("error", error);
+          this.uiService.openSnackBar(error.statusText, null);
+        });
     }
   }
   onParentSubmit() {
     this.parentForm.value.requestType = "parent";
     console.log("studentId ", this.studentId);
     console.log("Before submitparent", this.parentForm.value);
-    if(this.action == 'update'){
+    if (this.action == 'update') {
       this.commonService.updateParentRecord(this.studentId, this.parentForm.value)
-      .subscribe((result) => {
-        console.log("result", result);
-        this.alertService.alertComponent(result.message || '');
-      }, (error) => {
-        console.log("error", error);
-      });
-    }else{
-    this.commonService.parentRecord(this.studentId, this.parentForm.value)
-      .subscribe((result) => {
-        console.log("result", result);
-        this.alertService.alertComponent(result.message || '');
-      }, (error) => {
-        console.log("error", error);
-      });
+        .subscribe((result) => {
+          console.log("result", result);
+          this.alertService.alertComponent(result.message || '');
+        }, (error) => {
+          console.log("error", error);
+        });
+    } else {
+      this.commonService.parentRecord(this.studentId, this.parentForm.value)
+        .subscribe((result) => {
+          console.log("result", result);
+          this.alertService.alertComponent(result.message || '');
+        }, (error) => {
+          console.log("error", error);
+        });
     }
 
   }
@@ -341,22 +233,22 @@ getStandardList(){
     ]
     console.log("before permanent Address ", this.addressForm.get(['permanentAddress']).value);
     console.log("before local Address ", this.addressForm.get(['localAddress']).value);
-    if(this.action === 'update'){
+    if (this.action === 'update') {
       this.commonService.updateStudentAddress(this.studentId, address)
-      .subscribe((result) => {
-        console.log("result", result);
-        this.alertService.alertComponent(result.message || '');
-      }, (error) => {
-        console.log("error", error);
-      });
-    }else{
-    this.commonService.studentAddress(this.studentId, address)
-      .subscribe((result) => {
-        console.log("result", result);
-        this.alertService.alertComponent(result.message || '');
-      }, (error) => {
-        console.log("error", error);
-      });
+        .subscribe((result) => {
+          console.log("result", result);
+          this.alertService.alertComponent(result.message || '');
+        }, (error) => {
+          console.log("error", error);
+        });
+    } else {
+      this.commonService.studentAddress(this.studentId, address)
+        .subscribe((result) => {
+          console.log("result", result);
+          this.alertService.alertComponent(result.message || '');
+        }, (error) => {
+          console.log("error", error);
+        });
     }
   }
 
@@ -829,34 +721,19 @@ getStandardList(){
       }
     };//return ends
   }//document definition ends
-
-
-
-  bloodGroups: BloodGroup[] = [
-    { value: 'A+', viewValue: 'A+' },
-    { value: 'A-', viewValue: 'A-' },
-    { value: 'B+', viewValue: 'B+' },
-    { value: 'B-', viewValue: 'B-' },
-    { value: 'AB+', viewValue: 'AB+' },
-    { value: 'AB-', viewValue: 'AB' },
-    { value: 'O+', viewValue: 'O+' },
-    { value: 'O-', viewValue: 'O-' }
-  ];
+  fetchValue(field: JsonFormControls): JsonFormControlOptions[] {
+    if (!(field.hitHttp && field.method)) {
+      return
+    }
+    switch (field.method) {
+      case "getClasses":
+        this.commonService.getClassesForFormOptions(field.method);
+        break
+      default:
+        alert("Method not found")
+        
+    }
+  }
 
 }
 
-// @Component({
-//   selector: 'DialogOverviewExampleDialog',
-//   templateUrl: 'dialog-overview-example-dialog',
-// })
-// export class DialogOverviewExampleDialog {
-
-//   constructor(
-//     public dialogRef: MatDialogRef<DialogOverviewExampleDialog>,
-//     @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-//   onNoClick(): void {
-//     this.dialogRef.close();
-//   }
-
-// }

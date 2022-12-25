@@ -26,6 +26,8 @@ interface JsonFormValidators {
     label: string;
     value: string;
     type: string;
+    hitHttp? : boolean;
+    method ? : string;
     options?: JsonFormControlOptions;
     required?: boolean;
     disabled?:boolean;

@@ -2,6 +2,8 @@ import { Student } from './../student/students-list/students-list.component';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
+import { JsonFormControlOptions } from '../layouts/shared/json-form/json-from.types';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -79,7 +81,7 @@ export class CommonService {
     return this.http.get<any>(`${environment.apiUrl}/v1/student/${studentId}`)
   } 
   
-  parentRecord(studentId , parentRecord) {
+  parentRecord(studentId , parentRecord) { 
     console.log("parentRecord",studentId,parentRecord)
     return this.http.post<any>(`${environment.apiUrl}/v1/student/${studentId}/parents`, parentRecord)
   } 
@@ -96,5 +98,33 @@ export class CommonService {
     console.log("parentRecord",studentId,address)
     return this.http.put<any>(`${environment.apiUrl}/v1/student/${studentId}/address`, address)
   } 
+
+
+  formOptions = {
+    getClasses : new BehaviorSubject<JsonFormControlOptions[]>([])
+  };
+  getClassesForFormOptions(method):Observable<JsonFormControlOptions[]>{
+    this.getMasterStandard().subscribe(res=>{
+      if(res && res?.data){
+        let options = this.formatDataAsOptions(res.data);
+        console.log("options",options);
+        this.formOptions.getClasses.next(options)
+        console.log("formOptions",this.formOptions);
+      }
+    });  
+    return this.formOptions.getClasses.asObservable();
+  }
+
+  private formatDataAsOptions(data){
+    let options: JsonFormControlOptions[] = [];
+    data.forEach(item =>{
+      let option : JsonFormControlOptions = {value : "", label : "",icon:""};
+      option.value = item._id;
+      option.label = item.name;
+      option.icon = "";
+      options.push(option);
+    })
+    return options ;
+  }
 
 }

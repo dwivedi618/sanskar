@@ -13,55 +13,102 @@
                                 <div class="row">
                                     <div class="col-md-6">
 
-                                        <ng-container
-                                            *ngFor="let field of admissionFormFields.staticFields.studentInfo">
-                                            <ng-container *ngIf="field.fieldType === 'text'">
-                                                <mat-form-field appearance="outline" class="example-full-width">
-                                                    <mat-label>{{field.label}}</mat-label>
-                                                    <input matInput placeholder={{field.label}} type="text"
-                                                        name="{{field.fieldName}}" required="{{field.isMandatory}}"
-                                                        disabled="{{!field.isEnabled}}" value={{field.value}}>
-                                                    <!-- <mat-error *ngIf="{{`f1[${field.fieldName}].hasError('required')`}}">Name Required
-                                                    </mat-error> -->
-                                                </mat-form-field>
-                                            </ng-container>
-                                            <ng-container *ngIf="field.fieldType === 'date'">
-                                                <mat-form-field appearance="outline" class="example-full-width">
-                                                    <mat-label>{{field.label}}</mat-label>
-                                                    <input matInput type="date" name="{{field.fieldName}}"
-                                                        value="{{field.value}}">
-                                                </mat-form-field>
-                                            </ng-container>
-                                            <ng-container *ngIf="field.fieldType === 'dropdown'">
-                                                <!-- bloodGroup -->
-                                                <mat-form-field appearance="outline" class="example-full-width">
-                                                    <mat-label>{{field.label}}</mat-label>
-                                                    <mat-select placeholder={{field.label}} 
-                                                        value="{{field.value}}">
-                                                        <mat-option *ngFor="let opt of field.options"
-                                                            [value]="opt.value">
-                                                            {{opt.label}}
-                                                        </mat-option>
-                                                    </mat-select>
-                                                </mat-form-field>
-                                            </ng-container>
-                                            <ng-container *ngIf="field.fieldType === 'radio'">
-                                                <div class="my-4">
-                                                    <div class="d-flex box_shadow_0 space-between"
-                                                        style="background: #00000005;">
-                                                        <div *ngFor="let opt of field.options"
-                                                            class="form-row d-flex box_shadow_0 align-items-center justify-content-center">
-                                                            <input type="radio" name="{{field.fieldName}}"
-                                                                value="{{opt.value}}" id="{{opt.value}}"
-                                                                class="form-input">
-                                                            <span class="material-symbols-outlined fs-16 mr-1">
-                                                                {{opt.icon | lowercase}}
-                                                            </span>
-                                                            <label for="{{opt.value}}" class="form-label">{{opt.label |
-                                                                uppercase}} {{field.value == opt.value}}</label>
-                                                        </div>
+                                        <ng-container *ngFor="let field of admissionFormFields?.controls">
+                                            <div class="row " *ngIf="
+                                            [
+                                              'text',
+                                              'password',
+                                              'email',
+                                              'number',
+                                              'search',
+                                              'tel',
+                                              'url'
+                                            ].includes(field.type)
+                                          ">
+                                                <div class="col-3 text-left justify-content-center">
+                                                    <small>{{field.label}}{{field?.validators?.required ? '*' :
+                                                        ''}}</small>
+                                                </div>
+                                                <div class="col-9 text-left">
+                                                    <mat-form-field appearance="outline" class="w-100">
+                                                        <mat-label>{{field.label}}</mat-label>
+                                                        <input matInput type="field.type"
+                                                            [formControlName]="field.name">
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+
+                                            <div class="row" *ngIf="field.type === 'textarea'">
+                                                <div class="col-3 text-left">
+                                                    <small>{{field.label}} {{field.validators?.required ? '*' :
+                                                        ''}}</small>
+                                                </div>
+                                                <div class="col-9 text-left">
+                                                    <mat-form-field appearance="outline" class="w-100">
+                                                        <mat-label>{{field.label}}</mat-label>
+                                                        <textarea matInput placeholder="Ex:description"
+                                                            [formControlName]="field.name"></textarea>
+                                                        <!-- <mat-hint>{{field.hint}}</mat-hint> -->
+                                                    </mat-form-field>
+                                                </div>
+                                            </div>
+                                            <ng-container *ngIf="field.type === 'radio'">
+                                                <div class="row my-4">
+                                                    <div class="col-3 text-left">
+                                                        <small>{{field.label}} {{field.validators?.required ? '*' :
+                                                            ''}}</small>
+                                                    </div>
+                                                    <div class="col-9 text-left">
+                                                        <mat-radio-group [formControlName]="field.name">
+                                                            <mat-radio-button class="mr-4 w-50"
+                                                                *ngFor="let opt of field.options" [value]="opt.value">
+                                                                <span class="fs-14 ">{{opt.label}}</span>
+                                                            </mat-radio-button>
+                                                        </mat-radio-group>
                                                     </div>
                                                 </div>
+                                            </ng-container>
+                                            <ng-container *ngIf="field.type === 'date'">
+                                                <div class="row my-4">
+                                                    <div class="col-3 text-left">
+                                                        <small>{{field.label}} {{field.validators?.required ? '*' :
+                                                            ''}}</small>
+                                                    </div>
+                                                    <div class="col-9 text-left">
+                                                        <mat-form-field appearance="outline" class="w-100">
+                                                            <input matInput [formControlName]="field.name"
+                                                                placeholder="MM/DD/YYYY" [matDatepicker]="dp3"
+                                                                [disabled]="true">
+                                                            <mat-datepicker-toggle matSuffix
+                                                                [for]="dp3"></mat-datepicker-toggle>
+                                                            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+
+                                            </ng-container>
+                                            <ng-container *ngIf="field.type === 'dropdown'">
+                                                <div class="row my-4">
+                                                    <div class="col-3 text-left">
+                                                        <small>{{field.label}} {{field.validators?.required ? '*' :''}}</small>
+                                                    </div>
+                                                    <div class="col-9 text-left">
+                                                        <mat-form-field appearance="outline" class="w-100" (click)="fetchValue(field)">
+                                                            <mat-select [formControlName]="field.name">
+                                                                <mat-option value="">Select {{field.label || ''}}</mat-option>
+                                                                <ng-container *ngIf="field?.hitHttp && field?.method;else options">
+                                                                    <mat-option *ngFor="let option of this.commonService.formOptions[field.method] | async" [value]="option.value">{{option.label}}
+                                                                    </mat-option>
+                                                                </ng-container>
+                                                                <ng-template #options>
+                                                                    <mat-option *ngFor="let option of field?.options" [value]="option.value">{{option.label}}
+                                                                    </mat-option>
+                                                                </ng-template>
+                                                            </mat-select>
+                                                        </mat-form-field>
+                                                    </div>
+                                                </div>
+
                                             </ng-container>
                                         </ng-container>
                                     </div>
@@ -73,14 +120,14 @@
                                                     <div class="rounded-pill box_shadow_0 bg-white my-auto"
                                                         style="position: absolute;left: -20px;">
                                                         <div class="d-flex flex-column rounded-pill ">
-                                                            <button mat-icon-button class="m-0 p-0 bb"
+                                                            <button type="button" mat-icon-button class="m-0 p-0 bb"
                                                                 (click)="fileUpload.click()">
                                                                 <mat-icon style="font-size: 16px;">add_circle</mat-icon>
                                                             </button>
-                                                            <button mat-icon-button class="m-0 p-0 bb">
+                                                            <button type="button" mat-icon-button class="m-0 p-0 bb">
                                                                 <mat-icon style="font-size: 16px;">crop</mat-icon>
                                                             </button>
-                                                            <button mat-icon-button class="m-0 p-0"
+                                                            <button type="button" mat-icon-button class="m-0 p-0"
                                                                 (click)="fileUploadReset()">
                                                                 <mat-icon style="font-size: 16px;">clear</mat-icon>
                                                             </button>
@@ -92,10 +139,6 @@
                                                     </div>
                                                     <div *ngIf="!imagePreview" (click)="fileUpload.click()"
                                                         style="cursor: pointer;">
-                                                        <!-- <button mat-icon-button class="m-0">
-                                                        <mat-icon>add_circle</mat-icon>
-                                                    </button> -->
-                                                        <!-- <img src="../../assets/icons/persion.svg" width="40"> -->
                                                         <mat-icon style="color:#666;width: 100%;">add_a_photo</mat-icon>
                                                         <p mat-line class="text-muted py-2">Upload Photo</p>
                                                     </div>
@@ -113,244 +156,6 @@
                                     <button mat-raised-button type="submit" color="primary" (click)="onStudentSubmit()"
                                         matStepperNext>Save and
                                         Next</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </mat-step>
-
-                <mat-step [stepControl]="parentForm">
-                    <form class="stepper_form" [formGroup]="parentForm" (ngSubmit)=onParentSubmit()>
-                        <ng-template matStepLabel>Parents Details</ng-template>
-                        <div class=" d-flex justify-content-center">
-                            <div class="col-sm-12 col-md-8 col-lg-8">
-                                <ng-container *ngFor="let field of admissionFormFields.staticFields.parentsInfo">
-                                    <ng-container *ngIf="field.fieldType === 'text'">
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>{{field.label}}</mat-label>
-                                            <input matInput placeholder={{field.label}} type="text"
-                                                name="{{field.fieldName}}" required="{{field.isMandatory}}"
-                                                disabled="{{!field.isEnabled}}" value={{field.value}}>
-                                            <!-- <mat-error *ngIf="{{`f1[${field.fieldName}].hasError('required')`}}">Name Required
-                                            </mat-error> -->
-                                        </mat-form-field>
-                                    </ng-container>
-
-                                    <ng-container *ngIf="field.fieldType === 'number'">
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>{{field.label}}</mat-label>
-                                            <input matInput placeholder={{field.label}} type="number"
-                                                name="{{field.fieldName}}" required="{{field.isMandatory}}"
-                                                disabled="{{!field.isEnabled}}" value={{field.value}} pattern="commonConfig.patterns[field.mobile]" maxLength="{{field.maxFieldLength}}">
-                                            <!-- <mat-error *ngIf="{{`f1[${field.fieldName}].hasError('required')`}}">Name Required
-                                            </mat-error> -->
-                                        </mat-form-field>
-                                    </ng-container>
-
-                                    <ng-container *ngIf="field.fieldType === 'date'">
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>{{field.label}}</mat-label>
-                                            <input matInput type="date" name="{{field.fieldName}}"
-                                                required="{{field.isMandatory}}" disabled="{{!field.isEnabled}}"
-                                                value="{{field.value}}">
-                                        </mat-form-field>
-                                    </ng-container>
-                                    <ng-container *ngIf="field.fieldType === 'dropdown'">
-                                        <!-- bloodGroup -->
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>{{field.label}}</mat-label>
-                                            <mat-select placeholder={{field.label}} required="{{field.isMandatory}}"
-                                                disabled="{{!field.isEnabled}}" formControlName="{{field.fieldName}}"
-                                                value="{{field.value}}">
-                                                <mat-option *ngFor="let opt of field.options" [value]="opt.value">
-                                                    {{opt.label}}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </ng-container>
-                                    <ng-container *ngIf="field.fieldType === 'radio'">
-                                        <div class="my-4">
-                                            <div class="d-flex box_shadow_0 space-between"
-                                                style="background: #00000005;">
-                                                <div *ngFor="let opt of field.options"
-                                                    class="form-row d-flex box_shadow_0 align-items-center justify-content-center">
-                                                    <input type="radio" name="{{field.fieldName}}" value="{{opt.value}}"
-                                                        required="{{field.isMandatory}}" disabled="{{!field.isEnabled}}"
-                                                        id="{{opt.value}}" class="form-input">
-                                                    <span class="material-symbols-outlined fs-16 mr-1">
-                                                        {{opt.icon | lowercase}}
-                                                    </span>
-                                                    <label for="{{opt.value}}" class="form-label">{{opt.label |
-                                                        uppercase}} {{field.value == opt.value}}</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </ng-container>
-                                </ng-container>
-                                <div class="d-flex justify-content-around my-4">
-                                    <button mat-raised-button matStepperPrevious>Back</button>
-                                    <div class="spacer"></div>
-                                    <button mat-raised-button matStepperNext color="primary">Save and Next</button>
-                                </div>
-                            </div>
-                        </div>
-                    </form>
-                </mat-step>
-                <mat-step [stepControl]="addressForm">
-                    <form class="stepper_form" [formGroup]="addressForm" (ngSubmit)="onAddressSubmit()">
-                        <ng-template matStepLabel>Address</ng-template>
-                        <div class=" d-flex justify-content-center">
-                            <div class="col-sm-12 col-md-8 col-lg-8">
-
-                                <div class="mb-2">
-                                    <mat-label class="text-primary">Permanent Address</mat-label>
-                                </div>
-
-                                <ng-container *ngFor="let field of admissionFormFields.staticFields.permanentAddress">
-                                    <ng-container *ngIf="field.fieldType === 'text'">
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>{{field.label}}</mat-label>
-                                            <input matInput placeholder={{field.label}} type="text"
-                                                name="{{field.fieldName}}" required="{{field.isMandatory}}"
-                                                disabled="{{!field.isEnabled}}" value={{field.value}}>
-                                            <!-- <mat-error *ngIf="{{`f1[${field.fieldName}].hasError('required')`}}">Name Required
-                                            </mat-error> -->
-                                        </mat-form-field>
-                                    </ng-container>
-
-                                    <ng-container *ngIf="field.fieldType === 'number'">
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>{{field.label}}</mat-label>
-                                            <input matInput placeholder={{field.label}} type="number"
-                                                name="{{field.fieldName}}" required="{{field.isMandatory}}"
-                                                disabled="{{!field.isEnabled}}" value={{field.value}}>
-                                            <!-- <mat-error *ngIf="{{`f1[${field.fieldName}].hasError('required')`}}">Name Required
-                                            </mat-error> -->
-                                        </mat-form-field>
-                                    </ng-container>
-
-                                    <ng-container *ngIf="field.fieldType === 'date'">
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>{{field.label}}</mat-label>
-                                            <input matInput type="date" name="{{field.fieldName}}"
-                                                required="{{field.isMandatory}}" disabled="{{!field.isEnabled}}"
-                                                value="{{field.value}}">
-                                        </mat-form-field>
-                                    </ng-container>
-                                    <ng-container *ngIf="field.fieldType === 'dropdown'">
-                                        <!-- bloodGroup -->
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>{{field.label}}</mat-label>
-                                            <mat-select placeholder={{field.label}} 
-                                                required="{{field.isMandatory}}"
-                                                disabled="{{!field.isEnabled}}" 
-                                                formControlName="{{field.fieldName}}"
-                                                value="{{field.value}}">
-                                                <mat-option *ngFor="let opt of field.options" [value]="opt.value">
-                                                    {{opt.label}}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </ng-container>
-                                    <ng-container *ngIf="field.fieldType === 'radio'">
-                                        <div class="my-4">
-                                            <div class="d-flex box_shadow_0 space-between"
-                                                style="background: #00000005;">
-                                                <div *ngFor="let opt of field.options"
-                                                    class="form-row d-flex box_shadow_0 align-items-center justify-content-center">
-                                                    <input type="radio" name="{{field.fieldName}}" value="{{opt.value}}"
-                                                        required="{{field.isMandatory}}" disabled="{{!field.isEnabled}}"
-                                                        id="{{opt.value}}" class="form-input">
-                                                    <span class="material-symbols-outlined fs-16 mr-1">
-                                                        {{opt.icon | lowercase}}
-                                                    </span>
-                                                    <label for="{{opt.value}}" class="form-label">{{opt.label |
-                                                        uppercase}} {{field.value == opt.value}}</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </ng-container>
-                                    <ng-container *ngIf="field.fieldType === 'checkbox'">
-                                        <mat-checkbox class="example-full-width" 
-                                             [disabled]="!field.isEnabled" >
-                                            {{field.label}}
-                                        </mat-checkbox>
-                                    </ng-container>
-                                </ng-container>
-
-                                <div class="mb-2">
-                                    <mat-label class="text-primary">Local Address</mat-label>
-                                </div>
-
-                                <ng-container *ngFor="let field of admissionFormFields.staticFields.currentAddress">
-                                    <ng-container *ngIf="field.fieldType === 'text'">
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>{{field.label}}</mat-label>
-                                            <input matInput placeholder={{field.label}} type="text"
-                                                name="{{field.fieldName}}" required="{{field.isMandatory}}"
-                                                disabled="{{!field.isEnabled}}" value={{field.value}}>
-                                            <!-- <mat-error *ngIf="{{`f1[${field.fieldName}].hasError('required')`}}">Name Required
-                                            </mat-error> -->
-                                        </mat-form-field>
-                                    </ng-container>
-
-                                    <ng-container *ngIf="field.fieldType === 'number'">
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>{{field.label}}</mat-label>
-                                            <input matInput placeholder={{field.label}} type="number"
-                                                name="{{field.fieldName}}" required="{{field.isMandatory}}"
-                                                disabled="{{!field.isEnabled}}" value={{field.value}}>
-                                            <!-- <mat-error *ngIf="{{`f1[${field.fieldName}].hasError('required')`}}">Name Required
-                                            </mat-error> -->
-                                        </mat-form-field>
-                                    </ng-container>
-
-                                    <ng-container *ngIf="field.fieldType === 'date'">
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>{{field.label}}</mat-label>
-                                            <input matInput type="date" name="{{field.fieldName}}"
-                                                required="{{field.isMandatory}}" disabled="{{!field.isEnabled}}"
-                                                value="{{field.value}}">
-                                        </mat-form-field>
-                                    </ng-container>
-                                    <ng-container *ngIf="field.fieldType === 'dropdown'">
-                                        <!-- bloodGroup -->
-                                        <mat-form-field appearance="outline" class="example-full-width">
-                                            <mat-label>{{field.label}}</mat-label>
-                                            <mat-select placeholder={{field.label}} 
-                                                required="{{field.isMandatory}}"
-                                                disabled="{{!field.isEnabled}}" 
-                                                formControlName="{{field.fieldName}}"
-                                                value="{{field.value}}">
-                                                <mat-option *ngFor="let opt of field.options" [value]="opt.value">
-                                                    {{opt.label}}
-                                                </mat-option>
-                                            </mat-select>
-                                        </mat-form-field>
-                                    </ng-container>
-                                    <ng-container *ngIf="field.fieldType === 'radio'">
-                                        <div class="my-4">
-                                            <div class="d-flex box_shadow_0 space-between"
-                                                style="background: #00000005;">
-                                                <div *ngFor="let opt of field.options"
-                                                    class="form-row d-flex box_shadow_0 align-items-center justify-content-center">
-                                                    <input type="radio" name="{{field.fieldName}}" value="{{opt.value}}"
-                                                        required="{{field.isMandatory}}" disabled="{{!field.isEnabled}}"
-                                                        id="{{opt.value}}" class="form-input">
-                                                    <span class="material-symbols-outlined fs-16 mr-1">
-                                                        {{opt.icon | lowercase}}
-                                                    </span>
-                                                    <label for="{{opt.value}}" class="form-label">{{opt.label |
-                                                        uppercase}} {{field.value == opt.value}}</label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </ng-container>
-                                </ng-container>
-                                <div class="d-flex justify-content-around my-4">
-                                    <button mat-stroked-button matStepperPrevious>Back</button>
-                                    <div class="spacer"></div>
-                                    <button mat-raised-button matStepperNext color="primary">Save And Next</button>
                                 </div>
                             </div>
                         </div>

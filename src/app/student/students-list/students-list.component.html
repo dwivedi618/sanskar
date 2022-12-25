@@ -50,51 +50,16 @@
           <mat-icon class="mat-icon-md mat-icon-light pt-0">refresh</mat-icon>
         </button>
       </div>
-      <div class="px-1" *ngIf="this.selection.selected.length">
-        <button mat-icon-button>
-          <mat-icon class="mat-icon-md mat-icon-light pt-0">delete</mat-icon>
-        </button>
-      </div>
-      <div class="px-1" *ngIf="this.selection.selected.length">
-        <button mat-icon-button>
-          <mat-icon class="mat-icon-md mat-icon-light pt-0">add_moderator</mat-icon>
-        </button>
-      </div>
-      <div class="px-1" *ngIf="this.selection.selected.length">
-        <button mat-icon-button>
-          <mat-icon class="mat-icon-md mat-icon-light pt-0">email</mat-icon>
-        </button>
-      </div>
-      <div class="px-1" *ngIf="this.selection.selected.length">
-        <button mat-icon-button>
-          <mat-icon class="mat-icon-md  mat-icon-light pt-0">textsms</mat-icon>
-        </button>
-      </div>
-      <div class="px-1">
-        <button mat-icon-button>
-          <mat-icon class="mat-icon-md mat-icon-light pt-0">more_vert</mat-icon>
-        </button>
-      </div>
+      <ng-container *ngIf="this.selection.selected.length">
+        <app-bulk-actions></app-bulk-actions>
+      </ng-container>
       <div class="spacer"></div>
-      <!-- <div>
-        <mat-paginator #paginator [length]="dataSource?.data.length" [pageIndex]="0" 
-          >
-        </mat-paginator>
-      </div> -->
-
-      <div class="d-flex align-items-center float-end">
-        <form class="d-flex align-items-center w-100" style="position: relative;">
-          <input class="form-control mr-sm-2 w-100 pl-5" type="search" placeholder="Filter"
-            aria-label="Search" (keyup)="applyFilter($event)">
-            <button mat-icon-button color="primary" style="position: absolute;">
-              <mat-icon class="mat-icon-sm pt-0">search</mat-icon>
-              <!-- <small>Search</small> -->
-            </button>
-        </form>
-      </div>
-      
+      <ng-container *ngIf="!this.selection.selected.length">
+        <app-filter (onEvent)="applyFilter($event)"></app-filter>
+      </ng-container>      
     </mat-toolbar-row>
   </mat-toolbar>
+  
 <table  mat-table [dataSource]="dataSource" class="w-100 mb-5" matSort *ngIf="dataSource.data.length != 0">
 
 <!-- Checkbox Column -->
@@ -182,13 +147,9 @@
 </table>
 
 
-<div *ngIf="dataSource.data.length == 0" class="d-flex flex-column justify-content-center align-items-center h-50 w-100">     
-  <small class="mat-caption" > You don’t have any records</small><br>
-  <small class="strong" style="color:#ccc;"> You don’t have any records</small>
-  <a routerLink="/admission">
-    <small>new admission</small>
-  </a>
-</div>
+<ng-container *ngIf="!dataSource.data.length">
+  <app-empty-list></app-empty-list>
+</ng-container>
 
 <div *ngIf="displayNoRecords" class="layout h-25">     
   <p class="" style="font-size: 1.5rem;color:#ccc;font-weight: 600;"> No matching records found!</p>

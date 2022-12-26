@@ -23,7 +23,14 @@ export class JsonFormService {
     return this.http.get<JsonFormData>(this.jsonFormUrl.classFormJson);
   }
   getAdmissionFormJson(){
-    return this.http.get<{studentForm : JsonFormData,parentForm : JsonFormData}>(this.jsonFormUrl.admissionForm);
+    return this.http.get
+      <{
+        studentForm: JsonFormData,
+        parentForm: JsonFormData,
+        permanentAddressForm: JsonFormData,
+        localAddressForm: JsonFormData
+      }>
+    (this.jsonFormUrl.admissionForm);
   }
   createForm(controls: JsonFormControls[]):FormGroup {
     let formGroup = this.fb.group({});

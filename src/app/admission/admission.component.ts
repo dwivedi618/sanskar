@@ -17,6 +17,8 @@ import { admissionFormFields } from './admissionFormFields';
 import { COMMON_CONFIG } from '../config/commonConfig';
 import { JsonFormService } from '../services/json-form.service';
 import { JsonFormControlOptions, JsonFormControls, JsonFormData } from '../layouts/shared/json-form/json-from.types';
+import { Observable } from 'rxjs';
+import { startWith } from 'rxjs/operators';
 export interface DialogData {
   animal: string;
   name: string;
@@ -33,21 +35,11 @@ interface BloodGroup {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdmissionComponent implements OnInit {
-  animal: string;
-  name: string;
-  admission: StudentForm;
-  applicationNumber = 1;
   studentForm: FormGroup = this.fb.group({});
-  parentForm: FormGroup;
-  addressForm: FormGroup;
-  otherForm: FormGroup;
-  registerForm: FormGroup;
-
-  submitted = false;
-  imagePreview = '';
-  student: any;
-  route = 'student/register-student';
-  local_data: any;
+  parentForm: FormGroup = this.fb.group({});
+  permanentAddressForm: FormGroup = this.fb.group({});
+  localAddressForm: FormGroup = this.fb.group({});
+ 
   action: any;
   parents: any;
   studentId: any;
@@ -58,6 +50,10 @@ export class AdmissionComponent implements OnInit {
   admissionFormFields: JsonFormData;
   commonConfig = COMMON_CONFIG
   parentsFormFields: JsonFormData;
+  filteredOptions: Observable<JsonFormControlOptions[]>;
+  permanentAddressFormFields: JsonFormData;
+  localAddressFormFields: JsonFormData;
+  
 
   constructor(
     public dialog: MatDialog,
@@ -70,8 +66,6 @@ export class AdmissionComponent implements OnInit {
     private jsonFormService: JsonFormService
 
   ) {
-
-
     this.activatedRoute.queryParams.subscribe((data) => {
 
       if (data && data.action === 'update') {
@@ -85,12 +79,20 @@ export class AdmissionComponent implements OnInit {
 
   }
 
+ 
+
   ngOnChanges(changes: SimpleChanges) {
     if (!changes.admissionFormFields.firstChange) {
       this.studentForm = this.jsonFormService.createForm(this.admissionFormFields.controls);
     }
     if (!changes.parentsFormFields.firstChange) {
-      this.studentForm = this.jsonFormService.createForm(this.parentsFormFields.controls);
+      this.parentForm = this.jsonFormService.createForm(this.parentsFormFields.controls);
+    }
+    if (!changes.permanentAddressFormFields.firstChange) {
+      this.permanentAddressForm = this.jsonFormService.createForm(this.permanentAddressFormFields.controls);
+    }
+    if (!changes.localAddressFormFields.firstChange) {
+      this.localAddressForm = this.jsonFormService.createForm(this.localAddressFormFields.controls);
     }
   }
 
@@ -99,10 +101,20 @@ export class AdmissionComponent implements OnInit {
       console.log("admission form", formJson)
       this.admissionFormFields = formJson.studentForm;
       this.parentsFormFields = formJson.parentForm;
+      this.permanentAddressFormFields = formJson.permanentAddressForm; 
+      this.localAddressFormFields = formJson.localAddressForm; 
+
       this.studentForm = this.jsonFormService.createForm(this.admissionFormFields.controls);
       this.parentForm = this.jsonFormService.createForm(this.parentsFormFields.controls);
+      this.permanentAddressForm = this.jsonFormService.createForm(this.permanentAddressFormFields.controls);
+      this.localAddressForm = this.jsonFormService.createForm(this.localAddressFormFields.controls);
 
     });
+  }
+
+  onImageSelect(image,formFieldName,formName){
+    let form = this[formName];
+    form.patchValue({[formFieldName]:image});
   }
   getProfile() {
     this.commonService.getStudentRecordById(this.studentId)
@@ -124,7 +136,6 @@ export class AdmissionComponent implements OnInit {
   } 
   onStudentSubmit() {
     console.log("studentForm", this.studentForm.value)
-    this.submitted = true;
 
     //     // stop here if form is invalid
     if (this.studentForm.invalid) {

@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, SimpleChanges, OnChanges } from '@angular/core';
 import { JsonFormData } from './json-from.types';
 
 @Component({
@@ -7,8 +7,13 @@ import { JsonFormData } from './json-from.types';
   styleUrls: ['./json-form.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class JsonFormComponent implements OnInit {
-  @Input() jsonFormData: JsonFormData;
+export class JsonFormComponent implements OnChanges {
+  @Input() jsonFormFields: JsonFormData;
   constructor() { }
-  ngOnInit() {}
+  ngOnChanges(changes: SimpleChanges) {
+    if (!changes.jsonFormFields.firstChange) {
+      console.log(this.jsonFormFields);
+    }
+  }
+
 }

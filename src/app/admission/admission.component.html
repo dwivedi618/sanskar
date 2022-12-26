@@ -1,588 +1,587 @@
 <section style="min-height: calc(100vh-6rem);" style="margin-bottom: 5rem;">
     <div class="fadeIn" style="max-height: 100vh;">
-        <mat-card class="card border-0  p-0" style="font-size: 12px;">
+        <mat-card class="card border-0  p-0" style="font-size: 12px;background: #ccc;">
             <mat-vertical-stepper #stepper>
                 <mat-step [stepControl]="studentForm" class="">
-                    <form class="my-4 py-2 " [formGroup]="studentForm">
+                    <form class="my-4" [formGroup]="studentForm" >
                         <ng-template matStepLabel>Fill Student Data</ng-template>
-                        <div class=" d-flex justify-content-center">
-                            <div class="col-sm-12 col-md-10 col-lg-10">
+                        <mat-toolbar color="primary" class="justify-content-center">
+                            <span style="text-transform: uppercase;">Student Form</span>
+                        </mat-toolbar>
+                        <div class="row justify-content-center my-4">
+                            <div class="col-md-8">
+                                <ng-container *ngFor="let field of admissionFormFields?.controls">
 
-                                <div class="row">
-                                    <div class="col-md-8">
-                                        <ng-container *ngFor="let field of admissionFormFields?.controls">
+                                    <ng-container *ngIf="
+                                    [
+                                      'text',
+                                      'password',
+                                      'email',
+                                      'number',
+                                      'search',
+                                      'tel',
+                                      'url'
+                                    ].includes(field.type)
+                                  ">
+                                        <div class="row ">
+                                            <div class="col-3 text-left justify-content-center">
+                                                <label>{{field.label}}{{field?.validators?.required ? '*' :
+                                                    ''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <mat-form-field appearance="outline" class="w-100">
+                                                    <mat-label>{{field.label}}</mat-label>
+                                                    <input matInput type="field.type"
+                                                        [formControlName]="field.name">
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </ng-container>
 
-                                            <ng-container *ngIf="
-                                            [
-                                              'text',
-                                              'password',
-                                              'email',
-                                              'number',
-                                              'search',
-                                              'tel',
-                                              'url'
-                                            ].includes(field.type)
-                                          ">
-                                                <div class="row ">
-                                                    <div class="col-3 text-left justify-content-center">
-                                                        <label>{{field.label}}{{field?.validators?.required ? '*' :
-                                                            ''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <mat-form-field appearance="outline" class="w-100">
-                                                            <mat-label>{{field.label}}</mat-label>
-                                                            <input matInput type="field.type"
-                                                                [formControlName]="field.name">
-                                                        </mat-form-field>
-                                                    </div>
-                                                </div>
-                                            </ng-container>
+                                    <ng-container *ngIf="field.type === 'textarea'">
+                                        <div class="row">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                    ''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <mat-form-field appearance="outline" class="w-100">
+                                                    <mat-label>{{field.label}}</mat-label>
+                                                    <textarea matInput placeholder="Ex:description"
+                                                        [formControlName]="field.name"></textarea>
+                                                    <!-- <mat-hint>{{field.hint}}</mat-hint> -->
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="field.type === 'radio'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                    ''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <mat-radio-group [formControlName]="field.name">
+                                                    <mat-radio-button class="mr-4 w-50"
+                                                        *ngFor="let opt of field.options" [value]="opt.value">
+                                                        <span class="fs-14 ">{{opt.label}}</span>
+                                                    </mat-radio-button>
+                                                </mat-radio-group>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="field.type === 'date'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                    ''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <mat-form-field appearance="outline" class="w-100">
+                                                    <input matInput [formControlName]="field.name" #input
+                                                        placeholder="MM/DD/YYYY" [matDatepicker]="dp3"
+                                                        [disabled]="true">
+                                                    <mat-datepicker-toggle matSuffix
+                                                        [for]="dp3"></mat-datepicker-toggle>
+                                                    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                                                    <mat-hint *ngIf="input?.value">{{input?.value | age}}
+                                                        years</mat-hint>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
 
-                                            <ng-container *ngIf="field.type === 'textarea'">
-                                                <div class="row">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <mat-form-field appearance="outline" class="w-100">
-                                                            <mat-label>{{field.label}}</mat-label>
-                                                            <textarea matInput placeholder="Ex:description"
-                                                                [formControlName]="field.name"></textarea>
-                                                            <!-- <mat-hint>{{field.hint}}</mat-hint> -->
-                                                        </mat-form-field>
-                                                    </div>
-                                                </div>
-                                            </ng-container>
-                                            <ng-container *ngIf="field.type === 'radio'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <mat-radio-group [formControlName]="field.name">
-                                                            <mat-radio-button class="mr-4 w-50"
-                                                                *ngFor="let opt of field.options" [value]="opt.value">
-                                                                <span class="fs-14 ">{{opt.label}}</span>
-                                                            </mat-radio-button>
-                                                        </mat-radio-group>
-                                                    </div>
-                                                </div>
-                                            </ng-container>
-                                            <ng-container *ngIf="field.type === 'date'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <mat-form-field appearance="outline" class="w-100">
-                                                            <input matInput [formControlName]="field.name" #input
-                                                                placeholder="MM/DD/YYYY" [matDatepicker]="dp3"
-                                                                [disabled]="true">
-                                                            <mat-datepicker-toggle matSuffix
-                                                                [for]="dp3"></mat-datepicker-toggle>
-                                                            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
-                                                            <mat-hint *ngIf="input?.value">{{input?.value | age}}
-                                                                years</mat-hint>
-                                                        </mat-form-field>
-                                                    </div>
-                                                </div>
-
-                                            </ng-container>
-                                            <ng-container *ngIf="field.type === 'dropdown'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*'
-                                                            :''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <mat-form-field appearance="outline" class="w-100"
-                                                            (click)="fetchValue(field)">
-                                                            <mat-select [formControlName]="field.name">
-                                                                <mat-option value="">Select {{field.label ||
-                                                                    ''}}</mat-option>
-                                                                <ng-container
-                                                                    *ngIf="field?.hitHttp && field?.method;else options">
-                                                                    <mat-option
-                                                                        *ngFor="let option of this.commonService.formOptions[field.method] | async"
-                                                                        [value]="option.value">{{option.label}}
-                                                                    </mat-option>
-                                                                </ng-container>
-                                                                <ng-template #options>
-                                                                    <mat-option *ngFor="let option of field?.options"
-                                                                        [value]="option.value">{{option.label}}
-                                                                    </mat-option>
-                                                                </ng-template>
-                                                            </mat-select>
-                                                        </mat-form-field>
-                                                    </div>
-                                                </div>
-                                            </ng-container>
-                                            <ng-container *ngIf="field.type === 'autocomplete'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <mat-form-field appearance="outline" class="w-100">
-                                                            <input type="text" placeholder="Select {{field.label}}"
-                                                                aria-label={{field.label}} matInput
-                                                                [formControlName]="field.name" [matAutocomplete]="auto">
-                                                            <mat-autocomplete #auto="matAutocomplete">
-                                                                <mat-option *ngFor="let option of field.options"
-                                                                    [value]="option.value">
-                                                                    {{option.label}}
-                                                                </mat-option>
-                                                            </mat-autocomplete>
-                                                        </mat-form-field>
-                                                    </div>
-                                                </div>
-                                            </ng-container>
-                                            <ng-container *ngIf="field.type === 'image'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <app-image-picker
-                                                            (onImageSelect)="onImageSelect($event,field.name,'studentForm')"></app-image-picker>
-                                                    </div>
-                                                </div>
-                                            </ng-container>
-                                        </ng-container>
-                                    </div>
-                                </div>
-
-                                <div class="d-flex justify-content-end my-4">
-                                    <button mat-raised-button type="submit" color="primary" (click)="onStudentSubmit()"
-                                        matStepperNext>Save and
-                                        Next</button>
-                                </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="field.type === 'dropdown'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*'
+                                                    :''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <mat-form-field appearance="outline" class="w-100"
+                                                    (click)="fetchValue(field)">
+                                                    <mat-select [formControlName]="field.name">
+                                                        <mat-option value="">Select {{field.label ||
+                                                            ''}}</mat-option>
+                                                        <ng-container
+                                                            *ngIf="field?.hitHttp && field?.method;else options">
+                                                            <mat-option
+                                                                *ngFor="let option of this.commonService.formOptions[field.method] | async"
+                                                                [value]="option.value">{{option.label}}
+                                                            </mat-option>
+                                                        </ng-container>
+                                                        <ng-template #options>
+                                                            <mat-option *ngFor="let option of field?.options"
+                                                                [value]="option.value">{{option.label}}
+                                                            </mat-option>
+                                                        </ng-template>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="field.type === 'autocomplete'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                    ''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <mat-form-field appearance="outline" class="w-100">
+                                                    <input type="text" placeholder="Select {{field.label}}"
+                                                        aria-label={{field.label}} matInput
+                                                        [formControlName]="field.name" [matAutocomplete]="auto">
+                                                    <mat-autocomplete #auto="matAutocomplete">
+                                                        <mat-option *ngFor="let option of field.options"
+                                                            [value]="option.value">
+                                                            {{option.label}}
+                                                        </mat-option>
+                                                    </mat-autocomplete>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="field.type === 'image'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                    ''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <app-image-picker
+                                                    (onImageSelect)="onImageSelect($event,field.name,'studentForm')"></app-image-picker>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
                             </div>
                         </div>
+                        <mat-toolbar color="primary">
+                            <div class="spacer"></div>
+                            <button mat-raised-button type="submit" class="btn-dark" (click)="onStudentSubmit()"
+                                matStepperNext>Save and
+                                Next</button>
+                            <div class="spacer"></div>
+                        </mat-toolbar>
                     </form>
                 </mat-step>
                 <mat-step [stepControl]="parentForm" class="">
-                    <form class="my-4 py-2 " [formGroup]="parentForm">
+                    <form class="my-4" [formGroup]="parentForm">
                         <ng-template matStepLabel>Fill Student's parents Data</ng-template>
-                        <div class=" d-flex justify-content-center">
-                            <div class="col-sm-12 col-md-10 col-lg-10">
-
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <ng-container *ngFor="let field of parentsFormFields?.controls">
-                                            <div class="row " *ngIf="
-                                            [
-                                              'text',
-                                              'password',
-                                              'email',
-                                              'number',
-                                              'search',
-                                              'tel',
-                                              'url'
-                                            ].includes(field.type)
-                                          ">
-                                                <div class="col-3 text-left justify-content-center">
-                                                    <label>{{field.label}}{{field?.validators?.required ? '*' :
-                                                        ''}}</label>
-                                                </div>
-                                                <div class="col-9 text-left">
-                                                    <mat-form-field appearance="outline" class="w-100">
-                                                        <mat-label>{{field.label}}</mat-label>
-                                                        <input matInput type="field.type"
-                                                            [formControlName]="field.name">
-                                                    </mat-form-field>
-                                                </div>
-                                            </div>
-
-                                            <div class="row" *ngIf="field.type === 'textarea'">
-                                                <div class="col-3 text-left">
-                                                    <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                        ''}}</label>
-                                                </div>
-                                                <div class="col-9 text-left">
-                                                    <mat-form-field appearance="outline" class="w-100">
-                                                        <mat-label>{{field.label}}</mat-label>
-                                                        <textarea matInput placeholder="Ex:description"
-                                                            [formControlName]="field.name"></textarea>
-                                                        <!-- <mat-hint>{{field.hint}}</mat-hint> -->
-                                                    </mat-form-field>
-                                                </div>
-                                            </div>
-                                            <ng-container *ngIf="field.type === 'radio'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <mat-radio-group [formControlName]="field.name">
-                                                            <mat-radio-button class="mr-4 w-50"
-                                                                *ngFor="let opt of field.options" [value]="opt.value">
-                                                                <span class="fs-14 ">{{opt.label}}</span>
-                                                            </mat-radio-button>
-                                                        </mat-radio-group>
-                                                    </div>
-                                                </div>
-                                            </ng-container>
-                                            <ng-container *ngIf="field.type === 'date'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <mat-form-field appearance="outline" class="w-100">
-                                                            <input matInput [formControlName]="field.name" #input
-                                                                placeholder="MM/DD/YYYY" [matDatepicker]="dp3"
-                                                                [disabled]="true">
-                                                            <mat-datepicker-toggle matSuffix
-                                                                [for]="dp3"></mat-datepicker-toggle>
-                                                            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
-                                                            <mat-hint *ngIf="input?.value">{{input?.value | age}}
-                                                                years</mat-hint>
-                                                        </mat-form-field>
-                                                    </div>
-                                                </div>
-
-                                            </ng-container>
-                                            <ng-container *ngIf="field.type === 'dropdown'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*'
-                                                            :''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <mat-form-field appearance="outline" class="w-100"
-                                                            (click)="fetchValue(field)">
-                                                            <mat-select [formControlName]="field.name">
-                                                                <mat-option value="">Select {{field.label ||
-                                                                    ''}}</mat-option>
-                                                                <ng-container
-                                                                    *ngIf="field?.hitHttp && field?.method;else options">
-                                                                    <mat-option
-                                                                        *ngFor="let option of this.commonService.formOptions[field.method] | async"
-                                                                        [value]="option.value">{{option.label}}
-                                                                    </mat-option>
-                                                                </ng-container>
-                                                                <ng-template #options>
-                                                                    <mat-option *ngFor="let option of field?.options"
-                                                                        [value]="option.value">{{option.label}}
-                                                                    </mat-option>
-                                                                </ng-template>
-                                                            </mat-select>
-                                                        </mat-form-field>
-                                                    </div>
-                                                </div>
-
-                                            </ng-container>
-                                            <ng-container *ngIf="field.type === 'image'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <app-image-picker
-                                                            (onImageSelect)="onImageSelect($event,field.name,'parentForm')"></app-image-picker>
-                                                    </div>
-                                                </div>
-                                            </ng-container>
-                                        </ng-container>
+                        <mat-toolbar color="primary" class="justify-content-center">
+                            <span style="text-transform: uppercase;">Student's parents form</span>
+                        </mat-toolbar>
+                        <div class="row justify-content-center  my-4">
+                            <div class="col-md-8">
+                                <ng-container *ngFor="let field of parentsFormFields?.controls">
+                                    <div class="row " *ngIf="
+                                    [
+                                      'text',
+                                      'password',
+                                      'email',
+                                      'number',
+                                      'search',
+                                      'tel',
+                                      'url'
+                                    ].includes(field.type)
+                                  ">
+                                        <div class="col-3 text-left justify-content-center">
+                                            <label>{{field.label}}{{field?.validators?.required ? '*' :
+                                                ''}}</label>
+                                        </div>
+                                        <div class="col-9 text-left">
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <mat-label>{{field.label}}</mat-label>
+                                                <input matInput type="field.type"
+                                                    [formControlName]="field.name">
+                                            </mat-form-field>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="d-flex justify-content-end my-4">
-                                    <button mat-raised-button type="submit" color="primary" (click)="onParentSubmit()"
-                                        matStepperNext>Save and
-                                        Next</button>
-                                </div>
+                                    <div class="row" *ngIf="field.type === 'textarea'">
+                                        <div class="col-3 text-left">
+                                            <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                ''}}</label>
+                                        </div>
+                                        <div class="col-9 text-left">
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <mat-label>{{field.label}}</mat-label>
+                                                <textarea matInput placeholder="Ex:description"
+                                                    [formControlName]="field.name"></textarea>
+                                                <!-- <mat-hint>{{field.hint}}</mat-hint> -->
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <ng-container *ngIf="field.type === 'radio'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                    ''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <mat-radio-group [formControlName]="field.name">
+                                                    <mat-radio-button class="mr-4 w-50"
+                                                        *ngFor="let opt of field.options" [value]="opt.value">
+                                                        <span class="fs-14 ">{{opt.label}}</span>
+                                                    </mat-radio-button>
+                                                </mat-radio-group>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="field.type === 'date'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                    ''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <mat-form-field appearance="outline" class="w-100">
+                                                    <input matInput [formControlName]="field.name" #input
+                                                        placeholder="MM/DD/YYYY" [matDatepicker]="dp3"
+                                                        [disabled]="true">
+                                                    <mat-datepicker-toggle matSuffix
+                                                        [for]="dp3"></mat-datepicker-toggle>
+                                                    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                                                    <mat-hint *ngIf="input?.value">{{input?.value | age}}
+                                                        years</mat-hint>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+
+                                    </ng-container>
+                                    <ng-container *ngIf="field.type === 'dropdown'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*'
+                                                    :''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <mat-form-field appearance="outline" class="w-100"
+                                                    (click)="fetchValue(field)">
+                                                    <mat-select [formControlName]="field.name">
+                                                        <mat-option value="">Select {{field.label ||
+                                                            ''}}</mat-option>
+                                                        <ng-container
+                                                            *ngIf="field?.hitHttp && field?.method;else options">
+                                                            <mat-option
+                                                                *ngFor="let option of this.commonService.formOptions[field.method] | async"
+                                                                [value]="option.value">{{option.label}}
+                                                            </mat-option>
+                                                        </ng-container>
+                                                        <ng-template #options>
+                                                            <mat-option *ngFor="let option of field?.options"
+                                                                [value]="option.value">{{option.label}}
+                                                            </mat-option>
+                                                        </ng-template>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+
+                                    </ng-container>
+                                    <ng-container *ngIf="field.type === 'image'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                    ''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <app-image-picker
+                                                    (onImageSelect)="onImageSelect($event,field.name,'parentForm')"></app-image-picker>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                                
                             </div>
                         </div>
+                        <mat-toolbar color="primary">
+                            <div class="spacer"></div>
+                            <button mat-raised-button type="submit" class="btn-dark" (click)="onParentSubmit()"
+                                matStepperNext>Save and
+                                Next</button>
+                            <div class="spacer"></div>
+                        </mat-toolbar>
                     </form>
                 </mat-step>
 
                 <mat-step [stepControl]="permanentAddressForm" class="">
-                    <form class="my-4 py-2 " [formGroup]="permanentAddressForm">
+                    <form class="my-4" [formGroup]="permanentAddressForm">
                         <ng-template matStepLabel>Fill Permanent Address</ng-template>
-                        <div class=" d-flex justify-content-center">
-                            <div class="col-sm-12 col-md-10 col-lg-10">
-
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <ng-container *ngFor="let field of permanentAddressFormFields?.controls">
-                                            <div class="row " *ngIf="
-                                            [
-                                              'text',
-                                              'password',
-                                              'email',
-                                              'number',
-                                              'search',
-                                              'tel',
-                                              'url'
-                                            ].includes(field.type)
-                                          ">
-                                                <div class="col-3 text-left justify-content-center">
-                                                    <label>{{field.label}}{{field?.validators?.required ? '*' :
-                                                        ''}}</label>
-                                                </div>
-                                                <div class="col-9 text-left">
-                                                    <mat-form-field appearance="outline" class="w-100">
-                                                        <mat-label>{{field.label}}</mat-label>
-                                                        <input matInput type="field.type"
-                                                            [formControlName]="field.name">
-                                                    </mat-form-field>
-                                                </div>
-                                            </div>
-
-                                            <div class="row" *ngIf="field.type === 'textarea'">
-                                                <div class="col-3 text-left">
-                                                    <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                        ''}}</label>
-                                                </div>
-                                                <div class="col-9 text-left">
-                                                    <mat-form-field appearance="outline" class="w-100">
-                                                        <mat-label>{{field.label}}</mat-label>
-                                                        <textarea matInput placeholder="Ex:description"
-                                                            [formControlName]="field.name"></textarea>
-                                                        <!-- <mat-hint>{{field.hint}}</mat-hint> -->
-                                                    </mat-form-field>
-                                                </div>
-                                            </div>
-                                            <ng-container *ngIf="field.type === 'radio'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <mat-radio-group [formControlName]="field.name">
-                                                            <mat-radio-button class="mr-4 w-50"
-                                                                *ngFor="let opt of field.options" [value]="opt.value">
-                                                                <span class="fs-14 ">{{opt.label}}</span>
-                                                            </mat-radio-button>
-                                                        </mat-radio-group>
-                                                    </div>
-                                                </div>
-                                            </ng-container>
-                                            <ng-container *ngIf="field.type === 'date'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <mat-form-field appearance="outline" class="w-100">
-                                                            <input matInput [formControlName]="field.name" #input
-                                                                placeholder="MM/DD/YYYY" [matDatepicker]="dp3"
-                                                                [disabled]="true">
-                                                            <mat-datepicker-toggle matSuffix
-                                                                [for]="dp3"></mat-datepicker-toggle>
-                                                            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
-                                                            <mat-hint *ngIf="input?.value">{{input?.value | age}}
-                                                                years</mat-hint>
-                                                        </mat-form-field>
-                                                    </div>
-                                                </div>
-
-                                            </ng-container>
-                                            <ng-container *ngIf="field.type === 'dropdown'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*'
-                                                            :''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <mat-form-field appearance="outline" class="w-100"
-                                                            (click)="fetchValue(field)">
-                                                            <mat-select [formControlName]="field.name">
-                                                                <mat-option value="">Select {{field.label ||
-                                                                    ''}}</mat-option>
-                                                                <ng-container
-                                                                    *ngIf="field?.hitHttp && field?.method;else options">
-                                                                    <mat-option
-                                                                        *ngFor="let option of this.commonService.formOptions[field.method] | async"
-                                                                        [value]="option.value">{{option.label}}
-                                                                    </mat-option>
-                                                                </ng-container>
-                                                                <ng-template #options>
-                                                                    <mat-option *ngFor="let option of field?.options"
-                                                                        [value]="option.value">{{option.label}}
-                                                                    </mat-option>
-                                                                </ng-template>
-                                                            </mat-select>
-                                                        </mat-form-field>
-                                                    </div>
-                                                </div>
-
-                                            </ng-container>
-                                            <ng-container *ngIf="field.type === 'image'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <app-image-picker
-                                                            (onImageSelect)="onImageSelect($event,field.name,'permanentAddressForm')"></app-image-picker>
-                                                    </div>
-                                                </div>
-                                            </ng-container>
-                                        </ng-container>
+                        <mat-toolbar color="primary" class="justify-content-center">
+                            <span style="text-transform: uppercase;">Address From | Permanent</span>
+                        </mat-toolbar>
+                        <div class="row justify-content-center  my-4">
+                            <div class="col-md-8">
+                                <ng-container *ngFor="let field of permanentAddressFormFields?.controls">
+                                    <div class="row " *ngIf="
+                                    [
+                                      'text',
+                                      'password',
+                                      'email',
+                                      'number',
+                                      'search',
+                                      'tel',
+                                      'url'
+                                    ].includes(field.type)
+                                  ">
+                                        <div class="col-3 text-left justify-content-center">
+                                            <label>{{field.label}}{{field?.validators?.required ? '*' :
+                                                ''}}</label>
+                                        </div>
+                                        <div class="col-9 text-left">
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <mat-label>{{field.label}}</mat-label>
+                                                <input matInput type="field.type"
+                                                    [formControlName]="field.name">
+                                            </mat-form-field>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="d-flex justify-content-end my-4">
-                                    <button mat-raised-button type="submit" color="primary" matStepperNext>Save
-                                        permanent address and
-                                        Next</button>
-                                </div>
+                                    <div class="row" *ngIf="field.type === 'textarea'">
+                                        <div class="col-3 text-left">
+                                            <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                ''}}</label>
+                                        </div>
+                                        <div class="col-9 text-left">
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <mat-label>{{field.label}}</mat-label>
+                                                <textarea matInput placeholder="Ex:description"
+                                                    [formControlName]="field.name"></textarea>
+                                                <!-- <mat-hint>{{field.hint}}</mat-hint> -->
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <ng-container *ngIf="field.type === 'radio'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                    ''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <mat-radio-group [formControlName]="field.name">
+                                                    <mat-radio-button class="mr-4 w-50"
+                                                        *ngFor="let opt of field.options" [value]="opt.value">
+                                                        <span class="fs-14 ">{{opt.label}}</span>
+                                                    </mat-radio-button>
+                                                </mat-radio-group>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="field.type === 'date'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                    ''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <mat-form-field appearance="outline" class="w-100">
+                                                    <input matInput [formControlName]="field.name" #input
+                                                        placeholder="MM/DD/YYYY" [matDatepicker]="dp3"
+                                                        [disabled]="true">
+                                                    <mat-datepicker-toggle matSuffix
+                                                        [for]="dp3"></mat-datepicker-toggle>
+                                                    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                                                    <mat-hint *ngIf="input?.value">{{input?.value | age}}
+                                                        years</mat-hint>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+
+                                    </ng-container>
+                                    <ng-container *ngIf="field.type === 'dropdown'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*'
+                                                    :''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <mat-form-field appearance="outline" class="w-100"
+                                                    (click)="fetchValue(field)">
+                                                    <mat-select [formControlName]="field.name">
+                                                        <mat-option value="">Select {{field.label ||
+                                                            ''}}</mat-option>
+                                                        <ng-container
+                                                            *ngIf="field?.hitHttp && field?.method;else options">
+                                                            <mat-option
+                                                                *ngFor="let option of this.commonService.formOptions[field.method] | async"
+                                                                [value]="option.value">{{option.label}}
+                                                            </mat-option>
+                                                        </ng-container>
+                                                        <ng-template #options>
+                                                            <mat-option *ngFor="let option of field?.options"
+                                                                [value]="option.value">{{option.label}}
+                                                            </mat-option>
+                                                        </ng-template>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+
+                                    </ng-container>
+                                    <ng-container *ngIf="field.type === 'image'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                    ''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <app-image-picker
+                                                    (onImageSelect)="onImageSelect($event,field.name,'permanentAddressForm')"></app-image-picker>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
+                                
                             </div>
                         </div>
+                        <mat-toolbar color="primary">
+                            <div class="spacer"></div>
+                            <button mat-raised-button type="submit" class="btn-dark"  matStepperNext>Save
+                                permanent address and
+                                Next</button>
+                                <div class="spacer"></div>
+                        </mat-toolbar>
                     </form>
                 </mat-step>
 
                 <mat-step [stepControl]="localAddressForm" class="">
-                    <form class="my-4 py-2 " [formGroup]="localAddressForm">
+                    <form class="my-4" [formGroup]="localAddressForm">
                         <ng-template matStepLabel>Fill Local Address</ng-template>
-                        <div class=" d-flex justify-content-center">
-                            <div class="col-sm-12 col-md-10 col-lg-10">
-
-                                <div class="row">
-                                    <div class="col-md-10">
-                                        <ng-container *ngFor="let field of localAddressFormFields?.controls">
-                                            <div class="row " *ngIf="
-                                            [
-                                              'text',
-                                              'password',
-                                              'email',
-                                              'number',
-                                              'search',
-                                              'tel',
-                                              'url'
-                                            ].includes(field.type)
-                                          ">
-                                                <div class="col-3 text-left justify-content-center">
-                                                    <label>{{field.label}}{{field?.validators?.required ? '*' :
-                                                        ''}}</label>
-                                                </div>
-                                                <div class="col-9 text-left">
-                                                    <mat-form-field appearance="outline" class="w-100">
-                                                        <mat-label>{{field.label}}</mat-label>
-                                                        <input matInput type="field.type"
-                                                            [formControlName]="field.name">
-                                                    </mat-form-field>
-                                                </div>
-                                            </div>
-
-                                            <div class="row" *ngIf="field.type === 'textarea'">
-                                                <div class="col-3 text-left">
-                                                    <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                        ''}}</label>
-                                                </div>
-                                                <div class="col-9 text-left">
-                                                    <mat-form-field appearance="outline" class="w-100">
-                                                        <mat-label>{{field.label}}</mat-label>
-                                                        <textarea matInput placeholder="Ex:description"
-                                                            [formControlName]="field.name"></textarea>
-                                                        <!-- <mat-hint>{{field.hint}}</mat-hint> -->
-                                                    </mat-form-field>
-                                                </div>
-                                            </div>
-                                            <ng-container *ngIf="field.type === 'radio'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <mat-radio-group [formControlName]="field.name">
-                                                            <mat-radio-button class="mr-4 w-50"
-                                                                *ngFor="let opt of field.options" [value]="opt.value">
-                                                                <span class="fs-14 ">{{opt.label}}</span>
-                                                            </mat-radio-button>
-                                                        </mat-radio-group>
-                                                    </div>
-                                                </div>
-                                            </ng-container>
-                                            <ng-container *ngIf="field.type === 'date'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <mat-form-field appearance="outline" class="w-100">
-                                                            <input matInput [formControlName]="field.name" #input
-                                                                placeholder="MM/DD/YYYY" [matDatepicker]="dp3"
-                                                                [disabled]="true">
-                                                            <mat-datepicker-toggle matSuffix
-                                                                [for]="dp3"></mat-datepicker-toggle>
-                                                            <mat-datepicker #dp3 disabled="false"></mat-datepicker>
-                                                            <mat-hint *ngIf="input?.value">{{input?.value | age}}
-                                                                years</mat-hint>
-                                                        </mat-form-field>
-                                                    </div>
-                                                </div>
-
-                                            </ng-container>
-                                            <ng-container *ngIf="field.type === 'dropdown'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*'
-                                                            :''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <mat-form-field appearance="outline" class="w-100"
-                                                            (click)="fetchValue(field)">
-                                                            <mat-select [formControlName]="field.name">
-                                                                <mat-option value="">Select {{field.label ||
-                                                                    ''}}</mat-option>
-                                                                <ng-container
-                                                                    *ngIf="field?.hitHttp && field?.method;else options">
-                                                                    <mat-option
-                                                                        *ngFor="let option of this.commonService.formOptions[field.method] | async"
-                                                                        [value]="option.value">{{option.label}}
-                                                                    </mat-option>
-                                                                </ng-container>
-                                                                <ng-template #options>
-                                                                    <mat-option *ngFor="let option of field?.options"
-                                                                        [value]="option.value">{{option.label}}
-                                                                    </mat-option>
-                                                                </ng-template>
-                                                            </mat-select>
-                                                        </mat-form-field>
-                                                    </div>
-                                                </div>
-
-                                            </ng-container>
-                                            <ng-container *ngIf="field.type === 'image'">
-                                                <div class="row my-4">
-                                                    <div class="col-3 text-left">
-                                                        <label>{{field.label}} {{field.validators?.required ? '*' :
-                                                            ''}}</label>
-                                                    </div>
-                                                    <div class="col-9 text-left">
-                                                        <app-image-picker
-                                                            (onImageSelect)="onImageSelect($event,field.name,'localAddressFormFields')"></app-image-picker>
-                                                    </div>
-                                                </div>
-                                            </ng-container>
-                                        </ng-container>
+                        <mat-toolbar color="primary" class="justify-content-center">
+                            <span style="text-transform: uppercase;">Address From | Local</span>
+                        </mat-toolbar>
+                        <div class="row justify-content-center  my-4">
+                            <div class="col-md-8">
+                                <ng-container *ngFor="let field of localAddressFormFields?.controls">
+                                    <div class="row " *ngIf="
+                                    [
+                                      'text',
+                                      'password',
+                                      'email',
+                                      'number',
+                                      'search',
+                                      'tel',
+                                      'url'
+                                    ].includes(field.type)
+                                  ">
+                                        <div class="col-3 text-left justify-content-center">
+                                            <label>{{field.label}}{{field?.validators?.required ? '*' :
+                                                ''}}</label>
+                                        </div>
+                                        <div class="col-9 text-left">
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <mat-label>{{field.label}}</mat-label>
+                                                <input matInput type="field.type"
+                                                    [formControlName]="field.name">
+                                            </mat-form-field>
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="d-flex justify-content-end my-4">
-                                    <button mat-raised-button type="submit" color="primary" matStepperNext>Save local
-                                        address and
-                                        Next</button>
-                                </div>
+                                    <div class="row" *ngIf="field.type === 'textarea'">
+                                        <div class="col-3 text-left">
+                                            <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                ''}}</label>
+                                        </div>
+                                        <div class="col-9 text-left">
+                                            <mat-form-field appearance="outline" class="w-100">
+                                                <mat-label>{{field.label}}</mat-label>
+                                                <textarea matInput placeholder="Ex:description"
+                                                    [formControlName]="field.name"></textarea>
+                                                <!-- <mat-hint>{{field.hint}}</mat-hint> -->
+                                            </mat-form-field>
+                                        </div>
+                                    </div>
+                                    <ng-container *ngIf="field.type === 'radio'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                    ''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <mat-radio-group [formControlName]="field.name">
+                                                    <mat-radio-button class="mr-4 w-50"
+                                                        *ngFor="let opt of field.options" [value]="opt.value">
+                                                        <span class="fs-14 ">{{opt.label}}</span>
+                                                    </mat-radio-button>
+                                                </mat-radio-group>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                    <ng-container *ngIf="field.type === 'date'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                    ''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <mat-form-field appearance="outline" class="w-100">
+                                                    <input matInput [formControlName]="field.name" #input
+                                                        placeholder="MM/DD/YYYY" [matDatepicker]="dp3"
+                                                        [disabled]="true">
+                                                    <mat-datepicker-toggle matSuffix
+                                                        [for]="dp3"></mat-datepicker-toggle>
+                                                    <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                                                    <mat-hint *ngIf="input?.value">{{input?.value | age}}
+                                                        years</mat-hint>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+
+                                    </ng-container>
+                                    <ng-container *ngIf="field.type === 'dropdown'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*'
+                                                    :''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <mat-form-field appearance="outline" class="w-100"
+                                                    (click)="fetchValue(field)">
+                                                    <mat-select [formControlName]="field.name">
+                                                        <mat-option value="">Select {{field.label ||
+                                                            ''}}</mat-option>
+                                                        <ng-container
+                                                            *ngIf="field?.hitHttp && field?.method;else options">
+                                                            <mat-option
+                                                                *ngFor="let option of this.commonService.formOptions[field.method] | async"
+                                                                [value]="option.value">{{option.label}}
+                                                            </mat-option>
+                                                        </ng-container>
+                                                        <ng-template #options>
+                                                            <mat-option *ngFor="let option of field?.options"
+                                                                [value]="option.value">{{option.label}}
+                                                            </mat-option>
+                                                        </ng-template>
+                                                    </mat-select>
+                                                </mat-form-field>
+                                            </div>
+                                        </div>
+
+                                    </ng-container>
+                                    <ng-container *ngIf="field.type === 'image'">
+                                        <div class="row my-4">
+                                            <div class="col-3 text-left">
+                                                <label>{{field.label}} {{field.validators?.required ? '*' :
+                                                    ''}}</label>
+                                            </div>
+                                            <div class="col-9 text-left">
+                                                <app-image-picker
+                                                    (onImageSelect)="onImageSelect($event,field.name,'localAddressFormFields')"></app-image-picker>
+                                            </div>
+                                        </div>
+                                    </ng-container>
+                                </ng-container>
                             </div>
                         </div>
+                        <mat-toolbar color="primary">
+                            <div class="spacer"></div>
+                            <button mat-raised-button type="submit" class="btn-dark"  matStepperNext>Save local
+                                address and
+                                Next
+                            </button>
+                            <div class="spacer"></div>
+                        </mat-toolbar>
                     </form>
                 </mat-step>
             </mat-vertical-stepper>

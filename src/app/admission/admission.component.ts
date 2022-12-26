@@ -1,32 +1,18 @@
-import { ChangeDetectionStrategy, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, OnChanges, SimpleChanges } from '@angular/core';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { StudentForm } from './admission';
 import pdfMake from "pdfmake/build/pdfmake";
 import pdfFonts from "pdfmake/build/vfs_fonts";
-
 pdfMake.vfs = pdfFonts.pdfMake.vfs;
-
 import { MatDialog } from '@angular/material/dialog'
-
-import { Validators, FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { CommonService } from '../services/common.service';
 import { UiService } from '../services/ui.service';
 import { AlertService } from '../services/alert.service';
-import { admissionFormFields } from './admissionFormFields';
 import { COMMON_CONFIG } from '../config/commonConfig';
 import { JsonFormService } from '../services/json-form.service';
 import { JsonFormControlOptions, JsonFormControls, JsonFormData } from '../layouts/shared/json-form/json-from.types';
 import { Observable } from 'rxjs';
-import { startWith } from 'rxjs/operators';
-export interface DialogData {
-  animal: string;
-  name: string;
-}
-interface BloodGroup {
-  value: string;
-  viewValue: string;
-}
 
 @Component({
   selector: 'app-admission',
@@ -34,7 +20,7 @@ interface BloodGroup {
   styleUrls: ['./admission.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdmissionComponent implements OnInit {
+export class AdmissionComponent implements OnInit,OnChanges {
   studentForm: FormGroup = this.fb.group({});
   parentForm: FormGroup = this.fb.group({});
   permanentAddressForm: FormGroup = this.fb.group({});
@@ -67,7 +53,6 @@ export class AdmissionComponent implements OnInit {
 
   ) {
     this.activatedRoute.queryParams.subscribe((data) => {
-
       if (data && data.action === 'update') {
         this.action = data.action;
         this.studentId = data.id;
@@ -76,10 +61,7 @@ export class AdmissionComponent implements OnInit {
         this.action = data.action || 'add';
       }
     })
-
   }
-
- 
 
   ngOnChanges(changes: SimpleChanges) {
     if (!changes.admissionFormFields.firstChange) {
@@ -123,10 +105,6 @@ export class AdmissionComponent implements OnInit {
         this.studentData = result.data || null;
         if (this.action == 'update') {
           console.log("form patch prodifile ------------------");
-
-          // this.studentFormPatch( this.studentData['standard']);
-          // this.parentFormPatch( this.studentData['parents']);
-          // this.addressFormPatch( this.studentData['address'][0],this.studentData['address'][1]);
         }
 
         this.isLoading = false;
@@ -193,30 +171,26 @@ export class AdmissionComponent implements OnInit {
 
   }
   onAddressSubmit() {
-    this.addressForm.value.requestType = "address"
-    let address = [
-      this.addressForm.get(['localAddress']).value,
-      this.addressForm.get(['permanentAddress']).value
-    ]
-    console.log("before permanent Address ", this.addressForm.get(['permanentAddress']).value);
-    console.log("before local Address ", this.addressForm.get(['localAddress']).value);
-    if (this.action === 'update') {
-      this.commonService.updateStudentAddress(this.studentId, address)
-        .subscribe((result) => {
-          console.log("result", result);
-          this.alertService.alertComponent(result.message || '');
-        }, (error) => {
-          console.log("error", error);
-        });
-    } else {
-      this.commonService.studentAddress(this.studentId, address)
-        .subscribe((result) => {
-          console.log("result", result);
-          this.alertService.alertComponent(result.message || '');
-        }, (error) => {
-          console.log("error", error);
-        });
-    }
+    this.localAddressForm
+    this.permanentAddressForm
+
+    // if (this.action === 'update') {
+    //   this.commonService.updateStudentAddress(this.studentId, address)
+    //     .subscribe((result) => {
+    //       console.log("result", result);
+    //       this.alertService.alertComponent(result.message || '');
+    //     }, (error) => {
+    //       console.log("error", error);
+    //     });
+    // } else {
+    //   this.commonService.studentAddress(this.studentId, address)
+    //     .subscribe((result) => {
+    //       console.log("result", result);
+    //       this.alertService.alertComponent(result.message || '');
+    //     }, (error) => {
+    //       console.log("error", error);
+    //     });
+    // }
   }
 
   onAdmissionComplete() {

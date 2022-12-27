@@ -1,0 +1,146 @@
+[
+    {
+        "_id": "AN",
+        "name": "Andaman and Nicobar Islands"
+    },
+    {
+        "_id": "AP",
+        "name": "Andhra Pradesh"
+    },
+    {
+        "_id": "AR",
+        "name": "Arunachal Pradesh"
+    },
+    {
+        "_id": "AS",
+        "name": "Assam"
+    },
+    {
+        "_id": "BR",
+        "name": "Bihar"
+    },
+    {
+        "_id": "CG",
+        "name": "Chandigarh"
+    },
+    {
+        "_id": "CH",
+        "name": "Chhattisgarh"
+    },
+    {
+        "_id": "DH",
+        "name": "Dadra and Nagar Haveli"
+    },
+    {
+        "_id": "DD",
+        "name": "Daman and Diu"
+    },
+    {
+        "_id": "DL",
+        "name": "Delhi"
+    },
+    {
+        "_id": "GA",
+        "name": "Goa"
+    },
+    {
+        "_id": "GJ",
+        "name": "Gujarat"
+    },
+    {
+        "_id": "HR",
+        "name": "Haryana"
+    },
+    {
+        "_id": "HP",
+        "name": "Himachal Pradesh"
+    },
+    {
+        "_id": "JK",
+        "name": "Jammu and Kashmir"
+    },
+    {
+        "_id": "JH",
+        "name": "Jharkhand"
+    },
+    {
+        "_id": "KA",
+        "name": "Karnataka"
+    },
+    {
+        "_id": "KL",
+        "name": "Kerala"
+    },
+    {
+        "_id": "LD",
+        "name": "Lakshadweep"
+    },
+    {
+        "_id": "MP",
+        "name": "Madhya Pradesh"
+    },
+    {
+        "_id": "MH",
+        "name": "Maharashtra"
+    },
+    {
+        "_id": "MN",
+        "name": "Manipur"
+    },
+    {
+        "_id": "ML",
+        "name": "Meghalaya"
+    },
+    {
+        "_id": "MZ",
+        "name": "Mizoram"
+    },
+    {
+        "_id": "NL",
+        "name": "Nagaland"
+    },
+    {
+        "_id": "OR",
+        "name": "Odisha"
+    },
+    {
+        "_id": "PY",
+        "name": "Puducherry"
+    },
+    {
+        "_id": "PB",
+        "name": "Punjab"
+    },
+    {
+        "_id": "RJ",
+        "name": "Rajasthan"
+    },
+    {
+        "_id": "SK",
+        "name": "Sikkim"
+    },
+    {
+        "_id": "TN",
+        "name": "Tamil Nadu"
+    },
+    {
+        "_id": "TS",
+        "name": "Telangana"
+    },
+    {
+        "_id": "TR",
+        "name": "Tripura"
+    },
+    {
+        "_id": "UP",
+        "name": "Uttar Pradesh"
+    },
+    {
+        "_id": "UK",
+        "name": "Uttarakhand"
+    },
+    {
+        "_id": "WB",
+        "name": "West Bengal"
+    }
+]

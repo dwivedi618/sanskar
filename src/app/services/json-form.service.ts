@@ -11,7 +11,6 @@ export class JsonFormService {
     feeFormJson : "assets/formJson/feeForm.json",
     classFormJson : "assets/formJson/classForm.json",
     admissionForm : "assets/formJson/admissionForm.json"
-
   }
   constructor(private http : HttpClient,private fb: FormBuilder) { 
     

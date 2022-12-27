@@ -25,3 +25,9 @@ form{
   border-radius: 4px;
   background: #f4f4f4;
 }
+::ng-deep mat-toolbar{
+  height: 48px!important;
+  font-size: 16px!important;
+  font-weight: 400;
+  letter-spacing: 2px!important;
+}

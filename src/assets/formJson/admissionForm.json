@@ -154,7 +154,7 @@
                     "required": true
                 },
                 "hitHttp": true,
-                "method": "getClasses",
+                "method": "classes",
                 "options": []
             },
             {
@@ -293,7 +293,7 @@
                     "required": true
                 },
                 "hitHttp":true,
-                "method" : "getCountryStates",
+                "method" : "indianStates",
                 "options" : []
             },
             {
@@ -328,7 +328,7 @@
                     "required": true
                 },
                 "hitHttp":true,
-                "method" : "getCountryStates",
+                "method" : "indianStates",
                 "options" : []
             },
             {

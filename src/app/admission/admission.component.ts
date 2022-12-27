@@ -13,6 +13,7 @@ import { COMMON_CONFIG } from '../config/commonConfig';
 import { JsonFormService } from '../services/json-form.service';
 import { JsonFormControlOptions, JsonFormControls, JsonFormData } from '../layouts/shared/json-form/json-from.types';
 import { Observable } from 'rxjs';
+import { METHODS } from './dropdown.methods';
 
 @Component({
   selector: 'app-admission',
@@ -20,12 +21,12 @@ import { Observable } from 'rxjs';
   styleUrls: ['./admission.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AdmissionComponent implements OnInit,OnChanges {
+export class AdmissionComponent implements OnInit, OnChanges {
   studentForm: FormGroup = this.fb.group({});
   parentForm: FormGroup = this.fb.group({});
   permanentAddressForm: FormGroup = this.fb.group({});
   localAddressForm: FormGroup = this.fb.group({});
- 
+
   action: any;
   parents: any;
   studentId: any;
@@ -39,7 +40,7 @@ export class AdmissionComponent implements OnInit,OnChanges {
   filteredOptions: Observable<JsonFormControlOptions[]>;
   permanentAddressFormFields: JsonFormData;
   localAddressFormFields: JsonFormData;
-  
+
 
   constructor(
     public dialog: MatDialog,
@@ -83,8 +84,8 @@ export class AdmissionComponent implements OnInit,OnChanges {
       console.log("admission form", formJson)
       this.admissionFormFields = formJson.studentForm;
       this.parentsFormFields = formJson.parentForm;
-      this.permanentAddressFormFields = formJson.permanentAddressForm; 
-      this.localAddressFormFields = formJson.localAddressForm; 
+      this.permanentAddressFormFields = formJson.permanentAddressForm;
+      this.localAddressFormFields = formJson.localAddressForm;
 
       this.studentForm = this.jsonFormService.createForm(this.admissionFormFields.controls);
       this.parentForm = this.jsonFormService.createForm(this.parentsFormFields.controls);
@@ -94,9 +95,9 @@ export class AdmissionComponent implements OnInit,OnChanges {
     });
   }
 
-  onImageSelect(image,formFieldName,formName){
+  onImageSelect(image, formFieldName, formName) {
     let form = this[formName];
-    form.patchValue({[formFieldName]:image});
+    form.patchValue({ [formFieldName]: image });
   }
   getProfile() {
     this.commonService.getStudentRecordById(this.studentId)
@@ -111,7 +112,7 @@ export class AdmissionComponent implements OnInit,OnChanges {
       }, (error) => {
         console.log("error", error);
       })
-  } 
+  }
   onStudentSubmit() {
     console.log("studentForm", this.studentForm.value)
 
@@ -171,26 +172,7 @@ export class AdmissionComponent implements OnInit,OnChanges {
 
   }
   onAddressSubmit() {
-    this.localAddressForm
-    this.permanentAddressForm
 
-    // if (this.action === 'update') {
-    //   this.commonService.updateStudentAddress(this.studentId, address)
-    //     .subscribe((result) => {
-    //       console.log("result", result);
-    //       this.alertService.alertComponent(result.message || '');
-    //     }, (error) => {
-    //       console.log("error", error);
-    //     });
-    // } else {
-    //   this.commonService.studentAddress(this.studentId, address)
-    //     .subscribe((result) => {
-    //       console.log("result", result);
-    //       this.alertService.alertComponent(result.message || '');
-    //     }, (error) => {
-    //       console.log("error", error);
-    //     });
-    // }
   }
 
   onAdmissionComplete() {
@@ -202,13 +184,8 @@ export class AdmissionComponent implements OnInit,OnChanges {
     if (!(field.hitHttp && field.method)) {
       return
     }
-    switch (field.method) {
-      case "getClasses":
-        this.commonService.getClassesForFormOptions(field.method);
-        break
-      default:
-        alert("Method not found")
-    }
+    this.commonService[field.method](field.method);
+
   }
 
 }

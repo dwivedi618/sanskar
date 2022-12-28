@@ -31,7 +31,17 @@
                                             <div class="col-9 text-left">
                                                 <mat-form-field appearance="outline" class="w-100">
                                                     <mat-label>{{field.label}}</mat-label>
-                                                    <input matInput type="field.type" [formControlName]="field.name">
+                                                    <input matInput type="field.type" #input 
+                                                    maxlength="{{field?.validators?.maxLength}}" 
+                                                    pattern="{{field?.validators?.pattern}}"
+                                                    appInputMask="{{field.type}}"  
+                                                    [formControlName]="field.name">
+                                                     <mat-hint align="end" *ngIf="field?.validators?.maxLength">{{input.value.length}} / {{field?.validators?.maxLength}}</mat-hint>
+                                                     <mat-error *ngIf="studentForm.get(field.name).hasError('required')">You must make a selection</mat-error>
+                                                     <mat-error *ngIf="studentForm.get(field.name).hasError('maxlength')">Max length</mat-error>
+                                                     <mat-error *ngIf="studentForm.get(field.name).hasError('pattern')">Error pattern</mat-error>
+
+
                                                 </mat-form-field>
                                             </div>
                                         </div>

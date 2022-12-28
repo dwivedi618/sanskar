@@ -1,7 +1,7 @@
 import { RouterModule } from '@angular/router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TopbarComponent } from './uiComponents/topbar/topbar.component';
 import { MaterialModule } from 'src/app/material.module';
 import { AlertComponent } from 'src/app/alert/alert.component';
@@ -18,6 +18,7 @@ import { MenuButtonComponent } from './uiComponents/menu-button/menu-button.comp
 import { RightSidebarMenuComponent } from './uiComponents/right-sidebar-menu/right-sidebar-menu.component';
 import { SearchComponent } from './uiComponents/search/search.component';
 import { AgePipe } from './customPipes/age.pipe';
+import { InputMaskDirective } from './customDirectives/input-mask.directive';
 
 @NgModule({
   declarations: [
@@ -30,19 +31,20 @@ import { AgePipe } from './customPipes/age.pipe';
     JsonFormComponent,
     FeeFrequencyPipe,
     AgePipe,
-
     MenuButtonComponent,
     FilterComponent,
     BulkActionsComponent,
     EmptyListComponent,
     LoaderComponent,
     ImagePickerComponent,
+    InputMaskDirective,
   ],
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule,
     FormsModule,
+    ReactiveFormsModule
   ],
   exports: [
     CommonModule,
@@ -63,7 +65,9 @@ import { AgePipe } from './customPipes/age.pipe';
     BulkActionsComponent,
     EmptyListComponent,
     LoaderComponent,
-    ImagePickerComponent
+    ImagePickerComponent,
+    ReactiveFormsModule,
+    InputMaskDirective
   ]
 })
 export class SharedModule { }

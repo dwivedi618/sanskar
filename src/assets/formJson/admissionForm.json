@@ -8,7 +8,21 @@
                 "type": "image",
                 "validators": {
                     "required": false
-                }
+                    
+                },
+                "disabled":true
+            },
+            {
+                "name": "studentMobile",
+                "label": "Phone Number",
+                "value": "",
+                "type": "tel",
+                "validators": {
+                    "required": false,
+                    "maxLength":10,
+                    "minLength" : 3
+                },
+                "disabled":false
             },
             {
                 "name": "firstName",
@@ -17,8 +31,11 @@
                 "type": "text",
                 "validators": {
                     "required": true,
-                    "maxLength": 50
-                }
+                    "maxLength":50,
+                    "minLength" : 3,
+                    "pattern" : "[0-9]"
+                },
+                "disabled":false
             },
             {
                 "name": "middleName",

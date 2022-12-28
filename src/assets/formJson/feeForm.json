@@ -7,7 +7,7 @@
             "type": "text",
             "validators": {
                 "required": true,
-                "maxLength": 50
+                "maxlength": 50
             }
         },
         {

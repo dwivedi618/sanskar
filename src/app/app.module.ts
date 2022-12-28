@@ -3,9 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { MaterialModule } from './material.module';
-import { ReactiveFormsModule, FormsModule } from '@angular/forms'
-import { NavigationComponent } from './navigation/navigation.component';
 import { ProfileComponent } from './profile/profile.component';
 import { EditComponent } from './profile/edit/edit.component';
 import { AuthenticationService } from './services/authentication.service';
@@ -25,7 +22,6 @@ import { JsonFormService } from './services/json-form.service';
 @NgModule({
   declarations: [
     AppComponent,
-    NavigationComponent,
     ProfileComponent,
     EditComponent,
     SettingsComponent,
@@ -36,18 +32,13 @@ import { JsonFormService } from './services/json-form.service';
   imports: [
     BrowserAnimationsModule,
     BrowserModule,
-    ReactiveFormsModule,
     AppRoutingModule,
-    MaterialModule,
     HttpClientModule,
     SharedModule,
-    FormsModule,
     AdmissionModule,
     LayoutModule,
   ],
   exports: [
-    ReactiveFormsModule,
-    MaterialModule,
     SharedModule,
   ],
   providers: [AuthenticationService, HttpClient, AlertService, JsonFormService, {

@@ -79,7 +79,7 @@ export class JsonFormService {
       }
       formGroup.addControl(
         control.name,
-        this.fb.control(control.value, validatorsToAdd)
+        this.fb.control({value :control.value,disabled:control.disabled}, validatorsToAdd)
       );
     }
     return formGroup;

@@ -9,7 +9,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { CommonService } from '../services/common.service';
 import { UiService } from '../services/ui.service';
 import { AlertService } from '../services/alert.service';
-import { COMMON_CONFIG } from '../config/commonConfig';
+
 import { JsonFormService } from '../services/json-form.service';
 import { JsonFormControlOptions, JsonFormControls, JsonFormControlsMethod, JsonFormData, OptionsActions } from '../layouts/shared/json-form/json-from.types';
 import { Observable } from 'rxjs';
@@ -35,7 +35,7 @@ export class AdmissionComponent implements OnInit, OnChanges {
   studentData: any;
 
   admissionFormFields: JsonFormData;
-  commonConfig = COMMON_CONFIG
+
   parentsFormFields: JsonFormData;
   filteredOptions: Observable<JsonFormControlOptions[]>;
   permanentAddressFormFields: JsonFormData;
@@ -81,7 +81,8 @@ export class AdmissionComponent implements OnInit, OnChanges {
 
   ngOnInit() {
     this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
-      console.log("admission form", formJson)
+      console.log("admission form", formJson);
+
       this.admissionFormFields = formJson.studentForm;
       this.parentsFormFields = formJson.parentForm;
       this.permanentAddressFormFields = formJson.permanentAddressForm;

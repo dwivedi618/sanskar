@@ -3,7 +3,7 @@
         <mat-card class="card border-0  p-0" style="font-size: 12px;background: #ccc;">
             <mat-vertical-stepper #stepper>
                 <mat-step [stepControl]="studentForm" class="">
-                    <form class="my-4" [formGroup]="studentForm" >
+                    <form class="my-4" [formGroup]="studentForm">
                         <ng-template matStepLabel>Fill Student Data</ng-template>
                         <mat-toolbar color="primary" class="justify-content-center">
                             <span style="text-transform: uppercase;">Student Form</span>
@@ -31,8 +31,7 @@
                                             <div class="col-9 text-left">
                                                 <mat-form-field appearance="outline" class="w-100">
                                                     <mat-label>{{field.label}}</mat-label>
-                                                    <input matInput type="field.type"
-                                                        [formControlName]="field.name">
+                                                    <input matInput type="field.type" [formControlName]="field.name">
                                                 </mat-form-field>
                                             </div>
                                         </div>
@@ -100,7 +99,8 @@
                                             <div class="col-9 text-left">
                                                 <mat-form-field appearance="outline" class="w-100"
                                                     (click)="fetchValue(field)">
-                                                    <mat-select [formControlName]="field.name">
+                                                    <mat-select [formControlName]="field.name"
+                                                        (selectionChange)="onSelectOption($event,field?.actions)">
                                                         <mat-option value="">Select {{field.label ||
                                                             ''}}</mat-option>
                                                         <ng-container
@@ -192,8 +192,7 @@
                                         <div class="col-9 text-left">
                                             <mat-form-field appearance="outline" class="w-100">
                                                 <mat-label>{{field.label}}</mat-label>
-                                                <input matInput type="field.type"
-                                                    [formControlName]="field.name">
+                                                <input matInput type="field.type" [formControlName]="field.name">
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -258,7 +257,8 @@
                                             <div class="col-9 text-left">
                                                 <mat-form-field appearance="outline" class="w-100"
                                                     (click)="fetchValue(field)">
-                                                    <mat-select [formControlName]="field.name">
+                                                    <mat-select [formControlName]="field.name"
+                                                        (selectionChange)="onSelectOption($event,field?.actions)">
                                                         <mat-option value="">Select {{field.label ||
                                                             ''}}</mat-option>
                                                         <ng-container
@@ -292,7 +292,7 @@
                                         </div>
                                     </ng-container>
                                 </ng-container>
-                                
+
                             </div>
                         </div>
                         <mat-toolbar color="primary">
@@ -332,8 +332,7 @@
                                         <div class="col-9 text-left">
                                             <mat-form-field appearance="outline" class="w-100">
                                                 <mat-label>{{field.label}}</mat-label>
-                                                <input matInput type="field.type"
-                                                    [formControlName]="field.name">
+                                                <input matInput type="field.type" [formControlName]="field.name">
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -398,7 +397,8 @@
                                             <div class="col-9 text-left">
                                                 <mat-form-field appearance="outline" class="w-100"
                                                     (click)="fetchValue(field)">
-                                                    <mat-select [formControlName]="field.name">
+                                                    <mat-select [formControlName]="field.name"
+                                                        (selectionChange)="onSelectOption($event,field?.actions)">
                                                         <mat-option value="">Select {{field.label ||
                                                             ''}}</mat-option>
                                                         <ng-container
@@ -432,15 +432,15 @@
                                         </div>
                                     </ng-container>
                                 </ng-container>
-                                
+
                             </div>
                         </div>
                         <mat-toolbar color="primary">
                             <div class="spacer"></div>
-                            <button mat-raised-button type="submit" class="btn-dark"  matStepperNext>Save
+                            <button mat-raised-button type="submit" class="btn-dark" matStepperNext>Save
                                 permanent address and
                                 Next</button>
-                                <div class="spacer"></div>
+                            <div class="spacer"></div>
                         </mat-toolbar>
                     </form>
                 </mat-step>
@@ -472,8 +472,7 @@
                                         <div class="col-9 text-left">
                                             <mat-form-field appearance="outline" class="w-100">
                                                 <mat-label>{{field.label}}</mat-label>
-                                                <input matInput type="field.type"
-                                                    [formControlName]="field.name">
+                                                <input matInput type="field.type" [formControlName]="field.name">
                                             </mat-form-field>
                                         </div>
                                     </div>
@@ -538,7 +537,8 @@
                                             <div class="col-9 text-left">
                                                 <mat-form-field appearance="outline" class="w-100"
                                                     (click)="fetchValue(field)">
-                                                    <mat-select [formControlName]="field.name">
+                                                    <mat-select [formControlName]="field.name"
+                                                        (selectionChange)="onSelectOption($event,field?.actions)">
                                                         <mat-option value="">Select {{field.label ||
                                                             ''}}</mat-option>
                                                         <ng-container
@@ -576,7 +576,7 @@
                         </div>
                         <mat-toolbar color="primary">
                             <div class="spacer"></div>
-                            <button mat-raised-button type="submit" class="btn-dark"  matStepperNext>Save local
+                            <button mat-raised-button type="submit" class="btn-dark" matStepperNext>Save local
                                 address and
                                 Next
                             </button>

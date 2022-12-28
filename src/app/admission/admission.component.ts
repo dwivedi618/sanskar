@@ -11,9 +11,9 @@ import { UiService } from '../services/ui.service';
 import { AlertService } from '../services/alert.service';
 import { COMMON_CONFIG } from '../config/commonConfig';
 import { JsonFormService } from '../services/json-form.service';
-import { JsonFormControlOptions, JsonFormControls, JsonFormData } from '../layouts/shared/json-form/json-from.types';
+import { JsonFormControlOptions, JsonFormControls, JsonFormControlsMethod, JsonFormData, OptionsActions } from '../layouts/shared/json-form/json-from.types';
 import { Observable } from 'rxjs';
-import { METHODS } from './dropdown.methods';
+import { DYNAMIC_METHODS, METHODS } from './dropdown.methods';
 
 @Component({
   selector: 'app-admission',
@@ -180,12 +180,28 @@ export class AdmissionComponent implements OnInit, OnChanges {
     this.router.navigate['studentcompletedetails'];
   }
 
-  fetchValue(field: JsonFormControls): JsonFormControlOptions[] {
-    if (!(field.hitHttp && field.method)) {
+  fetchValue(field: JsonFormControlsMethod): JsonFormControlOptions[] {
+    const { hitHttp, method } = field;
+    let shouldCallService: boolean = hitHttp && method ? true : false;
+    if (!shouldCallService) return;
+    if (!DYNAMIC_METHODS.includes(method)) {
+      this.alertService.alertWithAction("METHOD NOT IMPLEMENTED", close);
       return
     }
-    this.commonService[field.method](field.method);
+    return this.commonService[field.method](field);
 
+  }
+
+  onSelectOption(event: { source: any, value: any }, actions: OptionsActions) {
+    console.log(actions?.onSelect?.method, event)
+    if (actions && actions?.onSelect && actions?.onSelect?.hitHttp && actions?.onSelect?.method) {
+      const field: JsonFormControlsMethod = {
+        hitHttp: actions.onSelect.hitHttp,
+        method: actions.onSelect.method,
+        value: event.value
+      }
+      this.fetchValue(field);
+    }
   }
 
 }

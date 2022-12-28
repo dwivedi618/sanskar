@@ -293,7 +293,26 @@
                     "required": true
                 },
                 "hitHttp":true,
-                "method" : "indianStates",
+                "method" : "states",
+                "actions" : {
+                    "onSelect" : {
+                        "hitHttp" :true,
+                        "method" : "districts"
+                    }
+                },
+                "options" : []
+            },
+            {
+                "name": "district",
+                "label": "District",
+                "value": "",
+                "type": "dropdown",
+                "validators": {
+                    "required": true
+                },
+                "hitHttp":true,
+                "method" : "districts",
+                "actions" : {},
                 "options" : []
             },
             {
@@ -328,7 +347,26 @@
                     "required": true
                 },
                 "hitHttp":true,
-                "method" : "indianStates",
+                "method" : "states",
+                "actions" : {
+                    "onSelect" : {
+                        "hitHttp" : true,
+                        "method" : "districts"
+                    }
+                },
+                "options" : []
+            },
+            {
+                "name": "district",
+                "label": "District",
+                "value": "",
+                "type": "dropdown",
+                "validators": {
+                    "required": true
+                },
+                "hitHttp":true,
+                "method" : "districts",
+                "actions" :{},
                 "options" : []
             },
             {

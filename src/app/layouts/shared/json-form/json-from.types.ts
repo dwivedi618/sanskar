@@ -21,6 +21,15 @@ interface JsonFormValidators {
     label : String | Number | Boolean,
     icon ?: String
   }
+  export interface OptionsActions{
+    onSelect ?: JsonFormControlsMethod
+  } 
+
+  export interface JsonFormControlsMethod{
+    hitHttp? : boolean;
+    method ? : string;
+    value ?:string;
+  }
   export interface JsonFormControls {
     name: string;
     label: string;
@@ -28,6 +37,7 @@ interface JsonFormValidators {
     type: string;
     hitHttp? : boolean;
     method ? : string;
+    actions? :OptionsActions;
     options?: JsonFormControlOptions;
     required?: boolean;
     disabled?:boolean;

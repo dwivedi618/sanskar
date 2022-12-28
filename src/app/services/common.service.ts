@@ -2,12 +2,15 @@ import { Student } from './../student/students-list/students-list.component';
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { JsonFormControlOptions } from '../layouts/shared/json-form/json-from.types';
+import { JsonFormControlOptions, JsonFormControlsMethod } from '../layouts/shared/json-form/json-from.types';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { METHODS as DROPDOWN_METHODS } from '../admission/dropdown.methods';
 import { API_SERVICE_METHODS } from './api.methods';
-import { pluck } from 'rxjs/operators';
+import { filter, map, pluck } from 'rxjs/operators';
 
+export interface District {
+  [stateCode:string] : string[];
+}
 @Injectable({
   providedIn: 'root'
 })
@@ -18,8 +21,9 @@ export class CommonService {
     class: environment.apiUrl + '/' + 'class',
     feeStructure: environment.apiUrl + '/' + 'feeStructure',
     student: environment.apiUrl + '/' + 'student',
-    indianStatesUrl : "assets/jsons/indian.states.json"
-    
+    indianStatesUrl: "assets/jsons/indian.states.json",
+    indianDistrictsUrl: "assets/jsons/indian.districts.json"
+
   }
 
   constructor(
@@ -27,14 +31,21 @@ export class CommonService {
   ) { }
 
 
-  [API_SERVICE_METHODS.getClasses](){
+  [API_SERVICE_METHODS.getClasses]() {
     return this.http.get<any>(this.API_ROUTES.class).pipe(pluck("data"));
   }
-  [API_SERVICE_METHODS.getFees](id : string){
+  [API_SERVICE_METHODS.getFees](id: string) {
     return this.http.get<any>(this.API_ROUTES.fee + '/' + id).pipe(pluck('data'));
   }
-  [API_SERVICE_METHODS.getIndianStates](){
-    return this.http.get<{code:string,name : string}[]>(this.API_ROUTES.indianStatesUrl);
+  [API_SERVICE_METHODS.getIndianStates]() {
+    return this.http.get<{ code: string, name: string }[]>(this.API_ROUTES.indianStatesUrl);
+  }
+  [API_SERVICE_METHODS.getIndianDistrctByState](stateCode) {
+    console.log("get district service function")
+    return this.http.get<any>(this.API_ROUTES.indianDistrictsUrl)
+      .pipe(
+        pluck("data"),
+      )
   }
 
   masterstandard(standard) {
@@ -116,13 +127,15 @@ export class CommonService {
 
   formOptions = {
     [DROPDOWN_METHODS.getClasses]: new BehaviorSubject<JsonFormControlOptions[]>([]),
-    [DROPDOWN_METHODS.getIndianStates]: new BehaviorSubject<JsonFormControlOptions[]>([])
+    [DROPDOWN_METHODS.getIndianStates]: new BehaviorSubject<JsonFormControlOptions[]>([]),
+    [DROPDOWN_METHODS.getDistricts]: new BehaviorSubject<JsonFormControlOptions[]>([]),
+
   };
 
 
 
   [DROPDOWN_METHODS.getClasses](method): Observable<JsonFormControlOptions[]> {
-    this[API_SERVICE_METHODS.getClasses]().subscribe((data:{_id:string,name : string}[]) => {
+    this[API_SERVICE_METHODS.getClasses]().subscribe((data: { _id: string, name: string }[]) => {
       if (data.length) {
         let options = this.formatDataAsOptions(data);
         console.log("options", options);
@@ -134,7 +147,7 @@ export class CommonService {
   }
 
   [DROPDOWN_METHODS.getIndianStates](method): Observable<JsonFormControlOptions[]> {
-    this[API_SERVICE_METHODS.getIndianStates]().subscribe((data:{_id:string,name : string}[]) => {
+    this[API_SERVICE_METHODS.getIndianStates]().subscribe((data: { _id: string, name: string }[]) => {
       if (data.length) {
         let options = this.formatDataAsOptions(data);
         console.log("options", options);
@@ -143,6 +156,30 @@ export class CommonService {
       }
     });
     return this.formOptions[DROPDOWN_METHODS.getIndianStates].asObservable();
+  }
+
+  [DROPDOWN_METHODS.getDistricts](method:JsonFormControlsMethod): Observable<JsonFormControlOptions[]> {
+    console.log("methodsss:::",method)
+    this[API_SERVICE_METHODS.getIndianDistrctByState]().subscribe((data: {[x:string]: string[] }) => {
+      if (data) {
+        let  districts = data[method.value] || [];
+        if(!districts.length) return;
+        console.log("method",method.value)
+        console.log("data",data);
+        let mappedDistricts = districts.map((district:string)=>{
+          return {
+            _id : district,
+            name : district
+          }
+        })
+        console.log("districtssss",mappedDistricts)
+        let options = this.formatDataAsOptions(mappedDistricts || []);
+        console.log("options", options);
+        this.formOptions[DROPDOWN_METHODS.getDistricts].next(options)
+        console.log("formOptions", this.formOptions);
+      }
+    });
+    return this.formOptions[DROPDOWN_METHODS.getDistricts].asObservable();
   }
 
   private formatDataAsOptions(data: { _id: string, name: string }[]) {

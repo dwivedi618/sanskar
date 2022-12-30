@@ -1,0 +1,16 @@
+form{
+    border: 1px dotted #222;
+    border-radius: 4px;
+    background: #f4f4f4;
+    padding: 5%;
+  }
+.required-mark{
+    color: red;
+}
+.flex-wrap{
+    display: flex;
+    flex-wrap: wrap!important;
+}
+mat-grid-tile {
+    background: lightblue;
+  }

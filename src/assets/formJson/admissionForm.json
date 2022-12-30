@@ -7,7 +7,7 @@
                 "value": "",
                 "type": "image",
                 "validators": {
-                    "required": false
+                    "required": true
                     
                 },
                 "disabled":true
@@ -20,7 +20,7 @@
                 "validators": {
                     "required": false,
                     "maxLength":10,
-                    "minLength" : 3
+                    "minLength" :10
                 },
                 "disabled":false
             },
@@ -32,8 +32,7 @@
                 "validators": {
                     "required": true,
                     "maxLength":50,
-                    "minLength" : 3,
-                    "pattern" : "[0-9]"
+                    "minLength" : 3
                 },
                 "disabled":false
             },

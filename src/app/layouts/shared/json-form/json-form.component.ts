@@ -1,6 +1,5 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, SimpleChanges, OnChanges, Output } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, SimpleChanges, OnChanges, Output, EventEmitter } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { EventEmitter } from 'protractor';
 import { DYNAMIC_METHODS } from 'src/app/admission/dropdown.methods';
 import { AlertService } from 'src/app/services/alert.service';
 import { CommonService } from 'src/app/services/common.service';
@@ -24,10 +23,10 @@ export class JsonFormComponent implements OnChanges, OnInit {
     private commonService: CommonService
   ) { }
   ngOnInit(): void {
-    this.form = this.jsonFormService.createForm(this.formFields.controls);
   }
   ngOnChanges(changes: SimpleChanges) {
     if (!changes.formFields.firstChange) {
+      console.log("formFields",this.formFields)
       this.form = this.jsonFormService.createForm(this.formFields.controls);
     }
   }
@@ -56,7 +55,11 @@ export class JsonFormComponent implements OnChanges, OnInit {
   }
 
   onFormSubmit(){
-    this.onSubmit.emit(this.form.value);
+    this.onSubmit.emit(this.form.getRawValue());
+  }
+
+  onImageSelect(image, formFieldName) {
+    this.form.patchValue({ [formFieldName]: image });
   }
 
 

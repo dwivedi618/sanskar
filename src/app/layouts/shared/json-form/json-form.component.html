@@ -1,4 +1,4 @@
-<form class="my-4" [formGroup]="form" (ngSubmit)="onFormSubmit()">
+<form [formGroup]="form" (ngSubmit)="onFormSubmit()">
     <ng-container *ngFor="let field of formFields?.controls">
         <ng-container *ngIf="
                 [
@@ -13,23 +13,20 @@
               ">
             <div class="row ">
                 <div class="col-4 text-left justify-content-center">
-                    <label>{{field.label}}{{field?.validators?.required ? '*' :
-                        ''}}</label>
+                    <label>{{field.label}}<span class="required-mark">
+                            {{field?.validators?.required ? '*' :''}}</span>
+                    </label>
                 </div>
                 <div class="col-8 text-left">
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>{{field.label}}</mat-label>
                         <input matInput type="field.type" #input appInputMask="{{field.type}}"
+                            maxlength="{{field?.validators?.maxLength}}" minlength="{{field?.validators?.minLength}}"
                             [formControlName]="field.name">
                         <mat-hint align="end" *ngIf="field?.validators?.maxLength">{{input.value.length}}
                             /
                             {{field?.validators?.maxLength}}</mat-hint>
-                        <mat-error *ngIf="studentForm.get(field.name).hasError('required')">You
-                            must make a selection</mat-error>
-                        <mat-error *ngIf="studentForm.get(field.name).hasError('maxlength')">Max
-                            length</mat-error>
-                        <mat-error *ngIf="studentForm.get(field.name).hasError('pattern')">Error
-                            pattern</mat-error>
+                        <mat-error *ngIf="form.get(field.name).hasError('required')">Required</mat-error>
                     </mat-form-field>
                 </div>
             </div>
@@ -38,14 +35,18 @@
         <ng-container *ngIf="field.type === 'textarea'">
             <div class="row">
                 <div class="col-4 text-left">
-                    <label>{{field.label}} {{field.validators?.required ? '*' :
-                        ''}}</label>
+                    <label>{{field.label}}<span class="required-mark">{{field?.validators?.required ? '*' :
+                            ''}}</span></label>
                 </div>
                 <div class="col-8 text-left">
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>{{field.label}}</mat-label>
-                        <textarea matInput placeholder="Ex:description" [formControlName]="field.name"></textarea>
-                        <!-- <mat-hint>{{field.hint}}</mat-hint> -->
+                        <textarea matInput #textarea [formControlName]="field.name"></textarea>
+                        <mat-hint align="end" *ngIf="field?.validators?.maxLength">{{textarea.value.length}}
+                            /
+                            {{field?.validators?.maxLength}}</mat-hint>
+                        <mat-error *ngIf="form.get(field.name).hasError('required')">Required</mat-error>
+
                     </mat-form-field>
                 </div>
             </div>
@@ -53,33 +54,51 @@
         <ng-container *ngIf="field.type === 'radio'">
             <div class="row my-4">
                 <div class="col-4 text-left">
-                    <label>{{field.label}} {{field.validators?.required ? '*' :
-                        ''}}</label>
+                    <label>{{field.label}} <span class="required-mark">{{field?.validators?.required ? '*' :
+                            ''}}</span></label>
                 </div>
                 <div class="col-8 text-left">
-                    <mat-radio-group [formControlName]="field.name">
-                        <mat-radio-button class="mr-4 w-50" *ngFor="let opt of field.options" [value]="opt.value">
-                            <span class="fs-14 ">{{opt.label}}</span>
-                        </mat-radio-button>
+                    <mat-radio-group [formControlName]="field.name" class="d-flex flex-wrap">
+                        <div class="row">
+                            <div class="col-6">
+                                <mat-radio-button class="mr-4 w-50"
+                                    *ngFor="let opt of field.options | slice:0:field.options.length/2"
+                                    [value]="opt.value">
+                                    <span class="fs-14 ">{{opt.label}}</span>
+                                </mat-radio-button>
+                            </div>
+                            <div class="col-6">
+                                <mat-radio-button class="mr-4 w-50"
+                                    *ngFor="let opt of field.options | slice:field.options.length/2:field.options.length"
+                                    [value]="opt.value">
+                                    <span class="fs-14 ">{{opt.label}}</span>
+                                </mat-radio-button>
+                            </div>
+                        </div>
+
+
                     </mat-radio-group>
+                    <mat-error *ngIf="form.get(field.name).hasError('required')">Required</mat-error>
+
                 </div>
             </div>
         </ng-container>
         <ng-container *ngIf="field.type === 'date'">
             <div class="row my-4">
                 <div class="col-4 text-left">
-                    <label>{{field.label}} {{field.validators?.required ? '*' :
-                        ''}}</label>
+                    <label>{{field.label}}<span class="required-mark">{{field?.validators?.required ? '*' :
+                            ''}}</span></label>
                 </div>
                 <div class="col-8 text-left">
-                    <mat-form-field appearance="outline" class="w-100">
+                    <mat-form-field appearance="outline" class="w-100" style="position: relative;">
                         <input matInput [formControlName]="field.name" #input placeholder="MM/DD/YYYY"
-                            [matDatepicker]="dp3" [disabled]="true">
-                        <mat-datepicker-toggle matSuffix [for]="dp3"></mat-datepicker-toggle>
-                        <mat-datepicker #dp3 disabled="false"></mat-datepicker>
+                            (click)="picker.open()" [matDatepicker]="picker" readonly>
+                        <mat-datepicker #picker></mat-datepicker>
                         <mat-hint *ngIf="input?.value">{{input?.value | age}}
                             years</mat-hint>
+                        <mat-error *ngIf="form.get(field.name).hasError('required')">Required</mat-error>
                     </mat-form-field>
+
                 </div>
             </div>
 
@@ -87,8 +106,8 @@
         <ng-container *ngIf="field.type === 'dropdown'">
             <div class="row my-4">
                 <div class="col-4 text-left">
-                    <label>{{field.label}} {{field.validators?.required ? '*'
-                        :''}}</label>
+                    <label>{{field.label}} <span class="required-mark">{{field?.validators?.required ? '*' :
+                            ''}}</span></label>
                 </div>
                 <div class="col-8 text-left">
                     <mat-form-field appearance="outline" class="w-100" (click)="fetchValue(field)">
@@ -106,6 +125,8 @@
                                     [value]="option.value">{{option.label}}
                                 </mat-option>
                             </ng-template>
+                            <mat-error *ngIf="form.get(field.name).hasError('required')">Required</mat-error>
+
                         </mat-select>
                     </mat-form-field>
                 </div>
@@ -114,8 +135,8 @@
         <ng-container *ngIf="field.type === 'autocomplete'">
             <div class="row my-4">
                 <div class="col-4 text-left">
-                    <label>{{field.label}} {{field.validators?.required ? '*' :
-                        ''}}</label>
+                    <label>{{field.label}} <span class="required-mark">{{field?.validators?.required ? '*' :
+                            ''}}</span></label>
                 </div>
                 <div class="col-8 text-left">
                     <mat-form-field appearance="outline" class="w-100">
@@ -126,6 +147,8 @@
                                 {{option.label}}
                             </mat-option>
                         </mat-autocomplete>
+                        <mat-error *ngIf="form.get(field.name).hasError('required')">Required</mat-error>
+
                     </mat-form-field>
                 </div>
             </div>
@@ -133,12 +156,13 @@
         <ng-container *ngIf="field.type === 'image'">
             <div class="row my-4">
                 <div class="col-4 text-left">
-                    <label>{{field.label}} {{field.validators?.required ? '*' :
-                        ''}}</label>
+                    <label>{{field.label}} <span class="required-mark">{{field?.validators?.required ? '*' :
+                            ''}}</span></label>
                 </div>
                 <div class="col-8 text-left">
-                    <app-image-picker
-                        (onImageSelect)="onImageSelect($event,field.name,'studentForm')"></app-image-picker>
+                    <app-image-picker (onImageSelect)="onImageSelect($event,field.name)"></app-image-picker>
+                    <mat-error *ngIf="form.get(field.name).hasError('required')">Required</mat-error>
+
                 </div>
             </div>
         </ng-container>
@@ -152,12 +176,14 @@
                         {{field.label}} {{field.validators?.required ? '*' :
                         ''}}
                     </mat-checkbox>
+                    <mat-error *ngIf="form.get(field.name).hasError('required')">Required</mat-error>
+
                 </div>
             </div>
         </ng-container>
     </ng-container>
-    <mat-toolbar>
-        <button mat-stroked-button type="reset">Reset</button>
+    <mat-toolbar class="justify-content-end">
+        <button mat-stroked-button type="reset" class="mr-2">Reset</button>
         <button mat-raised-button type="submit">Submit</button>
     </mat-toolbar>
 </form>

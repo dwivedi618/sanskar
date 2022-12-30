@@ -205,5 +205,8 @@ export class AdmissionComponent implements OnInit, OnChanges {
     }
   }
 
+  onStudentFormSubmit(form){
+    console.log("student form",form);
+  }
 }
 

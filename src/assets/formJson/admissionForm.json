@@ -122,7 +122,7 @@
                 "name": "bloodGroup",
                 "label": "Blood Group",
                 "value": "",
-                "type": "dropdown",
+                "type": "radio",
                 
                 "validators": {
                     "required": false
@@ -341,6 +341,16 @@
                     "required": true,
                     "maxLength" : 6
                 }
+            },
+            {
+                "name": "localAddressIsSame",
+                "label": "Check the box if 'LOCAL ADDRESS' is same as permanent address",
+                "value": "",
+                "type": "checkbox",
+                "validators": {
+                    "required": false
+                    
+                },"disabled":false
             }
         ]
     },

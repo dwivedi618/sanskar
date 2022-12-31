@@ -14,7 +14,6 @@ export class ImagePickerComponent implements OnInit {
   file : File;
   fileEvent : Event;
   ngOnInit(): void {
-    this.dialogService.openImageCroppper(this.fileEvent)
   }
   fileUploadReset() {
     if (this.imagePreview) {
@@ -37,6 +36,10 @@ export class ImagePickerComponent implements OnInit {
   }
 
   onClickCropBtn(){
-    this.dialogService.openImageCroppper(this.fileEvent)
+    this.dialogService.openImageCroppper(this.fileEvent).subscribe(croppedImageBase64 =>{
+      console.log("croppedImageBase64",croppedImageBase64)
+      croppedImageBase64 ? this.imagePreview = croppedImageBase64 : this.imagePreview;
+      this.onImageSelect.emit(this.imagePreview);
+    })
   }
 }

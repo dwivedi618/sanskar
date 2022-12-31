@@ -388,7 +388,11 @@ p{
 .mat-tab-link{
   min-width: 54px;
 }
-
+.image-cropper-dialog {
+  .mat-dialog-container{
+    background: #d4d4d4!important;
+  }
+}
 // .glass{
 // background: rgb(255, 255, 255);
 // // box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );

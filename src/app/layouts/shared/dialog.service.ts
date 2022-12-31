@@ -29,6 +29,7 @@ export class DialogService {
       
       hasBackdrop: true,
       disableClose: true,
+      panelClass : 'image-cropper-dialog',
       data: data,
     });
     cdialogRef.afterClosed().subscribe(result => {

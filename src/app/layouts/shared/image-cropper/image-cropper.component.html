@@ -1,14 +1,14 @@
 <div mat-dialog-title class="d-flex align-items-center mt-n4 mr-n4 ml-n4 bg-dark-400">
     <small class="text-light pr-3 pl-2 fs-14">Crop Image</small>
     <div class="spacer"></div>
-    <button mat-mini-fab color="warn" [mat-dialog-close]="true" class="mat-elevation-z0">
+    <button mat-mini-fab color="warn" [mat-dialog-close]="false" class="mat-elevation-z0 br-0">
         <mat-icon class="material-icons-outlined ">close</mat-icon>
     </button>
 </div>
-<div mat-dialog-content>
+<div mat-dialog-content class="py-2">
     <section class="d-flex justify-content-between image-cropper-layout ">
 
-        <mat-card class="p-0" style="width: 20rem;">
+        <mat-card class="mat-elevation-z4 p-0" style="width: 20rem;">
             <mat-toolbar >
                 <span>Crop Options</span>
             </mat-toolbar>
@@ -53,14 +53,14 @@
             <div *ngIf="file" class="row justify-content-center py-5">
                 <div class="col-12">
                     <image-cropper [imageChangedEvent]="file" [maintainAspectRatio]="maintainAspectRatio"
-                        [aspectRatio]="4 / 3" format="png" (imageCropped)="imageCropped($event)"
+                        [aspectRatio]="1 / 1" format="png" (imageCropped)="imageCropped($event)"
                         (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
                         (loadImageFailed)="loadImageFailed()"></image-cropper>
 
                 </div>
             </div>
         </mat-card>
-        <mat-card class="text-center pt-0">
+        <mat-card class="mat-elevation-z4 text-center pt-0">
             <mat-toolbar class="justify-content-center">
                 <span>Preview</span>
             </mat-toolbar>

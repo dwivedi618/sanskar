@@ -1,5 +1,4 @@
 <div class="bg-white">
-
   <!--table heading-->
   <mat-toolbar class="bg-mysecondary">
     <mat-toolbar-row>
@@ -46,11 +45,10 @@
       <div class="spacer"></div>
       <ng-container *ngIf="!this.selection.selected.length">
         <app-filter (onEvent)="applyFilter($event)"></app-filter>
-      </ng-container>      
+      </ng-container>
     </mat-toolbar-row>
   </mat-toolbar>
   <table mat-table class="w-100 mb-5" matSort aria-label="Elements">
-
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
       <th mat-header-cell *matHeaderCellDef class="text-left">
@@ -103,9 +101,9 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
-  
+
   <ng-container *ngIf="!dataSource.data.length">
     <app-empty-list></app-empty-list>
   </ng-container>
-  
+
 </div>

@@ -7,14 +7,14 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
-import { param } from 'jquery';
 import { CommonService } from 'src/app/services/common.service';
 import { ManageFeeCategoryComponent } from '../manage-fee-category/manage-fee-category.component';
 import { Fee } from '../fee.interface';
 import { JsonFormService } from 'src/app/services/json-form.service';
-import { FeeFrequencyPipe } from 'src/app/layouts/shared/customPipes/fee-frequency.pipe';
 import { FeeActionService } from '../services/fee-action.service';
 import { UiService } from 'src/app/services/ui.service';
+import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
+import { DialogService } from 'src/app/layouts/shared/dialog.service';
 
 
 
@@ -65,7 +65,8 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit, On
     private commonService: CommonService,
     private jsonFormService: JsonFormService,
     private feeActionService: FeeActionService,
-    private uiService: UiService
+    private uiService: UiService,
+    private dialogService : DialogService
   ) { }
   ngOnDestroy(): void {
     this.uiService.loader.hide();
@@ -76,12 +77,11 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit, On
     this.dataSource = new MatTableDataSource();
     console.log("selection", this.selection.selected)
     this.getFeeCategoryList();
-    this.jsonFormService.getFeeFormJson().subscribe(data => console.log("data", data))
   }
 
   getFeeCategoryList() {
     this.uiService.loader.show("Fetching fees...");
-    this.commonService.getMasterFee().subscribe((result) => {
+    this.commonService[API_SERVICE_METHODS.getFees]().subscribe((result) => {
       this.dataSource.data = result['data'] || null;
       this.uiService.loader.hide();
     }, (error) => {
@@ -113,43 +113,13 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit, On
     }
   }
 
-
-  /**
-   * route to add new FeeStructure page where admin can define fee for any courses/classes/standards
-   */
-  newFeeStructure() {
-    this.router.navigate(['fee-structure/', 'new']);
-  }
-  /**
-   * route to fee category , where user can add fee category
-   */
-  newFeeCategory() {
-    this.router.navigate(['fee-structure/fee-category', 'new'])
-  }
   manageFeeCategory() {
-    const data = {}
-    const dialogRef = this.dialog.open(ManageFeeCategoryComponent, {
-      width: '40rem',
-      maxWidth: '100vw',
-
-      maxHeight: '100vh',
-      hasBackdrop: false,
-      // panelClass : 'dialog-container-pt-0',
-      data: data
-    })
-    dialogRef.afterClosed().subscribe({ next: () => this.getFeeCategoryList() })
+    this.dialogService.manageFeeCategory().subscribe(()=>{this.refresh()});
   }
   refresh() {
     this.getFeeCategoryList()
   }
-  /**
-   * route to add faculty profile page
-   * @param faculty id,name,email
-   */
-  openFacultyProfile(profile) {
-    this.router.navigate(['faculty/profile']);
-  }
-
+ 
   menuClickHandler(action, data) {
     console.log("data", action, data)
     this.feeActionService.actionTriggered(action, data);

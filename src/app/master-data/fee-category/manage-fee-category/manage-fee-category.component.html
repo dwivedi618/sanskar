@@ -6,56 +6,5 @@
     </button>
 </div>
 <div mat-dialog-content>
-    <div class="row justify-content-center py-5">
-        <div class="col-md-8">
-            <form [formGroup]="feeFromGroup"  class="w-100">
-                <ng-container *ngFor="let field of feeFormFields?.controls">
-                    <div class="row " *ngIf="field.type === 'text'">
-                        <div class="col-3 text-left justify-content-center">
-                            <small>{{field.label}}{{field.validators?.required ? '*' : ''}}</small>
-                        </div>
-                        <div class="col-9 text-left">
-                            <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>{{field.label}}</mat-label>
-                                <input matInput placeholder="Ex:Examination Fee" [formControlName]="field.name" [value]="field.value">
-                            </mat-form-field>
-                        </div>
-                    </div>
-
-                    <div class="row" *ngIf="field.type === 'textarea'">
-                        <div class="col-3 text-left">
-                            <small>{{field.label}} {{field.validators?.required ? '*' : ''}}</small>
-                    z    </div>
-                        <div class="col-9 text-left">
-                            <mat-form-field appearance="outline" class="w-100">
-                                <mat-label>{{field.label}}</mat-label>
-                                <textarea matInput placeholder="Ex:description" [formControlName]="field.name"></textarea>
-                                <!-- <mat-hint>{{field.hint}}</mat-hint> -->
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <ng-container *ngIf="field.type === 'radio'">
-                        <div class="row my-4">
-                            <div class="col-3 text-left">
-                                <small>{{field.label}} {{field.validators?.required ? '*' : ''}}</small>
-                            </div>
-                            <div class="col-9 text-left">
-                                <mat-radio-group [formControlName]="field.name">
-                                    <mat-radio-button class="mr-4 w-50" *ngFor="let opt of field.options" [value]="opt.value">
-                                        <span class="fs-14 ">{{opt.label}}</span>
-                                    </mat-radio-button>
-                                </mat-radio-group> 
-                            </div>
-                        </div>
-                    </ng-container>
-                </ng-container>
-            </form>
-            
-        </div>
-    </div>
-
-</div>
-<div mat-dialog-actions align="end">
-  <button mat-stroked-button color="warn" type="reset" (click)="feeFromGroup.reset()" [disabled]="!feeFromGroup.touched">Reset</button>
-  <button mat-raised-button color="primary" type="submit" (click)="onSubmit()" [disabled]="feeFromGroup.invalid">Submit</button>
+    <app-json-form [formFields] ="feeFormFields" (onSubmit)="onSubmit($event)"></app-json-form>
 </div>

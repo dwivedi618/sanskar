@@ -19,6 +19,8 @@ import { RightSidebarMenuComponent } from './uiComponents/right-sidebar-menu/rig
 import { SearchComponent } from './uiComponents/search/search.component';
 import { AgePipe } from './customPipes/age.pipe';
 import { InputMaskDirective } from './customDirectives/input-mask.directive';
+import { ImageCropperComponent } from './image-cropper/image-cropper.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
 
 @NgModule({
   declarations: [
@@ -38,13 +40,16 @@ import { InputMaskDirective } from './customDirectives/input-mask.directive';
     LoaderComponent,
     ImagePickerComponent,
     InputMaskDirective,
+    ImageCropperComponent,
   ],
   imports: [
     CommonModule,
     MaterialModule,
     RouterModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    ImageCropperModule,
+    
   ],
   exports: [
     CommonModule,
@@ -67,7 +72,9 @@ import { InputMaskDirective } from './customDirectives/input-mask.directive';
     LoaderComponent,
     ImagePickerComponent,
     ReactiveFormsModule,
-    InputMaskDirective
+    InputMaskDirective,
+    ImageCropperModule,
+    ImageCropperComponent
   ]
 })
 export class SharedModule { }

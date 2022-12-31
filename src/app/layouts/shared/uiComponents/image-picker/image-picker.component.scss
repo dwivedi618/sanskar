@@ -1,0 +1,21 @@
+.imageContainer {
+    position: relative;
+    width: 200px;
+    min-height: 200px;
+    border: 2px dotted #0000008c;
+}
+
+.actionButtonContainer button:first-child {
+    border-top-left-radius: 50% !important;
+    border-top-right-radius: 50% !important;
+}
+
+.actionButtonContainer button:hover {
+    background: #0000001a;
+    transition: cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+.actionButtonContainer button:last-child {
+    border-bottom-left-radius: 50% !important;
+    border-bottom-right-radius: 50% !important;
+}

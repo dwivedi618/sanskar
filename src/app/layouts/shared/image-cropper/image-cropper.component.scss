@@ -1,0 +1,15 @@
+.image-cropper-layout{
+    background: #0000000a;
+}
+.maintainAspectRatio small{
+    font-size: 9px;
+    line-height: 20px;
+    font-family: "Ubuntu", sans-serif;
+    color: #666;
+}
+.maintainAspectRatio mat-icon{
+    color: #666;
+}
+::ng-deep .mat-dialog-container {
+    background: #d4d4d4!important;
+  }

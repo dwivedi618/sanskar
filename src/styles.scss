@@ -4,7 +4,7 @@
 @import "~material-icons/iconfont/material-icons.css";
 @import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,700&display=swap');
 
-*,body,html,p,ul,li,a,span,small,p,h1,h2,h3,h4,h6,div,section,form,input,select,mat-toolbar,mat-card,mat-form-field,mat-list-item,mat-button{
+*,body,html,p,ul,li,a,span,small,p,h1,h2,h3,h4,h6,div,section,form,input,select,button,mat-toolbar,mat-card,mat-form-field,mat-list-item,mat-button{
   font-family: 'Ubuntu', sans-serif;
 }
 
@@ -497,4 +497,14 @@ background: linear-gradient(to left, #FFB88C, #DE6262)!important; /* W3C, IE 10+
 }
 .fs-14{
   font-size: 14px!important;
+}
+.fs-16{
+  font-size: 16px!important;
+}
+
+button:disabled{
+  cursor: not-allowed!important;
+}
+::ng-deep .mat-dialog-container {
+  background: #d4d4d4!important;
 }

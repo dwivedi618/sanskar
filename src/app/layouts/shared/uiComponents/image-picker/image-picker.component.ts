@@ -1,4 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { DialogService } from '../../dialog.service';
 
 @Component({
   selector: 'app-image-picker',
@@ -8,18 +9,23 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class ImagePickerComponent implements OnInit {
   imagePreview : string = '';
   @Output() onImageSelect = new EventEmitter<string>();
-  constructor() { }
+  constructor(private dialogService : DialogService) { }
 
+  file : File;
+  fileEvent : Event;
   ngOnInit(): void {
+    this.dialogService.openImageCroppper(this.fileEvent)
   }
   fileUploadReset() {
     if (this.imagePreview) {
       this.imagePreview = '';
+      this.onImageSelect.emit(this.imagePreview);
     }
   }
   onImagePicked(event: Event) {
-    const file = (event.target as HTMLInputElement).files[0];
-    this.getBase64(file);
+    this.fileEvent = event;
+    this.file = (event.target as HTMLInputElement).files[0];
+    this.getBase64(this.file);
   }
   private getBase64(file) {
     const reader = new FileReader();
@@ -28,5 +34,9 @@ export class ImagePickerComponent implements OnInit {
       this.imagePreview = reader.result as string;
       this.onImageSelect.emit(this.imagePreview);
     };
+  }
+
+  onClickCropBtn(){
+    this.dialogService.openImageCroppper(this.fileEvent)
   }
 }

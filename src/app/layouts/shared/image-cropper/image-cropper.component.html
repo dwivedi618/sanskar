@@ -1,0 +1,74 @@
+<div mat-dialog-title class="d-flex align-items-center mt-n4 mr-n4 ml-n4 bg-dark-400">
+    <small class="text-light pr-3 pl-2 fs-14">Crop Image</small>
+    <div class="spacer"></div>
+    <button mat-mini-fab color="warn" [mat-dialog-close]="true" class="mat-elevation-z0">
+        <mat-icon class="material-icons-outlined ">close</mat-icon>
+    </button>
+</div>
+<div mat-dialog-content>
+    <section class="d-flex justify-content-between image-cropper-layout ">
+
+        <mat-card class="p-0" style="width: 20rem;">
+            <mat-toolbar >
+                <span>Crop Options</span>
+            </mat-toolbar>
+            <mat-list>
+                <small class="px-3">Aspect</small><br>
+                <mat-list-item class="my-2">
+                    <div matListItemTitle>
+                    </div>
+                    <div matListItemLine>
+                        <mat-button-toggle-group [(ngModel)]="maintainAspectRatio" aria-label="Font Style" >
+                            <mat-button-toggle value="true" class="text-center maintainAspectRatio p-2">
+                                <!-- <mat-icon>crop_square</mat-icon><br> -->
+                                <small>Square</small>
+                            </mat-button-toggle>
+                            <mat-button-toggle value="false" class="text-center maintainAspectRatio p-2">
+                                <!-- <mat-icon>crop_free</mat-icon><br> -->
+                                <small>Free</small>
+                            </mat-button-toggle>
+                        </mat-button-toggle-group>
+                    </div>
+                </mat-list-item>
+                
+                <small class="px-3 pt-2">Ratios</small><br>
+                <mat-list-item class="my-2">
+                    <div matListItemLine>
+                        <mat-button-toggle-group [(ngModel)]="aspectRatio" aria-label="Font Style" >
+                            <mat-button-toggle value="true" class="text-center maintainAspectRatio p-2">
+                                <!-- <mat-icon>crop_square</mat-icon><br> -->
+                                <small>1:1</small>
+                            </mat-button-toggle>
+                            <mat-button-toggle value="false" class="text-center maintainAspectRatio p-2">
+                                <!-- <mat-icon>crop_free</mat-icon><br> -->
+                                <small>4:3</small>
+                            </mat-button-toggle>
+                        </mat-button-toggle-group>
+                    </div>
+                </mat-list-item>
+            </mat-list>
+
+        </mat-card>
+        <mat-card class="bg-dark w-100">
+            <div *ngIf="file" class="row justify-content-center py-5">
+                <div class="col-12">
+                    <image-cropper [imageChangedEvent]="file" [maintainAspectRatio]="maintainAspectRatio"
+                        [aspectRatio]="4 / 3" format="png" (imageCropped)="imageCropped($event)"
+                        (imageLoaded)="imageLoaded()" (cropperReady)="cropperReady()"
+                        (loadImageFailed)="loadImageFailed()"></image-cropper>
+
+                </div>
+            </div>
+        </mat-card>
+        <mat-card class="text-center pt-0">
+            <mat-toolbar class="justify-content-center">
+                <span>Preview</span>
+            </mat-toolbar>
+            <img class="thumbnail-md" [src]="croppedImage" />
+        </mat-card>
+    </section>
+
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" type="submit" (click)="onDone()">Crop</button>
+</div>

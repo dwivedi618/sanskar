@@ -29,16 +29,23 @@ interface JsonFormValidators {
     hitHttp? : boolean;
     method ? : string;
     value ?:string;
+    ctrlId ?:string | number;
   }
+
+  export type Field = JsonFormControls | JsonFormControlsMethod;
+
+  /* This is the interface for the json form controls. */
   export interface JsonFormControls {
+    ctrlId : number | string;
     name: string;
     label: string;
     value: string;
     type: string;
     hitHttp? : boolean;
     method ? : string;
+    dependentControlName ?:string ;
     actions? :OptionsActions;
-    options?: JsonFormControlOptions;
+    options?: JsonFormControlOptions[];
     required?: boolean;
     disabled?:boolean;
     validators: JsonFormValidators;

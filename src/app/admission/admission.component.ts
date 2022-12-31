@@ -149,7 +149,7 @@ export class AdmissionComponent implements OnInit, OnChanges {
         });
     }
   }
-  onParentSubmit() {
+  onSubmitParentFormFields() {
     this.parentForm.value.requestType = "parent";
     console.log("studentId ", this.studentId);
     console.log("Before submitparent", this.parentForm.value);
@@ -172,7 +172,7 @@ export class AdmissionComponent implements OnInit, OnChanges {
     }
 
   }
-  onAddressSubmit() {
+  onSubmitPermanentAddressFormFields() {
 
   }
 

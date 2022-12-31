@@ -2,6 +2,7 @@
     "studentForm": {
         "controls": [
             {
+                "ctrlId": 1,
                 "name": "studentPhoto",
                 "label": "Student photo",
                 "value": "",
@@ -13,6 +14,7 @@
                 "disabled":true
             },
             {
+                "ctrlId": 2,
                 "name": "studentMobile",
                 "label": "Phone Number",
                 "value": "",
@@ -25,6 +27,7 @@
                 "disabled":false
             },
             {
+                "ctrlId": 3,
                 "name": "firstName",
                 "label": "First name",
                 "value": "",
@@ -37,6 +40,7 @@
                 "disabled":false
             },
             {
+                "ctrlId": 3,
                 "name": "middleName",
                 "label": "Middle name",
                 "value": "",
@@ -47,6 +51,7 @@
                 }
             },
             {
+                "ctrlId": 4,
                 "name": "lastName",
                 "label": "Last Name",
                 "value": "",
@@ -57,6 +62,7 @@
                 }
             },
             {
+                "ctrlId": 5,
                 "name": "gender",
                 "label": "Gender",
                 "value": "",
@@ -83,6 +89,7 @@
                 ]
             },
             {
+                "ctrlId": 6,
                 "name": "dateOfBirth",
                 "label": "Date of birth",
                 "value": "",
@@ -93,6 +100,7 @@
             },
             
             {
+                "ctrlId": 7,
                 "name": "nationality",
                 "label": "Nationality",
                 "value": "India",
@@ -109,6 +117,7 @@
                 ]
             },
             {
+                "ctrlId": 8,
                 "name": "healthStatus",
                 "label": "Health Status",
                 "value": "",
@@ -118,6 +127,7 @@
                 }
             },
             {
+                "ctrlId": 9,
                 "name": "bloodGroup",
                 "label": "Blood Group",
                 "value": "",
@@ -162,6 +172,7 @@
                 ]
             },
             {
+                "ctrlId": 10,
                 "name": "classId",
                 "label": "Admission In",
                 "value": "63948d487bd90996be350e6d",
@@ -174,6 +185,7 @@
                 "options": []
             },
             {
+                "ctrlId": 11,
                 "name": "conveniance",
                 "label": "Conveniance",
                 "value": "",
@@ -193,6 +205,7 @@
                 ]
             },
             {
+                "ctrlId": 12,
                 "name": "place",
                 "label": "Place",
                 "value": "",
@@ -207,6 +220,7 @@
     "parentForm" : {
         "controls": [
             {
+                "ctrlId": 21,
                 "name": "fathersPhoto",
                 "label": "Father's photo",
                 "value": "",
@@ -216,6 +230,7 @@
                 }
             },
             {
+                "ctrlId": 22,
                 "name": "father",
                 "label": "Father's name",
                 "value": "",
@@ -226,6 +241,7 @@
                 }
             },
             {
+                "ctrlId": 23,
                 "name": "mother",
                 "label": "Mother's name",
                 "value": "",
@@ -236,6 +252,7 @@
                 }
             },
             {
+                "ctrlId": 24,
                 "name": "fathersOccupation",
                 "label": "Father's occupation",
                 "value": "",
@@ -246,6 +263,7 @@
                 }
             },
             {
+                "ctrlId": 25,
                 "name": "mothersOccupation",
                 "label": "Mother's occupation",
                 "value": "",
@@ -257,6 +275,7 @@
             },
             
             {
+                "ctrlId": 26,
                 "name": "gaurdian",
                 "label": "Local Gaurdian",
                 "value": "",
@@ -267,6 +286,7 @@
             },
             
             {
+                "ctrlId": 28,
                 "name": "studentId",
                 "label": "Student Id",
                 "value": "",
@@ -278,6 +298,7 @@
             },
             
             {
+                "ctrlId": 29,
                 "name": "Contact",
                 "label": "Phone/Mobile Number",
                 "value": "",
@@ -292,6 +313,7 @@
     "permanentAddressForm" :{
         "controls": [
             {
+                "ctrlId": 31,
                 "name": "address",
                 "label": "Address",
                 "value": "",
@@ -301,6 +323,7 @@
                 }
             },
             {
+                "ctrlId": 32,
                 "name": "state",
                 "label": "State",
                 "value": "",
@@ -313,12 +336,14 @@
                 "actions" : {
                     "onSelect" : {
                         "hitHttp" :true,
-                        "method" : "districts"
+                        "method" : "districts",
+                        "ctrlId": 33
                     }
                 },
                 "options" : []
             },
             {
+                "ctrlId": 33,
                 "name": "district",
                 "label": "District",
                 "value": "",
@@ -326,12 +351,14 @@
                 "validators": {
                     "required": true
                 },
+                "dependentControlName" : "state",
                 "hitHttp":true,
                 "method" : "districts",
                 "actions" : {},
                 "options" : []
             },
             {
+                "ctrlId": 34,
                 "name": "pin",
                 "label": "Area pin code",
                 "value": "",
@@ -342,6 +369,7 @@
                 }
             },
             {
+                "ctrlId": 35,
                 "name": "localAddressIsSame",
                 "label": "Check the box if 'LOCAL ADDRESS' is same as permanent address",
                 "value": "",
@@ -356,6 +384,7 @@
     "localAddressForm" :{
         "controls": [
             {
+                "ctrlId": 41,
                 "name": "address",
                 "label": "Address",
                 "value": "",
@@ -365,6 +394,7 @@
                 }
             },
             {
+                "ctrlId": 42,
                 "name": "state",
                 "label": "State",
                 "value": "",
@@ -374,15 +404,19 @@
                 },
                 "hitHttp":true,
                 "method" : "states",
+                
                 "actions" : {
                     "onSelect" : {
                         "hitHttp" : true,
-                        "method" : "districts"
+                        "method" : "districts",
+                        "ctrlId" : 43
+
                     }
                 },
                 "options" : []
             },
             {
+                "ctrlId": 43,
                 "name": "district",
                 "label": "District",
                 "value": "",
@@ -392,10 +426,12 @@
                 },
                 "hitHttp":true,
                 "method" : "districts",
+                "dependentControlName" : "state",
                 "actions" :{},
                 "options" : []
             },
             {
+                "ctrlId": 44,
                 "name": "pin",
                 "label": "Area pin code",
                 "value": "",

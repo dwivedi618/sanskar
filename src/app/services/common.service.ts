@@ -41,12 +41,85 @@ export class CommonService {
     return this.http.get<{ code: string, name: string }[]>(this.API_ROUTES.indianStatesUrl);
   }
   [API_SERVICE_METHODS.getIndianDistrctByState](stateCode) {
-    console.log("get district service function")
     return this.http.get<any>(this.API_ROUTES.indianDistrictsUrl)
       .pipe(
         pluck("data"),
       )
   }
+
+  formOptions = {};
+
+
+
+  [DROPDOWN_METHODS.getClasses](method): Observable<JsonFormControlOptions[]> {
+    this.formOptions[DROPDOWN_METHODS.getClasses+method.ctrlId] = new BehaviorSubject<JsonFormControlOptions[]>([]);
+    this[API_SERVICE_METHODS.getClasses]().subscribe((data: { _id: string, name: string }[]) => {
+      if (data.length) {
+        let options = this.formatDataAsOptions(data);
+        // this.formOptions[DROPDOWN_METHODS.getClasses].next(options)
+        this.formOptions[DROPDOWN_METHODS.getClasses+method.ctrlId].next(options)
+
+        console.log("formOptions", this.formOptions);
+      }
+    });
+    return this.formOptions[DROPDOWN_METHODS.getClasses+method.ctrlId]
+    // return this.formOptions[DROPDOWN_METHODS.getClasses].asObservable();
+  }
+
+  [DROPDOWN_METHODS.getIndianStates](method): Observable<JsonFormControlOptions[]> {
+    this.formOptions[DROPDOWN_METHODS.getIndianStates+method.ctrlId] = new BehaviorSubject<JsonFormControlOptions[]>([]);
+
+    this[API_SERVICE_METHODS.getIndianStates]().subscribe((data: { _id: string, name: string }[]) => {
+      if (data.length) {
+        let options = this.formatDataAsOptions(data);
+        this.formOptions[DROPDOWN_METHODS.getIndianStates+method.ctrlId].next(options)
+        
+        // this.formOptions[DROPDOWN_METHODS.getIndianStates].next(options)
+        console.log("formOptions", this.formOptions);
+      }
+    });
+    return this.formOptions[DROPDOWN_METHODS.getIndianStates+method.ctrlId].asObservable();
+  }
+
+  [DROPDOWN_METHODS.getDistricts](method:JsonFormControlsMethod): Observable<JsonFormControlOptions[]> {
+    const {ctrlId} = method;
+    this.formOptions[DROPDOWN_METHODS.getDistricts+ctrlId] = new BehaviorSubject<JsonFormControlOptions[]>([]);
+    this[API_SERVICE_METHODS.getIndianDistrctByState]().subscribe((data: {[x:string]: string[] }) => {
+      if (data) {
+        console.log("to get district must need selected state code ",method.value)
+        let  districts = data[method.value] || [];
+        if(!districts.length) return;
+        let mappedDistricts = districts.map((district:string)=>{
+          return {
+            _id : district,
+            name : district
+          }
+        })
+        let options = this.formatDataAsOptions(mappedDistricts || []);
+        console.log("options ***", options);
+        // this.formOptions[DROPDOWN_METHODS.getDistricts].next(options)
+        this.formOptions[DROPDOWN_METHODS.getDistricts+ctrlId].next(options)
+
+      }
+    });
+    console.log("formOptions", this.formOptions);
+    return this.formOptions[DROPDOWN_METHODS.getDistricts+ctrlId].asObservable();
+    // return this.formOptions[DROPDOWN_METHODS.getDistricts].asObservable();
+
+  }
+
+  private formatDataAsOptions(data: { _id: string, name: string }[]) {
+    let options: JsonFormControlOptions[] = [];
+    data.forEach(item => {
+      let option: JsonFormControlOptions = { value: "", label: "", icon: "" };
+      option.value = item._id;
+      option.label = item.name;
+      option.icon = "";
+      options.push(option);
+    })
+    return options;
+  }
+
 
   masterstandard(standard) {
     return this.http.post<any>(this.API_ROUTES.class, standard);
@@ -124,74 +197,5 @@ export class CommonService {
     return this.http.put<any>(`${environment.apiUrl}/v1/student/${studentId}/address`, address)
   }
 
-
-  formOptions = {
-    [DROPDOWN_METHODS.getClasses]: new BehaviorSubject<JsonFormControlOptions[]>([]),
-    [DROPDOWN_METHODS.getIndianStates]: new BehaviorSubject<JsonFormControlOptions[]>([]),
-    [DROPDOWN_METHODS.getDistricts]: new BehaviorSubject<JsonFormControlOptions[]>([]),
-
-  };
-
-
-
-  [DROPDOWN_METHODS.getClasses](method): Observable<JsonFormControlOptions[]> {
-    this[API_SERVICE_METHODS.getClasses]().subscribe((data: { _id: string, name: string }[]) => {
-      if (data.length) {
-        let options = this.formatDataAsOptions(data);
-        console.log("options", options);
-        this.formOptions[DROPDOWN_METHODS.getClasses].next(options)
-        console.log("formOptions", this.formOptions);
-      }
-    });
-    return this.formOptions[DROPDOWN_METHODS.getClasses].asObservable();
-  }
-
-  [DROPDOWN_METHODS.getIndianStates](method): Observable<JsonFormControlOptions[]> {
-    this[API_SERVICE_METHODS.getIndianStates]().subscribe((data: { _id: string, name: string }[]) => {
-      if (data.length) {
-        let options = this.formatDataAsOptions(data);
-        console.log("options", options);
-        this.formOptions[DROPDOWN_METHODS.getIndianStates].next(options)
-        console.log("formOptions", this.formOptions);
-      }
-    });
-    return this.formOptions[DROPDOWN_METHODS.getIndianStates].asObservable();
-  }
-
-  [DROPDOWN_METHODS.getDistricts](method:JsonFormControlsMethod): Observable<JsonFormControlOptions[]> {
-    console.log("methodsss:::",method)
-    this[API_SERVICE_METHODS.getIndianDistrctByState]().subscribe((data: {[x:string]: string[] }) => {
-      if (data) {
-        let  districts = data[method.value] || [];
-        if(!districts.length) return;
-        console.log("method",method.value)
-        console.log("data",data);
-        let mappedDistricts = districts.map((district:string)=>{
-          return {
-            _id : district,
-            name : district
-          }
-        })
-        console.log("districtssss",mappedDistricts)
-        let options = this.formatDataAsOptions(mappedDistricts || []);
-        console.log("options", options);
-        this.formOptions[DROPDOWN_METHODS.getDistricts].next(options)
-        console.log("formOptions", this.formOptions);
-      }
-    });
-    return this.formOptions[DROPDOWN_METHODS.getDistricts].asObservable();
-  }
-
-  private formatDataAsOptions(data: { _id: string, name: string }[]) {
-    let options: JsonFormControlOptions[] = [];
-    data.forEach(item => {
-      let option: JsonFormControlOptions = { value: "", label: "", icon: "" };
-      option.value = item._id;
-      option.label = item.name;
-      option.icon = "";
-      options.push(option);
-    })
-    return options;
-  }
 
 }

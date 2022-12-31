@@ -41,7 +41,8 @@
                 <div class="col-8 text-left">
                     <mat-form-field appearance="outline" class="w-100">
                         <mat-label>{{field.label}}</mat-label>
-                        <textarea matInput #textarea [formControlName]="field.name"></textarea>
+                        <textarea matInput #textarea [formControlName]="field.name"
+                            appInputMask="{{field.type}}"></textarea>
                         <mat-hint align="end" *ngIf="field?.validators?.maxLength">{{textarea.value.length}}
                             /
                             {{field?.validators?.maxLength}}</mat-hint>
@@ -112,14 +113,16 @@
                 <div class="col-8 text-left">
                     <mat-form-field appearance="outline" class="w-100" (click)="fetchValue(field)">
                         <mat-select [formControlName]="field.name"
-                            (selectionChange)="onSelectOption($event,field?.actions)">
+                            (selectionChange)="onSelectOption($event,field)">
                             <mat-option value="">Select {{field.label ||
                                 ''}}</mat-option>
                             <ng-container *ngIf="field?.hitHttp && field?.method;else options">
-                                <mat-option *ngFor="let option of this.commonService.formOptions[field.method] | async"
+                                <mat-option
+                                    *ngFor="let option of this.commonService.formOptions[field.method+field.ctrlId] | async"
                                     [value]="option.value">{{option.label}}
                                 </mat-option>
                             </ng-container>
+                            
                             <ng-template #options>
                                 <mat-option *ngFor="let option of field?.options"
                                     [value]="option.value">{{option.label}}
@@ -182,8 +185,8 @@
             </div>
         </ng-container>
     </ng-container>
-    <mat-toolbar class="justify-content-end">
+    <mat-toolbar class="justify-content-end my-4 p-0">
         <button mat-stroked-button type="reset" class="mr-2">Reset</button>
-        <button mat-raised-button type="submit">Submit</button>
+        <button mat-raised-button type="submit" color="primary">Submit</button>
     </mat-toolbar>
 </form>

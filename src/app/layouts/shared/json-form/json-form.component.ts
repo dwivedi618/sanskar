@@ -4,7 +4,7 @@ import { DYNAMIC_METHODS } from 'src/app/admission/dropdown.methods';
 import { AlertService } from 'src/app/services/alert.service';
 import { CommonService } from 'src/app/services/common.service';
 import { JsonFormService } from 'src/app/services/json-form.service';
-import { JsonFormControlOptions, JsonFormControlsMethod, JsonFormData, OptionsActions } from './json-from.types';
+import { Field, JsonFormControlOptions, JsonFormControls, JsonFormControlsMethod, JsonFormData, OptionsActions } from './json-from.types';
 
 @Component({
   selector: 'app-json-form',
@@ -26,31 +26,36 @@ export class JsonFormComponent implements OnChanges, OnInit {
   }
   ngOnChanges(changes: SimpleChanges) {
     if (!changes.formFields.firstChange) {
-      console.log("formFields",this.formFields)
       this.form = this.jsonFormService.createForm(this.formFields.controls);
     }
   }
 
-  fetchValue(field: JsonFormControlsMethod): JsonFormControlOptions[] {
-    const { hitHttp, method } = field;
+
+  fetchValue(field: JsonFormControls ): JsonFormControlOptions[] {
+    const { name ,hitHttp, method,dependentControlName } = field;
     let shouldCallService: boolean = hitHttp && method ? true : false;
     if (!shouldCallService) return;
     if (!DYNAMIC_METHODS.includes(method)) {
       this.alertService.alertWithAction("METHOD NOT IMPLEMENTED", close);
       return
     }
+    field.value = dependentControlName ? this.form.get(field.dependentControlName).value : '';
+    console.log("fetching data for",field.method+field.ctrlId);
     return this.commonService[field.method](field);
   }
 
-  onSelectOption(event: { source: any, value: any }, actions: OptionsActions) {
+  onSelectOption(event: { source: any, value: any }, field: JsonFormControls) {
+    let actions: OptionsActions = field.actions;
     console.log(actions?.onSelect?.method, event)
     if (actions && actions?.onSelect && actions?.onSelect?.hitHttp && actions?.onSelect?.method) {
-      const field: JsonFormControlsMethod = {
+      const argField: JsonFormControls = {
+        ...field,
         hitHttp: actions.onSelect.hitHttp,
         method: actions.onSelect.method,
-        value: event.value
+        value: event.value,
+        ctrlId : actions.onSelect.ctrlId
       }
-      this.fetchValue(field);
+      this.fetchValue(argField);
     }
   }
 

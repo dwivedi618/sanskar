@@ -1,11 +1,5 @@
 [
-    {
-        "name": "Dashboard",
-        "id": "Dashboard",
-        "icon": "dashboard",
-        "path": "",
-        "url": ""
-    },
+    
     {
         "name": "Admission",
         "id": "Admission",

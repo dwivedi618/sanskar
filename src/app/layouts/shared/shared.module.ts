@@ -22,6 +22,7 @@ import { InputMaskDirective } from './customDirectives/input-mask.directive';
 import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { SkeltonLoaderComponent } from './skelton-loader/skelton-loader.component';
+import { InstituteHeaderComponent } from './institute-header/institute-header.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { SkeltonLoaderComponent } from './skelton-loader/skelton-loader.componen
     InputMaskDirective,
     ImageCropperComponent,
     SkeltonLoaderComponent,
+    InstituteHeaderComponent,
 
   ],
   imports: [
@@ -78,7 +80,8 @@ import { SkeltonLoaderComponent } from './skelton-loader/skelton-loader.componen
     InputMaskDirective,
     ImageCropperModule,
     ImageCropperComponent,
-    SkeltonLoaderComponent
+    SkeltonLoaderComponent,
+    InstituteHeaderComponent
   ]
 })
 export class SharedModule { }

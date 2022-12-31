@@ -7,6 +7,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { METHODS as DROPDOWN_METHODS } from '../admission/dropdown.methods';
 import { API_SERVICE_METHODS } from './api.methods';
 import { filter, map, pluck } from 'rxjs/operators';
+import { MainMenu } from '../layouts/shared/uiComponents/left-sidebar-menu/sidebar.menus';
 
 export interface District {
   [stateCode:string] : string[];
@@ -22,8 +23,8 @@ export class CommonService {
     feeStructure: environment.apiUrl + '/' + 'feeStructure',
     student: environment.apiUrl + '/' + 'student',
     indianStatesUrl: "assets/jsons/indian.states.json",
-    indianDistrictsUrl: "assets/jsons/indian.districts.json"
-
+    indianDistrictsUrl: "assets/jsons/indian.districts.json",
+    mainMenuUrl : "assets/jsons/main-menu.json"
   }
 
   constructor(
@@ -46,36 +47,29 @@ export class CommonService {
         pluck("data"),
       )
   }
+  [API_SERVICE_METHODS.getMainMenus]():Observable<MainMenu[]> {
+    return this.http.get<MainMenu[]>(this.API_ROUTES.mainMenuUrl);
+  }
 
   formOptions = {};
-
-
 
   [DROPDOWN_METHODS.getClasses](method): Observable<JsonFormControlOptions[]> {
     this.formOptions[DROPDOWN_METHODS.getClasses+method.ctrlId] = new BehaviorSubject<JsonFormControlOptions[]>([]);
     this[API_SERVICE_METHODS.getClasses]().subscribe((data: { _id: string, name: string }[]) => {
       if (data.length) {
         let options = this.formatDataAsOptions(data);
-        // this.formOptions[DROPDOWN_METHODS.getClasses].next(options)
         this.formOptions[DROPDOWN_METHODS.getClasses+method.ctrlId].next(options)
-
-        console.log("formOptions", this.formOptions);
       }
     });
     return this.formOptions[DROPDOWN_METHODS.getClasses+method.ctrlId]
-    // return this.formOptions[DROPDOWN_METHODS.getClasses].asObservable();
   }
 
   [DROPDOWN_METHODS.getIndianStates](method): Observable<JsonFormControlOptions[]> {
     this.formOptions[DROPDOWN_METHODS.getIndianStates+method.ctrlId] = new BehaviorSubject<JsonFormControlOptions[]>([]);
-
     this[API_SERVICE_METHODS.getIndianStates]().subscribe((data: { _id: string, name: string }[]) => {
       if (data.length) {
         let options = this.formatDataAsOptions(data);
-        this.formOptions[DROPDOWN_METHODS.getIndianStates+method.ctrlId].next(options)
-        
-        // this.formOptions[DROPDOWN_METHODS.getIndianStates].next(options)
-        console.log("formOptions", this.formOptions);
+        this.formOptions[DROPDOWN_METHODS.getIndianStates+method.ctrlId].next(options);
       }
     });
     return this.formOptions[DROPDOWN_METHODS.getIndianStates+method.ctrlId].asObservable();
@@ -86,7 +80,6 @@ export class CommonService {
     this.formOptions[DROPDOWN_METHODS.getDistricts+ctrlId] = new BehaviorSubject<JsonFormControlOptions[]>([]);
     this[API_SERVICE_METHODS.getIndianDistrctByState]().subscribe((data: {[x:string]: string[] }) => {
       if (data) {
-        console.log("to get district must need selected state code ",method.value)
         let  districts = data[method.value] || [];
         if(!districts.length) return;
         let mappedDistricts = districts.map((district:string)=>{
@@ -96,16 +89,10 @@ export class CommonService {
           }
         })
         let options = this.formatDataAsOptions(mappedDistricts || []);
-        console.log("options ***", options);
-        // this.formOptions[DROPDOWN_METHODS.getDistricts].next(options)
-        this.formOptions[DROPDOWN_METHODS.getDistricts+ctrlId].next(options)
-
+        this.formOptions[DROPDOWN_METHODS.getDistricts+ctrlId].next(options);
       }
     });
-    console.log("formOptions", this.formOptions);
     return this.formOptions[DROPDOWN_METHODS.getDistricts+ctrlId].asObservable();
-    // return this.formOptions[DROPDOWN_METHODS.getDistricts].asObservable();
-
   }
 
   private formatDataAsOptions(data: { _id: string, name: string }[]) {

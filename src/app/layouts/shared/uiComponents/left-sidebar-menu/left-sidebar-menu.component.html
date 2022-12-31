@@ -1,29 +1,27 @@
-
 <mat-nav-list class="sidenav_menus mx-2" style="color: white!important;">
     <ng-container *ngFor="let menu of menus">
-        <a  routerLink={{menu.path}} *ngIf="!menu.subMenus?.length || false">
-            <mat-list-item [class.bg-mygradient-primary]="activeLink == menu.path" class="text-white  mx-auto rounded-lg">
+        <a routerLink={{menu.path}} *ngIf="!menu.subMenus?.length || false">
+            <mat-list-item [class.bg-mygradient-primary]="activeLink == menu.path"
+                class="text-white  mx-auto rounded-lg">
                 <mat-icon class="mat-icon-sm pt-1">{{menu.icon}}</mat-icon>
-                <small>{{menu.menuName}}</small>
+                <small>{{menu.name}}</small>
             </mat-list-item>
         </a>
 
-        <mat-accordion *ngIf="menu.subMenus" class="mat-elevation-z0 " style="border-radius: 0;" (click)="openConfigurationRoute($event)">
+        <mat-accordion *ngIf="menu.subMenus" class="mat-elevation-z0 " style="border-radius: 0;"
+            (click)="openConfigurationRoute($event)">
             <mat-expansion-panel (opened)="panelOpenState = true" class="mat-elevation-z0  rounded-lg"
                 style="border-radius: 0;" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header [class.bg-mygradient-primary]="activeLink == menu.path">
                     <mat-panel-title class="text-white">
                         <mat-icon class="mat-icon-sm pt-1 ">{{menu.icon}}</mat-icon>
-    
-                        <!-- <span mat-list-icon class="material-icons mr-1">settings</span> -->
-                        <small>{{menu.menuName}}</small>
+                        <small>{{menu.name}}</small>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <a *ngFor="let url of menu.subMenus" (click)="$event.stopPropagation();" mat-list-item routerLink="{{url.url}}"
-                    routerLinkActive="bg-mygradient-primary  mx-auto rounded-lg" class="text-light ">
-                    <small>{{url.subMenuName}}</small></a>
-    
-    
+                <a *ngFor="let subMenu of menu.subMenus" (click)="$event.stopPropagation();" mat-list-item
+                    routerLink="{{subMenu.url}}" routerLinkActive="bg-mygradient-primary  mx-auto rounded-lg"
+                    class="text-light ">
+                    <small>{{subMenu.name}}</small></a>
             </mat-expansion-panel>
         </mat-accordion>
     </ng-container>

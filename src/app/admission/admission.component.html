@@ -1,18 +1,20 @@
 <section style="min-height: calc(100vh-6rem);" style="margin-bottom: 5rem;">
-    
-    <div class="row justify-content-center">
-        <div class="col-lg-8 col-md-10 fadeIn" style="max-height: 100vh;">
-            <mat-card class="card border-0  p-0" style="font-size: 12px;background: #ccc;">
+    <mat-toolbar class="bg-mysecondary">
+        <div class="" style="font-size:12px">
+          <span class="m-0 p-0">Student</span>
+        </div>
+      </mat-toolbar> 
+    <div class="row justify-content-center m-0">
+        <div class="col-lg-8 col-md-10 fadeIn" >
+            <mat-card class="mat-elevationz8" style="font-size: 12px;">
                 <mat-horizontal-stepper #stepper>
-                    <mat-step label="Fill Student Data" state="student">
-                        <div class="my-4">
-                            
+                    <mat-step label="Student's Information" state="student">
+                        <div class="my-5">
                             <mat-toolbar color="primary" class="justify-content-center">
                                 <span style="text-transform: uppercase;">Student Form</span>
                             </mat-toolbar>
                             <div class="row justify-content-center">
                                 <div class="col-12">
-                                   
                                     <ng-container >
                                         <app-json-form [formFields]="admissionFormFields"
                                             (onSubmit)="onStudentFormSubmit($event)"></app-json-form>
@@ -39,9 +41,9 @@
                     </mat-step>
                     <mat-step state="address">
                         <div class="my-4">
-                            <ng-template matStepLabel>Fill Student Data</ng-template>
+                            <ng-template matStepLabel>Permanent Address</ng-template>
                             <mat-toolbar color="primary" class="justify-content-center">
-                                <span style="text-transform: uppercase;">Student Form</span>
+                                <span style="text-transform: uppercase;">Permanent Address</span>
                             </mat-toolbar>
                             <div class="row justify-content-center">
                                 <div class="col-12">
@@ -54,9 +56,9 @@
                     </mat-step>
                     <mat-step state="address">
                         <div class="my-4">
-                            <ng-template matStepLabel>Fill Student Data</ng-template>
+                            <ng-template matStepLabel>Local Address</ng-template>
                             <mat-toolbar color="primary" class="justify-content-center">
-                                <span style="text-transform: uppercase;">Student Form</span>
+                                <span style="text-transform: uppercase;">Local Address</span>
                             </mat-toolbar>
                             <div class="row justify-content-center">
                                 <div class="col-12">

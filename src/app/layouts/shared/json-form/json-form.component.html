@@ -128,9 +128,11 @@
                                     [value]="option.value">{{option.label}}
                                 </mat-option>
                             </ng-template>
-                            <mat-error *ngIf="form.get(field.name).hasError('required')">Required</mat-error>
-
+                            
                         </mat-select>
+                        <mat-error *ngIf="form.get(field.name).hasError('required')">Required</mat-error>
+                        <mat-error *ngIf="form.get(field.name).hasError('required') && !form.get(field.dependentControlName)?.value &&  field?.dependentControlName">You must select {{field.dependentControlName}} first</mat-error>
+
                     </mat-form-field>
                 </div>
             </div>

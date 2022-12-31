@@ -31,29 +31,45 @@ export class JsonFormComponent implements OnChanges, OnInit {
   }
 
 
+/**
+ * It fetches the value of the field from the server if the field has the `hitHttp` property set to
+ * true
+ * @param {JsonFormControls} field - JsonFormControls - This is the field object that is passed to the
+ * function.
+ * @returns 1. If the method is not implemented, it returns an alert.
+ *   2. If the method is implemented, it returns the value of the field.
+ */
   fetchValue(field: JsonFormControls ): JsonFormControlOptions[] {
-    const { name ,hitHttp, method,dependentControlName } = field;
+    const { hitHttp, method,dependentControlName } = field;
     let shouldCallService: boolean = hitHttp && method ? true : false;
     if (!shouldCallService) return;
     if (!DYNAMIC_METHODS.includes(method)) {
       this.alertService.alertWithAction("METHOD NOT IMPLEMENTED", close);
       return
     }
-    field.value = dependentControlName ? this.form.get(field.dependentControlName).value : '';
-    console.log("fetching data for",field.method+field.ctrlId);
+    field.value = dependentControlName ? this.form.get(field.dependentControlName).value : field.value;
     return this.commonService[field.method](field);
   }
 
+  /**
+   * It takes the event and field as arguments and then checks if the field has the actions property
+   * and if it has the onSelect property and if it has the hitHttp, method and ctrlId properties. If
+   * all of these are true, then it creates a new object called argField and assigns the values of the
+   * field to it. It then calls the fetchValue function with the argField as the argument
+   * @param event - { source: any, value: any }
+   * @param {JsonFormControls} field - JsonFormControls - The field object that is being passed to the
+   * function.
+   */
   onSelectOption(event: { source: any, value: any }, field: JsonFormControls) {
-    let actions: OptionsActions = field.actions;
-    console.log(actions?.onSelect?.method, event)
-    if (actions && actions?.onSelect && actions?.onSelect?.hitHttp && actions?.onSelect?.method) {
+    let actions = field?.actions as OptionsActions;
+    const { hitHttp , method , ctrlId } = actions && actions?.onSelect || {};
+    if (hitHttp && method && ctrlId) {
       const argField: JsonFormControls = {
         ...field,
-        hitHttp: actions.onSelect.hitHttp,
-        method: actions.onSelect.method,
+        hitHttp: hitHttp,
+        method: method,
         value: event.value,
-        ctrlId : actions.onSelect.ctrlId
+        ctrlId : ctrlId
       }
       this.fetchValue(argField);
     }
@@ -66,6 +82,5 @@ export class JsonFormComponent implements OnChanges, OnInit {
   onImageSelect(image, formFieldName) {
     this.form.patchValue({ [formFieldName]: image });
   }
-
 
 }

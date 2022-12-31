@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ChangeDetectionStrategy, SimpleChanges, OnChanges, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, ChangeDetectionStrategy, SimpleChanges, OnChanges, Output, EventEmitter, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DYNAMIC_METHODS } from 'src/app/admission/dropdown.methods';
 import { AlertService } from 'src/app/services/alert.service';
@@ -10,23 +10,30 @@ import { Field, JsonFormControlOptions, JsonFormControls, JsonFormControlsMethod
   selector: 'app-json-form',
   templateUrl: './json-form.component.html',
   styleUrls: ['./json-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JsonFormComponent implements OnChanges, OnInit {
-  @Input() formFields: JsonFormData;
+  @Input() public formFields: JsonFormData;
   @Output() onSubmit = new EventEmitter();
   form: FormGroup = this.fb.group({});
+  isFormLoading :boolean = true;
   constructor(
     private fb: FormBuilder,
     private jsonFormService: JsonFormService,
     private alertService: AlertService,
     private commonService: CommonService
   ) { }
+
   ngOnInit(): void {
+    setTimeout(()=>{
+      this.isFormLoading =false;
+    },2000)
+    this.form = this.formFields && this.jsonFormService.createForm(this.formFields?.controls);
+
   }
   ngOnChanges(changes: SimpleChanges) {
     if (!changes.formFields.firstChange) {
-      this.form = this.jsonFormService.createForm(this.formFields.controls);
+      this.form = this.formFields && this.jsonFormService.createForm(this.formFields?.controls);
+  
     }
   }
 

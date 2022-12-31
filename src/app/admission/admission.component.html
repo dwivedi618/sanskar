@@ -12,8 +12,11 @@
                             </mat-toolbar>
                             <div class="row justify-content-center">
                                 <div class="col-12">
-                                    <app-json-form [formFields]="admissionFormFields"
-                                        (onSubmit)="onStudentFormSubmit($event)"></app-json-form>
+                                   
+                                    <ng-container >
+                                        <app-json-form [formFields]="admissionFormFields"
+                                            (onSubmit)="onStudentFormSubmit($event)"></app-json-form>
+                                    </ng-container>
                                 </div>
                             </div>
 

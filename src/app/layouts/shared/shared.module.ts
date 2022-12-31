@@ -21,6 +21,7 @@ import { AgePipe } from './customPipes/age.pipe';
 import { InputMaskDirective } from './customDirectives/input-mask.directive';
 import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
+import { SkeltonLoaderComponent } from './skelton-loader/skelton-loader.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ImagePickerComponent,
     InputMaskDirective,
     ImageCropperComponent,
+    SkeltonLoaderComponent,
+
   ],
   imports: [
     CommonModule,
@@ -74,7 +77,8 @@ import { ImageCropperModule } from 'ngx-image-cropper';
     ReactiveFormsModule,
     InputMaskDirective,
     ImageCropperModule,
-    ImageCropperComponent
+    ImageCropperComponent,
+    SkeltonLoaderComponent
   ]
 })
 export class SharedModule { }

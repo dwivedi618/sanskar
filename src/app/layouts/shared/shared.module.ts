@@ -23,6 +23,7 @@ import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 import { ImageCropperModule } from 'ngx-image-cropper';
 import { SkeltonLoaderComponent } from './skelton-loader/skelton-loader.component';
 import { InstituteHeaderComponent } from './institute-header/institute-header.component';
+import { DialogHeaderComponent } from './dialog-header/dialog-header.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { InstituteHeaderComponent } from './institute-header/institute-header.co
     ImageCropperComponent,
     SkeltonLoaderComponent,
     InstituteHeaderComponent,
+    DialogHeaderComponent,
 
   ],
   imports: [
@@ -81,7 +83,8 @@ import { InstituteHeaderComponent } from './institute-header/institute-header.co
     ImageCropperModule,
     ImageCropperComponent,
     SkeltonLoaderComponent,
-    InstituteHeaderComponent
+    InstituteHeaderComponent,
+    DialogHeaderComponent
   ]
 })
 export class SharedModule { }

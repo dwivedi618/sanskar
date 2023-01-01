@@ -10,12 +10,11 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
-import { merge, param } from 'jquery';
 import { CommonService } from 'src/app/services/common.service';
-import { ManageFeeCategoryComponent } from '../../fee-category/manage-fee-category/manage-fee-category.component';
 import { HELPER as HELPER } from 'src/app/utils/helpers';
 import { Class } from '../../standard/class.interface';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
+import { ClassActionService } from '../../standard/services/class-action.service';
 
 export interface FacultyListItem {
   name: string;
@@ -118,7 +117,8 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private alertService : AlertService,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private classActionService : ClassActionService
   ) {
     this.activatedRoute.queryParams.subscribe(data => {
       if (data) {
@@ -284,32 +284,9 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     this.router.navigate(['fee-structure/master-fee-category', 'new'])
   }
 
-
-
-
-
-  manageFeeCategory() {
-    const data = {}
-    const dialogRef = this.dialog.open(ManageFeeCategoryComponent, {
-      width: '40rem',
-      maxWidth: '100vw',
-
-      maxHeight: '100vh',
-      hasBackdrop: false,
-      // panelClass : 'dialog-container-pt-0',
-      data: data
-    })
-  }
-  /**
-   * route to add faculty profile page
-   * @param faculty id,name,email
-   */
-  openFacultyProfile(profile) {
-    this.router.navigate(['faculty/profile']);
-  }
   menuClickHandler(action,data){
     console.log("data",action , data)
-    // this.feeActionService.actionTriggered(action,data);
+    this.classActionService.actionTriggered(action,data);
   }
 }
 

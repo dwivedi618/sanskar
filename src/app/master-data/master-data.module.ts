@@ -25,7 +25,8 @@ import { ConfigurationHomeComponent } from './configuration-home/configuration-h
     MasterStandardListComponent,
     MasterStandardListComponent,
     ManageMasterStandardComponent,
-    ConfigurationHomeComponent
+    ConfigurationHomeComponent,
+    
 
   ],
   imports: [

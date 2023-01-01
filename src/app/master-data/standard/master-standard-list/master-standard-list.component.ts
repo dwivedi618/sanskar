@@ -12,6 +12,7 @@ import { ManageMasterStandardComponent } from '../manage-master-standard/manage-
 import { CommonService } from 'src/app/services/common.service';
 import { DialogService } from 'src/app/layouts/shared/dialog.service';
 import { UiService } from 'src/app/services/ui.service';
+import { ClassActionService } from '../services/class-action.service';
 
 
 export interface MasterStandardList {
@@ -69,7 +70,8 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
     private router : Router,
     public commonService : CommonService,
     private dialogService : DialogService,
-    private loaderService : UiService
+    private loaderService : UiService,
+    private classActionService : ClassActionService
   ){}
 
   ngOnInit() {
@@ -124,7 +126,7 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
   }
   menuClickHandler(action,data){
     console.log("data",action , data)
-    // this.feeActionService.actionTriggered(action,data);
+    this.classActionService.actionTriggered(action,data);
   }
 
 }

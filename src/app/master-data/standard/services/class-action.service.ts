@@ -3,15 +3,16 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { DialogService } from 'src/app/layouts/shared/dialog.service';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { AlertService } from 'src/app/services/alert.service';
-import { FeeApiService } from './fee-api.service';
+import { ClassApiService } from './class-api.service';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class FeeActionService {
+export class ClassActionService {
 
   constructor(
-    private feeApiService: FeeApiService,
+    private classApiService: ClassApiService,
     private alertService: AlertService,
     private dialogService: DialogService
   ) { }
@@ -21,10 +22,11 @@ export class FeeActionService {
       case Action.DELETE:
         this.alertService.alertWithAction([`Delete ${data.name}.`, 'Are you sure?'], 'Delete').subscribe(result => {
           if (result === "Delete") {
-            return this.feeApiService.delete(data).subscribe((result) => {
-              //if success
-              resultObservable.next(result);
-            })
+            return this.classApiService.delete(data).subscribe(
+              result => {
+                //if success
+                resultObservable.next(result);
+              })
           }
         })
         break;

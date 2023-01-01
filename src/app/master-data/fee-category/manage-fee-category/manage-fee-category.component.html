@@ -1,11 +1,4 @@
-<div mat-dialog-title class="d-flex align-items-center mt-n4 mr-n4 ml-n4 bg-dark-400" >
-    <strong class="text-light px-4">{{dialogData.action}}</strong>
-    <small  class="text-light pr-3 pl-2 fs-14">Master Fee Category</small> 
-    <div class="spacer"></div>
-    <button mat-mini-fab color="warn" [mat-dialog-close]="true" class="mat-elevation-z0">
-        <mat-icon class="material-icons-outlined ">close</mat-icon>
-    </button>
-</div>
+<app-dialog-header [dialogData]="{action : dialogData.action , name : 'Master Fee Category'}"></app-dialog-header>
 <div mat-dialog-content>
     <app-json-form [formFields] ="feeFormFields"  (onSubmit)="onSubmit($event)"></app-json-form>
 </div>

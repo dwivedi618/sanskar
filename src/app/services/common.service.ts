@@ -12,20 +12,21 @@ import { MainMenu } from '../layouts/shared/uiComponents/left-sidebar-menu/sideb
 export interface District {
   [stateCode:string] : string[];
 }
+export const API_ROUTES = {
+  fee: environment.apiUrl + '/' + 'fee',
+  class: environment.apiUrl + '/' + 'class',
+  feeStructure: environment.apiUrl + '/' + 'feeStructure',
+  student: environment.apiUrl + '/' + 'student',
+  indianStatesUrl: "assets/jsons/indian.states.json",
+  indianDistrictsUrl: "assets/jsons/indian.districts.json",
+  mainMenuUrl : "assets/jsons/main-menu.json"
+}
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
 
-  public API_ROUTES = {
-    fee: environment.apiUrl + '/' + 'fee',
-    class: environment.apiUrl + '/' + 'class',
-    feeStructure: environment.apiUrl + '/' + 'feeStructure',
-    student: environment.apiUrl + '/' + 'student',
-    indianStatesUrl: "assets/jsons/indian.states.json",
-    indianDistrictsUrl: "assets/jsons/indian.districts.json",
-    mainMenuUrl : "assets/jsons/main-menu.json"
-  }
+  API_ROUTES = API_ROUTES;
 
   constructor(
     private http: HttpClient

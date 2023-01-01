@@ -5,5 +5,6 @@ export const PATTERNS = {
   alphabet: /^[A-Za-z\s]+$/,
   number: /^[0-9]+(\.[0-9]{0,2})?$/,
   text: /^[ A-Za-z\d\s_@|.,:()&$#+-]*$/,
+  textarea : /^[ A-Za-z\d\s_@|.,:()&$#+-]*$/,
   name: /^[ A-Za-z\d\s_@|.,:()-\/]*$/,
 }                     

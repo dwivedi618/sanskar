@@ -103,5 +103,14 @@ export class AdmissionComponent implements OnInit {
   onStudentFormSubmit(form) {
     console.log("student form", form);
   }
+  onSubmitParentFormFields(form){
+    console.log("parent form", form);
+  }
+  onSubmitPermanentAddressFormFields(form){
+
+  }
+  onSubmitLocalAddressFormFields(form){
+    
+  }
 }
 

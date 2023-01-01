@@ -171,13 +171,14 @@ export class ManageMasterStandardComponent implements OnInit {
 
   }
   
-  submit(){
-    if(this.classFromGroup.invalid){
+  onClassSubmit(form){
+    let formValues = form;
+    if(!form){
       this.alertService.alert('Can not insert empty data','close');
       return
     }
     this.isSaving =true;
-    this.commonService.masterstandard(this.classFromGroup.value).subscribe((result)=>{
+    this.commonService.masterstandard(formValues).subscribe((result)=>{
       this.isSaving =false;
       this.alertService.alertComponent(result.message || 'Submitted');
       this.classFromGroup.reset();

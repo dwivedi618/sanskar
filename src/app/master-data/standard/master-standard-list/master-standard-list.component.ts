@@ -10,6 +10,8 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
 import { ManageMasterStandardComponent } from '../manage-master-standard/manage-master-standard.component';
 import { CommonService } from 'src/app/services/common.service';
+import { DialogService } from 'src/app/layouts/shared/dialog.service';
+import { UiService } from 'src/app/services/ui.service';
 
 
 export interface MasterStandardList {
@@ -65,7 +67,9 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
   constructor(
     private dialog : MatDialog,
     private router : Router,
-    public commonService : CommonService
+    public commonService : CommonService,
+    private dialogService : DialogService,
+    private loaderService : UiService
   ){}
 
   ngOnInit() {
@@ -76,12 +80,12 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
   }
 
   getMasterStandardList(){
-    console.log("111111111111");
-    
+      this.loaderService.loader.show("Fecthing classes...")
       this.commonService.getMasterStandard().subscribe((result)=>{
         console.log("master student Form result",result);
         const standardList = result['data'] || null;
         this.dataSource.data = standardList
+        this.loaderService.loader.hide();
       },(error)=>{
         console.log("master student Form error",error);
       })
@@ -94,7 +98,8 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
   }
 
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
+    
+    const filterValue = (event.target as HTMLInputElement).value || '';
     console.log("filterValue",filterValue)
     this.dataSource.filter = filterValue.trim().toLowerCase();
     if (this.dataSource.paginator) {
@@ -113,14 +118,8 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
 
 
   manageMasterStandard(){
-    const data = {}
-    const dialogRef = this.dialog.open(ManageMasterStandardComponent,{
-      width : '40rem',
-      maxWidth : '100vw',     
-      maxHeight : '100vh',
-      hasBackdrop : false,
-      // panelClass : 'dialog-container-pt-0',
-      data : data
+    this.dialogService.manageMasterStandard().subscribe(result=>{
+      this.getMasterStandardList();
     })
   }
   menuClickHandler(action,data){

@@ -15,6 +15,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { ManageFeeCategoryComponent } from '../../fee-category/manage-fee-category/manage-fee-category.component';
 import { HELPER as HELPER } from 'src/app/utils/helpers';
 import { Class } from '../../standard/class.interface';
+import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 
 export interface FacultyListItem {
   name: string;
@@ -214,7 +215,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   getFeeCategoryList(){
     console.log("getMasterFeeCategory result");
 
-    this.commonService.getMasterFee().subscribe((result)=>{
+    this.commonService[API_SERVICE_METHODS.getFees]().subscribe((result)=>{
       console.log("getMasterFeeCategory result",result);
       this.fees = result['data'] || null;
     },(error)=>{

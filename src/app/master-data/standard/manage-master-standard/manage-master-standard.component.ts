@@ -7,6 +7,7 @@ import {Fee, feeFrequencyEnum } from '../../fee-category/fee.interface'
 import { JsonFormService } from 'src/app/services/json-form.service';
 import { JsonFormArray, JsonFormControls, JsonFormData } from '/home/v-shivam.dwivedi/Downloads/projects/nest/sanskar/src/app/layouts/shared/json-form/json-from.types';
 import { ClassFee } from '../class.interface';
+import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
   
 
 @Component({
@@ -186,7 +187,7 @@ export class ManageMasterStandardComponent implements OnInit {
   }
 
   getFeeCategoryList() {
-    this.commonService.getMasterFee().subscribe((result) => {
+    this.commonService[API_SERVICE_METHODS.getFees]().subscribe((result) => {
       // console.log("getMasterFeeCategory result", result);
       this.fees = result['data'] || [];
       const classFeeJson = this.createClassFeeForm(this.fees);

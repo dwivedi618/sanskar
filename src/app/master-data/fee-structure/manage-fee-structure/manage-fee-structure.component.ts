@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonService } from 'src/app/services/common.service';
+import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 
 @Component({
   selector: 'app-manage-fee-structure',
@@ -90,7 +91,7 @@ export class ManageFeeStructureComponent implements OnInit {
   }
 
   getFeeCategoryList() {
-    this.commonService.getMasterFee().subscribe((result) => {
+    this.commonService[API_SERVICE_METHODS.getFees]().subscribe((result) => {
       console.log("getMasterFeeCategory result", result);
       this.feeCategoryList = result['data'] || [];
       if (this.feeCategoryList.length != 0) {

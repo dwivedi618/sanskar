@@ -1,19 +1,22 @@
-form{
-    border: 1px dotted #222;
-    border-radius: 4px;
+.json-form {
+  border-radius: 4px;
+  padding: 5%;
+  &.background{
+    
     background: #f4f4f4;
-    padding: 5%;
   }
-.required-mark{
-    color: red;
+  &.border{
+    
+    border: 2px dotted #ccc;
+  }
 }
-.flex-wrap{
-    display: flex;
-    flex-wrap: wrap!important;
+.required-mark {
+  color: red;
+}
+.flex-wrap {
+  display: flex;
+  flex-wrap: wrap !important;
 }
 mat-grid-tile {
-    background: lightblue;
-  }
-
- 
-  
+  background: lightblue;
+}

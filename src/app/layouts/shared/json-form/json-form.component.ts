@@ -13,6 +13,8 @@ import { Field, JsonFormControlOptions, JsonFormControls, JsonFormControlsMethod
 })
 export class JsonFormComponent implements OnChanges, OnInit {
   @Input() public formFields: JsonFormData;
+  @Input() public ngClass: string = 'json-form';
+
   @Output() onSubmit = new EventEmitter();
   form: FormGroup = this.fb.group({});
   isFormLoading :boolean = true;
@@ -26,7 +28,7 @@ export class JsonFormComponent implements OnChanges, OnInit {
   ngOnInit(): void {
     setTimeout(()=>{
       this.isFormLoading =false;
-    },2000)
+    },1000)
     this.form = this.formFields && this.jsonFormService.createForm(this.formFields?.controls);
 
   }

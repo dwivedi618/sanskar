@@ -23,7 +23,7 @@
         {
             "name": "isOptional",
             "label": "Optional",
-            "value": "",
+            "value": false,
             "type": "radio",
             "validators": {
                 "required": true

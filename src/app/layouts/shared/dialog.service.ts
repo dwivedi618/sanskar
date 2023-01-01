@@ -4,6 +4,7 @@ import { Injectable } from '@angular/core';
 import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 import { ManageFeeCategoryComponent } from 'src/app/master-data/fee-category/manage-fee-category/manage-fee-category.component';
 import { ManageMasterStandardComponent } from 'src/app/master-data/standard/manage-master-standard/manage-master-standard.component';
+import { Action } from './uiComponents/menu-button/actions.enum';
 
 
 @Injectable({
@@ -39,16 +40,16 @@ export class DialogService {
     return afterCloseResult.asObservable();
   }
 
-  manageFeeCategory() {
+  manageFeeCategory(dataObj = {},action : Action = Action.ADD) {
     let afterCloseResult = new Subject;
-    const data = {}
+    const data = dataObj
     const dialogRef = this.dialog.open(ManageFeeCategoryComponent, {
       width: '40rem',
       maxWidth: '100vw',
       maxHeight: '100vh',
       hasBackdrop: false,
       // panelClass : 'dialog-container-pt-0',
-      data: data
+      data: {data,action}
     })
     dialogRef.afterClosed().subscribe(result => {
       afterCloseResult.next(result)

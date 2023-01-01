@@ -1,14 +1,18 @@
-<mat-dialog-content class="text-center">
-    <div class="text-center d-flex justify-centent-start align-items-center mb-2">
-        <span class="material-icons-outlined text-warning">
-            lightbulb
+<mat-dialog-content>
+    <div class="d-flex justify-content-start align-items-center mb-2 w-100">
+        <span class="icon material-icons-outlined text-warning mr-2 fs-20">
+            {{icon}}
         </span>
-        <small class="px-2 ">{{message}}</small>
+        <div class="message-container d-flex flex-column align-items-center justify-content-start">
+            <ng-container *ngFor="let m of messages">
+                <div>{{m}}</div>
+            </ng-container>
+        </div>
     </div>
     
 </mat-dialog-content>
 <div mat-dialog-action class="d-flex">
-    <button  mat-button (click)="snackBarRef.dismiss();" class="w-50 mr-1">
+    <button  mat-stroked-button (click)="snackBarRef.dismiss();" class="w-50 mr-1">
         <small>Close</small>
     </button>
     <button mat-button  (click)="snackBarRef.dismissWithAction();" class="w-50 btn-mydark" cdkFocusInitial>

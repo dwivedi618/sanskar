@@ -1,4 +1,5 @@
-<form *ngIf="formFields && formFields.controls " [formGroup]="form" (ngSubmit)="onFormSubmit()">
+<form *ngIf="formFields && formFields.controls " [formGroup]="form" (ngSubmit)="onFormSubmit()" 
+[ngClass]="ngClass" class="json-form background">
     <ng-container *ngIf="isFormLoading">
         <app-skelton-loader [length]="formFields.controls.length"></app-skelton-loader>
     </ng-container>

@@ -1,0 +1,10 @@
+.message-container div:first-child{
+    font-size: 16px!important;
+    font-weight: 500;
+}
+.message-container div:not(:first-child){
+    font-size: 12px!important;
+}
+.icon{
+    font-size: 20px;
+}

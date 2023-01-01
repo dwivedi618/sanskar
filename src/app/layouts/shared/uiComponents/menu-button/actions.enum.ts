@@ -1,5 +1,6 @@
 export enum Action{
     "UPDATE" = "UPDATE",
+    "ADD" = "ADD",
     "DELETE" = "DELETE",
     "EDIT" = "EDIT",
     "SUBMIT" = "SUBMIT",

@@ -50,20 +50,30 @@ export class ManageFeeCategoryComponent implements OnInit {
 
   private patchObjValuesToFormFields(obj){
     console.log("patchObjValuesToFormFields",obj);
-    this.feeFormFields.controls.forEach((field:JsonFormControls,index) =>{
-      console.log("forEach field",field,obj[field.name]);
-      if(obj[field.name]){
-        this.feeFormFields.controls[index].value = obj[field.name] == ('true' || 'false') ? 
-        Boolean(obj[field.name]): 
-        obj[field.name];
-      }
-    })
+    this.feeFormFields.controls = this.jsonFormService.patchValuesToFormFields(obj,this.feeFormFields.controls);
   }
 
   onSubmit(formValues) {
     console.log("feeForm", formValues)
     let form = formValues;
+    let action : Action = this.dialogData?.action;
+    switch (action) {
+      case Action.ADD:
+        this.add(formValues);
+        break;
+      case Action.EDIT:
+      case Action.UPDATE:
+        let {_id } = this.dialogData.data
+        return this.update({...formValues,_id});
+
+      default:
+        break;
+    }
     this.isSaving = true;
+    
+  }
+
+  private add(formValues){
     this.commonService.addMasterFeeCategory(formValues).subscribe((result) => {
       console.log("masterFeeCategoryForm", result);
       this.isSaving = true;
@@ -71,6 +81,18 @@ export class ManageFeeCategoryComponent implements OnInit {
       this.feeDialogRef.close();
     }, (error) => {
       console.log("masterFeeCategoryForm", error);
+      this.isSaving = true;
+    })
+  }
+
+  private update(formValues){
+    this.commonService.updateMasterFeeCategory(formValues).subscribe((result) => {
+      console.log("updateMasterFeeCategory", result);
+      this.isSaving = true;
+      this.alertService.alertComponent(result.message);
+      return this.feeDialogRef.close();
+    }, (error) => {
+      console.log("updateMasterFeeCategory", error);
       this.isSaving = true;
     })
   }

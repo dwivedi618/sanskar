@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Observable } from 'rxjs';
 import { JsonFormControls, JsonFormData } from '../layouts/shared/json-form/json-from.types';
 @Injectable({
   providedIn: 'root'
@@ -83,5 +84,19 @@ export class JsonFormService {
       );
     }
     return formGroup;
+  }
+
+  patchValuesToFormFields(obj,controls: JsonFormControls[]){
+    console.log("patchObjValuesToFormFields",obj);
+
+    controls.forEach((field:JsonFormControls,index) =>{
+      console.log("forEach field",field,obj[field.name]);
+      if(obj[field.name]){
+        controls[index].value = obj[field.name] == ('true' || 'false') ? 
+        Boolean(obj[field.name]): 
+        obj[field.name];
+      }
+    })
+    return controls;
   }
 }

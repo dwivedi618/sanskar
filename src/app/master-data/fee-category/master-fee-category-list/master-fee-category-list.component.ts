@@ -122,7 +122,9 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit, On
  
   menuClickHandler(action, data) {
     console.log("data", action, data)
-    this.feeActionService.actionTriggered(action, data);
+    this.feeActionService.actionTriggered(action, data).subscribe(()=>{
+      this.refresh();
+    })
   }
 }
 

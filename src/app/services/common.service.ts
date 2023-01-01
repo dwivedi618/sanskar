@@ -122,6 +122,10 @@ export class CommonService {
   addMasterFeeCategory(data) {
     return this.http.post<any>(this.API_ROUTES.fee, data)
   }
+
+  updateMasterFeeCategory(data) {
+    return this.http.patch<any>(this.API_ROUTES.fee, data)
+  }
  
 
   [API_SERVICE_METHODS.getFees](id: String = '') {

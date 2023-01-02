@@ -57,16 +57,15 @@ export class DialogService {
     return afterCloseResult.asObservable();
   }
 
-  manageMasterStandard() {
+  manageMasterStandard(data = {},action : Action = Action.ADD) {
     let afterCloseResult = new Subject;
-    const data = {}
     const dialogRef = this.dialog.open(ManageMasterStandardComponent, {
       width: '40rem',
       maxWidth: '100vw',
       maxHeight: '100vh',
       hasBackdrop: false,
       // panelClass : 'dialog-container-pt-0',
-      data: data
+      data: { data , action }
     })
     dialogRef.afterClosed().subscribe(result => {
       afterCloseResult.next(result)

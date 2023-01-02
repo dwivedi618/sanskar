@@ -15,6 +15,7 @@ import { HELPER as HELPER } from 'src/app/utils/helpers';
 import { Class } from '../../standard/class.interface';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { ClassActionService } from '../../standard/services/class-action.service';
+import { ClassApiService } from '../../standard/services/class-api.service';
 
 export interface FacultyListItem {
   name: string;
@@ -113,12 +114,12 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
 
   selectedSession : string
   constructor(
-    private dialog: MatDialog,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private alertService : AlertService,
     private commonService: CommonService,
-    private classActionService : ClassActionService
+    private classActionService : ClassActionService,
+    private classApiService : ClassApiService
   ) {
     this.activatedRoute.queryParams.subscribe(data => {
       if (data) {
@@ -204,7 +205,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
 
 
   getMasterStandardList() {
-    this.commonService.getMasterStandard().subscribe((result) => {
+    this.classApiService.fetch().subscribe((result) => {
       console.log("classes", result);
       this.standardList = result['data'] || [];
     }, (error) => {
@@ -286,7 +287,12 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
 
   menuClickHandler(action,data){
     console.log("data",action , data)
-    this.classActionService.actionTriggered(action,data);
+    this.classActionService.actionTriggered(action,data).subscribe(()=>{
+      this.refresh();
+    })
+  }
+  refresh() {
+    this.getMasterStandardList()
   }
 }
 

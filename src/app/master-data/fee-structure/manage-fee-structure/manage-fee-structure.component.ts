@@ -4,6 +4,7 @@ import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { CommonService } from 'src/app/services/common.service';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
+import { ClassApiService } from '../../standard/services/class-api.service';
 
 @Component({
   selector: 'app-manage-fee-structure',
@@ -30,7 +31,8 @@ export class ManageFeeStructureComponent implements OnInit {
     private router: Router,
     private fb: FormBuilder,
     private alertService : AlertService,
-    private commonService: CommonService
+    private commonService: CommonService,
+    private classApiService : ClassApiService
   ) {
     this.feeStructureForm = this.fb.group({
       year: [],
@@ -59,7 +61,6 @@ export class ManageFeeStructureComponent implements OnInit {
       standardId:  this.feeStructureForm.value.standardId  ,
       n : this.standardName }})
     this.commonService.addMasterFeeStructure(this.feeStructureForm.value).subscribe(result=>{
-    console.log("result",result);
     this.isSaving = false;
     this.router.navigate(['./'], { queryParams: { 
       year: this.feeStructureForm.value.year,
@@ -69,7 +70,6 @@ export class ManageFeeStructureComponent implements OnInit {
     this.alertService.alertComponent(result.message || '')
 
     },error =>{
-      console.log("error",error);
     this.isSaving = false;
 
 
@@ -81,24 +81,19 @@ export class ManageFeeStructureComponent implements OnInit {
  * @use dropdown list of all standard (classes)
  */
   getStandardList() {
-    console.log("get Standard List")
-    this.commonService.getMasterStandard().subscribe((result) => {
-      console.log("result", result);
+    this.classApiService.fetch().subscribe((result) => {
       this.standardLists = result.data || null;
     }, (error) => {
-      console.log("error", error);
     })
   }
 
   getFeeCategoryList() {
     this.commonService[API_SERVICE_METHODS.getFees]().subscribe((result) => {
-      console.log("getMasterFeeCategory result", result);
       this.feeCategoryList = result['data'] || [];
       if (this.feeCategoryList.length != 0) {
         this.createDynamicForm();
       }
     }, (error) => {
-      console.log("getMasterFeeCategory error", error);
     })
   }
 
@@ -120,7 +115,6 @@ export class ManageFeeStructureComponent implements OnInit {
   }
 
   onCHeckBoxChange(event){
-    console.log("matcheckbox event",event.checked)
   }
 
 }

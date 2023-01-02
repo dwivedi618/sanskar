@@ -64,17 +64,12 @@ export class AdmissionComponent implements OnInit {
 
   ngOnInit() {
     this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
-      console.log("admission form", formJson);
-
       this.admissionFormFields = formJson.studentForm;
       this.parentsFormFields = formJson.parentForm;
       this.permanentAddressFormFields = formJson.permanentAddressForm;
       this.localAddressFormFields = formJson.localAddressForm;
       setTimeout(() => {
         this.isFormLoading = false;
-        console.log(this.isFormLoading);
-        
-
       }, 3000)
 
     });
@@ -87,10 +82,8 @@ export class AdmissionComponent implements OnInit {
   getProfile() {
     this.commonService.getStudentRecordById(this.studentId)
       .subscribe((result) => {
-        console.log("Student profile", result);
         this.studentData = result.data || null;
         if (this.action == 'update') {
-          console.log("form patch prodifile ------------------");
         }
 
         this.isLoading = false;

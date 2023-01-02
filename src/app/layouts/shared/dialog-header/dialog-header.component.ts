@@ -7,7 +7,6 @@ import { Action } from '../uiComponents/menu-button/actions.enum';
   styleUrls: ['./dialog-header.component.scss']
 })
 export class DialogHeaderComponent implements OnInit {
-
   @Input() public dialogData : { action : Action , name : string}
   constructor() { }
 

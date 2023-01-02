@@ -109,14 +109,7 @@ export class CommonService {
   }
 
 
-  masterstandard(standard) {
-    return this.http.post<any>(this.API_ROUTES.class, standard);
-  }
-
-
-  getMasterStandard() {
-    return this.http.get<any>(this.API_ROUTES.class)
-  }
+  
 
 
 
@@ -174,20 +167,16 @@ export class CommonService {
   }
 
   parentRecord(studentId, parentRecord) {
-    console.log("parentRecord", studentId, parentRecord)
     return this.http.post<any>(`${environment.apiUrl}/v1/student/${studentId}/parents`, parentRecord)
   }
   updateParentRecord(studentId, parentRecord) {
-    console.log("parentRecord", studentId, parentRecord)
     return this.http.put<any>(`${environment.apiUrl}/v1/student/${studentId}/parents`, parentRecord)
   }
 
   studentAddress(studentId, address) {
-    console.log("parentRecord", studentId, address)
     return this.http.post<any>(`${environment.apiUrl}/v1/student/${studentId}/address`, address)
   }
   updateStudentAddress(studentId, address) {
-    console.log("parentRecord", studentId, address)
     return this.http.put<any>(`${environment.apiUrl}/v1/student/${studentId}/address`, address)
   }
 

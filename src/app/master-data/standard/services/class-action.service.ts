@@ -31,7 +31,8 @@ export class ClassActionService {
         })
         break;
       case Action.EDIT:
-        this.dialogService.manageFeeCategory(data, action).subscribe(result => {
+      case Action.UPDATE:
+        this.dialogService.manageMasterStandard(data, action).subscribe(result => {
           resultObservable.next(result);
         });
         break;

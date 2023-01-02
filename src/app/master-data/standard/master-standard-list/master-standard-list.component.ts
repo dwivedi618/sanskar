@@ -13,6 +13,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { DialogService } from 'src/app/layouts/shared/dialog.service';
 import { UiService } from 'src/app/services/ui.service';
 import { ClassActionService } from '../services/class-action.service';
+import { ClassApiService } from '../services/class-api.service';
 
 
 export interface MasterStandardList {
@@ -52,8 +53,7 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
     this.isAllSelected() ?
         this.selection.clear() :
         this.dataSource.data.forEach(row => this.selection.select(row));
-        console.log("selection",this.selection.selected);
-  }
+      }
 
   /** The label for the checkbox on the passed row */
   checkboxLabel(row?: MasterStandardList): string {
@@ -66,30 +66,26 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
   menuDataSession = ['2019-2020','2020-2021','2021-2022'];
   selectedSession = this.menuDataSession[0]
   constructor(
-    private dialog : MatDialog,
-    private router : Router,
     public commonService : CommonService,
     private dialogService : DialogService,
     private loaderService : UiService,
-    private classActionService : ClassActionService
+    private classActionService : ClassActionService,
+    private classApiService : ClassApiService
   ){}
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
-    console.log("selection",this.selection.selected)
     this.getMasterStandardList();
     this.manageMasterStandard()
   }
 
   getMasterStandardList(){
-      this.loaderService.loader.show("Fecthing classes...")
-      this.commonService.getMasterStandard().subscribe((result)=>{
-        console.log("master student Form result",result);
+      this.loaderService.loader.show("Fetching classes...")
+      this.classApiService.fetch().subscribe((result)=>{
         const standardList = result['data'] || null;
         this.dataSource.data = standardList
         this.loaderService.loader.hide();
       },(error)=>{
-        console.log("master student Form error",error);
       })
   }
 
@@ -102,7 +98,6 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
   applyFilter(event: Event) {
     
     const filterValue = (event.target as HTMLInputElement).value || '';
-    console.log("filterValue",filterValue)
     this.dataSource.filter = filterValue.trim().toLowerCase();
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -125,8 +120,12 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
     })
   }
   menuClickHandler(action,data){
-    console.log("data",action , data)
-    this.classActionService.actionTriggered(action,data);
+    this.classActionService.actionTriggered(action,data).subscribe(()=>{
+      this.refresh();
+    })
+  }
+  refresh() {
+    this.getMasterStandardList()
   }
 
 }

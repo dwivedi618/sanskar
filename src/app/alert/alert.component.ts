@@ -22,7 +22,6 @@ export class AlertComponent implements OnInit {
         this.status = data['status'] || '';
       }
       console.log(data,this.message,this.status);
-
     }
 
 

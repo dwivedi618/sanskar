@@ -86,12 +86,12 @@ export class JsonFormService {
     return formGroup;
   }
 
-  patchValuesToFormFields(obj,controls: JsonFormControls[]){
+  patchValuesToFormFields(obj={},controls: JsonFormControls[]=[]){
     console.log("patchObjValuesToFormFields",obj);
 
     controls.forEach((field:JsonFormControls,index) =>{
-      console.log("forEach field",field,obj[field.name]);
-      if(obj[field.name]){
+      // console.log("forEach field",field,obj[field.name]);
+      if(!!obj[field.name]){
         controls[index].value = obj[field.name] == ('true' || 'false') ? 
         Boolean(obj[field.name]): 
         obj[field.name];

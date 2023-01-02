@@ -23,22 +23,6 @@ export class MasterDataLayoutComponent implements OnInit {
   constructor(
     private router : Router,
     private activatedRoute : ActivatedRoute,
-  ) { 
-    // router.events.pipe(
-    //   filter(event => event instanceof NavigationEnd)
-    // ).subscribe((event: NavigationEnd) => {
-
-    //   const activeLinkWithParam = (event.url.split('/').pop())      
-    //   // console.log("activeLinkWithParam", activeLinkWithParam);
-    //   this.activeLink = activeLinkWithParam.split('?')[0]
-    //   console.log("activeLink", this.activeLink);
-
-    // });
-  }
-
-  ngOnInit(): void {
-  
-  
-  }
-
+  ) { }
+  ngOnInit(): void {}
 }

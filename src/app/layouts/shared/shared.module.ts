@@ -24,6 +24,7 @@ import { ImageCropperModule } from 'ngx-image-cropper';
 import { SkeltonLoaderComponent } from './skelton-loader/skelton-loader.component';
 import { InstituteHeaderComponent } from './institute-header/institute-header.component';
 import { DialogHeaderComponent } from './dialog-header/dialog-header.component';
+import { JsonFormArrayComponent } from './json-form-array/json-form-array.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { DialogHeaderComponent } from './dialog-header/dialog-header.component';
     SkeltonLoaderComponent,
     InstituteHeaderComponent,
     DialogHeaderComponent,
+    JsonFormArrayComponent,
 
   ],
   imports: [
@@ -69,6 +71,7 @@ import { DialogHeaderComponent } from './dialog-header/dialog-header.component';
     AlertComponent,
     AlertWithActionComponent,
     JsonFormComponent,
+    JsonFormArrayComponent,
     RouterModule,
     FeeFrequencyPipe,
     AgePipe,

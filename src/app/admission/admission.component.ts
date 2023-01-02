@@ -100,9 +100,11 @@ export class AdmissionComponent implements OnInit {
     console.log("parent form", form);
   }
   onSubmitPermanentAddressFormFields(form){
+    console.log("permanent address form", form);
 
   }
   onSubmitLocalAddressFormFields(form){
+    console.log("local address  form", form);
     
   }
 }

@@ -20,3 +20,10 @@
 mat-grid-tile {
   background: lightblue;
 }
+
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-prefix, .mat-form-field-appearance-outline .mat-form-field-suffix {
+  top: -4px!important;
+}
+::ng-deep .mat-form-field-appearance-outline .mat-form-field-suffix, .mat-form-field-appearance-outline .mat-form-field-suffix {
+  top: -4px!important;
+}

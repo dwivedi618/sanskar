@@ -1,24 +1,25 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, SimpleChanges, OnChanges, Output, EventEmitter, AfterViewInit, AfterViewChecked } from '@angular/core';
 import { resetFakeAsyncZone } from '@angular/core/testing';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { DYNAMIC_METHODS } from 'src/app/admission/dropdown.methods';
 import { AlertService } from 'src/app/services/alert.service';
 import { CommonService } from 'src/app/services/common.service';
 import { ButtonType, JsonFormService } from 'src/app/services/json-form.service';
-import { Field, JsonFormControlOptions, JsonFormControls, JsonFormControlsMethod, JsonFormData, OptionsActions } from './json-from.types';
+import { JsonFormControlOptions, JsonFormControls, JsonFormData, OptionsActions } from '../json-form/json-from.types';
 
 @Component({
-  selector: 'app-json-form',
-  templateUrl: './json-form.component.html',
-  styleUrls: ['./json-form.component.scss'],
+  selector: 'app-json-form-array',
+  templateUrl: './json-form-array.component.html',
+  styleUrls: ['./json-form-array.component.scss']
 })
-export class JsonFormComponent implements OnChanges, OnInit {
-  @Input() public formFields: JsonFormData;
+
+export class JsonFormArrayComponent implements OnChanges, OnInit {
+  @Input() public formArrayFields: JsonFormData[];
   @Input() public ngClass: string = 'json-form';
 
   @Output() onSubmit = new EventEmitter();
-  form: FormGroup = this.fb.group({});
-  isFormLoading :boolean = true;
+  form = this.fb.array([]);
+  isFormLoading: boolean = false;
   constructor(
     private fb: FormBuilder,
     private jsonFormService: JsonFormService,
@@ -27,43 +28,41 @@ export class JsonFormComponent implements OnChanges, OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.jsonFormService.formButton.subscribe(buttonState => { 
-    //   console.log("buttonState",buttonState);
-    //   if(!buttonState.isClicked) return;
-    //   if(buttonState.type === 'reset'){
-    //     this.form.reset();
-    //     this.jsonFormService.clickFormButton({type : 'reset',isClicked :false})
-
-    //   }
-    //   if(buttonState.type === 'submit'){
-    //     this.onFormSubmit();
-    //     this.jsonFormService.clickFormButton({type : 'submit',isClicked :false})
-    //   }
-    //  })
-    setTimeout(()=>{
-      this.isFormLoading =false;
-    },1000)
-    this.form = this.formFields && this.jsonFormService.createForm(this.formFields?.controls);
-
+    setTimeout(() => {
+      this.isFormLoading = false;
+    }, 1000)
+    
+    
+    this.formArrayFields && this.formArrayFields.forEach(async (formFields: JsonFormData) => {
+      let formGroup = formFields && await this.jsonFormService.asyncCreateForm(formFields?.controls);
+      formGroup && this.form.push(formGroup);
+    });
+    
   }
   ngOnChanges(changes: SimpleChanges) {
-    if (!changes.formFields.firstChange) {
-      this.form = this.formFields && this.jsonFormService.createForm(this.formFields?.controls);
-  
+    console.log("formArrayFields::shared",this.formArrayFields)
+    
+    if (!changes.formArrayFields.firstChange) {
+      this.formArrayFields && this.formArrayFields.forEach(async (formFields: JsonFormData) => {
+        let formGroup =formFields && await this.jsonFormService.asyncCreateForm(formFields?.controls);
+        formGroup && this.form.push(formGroup);
+
+      });
+
     }
   }
 
 
-/**
- * It fetches the value of the field from the server if the field has the `hitHttp` property set to
- * true
- * @param {JsonFormControls} field - JsonFormControls - This is the field object that is passed to the
- * function.
- * @returns 1. If the method is not implemented, it returns an alert.
- *   2. If the method is implemented, it returns the value of the field.
- */
-  fetchValue(field: JsonFormControls ): JsonFormControlOptions[] {
-    const { hitHttp, method,dependentControlName } = field;
+  /**
+   * It fetches the value of the field from the server if the field has the `hitHttp` property set to
+   * true
+   * @param {JsonFormControls} field - JsonFormControls - This is the field object that is passed to the
+   * function.
+   * @returns 1. If the method is not implemented, it returns an alert.
+   *   2. If the method is implemented, it returns the value of the field.
+   */
+  fetchValue(field: JsonFormControls): JsonFormControlOptions[] {
+    const { hitHttp, method, dependentControlName } = field;
     let shouldCallService: boolean = hitHttp && method ? true : false;
     if (!shouldCallService) return;
     if (!DYNAMIC_METHODS.includes(method)) {
@@ -85,26 +84,27 @@ export class JsonFormComponent implements OnChanges, OnInit {
    */
   onSelectOption(event: { source: any, value: any }, field: JsonFormControls) {
     let actions = field?.actions as OptionsActions;
-    const { hitHttp , method , ctrlId } = actions && actions?.onSelect || {};
+    const { hitHttp, method, ctrlId } = actions && actions?.onSelect || {};
     if (hitHttp && method && ctrlId) {
       const argField: JsonFormControls = {
         ...field,
         hitHttp: hitHttp,
         method: method,
         value: event.value,
-        ctrlId : ctrlId
+        ctrlId: ctrlId
       }
       this.fetchValue(argField);
     }
   }
 
-  onFormSubmit(){
-    if(this.form.invalid) return;
+  onFormSubmit() {
+    // if (this.form.invalid) return;
     this.onSubmit.emit(this.form.getRawValue());
   }
 
   onImageSelect(image, formFieldName) {
-    this.form.patchValue({ [formFieldName]: image });
+    // fix this
+    // this.form.patchValue({ [formFieldName]: image });
   }
 
 }

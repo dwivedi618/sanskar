@@ -60,7 +60,7 @@ export class DialogService {
   manageMasterStandard(data = {},action : Action = Action.ADD) {
     let afterCloseResult = new Subject;
     const dialogRef = this.dialog.open(ManageMasterStandardComponent, {
-      width: '40rem',
+      width: '70rem',
       maxWidth: '100vw',
       maxHeight: '100vh',
       hasBackdrop: false,

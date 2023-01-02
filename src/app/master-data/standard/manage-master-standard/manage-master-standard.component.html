@@ -1,5 +1,30 @@
 <app-dialog-header [dialogData]="{action : dialogData.action , name : 'Classes'}"></app-dialog-header>
 <div mat-dialog-content>
-    <!-- <pre>{{classFromGroup.value|json}}</pre> -->
-    <app-json-form [formFields]="classFormFields" (onSubmit)="onSubmit($event)"></app-json-form>
+    <div class="row m-0">
+        <div class="col-6 pl-0">
+            <mat-toolbar>
+                <span>Class</span>
+            </mat-toolbar>
+            <app-json-form [formFields]="classFormFields" (onSubmit)="onSubmit($event)"></app-json-form>
+        </div>
+        <div class="col-6 pr-0">
+            <mat-toolbar>
+                <span>Fees</span>
+            </mat-toolbar>
+            <ng-container >
+                <app-json-form-array [formArrayFields]="classFeeFormFields" (onSubmit)="onClassFeeSubmit($event)"></app-json-form-array>
+            </ng-container>
+        </div>
+    </div>
+    <pre>{{classFromGroup.value|json}}</pre>
+    
 </div>
+<!-- <div mat-dialog-actions align="end">
+    <button mat-stroked-button color="primary" type="reset" (click)="reset()" >
+        Reset
+    </button>
+    <button mat-raised-button color="primary" type="submit" (click)="submit()">
+        <span *ngIf="!isSaving">Submit</span>
+        <span *ngIf="isSaving">Submitting...</span>
+    </button>
+</div> -->

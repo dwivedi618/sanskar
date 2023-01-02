@@ -1,7 +1,7 @@
-<form *ngIf="formFields && formFields.controls " [formGroup]="form" (ngSubmit)="onFormSubmit()" 
-[ngClass]="ngClass" class="json-form background">
+<form *ngIf="formFields && formFields.controls " [formGroup]="form" (ngSubmit)="onFormSubmit()" [ngClass]="ngClass"
+    class="json-form background">
     <ng-container *ngIf="isFormLoading">
-        <app-skelton-loader [length]="formFields.controls.length"></app-skelton-loader>
+        <app-skelton-loader [length]="formFields.controls.length || 2"></app-skelton-loader>
     </ng-container>
     <ng-container *ngIf="!isFormLoading">
         <ng-container *ngFor="let field of formFields?.controls ">
@@ -29,11 +29,16 @@
                             <input matInput type="field.type" #input appInputMask="{{field.type}}"
                                 maxlength="{{field?.validators?.maxLength}}"
                                 minlength="{{field?.validators?.minLength}}" [formControlName]="field.name">
+
+                            <strong *ngIf="field.name === 'amount'" matPrefix>Rs.&nbsp;</strong>
+                            <span *ngIf="field.name === 'amount'" matSuffix>/-</span>
                             <mat-hint align="end" *ngIf="field?.validators?.maxLength">{{input.value.length}}
                                 /
                                 {{field?.validators?.maxLength}}</mat-hint>
                             <mat-error *ngIf="form.get(field.name)?.hasError('required')">Required</mat-error>
                         </mat-form-field>
+
+
                     </div>
                 </div>
             </ng-container>

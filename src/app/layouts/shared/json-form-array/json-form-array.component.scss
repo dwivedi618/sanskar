@@ -1,0 +1,29 @@
+.json-form {
+    border-radius: 4px;
+    padding: 5%;
+    &.background{
+      
+      background: #f4f4f4;
+    }
+    &.border{
+      
+      border: 2px dotted #ccc;
+    }
+  }
+  .required-mark {
+    color: red;
+  }
+  .flex-wrap {
+    display: flex;
+    flex-wrap: wrap !important;
+  }
+  mat-grid-tile {
+    background: lightblue;
+  }
+  
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-prefix, .mat-form-field-appearance-outline .mat-form-field-suffix {
+    top: -4px!important;
+  }
+  ::ng-deep .mat-form-field-appearance-outline .mat-form-field-suffix, .mat-form-field-appearance-outline .mat-form-field-suffix {
+    top: -4px!important;
+  }

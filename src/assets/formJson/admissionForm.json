@@ -14,6 +14,18 @@
                 "disabled":true
             },
             {
+                "ctrlId": 1.11,
+                "name": "signature",
+                "label": "Student Signature",
+                "value": "",
+                "type": "image",
+                "validators": {
+                    "required": true
+                    
+                },
+                "disabled":true
+            },
+            {
                 "ctrlId": 2,
                 "name": "studentMobile",
                 "label": "Phone Number",

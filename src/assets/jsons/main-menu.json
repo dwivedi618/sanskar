@@ -47,7 +47,8 @@
                 "path": "./configuration/fee-structure",
                 "name": "Class wise fee",
                 "url": "./configuration/fee-structure"
-            }   
+            }  
+             
         ]
     }
 ]

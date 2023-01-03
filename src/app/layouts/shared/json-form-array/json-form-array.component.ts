@@ -19,7 +19,7 @@ export class JsonFormArrayComponent implements OnChanges, OnInit {
 
   @Output() onSubmit = new EventEmitter();
   form = this.fb.array([]);
-  isFormLoading: boolean = false;
+  isFormLoading: boolean = true;
   constructor(
     private fb: FormBuilder,
     private jsonFormService: JsonFormService,

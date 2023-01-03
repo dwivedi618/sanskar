@@ -1,5 +1,4 @@
 import { AlertService } from '../../../services/alert.service';
-
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Component, Inject, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
@@ -11,13 +10,12 @@ import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { ClassApiService } from '../services/class-api.service';
-import { from } from 'rxjs';
 
 
 @Component({
   selector: 'app-manage-master-standard',
   templateUrl: './manage-master-standard.component.html',
-  styleUrls: ['./manage-master-standard.component.css']
+  styleUrls: ['./manage-master-standard.component.scss']
 })
 export class ManageMasterStandardComponent implements OnInit {
   classFromGroup: FormGroup;
@@ -27,7 +25,6 @@ export class ManageMasterStandardComponent implements OnInit {
   classFormFields: JsonFormData;
   formGroup: FormGroup;
   classFeeFormFields: JsonFormArray;
-
 
   constructor(
     private fb: FormBuilder,
@@ -40,11 +37,8 @@ export class ManageMasterStandardComponent implements OnInit {
   ) {
     this.classFromGroup = this.fb.group({})
     this.formGroup = this.fb.group({ fees: this.classFeeFormArray })
-    this.classFeeFormArray = this.fb.array([])
     console.log("MAT_DIALOG_DATA", dialogData);
-
   }
-
 
 
   ngOnInit(): void {
@@ -64,7 +58,6 @@ export class ManageMasterStandardComponent implements OnInit {
       case Action.EDIT:
         this.patchObjValuesToFormFields(data);
         break;
-
       default:
         break;
     }
@@ -73,15 +66,6 @@ export class ManageMasterStandardComponent implements OnInit {
   private patchObjValuesToFormFields(obj) {
     this.classFormFields.controls = this.jsonFormService.patchValuesToFormFields(obj, this.classFormFields.controls);
   }
-
-
-  createFeeForm(controls: JsonFormControls[]) {
-    let formGroup = this.jsonFormService.createForm(controls)
-    this.classFeeFormArray.push(formGroup);
-  }
-
-
-
 
   onSubmit(formValues) {
     let form = formValues;
@@ -127,7 +111,7 @@ export class ManageMasterStandardComponent implements OnInit {
     this.commonService[API_SERVICE_METHODS.getFees]().subscribe((result) => {
       this.fees = result['data'] || [];
       const classFeeJson = this.createClassFeeForm(this.fees);
-      // this.createForm(classFeeJson)
+      // this.createForm(classFeeJson);
     }, (error) => {
     })
   }
@@ -143,56 +127,27 @@ export class ManageMasterStandardComponent implements OnInit {
         if (key === 'amount' || key === '_id') {
           let control = <JsonFormControls>{};
           control.name = key;
-          control.value = value;
+          control.value = value || '';
           control.validators = key === 'amount' ? { required: true } : {};
           control.type = key === 'amount' ? 'number' : 'text';
-          control.disabled = key === '_id' ? false: false;
-          control.label = key === 'amount' ? `${classFee.name}( ${FEE_FREEQUENCY[String(classFee.frequency)]} )`  : "";
+          control.disabled = key === '_id' ? false : false;
+          control.label = key === 'amount' ? `${classFee.name}( ${FEE_FREEQUENCY[String(classFee.frequency)]} )` : "";
           classFeeJson.push(control);
         }
       }
-
-      this.createFeeForm(classFeeJson);
 
       classfees.push({ controls: classFeeJson })
       return classfees;
     })
     this.classFeeFormFields = classfees as JsonFormArray;
-
-    this.classFromGroup.addControl("fees", this.classFeeFormArray);
-    // this.formGroup = this.fb.group({fees : this.classFeeFormArray,...this.classFromGroup.controls})
-    // this.classFromGroup = this.fb.group(this.createForm(this.classFormFields.controls));
-
-    console.log("classFeeFormFields", this.classFeeFormFields)
-
-
   }
+
   get feesFormArray() {
     return this.classFromGroup.controls["fees"] as FormArray;
   }
 
-  onChange(isChecked: boolean) {
-    isChecked ? this._removeFeeFormArray() : this._addFeeFormArray()
-
-  }
-  private _removeFeeFormArray() {
-    this.classFromGroup.removeControl("fees");
-  }
-  private _addFeeFormArray() {
-    this.classFromGroup.addControl("fees", this.classFeeFormArray);
-  }
-
-  reset(){
-    let buttonState : ButtonState = { type : 'reset', isClicked : true};
-    this.jsonFormService.clickFormButton(buttonState);
-  }
-  submit(){
-    let buttonState : ButtonState = { type : 'submit', isClicked : true};
-    this.jsonFormService.clickFormButton(buttonState);
-  }
-
-  onClassFeeSubmit(form){
-    console.log("classFess",form)
+  onClassFeeSubmit(form) {
+    console.log("classFess", form)
   }
 
 }

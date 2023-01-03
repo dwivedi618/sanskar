@@ -2,18 +2,18 @@
     [ngClass]="ngClass" class="json-form background">
     <ng-container *ngFor="let formFields of formArrayFields;let i=index">
         <ng-container *ngIf="isFormLoading">
-            <app-skelton-loader [length]="formFields.controls.length || 2"></app-skelton-loader>
+            <app-skelton-loader [length]="formFields.controls.length || 2"  [cols]="[7,5]"></app-skelton-loader>
         </ng-container>
         <ng-container *ngIf="!isFormLoading">
             <ng-container [formGroupName]="i" *ngFor="let field of formFields?.controls;let j=index ">
                 <ng-container *ngIf="field.type === 'number'">
                     <div class="row ">
-                        <div class="col-4 text-left justify-content-center">
+                        <div class="col-7 text-left justify-content-center">
                             <label>{{field.label}}<span class="required-mark">
                                     {{field?.validators?.required ? '*' :''}}</span>
                             </label>
                         </div>
-                        <div class="col-8 text-left">
+                        <div class="col-5 text-left">
                             <mat-form-field appearance="outline" class="w-100">
                                 <!-- <mat-label>{{field.label}}</mat-label> -->
                                 <input matInput type="field.type" #input appInputMask="{{field.type}}"

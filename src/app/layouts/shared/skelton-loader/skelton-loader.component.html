@@ -1,12 +1,7 @@
 <ng-container *ngFor="let field of fields ">
-    <ng-container>
         <div class="row is-loading py-2">
-            <div class="col-4 text-left justify-content-center ">
-                <p class="label"></p>
-            </div>
-            <div class="col-8 text-left">
-                <p class="form-field"></p>
+            <div *ngFor="let col of cols;let colIndex=index" class="col-{{col}}">
+                <p class="{{colIndex===0 ? 'label' : 'form-field'}}"></p>
             </div>
         </div>
-    </ng-container>
 </ng-container>

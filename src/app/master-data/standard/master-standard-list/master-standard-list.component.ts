@@ -76,7 +76,6 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
     this.getMasterStandardList();
-    this.manageMasterStandard()
   }
 
   getMasterStandardList(){

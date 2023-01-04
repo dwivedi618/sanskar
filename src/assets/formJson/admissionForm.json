@@ -12,18 +12,24 @@
                     
                 },
                 "disabled":true
+                
             },
             {
-                "ctrlId": 1.11,
-                "name": "signature",
-                "label": "Student Signature",
-                "value": "",
-                "type": "image",
+                "ctrlId": 1.1,
+                "name": "academicSession",
+                "label": "Academic Session",
+                "value": "2022-2023",
+                "type": "dropdown",
                 "validators": {
                     "required": true
                     
                 },
-                "disabled":true
+                "disabled":true,
+                "hitHttp":false,
+                "method" : "",
+                "options":[
+                    { "value" : "2022-2023" , "label" : "2022-2023" , "icon": "" }
+                ]
             },
             {
                 "ctrlId": 2,

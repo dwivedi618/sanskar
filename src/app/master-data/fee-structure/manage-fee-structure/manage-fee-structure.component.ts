@@ -1,10 +1,19 @@
-import { AlertService } from './../../../services/alert.service';
-import { Component, OnInit } from '@angular/core';
-import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
+
+
+import { AlertService } from '../../../services/alert.service';
+import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
+import { Component, Inject, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
+import { Fee, feeFrequencyEnum, FEE_FREEQUENCY } from '../../fee-category/fee.interface'
+import { ButtonState, JsonFormService } from 'src/app/services/json-form.service';
+import { JsonFormArray, JsonFormControls, JsonFormData } from '/home/v-shivam.dwivedi/Downloads/projects/nest/sanskar/src/app/layouts/shared/json-form/json-from.types';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { ClassApiService } from '../../standard/services/class-api.service';
+import { ManageMasterStandardComponent } from '../../standard/manage-master-standard/manage-master-standard.component';
+import { ClassFee } from '../../standard/class.interface';
+
 
 @Component({
   selector: 'app-manage-fee-structure',
@@ -12,109 +21,136 @@ import { ClassApiService } from '../../standard/services/class-api.service';
   styleUrls: ['./manage-fee-structure.component.scss']
 })
 export class ManageFeeStructureComponent implements OnInit {
-  standardLists: any;
-  feeCategoryList: any;
-  feeStructureForm: FormGroup
-
-  feeFrequency = [
-    { value: "MONTHLY", viewValue: 1 },
-    { value: "BIMESTERLY", viewValue: 2 },
-    { value: "QUARTERLY", viewValue: 3 },
-    { value: "QUADRIMESTERLY", viewValue: 4 },
-    { value: "HALF-YEARLY", viewValue: 6 },
-    { value: "YEARLY", viewValue: 12 },
-  ]
+  classFromGroup: FormGroup;
+  classFeeFormArray: FormArray;
   isSaving: boolean;
-  standardName : string
+  fees: any;
+  classFormFields: JsonFormData;
+  formGroup: FormGroup;
+  classFeeFormFields: JsonFormArray;
 
   constructor(
-    private router: Router,
     private fb: FormBuilder,
-    private alertService : AlertService,
     private commonService: CommonService,
-    private classApiService : ClassApiService
+    private alertService: AlertService,
+    private jsonFormService: JsonFormService,
+    private classApiService: ClassApiService,
+    private dialogRef: MatDialogRef<ManageFeeStructureComponent>,
+    @Inject(MAT_DIALOG_DATA) public dialogData: { data: any, action: Action } = { data: {}, action: Action.ADD }
   ) {
-    this.feeStructureForm = this.fb.group({
-      year: [],
-      standardId: [],
-      feeStructure: new FormArray([]),
-    })
+    this.classFromGroup = this.fb.group({})
+    this.formGroup = this.fb.group({ fees: this.classFeeFormArray })
+    console.log("MAT_DIALOG_DATA", dialogData);
   }
 
   ngOnInit(): void {
-    this.getStandardList();
-    this.getFeeCategoryList();
+    this.jsonFormService.getClassFormJson().subscribe(classFormJson => {
+      this.classFormFields = classFormJson;
+      this.prepareFormFields();
+    });
+    this.getFeeCategoryList()
   }
 
-  get f1() { return this.feeStructureForm.controls }
-  get feeStructure() { return this.feeStructureForm.get('feeStructure') as FormArray }
-
-
-  /**
-   * submit new faculty router back to faculty list
-   */
-  submit() {
-  
-    this.isSaving = true;
-    this.router.navigate(['./master'], { queryParams: { 
-      year: this.feeStructureForm.value.year,
-      standardId:  this.feeStructureForm.value.standardId  ,
-      n : this.standardName }})
-    this.commonService.addMasterFeeStructure(this.feeStructureForm.value).subscribe(result=>{
-    this.isSaving = false;
-    this.router.navigate(['./'], { queryParams: { 
-      year: this.feeStructureForm.value.year,
-      standardId:  this.feeStructureForm.value.standardId  ,
-      n : this.standardName }, queryParamsHandling: 'merge' })
-
-    this.alertService.alertComponent(result.message || '')
-
-    },error =>{
-    this.isSaving = false;
-
-
-    })
-    // this.router.navigate(['/faculty']);
-  }
-
-  /**
- * @use dropdown list of all standard (classes)
- */
-  getStandardList() {
-    this.classApiService.fetch().subscribe((result) => {
-      this.standardLists = result.data || null;
-    }, (error) => {
-    })
-  }
-
-  getFeeCategoryList() {
-    this.commonService[API_SERVICE_METHODS.getFees]().subscribe((result) => {
-      this.feeCategoryList = result['data'] || [];
-      if (this.feeCategoryList.length != 0) {
-        this.createDynamicForm();
-      }
-    }, (error) => {
-    })
-  }
-
-  createDynamicForm() {
-    const control = <FormArray>this.feeStructureForm.get('feeStructure')
-    for (let i = 0; i < this.feeCategoryList.length; i++) {
-      this.feeStructure.push(this.addfeeCategory(this.feeCategoryList[i]));
+  private prepareFormFields() {
+    const { data, action } = this.dialogData
+    switch (action) {
+      case Action.ADD:
+        break;
+      case Action.UPDATE:
+      case Action.EDIT:
+        this.patchObjValuesToFormFields(data);
+        break;
+      default:
+        break;
     }
   }
 
-  addfeeCategory(feeCategory) {
-    return this.fb.group({
-      feeId: [feeCategory.id],
-      frequency: [],
-      amount: [],
-      required: [],
-      isactive: []
+  private patchObjValuesToFormFields(obj) {
+    this.classFormFields.controls = this.jsonFormService.patchValuesToFormFields(obj, this.classFormFields.controls);
+  }
+
+  onSubmit(formValues) {
+    let form = formValues;
+    let action: Action = this.dialogData?.action;
+    switch (action) {
+      case Action.ADD:
+        this.add(formValues);
+        break;
+      case Action.EDIT:
+      case Action.UPDATE:
+        let { _id } = this.dialogData.data;
+        return this.update({ ...formValues, _id });
+      default:
+        break;
+    }
+    this.isSaving = true;
+
+  }
+
+  private add(formValues) {
+    this.classApiService.add(formValues).subscribe((result) => {
+      this.isSaving = true;
+      this.alertService.alertComponent(result.message);
+      this.dialogRef.close();
+    }, (error) => {
+      this.isSaving = true;
     })
   }
 
-  onCHeckBoxChange(event){
+  private update(formValues) {
+    this.classApiService.update(formValues).subscribe((result) => {
+      this.isSaving = true;
+      this.alertService.alertComponent(result.message);
+      return this.dialogRef.close();
+    }, (error) => {
+      this.isSaving = true;
+    })
+  }
+
+
+
+  getFeeCategoryList() {
+    this.commonService[API_SERVICE_METHODS.getFees]().subscribe((result) => {
+      this.fees = result['data'] || [];
+      const classFeeJson = this.createClassFeeForm(this.fees);
+    }, (error) => {
+    })
+  }
+  createClassFeeForm(fees: Fee[]) {
+    let classfees = [];
+    let classFee = <ClassFee>{};
+    fees.forEach((fee, index) => {
+      const classFeeJson: JsonFormControls[] = [];
+      classFee = { amount: 0, ...fee };
+      delete classFee?.description;
+      delete classFee?.__v;
+      for (const [key, value] of Object.entries(classFee)) {
+        if (key === 'amount' || key === '_id') {
+          let control = <JsonFormControls>{};
+          control.name = key;
+          control.value = value || '';
+          control.validators = key === 'amount' ? { required: true } : {};
+          control.type = key === 'amount' ? 'number' : 'text';
+          control.disabled = key === '_id' ? false : false;
+          control.label = key === 'amount' ? `${classFee.name}( ${FEE_FREEQUENCY[String(classFee.frequency)]} )` : "";
+          classFeeJson.push(control);
+        }
+      }
+
+      classfees.push({ controls: classFeeJson })
+      return classfees;
+    })
+    this.classFeeFormFields = classfees as JsonFormArray;
+  }
+
+  get feesFormArray() {
+    return this.classFromGroup.controls["fees"] as FormArray;
+  }
+
+  onClassFeeSubmit(form) {
+
+    console.log("classFess", form);
+
   }
 
 }

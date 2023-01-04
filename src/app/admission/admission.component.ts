@@ -14,6 +14,8 @@ import { JsonFormService } from '../services/json-form.service';
 import { JsonFormControlOptions, JsonFormControls, JsonFormControlsMethod, JsonFormData, OptionsActions } from '../layouts/shared/json-form/json-from.types';
 import { Observable } from 'rxjs';
 import { DYNAMIC_METHODS, METHODS } from './dropdown.methods';
+import { StudentApiService } from '../student/services/student-api.service';
+import { Student } from '../student/student.interface';
 
 @Component({
   selector: 'app-admission',
@@ -45,6 +47,8 @@ export class AdmissionComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private fb: FormBuilder,
     public commonService: CommonService,
+    public studentApiService: StudentApiService,
+
     private alertService: AlertService,
     private jsonFormService: JsonFormService
 
@@ -93,8 +97,11 @@ export class AdmissionComponent implements OnInit {
   }
 
 
-  onStudentFormSubmit(form) {
+  onStudentFormSubmit(form:Student) {
     console.log("student form", form);
+    this.studentApiService.add(form).subscribe(result =>{
+      console.log("save student",result);
+    })
   }
   onSubmitParentFormFields(form){
     console.log("parent form", form);

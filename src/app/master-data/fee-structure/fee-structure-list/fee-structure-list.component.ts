@@ -1,9 +1,4 @@
 import { AlertService } from 'src/app/services/alert.service';
-import { filter } from 'rxjs/operators';
-
-
-import { MatDialog } from '@angular/material/dialog';
-import { ExpandInOutAnimation } from '../../../services/animation/dropdown-animation';
 import { SelectionModel } from '@angular/cdk/collections';
 import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
@@ -12,54 +7,11 @@ import { MatTable, MatTableDataSource } from '@angular/material/table';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from 'src/app/services/common.service';
 import { HELPER as HELPER } from 'src/app/utils/helpers';
-import { Class } from '../../standard/class.interface';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { ClassActionService } from '../../standard/services/class-action.service';
 import { ClassApiService } from '../../standard/services/class-api.service';
 
-export interface FacultyListItem {
-  name: string;
-  id: number;
-  thumbnail: any;
-  role: any;
-}
 
-// TODO: replace this with real data from your application
-const EXAMPLE_DATA: FacultyListItem[] = [
-  {
-    id: 1,
-    name: 'Thor',
-    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
-    role: 'science teacher'
-  },
-
-  {
-    id: 2,
-    name: 'Kungfu panda',
-    thumbnail: '../../../../assets/user_profiles/profile1.jpeg',
-    role: 'Not assigned'
-
-  }, {
-    id: 3,
-    name: 'Stark tony ',
-    thumbnail: '../../../../assets/user_profiles/profile2.jpg',
-    role: 'Not assigned'
-
-  }, {
-    id: 4,
-    name: 'Thor',
-    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
-    role: 'Manager'
-
-  }, {
-    id: 5,
-    name: 'Marvel in universe',
-    thumbnail: '../../../../assets/user_profiles/thor.jpeg',
-    role: 'admin'
-
-  },
-
-];
 
 @Component({
   selector: 'app-fee-structure-list',
@@ -71,12 +23,12 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   @ViewChild('selectStandardbtn' ,{static : false}) selectStandardbtn : HTMLElement
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<FacultyListItem>;
+  @ViewChild(MatTable) table: MatTable<any>;
   dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['select', 'name', 'frequency','optional','amount','action'];
-  selection = new SelectionModel<FacultyListItem>(true, []);
+  selection = new SelectionModel<any>(true, []);
   standardList: any;
   selectedStandard: string;
   standatdId: any;
@@ -100,7 +52,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   }
 
   /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: FacultyListItem): string {
+  checkboxLabel(row?: any): string {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
@@ -166,13 +118,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
       console.log(" error", error);
     })
 
-    // this.commonService.getMasterFeeStructure(this.selectedSession, this.standardId).subscribe((result) => {
-    //   console.log("Fee Structure result", result);
-    //   const structureList = result['data'] || null;
-    //   this.dataSource.data = structureList
-    // }, (error) => {
-    //   console.log(" error", error);
-    // })
+   
   }
   /**
    * 

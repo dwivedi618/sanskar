@@ -28,15 +28,9 @@ import { CommonModule } from '@angular/common';
   imports: [
     CommonModule,
     SharedModule,
-    MaterialModule,
     StudentRoutingModule,
-    ReactiveFormsModule,
-    FormsModule,
-    
-    
   ],
   exports : [
-    
     StudentRoutingModule
   ],
   entryComponents: [

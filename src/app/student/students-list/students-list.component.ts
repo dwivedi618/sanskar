@@ -10,27 +10,30 @@ import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { Router } from '@angular/router';
+import { StudentApiService } from '../services/student-api.service';
+import { StudentActionService } from '../services/student-action.service';
+import { UiService } from 'src/app/services/ui.service';
 
 
 export interface Student {
-  id : number;
+  _id: number;
   firstName: string;
   fatherName: string;
   standard: string;
   address: string;
-  thumbnail : any;
+  thumbnail: any;
 }
 
 
 @Component({
   selector: 'app-students-list',
   templateUrl: './students-list.component.html',
-  styleUrls: ['./students-list.component.css']
+  styleUrls: ['./students-list.component.scss']
 })
 export class StudentsListComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  displayedColumns: string[] = ['select','name', 'standard', 'action'];
+  displayedColumns: string[] = ['select', 'name', 'age', 'gender', 'standard', 'action'];
   dataSource = new MatTableDataSource<Student>();
   selection = new SelectionModel<Student>(true, []);
 
@@ -44,9 +47,9 @@ export class StudentsListComponent implements OnInit {
   /** Selects all rows if they are not all selected; otherwise clear selection. */
   masterToggle() {
     this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
-        console.log("selection",this.selection.selected);
+      this.selection.clear() :
+      this.dataSource.data.forEach(row => this.selection.select(row));
+    console.log("selection", this.selection.selected);
   }
 
   /** The label for the checkbox on the passed row */
@@ -54,7 +57,7 @@ export class StudentsListComponent implements OnInit {
     if (!row) {
       return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
     }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
+    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row._id + 1}`;
   }
 
 
@@ -67,8 +70,11 @@ export class StudentsListComponent implements OnInit {
   constructor(
     @Inject(DOCUMENT) private document: any,
     private dialog: MatDialog,
-    private router : Router,
-    private commonService: CommonService
+    private router: Router,
+    private commonService: CommonService,
+    private studentApiService: StudentApiService,
+    private studentActionService: StudentActionService,
+    private uiService: UiService
   ) { }
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
@@ -80,25 +86,18 @@ export class StudentsListComponent implements OnInit {
   refresh() {
     this.getStudents();
   }
+
   getStudents() {
-    console.log("dataSource", this.dataSource.data);
-
-    // this.dataSource.data = EXAMPLE_STUDENT;
-    this.isLoading = true;
-    
-    this.commonService.getStudentRecord()
-      .subscribe((result) => {
-        console.log("all student", result);
-        this.dataSource.data = result.data || null;
-        console.log("dataSource", this.dataSource.data);
-
-        this.isLoading = false;
-      }, (error) => {
-        console.log("error", error);
-        console.log("dataSource", this.dataSource.data);
-
-      })
+    this.uiService.loader.show("Fetching student...")
+    this.studentApiService.fetch().subscribe((result) => {
+      const standardList = result['data'] || null;
+      this.dataSource.data = standardList
+      this.uiService.loader.hide();
+    }, (error) => {
+    })
   }
+
+
   openFeeSubmition(obj) {
     obj.action = 'submitFee';
     const dialogRef = this.dialog.open(TransactionComponent, {
@@ -113,8 +112,8 @@ export class StudentsListComponent implements OnInit {
    * route to add student profile page
    * @param profile id,name,email
    */
-  openStudentProfile(profile){
-    this.router.navigate(['student/profile'] ,{queryParams : {id : profile.id}});
+  openStudentProfile(profile) {
+    this.router.navigate(['student/profile'], { queryParams: { id: profile._id } });
   }
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
@@ -129,20 +128,27 @@ export class StudentsListComponent implements OnInit {
     } else this.displayNoRecords = false;
   }
 
-  newAdmission(){
+  newAdmission() {
     this.router.navigate(['/admission']);
   }
 
-  getThumbnail(blob){
-    if(blob != null){
-      console.log("getThumbnail",blob);
-    var reader = new FileReader();
-    reader.readAsDataURL(blob); 
-    reader.onloadend = function() {
-        var base64data = reader.result;                
+  getThumbnail(blob) {
+    if (blob != null) {
+      console.log("getThumbnail", blob);
+      var reader = new FileReader();
+      reader.readAsDataURL(blob);
+      reader.onloadend = function () {
+        var base64data = reader.result;
         console.log(base64data);
         // return base64data;
+      }
     }
   }
+  menuClickHandler(action,data){
+    console.log("data",action , data)
+    this.studentActionService.actionTriggered(action,data).subscribe(()=>{
+      this.refresh();
+    })
   }
+ 
 }

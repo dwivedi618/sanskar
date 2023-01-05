@@ -25,6 +25,7 @@ import { SkeltonLoaderComponent } from './skelton-loader/skelton-loader.componen
 import { InstituteHeaderComponent } from './institute-header/institute-header.component';
 import { DialogHeaderComponent } from './dialog-header/dialog-header.component';
 import { JsonFormArrayComponent } from './json-form-array/json-form-array.component';
+import { AvatarComponent } from './avatar/avatar.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +50,7 @@ import { JsonFormArrayComponent } from './json-form-array/json-form-array.compon
     InstituteHeaderComponent,
     DialogHeaderComponent,
     JsonFormArrayComponent,
+    AvatarComponent,
 
   ],
   imports: [
@@ -87,7 +89,8 @@ import { JsonFormArrayComponent } from './json-form-array/json-form-array.compon
     ImageCropperComponent,
     SkeltonLoaderComponent,
     InstituteHeaderComponent,
-    DialogHeaderComponent
+    DialogHeaderComponent,
+    AvatarComponent
   ]
 })
 export class SharedModule { }

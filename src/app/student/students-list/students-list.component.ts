@@ -137,6 +137,12 @@ export class StudentsListComponent implements OnInit {
     }
   }
 
+  
+  /**
+   * Description placeholder
+   * @date 7/1/2023
+   * @author Shivam Dwivedi
+   */
   newAdmission() {
     this.router.navigate(['/admission']);
   }

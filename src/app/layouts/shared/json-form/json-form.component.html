@@ -157,7 +157,7 @@
                     </div>
                     <div class="col-8 text-left">
                         <mat-form-field appearance="outline" class="w-100">
-                            <input type="text" placeholder="Select {{field.label}}" aria-label={{field.label}} matInput
+                            <input type="text" placeholder="Select {{field.label}}"  matInput
                                 [formControlName]="field.name" [matAutocomplete]="auto">
                             <mat-autocomplete #auto="matAutocomplete">
                                 <mat-option *ngFor="let option of field.options" [value]="option.value">

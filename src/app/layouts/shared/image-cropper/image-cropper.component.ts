@@ -9,6 +9,7 @@ import { AlertService } from 'src/app/services/alert.service';
 })
 export class ImageCropperComponent implements OnInit {
   isCropperReady: boolean =false;
+  aspectRatio:any;
   constructor(
     private dialogRef: MatDialogRef<ImageCropperComponent>,
     @Inject(MAT_DIALOG_DATA) public file: Event,

@@ -6,13 +6,13 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
 import { Fee, feeFrequencyEnum, FEE_FREEQUENCY } from '../../fee-category/fee.interface'
 import { ButtonState, JsonFormService } from 'src/app/services/json-form.service';
-import { JsonFormArray, JsonFormControls, JsonFormData } from '/home/v-shivam.dwivedi/Downloads/projects/nest/sanskar/src/app/layouts/shared/json-form/json-from.types';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { ClassApiService } from '../../standard/services/class-api.service';
 import { ManageMasterStandardComponent } from '../../standard/manage-master-standard/manage-master-standard.component';
 import { ClassFee } from '../../standard/class.interface';
+import { JsonFormData, JsonFormArray, JsonFormControls } from 'src/app/layouts/shared/json-form/json-from.types';
 
 
 @Component({

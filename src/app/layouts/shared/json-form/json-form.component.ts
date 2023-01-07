@@ -23,7 +23,7 @@ export class JsonFormComponent implements OnChanges, OnInit {
     private fb: FormBuilder,
     private jsonFormService: JsonFormService,
     private alertService: AlertService,
-    private commonService: CommonService
+    public commonService: CommonService
   ) { }
 
   ngOnInit(): void {

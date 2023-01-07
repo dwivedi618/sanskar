@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-export type Size = 'small' | 'large' | 'medium';
+export type Size = 'sm' | 'lg' | 'md' | 'xl';
 export type Gender = 'male' | 'female' | 'other';
 export type Shape = 'circle' | 'square';
 @Component({
@@ -10,7 +10,7 @@ export type Shape = 'circle' | 'square';
 export class AvatarComponent {
   @Input() public gender: Gender = 'male'
   @Input() public src: string = '';
-  @Input() public size: Size = 'medium';
+  @Input() public size: Size = 'md';
   @Input() public shape: Shape = 'circle';
   @Input() public age: number = 14;
 

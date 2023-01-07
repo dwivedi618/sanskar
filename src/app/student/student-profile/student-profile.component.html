@@ -22,9 +22,7 @@
             <mat-card>
               <div class="row justify-content-center py-5">
                 <div class="col-md-4">
-                  <figure>
-                    <img class="thumbnail-lg" [src]="this.studentData.studentPhoto" [alt]="this.studentData?.name">
-                  </figure>
+                  <app-avatar [src]="studentData?.studentPhoto" [size]="'xl'" [gender]="studentData?.gender" [shape]="'square'"></app-avatar>
                 </div>
                 <div class="col-md-6  text-left">
                   <div class="d-flex flex-column">
@@ -42,7 +40,7 @@
                         <small class="text-mylight">Div -</small>
                       </div>
                       <div class="col-9 text-left">
-                        <small class="text-mylight">{{this.studentData?.classId.name}}</small>
+                        <small class="text-mylight">{{this.studentData?.classId?.name}}</small>
                       </div>
                     </div>
     

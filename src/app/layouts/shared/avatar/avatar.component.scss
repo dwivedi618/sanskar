@@ -6,30 +6,39 @@
     min-width: 32px;
     height: 32px;
 
-    &.small {
+    &.sm {
         width: 32px;
         min-width: 32px;
         height: 32px;
     }
 
-    &.medium {
+    &.md {
         width: 48px;
         min-width: 48px;
         height: 48px;
     }
 
-    &.large {
+    &.lg{
         width: 64px;
         min-width: 64px;
         height: 64px;
+    }
+    &.xl{
+        width: 128px;
+        min-width: 128px;
+        height: 128px;
+        box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28)
     }
 
     &.circle {
         border-radius: 50%;
     }
 
+    &.square {
+        border-radius: 4%;
+    }
     &.squire {
-        border-radius: 1%;
+        border-radius: 4%;
     }
 
 

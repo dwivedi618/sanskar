@@ -26,6 +26,7 @@ import { InstituteHeaderComponent } from './institute-header/institute-header.co
 import { DialogHeaderComponent } from './dialog-header/dialog-header.component';
 import { JsonFormArrayComponent } from './json-form-array/json-form-array.component';
 import { AvatarComponent } from './avatar/avatar.component';
+import { LabelPipe } from './customPipes/label.pipe';
 
 @NgModule({
   declarations: [
@@ -51,6 +52,7 @@ import { AvatarComponent } from './avatar/avatar.component';
     DialogHeaderComponent,
     JsonFormArrayComponent,
     AvatarComponent,
+    LabelPipe,
 
   ],
   imports: [
@@ -90,7 +92,8 @@ import { AvatarComponent } from './avatar/avatar.component';
     SkeltonLoaderComponent,
     InstituteHeaderComponent,
     DialogHeaderComponent,
-    AvatarComponent
+    AvatarComponent,
+    LabelPipe
   ]
 })
 export class SharedModule { }

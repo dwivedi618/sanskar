@@ -115,17 +115,26 @@ export class StudentsListComponent implements OnInit {
   openStudentProfile(profile) {
     this.router.navigate(['student/profile'], { queryParams: { id: profile._id } });
   }
+  // applyFilter(event: Event) {
+  //   const filterValue = (event.target as HTMLInputElement).value || '';
+  //   if(!filterValue) return
+  //   console.log("filterValue", filterValue)
+  //   this.dataSource.filter = filterValue.trim().toLowerCase();
+  //   if (this.dataSource.paginator) {
+  //     this.dataSource.paginator.firstPage();
+  //   }
+  //   if (this.dataSource.filteredData.length == 0) {
+  //     console.log("No matching records found")
+  //     this.displayNoRecords = true;
+  //   } else this.displayNoRecords = false;
+  // }
+
   applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    console.log("filterValue", filterValue)
+    const filterValue = (event.target as HTMLInputElement).value || '';
     this.dataSource.filter = filterValue.trim().toLowerCase();
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
-    if (this.dataSource.filteredData.length == 0) {
-      console.log("No matching records found")
-      this.displayNoRecords = true;
-    } else this.displayNoRecords = false;
   }
 
   newAdmission() {

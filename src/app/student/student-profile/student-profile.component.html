@@ -1,302 +1,95 @@
 <section style="min-height: calc(100vh-6rem);">
   <mat-toolbar class="bg-mysecondary" style="max-height: 3rem;position:sticky;top:0;z-index: 2;">
-
     <div class="px-1 ml-n2">
-      <button mat-icon-button routerLink='..' class="text-mylight">
+      <button mat-icon-button routerLink='..' >
         <mat-icon class="mat-icon-md text-mylight pt-0">arrow_back</mat-icon>
-        <span>Profile</span>
+        <span>{{name()}}</span>
       </button>
     </div>
     <div class="spacer"></div>
-
   </mat-toolbar>
-  <div class="row justify-content-center py-5">
-    <div class="col-md-4">
-      <figure>
-        <img class="thumbnail-lg" src="../../../assets/user_profiles/thor.jpeg" alt="">
-      </figure>
-    </div>
-    <div class="col-md-6  text-left">
-      <div class="d-flex flex-column">
-        <h3 class="py-0 my-0">{{ this.studentData?.name | titlecase}}</h3>
-        <div class="row">
-          <div class="col-2 text-left">
-            <small class="text-mylight">S/o -</small>
-          </div>
-          <div class="col-9 text-left">
-            <small class="text-mylight">{{ this.parentData?.fatherName}}</small>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-2 text-left">
-            <small class="text-mylight">Div -</small>
-          </div>
-          <div class="col-9 text-left">
-            <small class="text-mylight">{{this.studentData?.standard.name}}</small>
-          </div>
-        </div>
 
-        <div class="d-flex my-2">
-          <button mat-stroked-button (click)="updateProfile()" class="mr-1">
-            <mat-icon class="mat-icon-sm pt-1 mr-2">edit</mat-icon>
-            <small class="text-mylight">UPDATE</small>
-          </button>
-          <button mat-stroked-button (click)="printProfile()" class="mx-1">
-            <mat-icon class="mat-icon-sm pt-1 mr-2">print</mat-icon>
-            <small class="text-mylight">Print</small>
-          </button>
-
-        </div>
-
-      </div>
-    </div>
-  </div>
-  <mat-tab-group dynamicHeight animationDuration="0ms" mat-align-tabs="center" (selectedTabChange)="selectedTabChange($event)" [selectedIndex]="selectedIndex">
-    <mat-tab >
+  <mat-tab-group dynamicHeight animationDuration="0ms" mat-align-tabs="center"
+    (selectedTabChange)="selectedTabChange($event)" [selectedIndex]="selectedIndex">
+    <mat-tab>
       <ng-template mat-tab-label>
         <mat-icon class="mat-icon-sm pt-1 mr-2">menu_book</mat-icon>
         Overview
       </ng-template>
       <ng-template matTabContent>
-        <div class="container mt-2 mb-2 pt-4 ">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="row justify-content-center mb-5">
-                <div class="col-md-3 ">
-                  <div class="px-4 d-flex align-items-center">
-                    <span class="material-icons-outlined">
-                      person
-                    </span>
-                    <h4 mat-subtitle class="m-0 p-0">Student</h4>
-                  </div>
+        <ng-container *ngIf="this.studentData">
+          <div class="container mt-2 mb-2 pt-4 ">
+            <mat-card>
+              <div class="row justify-content-center py-5">
+                <div class="col-md-4">
+                  <figure>
+                    <img class="thumbnail-lg" [src]="this.studentData.studentPhoto" [alt]="this.studentData?.name">
+                  </figure>
                 </div>
-                <div class="col-md-9 ">
-                  <div class="row">
-                    <div class="col-6 text-left">
-                      <p>Name</p>
+                <div class="col-md-6  text-left">
+                  <div class="d-flex flex-column">
+                    <h3 class="py-0 my-0">{{ this.studentData?.name | titlecase}}</h3>
+                    <div class="row">
+                      <div class="col-2 text-left">
+                        <small class="text-mylight">S/o -</small>
+                      </div>
+                      <div class="col-9 text-left">
+                        <small class="text-mylight">{{ this.parentData?.fatherName}}</small>
+                      </div>
                     </div>
-                    <div class="col-6 text-left">
-                      <p>{{ this.studentData?.name | titlecase}}</p>
+                    <div class="row">
+                      <div class="col-2 text-left">
+                        <small class="text-mylight">Div -</small>
+                      </div>
+                      <div class="col-9 text-left">
+                        <small class="text-mylight">{{this.studentData?.classId.name}}</small>
+                      </div>
                     </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-6 text-left">
-                      <p>Blood group</p>
+    
+                    <div class="d-flex my-2">
+                      <button mat-stroked-button (click)="updateProfile()" class="mr-1">
+                        <mat-icon class="mat-icon-sm pt-1 mr-2">edit</mat-icon>
+                        <small class="text-mylight">UPDATE</small>
+                      </button>
+                      <button mat-stroked-button (click)="printProfile()" class="mx-1">
+                        <mat-icon class="mat-icon-sm pt-1 mr-2">print</mat-icon>
+                        <small class="text-mylight">Print</small>
+                      </button>
+    
                     </div>
-                    <div class="col-6 text-left">
-                      <p>{{ this.studentData?.bloodGroup | titlecase}}</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-6 text-left">
-                      <p>Convenience</p>
-                    </div>
-                    <div class="col-6 text-left">
-                      <p>{{ this.studentData?.convenience | titlecase}}</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-6 text-left">
-                      <p>Gender</p>
-                    </div>
-                    <div class="col-6 text-left">
-                      <p>{{ this.studentData?.gender | titlecase}}</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-6 text-left">
-                      <p>Health status</p>
-                    </div>
-                    <div class="col-6 text-left">
-                      <p>{{ this.studentData?.healthStatus | titlecase}}</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-6 text-left">
-                      <p>Date of birth</p>
-                    </div>
-                    <div class="col-6 text-left">
-                      <p>{{ this.studentData?.dateOfBirth | date}}</p>
-                    </div>
-                  </div>
-
-
-                  <div class="row">
-                    <div class="col-6 text-left">
-                      <p>Nationality</p>
-                    </div>
-                    <div class="col-6 text-left">
-                      <p>{{ this.studentData?.nationality | titlecase}}</p>
-                    </div>
-                  </div>
-
-
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="row justify-content-center mb-5">
-                <div class="col-md-3 ">
-                  <div class="px-4 d-flex align-items-center">
-                    <span class="material-icons-outlined">
-                      group
-                    </span>
-                    <h4 mat-subtitle class="m-0 p-0">Parents</h4>
-                  </div>
-                </div>
-                <div class="col-md-9 ">
-                  <div class="row">
-                    <div class="col-6 text-left">
-                      <p>Father</p>
-                    </div>
-                    <div class="col-6 text-left">
-                      <p>{{ this.parentData?.fatherName | titlecase}}</p>
-                      <p>{{ this.parentData?.fatherOccupation | titlecase}}</p>
-                      <p>{{ this.parentData?.fatherEducation | titlecase}}</p>
-                    </div>
-                  </div>
-                  <!-- <div class="row">
-                    <div class="col-6 text-left">
-                      <p>fatherOccupation</p>
-                    </div>
-                    <div class="col-6 text-left">
-                      <p>{{ this.parentData?.fatherOccupation | titlecase}}</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-6 text-left">
-                      <p>fatherEducation</p>
-                    </div>
-                    <div class="col-6 text-left">
-                      <p>{{ this.parentData?.fatherEducation | titlecase}}</p>
-                    </div>
-                  </div> -->
-                  <div class="row">
-                    <div class="col-6 text-left">
-                      <p>Mother</p>
-                    </div>
-                    <div class="col-6 text-left">
-                      <p>{{ this.parentData?.motherName | titlecase}}</p>
-                      <p>{{ this.parentData?.motherOccupation | titlecase}}</p>
-                      <p>{{ this.parentData?.motherEducation | titlecase}}</p>
-                    </div>
-                  </div>
-                  <!-- <div class="row">
-                    <div class="col-6 text-left">
-                      <p>motherOccupation</p>
-                    </div>
-                    <div class="col-6 text-left">
-                      <p>{{ this.parentData?.motherOccupation | titlecase}}</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-6 text-left">
-                      <p>motherEducation</p>
-                    </div>
-                    <div class="col-6 text-left">
-                      <p>{{ this.parentData?.motherEducation | titlecase}}</p>
-                    </div>
-                  </div> -->
-
-
-
-
-                  <div class="row">
-                    <div class="col-6 text-left">
-                      <p>Contact</p>
-                    </div>
-                    <div class="col-6 text-left">
-                      <p>{{ this.parentData?.parentContact | titlecase}}</p>
-                    </div>
-                  </div>
-
-                  <div class="row">
-                    <div class="col-6 text-left">
-                      <p>Guardian contact</p>
-                    </div>
-                    <div class="col-6 text-left">
-                      <p>{{ this.parentData?.guardianContact | titlecase}}</p>
-                    </div>
-                  </div>
-                  <div class="row">
-                    <div class="col-6 text-left">
-                      <p>Email</p>
-                    </div>
-                    <div class="col-6 text-left">
-                      <p>{{ this.parentData?.email | titlecase}}</p>
-                    </div>
+    
                   </div>
                 </div>
               </div>
-            </div>
+            </mat-card>
+            <mat-toolbar color="primary">
+              <span>Student</span>
+            </mat-toolbar>
+            <mat-card>
+              <!-- <pre>{{studentData |json}}</pre> -->
+              <div class="row">
+                <div class="col-md-6">
+                  <ng-container *ngFor="let data of studentData | keyvalue">
+                    <ng-container *ngIf="displayStudentFields.includes(data.key)">
+                      <div class="row">
+                        <div class="col-6 text-left">
+                          <!-- <p>{{LABELS[data.key]}}</p> -->
+                          <p class="titlecase">{{data.key | label}}</p>
+
+                        </div>
+                        <div class="col-6 text-left">
+                          <p>{{ (data.value || '')}}</p>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </ng-container>
+                </div>
+              </div>
+            </mat-card>
+
+
           </div>
-
-
-        </div>
-
-
-
-        <hr class="py-2">
-        <div class="container mb-2 pt-2">
-          <div class="row justify-content-center mb-5" *ngFor="let addr of addressData">
-            <div class="col-md-3 ">
-
-              <div class="px-4 d-flex align-items-center">
-                <span class="material-icons-outlined">
-                  place
-                </span>
-                <h4 mat-subtitle class="m-0 p-0">{{addr?.addressType | titlecase }} Address</h4>
-              </div>
-            </div>
-            <div class="col-md-9 ">
-              <div class="row">
-                <div class="col-6 text-left">
-                  <p>Village</p>
-                </div>
-                <div class="col-6 text-left">
-                  <p>{{ addr?.village | titlecase}}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6 text-left">
-                  <p>Post</p>
-                </div>
-                <div class="col-6 text-left">
-                  <p>{{ addr?.post | titlecase}}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6 text-left">
-                  <p>District</p>
-                </div>
-                <div class="col-6 text-left">
-                  <p>{{ addr?.district | titlecase}}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6 text-left">
-                  <p>State</p>
-                </div>
-                <div class="col-6 text-left">
-                  <p>{{ addr?.state | titlecase}}</p>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-6 text-left">
-                  <p>Pin</p>
-                </div>
-                <div class="col-6 text-left">
-                  <p>{{ addr?.pin }}</p>
-                </div>
-              </div>
-
-
-
-            </div>
-          </div>
-
-        </div>
-
+        </ng-container>
       </ng-template>
     </mat-tab>
 
@@ -308,7 +101,7 @@
 
       <div class="container" style="min-height: 40vh;" *ngIf="appliedFee">
 
-        <table mat-table [dataSource]="appliedFee" class="w-100  mb-5" aria-label="Elements">
+        <table hidden mat-table [dataSource]="appliedFee" class="w-100  mb-5" aria-label="Elements">
 
 
           <!-- Name Column -->
@@ -319,7 +112,7 @@
             </td>
 
             <td mat-footer-cell *matFooterCellDef> Total Amount</td>
-            
+
           </ng-container>
 
           <ng-container matColumnDef="frequency">
@@ -329,17 +122,17 @@
             </td>
 
             <td mat-footer-cell *matFooterCellDef> </td>
-           
+
           </ng-container>
 
           <ng-container matColumnDef="amount">
             <th mat-header-cell *matHeaderCellDef>Amount </th>
             <td mat-cell *matCellDef="let row">
-              <small>{{(row.amount  || '0' ) | currency:'INR'}}</small>
+              <small>{{(row.amount || '0' ) | currency:'INR'}}</small>
             </td>
 
             <td mat-footer-cell *matFooterCellDef> <strong>{{getTotalCost() | currency : 'INR'}}</strong> </td>
-            
+
           </ng-container>
 
           <!-- Action Column -->
@@ -351,23 +144,23 @@
               </button>
             </td>
             <td mat-footer-cell *matFooterCellDef></td>
-            
+
 
           </ng-container>
 
           <!-- Disclaimer column -->
           <ng-container matColumnDef="disclaimer">
-           
+
             <td mat-footer-cell *matFooterCellDef> Total Deposit</td>
 
           </ng-container>
           <ng-container matColumnDef="frequency1">
-           
+
             <td mat-footer-cell *matFooterCellDef></td>
 
           </ng-container>
           <ng-container matColumnDef="amount1">
-           
+
             <td mat-footer-cell *matFooterCellDef> <strong>{{ totalFeeDeposit | currency : 'INR'}}</strong></td>
 
           </ng-container>
@@ -375,19 +168,20 @@
             <td mat-footer-cell *matFooterCellDef></td>
           </ng-container>
 
-           <!-- Disclaimer column -->
-           <ng-container matColumnDef="disclaimer2">
-           
+          <!-- Disclaimer column -->
+          <ng-container matColumnDef="disclaimer2">
+
             <td mat-footer-cell *matFooterCellDef> Total Due</td>
 
           </ng-container>
           <ng-container matColumnDef="frequency2">
-           
+
             <td mat-footer-cell *matFooterCellDef></td>
 
           </ng-container>
           <ng-container matColumnDef="amount2">
-            <td mat-footer-cell *matFooterCellDef> <strong>{{ getTotalCost() - totalFeeDeposit | currency : 'INR'}}</strong></td>
+            <td mat-footer-cell *matFooterCellDef> <strong>{{ getTotalCost() - totalFeeDeposit | currency :
+                'INR'}}</strong></td>
           </ng-container>
           <ng-container matColumnDef="action2">
             <td mat-footer-cell *matFooterCellDef></td>
@@ -397,8 +191,10 @@
           <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
           <tr mat-footer-row *matFooterRowDef="displayedColumns"></tr>
-          <tr mat-footer-row *matFooterRowDef="['disclaimer','frequency1','amount1','action1']" class="example-second-footer-row"></tr>
-          <tr mat-footer-row *matFooterRowDef="['disclaimer2','frequency2','amount2','action2']" class="example-second-footer-row"></tr>
+          <tr mat-footer-row *matFooterRowDef="['disclaimer','frequency1','amount1','action1']"
+            class="example-second-footer-row"></tr>
+          <tr mat-footer-row *matFooterRowDef="['disclaimer2','frequency2','amount2','action2']"
+            class="example-second-footer-row"></tr>
 
         </table>
 

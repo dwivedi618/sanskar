@@ -1,6 +1,9 @@
 
+import { query } from '@angular/animations';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { pluck } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { Student } from '../student.interface';
 
@@ -29,6 +32,9 @@ export class StudentApiService {
   }
   fetch() {
     return this._http.get<Student[]>(this.API_ROUTES.student)
+  }
+  fetchById(studentId : string):Observable<Student> {
+    return this._http.get<Student>(this.API_ROUTES.student+ '?' + 'studentId=' + studentId).pipe(pluck('data'))
   }
   update(data) {
     return this._http.patch<Student>(this.API_ROUTES.student, data)

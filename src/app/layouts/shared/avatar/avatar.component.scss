@@ -1,11 +1,46 @@
-.imgDefault {
+.avatar {
+    flex-shrink: 0;
+    object-fit: cover;
+    border-radius: 50%;
     width: 32px;
     min-width: 32px;
     height: 32px;
-    border-radius: 1rem;
-    background-color: #ffffff;
+
+    &.small {
+        width: 32px;
+        min-width: 32px;
+        height: 32px;
+    }
+
+    &.medium {
+        width: 48px;
+        min-width: 48px;
+        height: 48px;
+    }
+
+    &.large {
+        width: 64px;
+        min-width: 64px;
+        height: 64px;
+    }
+
+    &.circle {
+        border-radius: 50%;
+    }
+
+    &.squire {
+        border-radius: 1%;
+    }
+
+
 }
-svg.defaultAvatarSvg{
-    fill : rgba(155, 155, 155, 0.847);
-    width : 2.2rem;
+
+.avatar::before{
+    content: '';
+    background: red
+}
+
+svg.defaultAvatarSvg {
+    fill: rgba(155, 155, 155, 0.847);
+    width: 2.2rem;
 }

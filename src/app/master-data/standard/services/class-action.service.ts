@@ -36,6 +36,10 @@ export class ClassActionService {
           resultObservable.next(result);
         });
         break;
+      case Action.ADD:
+        this.dialogService.manageFeeStructure(data, action).subscribe(result => {
+          resultObservable.next(result);
+        });break;
       default:
         break;
     }

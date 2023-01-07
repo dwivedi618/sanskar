@@ -25,10 +25,13 @@
 
       </span>
       <span class="px-1" >
-        <button mat-stroked-button color="" class="btn-dark"   (click)="newFeeStructure()" >
+        <button mat-stroked-button color="" class="btn-dark"   (click)="menuClickHandler('ADD',standardId)"  [disabled]='!standardId'>
           <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
-            <small>
+            <small *ngIf="!dataSource.data.length">
               Add Fee Structure
+            </small>
+            <small *ngIf="dataSource.data.length">
+              Update Fee Structure
             </small>
         </button>
     </span>

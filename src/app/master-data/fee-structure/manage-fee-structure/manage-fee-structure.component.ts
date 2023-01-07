@@ -72,17 +72,23 @@ export class ManageFeeStructureComponent implements OnInit {
   onSubmit(formValues) {
     let form = formValues;
     let action: Action = this.dialogData?.action;
-    switch (action) {
-      case Action.ADD:
-        this.add(formValues);
-        break;
-      case Action.EDIT:
-      case Action.UPDATE:
-        let { _id } = this.dialogData.data;
-        return this.update({ ...formValues, _id });
-      default:
-        break;
+    let payload = {
+      _id:this.dialogData.data,
+      fees:formValues
     }
+        console.log(payload,'data');
+        return this.update(payload);
+    // switch (action) {
+    //   case Action.ADD:
+    //     this.add(formValues);
+    //     break;
+    //   case Action.EDIT:
+    //   case Action.UPDATE:
+    //     let { _id } = this.dialogData.data;
+    //     return this.update({ ...formValues, _id });
+    //   default:
+    //     break;
+    // }
     this.isSaving = true;
 
   }
@@ -98,6 +104,8 @@ export class ManageFeeStructureComponent implements OnInit {
   }
 
   private update(formValues) {
+    console.log(formValues);
+    
     this.classApiService.update(formValues).subscribe((result) => {
       this.isSaving = true;
       this.alertService.alertComponent(result.message);

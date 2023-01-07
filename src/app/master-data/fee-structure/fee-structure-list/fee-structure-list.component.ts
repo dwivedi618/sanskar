@@ -10,7 +10,8 @@ import { HELPER as HELPER } from 'src/app/utils/helpers';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { ClassActionService } from '../../standard/services/class-action.service';
 import { ClassApiService } from '../../standard/services/class-api.service';
-
+import { DialogService } from 'src/app/layouts/shared/dialog.service';
+import { ManageFeeStructureComponent } from '../manage-fee-structure/manage-fee-structure.component';
 
 
 @Component({
@@ -71,7 +72,8 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     private alertService : AlertService,
     private commonService: CommonService,
     private classActionService : ClassActionService,
-    private classApiService : ClassApiService
+    private classApiService : ClassApiService,
+    private dialogService : DialogService
   ) {
     this.activatedRoute.queryParams.subscribe(data => {
       if (data) {
@@ -218,7 +220,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
    * route to add new FeeStructure page where admin can define fee for any courses/classes/standards
    */
   newFeeStructure() {
-    this.router.navigate(['master/fee-structure/', 'new']);
+    // this.dialogService.newFeeStructure().subscribe(()=>{this.refresh()});
   }
 
 
@@ -232,7 +234,6 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   }
 
   menuClickHandler(action,data){
-    console.log("data",action , data)
     this.classActionService.actionTriggered(action,data).subscribe(()=>{
       this.refresh();
     })

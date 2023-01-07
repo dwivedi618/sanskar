@@ -19,7 +19,9 @@ export const API_ROUTES = {
   student: environment.apiUrl + '/' + 'student',
   indianStatesUrl: "assets/jsons/indian.states.json",
   indianDistrictsUrl: "assets/jsons/indian.districts.json",
-  mainMenuUrl : "assets/jsons/main-menu.json"
+  mainMenuUrl : "assets/jsons/main-menu.json",
+  studentMenuTabUrl : "assets/jsons/student.tabs.json"
+
 }
 @Injectable({
   providedIn: 'root'
@@ -50,6 +52,10 @@ export class CommonService {
   }
   [API_SERVICE_METHODS.getMainMenus]():Observable<MainMenu[]> {
     return this.http.get<MainMenu[]>(this.API_ROUTES.mainMenuUrl);
+  }
+
+  [API_SERVICE_METHODS.getStudentMenuTab]():Observable<MainMenu[]> {
+    return this.http.get<MainMenu[]>(this.API_ROUTES.studentMenuTabUrl);
   }
 
   formOptions = {};

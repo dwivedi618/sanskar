@@ -1,0 +1,32 @@
+{
+    "mainTab": [
+        {
+            "name": "Overview",
+            "id": "overview",
+            "icon": "books",
+            "path": "",
+            "url": ""
+        },
+        {
+            "name": "Applied Fee",
+            "id": "appliedFee",
+            "icon": "money",
+            "path": "",
+            "url": ""
+        },
+        {
+            "name": "Transactions",
+            "id": "transaction",
+            "icon": "receipt",
+            "path": "",
+            "url": ""
+        },
+        {
+            "name": "Accademics",
+            "id": "accademic",
+            "icon": "school",
+            "path": "",
+            "url": ""
+        }
+    ]
+}

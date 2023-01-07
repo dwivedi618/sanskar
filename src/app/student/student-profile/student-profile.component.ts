@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { MainMenu } from 'src/app/layouts/shared/uiComponents/left-sidebar-menu/sidebar.menus';
+import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { CommonService } from 'src/app/services/common.service';
 import { LABELS } from 'src/app/utils/keyparser';
 import { FeeDepositComponent } from '../fee-deposit/fee-deposit.component';
@@ -44,6 +46,7 @@ export class StudentProfileComponent implements OnInit {
   totalFeeDeposit: any;
   find: any;
   selectedIndex: any;
+  menus: MainMenu[];
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -67,6 +70,10 @@ export class StudentProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.commonService[API_SERVICE_METHODS.getStudentMenuTab]().subscribe((data: MainMenu[]) => { this.menus = data });
+    console.log("studentMenu",this.menus);
+    
+
   }
 
   getProfile() {

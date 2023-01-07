@@ -11,6 +11,9 @@ import { StudentApiService } from './student-api.service';
 })
 export class StudentActionService {
 
+  studentRoutes = {
+    parent : 'parent',
+  }
   constructor(
     private studentApiService: StudentApiService,
     private alertService: AlertService,

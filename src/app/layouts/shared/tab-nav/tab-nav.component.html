@@ -1,0 +1,10 @@
+<ng-container *ngIf="tabs && tabs.length">
+    <nav mat-tab-nav-bar [backgroundColor]="background">
+        <ng-container *ngFor="let tab of tabs">
+            <a mat-tab-link  (click)="activeTab = tab.id" [active]="activeTab == tab.id">
+                <mat-icon class="mr-2">{{tab.icon}}</mat-icon>
+                <span>{{tab.name}}</span>
+            </a>
+        </ng-container>
+    </nav>
+</ng-container>

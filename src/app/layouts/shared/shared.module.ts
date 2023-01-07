@@ -27,6 +27,7 @@ import { DialogHeaderComponent } from './dialog-header/dialog-header.component';
 import { JsonFormArrayComponent } from './json-form-array/json-form-array.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { LabelPipe } from './customPipes/label.pipe';
+import { TabNavComponent } from './tab-nav/tab-nav.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +54,7 @@ import { LabelPipe } from './customPipes/label.pipe';
     JsonFormArrayComponent,
     AvatarComponent,
     LabelPipe,
+    TabNavComponent,
 
   ],
   imports: [
@@ -93,7 +95,8 @@ import { LabelPipe } from './customPipes/label.pipe';
     InstituteHeaderComponent,
     DialogHeaderComponent,
     AvatarComponent,
-    LabelPipe
+    LabelPipe,
+    TabNavComponent
   ]
 })
 export class SharedModule { }

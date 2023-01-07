@@ -4,4 +4,6 @@ export const API_SERVICE_METHODS = {
     getIndianDistrctByState: "getDistricts",
     getFees: "getFees",
     getMainMenus: "getMainMenus",
+    getStudentMenuTab: "getStudentMenuTab",
+
 }

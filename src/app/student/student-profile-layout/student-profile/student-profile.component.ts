@@ -5,9 +5,9 @@ import { MainMenu } from 'src/app/layouts/shared/uiComponents/left-sidebar-menu/
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { CommonService } from 'src/app/services/common.service';
 import { LABELS } from 'src/app/utils/keyparser';
-import { FeeDepositComponent } from '../fee-deposit/fee-deposit.component';
-import { StudentApiService } from '../services/student-api.service';
-import { TransactionComponent } from '../transaction/transaction.component';
+import { FeeDepositComponent } from '../../fee-deposit/fee-deposit.component';
+import { StudentApiService } from '../../services/student-api.service';
+import { TransactionComponent } from '../../transaction/transaction.component';
 
 
 
@@ -126,12 +126,7 @@ export class StudentProfileComponent implements OnInit {
     this.selectedIndex = selectedTab.id;
     this.router.navigate([], { queryParams: { find: this.selectedIndex }, queryParamsHandling: 'merge' });
   }
-  selectedTabChange(event) {
-    console.log("tab change", event);
-    this.selectedIndex = event.index
-    this.router.navigate([], { queryParams: { find: this.selectedIndex }, queryParamsHandling: 'merge' });
-  }
-
+ 
   openfeeDeposit() {
     const data = <any>{}
     data.studentId = this.studentId

@@ -1,7 +1,7 @@
 import { MaterialModule } from './../material.module';
 import { NgModule } from '@angular/core';
 import { StudentsListComponent } from './students-list/students-list.component';
-import { StudentProfileComponent } from './student-profile/student-profile.component';
+import { StudentProfileComponent } from './student-profile-layout/student-profile/student-profile.component';
 
 import { StudentRoutingModule } from './student-routing.module';
 
@@ -12,6 +12,7 @@ import { StudentLayoutComponent } from './student-layout/student-layout.componen
 import { AdmissionFormPrintLayoutComponent } from './admission-form-print-layout/admission-form-print-layout.component';
 import { FeeDepositComponent } from './fee-deposit/fee-deposit.component';
 import { CommonModule } from '@angular/common';
+import { StudentProfileLayoutComponent } from './student-profile-layout/student-profile-layout.component';
 
 
 
@@ -19,11 +20,11 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     StudentsListComponent,
-    StudentProfileComponent,
     TransactionComponent,
     StudentLayoutComponent,
     AdmissionFormPrintLayoutComponent,
-    FeeDepositComponent
+    FeeDepositComponent,
+    StudentProfileLayoutComponent
     ],
   imports: [
     CommonModule,
@@ -34,7 +35,7 @@ import { CommonModule } from '@angular/common';
     StudentRoutingModule
   ],
   entryComponents: [
-    TransactionComponent,StudentProfileComponent,FeeDepositComponent
+    TransactionComponent,FeeDepositComponent
   ],
   
 })

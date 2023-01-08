@@ -1,21 +1,5 @@
 <mat-sidenav-container class="student-layout">
     <mat-sidenav-content>
-        <mat-toolbar class="bg-mysecondary" style="max-height: 3rem;position:sticky;top:0;z-index: 2;">
-            <div class="px-1 ml-n2">
-                <button mat-icon-button routerLink='..'>
-                    <mat-icon class="mat-icon-md text-mylight pt-0">arrow_back</mat-icon>
-                    <span>{{name}}</span>
-                </button>
-            </div>
-            <div class="spacer"></div>
-        </mat-toolbar>
-        <mat-toolbar class="justify-content-center" style="max-height: 3rem;position:sticky;top:3rem;z-index: 2;">
-            <app-tab-nav [tabs]="menus?.mainTab" 
-            [selectedTabId]="selectedIndex" 
-            [sticky]="true"
-            [color]="primary"
-            (onChange)="onMainTabChange($event)"></app-tab-nav>
-        </mat-toolbar>
         <main>
             <div class="">
                 <router-outlet></router-outlet>

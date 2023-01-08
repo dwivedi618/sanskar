@@ -13,6 +13,7 @@ import { AdmissionFormPrintLayoutComponent } from './admission-form-print-layout
 import { FeeDepositComponent } from './fee-deposit/fee-deposit.component';
 import { CommonModule } from '@angular/common';
 import { StudentProfileLayoutComponent } from './student-profile-layout/student-profile-layout.component';
+import { AccountsComponent } from './student-profile-layout/accounts/accounts.component';
 
 
 
@@ -20,7 +21,7 @@ import { StudentProfileLayoutComponent } from './student-profile-layout/student-
 @NgModule({
   declarations: [
     StudentsListComponent,
-    TransactionComponent,
+    
     StudentLayoutComponent,
     AdmissionFormPrintLayoutComponent,
     FeeDepositComponent,
@@ -35,7 +36,7 @@ import { StudentProfileLayoutComponent } from './student-profile-layout/student-
     StudentRoutingModule
   ],
   entryComponents: [
-    TransactionComponent,FeeDepositComponent
+    FeeDepositComponent
   ],
   
 })

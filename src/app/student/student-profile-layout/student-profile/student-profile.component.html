@@ -44,7 +44,13 @@
         </div>
       </mat-card>
 
-      <app-tab-nav></app-tab-nav>
+      <mat-toolbar color="primary" class="justify-content-center" style="max-height: 3rem;position:sticky;top:3rem;z-index: 2;">
+        <app-tab-nav [tabs]="routingService.activeStudentTabSubMenus | async" 
+        [selectedTabId]="student" 
+        [sticky]="true"
+        [color]="primary"
+        (onChange)="onMainTabChange($event)"></app-tab-nav>
+    </mat-toolbar>
       <mat-toolbar>
         <span>Student</span>
       </mat-toolbar>

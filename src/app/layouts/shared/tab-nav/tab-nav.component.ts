@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
+import { RoutingService } from 'src/app/services/routing.service';
 import { MainMenu } from '../uiComponents/left-sidebar-menu/sidebar.menus';
 @Component({
   selector: 'app-tab-nav',
@@ -9,13 +10,14 @@ import { MainMenu } from '../uiComponents/left-sidebar-menu/sidebar.menus';
 export class TabNavComponent implements OnInit {
   @Input() public tabs: MainMenu[] = null;
   @Input() public selectedTabId: string;
-  @Input() public sticky : boolean;
-  @Input() public color : ThemePalette = "primary";
+  @Input() public sticky: boolean;
+  @Input() public color: ThemePalette = "primary";
 
   @Output() onChange = new EventEmitter<MainMenu>();
   activeTab: string = this.tabs && this.tabs[0].id;
-  constructor() { }
+  constructor(private routingService: RoutingService) { }
   ngOnInit(): void {
+    console.log("tabs*******************", this.tabs)
   }
 
   tabClickHandler(tab: MainMenu) {
@@ -24,15 +26,17 @@ export class TabNavComponent implements OnInit {
 
 
   public get activeTabId(): string {
-    let activeTab = this.tabs && this.tabs[0].id;
-    if (!(this.tabs && this.selectedTabId)) {
-      return activeTab;
+    let activeTab = this.tabs && this.tabs[0];
+    let activeTabId = activeTab.id
+    if (!this.selectedTabId) {
+      return activeTabId;
     }
-    activeTab = this.tabs.find((tab: MainMenu) => {
-      return tab.id == this.selectedTabId
-    })?.id || this.tabs[0].id;
-    console.log("activeTabMenu",activeTab);
-    return activeTab
+    activeTab = this.tabs.find((tab: MainMenu) => { return tab.id == this.selectedTabId }) || this.tabs[0];
+    activeTabId = activeTab.id
+    this.routingService.onTriggerStudentTab(activeTab?.subMenus)
+    console.log("activeTabMenu", activeTab);
+
+    return activeTabId
   }
 
 }

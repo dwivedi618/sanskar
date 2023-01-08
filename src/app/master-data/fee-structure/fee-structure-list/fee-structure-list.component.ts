@@ -12,6 +12,8 @@ import { ClassActionService } from '../../standard/services/class-action.service
 import { ClassApiService } from '../../standard/services/class-api.service';
 import { DialogService } from 'src/app/layouts/shared/dialog.service';
 import { ManageFeeStructureComponent } from '../manage-fee-structure/manage-fee-structure.component';
+import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
+import { ClasswiseFeesActionService } from '../services/classwise-fees-action.service';
 
 
 @Component({
@@ -49,7 +51,6 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
-    console.log("selection", this.selection.selected);
   }
 
   /** The label for the checkbox on the passed row */
@@ -73,6 +74,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     private commonService: CommonService,
     private classActionService : ClassActionService,
     private classApiService : ClassApiService,
+    private classwiseFeeActionService : ClasswiseFeesActionService,
     private dialogService : DialogService
   ) {
     this.activatedRoute.queryParams.subscribe(data => {
@@ -80,9 +82,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
         this.selectedSession = data.year
         if(data.standardId){
           this.standardId = data.standardId
-          console.log("this.standardId",this.standardId);
-          
-          this.getFeeStructureList()
+                    this.getFeeStructureList()
         }
         if(data.n){
           this.selectedStandardName = data.n
@@ -94,16 +94,14 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
-    console.log("selection", this.selection.selected)
     this.getMasterStandardList();
     this.getFeeStructureList();
     this.getFeeCategoryList();
   }
 
   getFeeStructureList() {
+    if(!this.standardId) return
     this.commonService.getClassFeeById(this.selectedSession, this.standardId).subscribe((result) => {
-      console.log("this.standardId", this.standardId);
-      console.log("Fee Structure result", result);
       const structureList = result['data'] || null;
       if(HELPER.isObject(structureList)){
         this.dataSource.data = structureList?.fees || [];
@@ -112,12 +110,10 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
         let allClasses = structureList ;
         const defaultSelectedClass = allClasses.filter(classObj=>classObj._id === this.standardId)[0];
         this.dataSource.data = defaultSelectedClass?.fees  || [];
-        console.log("defaultSelectedClass",defaultSelectedClass);
         
       }
       
     }, (error) => {
-      console.log(" error", error);
     })
 
    
@@ -133,7 +129,6 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
       this.getFeeStructureList();
     }else{
       this.alertService.alertWithAction("Do not forget to select standard/class",'select standard').subscribe(action =>{
-        console.log("action----->",action)
         let selectStandardbtn : HTMLElement = document.getElementById('selectStandardbtn') as HTMLElement
         selectStandardbtn.click()
       })
@@ -154,21 +149,16 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
 
   getMasterStandardList() {
     this.classApiService.fetch().subscribe((result) => {
-      console.log("classes", result);
       this.standardList = result['data'] || [];
     }, (error) => {
-      console.log("error", error);
     })
   }
 
   getFeeCategoryList(){
-    console.log("getMasterFeeCategory result");
 
     this.commonService[API_SERVICE_METHODS.getFees]().subscribe((result)=>{
-      console.log("getMasterFeeCategory result",result);
       this.fees = result['data'] || null;
     },(error)=>{
-      console.log("getMasterFeeCategory error",error);
     }) 
 }
 
@@ -194,7 +184,6 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    console.log("filterValue", filterValue)
     this.dataSource.filter = filterValue.trim().toLowerCase();
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
@@ -211,7 +200,6 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   toggleAnimation(divName: string) {
     if (divName === 'divA') {
       this.expandAnimation = this.expandAnimation === 'expanded' ? 'collapsed' : 'expanded';
-      console.log(this.expandAnimation);
     }
   }
 
@@ -233,8 +221,8 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     this.router.navigate(['fee-structure/master-fee-category', 'new'])
   }
 
-  menuClickHandler(action,data){
-    this.classActionService.actionTriggered(action,data).subscribe(()=>{
+  menuClickHandler(action:Action,data){
+    this.classwiseFeeActionService.actionTriggered(action,data).subscribe(()=>{
       this.refresh();
     })
   }

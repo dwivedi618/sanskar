@@ -46,7 +46,6 @@ export class ManageMasterStandardComponent implements OnInit {
       this.classFormFields = classFormJson;
       this.prepareFormFields();
     });
-    this.getFeeCategoryList()
   }
 
   private prepareFormFields() {
@@ -107,44 +106,8 @@ export class ManageMasterStandardComponent implements OnInit {
 
 
 
-  getFeeCategoryList() {
-    this.commonService[API_SERVICE_METHODS.getFees]().subscribe((result) => {
-      this.fees = result['data'] || [];
-      const classFeeJson = this.createClassFeeForm(this.fees);
-      // this.createForm(classFeeJson);
-    }, (error) => {
-    })
-  }
-  createClassFeeForm(fees: Fee[]) {
-    let classfees = [];
-    let classFee = <ClassFee>{};
-    fees.forEach((fee, index) => {
-      const classFeeJson: JsonFormControls[] = [];
-      classFee = { amount: 0, ...fee };
-      delete classFee?.description;
-      delete classFee?.__v;
-      for (const [key, value] of Object.entries(classFee)) {
-        if (key === 'amount' || key === '_id') {
-          let control = <JsonFormControls>{};
-          control.name = key;
-          control.value = value || '';
-          control.validators = key === 'amount' ? { required: true } : {};
-          control.type = key === 'amount' ? 'number' : 'text';
-          control.disabled = key === '_id' ? false : false;
-          control.label = key === 'amount' ? `${classFee.name}( ${FEE_FREEQUENCY[String(classFee.frequency)]} )` : "";
-          classFeeJson.push(control);
-        }
-      }
-
-      classfees.push({ controls: classFeeJson })
-      return classfees;
-    })
-    this.classFeeFormFields = classfees as JsonFormArray;
-  }
-
-  get feesFormArray() {
-    return this.classFromGroup.controls["fees"] as FormArray;
-  }
+ 
+  
 
   onClassFeeSubmit(form) {
     console.log("classFess", form)

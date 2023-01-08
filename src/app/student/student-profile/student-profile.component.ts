@@ -70,22 +70,19 @@ export class StudentProfileComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.commonService[API_SERVICE_METHODS.getStudentMenuTab]().subscribe((data: MainMenu[]) => { this.menus = data });
-    console.log("studentMenu",this.menus);
-    
+    this.commonService[API_SERVICE_METHODS.getStudentMenuTab]().subscribe((data: MainMenu[]) => { 
+      this.menus = data ;
+      console.log("studentMenu",this.menus);
 
+    });
   }
 
   getProfile() {
-
     this.studentApiService.fetchById(this.studentId)
       .subscribe((result) => {
         console.log("Student profile", result);
         this.studentData = result || null;
         this.studentData.name = this.name();
-        // this.parentData = this.studentData['parents'] || null;
-        // this.addressData = this.studentData['address'] || null;
-
         this.isLoading = false;
       }, (error) => {
         console.log("error", error);
@@ -97,8 +94,6 @@ export class StudentProfileComponent implements OnInit {
     const { firstName = '', middleName = '', lastName = '' } = this.studentData || {};
     return `${firstName} ${middleName} ${lastName}`
   }
-
-
 
 
   getFeeDetails() {
@@ -127,10 +122,14 @@ export class StudentProfileComponent implements OnInit {
     this.router.navigate(['./student/print'], { queryParams: { id: this.studentId, action: 'print' } })
   }
 
+  onMainTabChange(selectedTab:MainMenu){
+    this.selectedIndex = selectedTab.id;
+    this.router.navigate([], { queryParams: { find: this.selectedIndex }, queryParamsHandling: 'merge' });
+  }
   selectedTabChange(event) {
     console.log("tab change", event);
     this.selectedIndex = event.index
-    this.router.navigate([], { queryParams: { find: this.selectedIndex }, queryParamsHandling: 'merge' })
+    this.router.navigate([], { queryParams: { find: this.selectedIndex }, queryParamsHandling: 'merge' });
   }
 
   openfeeDeposit() {

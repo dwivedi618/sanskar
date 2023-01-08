@@ -97,6 +97,11 @@ export class StudentsListComponent implements OnInit {
     })
   }
 
+  public name(profile): string {
+    const { firstName = '', middleName = '', lastName = '' } = profile || {};
+    return `${firstName} ${middleName} ${lastName}`
+  }
+
 
   openFeeSubmition(obj) {
     obj.action = 'submitFee';
@@ -113,7 +118,8 @@ export class StudentsListComponent implements OnInit {
    * @param profile id,name,email
    */
   openStudentProfile(profile) {
-    this.router.navigate(['student/profile'], { queryParams: { id: profile._id } });
+    
+    this.router.navigate(['student/profile'], { queryParams: { id: profile._id , name : this.name(profile) } });
   }
   // applyFilter(event: Event) {
   //   const filterValue = (event.target as HTMLInputElement).value || '';

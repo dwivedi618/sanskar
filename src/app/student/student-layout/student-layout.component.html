@@ -1,39 +1,21 @@
 <mat-sidenav-container class="student-layout">
     <mat-sidenav-content>
-        <!-- <mat-toolbar class="toolbar-thin" style="position:sticky;top:0;z-index: 5;">
-            <mat-toolbar-row>
-                <nav mat-tab-nav-bar class="d-flex w-100 pr-2">
-                    <a mat-tab-link *ngFor="let link of links" routerLink="{{link.path}}" 
-                       (click)="activeLink = link.path"
-                       [active]="activeLink == link.path" > 
-                       <small class="text-dark" [class.active] = "activeLink == link.path">{{link.name}}</small>
-                     </a>
-                    
-                     
-                     <div>
-                         <button mat-icon-button (click)="toggleAnimation('divA')">
-                            <mat-icon class="mat-icon-sm pt-1 text-mylight">add</mat-icon>
-                        </button>
-                     </div>
-                     <div class="spacer"></div>
-                     <div class="px-1 layout">
-                         <button mat-raised-button color="primary">
-                            <mat-icon class="mat-icon-sm pt-1">email</mat-icon>
-                            <small>send mail</small>
-                        </button>
-                     </div>
-                     <div class="px-1 layout">
-                         <button mat-raised-button color="primary">
-                             <mat-icon class="mat-icon-sm pt-1">message</mat-icon>
-                            <small>send message</small>
-
-                         </button>
-                     </div>
-                    
-                  </nav>
-            </mat-toolbar-row>
-        </mat-toolbar> -->
-        
+        <mat-toolbar class="bg-mysecondary" style="max-height: 3rem;position:sticky;top:0;z-index: 2;">
+            <div class="px-1 ml-n2">
+                <button mat-icon-button routerLink='..'>
+                    <mat-icon class="mat-icon-md text-mylight pt-0">arrow_back</mat-icon>
+                    <span>{{name}}</span>
+                </button>
+            </div>
+            <div class="spacer"></div>
+        </mat-toolbar>
+        <mat-toolbar class="justify-content-center" style="max-height: 3rem;position:sticky;top:3rem;z-index: 2;">
+            <app-tab-nav [tabs]="menus?.mainTab" 
+            [selectedTabId]="selectedIndex" 
+            [sticky]="true"
+            [color]="primary"
+            (onChange)="onMainTabChange($event)"></app-tab-nav>
+        </mat-toolbar>
         <main>
             <div class="">
                 <router-outlet></router-outlet>

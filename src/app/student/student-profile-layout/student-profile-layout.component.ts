@@ -42,7 +42,6 @@ export class StudentProfileLayoutComponent implements OnInit {
   onMainTabChange(selectedTab:MainMenu){
     this.selectedIndex = selectedTab.id;
     this.routingService.onTriggerStudentTab(selectedTab.subMenus);
-    console.log("selectedTab**********++++++++++++++++",selectedTab.subMenus)
     this.router.navigate([], { queryParams: { find: this.selectedIndex }, queryParamsHandling: 'merge' });
   }
 

@@ -19,7 +19,6 @@ export class RoutingService {
   private $activeStudentTabSubMenus = new BehaviorSubject<MainMenu[]>([]);
 
   onTriggerStudentTab(tabs:MainMenu[]){
-    console.log("submenu*****",tabs)
     this.$activeStudentTabSubMenus.next(tabs);
   }
 

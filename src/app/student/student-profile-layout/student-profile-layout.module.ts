@@ -8,6 +8,7 @@ import { StudentProfileLayoutComponent } from './student-profile-layout.componen
 import { RouterModule } from '@angular/router';
 import { AccountsComponent } from './accounts/accounts.component';
 import { TransactionComponent } from '../transaction/transaction.component';
+import { StudentFormComponent } from './student-form/student-form.component';
 
 
 @NgModule({
@@ -15,7 +16,8 @@ import { TransactionComponent } from '../transaction/transaction.component';
     StudentProfileLayoutComponent,
     StudentProfileComponent,
     AccountsComponent,
-    TransactionComponent
+    TransactionComponent,
+    StudentFormComponent
   ],
   imports: [
     CommonModule,

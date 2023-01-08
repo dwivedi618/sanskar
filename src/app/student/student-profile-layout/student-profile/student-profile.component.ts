@@ -54,7 +54,7 @@ export class StudentProfileComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private commonService: CommonService,
-    private studentApiService: StudentApiService,
+    public studentApiService: StudentApiService,
     public routingService : RoutingService
 
   ) {
@@ -74,7 +74,6 @@ export class StudentProfileComponent implements OnInit {
     this.commonService[API_SERVICE_METHODS.getStudentMenuTab]().subscribe((data: MainMenu[]) => { 
       this.menus = data ;
     });
-    console.log("activeStudentTabSubMenus",this.routingService.activeStudentTabSubMenus.subscribe(console.log))
   }
 
   getProfile() {
@@ -82,6 +81,7 @@ export class StudentProfileComponent implements OnInit {
       .subscribe((result) => {
         this.studentData = result || null;
         this.studentData.name = this.name();
+        this.studentApiService.setStudentData(this.studentData);
         this.isLoading = false;
       }, (error) => {
         console.log("error", error);

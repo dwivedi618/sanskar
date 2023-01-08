@@ -75,7 +75,6 @@ export class AdmissionComponent implements OnInit {
       setTimeout(() => {
         this.isFormLoading = false;
       }, 3000)
-
     });
   }
 

@@ -1,21 +1,7 @@
 <app-dialog-header [dialogData]="{action : dialogData.action , name : 'Classes'}"></app-dialog-header>
 <div mat-dialog-content>
-    <div class="row m-0">
-        <div class="col-6 pl-0">
-            <mat-toolbar>
-                <span>Class</span>
-            </mat-toolbar>
-            <app-json-form [formFields]="classFormFields" (onSubmit)="onSubmit($event)"></app-json-form>
-        </div>
-        <div class="col-6 pr-0">
-            <mat-toolbar>
-                <span>Fees</span>
-            </mat-toolbar>
-            <ng-container >
-                <app-json-form-array [formArrayFields]="classFeeFormFields" (onSubmit)="onClassFeeSubmit($event)"></app-json-form-array>
-            </ng-container>
-        </div>
-    </div>
-    
+    <mat-toolbar>
+        <span>Class</span>
+    </mat-toolbar>
+    <app-json-form [formFields]="classFormFields" (onSubmit)="onSubmit($event)"></app-json-form>
 </div>
-

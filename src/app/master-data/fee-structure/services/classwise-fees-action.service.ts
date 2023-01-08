@@ -3,13 +3,13 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { DialogService } from 'src/app/layouts/shared/dialog.service';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { AlertService } from 'src/app/services/alert.service';
-import { ClassApiService } from './class-api.service';
+import { ClassApiService } from '../../standard/services/class-api.service';
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClassActionService {
+export class ClasswiseFeesActionService {
 
   constructor(
     private classApiService: ClassApiService,
@@ -18,26 +18,19 @@ export class ClassActionService {
   ) { }
   actionTriggered(action: Action, data): Observable<any> {
     let resultObservable = new BehaviorSubject<any>('');
+    let displayDeletePharses = [`Delete ${data.name}.`, 'Are you sure?'];
     switch (action) {
       case Action.DELETE:
-        this.alertService.alertWithAction([`Delete ${data.name}.`, 'Are you sure?'], 'Delete').subscribe(result => {
-          if (result === "Delete") {
-            return this.classApiService.delete(data).subscribe(
-              result => {
-                //if success
-                resultObservable.next(result);
-              })
-          }
-        })
+        //Delete not implemented for class wise fees
         break;
       case Action.EDIT:
       case Action.UPDATE:
-        this.dialogService.manageMasterStandard(data, action).subscribe(result => {
+        this.dialogService.manageFeeStructure(data, action).subscribe(result => {
           resultObservable.next(result);
         });
         break;
       case Action.ADD:
-        this.dialogService.manageMasterStandard(data, action).subscribe(result => {
+        this.dialogService.manageFeeStructure(data, action).subscribe(result => {
           resultObservable.next(result);
         });break;
       default:

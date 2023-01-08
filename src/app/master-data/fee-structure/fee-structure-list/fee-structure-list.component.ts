@@ -10,7 +10,10 @@ import { HELPER as HELPER } from 'src/app/utils/helpers';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { ClassActionService } from '../../standard/services/class-action.service';
 import { ClassApiService } from '../../standard/services/class-api.service';
-
+import { DialogService } from 'src/app/layouts/shared/dialog.service';
+import { ManageFeeStructureComponent } from '../manage-fee-structure/manage-fee-structure.component';
+import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
+import { ClasswiseFeesActionService } from '../services/classwise-fees-action.service';
 
 
 @Component({
@@ -20,14 +23,14 @@ import { ClassApiService } from '../../standard/services/class-api.service';
 })
 
 export class FeeStructureListComponent implements AfterViewInit, OnInit {
-  @ViewChild('selectStandardbtn' ,{static : false}) selectStandardbtn : HTMLElement
+  @ViewChild('selectStandardbtn', { static: false }) selectStandardbtn: HTMLElement
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<any>;
   dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select', 'name', 'frequency','optional','amount','action'];
+  displayedColumns = ['select', 'name', 'frequency', 'optional', 'amount'];
   selection = new SelectionModel<any>(true, []);
   standardList: any;
   selectedStandard: string;
@@ -48,7 +51,6 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     this.isAllSelected() ?
       this.selection.clear() :
       this.dataSource.data.forEach(row => this.selection.select(row));
-    console.log("selection", this.selection.selected);
   }
 
   /** The label for the checkbox on the passed row */
@@ -60,65 +62,61 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   }
 
   sessionLists = [
-  { value : '2020-2021', viewValue : '2020-2021'},
-  { value : '2021-2022', viewValue : '2021-2022'}
+    { value: '2020-2021', viewValue: '2020-2021' },
+    { value: '2021-2022', viewValue: '2021-2022' }
   ]
 
-  selectedSession : string
+  selectedSession: string
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private alertService : AlertService,
+    private alertService: AlertService,
     private commonService: CommonService,
-    private classActionService : ClassActionService,
-    private classApiService : ClassApiService
+    private classActionService: ClassActionService,
+    private classApiService: ClassApiService,
+    private classwiseFeeActionService: ClasswiseFeesActionService,
+    private dialogService: DialogService
   ) {
     this.activatedRoute.queryParams.subscribe(data => {
       if (data) {
         this.selectedSession = data.year
-        if(data.standardId){
+        if (data.standardId) {
           this.standardId = data.standardId
-          console.log("this.standardId",this.standardId);
-          
           this.getFeeStructureList()
         }
-        if(data.n){
+        if (data.n) {
           this.selectedStandardName = data.n
         }
       }
-        
+
     })
   }
 
   ngOnInit() {
     this.dataSource = new MatTableDataSource();
-    console.log("selection", this.selection.selected)
     this.getMasterStandardList();
     this.getFeeStructureList();
     this.getFeeCategoryList();
   }
 
   getFeeStructureList() {
+    if (!this.standardId) return
     this.commonService.getClassFeeById(this.selectedSession, this.standardId).subscribe((result) => {
-      console.log("this.standardId", this.standardId);
-      console.log("Fee Structure result", result);
       const structureList = result['data'] || null;
-      if(HELPER.isObject(structureList)){
+      if (HELPER.isObject(structureList)) {
         this.dataSource.data = structureList?.fees || [];
       }
-      if(HELPER.isArray(structureList)){
-        let allClasses = structureList ;
-        const defaultSelectedClass = allClasses.filter(classObj=>classObj._id === this.standardId)[0];
-        this.dataSource.data = defaultSelectedClass?.fees  || [];
-        console.log("defaultSelectedClass",defaultSelectedClass);
-        
+      if (HELPER.isArray(structureList)) {
+        let allClasses = structureList;
+        const defaultSelectedClass = allClasses.filter(classObj => classObj._id === this.standardId)[0];
+        this.dataSource.data = defaultSelectedClass?.fees || [];
+
       }
-      
+
     }, (error) => {
-      console.log(" error", error);
     })
 
-   
+
   }
   /**
    * 
@@ -126,13 +124,12 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
    */
   onSessionChange(data) {
     this.selectedSession = data.value
-    this.router.navigate([], { queryParams: { year: this.selectedSession, standardId: this.standardId ,n : this.selectedStandardName}, queryParamsHandling: 'merge' })
-    if(this.selectedStandardName && this.standardId){
+    this.router.navigate([], { queryParams: { year: this.selectedSession, standardId: this.standardId, n: this.selectedStandardName }, queryParamsHandling: 'merge' })
+    if (this.selectedStandardName && this.standardId) {
       this.getFeeStructureList();
-    }else{
-      this.alertService.alertWithAction("Do not forget to select standard/class",'select standard').subscribe(action =>{
-        console.log("action----->",action)
-        let selectStandardbtn : HTMLElement = document.getElementById('selectStandardbtn') as HTMLElement
+    } else {
+      this.alertService.alertWithAction("Do not forget to select standard/class", 'select standard').subscribe(action => {
+        let selectStandardbtn: HTMLElement = document.getElementById('selectStandardbtn') as HTMLElement
         selectStandardbtn.click()
       })
     }
@@ -144,7 +141,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   onStandardChange(data) {
     this.standardId = data._id
     this.selectedStandardName = data.name
-    this.router.navigate([], { queryParams: { year: this.selectedSession, standardId: this.standardId ,n : this.selectedStandardName}, queryParamsHandling: 'merge' })
+    this.router.navigate([], { queryParams: { year: this.selectedSession, standardId: this.standardId, n: this.selectedStandardName }, queryParamsHandling: 'merge' })
     this.getFeeStructureList();
   }
 
@@ -152,55 +149,49 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
 
   getMasterStandardList() {
     this.classApiService.fetch().subscribe((result) => {
-      console.log("classes", result);
       this.standardList = result['data'] || [];
     }, (error) => {
-      console.log("error", error);
     })
   }
 
-  getFeeCategoryList(){
-    console.log("getMasterFeeCategory result");
+  getFeeCategoryList() {
 
-    this.commonService[API_SERVICE_METHODS.getFees]().subscribe((result)=>{
-      console.log("getMasterFeeCategory result",result);
+    this.commonService[API_SERVICE_METHODS.getFees]().subscribe((result) => {
       this.fees = result['data'] || null;
-    },(error)=>{
-      console.log("getMasterFeeCategory error",error);
-    }) 
-}
+    }, (error) => {
+    })
+  }
 
   getSelectedStandard(standardId) {
     let standardName = 'Select'
-      this.standardList.forEach(list => {
-        if (list.id == standardId) { 
-          standardName = list.name
-          return standardName
-        } 
-      }) 
-      return standardName
+    this.standardList.forEach(list => {
+      if (list.id == standardId) {
+        standardName = list.name
+        return standardName
+      }
+    })
+    return standardName
   }
 
   ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     this.dataSource.paginator = this.paginator;
     this.table.dataSource = this.dataSource;
-    
-      
-    
+
+
+
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    console.log("filterValue", filterValue)
     this.dataSource.filter = filterValue.trim().toLowerCase();
     if (this.dataSource.paginator) {
       this.dataSource.paginator.firstPage();
     }
   }
 
-   /** Gets the total cost of all transactions. */
-   getTotalCost() {
+  /** Gets the total cost of all transactions. */
+  getTotalCost() {
     return this.dataSource.data.map(t => t.amount).reduce((acc, value) => acc + value, 0);
   }
 
@@ -209,36 +200,24 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   toggleAnimation(divName: string) {
     if (divName === 'divA') {
       this.expandAnimation = this.expandAnimation === 'expanded' ? 'collapsed' : 'expanded';
-      console.log(this.expandAnimation);
     }
   }
 
-
-  /**
-   * route to add new FeeStructure page where admin can define fee for any courses/classes/standards
-   */
-  newFeeStructure() {
-    this.router.navigate(['master/fee-structure/', 'new']);
+  clickToAction(action: Action) {
+    let dialogData = {
+      standardId: this.standardId || null,
+      fees: this.dataSource.data || {}
+    }
+    this.menuClickHandler(action, dialogData);
   }
 
-
-
-
-  /**
-   * route to fee category , where user can add fee category
-   */
-  newFeeCategory() {
-    this.router.navigate(['fee-structure/master-fee-category', 'new'])
-  }
-
-  menuClickHandler(action,data){
-    console.log("data",action , data)
-    this.classActionService.actionTriggered(action,data).subscribe(()=>{
+  menuClickHandler(action: Action, data) {
+    this.classwiseFeeActionService.actionTriggered(action, data).subscribe(() => {
       this.refresh();
     })
   }
   refresh() {
-    this.getMasterStandardList()
+    this.getFeeStructureList();
   }
 }
 

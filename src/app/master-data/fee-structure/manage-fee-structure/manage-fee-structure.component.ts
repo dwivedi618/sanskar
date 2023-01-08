@@ -25,8 +25,7 @@ export class ManageFeeStructureComponent implements OnInit {
   classFeeFormArray: FormArray;
   isSaving: boolean;
   fees: any;
-  classFormFields: JsonFormData;
-  formGroup: FormGroup;
+
   classFeeFormFields: JsonFormArray;
 
   constructor(
@@ -38,17 +37,43 @@ export class ManageFeeStructureComponent implements OnInit {
     private dialogRef: MatDialogRef<ManageFeeStructureComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData: { data: any, action: Action } = { data: {}, action: Action.ADD }
   ) {
-    this.classFromGroup = this.fb.group({})
-    this.formGroup = this.fb.group({ fees: this.classFeeFormArray })
     console.log("MAT_DIALOG_DATA", dialogData);
   }
 
   ngOnInit(): void {
-    this.jsonFormService.getClassFormJson().subscribe(classFormJson => {
-      this.classFormFields = classFormJson;
+    this.getFeeCategoryList();
+  }
+
+  getFeeCategoryList() {
+    this.commonService[API_SERVICE_METHODS.getFees]().subscribe((result) => {
+      this.fees = result['data'] || [];
+      this.classFeeFormFields = this.createClassFeeForm(this.fees);
       this.prepareFormFields();
-    });
-    this.getFeeCategoryList()
+    }, (error) => {
+    })
+  }
+  private createClassFeeForm(fees: Fee[]) {
+    let classfees = [];
+    let classFee = <ClassFee>{};
+
+    fees.forEach((fee, index) => {
+      const classFeeJson: JsonFormControls[] = [];
+      classFee = { amount: 0, fee: { ...fee } };
+      for (const [key, value] of Object.entries(classFee)) {
+        if (key === 'amount' || key === 'fee') {
+          let control = <JsonFormControls>{};
+          control.name = key;
+          control.value = value || '';
+          control.validators = key === 'amount' ? { required: true } : {};
+          control.type = key === 'amount' ? 'number' : 'text';
+          control.label = key === 'amount' ? `${classFee.fee.name}( ${FEE_FREEQUENCY[String(classFee.fee.frequency)]} )` : "";
+          classFeeJson.push(control);
+        }
+      }
+      classfees.push({ controls: classFeeJson })
+      return classfees;
+    })
+    return classfees as JsonFormArray;
   }
 
   private prepareFormFields() {
@@ -58,29 +83,41 @@ export class ManageFeeStructureComponent implements OnInit {
         break;
       case Action.UPDATE:
       case Action.EDIT:
-        this.patchObjValuesToFormFields(data);
+        this.patchObjValuesToFormFields(data.fees);
         break;
       default:
         break;
     }
   }
 
-  private patchObjValuesToFormFields(obj) {
-    this.classFormFields.controls = this.jsonFormService.patchValuesToFormFields(obj, this.classFormFields.controls);
+  private patchObjValuesToFormFields(classFees: ClassFee[]) {
+    classFees.forEach((classFee: ClassFee, index) => {
+      this.classFeeFormFields[index]['controls'] = this.jsonFormService.patchValuesToFormFields(classFee, this.classFeeFormFields[index]['controls']);
+    })
   }
 
   onSubmit(formValues) {
-    let form = formValues;
     let action: Action = this.dialogData?.action;
     switch (action) {
       case Action.ADD:
-        this.add(formValues);
+        //class wise fee can be only updated with PATCH method of class itself
         break;
       case Action.EDIT:
       case Action.UPDATE:
-        let { _id } = this.dialogData.data;
-        return this.update({ ...formValues, _id });
+
+        let { standardId } = this.dialogData.data;
+        console.log("Submit", this.dialogData.data);
+        if (!standardId) {
+          this.alertService.alert('Opps! Not could not saved', 'close');
+          return;
+        }
+        const payload = {
+          _id: standardId,
+          fees: formValues
+        }
+        return this.update(payload);
       default:
+        this.alertService.alert('Unknown action', 'close');
         break;
     }
     this.isSaving = true;
@@ -98,6 +135,7 @@ export class ManageFeeStructureComponent implements OnInit {
   }
 
   private update(formValues) {
+    console.log(formValues);
     this.classApiService.update(formValues).subscribe((result) => {
       this.isSaving = true;
       this.alertService.alertComponent(result.message);
@@ -108,44 +146,6 @@ export class ManageFeeStructureComponent implements OnInit {
   }
 
 
-
-  getFeeCategoryList() {
-    this.commonService[API_SERVICE_METHODS.getFees]().subscribe((result) => {
-      this.fees = result['data'] || [];
-      const classFeeJson = this.createClassFeeForm(this.fees);
-    }, (error) => {
-    })
-  }
-  createClassFeeForm(fees: Fee[]) {
-    let classfees = [];
-    let classFee = <ClassFee>{};
-    fees.forEach((fee, index) => {
-      const classFeeJson: JsonFormControls[] = [];
-      classFee = { amount: 0, ...fee };
-      delete classFee?.description;
-      delete classFee?.__v;
-      for (const [key, value] of Object.entries(classFee)) {
-        if (key === 'amount' || key === '_id') {
-          let control = <JsonFormControls>{};
-          control.name = key;
-          control.value = value || '';
-          control.validators = key === 'amount' ? { required: true } : {};
-          control.type = key === 'amount' ? 'number' : 'text';
-          control.disabled = key === '_id' ? false : false;
-          control.label = key === 'amount' ? `${classFee.name}( ${FEE_FREEQUENCY[String(classFee.frequency)]} )` : "";
-          classFeeJson.push(control);
-        }
-      }
-
-      classfees.push({ controls: classFeeJson })
-      return classfees;
-    })
-    this.classFeeFormFields = classfees as JsonFormArray;
-  }
-
-  get feesFormArray() {
-    return this.classFromGroup.controls["fees"] as FormArray;
-  }
 
   onClassFeeSubmit(form) {
 

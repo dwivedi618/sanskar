@@ -7,8 +7,9 @@ export enum MyCollection{
     feeStructure = "feeStructure",
 }
 
-export interface ClassFee extends Fee{
+export interface ClassFee{
     amount : number;
+    fee : Fee
 }
 
 export interface Class{

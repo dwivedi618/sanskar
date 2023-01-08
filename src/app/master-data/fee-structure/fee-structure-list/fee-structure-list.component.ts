@@ -217,7 +217,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     })
   }
   refresh() {
-    this.getFeeStructureList()
+    this.getFeeStructureList();
   }
 }
 

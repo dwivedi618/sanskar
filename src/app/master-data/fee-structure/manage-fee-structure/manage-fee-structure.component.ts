@@ -129,18 +129,16 @@ export class ManageFeeStructureComponent implements OnInit {
     let classFee = <ClassFee>{};
     fees.forEach((fee, index) => {
       const classFeeJson: JsonFormControls[] = [];
-      classFee = { amount: 0, ...fee };
-      delete classFee?.description;
-      delete classFee?.__v;
+
+      classFee = { amount: 0, fee : {...fee} };
       for (const [key, value] of Object.entries(classFee)) {
-        if (key === 'amount' || key === '_id') {
+        if (key === 'amount' || key === 'fee') {
           let control = <JsonFormControls>{};
           control.name = key;
           control.value = value || '';
           control.validators = key === 'amount' ? { required: true } : {};
           control.type = key === 'amount' ? 'number' : 'text';
-          control.disabled = key === '_id' ? false : false;
-          control.label = key === 'amount' ? `${classFee.name}( ${FEE_FREEQUENCY[String(classFee.frequency)]} )` : "";
+          control.label = key === 'amount' ? `${classFee.fee.name}( ${FEE_FREEQUENCY[String(classFee.fee.frequency)]} )` : "";
           classFeeJson.push(control);
         }
       }
@@ -149,6 +147,7 @@ export class ManageFeeStructureComponent implements OnInit {
       return classfees;
     })
     this.classFeeFormFields = classfees as JsonFormArray;
+    console.log("classFeeFormFields",this.classFeeFormFields)
   }
 
   get feesFormArray() {

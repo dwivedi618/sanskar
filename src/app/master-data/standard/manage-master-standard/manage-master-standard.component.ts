@@ -2,14 +2,11 @@ import { AlertService } from '../../../services/alert.service';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Component, Inject, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
-import { Fee, feeFrequencyEnum, FEE_FREEQUENCY } from '../../fee-category/fee.interface'
-import { ButtonState, JsonFormService } from 'src/app/services/json-form.service';
-import { ClassFee } from '../class.interface';
-import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
+import { JsonFormService } from 'src/app/services/json-form.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { ClassApiService } from '../services/class-api.service';
-import { JsonFormArray, JsonFormControls, JsonFormData } from 'src/app/layouts/shared/json-form/json-from.types';
+import { JsonFormData } from 'src/app/layouts/shared/json-form/json-from.types';
 
 
 @Component({
@@ -18,14 +15,9 @@ import { JsonFormArray, JsonFormControls, JsonFormData } from 'src/app/layouts/s
   styleUrls: ['./manage-master-standard.component.scss']
 })
 export class ManageMasterStandardComponent implements OnInit {
-  classFromGroup: FormGroup;
-  classFeeFormArray: FormArray;
   isSaving: boolean;
   fees: any;
   classFormFields: JsonFormData;
-  formGroup: FormGroup;
-  classFeeFormFields: JsonFormArray;
-
   constructor(
     private fb: FormBuilder,
     private commonService: CommonService,
@@ -34,11 +26,7 @@ export class ManageMasterStandardComponent implements OnInit {
     private classApiService: ClassApiService,
     private dialogRef: MatDialogRef<ManageMasterStandardComponent>,
     @Inject(MAT_DIALOG_DATA) public dialogData: { data: any, action: Action } = { data: {}, action: Action.ADD }
-  ) {
-    this.classFromGroup = this.fb.group({})
-    this.formGroup = this.fb.group({ fees: this.classFeeFormArray })
-    console.log("MAT_DIALOG_DATA", dialogData);
-  }
+  ) {}
 
 
   ngOnInit(): void {
@@ -104,13 +92,7 @@ export class ManageMasterStandardComponent implements OnInit {
     })
   }
 
-
-
- 
-  
-
   onClassFeeSubmit(form) {
     console.log("classFess", form)
   }
-
 }

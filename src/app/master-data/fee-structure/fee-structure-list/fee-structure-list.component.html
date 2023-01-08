@@ -28,7 +28,7 @@
       </span>
       <span class="px-1">
         <ng-container *ngIf="!dataSource.data.length">
-          <button mat-stroked-button color="" class="btn-dark" (click)="menuClickHandler('ADD',standardId)"
+          <button mat-stroked-button color="" class="btn-dark" (click)="clickToAction('ADD')"
             [disabled]='!standardId'>
             <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
             <small >
@@ -37,7 +37,7 @@
           </button>
         </ng-container>
         <ng-container *ngIf="dataSource.data.length">
-          <button mat-stroked-button color="" class="btn-dark" (click)="menuClickHandler('UPDATE',dataSource.data)"
+          <button mat-stroked-button color="" class="btn-dark" (click)="clickToAction('UPDATE')"
             [disabled]='!standardId'>
             <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
             <small>Update Fee Structure</small>
@@ -126,13 +126,13 @@
     </ng-container>
 
     <!-- Action Column -->
-    <ng-container matColumnDef="action">
+    <!-- <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef class="text-right">Action</th>
       <td mat-cell *matCellDef="let row" (click)="$event.stopPropagation()" class="text-right">
         <app-menu-button (onMenuClick)="menuClickHandler($event,row);"></app-menu-button>
       </td>
       <td mat-footer-cell *matFooterCellDef></td>
-    </ng-container>
+    </ng-container> -->
 
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -32,7 +32,7 @@ export class TabNavComponent implements OnInit {
     }
     activeTab = this.tabs.find((tab: MainMenu) => { return tab.id == this.selectedTabId }) || this.tabs[0];
     activeTabId = activeTab.id
-    this.routingService.onTriggerStudentTab(activeTab?.subMenus);
+    // this.routingService.onTriggerStudentTab(activeTab?.subMenus);
 
     return activeTabId
   }

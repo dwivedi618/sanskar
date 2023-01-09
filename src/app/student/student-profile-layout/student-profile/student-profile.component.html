@@ -45,7 +45,7 @@
       </mat-card>
 
       <mat-toolbar color="primary" class="justify-content-center" style="max-height: 3rem;position:sticky;top:3rem;z-index: 2;">
-        <app-tab-nav [tabs]="routingService.activeStudentTabSubMenus | async" 
+        <app-tab-nav [tabs]="menus" 
         [selectedTabId]="student" 
         [sticky]="true"
         [color]="primary"
@@ -63,7 +63,6 @@
                 <ng-container *ngIf="displayStudentFields.includes(data.key)">
                   <div class="row">
                     <div class="col-6 text-left">
-                      <!-- <p>{{LABELS[data.key]}}</p> -->
                       <p class="titlecase">{{data.key | label}}</p>
   
                     </div>

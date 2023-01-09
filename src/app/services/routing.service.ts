@@ -15,23 +15,18 @@ export const API_URLS_FOR_MENUS = {
 })
 export class RoutingService {
   API_URLS = API_URLS_FOR_MENUS
-  private $studentTabs = new BehaviorSubject<MainMenu[]>([]);
-  private $activeStudentTabSubMenus = new BehaviorSubject<MainMenu[]>([]);
+  // $studentTabs = new BehaviorSubject<MainMenu[]>([]);
+  // $activeStudentTabSubMenus = new BehaviorSubject<MainMenu[]>([]);
 
   onTriggerStudentTab(tabs:MainMenu[]){
-    this.$activeStudentTabSubMenus.next(tabs);
+    // this.$activeStudentTabSubMenus.next(tabs);
   }
 
   setStudentTabs(tabs : MainMenu[]){
-    this.$studentTabs.next(tabs);
+    // this.$studentTabs.next(tabs);
   }
   
-  public get studentTabs()  {
-    return this.$studentTabs.asObservable();
-  }
-  public get activeStudentTabSubMenus()  {
-    return this.$activeStudentTabSubMenus.asObservable();
-  }
+ 
   
 
   constructor(private http: HttpClient) { }

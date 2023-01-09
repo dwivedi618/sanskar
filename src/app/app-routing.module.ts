@@ -13,15 +13,11 @@ const routes: Routes = [
   {
     path: '', component: LayoutComponent,
     children: [
-     
       { path : '' , loadChildren : './dashboard/dashboard.module#DashboardModule'},
-      { path : 'dashboard' , loadChildren : './dashboard/dashboard.module#DashboardModule'},
+      // { path : 'dashboard' , loadChildren : './dashboard/dashboard.module#DashboardModule'},
       { path: 'admission', component: AdmissionComponent },
-     
       { path: 'student', loadChildren: './student/student.module#StudentModule' },
-     
       { path : 'configuration' , loadChildren : './master-data/master-data.module#MasterDataModule'},
-
       { path: 'settings', component: SettingsComponent },
       { path: 'profile', component: ProfileComponent },
  

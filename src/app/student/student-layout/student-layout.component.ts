@@ -38,7 +38,7 @@ export class StudentLayoutComponent implements OnInit {
 
   ngOnInit(): void {
     this.routingService[API_SERVICE_METHODS.getStudentMenuTab]().subscribe((data: MainMenu[]) => { 
-      this.routingService.setStudentTabs(data)
+      // this.routingService.setStudentTabs(data);
       console.log("studentMenu",data);
     });
   }

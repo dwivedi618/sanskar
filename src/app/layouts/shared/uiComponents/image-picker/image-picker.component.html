@@ -4,7 +4,7 @@
             <button type="button" mat-icon-button class="m-0 p-0 bb" (click)="fileUpload.click()"  matTooltip="choose">
                 <mat-icon class="fs-16">add_circle</mat-icon>
             </button>
-            <button type="button" mat-icon-button class="m-0 p-0 bb" (click)="onClickCropBtn()" [disabled]="!imagePreview"  matTooltip="crop">
+            <button type="button" mat-icon-button class="m-0 p-0 bb" (click)="onClickCropBtn()" [disabled]="!imagePreview || image"  matTooltip="crop">
                 <mat-icon class="fs-16">crop</mat-icon>
             </button>
             <button type="button" mat-icon-button class="m-0 p-0" (click)="fileUploadReset()" [disabled]="!imagePreview" matTooltip="remove">

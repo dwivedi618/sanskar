@@ -10,7 +10,7 @@
             <div class="spacer"></div>
         </mat-toolbar>
         <mat-toolbar class="justify-content-center" style="max-height: 3rem;position:sticky;top:3rem;z-index: 2;">
-            <app-tab-nav [tabs]="routingService.studentTabs | async" 
+            <app-tab-nav [tabs]="routingService.$studentTabs | async" 
             [selectedTabId]="selectedIndex" 
             [sticky]="true"
             [color]="primary"

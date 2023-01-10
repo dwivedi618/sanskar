@@ -1,7 +1,6 @@
 import { MaterialModule } from './../material.module';
 import { NgModule } from '@angular/core';
 import { StudentsListComponent } from './students-list/students-list.component';
-import { StudentProfileComponent } from './student-profile/student-profile.component';
 
 import { StudentRoutingModule } from './student-routing.module';
 
@@ -19,8 +18,7 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [
     StudentsListComponent,
-    StudentProfileComponent,
-    TransactionComponent,
+    
     StudentLayoutComponent,
     AdmissionFormPrintLayoutComponent,
     FeeDepositComponent
@@ -34,7 +32,7 @@ import { CommonModule } from '@angular/common';
     StudentRoutingModule
   ],
   entryComponents: [
-    TransactionComponent,StudentProfileComponent,FeeDepositComponent
+    TransactionComponent,FeeDepositComponent
   ],
   
 })

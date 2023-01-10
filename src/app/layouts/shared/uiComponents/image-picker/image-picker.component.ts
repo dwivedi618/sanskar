@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { DialogService } from '../../dialog.service';
 
 @Component({
@@ -8,12 +8,17 @@ import { DialogService } from '../../dialog.service';
 })
 export class ImagePickerComponent implements OnInit {
   imagePreview : string = '';
+  @Input() public image ;
   @Output() onImageSelect = new EventEmitter<string>();
-  constructor(private dialogService : DialogService) { }
+  constructor(private dialogService : DialogService) {
+    this.imagePreview = this.image;
+  }
 
   file : File;
   fileEvent : Event;
   ngOnInit(): void {
+    this.imagePreview = this.image;
+    
   }
   fileUploadReset() {
     if (this.imagePreview) {

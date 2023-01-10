@@ -4,10 +4,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { MainMenu } from 'src/app/layouts/shared/uiComponents/left-sidebar-menu/sidebar.menus';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { CommonService } from 'src/app/services/common.service';
+import { RoutingService } from 'src/app/services/routing.service';
 import { LABELS } from 'src/app/utils/keyparser';
-import { FeeDepositComponent } from '../fee-deposit/fee-deposit.component';
-import { StudentApiService } from '../services/student-api.service';
-import { TransactionComponent } from '../transaction/transaction.component';
+import { FeeDepositComponent } from '../../fee-deposit/fee-deposit.component';
+import { StudentApiService } from '../../services/student-api.service';
+import { TransactionComponent } from '../../transaction/transaction.component';
 
 
 
@@ -53,11 +54,11 @@ export class StudentProfileComponent implements OnInit {
     private router: Router,
     private dialog: MatDialog,
     private commonService: CommonService,
-    private studentApiService: StudentApiService
+    public studentApiService: StudentApiService,
+    public routingService : RoutingService
 
   ) {
     this.activatedRoute.queryParams.subscribe((data) => {
-      console.log("activated route data", data);
       if (data && data.id) {
         this.studentId = data.id;
         this.getProfile();
@@ -72,17 +73,15 @@ export class StudentProfileComponent implements OnInit {
   ngOnInit() {
     this.commonService[API_SERVICE_METHODS.getStudentMenuTab]().subscribe((data: MainMenu[]) => { 
       this.menus = data ;
-      console.log("studentMenu",this.menus);
-
     });
   }
 
   getProfile() {
     this.studentApiService.fetchById(this.studentId)
       .subscribe((result) => {
-        console.log("Student profile", result);
         this.studentData = result || null;
         this.studentData.name = this.name();
+        this.studentApiService.setStudentData(this.studentData);
         this.isLoading = false;
       }, (error) => {
         console.log("error", error);
@@ -126,12 +125,7 @@ export class StudentProfileComponent implements OnInit {
     this.selectedIndex = selectedTab.id;
     this.router.navigate([], { queryParams: { find: this.selectedIndex }, queryParamsHandling: 'merge' });
   }
-  selectedTabChange(event) {
-    console.log("tab change", event);
-    this.selectedIndex = event.index
-    this.router.navigate([], { queryParams: { find: this.selectedIndex }, queryParamsHandling: 'merge' });
-  }
-
+ 
   openfeeDeposit() {
     const data = <any>{}
     data.studentId = this.studentId
@@ -147,5 +141,7 @@ export class StudentProfileComponent implements OnInit {
       this.getFeeDetails();
     })
   }
+
+ 
 
 }

@@ -1,33 +1,31 @@
 import { NgModule } from '@angular/core';
-import { Routes,RouterModule } from "@angular/router";
+import { Routes, RouterModule } from "@angular/router";
 import { StudentsListComponent } from './students-list/students-list.component';
-import { StudentProfileComponent } from './student-profile/student-profile.component'
+import { StudentProfileComponent } from './student-profile-layout/student-profile/student-profile.component'
 import { StudentLayoutComponent } from './student-layout/student-layout.component';
 import { AdmissionFormPrintLayoutComponent } from './admission-form-print-layout/admission-form-print-layout.component';
-
+import { StudentProfileLayoutModule } from './student-profile-layout/student-profile-layout.module';
 const studentroutes: Routes = [
-    { 
-        path:'', component : StudentLayoutComponent,
-        children:[
-        { path:'', component : StudentsListComponent},
-        { path:'profile', component : StudentProfileComponent},
-        { path:'print', component : AdmissionFormPrintLayoutComponent},
-
-        
+    {
+        path: '', component: StudentLayoutComponent,
+        children: [
+            { path: '', component: StudentsListComponent },
+            { path: 'profile', loadChildren: './student-profile-layout/student-profile-layout.module#StudentProfileLayoutModule' },
+            { path: 'print', component: AdmissionFormPrintLayoutComponent },
         ]
     }
 
 
 ];
 @NgModule({
-imports: [    
-    RouterModule,
-    RouterModule.forChild(studentroutes),
-],
-exports: [
-    RouterModule,
-    
-  ],
+    imports: [
+        RouterModule,
+        RouterModule.forChild(studentroutes),
+    ],
+    exports: [
+        RouterModule,
+
+    ],
 })
 
-export class StudentRoutingModule{}
+export class StudentRoutingModule { }

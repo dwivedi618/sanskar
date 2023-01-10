@@ -44,30 +44,41 @@
         </div>
       </mat-card>
 
-      <app-tab-nav></app-tab-nav>
+      <mat-toolbar color="primary" class="justify-content-center" style="max-height: 3rem;position:sticky;top:3rem;z-index: 2;">
+        <app-tab-nav [tabs]="routingService.activeStudentTabSubMenus | async" 
+        [selectedTabId]="student" 
+        [sticky]="true"
+        [color]="primary"
+        (onChange)="onMainTabChange($event)"></app-tab-nav>
+    </mat-toolbar>
       <mat-toolbar>
         <span>Student</span>
       </mat-toolbar>
       <mat-card>
         <!-- <pre>{{studentData |json}}</pre> -->
-        <div class="row">
-          <div class="col-md-6">
-            <ng-container *ngFor="let data of studentData | keyvalue">
-              <ng-container *ngIf="displayStudentFields.includes(data.key)">
-                <div class="row">
-                  <div class="col-6 text-left">
-                    <!-- <p>{{LABELS[data.key]}}</p> -->
-                    <p class="titlecase">{{data.key | label}}</p>
-
+        <ng-container>
+          <div class="row">
+            <div class="col-md-6">
+              <ng-container *ngFor="let data of studentApiService.studentData | async | keyvalue">
+                <ng-container *ngIf="displayStudentFields.includes(data.key)">
+                  <div class="row">
+                    <div class="col-6 text-left">
+                      <!-- <p>{{LABELS[data.key]}}</p> -->
+                      <p class="titlecase">{{data.key | label}}</p>
+  
+                    </div>
+                    <div class="col-6 text-left">
+                      <p>{{ (data.value || '')}}</p>
+                    </div>
                   </div>
-                  <div class="col-6 text-left">
-                    <p>{{ (data.value || '')}}</p>
-                  </div>
-                </div>
+                </ng-container>
               </ng-container>
-            </ng-container>
+            </div>
           </div>
-        </div>
+        </ng-container>
+        <ng-container>
+          <app-student-form [data]="{action : 'UPDATE' , data : studentApiService.studentData | async}"></app-student-form>
+        </ng-container>
       </mat-card>
 
 

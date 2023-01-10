@@ -6,11 +6,11 @@ import { CommonService } from 'src/app/services/common.service';
 import { RoutingService } from 'src/app/services/routing.service';
 
 @Component({
-  selector: 'app-student-layout',
-  templateUrl: './student-layout.component.html',
-  styleUrls: ['./student-layout.component.css']
+  selector: 'app-student-profile-layout',
+  templateUrl: './student-profile-layout.component.html',
+  styleUrls: ['./student-profile-layout.component.scss']
 })
-export class StudentLayoutComponent implements OnInit {
+export class StudentProfileLayoutComponent implements OnInit {
   studentId: any;
   selectedIndex: any;
   menus: MainMenu[];
@@ -19,7 +19,7 @@ export class StudentLayoutComponent implements OnInit {
   constructor(
     private activatedRoute: ActivatedRoute,
     private commonService: CommonService,
-    public routingService:RoutingService,
+    public routingService : RoutingService,
     private router: Router,
   ) { 
     this.activatedRoute.queryParams.subscribe((data) => {
@@ -37,12 +37,13 @@ export class StudentLayoutComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.routingService[API_SERVICE_METHODS.getStudentMenuTab]().subscribe((data: MainMenu[]) => { 
-      this.routingService.setStudentTabs(data)
-      console.log("studentMenu",data);
-    });
   }
 
-  
+  onMainTabChange(selectedTab:MainMenu){
+    this.selectedIndex = selectedTab.id;
+    this.routingService.onTriggerStudentTab(selectedTab.subMenus);
+    this.router.navigate([], { queryParams: { find: this.selectedIndex }, queryParamsHandling: 'merge' });
+  }
 
 }
+

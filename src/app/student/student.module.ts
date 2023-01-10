@@ -16,16 +16,12 @@ import { StudentProfileLayoutComponent } from './student-profile-layout/student-
 import { AccountsComponent } from './student-profile-layout/accounts/accounts.component';
 
 
-
-
 @NgModule({
   declarations: [
     StudentsListComponent,
-    
     StudentLayoutComponent,
     AdmissionFormPrintLayoutComponent,
-    FeeDepositComponent,
-    StudentProfileLayoutComponent
+    FeeDepositComponent
     ],
   imports: [
     CommonModule,

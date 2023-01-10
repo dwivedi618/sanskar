@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { SettingsComponent } from './settings/settings.component';
-import { ProfileComponent } from './profile/profile.component';
 import { AdmissionComponent } from './admission/admission.component';
 import { LayoutComponent } from './layouts/layout/layout.component';
 
@@ -23,7 +22,7 @@ const routes: Routes = [
       { path : 'configuration' , loadChildren : './master-data/master-data.module#MasterDataModule'},
 
       { path: 'settings', component: SettingsComponent },
-      { path: 'profile', component: ProfileComponent },
+      
  
     ]
   },

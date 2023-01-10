@@ -3,8 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ProfileComponent } from './profile/profile.component';
-import { EditComponent } from './profile/edit/edit.component';
 import { AuthenticationService } from './services/authentication.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { SettingsComponent } from './settings/settings.component';
@@ -22,8 +20,6 @@ import { JsonFormService } from './services/json-form.service';
 @NgModule({
   declarations: [
     AppComponent,
-    ProfileComponent,
-    EditComponent,
     SettingsComponent,
     NavComponent,
     LayoutComponent,

@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { MainMenu } from 'src/app/layouts/shared/uiComponents/left-sidebar-menu/sidebar.menus';
+import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { CommonService } from 'src/app/services/common.service';
 import { RoutingService } from 'src/app/services/routing.service';
 import { LABELS } from 'src/app/utils/keyparser';
 import { FeeDepositComponent } from '../../fee-deposit/fee-deposit.component';
+import { StudentActionService } from '../../services/student-action.service';
 import { StudentApiService } from '../../services/student-api.service';
 import { TransactionComponent } from '../../transaction/transaction.component';
 
@@ -48,6 +50,8 @@ export class StudentProfileComponent implements OnInit {
   find: any;
   selectedIndex: any;
   menus: MainMenu[];
+  showStudentForm: any;
+  isStudentFormVisible: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -55,6 +59,7 @@ export class StudentProfileComponent implements OnInit {
     private dialog: MatDialog,
     private commonService: CommonService,
     public studentApiService: StudentApiService,
+    public studentActionService : StudentActionService,
     public routingService : RoutingService
 
   ) {
@@ -142,6 +147,21 @@ export class StudentProfileComponent implements OnInit {
     })
   }
 
+ 
+  triggerAction(action:Action){
+    this.isStudentFormVisible = !this.isStudentFormVisible
+  }
+
+  menuClickHandler(action, data) {
+    console.log("data", action, data)
+    this.studentActionService.actionTriggered(action, data).subscribe(()=>{
+      this.refresh();
+    })
+  }
+
+  refresh(){
+    this.getProfile()
+  }
  
 
 }

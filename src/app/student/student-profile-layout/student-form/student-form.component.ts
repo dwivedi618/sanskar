@@ -44,8 +44,10 @@ export class StudentFormComponent implements OnInit {
   
   onStudentFormSubmit(form:Student) {
     console.log("student form", form);
-    this.studentApiService.add(form).subscribe(result =>{
-      console.log("save student",result);
+    form.studentId = this.data.data._id;
+    
+    this.studentApiService.update(form).subscribe(result =>{
+      console.log("student updated",result);
     })
   }
 

@@ -11,8 +11,16 @@ import { StudentApiService } from './student-api.service';
 })
 export class StudentActionService {
 
+  $isStudentFormVisible = new BehaviorSubject<Boolean>(false);
+  showStudentForm(){
+    this.$isStudentFormVisible.next(true);
+  }
+  toggleStudentFormVisibilty(){
+    this.$isStudentFormVisible.next(!this.$isStudentFormVisible.subscribe());
+  }
+  
   studentRoutes = {
-    parent : 'parent',
+    parent: 'parent',
   }
   constructor(
     private studentApiService: StudentApiService,
@@ -40,7 +48,7 @@ export class StudentActionService {
         });
         break;
       case Action.ADD:
-        
+
         break;
       default:
         break;

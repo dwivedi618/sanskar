@@ -16,7 +16,8 @@ import { UiService } from 'src/app/services/ui.service';
 
 
 export interface Student {
-  _id: number;
+  _id: string;
+  studentId: string;
   firstName: string;
   fatherName: string;
   standard: string;

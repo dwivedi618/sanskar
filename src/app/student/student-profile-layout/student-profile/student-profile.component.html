@@ -1,8 +1,8 @@
 <section style="min-height: calc(100vh-6rem)">
   <ng-container *ngIf="this.studentData">
     <div class="container mt-2 mb-5 pt-4 ">
-      <mat-card class="mat-elevation-z4 border-bottom-0 bg-mylight-3">
-        <div class="row justify-content-center py-5">
+      <mat-card class="mat-elevation-z4 border-bottom-0 ">
+        <div class="row justify-content-center p-5 background">
           <div class="col-md-4">
             <app-avatar [src]="studentData?.studentPhoto" [size]="'xl'" [gender]="studentData?.gender"
               [shape]="'square'"></app-avatar>
@@ -54,14 +54,14 @@
       <mat-toolbar class="justify-content-between bg-mysecondary" >
         <span>Student</span>
         <button mat-raised-button type="button" color="primary" class="btn-mydark text-uppercase" (click)="triggerAction('ACTION')">
-          <mat-icon class="mat-icon-sm">{{isStudentFormVisible ? 'cancel' : 'edit'}}</mat-icon>
-          <span>{{isStudentFormVisible ? 'Cancel' : 'Edit'}}</span>
+          <!-- <mat-icon class="mat-icon-sm">{{isStudentFormVisible ? 'cancel' : 'edit'}}</mat-icon> -->
+          <span>{{(studentActionService.$isStudentFormVisible | async) ? 'Cancel' : 'Edit'}}</span>
         </button>
       </mat-toolbar>
       <ng-container >
         <mat-card>
           <!-- <pre>{{studentData |json}}</pre> -->
-          <ng-container *ngIf="!isStudentFormVisible">
+          <ng-container *ngIf="!(studentActionService.$isStudentFormVisible | async)">
             <div class="row justify-content-center">
               <div class="col-md-6">
                 <ng-container *ngFor="let data of studentApiService.studentData | async | keyvalue">
@@ -81,7 +81,7 @@
               </div>
             </div>
           </ng-container>
-          <ng-container *ngIf="isStudentFormVisible">
+          <ng-container *ngIf="studentActionService.$isStudentFormVisible | async">
             <app-student-form [data]="{action : 'UPDATE' , data : studentApiService.studentData | async}"></app-student-form>
           </ng-container>
         </mat-card>

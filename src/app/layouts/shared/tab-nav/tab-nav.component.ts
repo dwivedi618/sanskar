@@ -17,6 +17,7 @@ export class TabNavComponent implements OnInit {
   activeTab: string = this.tabs && this.tabs[0].id;
   constructor(private routingService: RoutingService) { }
   ngOnInit(): void {
+
   }
 
   tabClickHandler(tab: MainMenu) {
@@ -25,13 +26,11 @@ export class TabNavComponent implements OnInit {
 
 
   public get activeTabId(): string {
-    let activeTab = this.tabs && this.tabs[0];
+    console.log("active tab get called")
+    
+ 
+    let activeTab = this.tabs.find((tab: MainMenu) => { return tab.id == this.selectedTabId }) || this.tabs[0];
     let activeTabId = activeTab.id
-    if (!this.selectedTabId) {
-      return activeTabId;
-    }
-    activeTab = this.tabs.find((tab: MainMenu) => { return tab.id == this.selectedTabId }) || this.tabs[0];
-    activeTabId = activeTab.id
     this.routingService.onTriggerStudentTab(activeTab?.subMenus);
 
     return activeTabId

@@ -15,8 +15,11 @@ export class StudentActionService {
   showStudentForm(){
     this.$isStudentFormVisible.next(true);
   }
-  toggleStudentFormVisibilty(){
-    this.$isStudentFormVisible.next(!this.$isStudentFormVisible.subscribe());
+  hideStudentForm(){
+    this.$isStudentFormVisible.next(false);
+  }
+  get isStudentFormVisible(){
+    return this.$isStudentFormVisible.asObservable()
   }
   
   studentRoutes = {

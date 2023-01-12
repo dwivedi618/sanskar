@@ -150,6 +150,8 @@ export class StudentProfileComponent implements OnInit {
  
   triggerAction(action:Action){
     this.isStudentFormVisible = !this.isStudentFormVisible
+    this.isStudentFormVisible ? this.studentActionService.hideStudentForm() : this.studentActionService.showStudentForm();
+    
   }
 
   menuClickHandler(action, data) {

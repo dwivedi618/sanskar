@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { JsonFormControls, JsonFormData } from 'src/app/layouts/shared/json-form/json-from.types';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { JsonFormService } from 'src/app/services/json-form.service';
+import { StudentActionService } from '../../services/student-action.service';
 import { StudentApiService } from '../../services/student-api.service';
 import { Student } from '../../students-list/students-list.component';
 
@@ -18,6 +19,7 @@ export class StudentFormComponent implements OnInit {
 
   constructor(
     private studentApiService: StudentApiService,
+    public studentActionService: StudentActionService,
     private jsonFormService : JsonFormService
     ) { }
 
@@ -48,6 +50,7 @@ export class StudentFormComponent implements OnInit {
     
     this.studentApiService.update(form).subscribe(result =>{
       console.log("student updated",result);
+      this.studentActionService.hideStudentForm();
     })
   }
 

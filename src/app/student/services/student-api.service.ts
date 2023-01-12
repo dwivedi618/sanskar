@@ -49,7 +49,7 @@ export class StudentApiService {
     return this._http.get<Student>(this.API_ROUTES.student + '?' + 'studentId=' + studentId).pipe(pluck('data'))
   }
   update(data) {
-    return this._http.patch<Student>(this.API_ROUTES.student, data)
+    return this._http.patch<Student>(this.API_ROUTES.student, data).pipe()
   }
 }
 

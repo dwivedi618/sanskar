@@ -1,0 +1,53 @@
+.mybg-primary {
+    color: #ffffff !important;
+    background: #00467F;
+    /* fallback for old browsers */
+    background: -webkit-linear-gradient(90deg #333, #00467F, #333) !important;
+    /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(90deg, #333, #00467F, #333) !important;
+    /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+
+.mybg-primary-1 {
+    color: white !important;
+    background: #424242 !important;
+}
+
+.bg-mysecondary {
+    color: white !important;
+    background: #333 !important;
+}
+
+.bg-mylight-1 {
+    background-color: rgb(217, 232, 255);
+}
+
+.bg-mylight-2 {
+    background-color: rgb(255, 248, 235);
+}
+
+.bg-mylight-3 {
+    background-color: rgb(255, 242, 185);
+}
+
+.bg-mylight-4 {
+    background-color: rgb(179, 179, 179);
+}
+
+.bg-mylight {
+    background-color: rgb(198, 237, 255);
+}
+
+.bg-mydark {
+    background: #000000;
+    background: -webkit-linear-gradient(to top, #434343, #000000a2, #434343, );
+    background: linear-gradient(to top, #434343, #000000);
+}
+
+.bg-dark-300 {
+    background-color: #333333;
+}
+
+.bg-dark-400 {
+    background-color: #424242;
+}

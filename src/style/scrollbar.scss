@@ -1,0 +1,17 @@
+   // custom scrollbar for dialog-content
+   * {
+       scrollbar-color: rgba(0, 0, 0, .2) hsla(0, 0%, 100%, .1);
+       scrollbar-width: thin;
+   }
+
+   *::-webkit-scrollbar {
+       width: 6px;
+       height: 4px;
+       visibility: hidden !important;
+   }
+
+   *::-webkit-scrollbar-thumb {
+       background-color: rgba(146, 146, 146, 0.336);
+       border-radius: 6rem;
+       visibility: hidden;
+   }

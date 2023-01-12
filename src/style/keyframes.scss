@@ -1,0 +1,101 @@
+@-webkit-keyframes popUp {
+    from {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes popUp {
+    from {
+        -webkit-transform: scale(0);
+        transform: scale(0);
+        opacity: 0;
+    }
+
+    to {
+        -webkit-transform: scale(1);
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@-webkit-keyframes slideUp {
+    from {
+        -webkit-transform: translateY(5px);
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        -webkit-transform: translateY(5px);
+        transform: translateY(5px);
+        opacity: 0;
+    }
+
+    to {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+        opacity: 1;
+    }
+}
+
+.slideUp {
+    -webkit-animation: fadeIn ease-in-out 450ms;
+    animation: fadeIn ease-in-out 450ms;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    -webkit-animation: fadeIn ease-in-out 450ms;
+    animation: fadeIn ease-in-out 450ms;
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.spin {
+    -webkit-animation: spin .5s infinite linear;
+    animation: spin .5s infinite linear;
+}
+
+@keyframes shake {
+    from {
+        -webkit-transform: rotate(10deg);
+    }
+
+    to {
+        -webkit-transform-origin: center center;
+        -webkit-transform: rotate(-10deg);
+    }
+}

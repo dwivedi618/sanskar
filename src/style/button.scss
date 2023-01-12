@@ -1,0 +1,10 @@
+button.btn-mydark {
+    color: white !important;
+    background: #424242 !important;
+}
+button:disabled {
+    cursor: not-allowed !important;
+}
+button:-moz-loading{
+    cursor:progress;
+}

@@ -66,7 +66,7 @@ export class StudentsListComponent implements OnInit {
   adjustScreen: any;
   show_fullscreen = true;
   close_fullscreen = false;
-  isLoading = false;
+  isLoading = true;
   displayNoRecords: boolean;
   constructor(
     @Inject(DOCUMENT) private document: any,
@@ -94,6 +94,9 @@ export class StudentsListComponent implements OnInit {
       const standardList = result['data'] || null;
       this.dataSource.data = standardList
       this.uiService.loader.hide();
+      setTimeout(() => {
+        this.isLoading = false
+      }, 3000);
     }, (error) => {
     })
   }

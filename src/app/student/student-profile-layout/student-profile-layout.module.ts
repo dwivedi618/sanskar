@@ -11,6 +11,8 @@ import { TransactionComponent } from '../transaction/transaction.component';
 import { StudentFormComponent } from './student-form/student-form.component';
 import { ParentFormComponent } from './parent-form/parent-form.component';
 import { AddressFormComponent } from './address-form/address-form.component';
+import { PermanentAddressFormComponent } from './permanent-address-form/permanent-address-form.component';
+import { LocalAddressFormComponent } from './local-address-form/local-address-form.component';
 
 
 @NgModule({
@@ -21,7 +23,9 @@ import { AddressFormComponent } from './address-form/address-form.component';
     TransactionComponent,
     StudentFormComponent,
     ParentFormComponent,
-    AddressFormComponent
+    AddressFormComponent,
+    PermanentAddressFormComponent,
+    LocalAddressFormComponent
   ],
   imports: [
     CommonModule,

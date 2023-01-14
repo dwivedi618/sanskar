@@ -12,6 +12,7 @@ import { StudentActionService } from '../../services/student-action.service';
 import { StudentApiService } from '../../services/student-api.service';
 import { TransactionComponent } from '../../transaction/transaction.component';
 
+export type DisplayFields = {label : string,type : string}[]
 
 
 @Component({
@@ -27,20 +28,29 @@ export class StudentProfileComponent implements OnInit {
   addressData: any;
   studentFeeDetails: any;
   displayedColumns = ['name', 'frequency', 'amount', 'action'];
-  displayStudentFields = [
-    "academicSession",
-    "bloodGroup",
-    "conveniance",
-    "dateOfBirth",
-    "firstName",
-    "gender",
-    "healthStatus",
-    "lastName",
-    "middleName",
-    "name",
-    "nationality",
-    "place",
-    "studentMobile"
+  displayStudentFields:DisplayFields = [
+    { label : "academicSession",type : "string"},
+    { label : "bloodGroup",type : "string"},
+    { label : "conveniance",type : "string"},
+    { label : "dateOfBirth",type : "date"},
+    { label : "firstName",type : "string"},
+    { label : "gender",type : "string"},
+    { label : "healthStatus",type : "string"},
+    { label : "lastName",type : "string"},
+    { label : "name",type : "string"},
+    { label : "nationality",type : "string"},
+    { label : "place",type : "string"},
+    { label : "studentMobile",type : "phone"},
+  ]
+  
+  displayParentFields:DisplayFields = [
+    { label : "father",type : "string"},
+    { label : "mother",type : "string"},
+    { label : "fathersOccupation",type : "string"},
+    { label : "mothersOccupation",type : "string"},
+    { label : "gaurdian",type : "string"},
+    { label : "contact",type : "phone"},
+   
   ]
 
   readonly LABELS = LABELS;
@@ -52,6 +62,7 @@ export class StudentProfileComponent implements OnInit {
   menus: MainMenu[];
   showStudentForm: any;
   isStudentFormVisible: any;
+  address: import("/home/v-shivam.dwivedi/Downloads/projects/nest/sanskar/src/app/student/student.interface").Address;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -66,7 +77,7 @@ export class StudentProfileComponent implements OnInit {
     this.activatedRoute.queryParams.subscribe((data) => {
       if (data && data.id) {
         this.studentId = data.id;
-        this.getProfile();
+        this.fetchStudentCompleteProfileByStudentId();
         this.getFeeDetails();
         if (data.find) {
           this.selectedIndex = data.find
@@ -79,14 +90,38 @@ export class StudentProfileComponent implements OnInit {
     this.commonService[API_SERVICE_METHODS.getStudentMenuTab]().subscribe((data: MainMenu[]) => { 
       this.menus = data ;
     });
+    this.fetchStudentCompleteProfileByStudentId()
   }
 
-  getProfile() {
-    this.studentApiService.fetchById(this.studentId)
+  isIncluded(fields ,key:String){
+    return fields.some(field => field.label === key);
+    // studentApiService.studentData | async  | keyvalue
+  }
+
+
+  fetchStudentCompleteProfileByStudentId() {
+    this.studentApiService.fetchStudentCompleteProfileByStudentId(this.studentId)
       .subscribe((result) => {
-        this.studentData = result || null;
-        this.studentData.name = this.name();
+        console.log(result);
+        let [student , parent , address ] = result;
+        this.parentData = parent;
+        this.studentData = student || null;
+        this.address = address || null;
         this.studentApiService.setStudentData(this.studentData);
+        this.studentApiService.setParentData(this.parentData);
+        this.studentApiService.setAddress(this.address);
+        this.isLoading = false;
+      }, (error) => {
+        console.log("error", error);
+      })
+  }
+  
+
+  getStudentParent() {
+    this.studentApiService.fetchParentByStudentId(this.studentId)
+      .subscribe((result) => {
+        this.parentData = result || null;
+        // this.studentApiService.setStudentData(this.studentData);
         this.isLoading = false;
       }, (error) => {
         console.log("error", error);
@@ -162,7 +197,6 @@ export class StudentProfileComponent implements OnInit {
   }
 
   refresh(){
-    this.getProfile()
   }
  
 

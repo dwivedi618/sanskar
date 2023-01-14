@@ -52,10 +52,10 @@
     </mat-toolbar-row>
   </mat-toolbar>
 
-  <ng-container *ngIf="isLoading">
+  <!-- <ng-container *ngIf="isLoading">
     <app-skelton-loader [length]="dataSource.data.length" [cols]=[1,6,2,2,1]></app-skelton-loader>
-  </ng-container>
-  <table mat-table [dataSource]="dataSource" class="w-100 mb-5" matSort *ngIf="dataSource.data.length != 0 && !isLoading">
+  </ng-container> -->
+  <table mat-table [dataSource]="dataSource" class="w-100 mb-5" matSort *ngIf="dataSource.data.length != 0 ">
 
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">

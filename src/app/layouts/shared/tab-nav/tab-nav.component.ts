@@ -26,7 +26,7 @@ export class TabNavComponent implements OnInit {
 
 
   public get activeTabId(): string {
-    console.log("active tab get called")
+    // console.log("active tab get called")
     
  
     let activeTab = this.tabs.find((tab: MainMenu) => { return tab.id == this.selectedTabId }) || this.tabs[0];

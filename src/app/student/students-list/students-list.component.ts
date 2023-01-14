@@ -90,7 +90,7 @@ export class StudentsListComponent implements OnInit {
 
   getStudents() {
     this.uiService.loader.show("Fetching student...")
-    this.studentApiService.fetch().subscribe((result) => {
+    this.studentApiService.fetchStudents().subscribe((result) => {
       const standardList = result['data'] || null;
       this.dataSource.data = standardList
       this.uiService.loader.hide();

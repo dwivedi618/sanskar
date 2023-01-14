@@ -16,3 +16,32 @@ export interface Student {
     place: String;
     description: String
 }
+
+export interface Parent {
+    fathersPhoto: string;
+    father: string;
+    mother: string;
+    fathersOccupation: string;
+    mothersOccupation: string;
+    gaurdian: string;
+    studentId: string;
+    contact: string;
+}
+
+export interface PermanentAddress  {
+    address: String,
+    state: String,
+    district: String,
+    pin: String
+}
+export interface LocalAddress  {
+    address: String,
+    state: String,
+    district: String,
+    pin: String
+}
+
+export interface Address {
+     permanentAddress : PermanentAddress,
+     localAddress : LocalAddress
+ }

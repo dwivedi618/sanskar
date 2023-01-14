@@ -30,17 +30,24 @@ export interface Parent {
     contact: string;
 }
 
+
+
 export interface PermanentAddress  {
+    _id?:String,
     address: String,
     state: String,
     district: String,
-    pin: String
+    pin: String,
+    studentId:String
 }
 export interface LocalAddress  {
+    _id?:String,
     address: String,
     state: String,
     district: String,
-    pin: String
+    pin: String,
+    studentId:String
+
 }
 
 export interface Address {

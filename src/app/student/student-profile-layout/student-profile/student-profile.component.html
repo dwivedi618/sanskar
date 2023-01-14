@@ -12,14 +12,20 @@
               <h3 class="py-0 my-0">{{ this.studentData?.name | titlecase}}
                 <span><mat-icon matTooltip="Verified" class="mat-icon-sm text-success">verified_user</mat-icon></span>
               </h3>
-              <strong class="">{{this.studentData?.classId?.name}}</strong>
+              <strong class="text-uppercase">{{this.studentData?.classId?.name}}</strong>
               
               <div class="d-flex my-2">
                 <button mat-stroked-button (click)="updateProfile()" class="mr-1">
                   <small class="text-mylight">UPDATE</small>
                 </button>
+                <ng-container *ngIf="studentData.registrationCompleted">
+
+                </ng-container>
+                <button mat-stroked-button (click)="updateProfile()" class="mr-1">
+                  <small class="text-mylight">Complete Registration</small>
+                </button>
                 <button mat-stroked-button (click)="printProfile()" class="mx-1">
-                  <small class="text-mylight">Print</small>
+                  <small class="text-mylight text-uppercase">Print</small>
                 </button>
 
               </div>

@@ -59,7 +59,7 @@ export class AdmissionComponent implements OnInit {
         this.studentId = data.id;
         this.getProfile();
       } else {
-        this.action = data.action || 'add';
+        this.action = data.action;
       }
     })
   }
@@ -83,11 +83,9 @@ export class AdmissionComponent implements OnInit {
     form.patchValue({ [formFieldName]: image });
   }
   getProfile() {
-    this.commonService.getStudentRecordById(this.studentId)
+    this.studentApiService.fetchStudentCompleteProfileByStudentId(this.studentId)
       .subscribe((result) => {
-        this.studentData = result.data || null;
-        if (this.action == 'update') {
-        }
+        let [student,parent,address] = result || [];
 
         this.isLoading = false;
       }, (error) => {

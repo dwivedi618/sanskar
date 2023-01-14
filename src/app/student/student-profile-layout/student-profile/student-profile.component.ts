@@ -8,6 +8,7 @@ import { CommonService } from 'src/app/services/common.service';
 import { RoutingService } from 'src/app/services/routing.service';
 import { LABELS } from 'src/app/utils/keyparser';
 import { FeeDepositComponent } from '../../fee-deposit/fee-deposit.component';
+import { ParentActionService } from '../../services/parent-action.service';
 import { StudentActionService } from '../../services/student-action.service';
 import { StudentApiService } from '../../services/student-api.service';
 import { TransactionComponent } from '../../transaction/transaction.component';
@@ -29,15 +30,15 @@ export class StudentProfileComponent implements OnInit {
   studentFeeDetails: any;
   displayedColumns = ['name', 'frequency', 'amount', 'action'];
   displayStudentFields:DisplayFields = [
+    { label : "name",type : "string"},
     { label : "academicSession",type : "string"},
     { label : "bloodGroup",type : "string"},
     { label : "conveniance",type : "string"},
     { label : "dateOfBirth",type : "date"},
-    { label : "firstName",type : "string"},
+    { label : "admissionInClass",type : "string"},
+
     { label : "gender",type : "string"},
     { label : "healthStatus",type : "string"},
-    { label : "lastName",type : "string"},
-    { label : "name",type : "string"},
     { label : "nationality",type : "string"},
     { label : "place",type : "string"},
     { label : "studentMobile",type : "phone"},
@@ -71,7 +72,8 @@ export class StudentProfileComponent implements OnInit {
     private commonService: CommonService,
     public studentApiService: StudentApiService,
     public studentActionService : StudentActionService,
-    public routingService : RoutingService
+    public routingService : RoutingService,
+    private parentActionService : ParentActionService
 
   ) {
     this.activatedRoute.queryParams.subscribe((data) => {
@@ -96,6 +98,10 @@ export class StudentProfileComponent implements OnInit {
   isIncluded(fields ,key:String){
     return fields.some(field => field.label === key);
     // studentApiService.studentData | async  | keyvalue
+  }
+  fieldType(fields ,key:String):string{
+    let field = fields.find(field => field.label === key) || { type : "" };
+    return field.type;
   }
 
 
@@ -184,9 +190,16 @@ export class StudentProfileComponent implements OnInit {
 
  
   triggerAction(action:Action){
-    this.isStudentFormVisible = !this.isStudentFormVisible
-    this.isStudentFormVisible ? this.studentActionService.hideStudentForm() : this.studentActionService.showStudentForm();
-    
+    // menuClickHandler
+    // this.isStudentFormVisible = !this.isStudentFormVisible
+    // this.isStudentFormVisible ? this.studentActionService.hideStudentForm() : this.studentActionService.showStudentForm();
+    this.menuClickHandler(action,this.studentData);
+  }
+  triggerParentAction(action:Action){
+    // menuClickHandler
+    // this.isStudentFormVisible = !this.isStudentFormVisible
+    // this.isStudentFormVisible ? this.studentActionService.hideStudentForm() : this.studentActionService.showStudentForm();
+    this.menuClickHandlerParent(action,this.parentData);
   }
 
   menuClickHandler(action, data) {
@@ -196,7 +209,16 @@ export class StudentProfileComponent implements OnInit {
     })
   }
 
+  menuClickHandlerParent(action, data) {
+    console.log("data", action, data)
+    this.parentActionService.actionTriggered(action, data).subscribe(()=>{
+      this.refresh();
+    })
+  }
+
+  
   refresh(){
+    this.fetchStudentCompleteProfileByStudentId();
   }
  
 

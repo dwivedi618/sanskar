@@ -92,4 +92,22 @@ export class DialogService {
     return afterCloseResult.asObservable();
   }
 
+  open(dataObj = {},action : Action = Action.ADD,component:any) {
+    
+    let afterCloseResult = new Subject;
+    const data = dataObj
+    const dialogRef = this.dialog.open(component, {
+      width: '70rem',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      hasBackdrop: true,
+      disableClose:true,
+      data: {data,action}
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      afterCloseResult.next(result)
+    })
+    return afterCloseResult.asObservable();
+  }
+
 }

@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
+import { ApiResponse } from 'src/app/utils/apiResponce.interface';
 import { environment } from 'src/environments/environment';
 import { Address, Parent, Student } from '../student.interface';
 
@@ -59,7 +60,7 @@ export class StudentApiService {
     return this._http.delete(this.API_ROUTES.student, options);
   }
   add(data) {
-    return this._http.post<Student>(this.API_ROUTES.student, data);
+    return this._http.post<ApiResponse>(this.API_ROUTES.student, data);
   }
   fetchStudents() {
     return this._http.get<Student[]>(this.API_ROUTES.student)
@@ -70,7 +71,8 @@ export class StudentApiService {
         pluck('data'),
         map((student:Student) => {
           let name = this.name(student);
-          return {...student,name}
+          const  admissionInClass = student?.classId["name"] || "";
+          return {name,admissionInClass,...student}
         })
       )
   }
@@ -80,12 +82,13 @@ export class StudentApiService {
   }
 
   update(data) {
-    return this._http.patch<Student>(this.API_ROUTES.student, data).pipe()
+    return this._http.patch<any>(this.API_ROUTES.student, data).pipe()
   }
 
   fetchParentByStudentId(studentId): Observable<Parent> {
     return this._http.get<Parent>(this.API_ROUTES.parent + '?' + 'studentId=' + studentId).pipe(pluck('data'))
   }
+ 
   fetchAddressByStudentId(studentId): Observable<Address> {
     return this._http.get<Parent>(this.API_ROUTES.address + '?' + 'studentId=' + studentId).pipe(pluck('data'))
   }

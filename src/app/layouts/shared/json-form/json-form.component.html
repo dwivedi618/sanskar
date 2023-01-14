@@ -36,6 +36,8 @@
                                 /
                                 {{field?.validators?.maxLength}}</mat-hint>
                             <mat-error *ngIf="form.get(field.name)?.hasError('required')">Required</mat-error>
+                            <mat-error *ngIf="form.get(field.name)?.hasError('minlength')">Min {{field?.validators?.minLength}} Required</mat-error>
+
                         </mat-form-field>
 
 
@@ -124,10 +126,9 @@
                     <div class="col-8 text-left">
                         <mat-form-field appearance="outline" class="w-100" (click)="fetchValue(field)">
                             <mat-select [formControlName]="field.name" (selectionChange)="onSelectOption($event,field)">
-                                <mat-option value="">Select {{field.label ||
-                                    ''}}</mat-option>
+                                <mat-option value="">Select {{field.label || ''}}</mat-option>
                                 <ng-container *ngIf="field?.hitHttp && field?.method;else options">
-                                    <mat-option
+                                    <mat-option 
                                         *ngFor="let option of this.commonService.formOptions[field.method+field.ctrlId] | async"
                                         [value]="option.value">{{option.label}}
                                     </mat-option>

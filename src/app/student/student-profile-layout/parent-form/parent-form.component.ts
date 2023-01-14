@@ -4,41 +4,38 @@ import { JsonFormControls, JsonFormData } from 'src/app/layouts/shared/json-form
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { AlertService } from 'src/app/services/alert.service';
 import { JsonFormService } from 'src/app/services/json-form.service';
+import { ParentApiService } from '../../services/parent-api.service';
 import { StudentActionService } from '../../services/student-action.service';
-import { StudentApiService } from '../../services/student-api.service';
+import { Parent } from '../../student.interface';
 import { Student } from '../../students-list/students-list.component';
 
 @Component({
-  selector: 'app-student-form',
-  templateUrl: './student-form.component.html',
-  styleUrls: ['./student-form.component.scss']
+  selector: 'app-parent-form',
+  templateUrl: './parent-form.component.html',
+  styleUrls: ['./parent-form.component.scss']
 })
-export class StudentFormComponent implements OnInit {
+export class ParentFormComponent implements OnInit {
   // @Input() public data : { action : Action , data : Student};
   isFormLoading: boolean;
   admissionFormFields: JsonFormData;
   isSaving: boolean;
 
   constructor(
-    private studentApiService: StudentApiService,
+    private parentApiService: ParentApiService,
     public studentActionService: StudentActionService,
     private alertService : AlertService,
     private jsonFormService : JsonFormService,
-    private dialogRef : MatDialogRef<StudentFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData : { data : Student, action: Action }
+    private dialogRef : MatDialogRef<ParentFormComponent>,
+    @Inject(MAT_DIALOG_DATA) public dialogData : { data : Parent, action: Action }
     ) { }
 
   ngOnInit(): void {
 
-    this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
-      this.admissionFormFields = formJson.studentForm;
-      setTimeout(() => {
-        this.isFormLoading = false;
-      }, 3000)
-    });
-    this.studentApiService.studentData.subscribe(studentData =>{
+    let studentId = this.dialogData.data.studentId;
+    
+    this.parentApiService.fetchParentByStudentId(studentId).subscribe(studentData =>{
       this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
-        this.admissionFormFields = formJson.studentForm;
+        this.admissionFormFields = formJson.parentForm;
         this.prepareFormFields(studentData);
         setTimeout(() => {
           this.isFormLoading = false;
@@ -48,19 +45,9 @@ export class StudentFormComponent implements OnInit {
     })
   }
   
-  onStudentFormSubmit(form:Student) {
-    console.log("student form", form);
-    this.dialogData = this.dialogData;
-    form.studentId = this.dialogData.data._id;
-    
-    this.studentApiService.update(form).subscribe(result =>{
-      this.studentActionService.hideStudentForm();
-    })
-  }
-
-  private prepareFormFields(studentData) {
+  private prepareFormFields(parent) {
     const { data, action } = this.dialogData
-    console.log("prepareFormFields",this.dialogData);
+    console.log("prepareFormFields");
     switch (action) {
       case Action.ADD:
         break;
@@ -75,7 +62,11 @@ export class StudentFormComponent implements OnInit {
   }
 
   private patchObjValuesToFormFields(obj){
+    console.log("patchObjValuesToFormFields::before",obj);
+    
     this.admissionFormFields.controls = this.jsonFormService.patchValuesToFormFields(obj,this.admissionFormFields.controls);
+    console.log("patchObjValuesToFormFields::after",this.admissionFormFields.controls);
+
   }
 
   onSubmit(formValues) {
@@ -100,8 +91,8 @@ export class StudentFormComponent implements OnInit {
   }
 
   private add(formValues){
-    formValues.studentId = this.dialogData.data._id;
-    this.studentApiService.add(formValues).subscribe((result) => {
+    formValues.studentId = this.dialogData.data.studentId;
+    this.parentApiService.addParent(formValues).subscribe((result) => {
       this.alertService.alertComponent(result.message);
       return this.dialogRef.close();
     }, (error) => {
@@ -110,8 +101,8 @@ export class StudentFormComponent implements OnInit {
   }
 
   private update(formValues){
-    formValues.studentId = this.dialogData.data._id;
-    this.studentApiService.update(formValues).subscribe((result) => {
+    formValues.studentId = this.dialogData.data.studentId;
+    this.parentApiService.updateParent(formValues).subscribe((result) => {
       this.alertService.alertComponent(result.message);
       return this.dialogRef.close();
     }, (error) => {

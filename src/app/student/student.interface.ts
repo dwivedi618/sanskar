@@ -11,13 +11,15 @@ export interface Student {
     nationality: String;
     healthStatus: String;
     bloodGroup?: String;
-    classId: String ;
+    classId: String | {_id : String , name : String} ;
     conveniance: boolean;
     place: String;
-    description: String
+    description: String,
+    admissionInClass?:String
 }
 
 export interface Parent {
+    _id?: String,
     fathersPhoto: string;
     father: string;
     mother: string;

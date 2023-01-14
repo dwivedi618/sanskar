@@ -9,6 +9,8 @@ import { RouterModule } from '@angular/router';
 import { AccountsComponent } from './accounts/accounts.component';
 import { TransactionComponent } from '../transaction/transaction.component';
 import { StudentFormComponent } from './student-form/student-form.component';
+import { ParentFormComponent } from './parent-form/parent-form.component';
+import { AddressFormComponent } from './address-form/address-form.component';
 
 
 @NgModule({
@@ -17,7 +19,9 @@ import { StudentFormComponent } from './student-form/student-form.component';
     StudentProfileComponent,
     AccountsComponent,
     TransactionComponent,
-    StudentFormComponent
+    StudentFormComponent,
+    ParentFormComponent,
+    AddressFormComponent
   ],
   imports: [
     CommonModule,

@@ -311,13 +311,15 @@
                 "type": "text",
                 "validators": {
                     "required": true
+                    
                 },
+                "disabled" : true,
                 "options": []
             },
             
             {
                 "ctrlId": 29,
-                "name": "Contact",
+                "name": "contact",
                 "label": "Phone/Mobile Number",
                 "value": "",
                 "type": "tel",

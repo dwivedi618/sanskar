@@ -3,6 +3,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { DialogService } from 'src/app/layouts/shared/dialog.service';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { AlertService } from 'src/app/services/alert.service';
+import { ParentFormComponent } from '../student-profile-layout/parent-form/parent-form.component';
 import { StudentFormComponent } from '../student-profile-layout/student-form/student-form.component';
 import { StudentApiService } from './student-api.service';
 
@@ -10,7 +11,7 @@ import { StudentApiService } from './student-api.service';
 @Injectable({
   providedIn: 'root'
 })
-export class StudentActionService {
+export class ParentActionService {
 
   $isStudentFormVisible = new BehaviorSubject<Boolean>(false);
   showStudentForm(){
@@ -23,9 +24,6 @@ export class StudentActionService {
     return this.$isStudentFormVisible.asObservable()
   }
   
-  studentRoutes = {
-    parent: 'parent',
-  }
   constructor(
     private studentApiService: StudentApiService,
     private alertService: AlertService,
@@ -35,19 +33,11 @@ export class StudentActionService {
     let resultObservable = new BehaviorSubject<any>('');
     switch (action) {
       case Action.DELETE:
-        this.alertService.alertWithAction([`Delete ${data.name}.`, 'Are you sure?'], 'Delete').subscribe(result => {
-          if (result === "Delete") {
-            return this.studentApiService.delete(data).subscribe(
-              result => {
-                //if success
-                resultObservable.next(result);
-              })
-          }
-        })
+        
         break;
       case Action.EDIT:
       case Action.UPDATE:
-        this.dialogService.open(data, action,StudentFormComponent).subscribe(result => {
+        this.dialogService.open(data, action,ParentFormComponent).subscribe(result => {
           resultObservable.next(result);
         });
         break;

@@ -9,31 +9,16 @@
           </div>
           <div class="col-md-6  text-left">
             <div class="d-flex flex-column">
-              <h3 class="py-0 my-0">{{ this.studentData?.name | titlecase}}</h3>
-              <div class="row">
-                <div class="col-2 text-left">
-                  <small class="text-mylight">S/o -</small>
-                </div>
-                <div class="col-9 text-left">
-                  <small class="text-mylight">{{ this.parentData?.fatherName}}</small>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-2 text-left">
-                  <small class="text-mylight">Div -</small>
-                </div>
-                <div class="col-9 text-left">
-                  <small class="text-mylight">{{this.studentData?.classId?.name}}</small>
-                </div>
-              </div>
-
+              <h3 class="py-0 my-0">{{ this.studentData?.name | titlecase}}
+                <span><mat-icon matTooltip="Verified" class="mat-icon-sm text-success">verified_user</mat-icon></span>
+              </h3>
+              <strong class="">{{this.studentData?.classId?.name}}</strong>
+              
               <div class="d-flex my-2">
                 <button mat-stroked-button (click)="updateProfile()" class="mr-1">
-                  <mat-icon class="mat-icon-sm pt-1 mr-2">edit</mat-icon>
                   <small class="text-mylight">UPDATE</small>
                 </button>
                 <button mat-stroked-button (click)="printProfile()" class="mx-1">
-                  <mat-icon class="mat-icon-sm pt-1 mr-2">print</mat-icon>
                   <small class="text-mylight">Print</small>
                 </button>
 
@@ -54,7 +39,7 @@
           <span>Student</span>
           <span class="spacer"></span>
           <button mat-raised-button type="button" color="primary" class="btn-mydark text-uppercase"
-            (click)="triggerAction('ACTION')">
+            (click)="triggerAction('UPDATE')">
             <span>{{(studentActionService.$isStudentFormVisible | async) ? 'Cancel' : 'Edit'}}</span>
           </button>
         </mat-toolbar>
@@ -69,7 +54,13 @@
                         <p class="titlecase">{{data.key | label}}</p>
                       </div>
                       <div class="col-6 text-left">
-                        <p class="strong">{{ (data.value || '')}}</p>
+                        <p class="strong">
+                          {{
+                          fieldType(displayStudentFields,data.key) === "date" ?
+                          (data.value | date) :
+                          (data.value || '')
+                          }}
+                        </p>
                       </div>
                     </div>
                     <p>
@@ -80,23 +71,20 @@
               </div>
             </div>
           </ng-container>
-          <ng-container *ngIf="studentActionService.$isStudentFormVisible | async">
-            <app-student-form
-              [data]="{action : 'UPDATE' , data : studentApiService.studentData | async}"></app-student-form>
-          </ng-container>
+
         </mat-card>
       </ng-container>
-      <ng-container>
+      <ng-container *ngIf="studentApiService.parentData | async">
         <mat-toolbar class="bg-mysecondary glass">
           <span>Parent</span>
           <span class="spacer"></span>
           <button mat-raised-button type="button" color="primary" class="btn-mydark text-uppercase"
-            (click)="triggerAction('ACTION')">
-            <span>{{(studentActionService.$isStudentFormVisible | async) ? 'Cancel' : 'Edit'}}</span>
+            (click)="triggerParentAction('UPDATE')">
+            <span>Update</span>
           </button>
         </mat-toolbar>
         <mat-card>
-          <ng-container *ngIf="!(studentActionService.$isStudentFormVisible | async)">
+          <ng-container >
             <div class="row justify-content-center background m-0 py-5">
               <div class="col-md-6">
                 <ng-container *ngFor="let data of studentApiService.parentData | async | keyvalue">

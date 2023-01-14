@@ -6,12 +6,12 @@ import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
 import { ApiResponse } from 'src/app/utils/apiResponce.interface';
 import { environment } from 'src/environments/environment';
-import { Address, Parent, PermanentAddress, Student } from '../student.interface';
+import { Address, LocalAddress, Parent, Student } from '../../student.interface';
 
 @Injectable({
     providedIn: 'root'
 })
-export class PermanentAddressApiService {
+export class LocalAddressApiService {
     private API_ROUTES = {
         fee: environment.apiUrl + '/' + 'fee',
         class: environment.apiUrl + '/' + 'class',
@@ -23,26 +23,26 @@ export class PermanentAddressApiService {
         permanentAddress: environment.apiUrl + '/' + 'address'+ '/' +"permanentAddress",
     }
 
-    private $permanentAddress = new BehaviorSubject<PermanentAddress>({} as PermanentAddress);
+    private $localAddress = new BehaviorSubject<LocalAddress>({} as LocalAddress);
 
-    public get permanentAddress() {
-        return this.$permanentAddress.asObservable()
+    public get localAddress() {
+        return this.$localAddress.asObservable()
     }
 
-    public setPermanentAddress(data: PermanentAddress) {
-        this.$permanentAddress.next(data);
+    public setLocalAddressData(data: LocalAddress) {
+        this.$localAddress.next(data);
     }
 
     constructor(private _http: HttpClient) { }
 
-    fetchPermanentAddrByStudentId(studentId): Observable<PermanentAddress> {
-        return this._http.get<PermanentAddress>(this.API_ROUTES.permanentAddress + '?' + 'studentId=' + studentId).pipe(pluck('data'))
+    fetchLocalAddressByStudentId(studentId): Observable<LocalAddress> {
+        return this._http.get<Parent>(this.API_ROUTES.localAddress + '?' + 'studentId=' + studentId).pipe(pluck('data'))
     }
-    updatePermanentAddress(data: Parent): Observable<ApiResponse> {
-        return this._http.patch<ApiResponse>(this.API_ROUTES.permanentAddress + '?' + 'studentId=' + data.studentId, data);
+    updateLocalAddress(data: LocalAddress): Observable<ApiResponse> {
+        return this._http.patch<ApiResponse>(this.API_ROUTES.localAddress + '?' + 'studentId=' + data.studentId, data);
     }
-    addPermanentAddress(data: Parent): Observable<ApiResponse> {
-        return this._http.post<ApiResponse>(this.API_ROUTES.permanentAddress + '?' + 'studentId=' + data.studentId, data);
+    addLocalAddress(data: LocalAddress): Observable<ApiResponse> {
+        return this._http.post<ApiResponse>(this.API_ROUTES.localAddress + '?' + 'studentId=' + data.studentId, data);
     }
    
 

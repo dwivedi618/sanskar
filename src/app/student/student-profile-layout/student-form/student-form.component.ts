@@ -4,8 +4,8 @@ import { JsonFormControls, JsonFormData } from 'src/app/layouts/shared/json-form
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { AlertService } from 'src/app/services/alert.service';
 import { JsonFormService } from 'src/app/services/json-form.service';
-import { StudentActionService } from '../../services/student-action.service';
-import { StudentApiService } from '../../services/student-api.service';
+import { StudentActionService } from '../../services/student/student-action.service';
+import { StudentApiService } from '../../services/student/student-api.service';
 import { Student } from '../../students-list/students-list.component';
 
 @Component({

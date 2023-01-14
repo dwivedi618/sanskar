@@ -14,7 +14,7 @@ import { JsonFormService } from '../services/json-form.service';
 import { JsonFormControlOptions, JsonFormControls, JsonFormControlsMethod, JsonFormData, OptionsActions } from '../layouts/shared/json-form/json-from.types';
 import { Observable } from 'rxjs';
 import { DYNAMIC_METHODS, METHODS } from './dropdown.methods';
-import { StudentApiService } from '../student/services/student-api.service';
+import { StudentApiService } from '../student/services/student/student-api.service';
 import { Student } from '../student/student.interface';
 
 @Component({

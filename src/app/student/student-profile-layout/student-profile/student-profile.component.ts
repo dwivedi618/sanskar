@@ -8,9 +8,9 @@ import { CommonService } from 'src/app/services/common.service';
 import { RoutingService } from 'src/app/services/routing.service';
 import { LABELS } from 'src/app/utils/keyparser';
 import { FeeDepositComponent } from '../../fee-deposit/fee-deposit.component';
-import { ParentActionService } from '../../services/parent-action.service';
-import { StudentActionService } from '../../services/student-action.service';
-import { StudentApiService } from '../../services/student-api.service';
+import { ParentActionService } from '../../services/parent/parent-action.service';
+import { StudentActionService } from '../../services/student/student-action.service';
+import { StudentApiService } from '../../services/student/student-api.service';
 import { TransactionComponent } from '../../transaction/transaction.component';
 
 export type DisplayFields = {label : string,type : string}[]

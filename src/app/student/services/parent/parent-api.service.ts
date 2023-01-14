@@ -6,7 +6,7 @@ import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
 import { ApiResponse } from 'src/app/utils/apiResponce.interface';
 import { environment } from 'src/environments/environment';
-import { Address, Parent, Student } from '../student.interface';
+import { Address, Parent, Student } from '../../student.interface';
 
 @Injectable({
     providedIn: 'root'

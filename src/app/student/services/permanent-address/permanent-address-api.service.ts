@@ -6,7 +6,7 @@ import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
 import { ApiResponse } from 'src/app/utils/apiResponce.interface';
 import { environment } from 'src/environments/environment';
-import { Address, Parent, PermanentAddress, Student } from '../../student.interface';
+import { PermanentAddress} from '../../student.interface';
 
 @Injectable({
     providedIn: 'root'
@@ -38,10 +38,10 @@ export class PermanentAddressApiService {
     fetchPermanentAddrByStudentId(studentId): Observable<PermanentAddress> {
         return this._http.get<PermanentAddress>(this.API_ROUTES.permanentAddress + '?' + 'studentId=' + studentId).pipe(pluck('data'))
     }
-    updatePermanentAddress(data: Parent): Observable<ApiResponse> {
+    updatePermanentAddress(data: PermanentAddress): Observable<ApiResponse> {
         return this._http.patch<ApiResponse>(this.API_ROUTES.permanentAddress + '?' + 'studentId=' + data.studentId, data);
     }
-    addPermanentAddress(data: Parent): Observable<ApiResponse> {
+    addPermanentAddress(data: PermanentAddress): Observable<ApiResponse> {
         return this._http.post<ApiResponse>(this.API_ROUTES.permanentAddress + '?' + 'studentId=' + data.studentId, data);
     }
    

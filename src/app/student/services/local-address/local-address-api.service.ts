@@ -1,12 +1,11 @@
 
-import { query } from '@angular/animations';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
 import { ApiResponse } from 'src/app/utils/apiResponce.interface';
 import { environment } from 'src/environments/environment';
-import { Address, LocalAddress, Parent, Student } from '../../student.interface';
+import { LocalAddress, Parent } from '../../student.interface';
 
 @Injectable({
     providedIn: 'root'

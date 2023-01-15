@@ -18,4 +18,12 @@ export class FeeApiService {
     console.log("aoi del data", data)
     return this._http.delete(this.API_ROUTES.fee, options);
   }
+
+  addMasterFeeCategory(data) {
+    return this._http.post<any>(this.API_ROUTES.fee, data)
+  }
+
+  updateMasterFeeCategory(data) {
+    return this._http.patch<any>(this.API_ROUTES.fee, data)
+  }
 }

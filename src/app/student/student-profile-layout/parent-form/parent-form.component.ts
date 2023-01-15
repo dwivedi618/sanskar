@@ -30,6 +30,12 @@ export class ParentFormComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
+      this.admissionFormFields = formJson.studentForm;
+      setTimeout(() => {
+        this.isFormLoading = false;
+      }, 3000)
+    });
 
     let studentId = this.dialogData.data.studentId;
     

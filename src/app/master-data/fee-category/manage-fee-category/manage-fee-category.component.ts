@@ -6,6 +6,7 @@ import { JsonFormService } from 'src/app/services/json-form.service';
 import { JsonFormControls, JsonFormData } from 'src/app/layouts/shared/json-form/json-from.types';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
+import { FeeApiService } from '../services/fee-api.service';
 
 @Component({
   selector: 'app-manage-fee-category',
@@ -18,6 +19,7 @@ export class ManageFeeCategoryComponent implements OnInit {
   constructor(
     private feeDialogRef: MatDialogRef<ManageFeeCategoryComponent>,
     private commonService: CommonService,
+    private feeApiService : FeeApiService,
     private jsonFormService: JsonFormService,
     private alertService: AlertService,
     @Inject(MAT_DIALOG_DATA) public dialogData : { data : any, action: Action }
@@ -74,7 +76,7 @@ export class ManageFeeCategoryComponent implements OnInit {
   }
 
   private add(formValues){
-    this.commonService.addMasterFeeCategory(formValues).subscribe((result) => {
+    this.feeApiService.addMasterFeeCategory(formValues).subscribe((result) => {
       console.log("masterFeeCategoryForm", result);
       this.isSaving = true;
       this.alertService.alertComponent(result.message);
@@ -86,7 +88,7 @@ export class ManageFeeCategoryComponent implements OnInit {
   }
 
   private update(formValues){
-    this.commonService.updateMasterFeeCategory(formValues).subscribe((result) => {
+    this.feeApiService.updateMasterFeeCategory(formValues).subscribe((result) => {
       console.log("updateMasterFeeCategory", result);
       this.isSaving = true;
       this.alertService.alertComponent(result.message);

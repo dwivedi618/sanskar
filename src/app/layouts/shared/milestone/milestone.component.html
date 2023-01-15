@@ -1,0 +1,20 @@
+<ng-container *ngIf="milestones && milestones.length">
+    <section  style="border: 1px solid rgba(128, 128, 128, 0.416);overflow-y: hidden;" class="br-4 my-4 glass">
+        <mat-card class="timeline {{vertical ? 'd-flex align-item-center': ''}}">
+            <ng-container *ngFor="let stone of milestones ">
+                <div class="box {{stone.status.toLowerCase()}}">
+                    <div class="contents">
+                        <p class="strong m-0 p-0">{{stone.label}}</p>
+                        <small class="status {{stone.status.toLowerCase()}} ">{{stone.status}}</small>
+                    </div>
+                    <div class="line-dot-container">
+                        <div class="dot {{stone.status.toLowerCase()}}" title="{{stone.label}}"></div>
+                    </div>
+                </div>
+            </ng-container>
+            <div class="{{vertical ? 'layout' : ''}}">
+                <button mat-raised-button class="ml-5 btn-mydark rounded-pill" (click)="onContinue()">Continue to complete {{getInProgress?.label || "Next Step"}}</button>
+            </div>
+        </mat-card>
+    </section>
+</ng-container>

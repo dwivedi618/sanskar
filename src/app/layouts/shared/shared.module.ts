@@ -28,6 +28,7 @@ import { JsonFormArrayComponent } from './json-form-array/json-form-array.compon
 import { AvatarComponent } from './avatar/avatar.component';
 import { LabelPipe } from './customPipes/label.pipe';
 import { TabNavComponent } from './tab-nav/tab-nav.component';
+import { MilestoneComponent } from './milestone/milestone.component';
 
 @NgModule({
   declarations: [
@@ -55,6 +56,7 @@ import { TabNavComponent } from './tab-nav/tab-nav.component';
     AvatarComponent,
     LabelPipe,
     TabNavComponent,
+    MilestoneComponent,
 
   ],
   imports: [
@@ -96,7 +98,8 @@ import { TabNavComponent } from './tab-nav/tab-nav.component';
     DialogHeaderComponent,
     AvatarComponent,
     LabelPipe,
-    TabNavComponent
+    TabNavComponent,
+    MilestoneComponent
   ]
 })
 export class SharedModule { }

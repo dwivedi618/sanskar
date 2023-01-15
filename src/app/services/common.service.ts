@@ -10,7 +10,7 @@ import { filter, map, pluck } from 'rxjs/operators';
 import { MainMenu } from '../layouts/shared/uiComponents/left-sidebar-menu/sidebar.menus';
 
 export interface District {
-  [stateCode:string] : string[];
+  [stateCode: string]: string[];
 }
 export const API_ROUTES = {
   fee: environment.apiUrl + '/' + 'fee',
@@ -19,9 +19,9 @@ export const API_ROUTES = {
   student: environment.apiUrl + '/' + 'student',
   indianStatesUrl: "assets/jsons/indian.states.json",
   indianDistrictsUrl: "assets/jsons/indian.districts.json",
-  mainMenuUrl : "assets/jsons/main-menu.json",
-  studentMenuTabUrl : "assets/jsons/student.tabs.json"
-
+  mainMenuUrl: "assets/jsons/main-menu.json",
+  studentMenuTabUrl: "assets/jsons/student.tabs.json",
+  studentRegistrationMileStone: "assets/jsons/mile-stone/registration.milestone.json"
 }
 @Injectable({
   providedIn: 'root'
@@ -50,56 +50,56 @@ export class CommonService {
         pluck("data"),
       )
   }
-  [API_SERVICE_METHODS.getMainMenus]():Observable<MainMenu[]> {
+  [API_SERVICE_METHODS.getMainMenus](): Observable<MainMenu[]> {
     return this.http.get<MainMenu[]>(this.API_ROUTES.mainMenuUrl);
   }
 
-  [API_SERVICE_METHODS.getStudentMenuTab]():Observable<MainMenu[]> {
+  [API_SERVICE_METHODS.getStudentMenuTab](): Observable<MainMenu[]> {
     return this.http.get<MainMenu[]>(this.API_ROUTES.studentMenuTabUrl);
   }
 
   formOptions = {};
 
   [DROPDOWN_METHODS.getClasses](method): Observable<JsonFormControlOptions[]> {
-    this.formOptions[DROPDOWN_METHODS.getClasses+method.ctrlId] = new BehaviorSubject<JsonFormControlOptions[]>([]);
+    this.formOptions[DROPDOWN_METHODS.getClasses + method.ctrlId] = new BehaviorSubject<JsonFormControlOptions[]>([]);
     this[API_SERVICE_METHODS.getClasses]().subscribe((data: { _id: string, name: string }[]) => {
       if (data.length) {
         let options = this.formatDataAsOptions(data);
-        this.formOptions[DROPDOWN_METHODS.getClasses+method.ctrlId].next(options)
+        this.formOptions[DROPDOWN_METHODS.getClasses + method.ctrlId].next(options)
       }
     });
-    return this.formOptions[DROPDOWN_METHODS.getClasses+method.ctrlId]
+    return this.formOptions[DROPDOWN_METHODS.getClasses + method.ctrlId]
   }
 
   [DROPDOWN_METHODS.getIndianStates](method): Observable<JsonFormControlOptions[]> {
-    this.formOptions[DROPDOWN_METHODS.getIndianStates+method.ctrlId] = new BehaviorSubject<JsonFormControlOptions[]>([]);
+    this.formOptions[DROPDOWN_METHODS.getIndianStates + method.ctrlId] = new BehaviorSubject<JsonFormControlOptions[]>([]);
     this[API_SERVICE_METHODS.getIndianStates]().subscribe((data: { _id: string, name: string }[]) => {
       if (data.length) {
         let options = this.formatDataAsOptions(data);
-        this.formOptions[DROPDOWN_METHODS.getIndianStates+method.ctrlId].next(options);
+        this.formOptions[DROPDOWN_METHODS.getIndianStates + method.ctrlId].next(options);
       }
     });
-    return this.formOptions[DROPDOWN_METHODS.getIndianStates+method.ctrlId].asObservable();
+    return this.formOptions[DROPDOWN_METHODS.getIndianStates + method.ctrlId].asObservable();
   }
 
-  [DROPDOWN_METHODS.getDistricts](method:JsonFormControlsMethod): Observable<JsonFormControlOptions[]> {
-    const {ctrlId} = method;
-    this.formOptions[DROPDOWN_METHODS.getDistricts+ctrlId] = new BehaviorSubject<JsonFormControlOptions[]>([]);
-    this[API_SERVICE_METHODS.getIndianDistrctByState]().subscribe((data: {[x:string]: string[] }) => {
+  [DROPDOWN_METHODS.getDistricts](method: JsonFormControlsMethod): Observable<JsonFormControlOptions[]> {
+    const { ctrlId } = method;
+    this.formOptions[DROPDOWN_METHODS.getDistricts + ctrlId] = new BehaviorSubject<JsonFormControlOptions[]>([]);
+    this[API_SERVICE_METHODS.getIndianDistrctByState]().subscribe((data: { [x: string]: string[] }) => {
       if (data) {
-        let  districts = data[method.value] || [];
-        if(!districts.length) return;
-        let mappedDistricts = districts.map((district:string)=>{
+        let districts = data[method.value] || [];
+        if (!districts.length) return;
+        let mappedDistricts = districts.map((district: string) => {
           return {
-            _id : district,
-            name : district
+            _id: district,
+            name: district
           }
         })
         let options = this.formatDataAsOptions(mappedDistricts || []);
-        this.formOptions[DROPDOWN_METHODS.getDistricts+ctrlId].next(options);
+        this.formOptions[DROPDOWN_METHODS.getDistricts + ctrlId].next(options);
       }
     });
-    return this.formOptions[DROPDOWN_METHODS.getDistricts+ctrlId].asObservable();
+    return this.formOptions[DROPDOWN_METHODS.getDistricts + ctrlId].asObservable();
   }
 
   private formatDataAsOptions(data: { _id: string, name: string }[]) {
@@ -115,18 +115,6 @@ export class CommonService {
   }
 
 
-  
-
-
-
-  addMasterFeeCategory(data) {
-    return this.http.post<any>(this.API_ROUTES.fee, data)
-  }
-
-  updateMasterFeeCategory(data) {
-    return this.http.patch<any>(this.API_ROUTES.fee, data)
-  }
- 
 
   [API_SERVICE_METHODS.getFees](id: String = '') {
     return this.http.get<any>(this.API_ROUTES.fee + '/' + id);
@@ -138,53 +126,5 @@ export class CommonService {
   studentFeeDetails(studentId) {
     return this.http.get<any>(`${environment.apiUrl}/v1/student/${studentId}/fee-detail`)
   }
-
-
-  getMasterFeeCategory() {
-    return this.http.get<any>(`${environment.apiUrl}/v1/master/fee`)
-  }
-
-
-  addMasterFeeStructure(feeStructure) {
-    return this.http.post<any>(`${environment.apiUrl}/v1/master/fee-structure`, feeStructure)
-  }
-
-
-  getMasterFeeStructure(session, classId) {
-    return this.http.get<any>(this.API_ROUTES.feeStructure)
-  }
-  getClassFeeById(session, classId = '') {
-    return this.http.get<any>(`${this.API_ROUTES.class}?classId=${classId}&session=${session}`);
-  }
-
-
-  studentRecord(formData) {
-    return this.http.post<any>(`${environment.apiUrl}/v1/student`, formData)
-  }
-  updateStudentRecord(formData, studentId) {
-    return this.http.put<any>(`${environment.apiUrl}/v1/student/${studentId}`, formData)
-  }
-
-  getStudentRecord() {
-    return this.http.get<any>(`${environment.apiUrl}/v1/student`)
-  }
-  getStudentRecordById(studentId) {
-    return this.http.get<any>(`${environment.apiUrl}/v1/student/${studentId}`)
-  }
-
-  parentRecord(studentId, parentRecord) {
-    return this.http.post<any>(`${environment.apiUrl}/v1/student/${studentId}/parents`, parentRecord)
-  }
-  updateParentRecord(studentId, parentRecord) {
-    return this.http.put<any>(`${environment.apiUrl}/v1/student/${studentId}/parents`, parentRecord)
-  }
-
-  studentAddress(studentId, address) {
-    return this.http.post<any>(`${environment.apiUrl}/v1/student/${studentId}/address`, address)
-  }
-  updateStudentAddress(studentId, address) {
-    return this.http.put<any>(`${environment.apiUrl}/v1/student/${studentId}/address`, address)
-  }
-
 
 }

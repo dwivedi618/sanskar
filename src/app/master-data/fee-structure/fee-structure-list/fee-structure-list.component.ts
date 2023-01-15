@@ -14,6 +14,7 @@ import { DialogService } from 'src/app/layouts/shared/dialog.service';
 import { ManageFeeStructureComponent } from '../manage-fee-structure/manage-fee-structure.component';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { ClasswiseFeesActionService } from '../services/classwise-fees-action.service';
+import { ClasswiseFeesApiService } from '../services/classwise-fees-api.service';
 
 
 @Component({
@@ -75,6 +76,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     private classActionService: ClassActionService,
     private classApiService: ClassApiService,
     private classwiseFeeActionService: ClasswiseFeesActionService,
+    private classwiseFeesApiService : ClasswiseFeesApiService,
     private dialogService: DialogService
   ) {
     this.activatedRoute.queryParams.subscribe(data => {
@@ -101,7 +103,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
 
   getFeeStructureList() {
     if (!this.standardId) return
-    this.commonService.getClassFeeById(this.selectedSession, this.standardId).subscribe((result) => {
+    this.classwiseFeesApiService.getClassFeeById(this.selectedSession, this.standardId).subscribe((result) => {
       const structureList = result['data'] || null;
       if (HELPER.isObject(structureList)) {
         this.dataSource.data = structureList?.fees || [];

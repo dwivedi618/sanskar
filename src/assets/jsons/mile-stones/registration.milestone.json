@@ -1,0 +1,26 @@
+[
+    {
+        "value" : "BASIC",
+        "label" : "Basic information",
+        "icon" : "",
+        "status" : ""
+    },
+    {
+        "value" : "PARENT",
+        "label" : "Parent information",
+        "icon" : "",
+        "status" : ""
+    },
+    {
+        "value" : "PERMANENT_ADDRESS",
+        "label" : "Permanent address",
+        "icon" : "",
+        "status" : ""
+    },
+    {
+        "value" : "LOCAL_ADDRESS",
+        "label" : "Local address",
+        "icon" : "",
+        "status" : ""
+    }
+]

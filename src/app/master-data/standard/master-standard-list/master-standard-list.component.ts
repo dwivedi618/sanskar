@@ -14,6 +14,9 @@ import { DialogService } from 'src/app/layouts/shared/dialog.service';
 import { UiService } from 'src/app/services/ui.service';
 import { ClassActionService } from '../services/class-action.service';
 import { ClassApiService } from '../services/class-api.service';
+import { Class } from '../class.interface';
+import { classActionMenus } from 'src/app/layouts/shared/uiComponents/menu-button/action-menus';
+import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 
 
 export interface MasterStandardList {
@@ -36,6 +39,7 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
   @ViewChild(MatSort) sort: MatSort;
   @ViewChild(MatTable) table: MatTable<MasterStandardList>;
   dataSource = new MatTableDataSource<any>();
+  classActionMenus = classActionMenus;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['select','name','action'];
@@ -70,7 +74,8 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
     private dialogService : DialogService,
     private loaderService : UiService,
     private classActionService : ClassActionService,
-    private classApiService : ClassApiService
+    private classApiService : ClassApiService,
+    private router : Router
   ){}
 
   ngOnInit() {
@@ -126,6 +131,11 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
   refresh() {
     this.getMasterStandardList()
   }
+
+  classRowClickHandler(selectedClass:Class){
+    this.menuClickHandler(Action.NAVIGATE,selectedClass);
+  }
+ 
 
 }
 

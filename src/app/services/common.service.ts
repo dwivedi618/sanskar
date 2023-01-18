@@ -21,7 +21,7 @@ export const API_ROUTES = {
   indianDistrictsUrl: "assets/jsons/indian.districts.json",
   mainMenuUrl: "assets/jsons/main-menu.json",
   studentMenuTabUrl: "assets/jsons/student.tabs.json",
-  studentRegistrationMileStone: "assets/jsons/mile-stone/registration.milestone.json"
+  studentRegistrationMileStone: "assets/jsons/mile-stones/registration.milestone.json"
 }
 @Injectable({
   providedIn: 'root'

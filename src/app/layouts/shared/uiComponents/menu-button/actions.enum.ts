@@ -6,5 +6,6 @@ export enum Action{
     "SUBMIT" = "SUBMIT",
     "FETCH" = "FETCH",
     "REFRESH" = "REFRESH",
-    "CLOSE" = "CLOSE"
+    "CLOSE" = "CLOSE",
+    "NAVIGATE" = "NAVIGATE"
 }

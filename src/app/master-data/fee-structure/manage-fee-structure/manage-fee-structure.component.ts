@@ -80,7 +80,6 @@ export class ManageFeeStructureComponent implements OnInit {
     const { data, action } = this.dialogData
     switch (action) {
       case Action.ADD:
-        break;
       case Action.UPDATE:
       case Action.EDIT:
         this.patchObjValuesToFormFields(data.fees);
@@ -101,7 +100,6 @@ export class ManageFeeStructureComponent implements OnInit {
     switch (action) {
       case Action.ADD:
         //class wise fee can be only updated with PATCH method of class itself
-        break;
       case Action.EDIT:
       case Action.UPDATE:
 

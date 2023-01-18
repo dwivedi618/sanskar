@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { DialogService } from 'src/app/layouts/shared/dialog.service';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
@@ -14,7 +15,8 @@ export class ClassActionService {
   constructor(
     private classApiService: ClassApiService,
     private alertService: AlertService,
-    private dialogService: DialogService
+    private dialogService: DialogService,
+    private router : Router
   ) { }
   actionTriggered(action: Action, data): Observable<any> {
     let resultObservable = new BehaviorSubject<any>('');
@@ -39,7 +41,10 @@ export class ClassActionService {
       case Action.ADD:
         this.dialogService.manageMasterStandard(data, action).subscribe(result => {
           resultObservable.next(result);
-        });break;
+        }); break;
+      case Action.NAVIGATE:
+        this.router.navigate(['configuration/fee-structure'], { queryParams: { standardId: data._id, n: data.name } });
+        break;
       default:
         break;
     }

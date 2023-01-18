@@ -16,6 +16,7 @@ import { Observable } from 'rxjs';
 import { DYNAMIC_METHODS, METHODS } from './dropdown.methods';
 import { StudentApiService } from '../student/services/student/student-api.service';
 import { Student } from '../student/student.interface';
+import { MileStoneService } from '../services/mile-stone.service';
 
 @Component({
   selector: 'app-admission',
@@ -48,8 +49,8 @@ export class AdmissionComponent implements OnInit {
     private fb: FormBuilder,
     public commonService: CommonService,
     public studentApiService: StudentApiService,
-
-    private alertService: AlertService,
+    public mileStoneService : MileStoneService,
+    private alertService : AlertService,
     private jsonFormService: JsonFormService
 
   ) {
@@ -62,6 +63,8 @@ export class AdmissionComponent implements OnInit {
         this.action = data.action;
       }
     })
+    this.mileStoneService.studentRegistrationMileStone.subscribe(console.log);
+    
   }
 
 

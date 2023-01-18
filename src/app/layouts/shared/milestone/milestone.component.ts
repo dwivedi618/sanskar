@@ -16,16 +16,15 @@ export interface MileStone {
 export class MilestoneComponent implements OnInit {
   @Output() continue = new EventEmitter();
   @Input() public vertical :Boolean = false;
-  @Input() public milestones: MileStone[] = [
-    
-  ]
+  @Input() public sticky : Boolean = false;
+  @Input() public mileStones: MileStone[] = []
   constructor() { }
 
   ngOnInit(): void {
   }
 
   get getInProgress(){
-    return this.milestones && this.milestones.find(stone=>stone.status === 'INPROGRESS' || stone.status == '') 
+    return this.mileStones && this.mileStones.find(stone=>stone.status === 'INPROGRESS' || stone.status == '') 
   }
 
   onContinue(){

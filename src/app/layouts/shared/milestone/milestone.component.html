@@ -1,7 +1,7 @@
-<ng-container *ngIf="milestones && milestones.length">
-    <section  style="border: 1px solid rgba(128, 128, 128, 0.416);overflow-y: hidden;" class="br-4 my-4 glass">
+<ng-container *ngIf="mileStones && mileStones.length">
+    <section  style="overflow-y: hidden;" class="br-4 {{sticky ? 'sticky' : ''}}">
         <mat-card class="timeline {{vertical ? 'd-flex align-item-center': ''}}">
-            <ng-container *ngFor="let stone of milestones ">
+            <ng-container *ngFor="let stone of mileStones ">
                 <div class="box {{stone.status.toLowerCase()}}">
                     <div class="contents">
                         <p class="strong m-0 p-0">{{stone.label}}</p>

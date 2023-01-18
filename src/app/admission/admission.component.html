@@ -5,8 +5,13 @@
         </div>
       </mat-toolbar> 
     <div class="row justify-content-center m-0">
+        <ng-container>
+            <div>
+                <app-milestone [mileStones]="mileStoneService.studentRegistrationMileStone | async" [sticky]="true"></app-milestone>
+            </div>
+        </ng-container>
         <div class="col-lg-8 col-md-10 fadeIn" >
-            <mat-card class="mat-elevation-z8" style="font-size: 12px;">
+            <mat-card class="mat-elevation-z0" style="font-size: 12px;">
                 <mat-horizontal-stepper #stepper>
                     <mat-divider></mat-divider>
                     <mat-step label="Student's Information" state="student">

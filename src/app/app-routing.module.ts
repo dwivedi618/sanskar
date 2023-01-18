@@ -18,6 +18,8 @@ const routes: Routes = [
       { path: 'admission', component: AdmissionComponent },
      
       { path: 'student', loadChildren: './student/student.module#StudentModule' },
+      { path: 'registration', loadChildren: './registration/registration.module#RegistrationModule' },
+
      
       { path : 'configuration' , loadChildren : './master-data/master-data.module#MasterDataModule'},
 

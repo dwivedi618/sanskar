@@ -1,5 +1,11 @@
 [
-    
+    {
+        "name": "Registration",
+        "id": "registration",
+        "icon": "how_to_reg",
+        "path": "registration",
+        "url": ""
+    },
     {
         "name": "Admission",
         "id": "Admission",
@@ -38,16 +44,7 @@
                 "path": "./configuration/master-fee-category",
                 "name": "Classes",
                 "url": "./configuration/master-standard"
-            },
-            {
-                
-                "pid": "configuration",
-                "icon": "",
-                "subMenuId": "fee-structure",
-                "path": "./configuration/fee-structure",
-                "name": "Class wise fee",
-                "url": "./configuration/fee-structure"
-            }  
+            } 
              
         ]
     }

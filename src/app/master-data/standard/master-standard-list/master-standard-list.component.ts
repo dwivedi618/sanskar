@@ -42,8 +42,9 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
   classActionMenus = classActionMenus;
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select','name','action'];
+  displayedColumns = ['name'];
   selection = new SelectionModel<MasterStandardList>(true, []);
+  classes = [];
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -87,6 +88,7 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
       this.loaderService.loader.show("Fetching classes...")
       this.classApiService.fetch().subscribe((result)=>{
         const standardList = result['data'] || null;
+        this.classes = result['data'] || null;
         this.dataSource.data = standardList
         this.loaderService.loader.hide();
       },(error)=>{
@@ -94,9 +96,9 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
   }
 
   ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
+    // this.dataSource.sort = this.sort;
+    // this.dataSource.paginator = this.paginator;
+    // this.table.dataSource = this.dataSource;
   }
 
   applyFilter(event: Event) {
@@ -110,12 +112,7 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
 
   expandAnimation ='collapsed' ;
 
-  toggleAnimation(divName: string) {
-    if (divName === 'divA') {
-      this.expandAnimation = this.expandAnimation === 'expanded' ? 'collapsed' : 'expanded';
-      console.log(this.expandAnimation);
-    }
-  }
+
 
 
   manageMasterStandard(){
@@ -123,7 +120,13 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
       this.getMasterStandardList();
     })
   }
+
+  actionTriggerhandler(event : { action :Action,data : any }){
+    let { action , data } = event;
+    this.menuClickHandler(action,data);
+  }
   menuClickHandler(action,data){
+    console.log("action",action)
     this.classActionService.actionTriggered(action,data).subscribe(()=>{
       this.refresh();
     })

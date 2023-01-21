@@ -29,6 +29,7 @@ import { AvatarComponent } from './avatar/avatar.component';
 import { LabelPipe } from './customPipes/label.pipe';
 import { TabNavComponent } from './tab-nav/tab-nav.component';
 import { MilestoneComponent } from './milestone/milestone.component';
+import { TableComponent } from './table/table.component';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { MilestoneComponent } from './milestone/milestone.component';
     LabelPipe,
     TabNavComponent,
     MilestoneComponent,
+    TableComponent,
 
   ],
   imports: [
@@ -99,7 +101,8 @@ import { MilestoneComponent } from './milestone/milestone.component';
     AvatarComponent,
     LabelPipe,
     TabNavComponent,
-    MilestoneComponent
+    MilestoneComponent,
+    TableComponent
   ]
 })
 export class SharedModule { }

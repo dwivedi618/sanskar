@@ -31,76 +31,9 @@
       </span>
     </mat-toolbar-row>
   </mat-toolbar>
-  <!--more action on selected row-->
-  <mat-toolbar class="bg-white">
-    <mat-toolbar-row>
-      <div class="px-1 " *ngIf="!this.selection.selected.length">
-        <button mat-icon-button (click)="refresh()">
-          <mat-icon class="mat-icon-md mat-icon-light pt-0">refresh</mat-icon>
-        </button>
-      </div>
-      <ng-container *ngIf="this.selection.selected.length">
-        <app-bulk-actions></app-bulk-actions>
-      </ng-container>
-      <div class="spacer"></div>
-      <ng-container *ngIf="!this.selection.selected.length">
-        <app-filter (onEvent)="applyFilter($event)"></app-filter>
-      </ng-container>
-    </mat-toolbar-row>
-  </mat-toolbar>
-  <table mat-table class="w-100 mb-5" matSort aria-label="Elements">
-    <!-- Checkbox Column -->
-    <ng-container matColumnDef="select">
-      <th mat-header-cell *matHeaderCellDef class="text-left">
-        <div class="layout">
-          <mat-checkbox (change)="$event ? masterToggle() : null" class="mb-n2 pr-1"
-            [checked]="selection.hasValue() && isAllSelected()"
-            [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
-          </mat-checkbox>
-        </div>
-      </th>
-      <td mat-cell *matCellDef="let row" style="width: 2rem;" class="text-left">
-        <div class="layout">
-          <mat-checkbox (click)="$event.stopPropagation()" class="mb-n2 pr-1 "
-            (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
-            [aria-label]="checkboxLabel(row)">
-          </mat-checkbox>
-        </div>
-      </td>
-    </ng-container>
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fee Type</th>
-      <td mat-cell *matCellDef="let row">
-        <small>{{row.name || '...'}}</small>
-      </td>
-    </ng-container>
+  
+  <app-table [data]="fees" [columns]="displayedColumns" [actions]="classActionMenus" (actionTriggerd)="actionTriggerhandler($event)"></app-table>
 
-    <ng-container matColumnDef="frequency">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Frequency (In Months)</th>
-      <td mat-cell *matCellDef="let row">
-        <small>{{(row.frequency | feeFrequency) || '...'}}</small>
-      </td>
-    </ng-container>
-
-    <ng-container matColumnDef="optional">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Optional</th>
-      <td mat-cell *matCellDef="let row">
-        <small>{{row.isOptional? 'YES' : 'NO' || '...'}}</small>
-      </td>
-    </ng-container>
-
-    <!-- Action Column -->
-    <ng-container matColumnDef="action">
-      <th mat-header-cell *matHeaderCellDef class="text-right">Action</th>
-      <td mat-cell *matCellDef="let row" (click)="$event.stopPropagation()" class="text-right">
-        <app-menu-button (onMenuClick)="menuClickHandler($event,row);"></app-menu-button>
-      </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-  </table>
 
   <ng-container *ngIf="!dataSource.data.length">
     <app-empty-list></app-empty-list>

@@ -23,7 +23,15 @@ export class TableComponent implements AfterViewInit,OnInit{
   @Input() set data(data: any[]) {
     this.setTabelDataSource(data || []);
   }
-  @Input() columns = [];
+  
+  /**
+   * columns array must match with data keys . 
+   * @date 22/1/2023
+   * @author Shivam Dwivedi
+   *
+   * @type {{}}
+   */
+  @Input() columns = [] as string[];
   @Input() actions = ActionMenus;
   @Output() actionTriggerd = new EventEmitter<{ action, data }>();
 

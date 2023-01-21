@@ -44,7 +44,7 @@
         {
             "name": "frequency",
             "label": "Frequency",
-            "value": "",
+            "value": 12,
             "type": "radio",
             "validators": {
                 "required": true
@@ -80,7 +80,8 @@
                     "label": "YEARLY",
                     "icon": ""
                 }
-            ]
+            ],
+            "disabled":true
         }
     ]
 }

@@ -15,6 +15,7 @@ import { FeeActionService } from '../services/fee-action.service';
 import { UiService } from 'src/app/services/ui.service';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { DialogService } from 'src/app/layouts/shared/dialog.service';
+import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 
 
 
@@ -31,8 +32,9 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit, On
   dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select', 'name', 'frequency', 'optional', 'action'];
+  displayedColumns = ['name', 'frequency', 'isOptional'];
   selection = new SelectionModel<Fee>(true, []);
+  fees: any;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -83,6 +85,7 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit, On
     this.uiService.loader.show("Fetching fees...");
     this.commonService[API_SERVICE_METHODS.getFees]().subscribe((result) => {
       this.dataSource.data = result['data'] || null;
+      this.fees = result['data'] || null;
       this.uiService.loader.hide();
     }, (error) => {
       console.log("getMasterFeeCategory error", error);
@@ -111,6 +114,10 @@ export class MasterFeeCategoryListComponent implements AfterViewInit, OnInit, On
       this.expandAnimation = this.expandAnimation === 'expanded' ? 'collapsed' : 'expanded';
       console.log(this.expandAnimation);
     }
+  }
+  actionTriggerhandler(event : { action :Action,data : any }){
+    let { action , data } = event;
+    this.menuClickHandler(action,data);
   }
 
   manageFeeCategory() {

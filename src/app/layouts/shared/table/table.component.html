@@ -1,65 +1,64 @@
-
-    <!--more action on selected row-->
-  <mat-toolbar class="bg-white">
-    <mat-toolbar-row>
-      <div class="px-1 " *ngIf="!this.selection.selected.length">
-        <button mat-icon-button (click)="refresh()">
-          <mat-icon class="mat-icon-md mat-icon-light pt-0">refresh</mat-icon>
-        </button>
-      </div>
-      <ng-container *ngIf="this.selection.selected.length">
-        <app-bulk-actions></app-bulk-actions>
-      </ng-container>
-      <div class="spacer"></div>
-      <ng-container *ngIf="!this.selection?.selected?.length">
-        <app-filter (onEvent)="applyFilter($event)"></app-filter>
-      </ng-container>
-    </mat-toolbar-row>
-  </mat-toolbar>
-    <table mat-table [dataSource]="dataSource" class="w-100">
-        <!-- Checkbox Column -->
-        <ng-container matColumnDef="select">
-            <th mat-header-cell *matHeaderCellDef class="text-left">
-                <div class="layout">
-                    <mat-checkbox (change)="$event ? masterToggle() : null" class="mb-n2 pr-1" color="primary"
-                        [checked]="selection.hasValue() && isAllSelected()"
-                        [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
-                    </mat-checkbox>
-                </div>
-            </th>
-            <td mat-cell *matCellDef="let row" style="width: 2rem;" class="text-left">
-                <div class="layout">
-                    <mat-checkbox (click)="$event.stopPropagation()" class="mb-n2 pr-1 " color="primary"
-                        (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
-                        [aria-label]="checkboxLabel(row)">
-                    </mat-checkbox>
-                </div>
-            </td>
+<!--more action on selected row-->
+<mat-toolbar class="mat-elevation-z4">
+        <div class="px-1 " *ngIf="!this.selection.selected.length">
+            <button mat-icon-button (click)="refresh()">
+                <mat-icon class="mat-icon-md mat-icon-light pt-0">refresh</mat-icon>
+            </button>
+        </div>
+        <ng-container *ngIf="this.selection.selected.length">
+            <app-bulk-actions></app-bulk-actions>
         </ng-container>
-        <ng-container *ngFor="let column of columns" [matColumnDef]="column">
-            <th mat-header-cell *matHeaderCellDef>{{ column | titlecase}}</th>
-            <td mat-cell *matCellDef="let row">{{ row[column] || '-' }}</td>
+        <div class="spacer"></div>
+        <ng-container *ngIf="!this.selection?.selected?.length">
+            <app-filter (onEvent)="applyFilter($event)"></app-filter>
         </ng-container>
-        <!-- Action Column -->
-        <ng-container matColumnDef="action">
-            <th mat-header-cell *matHeaderCellDef class="text-right">Action</th>
-            <td mat-cell *matCellDef="let row"  class="text-right">
-                <app-menu-button [menus]="actions" (click)="$event.stopPropagation()"
-                    (onMenuClick)="menuClickHandler($event,row);"></app-menu-button>
-            </td>
-        </ng-container>
+</mat-toolbar>
+<table mat-table [dataSource]="dataSource" class="w-100">
+    <!-- Checkbox Column -->
+    <ng-container matColumnDef="select">
+        <th mat-header-cell *matHeaderCellDef class="text-left" style="width: 2rem;">
+            <div class="layout">
+                <mat-checkbox (change)="$event ? masterToggle() : null" class="mb-n2 pr-1" color="primary"
+                    [checked]="selection.hasValue() && isAllSelected()"
+                    [indeterminate]="selection.hasValue() && !isAllSelected()" [aria-label]="checkboxLabel()">
+                </mat-checkbox>
+            </div>
+        </th>
+        <td mat-cell *matCellDef="let row" style="width: 2rem;" class="text-left">
+            <div class="layout">
+                <mat-checkbox (click)="$event.stopPropagation()" class="mb-n2 pr-1 " color="primary"
+                    (change)="$event ? selection.toggle(row) : null" [checked]="selection.isSelected(row)"
+                    [aria-label]="checkboxLabel(row)">
+                </mat-checkbox>
+            </div>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-        <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="menuClickHandler('NAVIGATE',row);" style="cursor:pointer"></tr>
-    </table>
-    <div *ngIf="dataSource.data.length == 0"
-        class="d-flex flex-column justify-content-center align-items-center h-50 w-100">
-        <small class="mat-caption"> You don’t have any records</small><br>
-        <small class="strong" style="color:#ccc;"> You don’t have any records</small>
-        <small class="strong" style="color:#ccc;"> OR</small>
-        <button mat-stroked-button class="btn-dark">
-            <small>Register New Class/Standard</small>
+        </td>
+    </ng-container>
+    <ng-container *ngFor="let column of columns" [matColumnDef]="column">
+        <th mat-header-cell *matHeaderCellDef>{{ column | titlecase}}</th>
+        <td mat-cell *matCellDef="let row">{{ row[column] || '-' }}</td>
+    </ng-container>
+    <!-- Action Column -->
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef class="text-right">Action</th>
+        <td mat-cell *matCellDef="let row" class="text-right">
+            <app-menu-button [menus]="actions" (click)="$event.stopPropagation()"
+                (onMenuClick)="menuClickHandler($event,row);"></app-menu-button>
+        </td>
+    </ng-container>
 
-        </button>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="menuClickHandler('NAVIGATE',row);"
+        style="cursor:pointer"></tr>
+</table>
+<div *ngIf="dataSource.data.length == 0"
+    class="d-flex flex-column justify-content-center align-items-center h-50 w-100">
+    <small class="mat-caption"> You don’t have any records</small><br>
+    <small class="strong" style="color:#ccc;"> You don’t have any records</small>
+    <small class="strong" style="color:#ccc;"> OR</small>
+    <button mat-stroked-button class="btn-dark">
+        <small>Register New Class/Standard</small>
 
-    </div>
+    </button>
+
+</div>

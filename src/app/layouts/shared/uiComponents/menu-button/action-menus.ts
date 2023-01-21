@@ -33,7 +33,14 @@ export const classActionMenus = [
         url: ""
     },
     {
-        menuName: "Open fee structure",
+        menuName: "Show sections",
+        menuId: Action.NAVIGATE,
+        icon: 'dataset',
+        path: '',
+        url: ""
+    },
+    {
+        menuName: "Show fee structure",
         menuId: Action.NAVIGATE,
         icon: 'folder_open',
         path: '',

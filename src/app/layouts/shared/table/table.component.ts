@@ -20,7 +20,7 @@ export class TableComponent implements AfterViewInit,OnInit{
   displayedColumns: any[];
   // columns = [];
 
-  @Input() set tableData(data: any[]) {
+  @Input() set data(data: any[]) {
     this.setTabelDataSource(data || []);
   }
   @Input() columns = [];

@@ -37,23 +37,7 @@
       </span>
     </mat-toolbar-row>
   </mat-toolbar>
-  <!--more action on selected row-->
-  <mat-toolbar class="bg-white">
-    <mat-toolbar-row>
-      <div class="px-1 " *ngIf="!this.selection.selected.length">
-        <button mat-icon-button (click)="refresh()">
-          <mat-icon class="mat-icon-md mat-icon-light pt-0">refresh</mat-icon>
-        </button>
-      </div>
-      <ng-container *ngIf="this.selection.selected.length">
-        <app-bulk-actions></app-bulk-actions>
-      </ng-container>
-      <div class="spacer"></div>
-      <ng-container *ngIf="!this.selection?.selected?.length">
-        <app-filter (onEvent)="applyFilter($event)"></app-filter>
-      </ng-container>
-    </mat-toolbar-row>
-  </mat-toolbar>
+ 
 
   <app-table [tableData]="classes" [columns]="displayedColumns" [actions]="classActionMenus" (actionTriggerd)="actionTriggerhandler($event)"></app-table>
 

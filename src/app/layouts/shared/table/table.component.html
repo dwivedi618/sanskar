@@ -1,19 +1,19 @@
 <!--more action on selected row-->
 <mat-toolbar class="mat-elevation-z4">
-        <div class="px-1 " *ngIf="!this.selection.selected.length">
-            <button mat-icon-button (click)="refresh()">
-                <mat-icon class="mat-icon-md mat-icon-light pt-0">refresh</mat-icon>
-            </button>
-        </div>
-        <ng-container *ngIf="this.selection.selected.length">
-            <app-bulk-actions></app-bulk-actions>
-        </ng-container>
-        <div class="spacer"></div>
-        <ng-container *ngIf="!this.selection?.selected?.length">
-            <app-filter (onEvent)="applyFilter($event)"></app-filter>
-        </ng-container>
+    <div class="px-1 " *ngIf="!this.selection.selected.length">
+        <button mat-icon-button (click)="refresh()">
+            <mat-icon class="mat-icon-md mat-icon-light pt-0">refresh</mat-icon>
+        </button>
+    </div>
+    <ng-container *ngIf="this.selection.selected.length">
+        <app-bulk-actions></app-bulk-actions>
+    </ng-container>
+    <div class="spacer"></div>
+    <ng-container *ngIf="!this.selection?.selected?.length">
+        <app-filter (onEvent)="applyFilter($event)"></app-filter>
+    </ng-container>
 </mat-toolbar>
-<table mat-table [dataSource]="dataSource" class="w-100">
+<table mat-table [dataSource]="dataSource" class="w-100" *ngIf="dataSource && dataSource.data.length != 0 ">
     <!-- Checkbox Column -->
     <ng-container matColumnDef="select">
         <th mat-header-cell *matHeaderCellDef class="text-left" style="width: 2rem;">
@@ -51,14 +51,6 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="menuClickHandler('NAVIGATE',row);"
         style="cursor:pointer"></tr>
 </table>
-<div *ngIf="dataSource.data.length == 0"
-    class="d-flex flex-column justify-content-center align-items-center h-50 w-100">
-    <small class="mat-caption"> You don’t have any records</small><br>
-    <small class="strong" style="color:#ccc;"> You don’t have any records</small>
-    <small class="strong" style="color:#ccc;"> OR</small>
-    <button mat-stroked-button class="btn-dark">
-        <small>Register New Class/Standard</small>
-
-    </button>
-
-</div>
+<ng-container *ngIf="!dataSource.data.length">
+    <app-empty-list></app-empty-list>
+</ng-container>

@@ -15,8 +15,12 @@ import { ManageFeeStructureComponent } from '../manage-fee-structure/manage-fee-
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { ClasswiseFeesActionService } from '../services/classwise-fees-action.service';
 import { ClasswiseFeesApiService } from '../services/classwise-fees-api.service';
+import { Fee } from '../../fee-category/fee.interface';
 
-
+interface classWiseFee{
+  amount : Number,
+  fee : Fee
+}
 @Component({
   selector: 'app-fee-structure-list',
   templateUrl: './fee-structure-list.component.html',
@@ -31,7 +35,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   dataSource = new MatTableDataSource<any>();
 
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['select', 'name', 'frequency', 'optional', 'amount'];
+  displayedColumns = ['name', 'frequency', 'isOptional', 'amount'];
   selection = new SelectionModel<any>(true, []);
   standardList: any;
   selectedStandard: string;
@@ -39,6 +43,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   standardId: any;
   selectedStandardName: any;
   fees: any;
+  classWiseFees: any;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -105,15 +110,14 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     this.classwiseFeesApiService.getClassFeeById(this.selectedSession, this.standardId).subscribe((result) => {
       const structureList = result['data'] || null;
       if (HELPER.isObject(structureList)) {
-        this.dataSource.data = structureList?.fees || [];
+        let classWiseFee = structureList?.fees || [] as classWiseFee[];
+        let serializeClassWiseFee = []
+        classWiseFee.forEach((fees : classWiseFee) => {
+          let fee = { amount : fees.amount, ...fees.fee }
+          serializeClassWiseFee.push(fee);
+        })
+        this.classWiseFees = serializeClassWiseFee
       }
-      if (HELPER.isArray(structureList)) {
-        let allClasses = structureList;
-        const defaultSelectedClass = allClasses.filter(classObj => classObj._id === this.standardId)[0];
-        this.dataSource.data = defaultSelectedClass?.fees || [];
-
-      }
-
     }, (error) => {
     })
 
@@ -193,7 +197,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
 
   /** Gets the total cost of all transactions. */
   getTotalCost() {
-    return this.dataSource.data.map(t => t.amount).reduce((acc, value) => acc + value, 0);
+    return this.classWiseFees.map(t => t.amount).reduce((acc, value) => acc + value, 0);
   }
 
   expandAnimation = 'collapsed';

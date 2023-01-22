@@ -24,15 +24,8 @@ export class TableComponent implements AfterViewInit,OnInit{
     this.setTabelDataSource(data || []);
   }
   
-  /**
-   * columns array must match with data keys . 
-   * @date 22/1/2023
-   * @author Shivam Dwivedi
-   *
-   * @type {{}}
-   */
   @Input() columns = [] as string[];
-  @Input() actions = ActionMenus;
+  @Input() actions;
   @Output() actionTriggerd = new EventEmitter<{ action, data }>();
 
   setTabelDataSource(data) {
@@ -47,8 +40,7 @@ export class TableComponent implements AfterViewInit,OnInit{
     if (data && data.length) {
       this.columns = data;
       this.displayedColumns = []
-      this.displayedColumns = ['select', ...this.columns,'action'];
-      
+       this.displayedColumns = this.actions && this.actions?.length? ['select', ...this.columns,'action'] : ['select', ...this.columns]
     }
     console.log("this.columns", this.columns)
   }

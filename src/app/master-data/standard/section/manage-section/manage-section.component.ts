@@ -14,7 +14,7 @@ import { SectionApiService } from '../services/section-api.service';
   styleUrls: ['./manage-section.component.scss']
 })
 export class ManageSectionComponent implements OnInit {
-  feeFormFields: JsonFormData;
+  sectionFormFields: JsonFormData;
   isSaving: boolean;
   constructor(
     private feeDialogRef: MatDialogRef<ManageSectionComponent>,
@@ -28,8 +28,8 @@ export class ManageSectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.jsonFormService.getFeeFormJson().subscribe(feeJson => {
-      this.feeFormFields = feeJson;
+    this.jsonFormService.getSectionFormJson().subscribe(formJson => {
+      this.sectionFormFields = formJson;
       this.prepareFormFields();
     });
   }
@@ -52,7 +52,7 @@ export class ManageSectionComponent implements OnInit {
 
   private patchObjValuesToFormFields(obj){
     console.log("patchObjValuesToFormFields",obj);
-    this.feeFormFields.controls = this.jsonFormService.patchValuesToFormFields(obj,this.feeFormFields.controls);
+    this.sectionFormFields.controls = this.jsonFormService.patchValuesToFormFields(obj,this.sectionFormFields.controls);
   }
 
   onSubmit(formValues) {
@@ -61,7 +61,8 @@ export class ManageSectionComponent implements OnInit {
     let action : Action = this.dialogData?.action;
     switch (action) {
       case Action.ADD:
-        this.add(formValues);
+        let { standardId } = this.dialogData.data
+        this.add({class : standardId ,...formValues});
         break;
       case Action.EDIT:
       case Action.UPDATE:

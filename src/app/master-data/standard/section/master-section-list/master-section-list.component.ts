@@ -68,8 +68,8 @@ export class MasterSectionListComponent implements OnInit, OnDestroy {
     this.menuClickHandler(action,data);
   }
 
-  manageFeeCategory() {
-    this.dialogService.manageSection().subscribe(()=>{this.refresh()});
+  manageSection() {
+    this.dialogService.manageSection({standardId : this.standardId}).subscribe(()=>{this.refresh()});
   }
   refresh() {
     this.getSectionList()

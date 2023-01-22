@@ -1,0 +1,44 @@
+{
+    "controls": [
+        {
+            "name": "name",
+            "label": "Name",
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "maxLength": 50
+            }
+        },
+        {
+            "name": "description",
+            "label": "Description",
+            "value": "",
+            "type": "textarea",
+            "validators": {
+                "required": false,
+                "maxLength": 250
+            }
+        }
+        ,
+        {
+            "name": "maxStrength",
+            "label": "Max Strength",
+            "value": "",
+            "type": "number",
+            "validators": {
+                "required": false
+            }
+        },
+        {
+            "name" : "hallName",
+            "label" : "Hall Name",
+            "value" : "",
+            "type" : "text",
+            "validators" : {
+                "required" : false
+            }
+
+        }
+    ]
+}

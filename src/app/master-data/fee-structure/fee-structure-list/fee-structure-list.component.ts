@@ -33,7 +33,7 @@ export class FeeStructureListComponent implements  OnInit {
   displayedColumns = ['name', 'frequency', 'isOptional', 'amount'];
   standardList: any;
   selectedStandard: string;
-  standatdId: any;
+  standardId: any;
   selectedStandardName: any;
   fees: any;
   classWiseFees: any;

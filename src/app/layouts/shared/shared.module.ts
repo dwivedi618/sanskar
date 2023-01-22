@@ -30,6 +30,7 @@ import { LabelPipe } from './customPipes/label.pipe';
 import { TabNavComponent } from './tab-nav/tab-nav.component';
 import { MilestoneComponent } from './milestone/milestone.component';
 import { TableComponent } from './table/table.component';
+import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,7 @@ import { TableComponent } from './table/table.component';
     TabNavComponent,
     MilestoneComponent,
     TableComponent,
-
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
@@ -102,7 +103,8 @@ import { TableComponent } from './table/table.component';
     LabelPipe,
     TabNavComponent,
     MilestoneComponent,
-    TableComponent
+    TableComponent,
+    BreadcrumbComponent
   ]
 })
 export class SharedModule { }

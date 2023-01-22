@@ -14,10 +14,10 @@ const routes: Routes = [
     path: '', component: MasterDataLayoutComponent,
     children: [
       { path: '', component: ConfigurationHomeComponent, },
-      { path: 'fee-structure', component: FeeStructureListComponent },
-      { path: 'section', component: MasterSectionListComponent },
-      { path: 'master-standard', component: MasterStandardListComponent },
-      { path: 'master-fee-category', component: MasterFeeCategoryListComponent }
+      { path: 'fee-structure', component: FeeStructureListComponent, data: { breadcrumb: 'Fee Structure', icon: '' } },
+      { path: 'section', component: MasterSectionListComponent, data: { breadcrumb: 'Section', icon: '' } },
+      { path: 'master-standard', component: MasterStandardListComponent, data: { breadcrumb: 'Class', icon: '' } },
+      { path: 'master-fee-category', component: MasterFeeCategoryListComponent, data: { breadcrumb: 'Fee', icon: '' } }
     ]
   }
 ];

@@ -2,27 +2,16 @@
   <!--table heading-->
   <mat-toolbar class="bg-mysecondary">
     <mat-toolbar-row>
-      <div class="" style="font-size:12px">
-        <span class="m-0 p-0">Section</span>
-        <!-- <small>You can be only set master fee structure for current and future sessions</small> -->
+      <div class="px-1 ml-n2">
+        <button mat-icon-button routerLink='/configuration/master-standard'>
+          <mat-icon class="mat-icon-md text-mylight pt-0">arrow_back</mat-icon>
+          <span>{{selectedStandardName}}</span>
+        </button>
       </div>
       <div class="spacer"></div>
-      <span class="px-1">
-        <button mat-button [matMenuTriggerFor]="session" #t="matMenuTrigger" [matMenuTriggerData]="menuDataSession">
-          <small>{{selectedSession || 'syncing...'}}</small>
-          <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
-        </button>
-        <mat-menu #session="matMenu" hasBackdrop="true">
-          <button mat-menu-item *ngFor="let session of menuDataSession" (click)="selectedSession = session">
-            <mat-icon class="mat-icon-sm pt-1 " [class.text-success]="selectedSession == session">{{selectedSession ==
-              session ? 'check_box':'check_box_outline_blank'}}</mat-icon>
-            <small>{{session}}</small>
-          </button>
-        </mat-menu>
 
-      </span>
       <span class="px-1">
-        <button mat-stroked-button color="" #addFeeCategory (click)="manageSection()">
+        <button mat-stroked-button color="" (click)="manageSection()">
           <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
           <small>
             New Section
@@ -31,7 +20,30 @@
       </span>
     </mat-toolbar-row>
   </mat-toolbar>
-  
-  <app-table [data]="sections" [columns]="displayedColumns" [actions]="classActionMenus" (actionTriggerd)="actionTriggerhandler($event)"></app-table>
+  <mat-toolbar >
+    <mat-toolbar-row >
+      <small>Showing section for {{selectedStandardName}}</small>
+      <div class="spacer"></div>
+      <span class="px-2" style="min-width: 8rem;">
+        <button id="selectStandardbtn" style="min-width: 8rem;" class="btn-mydark" mat-stroked-button
+          [matMenuTriggerFor]="standards" #t="matMenuTrigger">
+
+          <small style="font-size: 12px;color: rgba(204, 204, 204, 0.351);">Class | </small>
+          <small class="w-100">{{(selectedStandardName | titlecase )|| 'Select'}}</small>
+
+          <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
+        </button>
+        <mat-menu #standards="matMenu" hasBackdrop="true" class="w-100" style="min-width: 10rem;">
+          <button mat-menu-item *ngFor="let data of standardList" class="w-100"
+            (click)="selectedStandard = data.name;onStandardChange(data);">
+            <small [class.selected]="data._id == standardId">{{data.name | titlecase}}</small>
+          </button>
+        </mat-menu>
+
+      </span>
+      
+    </mat-toolbar-row>
+  </mat-toolbar>
+  <app-table [data]="sections" [columns]="displayedColumns" (actionTriggerd)="actionTriggerhandler($event)"></app-table>
 
 </div>

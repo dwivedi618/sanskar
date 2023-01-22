@@ -31,12 +31,8 @@
       </span>
     </mat-toolbar-row>
   </mat-toolbar>
-  
-  <app-table [data]="fees" [columns]="displayedColumns" [actions]="classActionMenus" (actionTriggerd)="actionTriggerhandler($event)"></app-table>
 
-
-  <ng-container *ngIf="!dataSource.data.length">
-    <app-empty-list></app-empty-list>
-  </ng-container>
+  <app-table [data]="fees" [columns]="displayedColumns" [actions]="actions"
+    (actionTriggerd)="actionTriggerhandler($event)"></app-table>
 
 </div>

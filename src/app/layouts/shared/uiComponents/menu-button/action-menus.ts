@@ -36,14 +36,14 @@ export const classActionMenus = [
         menuName: "Show sections",
         menuId: Action.NAVIGATE,
         icon: 'dataset',
-        path: '',
+        path: 'configuration/section',
         url: ""
     },
     {
         menuName: "Show fee structure",
         menuId: Action.NAVIGATE,
         icon: 'folder_open',
-        path: '',
+        path: 'configuration/fee-structure',
         url: ""
     }
 ]

@@ -54,7 +54,7 @@ export class TableComponent implements AfterViewInit,OnInit{
   }
 
   menuClickHandler(action: Action, data) {
-    this.actionTriggerd.emit({ action, data })
+    this.actionTriggerd.emit({ action, data });
   }
 
   /** Whether the number of selected elements matches the total number of rows. */

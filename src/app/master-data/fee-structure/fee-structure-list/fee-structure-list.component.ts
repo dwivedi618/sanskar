@@ -90,7 +90,6 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
           this.selectedStandardName = data.n
         }
       }
-
     })
   }
 

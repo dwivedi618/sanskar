@@ -5,6 +5,7 @@ import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { DialogService } from 'src/app/layouts/shared/dialog.service';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { SectionActionService } from '../services/section-action.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-master-section-list',
@@ -18,22 +19,38 @@ export class MasterSectionListComponent implements OnInit, OnDestroy {
   menuDataSession = ['2019-2020', '2020-2021', '2021-2022'];
   selectedSession = this.menuDataSession[0]
   sections: any;
+  standardId: any;
+  selectedStandardName: any;
   constructor(
     private commonService: CommonService,
     private sectionActionService: SectionActionService,
     private uiService: UiService,
-    private dialogService : DialogService
-  ) { }
+    private dialogService : DialogService,
+    private activatedRoute : ActivatedRoute
+  ) {
+    this.activatedRoute.queryParams.subscribe(data => {
+      if (data) {
+        this.selectedSession = data.year
+        if (data.standardId) {
+          this.standardId = data.standardId
+          this.getSectionList()
+        }
+        if (data.n) {
+          this.selectedStandardName = data.n
+        }
+      }
+    })
+  }
   ngOnDestroy(): void {
     this.uiService.loader.hide();
   }
 
 
   ngOnInit() {
-    this.getFeeCategoryList();
+    this.getSectionList();
   }
 
-  getFeeCategoryList() {
+  getSectionList() {
     this.uiService.loader.show("Fetching section...");
     this.commonService[API_SERVICE_METHODS.getSections]().subscribe((result) => {
       this.sections = result['data'] || null;
@@ -53,7 +70,7 @@ export class MasterSectionListComponent implements OnInit, OnDestroy {
     this.dialogService.manageSection().subscribe(()=>{this.refresh()});
   }
   refresh() {
-    this.getFeeCategoryList()
+    this.getSectionList()
   }
  
   menuClickHandler(action, data) {

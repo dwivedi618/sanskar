@@ -43,6 +43,7 @@ export class ClassActionService {
           resultObservable.next(result);
         }); break;
       case Action.NAVIGATE:
+        console.log("data",data)
         this.router.navigate(['configuration/fee-structure'], { queryParams: { standardId: data._id, n: data.name } });
         break;
       default:

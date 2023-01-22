@@ -10,6 +10,9 @@ export class SectionApiService {
   private API_ROUTES = API_ROUTES;
   constructor(private _http: HttpClient) { }
 
+  getById(classId = '') {
+    return this._http.get<any>(`${this.API_ROUTES.section}?classId=${classId}`);
+  }
   delete(data) {
     let options = {
       headers: new HttpHeaders,

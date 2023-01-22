@@ -6,6 +6,7 @@ import { DialogService } from 'src/app/layouts/shared/dialog.service';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { SectionActionService } from '../services/section-action.service';
 import { ActivatedRoute } from '@angular/router';
+import { SectionApiService } from '../services/section-api.service';
 
 @Component({
   selector: 'app-master-section-list',
@@ -24,6 +25,7 @@ export class MasterSectionListComponent implements OnInit, OnDestroy {
   constructor(
     private commonService: CommonService,
     private sectionActionService: SectionActionService,
+    private sectionApiService: SectionApiService,
     private uiService: UiService,
     private dialogService : DialogService,
     private activatedRoute : ActivatedRoute
@@ -52,7 +54,7 @@ export class MasterSectionListComponent implements OnInit, OnDestroy {
 
   getSectionList() {
     this.uiService.loader.show("Fetching section...");
-    this.commonService[API_SERVICE_METHODS.getSections]().subscribe((result) => {
+    this.sectionApiService.getById(this.standardId).subscribe((result) => {
       this.sections = result['data'] || null;
       this.uiService.loader.hide();
     }, (error) => {

@@ -13,6 +13,8 @@ import { ManageFeeStructureComponent } from './fee-structure/manage-fee-structur
 import { MasterStandardListComponent } from './standard/master-standard-list/master-standard-list.component';
 import { ManageMasterStandardComponent } from './standard/manage-master-standard/manage-master-standard.component';
 import { ConfigurationHomeComponent } from './configuration-home/configuration-home.component';
+import { ManageSectionComponent } from './standard/section/manage-section/manage-section.component';
+import { MasterSectionListComponent } from './standard/section/master-section-list/master-section-list.component';
 
 
 @NgModule({
@@ -23,9 +25,10 @@ import { ConfigurationHomeComponent } from './configuration-home/configuration-h
     FeeStructureListComponent,
     ManageFeeStructureComponent,
     MasterStandardListComponent,
-    MasterStandardListComponent,
+    MasterSectionListComponent,
     ManageMasterStandardComponent,
     ConfigurationHomeComponent,
+    ManageSectionComponent
     
 
   ],
@@ -46,7 +49,8 @@ import { ConfigurationHomeComponent } from './configuration-home/configuration-h
     MasterStandardListComponent,
     MasterStandardListComponent,
     ManageMasterStandardComponent,
-    ConfigurationHomeComponent
+    ConfigurationHomeComponent,
+    ManageSectionComponent
   ]
 })
 export class MasterDataModule { }

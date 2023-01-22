@@ -7,19 +7,19 @@ import { FeeStructureListComponent } from './fee-structure/fee-structure-list/fe
 import { ManageFeeStructureComponent } from './fee-structure/manage-fee-structure/manage-fee-structure.component';
 import { MasterDataLayoutComponent } from './master-data-layout/master-data-layout.component';
 import { ConfigurationHomeComponent } from './configuration-home/configuration-home.component';
+import { MasterSectionListComponent } from './standard/section/master-section-list/master-section-list.component';
 
 const routes: Routes = [
-  { path : '' ,component : MasterDataLayoutComponent,
-  children : [
-    { path : '' ,component : ConfigurationHomeComponent ,},
-    { path : 'fee-structure' ,component : FeeStructureListComponent },
-    { path : 'master-standard' ,  component : MasterStandardListComponent},
-    { path : 'master-fee-category' ,component : MasterFeeCategoryListComponent },
-    { path : 'fee-structure/:new' ,component : ManageFeeStructureComponent },
-    { path : 'fee-structure/:edit' ,component : ManageFeeStructureComponent },
-    { path : 'master-fee-category/:new',component : ManageFeeCategoryComponent}
-  ]
-}
+  {
+    path: '', component: MasterDataLayoutComponent,
+    children: [
+      { path: '', component: ConfigurationHomeComponent, },
+      { path: 'fee-structure', component: FeeStructureListComponent },
+      { path: 'section', component: MasterSectionListComponent },
+      { path: 'master-standard', component: MasterStandardListComponent },
+      { path: 'master-fee-category', component: MasterFeeCategoryListComponent }
+    ]
+  }
 ];
 
 @NgModule({

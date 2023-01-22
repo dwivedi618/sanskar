@@ -1,0 +1,37 @@
+<div class="bg-white">
+  <!--table heading-->
+  <mat-toolbar class="bg-mysecondary">
+    <mat-toolbar-row>
+      <div class="" style="font-size:12px">
+        <span class="m-0 p-0">Fee Category</span>
+        <!-- <small>You can be only set master fee structure for current and future sessions</small> -->
+      </div>
+      <div class="spacer"></div>
+      <span class="px-1">
+        <button mat-button [matMenuTriggerFor]="session" #t="matMenuTrigger" [matMenuTriggerData]="menuDataSession">
+          <small>{{selectedSession || 'syncing...'}}</small>
+          <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
+        </button>
+        <mat-menu #session="matMenu" hasBackdrop="true">
+          <button mat-menu-item *ngFor="let session of menuDataSession" (click)="selectedSession = session">
+            <mat-icon class="mat-icon-sm pt-1 " [class.text-success]="selectedSession == session">{{selectedSession ==
+              session ? 'check_box':'check_box_outline_blank'}}</mat-icon>
+            <small>{{session}}</small>
+          </button>
+        </mat-menu>
+
+      </span>
+      <span class="px-1">
+        <button mat-stroked-button color="" #addFeeCategory (click)="manageFeeCategory()">
+          <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
+          <small>
+            New Fee Category
+          </small>
+        </button>
+      </span>
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+  <app-table [data]="sections" [columns]="displayedColumns" [actions]="classActionMenus" (actionTriggerd)="actionTriggerhandler($event)"></app-table>
+
+</div>

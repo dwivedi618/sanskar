@@ -15,6 +15,7 @@ export interface District {
 export const API_ROUTES = {
   fee: environment.apiUrl + '/' + 'fee',
   class: environment.apiUrl + '/' + 'class',
+  section: environment.apiUrl + '/' + 'section',
   feeStructure: environment.apiUrl + '/' + 'feeStructure',
   student: environment.apiUrl + '/' + 'student',
   indianStatesUrl: "assets/jsons/indian.states.json",
@@ -40,6 +41,9 @@ export class CommonService {
   }
   [API_SERVICE_METHODS.getFees](id: string) {
     return this.http.get<any>(this.API_ROUTES.fee + '/' + id).pipe(pluck('data'));
+  }
+  [API_SERVICE_METHODS.getSections](id: string) {
+    return this.http.get<any>(this.API_ROUTES.section + '/' + id).pipe(pluck('data'));
   }
   [API_SERVICE_METHODS.getIndianStates]() {
     return this.http.get<{ code: string, name: string }[]>(this.API_ROUTES.indianStatesUrl);

@@ -1,0 +1,4 @@
+<app-dialog-header [dialogData]="{action : dialogData.action , name : 'Master Fee Category'}"></app-dialog-header>
+<div mat-dialog-content>
+    <app-json-form [formFields] ="feeFormFields"  (onSubmit)="onSubmit($event)"></app-json-form>
+</div>

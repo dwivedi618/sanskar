@@ -13,7 +13,7 @@
 
      
       <span class="px-1">
-        <ng-container *ngIf="!dataSource.data.length">
+        <ng-container *ngIf="!classWiseFees?.length">
           <button mat-stroked-button color="" class="btn-dark" (click)="clickToAction('ADD')"
             [disabled]='!standardId'>
             <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
@@ -22,7 +22,7 @@
             </small>
           </button>
         </ng-container>
-        <ng-container *ngIf="dataSource.data.length">
+        <ng-container *ngIf="classWiseFees?.length">
           <button mat-stroked-button color="" class="btn-dark" (click)="clickToAction('UPDATE')"
             [disabled]='!standardId'>
             <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>

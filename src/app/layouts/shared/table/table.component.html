@@ -36,7 +36,14 @@
     </ng-container>
     <ng-container *ngFor="let column of columns" [matColumnDef]="column">
         <th mat-header-cell *matHeaderCellDef>{{ column | label | titlecase}}</th>
-        <td mat-cell *matCellDef="let row">{{ row[column] || "--" }}</td>
+        <td mat-cell *matCellDef="let row">
+            <span *ngIf="column == 'amount'">
+                {{ row[column] | currency : "INR" }}
+            </span>
+            <span *ngIf="column !== 'amount'">
+                {{ row[column]}}
+            </span>
+        </td>
     </ng-container>
     <!-- Action Column -->
     <ng-container matColumnDef="action">

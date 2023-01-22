@@ -27,52 +27,23 @@ interface classWiseFee{
   styleUrls: ['./fee-structure-list.component.scss']
 })
 
-export class FeeStructureListComponent implements AfterViewInit, OnInit {
+export class FeeStructureListComponent implements  OnInit {
   @ViewChild('selectStandardbtn', { static: false }) selectStandardbtn: HTMLElement
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<any>;
-  dataSource = new MatTableDataSource<any>();
-
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['name', 'frequency', 'isOptional', 'amount'];
-  selection = new SelectionModel<any>(true, []);
   standardList: any;
   selectedStandard: string;
   standatdId: any;
-  standardId: any;
   selectedStandardName: any;
   fees: any;
   classWiseFees: any;
-
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-      this.selection.clear() :
-      this.dataSource.data.forEach(row => this.selection.select(row));
-  }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: any): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
-  }
-
   sessionLists = [
     { value: '2020-2021', viewValue: '2020-2021' },
     { value: '2021-2022', viewValue: '2021-2022' }
   ]
 
   selectedSession: string
+  classWiseFeesOriginal: any;
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -99,7 +70,6 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
   }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource();
     this.getMasterStandardList();
     this.getFeeStructureList();
     this.getFeeCategoryList();
@@ -109,6 +79,7 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     if (!this.standardId) return
     this.classwiseFeesApiService.getClassFeeById(this.selectedSession, this.standardId).subscribe((result) => {
       const structureList = result['data'] || null;
+      this.classWiseFeesOriginal = result['data']?.fees
       if (HELPER.isObject(structureList)) {
         let classWiseFee = structureList?.fees || [] as classWiseFee[];
         let serializeClassWiseFee = []
@@ -178,40 +149,15 @@ export class FeeStructureListComponent implements AfterViewInit, OnInit {
     return standardName
   }
 
-  ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    this.dataSource.paginator = this.paginator;
-    this.table.dataSource = this.dataSource;
-
-
-
-  }
-
-  applyFilter(event: Event) {
-    const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
   /** Gets the total cost of all transactions. */
   getTotalCost() {
-    return this.classWiseFees.map(t => t.amount).reduce((acc, value) => acc + value, 0);
-  }
-
-  expandAnimation = 'collapsed';
-
-  toggleAnimation(divName: string) {
-    if (divName === 'divA') {
-      this.expandAnimation = this.expandAnimation === 'expanded' ? 'collapsed' : 'expanded';
-    }
+    return this.classWiseFees && this.classWiseFees.length ? this.classWiseFees.map(t => t.amount).reduce((acc, value) => acc + value, 0) : 0
   }
 
   clickToAction(action: Action) {
     let dialogData = {
       standardId: this.standardId || null,
-      fees: this.dataSource.data || {}
+      fees: this.classWiseFeesOriginal || {}
     }
     this.menuClickHandler(action, dialogData);
   }

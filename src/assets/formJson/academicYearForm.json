@@ -1,0 +1,100 @@
+{
+    "controls": [
+        {
+            "ctrlId": "ac1",
+            "name": "name",
+            "label": "Academic Year",
+            "value": "2022-23",
+            "type": "dropdown",
+            "validators": {
+                "required": true
+            },
+            "options": [
+                {
+                    "value": "2021-22",
+                    "label": "2021-22",
+                    "icon": ""
+                },
+                {
+                    "value": "2022-23",
+                    "label": "2022-23",
+                    "icon": ""
+                },
+                {
+                    "value": "2023-24",
+                    "label": "2023-24",
+                    "icon": ""
+                },
+                {
+                    "value": "2024-25",
+                    "label": "2024-25",
+                    "icon": ""
+                }
+            ]
+        },
+        {
+            "ctrlId": "acdF2",
+            "name": "description",
+            "label": "Description",
+            "value": "",
+            "type": "textarea",
+            "validators": {
+                "required": false,
+                "maxLength": 250
+            }
+        },
+        {
+            "ctrlId": "acdF3",
+            "name": "startTime",
+            "label": "Start Time",
+            "value": "",
+            "type": "time",
+            "validators": {
+                "required": false
+            }
+        },
+        {
+            "ctrlId": "acdF3",
+            "name": "endTime",
+            "label": "End Time",
+            "value": "",
+            "type": "time",
+            "validators": {
+                "required": false
+            }
+        },
+        {
+            "ctrlId": "acdF4",
+            "name": "startDate",
+            "label": "Start Date",
+            "value": "",
+            "type": "date",
+            "validators": {
+                "required": false
+            }
+        },
+        {
+            "ctrlId": "acdF5",
+            "name": "endDate",
+            "label": "End Date",
+            "value": "",
+            "type": "date",
+            "validators": {
+                "required": false
+            }
+        },
+        {
+            "ctrlId": "acdF6",
+            "name": "classIds",
+            "label": "Classes",
+            "value": "",
+            "type": "dropdown",
+            "validators": {
+                "required": false
+            },
+            "hitHttp": true,
+            "method": "classes",
+            "options": []
+        }
+    ]
+}

@@ -14,7 +14,7 @@ import { AcademicYearApiService } from '../services/academic-year-api.service';
   styleUrls: ['./manage-academic-year.component.scss']
 })
 export class ManageAcademicYearComponent implements OnInit {
-  feeFormFields: JsonFormData;
+  academicYearFormFields: JsonFormData;
   isSaving: boolean;
   constructor(
     private feeDialogRef: MatDialogRef<ManageAcademicYearComponent>,
@@ -28,8 +28,8 @@ export class ManageAcademicYearComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.jsonFormService.getFeeFormJson().subscribe(feeJson => {
-      this.feeFormFields = feeJson;
+    this.jsonFormService.getAcademicYearFormJson().subscribe(formJson => {
+      this.academicYearFormFields = formJson;
       this.prepareFormFields();
     });
   }
@@ -52,7 +52,7 @@ export class ManageAcademicYearComponent implements OnInit {
 
   private patchObjValuesToFormFields(obj){
     console.log("patchObjValuesToFormFields",obj);
-    this.feeFormFields.controls = this.jsonFormService.patchValuesToFormFields(obj,this.feeFormFields.controls);
+    this.academicYearFormFields.controls = this.jsonFormService.patchValuesToFormFields(obj,this.academicYearFormFields.controls);
   }
 
   onSubmit(formValues) {

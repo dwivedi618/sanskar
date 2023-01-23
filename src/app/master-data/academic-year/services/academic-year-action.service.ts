@@ -29,7 +29,7 @@ export class AcademicYearActionService {
         })
         break;
       case Action.EDIT:
-        this.dialogService.manageFeeCategory(data, action).subscribe(result => {
+        this.dialogService.manageAcademicYear(data, action).subscribe(result => {
           resultObservable.next(result);
         });
         break;

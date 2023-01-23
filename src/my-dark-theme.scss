@@ -1,49 +1,49 @@
-@use '~@angular/material' as mat;
-// Plus imports for other components in your app.
+// @use '~@angular/material' as mat;
+// // Plus imports for other components in your app.
 
-// Include the common styles for Angular Material. We include this here so that you only
-// have to load a single css file for Angular Material in your app.
-// **Be sure that you only ever include this mixin once!**
-@include mat.core();
+// // Include the common styles for Angular Material. We include this here so that you only
+// // have to load a single css file for Angular Material in your app.
+// // **Be sure that you only ever include this mixin once!**
+// @include mat.core();
 
-// Define the default theme (same as the example above).
-$candy-app-primary: mat.define-palette(mat.$blue-palette,A200, A100, A400);
-$candy-app-accent:  mat.define-palette(mat.$amber-palette, A200, A100, A400);
-$candy-app-theme:   mat.define-light-theme($candy-app-primary, $candy-app-accent);
+// // Define the default theme (same as the example above).
+// $candy-app-primary: mat.define-palette(mat.$blue-palette,A200, A100, A400);
+// $candy-app-accent:  mat.define-palette(mat.$amber-palette, A200, A100, A400);
+// $candy-app-theme:   mat.define-light-theme($candy-app-primary, $candy-app-accent);
 
-// Include the default theme styles.
-@include mat.all-component-themes($candy-app-theme);
-
-
-// Define an alternate dark theme.
-
-$dark-primary: mat.define-palette(mat.$blue-palette,A200, A100, A400);
-$dark-accent:  mat.define-palette(mat.$teal-palette, A400);
-$dark-warn:    mat.define-palette(mat.$deep-orange-palette);
-$dark-theme:   mat.define-dark-theme($dark-primary, $dark-accent, $dark-warn);
+// // Include the default theme styles.
+// @include mat.all-component-themes($candy-app-theme);
 
 
-// .unicorn-dark-theme {
-//   @include angular-material-theme($dark-theme);
-// }
-$background:#303030;
-$card:#424242;
-$bar:#212121;
-$status_bar:black;
+// // Define an alternate dark theme.
 
-// Variables
+// $dark-primary: mat.define-palette(mat.$blue-palette,A200, A100, A400);
+// $dark-accent:  mat.define-palette(mat.$teal-palette, A400);
+// $dark-warn:    mat.define-palette(mat.$deep-orange-palette);
+// $dark-theme:   mat.define-dark-theme($dark-primary, $dark-accent, $dark-warn);
 
-//
-// custom-variables
-//
 
-// Vertical Sidebar - Default Light
-$sidebar-bg: #ffffff;
-$sidebar-menu-item-color: #74788d;
-$sidebar-menu-sub-item-color: #7c8a96;
-$sidebar-menu-item-icon-color: #505d69;
-$sidebar-menu-item-hover-color: #383c40;
-$sidebar-menu-item-active-color: #5664d2;
-$sidebar-width:  240px;
-$sidebar-collapsed-width:  70px;
-$sidebar-width-sm:  160px;
+// // .unicorn-dark-theme {
+// //   @include angular-material-theme($dark-theme);
+// // }
+// $background:#303030;
+// $card:#424242;
+// $bar:#212121;
+// $status_bar:black;
+
+// // Variables
+
+// //
+// // custom-variables
+// //
+
+// // Vertical Sidebar - Default Light
+// $sidebar-bg: #ffffff;
+// $sidebar-menu-item-color: #74788d;
+// $sidebar-menu-sub-item-color: #7c8a96;
+// $sidebar-menu-item-icon-color: #505d69;
+// $sidebar-menu-item-hover-color: #383c40;
+// $sidebar-menu-item-active-color: #5664d2;
+// $sidebar-width:  240px;
+// $sidebar-collapsed-width:  70px;
+// $sidebar-width-sm:  160px;

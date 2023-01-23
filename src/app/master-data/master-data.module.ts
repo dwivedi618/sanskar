@@ -15,6 +15,8 @@ import { ManageMasterStandardComponent } from './standard/manage-master-standard
 import { ConfigurationHomeComponent } from './configuration-home/configuration-home.component';
 import { ManageSectionComponent } from './standard/section/manage-section/manage-section.component';
 import { MasterSectionListComponent } from './standard/section/master-section-list/master-section-list.component';
+import { AcademicYearListComponent } from './academic-year/academic-year-list/academic-year-list.component';
+import { ManageAcademicYearComponent } from './academic-year/manage-academic-year/manage-academic-year.component';
 
 
 @NgModule({
@@ -28,9 +30,9 @@ import { MasterSectionListComponent } from './standard/section/master-section-li
     MasterSectionListComponent,
     ManageMasterStandardComponent,
     ConfigurationHomeComponent,
-    ManageSectionComponent
-    
-
+    ManageSectionComponent,
+    AcademicYearListComponent,
+    ManageAcademicYearComponent
   ],
   imports: [
     CommonModule,
@@ -50,7 +52,8 @@ import { MasterSectionListComponent } from './standard/section/master-section-li
     MasterStandardListComponent,
     ManageMasterStandardComponent,
     ConfigurationHomeComponent,
-    ManageSectionComponent
+    ManageSectionComponent,
+    ManageAcademicYearComponent
   ]
 })
 export class MasterDataModule { }

@@ -6,5 +6,5 @@ export const API_SERVICE_METHODS = {
     getFees: "getFees",
     getMainMenus: "getMainMenus",
     getStudentMenuTab: "getStudentMenuTab",
-
+    getAcademicYearList : "getAcademicYearList"
 }

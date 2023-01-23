@@ -8,6 +8,7 @@ import { ManageFeeStructureComponent } from './fee-structure/manage-fee-structur
 import { MasterDataLayoutComponent } from './master-data-layout/master-data-layout.component';
 import { ConfigurationHomeComponent } from './configuration-home/configuration-home.component';
 import { MasterSectionListComponent } from './standard/section/master-section-list/master-section-list.component';
+import { AcademicYearListComponent } from './academic-year/academic-year-list/academic-year-list.component';
 
 const routes: Routes = [
   {
@@ -17,7 +18,8 @@ const routes: Routes = [
       { path: 'fee-structure', component: FeeStructureListComponent, data: { breadcrumb: 'Fee Structure', icon: '' } },
       { path: 'section', component: MasterSectionListComponent, data: { breadcrumb: 'Section', icon: '' } },
       { path: 'master-standard', component: MasterStandardListComponent, data: { breadcrumb: 'Class', icon: '' } },
-      { path: 'master-fee-category', component: MasterFeeCategoryListComponent, data: { breadcrumb: 'Fee', icon: '' } }
+      { path: 'master-fee-category', component: MasterFeeCategoryListComponent, data: { breadcrumb: 'Fee', icon: '' } },
+      { path: 'academic-year', component: AcademicYearListComponent, data: { breadcrumb: 'Academic Year', icon: 'calender' } }
     ]
   }
 ];

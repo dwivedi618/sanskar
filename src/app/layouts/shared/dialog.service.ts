@@ -7,6 +7,7 @@ import { ManageMasterStandardComponent } from 'src/app/master-data/standard/mana
 import { Action } from './uiComponents/menu-button/actions.enum';
 import { ManageFeeStructureComponent } from 'src/app/master-data/fee-structure/manage-fee-structure/manage-fee-structure.component';
 import { ManageSectionComponent } from 'src/app/master-data/standard/section/manage-section/manage-section.component';
+import { ManageAcademicYearComponent } from 'src/app/master-data/academic-year/manage-academic-year/manage-academic-year.component';
 
 
 @Injectable({
@@ -46,6 +47,23 @@ export class DialogService {
     let afterCloseResult = new Subject;
     const data = dataObj
     const dialogRef = this.dialog.open(ManageFeeCategoryComponent, {
+      width: '40rem',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      hasBackdrop: false,
+      // panelClass : 'dialog-container-pt-0',
+      data: {data,action}
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      afterCloseResult.next(result)
+    })
+    return afterCloseResult.asObservable();
+  }
+
+  manageAcademicYear(dataObj = {},action : Action = Action.ADD) {
+    let afterCloseResult = new Subject;
+    const data = dataObj
+    const dialogRef = this.dialog.open(ManageAcademicYearComponent, {
       width: '40rem',
       maxWidth: '100vw',
       maxHeight: '100vh',

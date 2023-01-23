@@ -21,12 +21,21 @@
         "url": ""
     },
     {
-        "name": "Academics",
+        "name": "Academics Setup",
         "id": "configuration",
         "icon": "settings",
         "path": "configuration",
         "url": "",
         "subMenus": [
+            {
+                
+                "pid": "configuration",
+                "icon": "",
+                "subMenuId": "academic-year",
+                "path": "./configuration/academic-year",
+                "name": "Academic Year",
+                "url": "./configuration/academic-year"
+            },
             {
                 
                 "pid": "configuration",
@@ -49,7 +58,7 @@
         ]
     },
     {
-        "name": "Manage Institute",
+        "name": "Institute Setup",
         "id": "configuration",
         "icon": "settings",
         "path": "",

@@ -10,7 +10,7 @@ const studentroutes: Routes = [
         path: '', component: StudentLayoutComponent,
         children: [
             { path: '', component: StudentsListComponent },
-            { path: 'profile', loadChildren: './student-profile-layout/student-profile-layout.module#StudentProfileLayoutModule' },
+            { path: 'profile', loadChildren: () => import('./student-profile-layout/student-profile-layout.module').then(m => m.StudentProfileLayoutModule) },
             { path: 'print', component: AdmissionFormPrintLayoutComponent },
         ]
     }

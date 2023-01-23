@@ -12,19 +12,19 @@ const routes: Routes = [
   {
     path: '', component: LayoutComponent,
     children: [
-      { path : '' , loadChildren : './dashboard/dashboard.module#DashboardModule',data: { breadcrumb: 'Dashboard', icon: 'grid_view' } },
-      { path : 'dashboard' , loadChildren : './dashboard/dashboard.module#DashboardModule',data: { breadcrumb: 'Dashboard', icon: 'grid_view' } },
+      { path : '' , loadChildren : () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),data: { breadcrumb: 'Dashboard', icon: 'grid_view' } },
+      { path : 'dashboard' , loadChildren : () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),data: { breadcrumb: 'Dashboard', icon: 'grid_view' } },
       { path: 'admission', component: AdmissionComponent ,data: { breadcrumb: 'Admission', icon: 'grid_view' }},
-      { path: 'student', loadChildren: './student/student.module#StudentModule',data: { breadcrumb: 'Student', icon: 'people' }},
-      { path: 'registration', loadChildren: './registration/registration.module#RegistrationModule',data: { breadcrumb: 'Registration', icon: '' }},
-      { path : 'configuration' , loadChildren : './master-data/master-data.module#MasterDataModule',data: { breadcrumb: 'My School', icon: 'settings' } },
+      { path: 'student', loadChildren: () => import('./student/student.module').then(m => m.StudentModule),data: { breadcrumb: 'Student', icon: 'people' }},
+      { path: 'registration', loadChildren: () => import('./registration/registration.module').then(m => m.RegistrationModule),data: { breadcrumb: 'Registration', icon: '' }},
+      { path : 'configuration' , loadChildren : () => import('./master-data/master-data.module').then(m => m.MasterDataModule),data: { breadcrumb: 'My School', icon: 'settings' } },
       { path: 'settings', component: SettingsComponent ,data: { breadcrumb: 'Settings', icon: 'settings' } },
     ]
   },
 
 
-  { path: 'login', loadChildren: './auth/auth.module#AuthModule' },
-  { path: '**',  loadChildren: './auth/auth.module#AuthModule'},
+  { path: 'login', loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule) },
+  { path: '**',  loadChildren: () => import('./auth/auth.module').then(m => m.AuthModule)},
 
 
 ];

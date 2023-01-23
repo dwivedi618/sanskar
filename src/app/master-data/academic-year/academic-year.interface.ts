@@ -1,8 +1,15 @@
-export interface Fee {
-    _id?: String
-    __v?: String | Number
+import { Class } from "../standard/class.interface";
+
+export interface AcademicYear {
+    _id?: String,
+    __v?: String,
     name: String,
     description: String,
-    frequency: Number,
-    isOptional: Boolean
+    session:String,
+    shiftType : String,
+    startTime : String,
+    endTime : String,
+    startDate: Date,
+    endDate:Date,
+    classes ?: Class[]
 }

@@ -48,3 +48,18 @@
     line-height: normal;
     height: 32px;
 }
+
+.mat-list-base .mat-list-item, .mat-list-base .mat-list-option {
+    display: block;
+    height: 36px!important;
+    -webkit-tap-highlight-color: transparent;
+    width: 100%;
+    padding: 0;
+}
+
+.mat-expansion-panel-header.mat-expanded {
+    height: 36px!important;
+}
+.mat-expansion-panel-header {
+    height: 36px!important;
+}

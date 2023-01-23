@@ -35,7 +35,7 @@
         </td>
     </ng-container>
     <ng-container *ngFor="let column of columns" [matColumnDef]="column">
-        <th mat-header-cell *matHeaderCellDef>{{ column  | titlecase}}</th>
+        <th mat-header-cell *matHeaderCellDef>{{ (column | label )  | titlecase}}</th>
         <td mat-cell *matCellDef="let row">
             <span *ngIf="column == 'amount'">
                 {{ row[column] | currency : "INR" }}
@@ -58,6 +58,6 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="menuClickHandler(Action.NAVIGATE,row);"
         style="cursor:pointer"></tr>
 </table>
-<ng-container *ngIf="!dataSource.data.length">
+<ng-container *ngIf="!dataSource.data.length && !isLoading">
     <app-empty-list></app-empty-list>
 </ng-container>

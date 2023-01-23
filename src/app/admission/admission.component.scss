@@ -1,8 +1,7 @@
-/* // custom scrollbar for sidenav-content */
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 10px;
-  /* // background-color: rgba(146, 146, 146, 0.37); */
   visibility: hidden;
 }
 :hover::-webkit-scrollbar {

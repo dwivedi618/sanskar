@@ -21,10 +21,38 @@
         "url": ""
     },
     {
-        "name": "My School",
+        "name": "Academics",
         "id": "configuration",
         "icon": "settings",
         "path": "configuration",
+        "url": "",
+        "subMenus": [
+            {
+                
+                "pid": "configuration",
+                "icon": "",
+                "subMenuId": "fee-category",
+                "path": "./configuration/master-fee-category",
+                "name": "Fees",
+                "url": "./configuration/master-fee-category"
+            },
+            {
+                
+                "pid": "configuration",
+                "subMenuId": "registered-classes",
+                "icon": "",
+                "path": "./configuration/master-fee-category",
+                "name": "Classes",
+                "url": "./configuration/master-standard"
+            } 
+             
+        ]
+    },
+    {
+        "name": "Manage Institute",
+        "id": "configuration",
+        "icon": "settings",
+        "path": "",
         "url": "",
         "subMenus": [
             {

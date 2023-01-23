@@ -11,8 +11,13 @@ import { Action } from '../uiComponents/menu-button/actions.enum';
   styleUrls: ['./table.component.scss'],
 })
 export class TableComponent implements AfterViewInit,OnInit{
+  isLoading : boolean = true;
   ngOnInit(): void {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 3000);
   }
+
   ngAfterViewInit(): void {
   }
   Action =  Action;
@@ -32,6 +37,7 @@ export class TableComponent implements AfterViewInit,OnInit{
   setTabelDataSource(data) {
     this.dataSource = new MatTableDataSource(data);
     console.log("data changed",data)
+    
     this.setDisplayedColumns(this.columns)
   }
 

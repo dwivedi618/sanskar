@@ -47,7 +47,7 @@
           <span>Student</span>
           <span class="spacer"></span>
           <button mat-raised-button type="button" color="primary" class="btn-mydark text-uppercase"
-            (click)="triggerAction('UPDATE')">
+            (click)="triggerAction(Action.UPDATE)">
             <span>{{(studentActionService.$isStudentFormVisible | async) ? 'Cancel' : 'Edit'}}</span>
           </button>
         </mat-toolbar>
@@ -56,7 +56,7 @@
           <ng-container *ngIf="!(studentActionService.$isStudentFormVisible | async)">
             <div class="row justify-content-center background m-0 py-5">
               <div class="col-md-6">
-                <ng-container *ngFor="let data of studentApiService.studentData | async | keyvalue">
+                <ng-container *ngFor="let data of ($studentData | async) | keyvalue">
                   <ng-container *ngIf="isIncluded(displayStudentFields,data.key)">
                     <div class="row">
                       <div class="col-6 text-left">
@@ -88,7 +88,7 @@
           <span>Parent</span>
           <span class="spacer"></span>
           <button mat-raised-button type="button" color="primary" class="btn-mydark text-uppercase"
-            (click)="triggerParentAction('UPDATE')">
+            (click)="triggerParentAction(Action.UPDATE)">
             <span>Update</span>
           </button>
         </mat-toolbar>
@@ -96,7 +96,7 @@
           <ng-container >
             <div class="row justify-content-center background m-0 py-5">
               <div class="col-md-6">
-                <ng-container *ngFor="let data of studentApiService.parentData | async | keyvalue">
+                <ng-container *ngFor="let data of ($parentData | async) | keyvalue">
                   <ng-container *ngIf="isIncluded(displayParentFields,data.key)">
                     <div class="row">
                       <div class="col-6 text-left">
@@ -114,10 +114,7 @@
               </div>
             </div>
           </ng-container>
-          <ng-container *ngIf="studentActionService.$isStudentFormVisible | async">
-            <app-student-form
-              [data]="{action : 'UPDATE' , data : studentApiService.studentData | async}"></app-student-form>
-          </ng-container>
+          
         </mat-card>
       </ng-container>
     </div>

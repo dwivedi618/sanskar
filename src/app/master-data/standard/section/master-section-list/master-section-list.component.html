@@ -35,7 +35,7 @@
         </button>
         <mat-menu #standards="matMenu" hasBackdrop="true" class="w-100" style="min-width: 10rem;">
           <button mat-menu-item *ngFor="let data of standardList" class="w-100"
-            (click)="selectedStandard = data.name;onStandardChange(data);">
+            (click)="selectedStandardName = data.name;onStandardChange(data);">
             <small [class.selected]="data._id == standardId">{{data.name | titlecase}}</small>
           </button>
         </mat-menu>

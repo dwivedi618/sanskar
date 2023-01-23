@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { MainMenu } from 'src/app/layouts/shared/uiComponents/left-sidebar-menu/sidebar.menus';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
@@ -55,6 +56,7 @@ export class StudentProfileComponent implements OnInit {
   ]
 
   readonly LABELS = LABELS;
+  readonly Action = Action;
 
   appliedFee: any;
   totalFeeDeposit: any;
@@ -64,6 +66,8 @@ export class StudentProfileComponent implements OnInit {
   showStudentForm: any;
   isStudentFormVisible: any;
   address: import("/home/v-shivam.dwivedi/Downloads/projects/nest/sanskar/src/app/student/student.interface").Address;
+  $studentData : Observable<any>;
+  $parentData :  Observable<any>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -92,7 +96,8 @@ export class StudentProfileComponent implements OnInit {
     this.commonService[API_SERVICE_METHODS.getStudentMenuTab]().subscribe((data: MainMenu[]) => { 
       this.menus = data ;
     });
-    this.fetchStudentCompleteProfileByStudentId()
+    this.fetchStudentCompleteProfileByStudentId();
+    this.$studentData = this.studentApiService.studentData;
   }
 
   isIncluded(fields ,key:String){

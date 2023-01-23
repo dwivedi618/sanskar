@@ -5,7 +5,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class LabelPipe implements PipeTransform {
 
-  transform(value: string, ...args: unknown[]): unknown {
+  transform(value: any, ...args: unknown[]): unknown {
     if(!value) return
     // camelcase
     let label = value.replace(/([A-Z])/g, " $1");

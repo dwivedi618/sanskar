@@ -37,6 +37,7 @@ export class FeeStructureListComponent implements  OnInit {
   selectedStandardName: any;
   fees: any;
   classWiseFees: any;
+  Action = Action;
   sessionLists = [
     { value: '2020-2021', viewValue: '2020-2021' },
     { value: '2021-2022', viewValue: '2021-2022' }
@@ -170,5 +171,6 @@ export class FeeStructureListComponent implements  OnInit {
   refresh() {
     this.getFeeStructureList();
   }
+  actionTriggerhandler(event){}
 }
 

@@ -14,7 +14,7 @@
      
       <span class="px-1">
         <ng-container *ngIf="!classWiseFees?.length">
-          <button mat-stroked-button color="" class="btn-dark" (click)="clickToAction('ADD')"
+          <button mat-stroked-button color="" class="btn-dark" (click)="clickToAction(Action.ADD)"
             [disabled]='!standardId'>
             <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
             <small >
@@ -23,7 +23,7 @@
           </button>
         </ng-container>
         <ng-container *ngIf="classWiseFees?.length">
-          <button mat-stroked-button color="" class="btn-dark" (click)="clickToAction('UPDATE')"
+          <button mat-stroked-button color="" class="btn-dark" (click)="clickToAction(Action.UPDATE)"
             [disabled]='!standardId'>
             <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
             <small>Update Fee Structure</small>

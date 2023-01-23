@@ -2,7 +2,7 @@
 import { query } from '@angular/animations';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, forkJoin, Observable } from 'rxjs';
+import { BehaviorSubject, forkJoin, Observable, Subject } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
 import { ApiResponse } from 'src/app/utils/apiResponce.interface';
 import { environment } from 'src/environments/environment';
@@ -21,19 +21,19 @@ export class StudentApiService {
     address: environment.apiUrl + '/' + 'address',
   }
 
-  private $student = new BehaviorSubject<Student>({} as Student);
-  private $parent = new BehaviorSubject<Parent>({} as Parent);
-  private $address = new BehaviorSubject<Address>({} as Address);
+  private $student = new Subject<Student>();
+  private $parent = new Subject<any>();
+  private $address = new Subject<Address>();
 
 
-  public get studentData() {
+  public get studentData():Observable<Student> {
     return this.$student.asObservable()
   }
 
   public setStudentData(studentData: Student) {
     this.$student.next(studentData);
   }
-  public get parentData() {
+  public get parentData():Observable<Parent> {
     return this.$parent.asObservable()
   }
 

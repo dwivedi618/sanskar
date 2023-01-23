@@ -15,6 +15,7 @@ export class TableComponent implements AfterViewInit,OnInit{
   }
   ngAfterViewInit(): void {
   }
+  Action =  Action;
   dataSource: MatTableDataSource<[]>;
   selection = new SelectionModel<any>(true, []);
   displayedColumns: any[];
@@ -78,4 +79,5 @@ export class TableComponent implements AfterViewInit,OnInit{
       this.dataSource.paginator.firstPage();
     }
   }
+  refresh(){}
 }

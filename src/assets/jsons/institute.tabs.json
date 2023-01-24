@@ -1,0 +1,16 @@
+[
+    {
+        "name": "Institute Information",
+        "id": "instituteInformation",
+        "icon": "apartment",
+        "path": "./institute",
+        "url": ""
+    },
+    {
+        "name": "Branches",
+        "id": "instituteBranches",
+        "icon": "webhook",
+        "path": "./institute/branches",
+        "url": ""
+    }
+]

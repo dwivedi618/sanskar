@@ -47,8 +47,8 @@ export class LeftSidebarMenuComponent implements OnInit {
 
   }
 
-  openConfigurationRoute(event) {
-    this.router.navigate(['./configuration'])
+  openConfigurationRoute(path:string) {
+    this.router.navigate([`./${path}`])
   }
 
 }

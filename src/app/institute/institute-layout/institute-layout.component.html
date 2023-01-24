@@ -1,0 +1,21 @@
+<mat-sidenav-container class="student-layout">
+    <mat-sidenav-content>
+        <mat-toolbar class="bg-mysecondary" style="max-height: 3rem;position:sticky;top:0;z-index: 2;">
+            <div class="px-1 ml-n2">
+                <span>Institute Setup</span>
+            </div>
+            <div class="spacer"></div>
+        </mat-toolbar>
+        <mat-toolbar class="justify-content-center bg-white mat-elevation-z4" style="max-height: 3rem;position:sticky;top:3rem;z-index: 2;">
+            <app-tab-nav [tabs]="$tabs | async" 
+            [selectedTabId]="selectedIndex" 
+            [sticky]="true"
+            (onChange)="onMainTabChange($event)"></app-tab-nav>
+        </mat-toolbar>
+        <main>
+            <div class="">
+                <router-outlet></router-outlet>
+            </div>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

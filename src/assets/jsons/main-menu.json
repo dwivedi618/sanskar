@@ -58,31 +58,10 @@
         ]
     },
     {
-        "name": "Institute Setup",
-        "id": "configuration",
-        "icon": "settings",
-        "path": "",
-        "url": "",
-        "subMenus": [
-            {
-                
-                "pid": "configuration",
-                "icon": "",
-                "subMenuId": "fee-category",
-                "path": "./configuration/master-fee-category",
-                "name": "Fees",
-                "url": "./configuration/master-fee-category"
-            },
-            {
-                
-                "pid": "configuration",
-                "subMenuId": "registered-classes",
-                "icon": "",
-                "path": "./configuration/master-fee-category",
-                "name": "Classes",
-                "url": "./configuration/master-standard"
-            } 
-             
-        ]
+        "name": "Institute",
+        "id": "institute",
+        "icon": "apartment",
+        "path": "institute",
+        "url": ""
     }
 ]

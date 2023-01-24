@@ -9,7 +9,7 @@
         </a>
 
         <mat-accordion *ngIf="menu.subMenus" class="mat-elevation-z0 " style="border-radius: 0;"
-            (click)="openConfigurationRoute($event)">
+            (click)="openConfigurationRoute(menu.path)">
             <mat-expansion-panel (opened)="panelOpenState = true" class="mat-elevation-z0  rounded-lg"
                 style="border-radius: 0;" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header [class.bg-mygradient-primary]="activeLink == menu.path">

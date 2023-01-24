@@ -8,7 +8,8 @@ import { API_SERVICE_METHODS } from './api.methods';
 //to fetch main menu , student menu and submenu declare routings
 export const API_URLS_FOR_MENUS = {
   mainMenuUrl: "assets/jsons/main-menu.json",
-  studentMenuTabUrl: "assets/jsons/student.tabs.json"
+  studentMenuTabUrl: "assets/jsons/student.tabs.json",
+  instituteMenuTabUrl : "assets/jsons/institute.tabs.json",
 }
 @Injectable({
   providedIn: 'root'
@@ -42,6 +43,10 @@ export class RoutingService {
 
   [API_SERVICE_METHODS.getStudentMenuTab](): Observable<MainMenu[]> {
     return this.http.get<MainMenu[]>(this.API_URLS.studentMenuTabUrl);
+  }
+
+  [API_SERVICE_METHODS.getInstituteMenuTab](): Observable<MainMenu[]> {
+    return this.http.get<MainMenu[]>(this.API_URLS.instituteMenuTabUrl);
   }
 
 

@@ -16,6 +16,8 @@ const routes: Routes = [
       { path : 'dashboard' , loadChildren : () => import('./dashboard/dashboard.module').then(m => m.DashboardModule),data: { breadcrumb: 'Dashboard', icon: 'grid_view' } },
       { path: 'admission', component: AdmissionComponent ,data: { breadcrumb: 'Admission', icon: 'grid_view' }},
       { path: 'student', loadChildren: () => import('./student/student.module').then(m => m.StudentModule),data: { breadcrumb: 'Student', icon: 'people' }},
+      { path: 'institute', loadChildren: () => import('./institute/institute.module').then(m => m.InstituteModule),data: { breadcrumb: 'Institute', icon: 'apartment' }},
+
       { path: 'registration', loadChildren: () => import('./registration/registration.module').then(m => m.RegistrationModule),data: { breadcrumb: 'Registration', icon: '' }},
       { path : 'configuration' , loadChildren : () => import('./master-data/master-data.module').then(m => m.MasterDataModule),data: { breadcrumb: 'My School', icon: 'settings' } },
       { path: 'settings', component: SettingsComponent ,data: { breadcrumb: 'Settings', icon: 'settings' } },

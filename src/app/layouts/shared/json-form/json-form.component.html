@@ -136,7 +136,54 @@
 
             </ng-container>
 
-            <ng-container *ngIf="field.type === 'dropdown'">
+            <!-- <mat-form-field appearance="fill">
+                <mat-label>Toppings</mat-label>
+                <mat-select [formControl]="toppings" multiple>
+                  <mat-select-trigger>
+                    {{toppings.value?.[0] || ''}}
+                    <span *ngIf="(toppings.value?.length || 0) > 1" class="example-additional-selection">
+                      (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
+                    </span>
+                  </mat-select-trigger>
+                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
+                </mat-select>
+              </mat-form-field> -->
+
+              <ng-container *ngIf="field.type === 'dropdown' && field.isMultiSelectable">
+                <div class="row my-4">
+                    <div class="col-4 text-left">
+                        <label>{{field.label}}<span class="required-mark">{{field?.validators?.required ? '*' :
+                                ''}}</span></label>
+                    </div>
+                    <div class="col-8 text-left">
+                        <mat-form-field appearance="outline" class="w-100" (click)="fetchValue(field)">
+                            <mat-select [formControlName]="field.name" (selectionChange)="onSelectOption($event,field)" [multiple]="field.isMultiSelectable">
+                                <mat-option value=" " disabled>Select {{field.label || ''}}</mat-option>
+                                <ng-container *ngIf="field?.hitHttp && field?.method;else options">
+                                    <mat-option 
+                                        *ngFor="let option of this.commonService.formOptions[field.method+field.ctrlId] | async"
+                                        [value]="option.value">{{option.label}}
+                                    </mat-option>
+                                </ng-container>
+
+                                <ng-template #options>
+                                    <mat-option *ngFor="let option of field?.options"
+                                        [value]="option.value">{{option.label}}
+                                    </mat-option>
+                                </ng-template>
+
+                            </mat-select>
+                            <mat-error *ngIf="form.get(field.name).hasError('required')">Required</mat-error>
+                            <mat-error
+                                *ngIf="form.get(field.name).hasError('required') && !form.get(field.dependentControlName)?.value &&  field?.dependentControlName">You
+                                must select {{field.dependentControlName}} first</mat-error>
+
+                        </mat-form-field>
+                    </div>
+                </div>
+            </ng-container>
+
+            <ng-container *ngIf="field.type === 'dropdown' && !field?.isMultiSelectable">
                 <div class="row my-4">
                     <div class="col-4 text-left">
                         <label>{{field.label}} <span class="required-mark">{{field?.validators?.required ? '*' :
@@ -145,7 +192,7 @@
                     <div class="col-8 text-left">
                         <mat-form-field appearance="outline" class="w-100" (click)="fetchValue(field)">
                             <mat-select [formControlName]="field.name" (selectionChange)="onSelectOption($event,field)">
-                                <mat-option value="">Select {{field.label || ''}}</mat-option>
+                                <mat-option value="" >Select {{field.label || ''}}</mat-option>
                                 <ng-container *ngIf="field?.hitHttp && field?.method;else options">
                                     <mat-option 
                                         *ngFor="let option of this.commonService.formOptions[field.method+field.ctrlId] | async"

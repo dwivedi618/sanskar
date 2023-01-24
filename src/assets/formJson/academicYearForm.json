@@ -85,10 +85,11 @@
         },
         {
             "ctrlId": "acdF6",
-            "name": "classIds",
+            "name": "classes",
             "label": "Classes",
             "value": "",
             "type": "dropdown",
+            "isMultiSelectable" : true,
             "validators": {
                 "required": false
             },

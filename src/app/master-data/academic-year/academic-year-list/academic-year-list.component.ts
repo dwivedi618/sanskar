@@ -17,7 +17,7 @@ import { ActionMenus } from 'src/app/layouts/shared/uiComponents/menu-button/act
 
 export class AcademicYearListComponent implements OnInit, OnDestroy {
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
-  displayedColumns = ['name'];
+  displayedColumns = ['name',"startDate","endDate","startTime","endTime"];
   academicYearList: any;
   actions = ActionMenus;
   constructor(
@@ -37,7 +37,7 @@ export class AcademicYearListComponent implements OnInit, OnDestroy {
   getFeeCategoryList() {
     this.uiService.loader.show("Fetching academicYearList...");
     this.commonService[API_SERVICE_METHODS.getAcademicYearList]().subscribe((result) => {
-      this.academicYearList = result['data'] || null;
+      this.academicYearList = result || null;
       this.uiService.loader.hide();
     }, (error) => {
       console.log("getMasterFeeCategory error", error);

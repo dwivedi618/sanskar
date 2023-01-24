@@ -15,7 +15,7 @@ export interface District {
 export const API_ROUTES = {
   fee: environment.apiUrl + '/' + 'fee',
   class: environment.apiUrl + '/' + 'class',
-  academicYear: environment.apiUrl + '/' + 'academic-year',
+  academicYear: environment.apiUrl + '/' + 'academicYear',
 
   section: environment.apiUrl + '/' + 'section',
   feeStructure: environment.apiUrl + '/' + 'feeStructure',
@@ -25,7 +25,7 @@ export const API_ROUTES = {
   mainMenuUrl: "assets/jsons/main-menu.json",
   studentMenuTabUrl: "assets/jsons/student.tabs.json",
   studentRegistrationMileStone: "assets/jsons/mile-stones/registration.milestone.json"
-  
+
 }
 @Injectable({
   providedIn: 'root'
@@ -41,6 +41,10 @@ export class CommonService {
 
   [API_SERVICE_METHODS.getClasses]() {
     return this.http.get<any>(this.API_ROUTES.class).pipe(pluck("data"));
+  }
+
+  [API_SERVICE_METHODS.getAcademicYearList](id:string) {
+    return this.http.get<any>(this.API_ROUTES.academicYear).pipe(pluck("data"));
   }
   [API_SERVICE_METHODS.getFees](id: string) {
     return this.http.get<any>(this.API_ROUTES.fee + '/' + id).pipe(pluck('data'));

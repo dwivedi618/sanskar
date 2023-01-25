@@ -1,6 +1,6 @@
 export const PATTERNS = {
   tel: /^[0-9]/,
-  email: /^[a-zA-Z0-9+_.-@]+$/,
+  email: /^[a-zA-Z0-9+_.-@]+git $/,
   alphanumeric: /^[A-Za-z\d\s]+$/,
   alphabet: /^[A-Za-z\s]+$/,
   number: /^[0-9]+(\.[0-9]{0,2})?$/,

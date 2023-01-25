@@ -13,13 +13,18 @@ export class InputMaskDirective {
 
   @HostListener('keypress', ['$event']) onInput(e) {
     this.pattern = this.regexMap[this.inputType]
+    console.log("this.inputType",this.inputType)
+    console.log("this.pattern",this.pattern)
+
     const inputChar = e.key;
     //this.pattern.lastIndex = 0; // dont know why but had to add this
     if (this.pattern?.test(inputChar)) {
       // success
+      console.log("email matched",inputChar)
       this.renderer.setStyle(this.el.nativeElement, 'color', 'green');
       this.patternAlert('black');
     } else {
+      console.log("email not matched",inputChar)
 
       this.patternAlert('black');
       //do something her to indicate invalid character

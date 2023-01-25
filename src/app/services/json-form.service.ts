@@ -20,8 +20,8 @@ export class JsonFormService {
     classFormJson : "assets/formJson/classForm.json",
     admissionForm : "assets/formJson/admissionForm.json",
     sectionForm : "assets/formJson/sectionForm.json",
-    academicYearFormJson : "assets/formJson/academicYearForm.json"
-,
+    academicYearFormJson : "assets/formJson/academicYearForm.json",
+    instituteInformationFormJson : "assets/formJson/instituteInformationForm.json"
   }
   constructor(private http : HttpClient,private fb: FormBuilder) { 
     
@@ -31,6 +31,9 @@ export class JsonFormService {
   }
   getAcademicYearFormJson(){
     return this.http.get<JsonFormData>(this.jsonFormUrl.academicYearFormJson);
+  }
+  getInstituteInformationFormJson(){
+    return this.http.get<JsonFormData>(this.jsonFormUrl.instituteInformationFormJson);
   }
   getSectionFormJson(){
     return this.http.get<JsonFormData>(this.jsonFormUrl.sectionForm);

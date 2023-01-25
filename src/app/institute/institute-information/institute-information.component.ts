@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DialogService } from 'src/app/layouts/shared/dialog.service';
 
 @Component({
   selector: 'app-institute-information',
@@ -7,9 +8,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InstituteInformationComponent implements OnInit {
 
-  constructor() { }
+  constructor(
+    private dialogService : DialogService
+  ) { }
 
   ngOnInit(): void {
+    this.manageInstituteInformation();
+  }
+
+  manageInstituteInformation() {
+    this.dialogService.manageInstituteInformation().subscribe(()=>{this.refresh()});
+  }
+  refresh(){
+
   }
 
 }

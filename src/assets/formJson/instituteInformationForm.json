@@ -1,0 +1,135 @@
+{
+    "controls": [
+        {
+            "name": "instituteName",
+            "label": "Institute Name",
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "maxLength": 50
+            }
+        },
+        {
+            "name": "founderName",
+            "label": "Founder Name",
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "maxLength": 50
+            }
+        },
+        {
+            "name": "affiliation",
+            "label": "Affiliation",
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true
+            }
+        },
+        {
+            "name": "instituteCode",
+            "label": "Institute Code",
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": false
+            }
+        },
+        {
+            "name": "email",
+            "label": "Email",
+            "value": "",
+            "type": "email",
+            "validators": {
+                "required": false,
+                "email" : true
+            }
+        },
+        {
+            "name": "altEmail",
+            "label": "Alternate Email",
+            "value": "",
+            "type": "email",
+            "validators": {
+                "required": false
+            }
+        },
+        {
+            "name": "contactNumber",
+            "label": "Contact Number",
+            "value": "",
+            "type": "number",
+            "validators": {
+                "required": false
+            }
+        },
+        {
+            "name": "officeNumber",
+            "label": "Office Number",
+            "value": "",
+            "type": "number",
+            "validators": {
+                "required": true
+            }
+        },
+        {
+            "name": "isMainBranch",
+            "label": "Main Branch",
+            "value": "YES",
+            "type": "radio",
+            "validators": {
+                "required": true
+            },
+            "options": [
+                {
+                    "label": "YES",
+                    "value": "YES",
+                    "icon": ""
+                },
+                {
+                    "label": "NO",
+                    "value": "NO",
+                    "icon": ""
+                }
+            ]
+        },
+        
+        {
+            "name": "instituteType",
+            "label": "Institute Type",
+            "value": "school",
+            "type": "dropdown",
+            "validators": {
+                "required": true
+            },
+            "options": [
+                {
+                    "label": "School",
+                    "value": "school",
+                    "icon": ""
+                }
+            ]
+        },
+        {
+            "name": "panNumber",
+            "label": "Pan",
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": false
+            }
+        },
+        {
+            "name": "address",
+            "label": "Address",
+            "value": "",
+            "type": "textarea",
+            "validators": {
+                "required": true
+            }
+        }
+    ]
+}

@@ -28,7 +28,9 @@
                             <mat-label>{{field.label}}</mat-label>
                             <input matInput type="field.type" #input appInputMask="{{field.type}}"
                                 maxlength="{{field?.validators?.maxLength}}"
-                                minlength="{{field?.validators?.minLength}}" [formControlName]="field.name">
+                                minlength="{{field?.validators?.minLength}}" 
+                                email="{{field?.validators?.email}}"
+                                [formControlName]="field.name">
 
                             <strong *ngIf="field.name === 'amount'" matPrefix>Rs.&nbsp;</strong>
                             <span *ngIf="field.name === 'amount'" matSuffix>/-</span>
@@ -37,6 +39,8 @@
                                 {{field?.validators?.maxLength}}</mat-hint>
                             <mat-error *ngIf="form.get(field.name)?.hasError('required')">Required</mat-error>
                             <mat-error *ngIf="form.get(field.name)?.hasError('minlength')">Min {{field?.validators?.minLength}} Required</mat-error>
+                            <mat-error *ngIf="form.get(field.name)?.hasError('email')"> Not a valid Email</mat-error>
+
 
                         </mat-form-field>
 

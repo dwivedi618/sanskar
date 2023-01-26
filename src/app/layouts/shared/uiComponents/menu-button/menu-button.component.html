@@ -5,9 +5,9 @@
 <ng-container >
     <mat-menu #menu="matMenu">
         <ng-container *ngFor="let menu of menus">
-            <button mat-menu-item (click)="actionClickHandler(menu)">
-                <mat-icon class="mat-icon-sm pt-1 material-icons-outlined text-mylight">{{menu.icon || ''}}</mat-icon>
-                <span class="text-mylight">{{menu.menuName}}</span>
+            <button mat-menu-item (click)="actionClickHandler(menu)" class="">
+                <mat-icon class="mat-icon-sm pt-1 material-icons-outlined fw-600 fc">{{menu.icon || ''}}</mat-icon>
+                <span class="fw-600 fc">{{menu.menuName}}</span>
             </button>
         </ng-container>
     </mat-menu>

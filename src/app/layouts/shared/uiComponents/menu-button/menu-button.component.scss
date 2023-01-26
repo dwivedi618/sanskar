@@ -4,11 +4,23 @@
     overflow: auto;
     -webkit-overflow-scrolling: touch;
     max-height: calc(100vh - 48px);
-    border-radius: 4px;
+    border-radius: 10px;
     outline: 0;
     min-height: 64px;
+    box-shadow: var(--elevation-floating)
 }
 ::ng-deep button.mat-menu-item{
     line-height: normal;
     height: 32px;
+}
+.fw-600{
+    font-weight: 600;
+}
+.fc{
+    &-light{
+        color: #ccc;
+    }
+    &{
+        color: #424242;
+    }
 }

@@ -2,7 +2,7 @@
   <ng-container *ngIf="this.studentData">
     <div class="container mt-2 mb-5 pt-4 ">
       <app-milestone></app-milestone>
-      <mat-card class="mat-elevation-z4 border-bottom-0 ">
+      <mat-card class="elevation border-bottom-0 ">
         <div class="row justify-content-center p-5 background m-0">
           <div class="col-md-4">
             <app-avatar [src]="studentData?.studentPhoto" [size]="'xl'" [gender]="studentData?.gender"
@@ -25,9 +25,13 @@
                 <button mat-stroked-button (click)="updateProfile()" class="mr-1">
                   <small class="text-mylight">Complete Registration</small>
                 </button>
-                <button mat-stroked-button (click)="printProfile()" class="mx-1">
+
+                  <app-menu-button ></app-menu-button>
+                
+                
+                <!-- <button mat-stroked-button (click)="printProfile()" class="mx-1">
                   <small class="text-mylight text-uppercase">Print</small>
-                </button>
+                </button> -->
 
               </div>
 

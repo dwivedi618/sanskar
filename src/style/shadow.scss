@@ -1,34 +1,12 @@
-.box-shadow-1 {
-    box-shadow: 0px 30px 30px -20px rgba(0, 0, 0, 0.1);
+
+.elevation{
+    box-shadow: var(--elevation-floating)!important;
+    &-bottom{
+        box-shadow: var(--elevation-raised-bottom)!important;
+    }
+    &-top{
+        box-shadow: var(--elevation-raised-top)!important;
+    }
 }
 
-.box_shadow_4 {
-    box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28);
-}
-
-.box_shadow_3 {
-    box-shadow: 0 0 10px 0 #00000015 !important;
-}
-
-.box_shadow_2 {
-    box-sizing: border-box;
-    box-shadow: rgba(9, 30, 66, 0.25) 0px 4px 8px -2px, rgba(9, 30, 66, 0.31) 0px 0px 1px;
-    margin: 0px auto 16px;
-    padding: 24px;
-    transition: box-shadow 0.25s ease 0s;
-}
-
-.box_shadow_1 {
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25) !important;
-}
-
-.neo_shadow_1 {
-    background: linear-gradient(145deg, #dedede, #ffffff);
-    box-shadow: 20px 20px 60px #d2d2d2,
-        -20px -20px 60px #ffffff;
-}
-
-.box-shadow-0 {
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.164) !important;
-}
 

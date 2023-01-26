@@ -11,6 +11,12 @@
     <div class="spacer"></div>
     <ng-container *ngIf="!this.selection?.selected?.length">
         <app-filter (onEvent)="applyFilter($event)"></app-filter>
+        <button mat-stroked-button color="" (click)="addNew()" >
+            <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
+            <small>
+                Add New
+            </small>
+        </button>
     </ng-container>
 </mat-toolbar>
 <table mat-table [dataSource]="dataSource" class="w-100" *ngIf="dataSource && dataSource.data.length != 0 ">
@@ -35,7 +41,7 @@
         </td>
     </ng-container>
     <ng-container *ngFor="let column of columns" [matColumnDef]="column">
-        <th mat-header-cell *matHeaderCellDef>{{ (column | label )  | titlecase}}</th>
+        <th mat-header-cell *matHeaderCellDef>{{ (column | label ) | titlecase}}</th>
         <td mat-cell *matCellDef="let row">
             <span *ngIf="column == 'amount'">
                 {{ row[column] | currency : "INR" }}

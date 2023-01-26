@@ -33,6 +33,11 @@ export class AcademicYearActionService {
           resultObservable.next(result);
         });
         break;
+      case Action.ADD:
+        this.dialogService.manageAcademicYear(data, action).subscribe(result => {
+          resultObservable.next(result);
+        });
+        break;
       default:
         break;
     }

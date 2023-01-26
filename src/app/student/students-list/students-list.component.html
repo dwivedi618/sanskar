@@ -1,39 +1,5 @@
 <div class="">
-  <mat-toolbar class="background-dark-primary">
-    <div class="" style="font-size:12px">
-      <span class="m-0 p-0">Registered Students</span>
-    </div>
-    <div class="spacer"></div>
-    <span class="px-1">
-      <button mat-stroked-button color="" [matMenuTriggerFor]="session" #t="matMenuTrigger">
-        <small>
-          2021-2022
-        </small>
-        <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
-      </button>
-      <mat-menu #session="matMenu" hasBackdrop="true">
-        <button mat-menu-item>
-          <mat-icon class="mat-icon-sm pt-1 text-success">check_box</mat-icon>
-          <small class="pr-2">2018-2019</small>
-        </button>
-        <button mat-menu-item>
-          <mat-icon class="mat-icon-sm pt-1 text-mylight">check_box_outline_blank</mat-icon>
-          <small class="pr-2">2019-2020</small>
-        </button> <button mat-menu-item>
-          <mat-icon class="mat-icon-sm pt-1 text-mylight">check_box_outline_blank</mat-icon>
-          <small class="pr-2">2020-2021</small>
-        </button>
-      </mat-menu>
-    </span>
-    <span class="px-1">
-      <button mat-button (click)="newAdmission()" class="btn-mydark">
-        <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
-        <small>
-          New addmission
-        </small>
-      </button>
-    </span>
-  </mat-toolbar>
+  <app-toolbar [title]="'Students'"></app-toolbar>
   <!--more action on selected row-->
   <mat-toolbar class="bg-white">
     <mat-toolbar-row>
@@ -48,6 +14,12 @@
       <div class="spacer"></div>
       <ng-container *ngIf="!this.selection.selected.length">
         <app-filter (onEvent)="applyFilter($event)"></app-filter>
+        <button mat-button (click)="newAdmission()" class="background-dark-secondary">
+          <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
+          <small>
+            New addmission
+          </small>
+        </button>
       </ng-container>
     </mat-toolbar-row>
   </mat-toolbar>

@@ -171,6 +171,8 @@ export class FeeStructureListComponent implements  OnInit {
   refresh() {
     this.getFeeStructureList();
   }
-  actionTriggerhandler(event){}
+  actionTriggerhandler(event){
+    this.clickToAction(Action.UPDATE)
+  }
 }
 

@@ -1,34 +1,7 @@
 <div class="">
   <!--table heading-->
-  <mat-toolbar class="background-dark-primary">
-    <mat-toolbar-row>
-      <div class="px-1 ml-n2">
-        <button mat-icon-button routerLink='/configuration/master-standard'>
-            <mat-icon class="mat-icon-md text-mylight pt-0">arrow_back</mat-icon>
-            <span>{{selectedStandardName | titlecase}}</span>
-        </button>
-    </div>
-      <div class="spacer"></div>
-      <span class="px-1">
-        <ng-container *ngIf="!classWiseFees?.length">
-          <button mat-stroked-button color="" class="btn-dark" (click)="clickToAction(Action.ADD)"
-            [disabled]='!standardId'>
-            <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
-            <small >
-              Add Fee Structure
-            </small>
-          </button>
-        </ng-container>
-        <ng-container *ngIf="classWiseFees?.length">
-          <button mat-stroked-button color="" class="btn-dark" (click)="clickToAction(Action.UPDATE)"
-            [disabled]='!standardId'>
-            <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
-            <small>Update Fee Structure</small>
-          </button>
-        </ng-container>
-      </span>
-    </mat-toolbar-row>
-  </mat-toolbar>
+  <app-toolbar [title]="selectedStandardName ? selectedStandardName + ' Fee structure' : '' " [routerLink]="'/configuration/master-standard'"></app-toolbar>
+  
   <!--more action on selected row-->
   <mat-toolbar >
     <mat-toolbar-row >

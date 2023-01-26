@@ -1,23 +1,6 @@
 <div class="bg-white">
   <!--table heading-->
-  <mat-toolbar class="background-dark-primary">
-    <mat-toolbar-row>
-      <div class="" style="font-size:12px">
-        <span class="m-0 p-0">Academic Year</span>
-        <!-- <small>You can be only set master fee structure for current and future sessions</small> -->
-      </div>
-      <div class="spacer"></div>
-      
-      <span class="px-1">
-        <button mat-stroked-button color="" #addFeeCategory (click)="manageAcademicYear()">
-          <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
-          <small>
-            New Academic Year
-          </small>
-        </button>
-      </span>
-    </mat-toolbar-row>
-  </mat-toolbar>
+  <app-toolbar [title]="'Academic Year'" [sticky]="true"></app-toolbar>
 
   <app-table [data]="academicYearList" [columns]="displayedColumns" [actions]="actions"
     (actionTriggerd)="actionTriggerhandler($event)"></app-table>

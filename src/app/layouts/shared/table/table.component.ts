@@ -12,7 +12,6 @@ import { Action } from '../uiComponents/menu-button/actions.enum';
 })
 export class TableComponent implements AfterViewInit, OnInit {
   isLoading: boolean = true;
-
   Action = Action;
   dataSource: MatTableDataSource<[]>;
   selection = new SelectionModel<any>(true, []);
@@ -51,6 +50,10 @@ export class TableComponent implements AfterViewInit, OnInit {
       this.displayedColumns = this.actions && this.actions?.length ? ['select', ...this.columns, 'action'] : ['select', ...this.columns]
     }
     console.log("this.columns", this.columns)
+  }
+
+  addNew(){
+    this.menuClickHandler(Action.ADD,{});
   }
 
   menuClickHandler(action: Action, data) {

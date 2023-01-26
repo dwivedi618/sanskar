@@ -32,6 +32,7 @@ import { MilestoneComponent } from './milestone/milestone.component';
 import { TableComponent } from './table/table.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { AvatarDescriptionComponent } from './avatar-description/avatar-description.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,8 @@ import { AvatarDescriptionComponent } from './avatar-description/avatar-descript
     MilestoneComponent,
     TableComponent,
     BreadcrumbComponent,
-    AvatarDescriptionComponent
+    AvatarDescriptionComponent,
+    ToolbarComponent
   ],
   imports: [
     CommonModule,
@@ -106,7 +108,8 @@ import { AvatarDescriptionComponent } from './avatar-description/avatar-descript
     TabNavComponent,
     MilestoneComponent,
     TableComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    ToolbarComponent
   ]
 })
 export class SharedModule { }

@@ -1,7 +1,5 @@
-<section style="height: calc(100vh-6rem);"class="background-white-primary pb-5">
-    <mat-toolbar class="background-dark-primary" style="position: sticky;top: 0;z-index: 100;">
-        <small>Registration For Academic 2023-24</small>
-      </mat-toolbar> 
+<section style="height: calc(100vh-6rem);"class="background-white-primary pb-5"> 
+      <app-toolbar [title]="'Student Registration'" [sticky]="true"></app-toolbar>
     <div class="row justify-content-center m-0 my-4">
             <mat-card class="background-white br-10 elevation m-0">
                 <app-milestone [data]="mileStoneService.studentRegistrationMileStone | async"  [sticky]="true"></app-milestone>

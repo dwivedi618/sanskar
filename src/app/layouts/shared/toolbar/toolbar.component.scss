@@ -1,0 +1,6 @@
+mat-toolbar {
+    height: 48px;
+}
+mat-toolbar.sticky{
+    position: sticky;top: 0;z-index: 100;
+}

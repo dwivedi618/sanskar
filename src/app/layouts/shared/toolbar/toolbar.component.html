@@ -1,0 +1,11 @@
+<mat-toolbar class="background-dark-primary" [class.sticky]="sticky">
+    <ng-container *ngIf="!routerLink">
+        <span>{{title | titlecase}}</span>
+    </ng-container>
+    <ng-container *ngIf="routerLink">
+        <button mat-icon-button [routerLink]="routerLink">
+            <mat-icon class="mat-icon-md text-mylight pt-0">arrow_back</mat-icon>
+            <span>{{title | titlecase}}</span>
+        </button>
+    </ng-container>
+</mat-toolbar>

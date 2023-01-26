@@ -19,14 +19,14 @@
     }
 
     &.lg{
-        width: 64px;
-        min-width: 64px;
-        height: 64px;
+        width: 128px;
+        min-width:128px;
+        height: 128px;
     }
     &.xl{
-        width: 128px;
-        min-width: 128px;
-        height: 128px;
+        width: 256px;
+        min-width: 256px;
+        height: 256px;
         box-shadow: 0 1px 6px 0 rgba(32, 33, 36, .28)
     }
 

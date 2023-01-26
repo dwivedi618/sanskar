@@ -1,7 +1,7 @@
 <mat-nav-list class="sidenav_menus mx-2" style="color: white!important;">
     <ng-container *ngFor="let menu of menus">
         <a routerLink={{menu.path}} *ngIf="!menu.subMenus?.length || false">
-            <mat-list-item [class.bg-mygradient-primary]="activeLink == menu.path"
+            <mat-list-item [class.background-gradient-primary]="activeLink == menu.path"
                 class="text-white  mx-auto rounded-lg">
                 <mat-icon class="mat-icon-sm pt-1">{{menu.icon}}</mat-icon>
                 <small>{{menu.name}}</small>
@@ -12,14 +12,14 @@
             (click)="openConfigurationRoute(menu.path)">
             <mat-expansion-panel (opened)="panelOpenState = true" class="mat-elevation-z0  rounded-lg"
                 style="border-radius: 0;" (closed)="panelOpenState = false">
-                <mat-expansion-panel-header [class.bg-mygradient-primary]="activeLink == menu.path">
+                <mat-expansion-panel-header [class.background-gradient-primary]="activeLink == menu.path">
                     <mat-panel-title class="text-white">
                         <mat-icon class="mat-icon-sm pt-1 ">{{menu.icon}}</mat-icon>
                         <small>{{menu.name}}</small>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
                 <a *ngFor="let subMenu of menu.subMenus" (click)="$event.stopPropagation();" mat-list-item
-                    routerLink="{{subMenu.url}}" routerLinkActive="bg-mygradient-primary  mx-auto rounded-lg"
+                    routerLink="{{subMenu.url}}" routerLinkActive="background-gradient-primary  mx-auto rounded-lg"
                     class="text-light ">
                     <small>{{subMenu.name}}</small></a>
             </mat-expansion-panel>

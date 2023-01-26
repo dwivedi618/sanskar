@@ -100,7 +100,8 @@
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "../node_modules/bootstrap/dist/css/bootstrap.min.css",
               "node_modules/ng2-image-viewer/imageviewer.scss",
-              "src/styles.css"
+              "src/styles.css",
+              "src/style/background.scss"
             ],
             "scripts": [
               "../node_modules/jquery/dist/jquery.min.js",

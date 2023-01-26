@@ -3,7 +3,7 @@
     <div class="container mt-2 mb-5 pt-4 ">
       <app-milestone></app-milestone>
       <mat-card class="elevation border-bottom-0 ">
-        <div class="row justify-content-center p-5 background m-0">
+        <div class="row justify-content-center p-5 m-0">
           <div class="col-md-4">
             <app-avatar [src]="studentData?.studentPhoto" [size]="'xl'" [gender]="studentData?.gender"
               [shape]="'square'"></app-avatar>
@@ -47,18 +47,18 @@
       </mat-toolbar> -->
 
       <ng-container>
-        <mat-toolbar class="bg-mysecondary glass">
-          <span>Student</span>
-          <span class="spacer"></span>
-          <button mat-raised-button type="button" color="primary" class="btn-mydark text-uppercase"
-            (click)="triggerAction(Action.UPDATE)">
-            <span>{{(studentActionService.$isStudentFormVisible | async) ? 'Cancel' : 'Edit'}}</span>
-          </button>
-        </mat-toolbar>
-        <mat-card>
+        <mat-card class="mt-5 mb-5 p-0">
+          <mat-toolbar class="glass">
+            <span>Student</span>
+            <span class="spacer"></span>
+            <button mat-raised-button type="button" color="primary" class="btn-mydark text-uppercase"
+              (click)="triggerAction(Action.UPDATE)">
+              <span>{{(studentActionService.$isStudentFormVisible | async) ? 'Cancel' : 'Edit'}}</span>
+            </button>
+          </mat-toolbar>
 
           <ng-container *ngIf="!(studentActionService.$isStudentFormVisible | async)">
-            <div class="row justify-content-center background m-0 py-5">
+            <div class="row justify-content-center  m-0 py-5">
               <div class="col-md-6">
                 <ng-container *ngFor="let data of ($studentData | async) | keyvalue">
                   <ng-container *ngIf="isIncluded(displayStudentFields,data.key)">
@@ -88,7 +88,7 @@
         </mat-card>
       </ng-container>
       <ng-container *ngIf="studentApiService.parentData | async">
-        <mat-toolbar class="bg-mysecondary glass">
+        <mat-toolbar class="background-dark-primary glass">
           <span>Parent</span>
           <span class="spacer"></span>
           <button mat-raised-button type="button" color="primary" class="btn-mydark text-uppercase"

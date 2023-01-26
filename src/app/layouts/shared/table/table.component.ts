@@ -10,17 +10,10 @@ import { Action } from '../uiComponents/menu-button/actions.enum';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss'],
 })
-export class TableComponent implements AfterViewInit,OnInit{
-  isLoading : boolean = true;
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 3000);
-  }
+export class TableComponent implements AfterViewInit, OnInit {
+  isLoading: boolean = true;
 
-  ngAfterViewInit(): void {
-  }
-  Action =  Action;
+  Action = Action;
   dataSource: MatTableDataSource<[]>;
   selection = new SelectionModel<any>(true, []);
   displayedColumns: any[];
@@ -29,25 +22,33 @@ export class TableComponent implements AfterViewInit,OnInit{
   @Input() set data(data: any[]) {
     this.setTabelDataSource(data || []);
   }
-  
+
   @Input() columns = [] as string[];
   @Input() actions;
   @Output() actionTriggerd = new EventEmitter<{ action, data }>();
 
+  ngOnInit(): void {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 3000);
+  }
+
+  ngAfterViewInit(): void {
+  }
   setTabelDataSource(data) {
     this.dataSource = new MatTableDataSource(data);
-    console.log("data changed",data)
-    
+    console.log("data changed", data)
+
     this.setDisplayedColumns(this.columns)
   }
 
-  setDisplayedColumns(data){
-    console.log("column changed",data)
+  setDisplayedColumns(data) {
+    console.log("column changed", data)
 
     if (data && data.length) {
       this.columns = data;
       this.displayedColumns = []
-       this.displayedColumns = this.actions && this.actions?.length? ['select', ...this.columns,'action'] : ['select', ...this.columns]
+      this.displayedColumns = this.actions && this.actions?.length ? ['select', ...this.columns, 'action'] : ['select', ...this.columns]
     }
     console.log("this.columns", this.columns)
   }
@@ -85,5 +86,5 @@ export class TableComponent implements AfterViewInit,OnInit{
       this.dataSource.paginator.firstPage();
     }
   }
-  refresh(){}
+  refresh() { }
 }

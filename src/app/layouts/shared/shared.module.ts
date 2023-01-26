@@ -31,6 +31,7 @@ import { TabNavComponent } from './tab-nav/tab-nav.component';
 import { MilestoneComponent } from './milestone/milestone.component';
 import { TableComponent } from './table/table.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
+import { AvatarDescriptionComponent } from './avatar-description/avatar-description.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
     TabNavComponent,
     MilestoneComponent,
     TableComponent,
-    BreadcrumbComponent
+    BreadcrumbComponent,
+    AvatarDescriptionComponent
   ],
   imports: [
     CommonModule,

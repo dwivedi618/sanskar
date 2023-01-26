@@ -1,20 +1,18 @@
-<section style="height: calc(100vh-6rem);" style="margin-bottom: 5rem;">
-    <mat-toolbar class="bg-mysecondary" style="position: sticky;top: 0;z-index: 100;">
+<section style="height: calc(100vh-6rem);"class="background-white-primary pb-5">
+    <mat-toolbar class="background-dark-primary" style="position: sticky;top: 0;z-index: 100;">
         <small>Registration For Academic 2023-24</small>
-        
       </mat-toolbar> 
-    <div class="row justify-content-center m-0">
-        <ng-container>
-            <div>
-                <app-milestone [mileStones]="mileStoneService.studentRegistrationMileStone | async" [sticky]="true"></app-milestone>
-            </div>
-        </ng-container>
-        <div class="col-lg-8 col-md-10 fadeIn" >
-            <mat-card class="mat-elevation-z0" style="font-size: 12px;">
+    <div class="row justify-content-center m-0 my-4">
+            <mat-card class="background-white br-10 elevation m-0">
+                <app-milestone [data]="mileStoneService.studentRegistrationMileStone | async"  [sticky]="true"></app-milestone>
+            </mat-card>
+        
+        <div class="col-lg-8 col-md-8 fadeIn" >
+            <mat-card class="elevation" style="font-size: 12px;">
                 <mat-horizontal-stepper #stepper>
                     <mat-divider></mat-divider>
                     <mat-step label="Student's Information" state="student">
-                        <div class="my-5">
+                        <div class="my-5 glass">
                             <mat-toolbar color="primary" class="justify-content-center border-top-radius">
                                 <span style="text-transform: uppercase;">Student Form</span>
                             </mat-toolbar>

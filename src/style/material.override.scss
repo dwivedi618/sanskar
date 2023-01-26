@@ -76,6 +76,14 @@
     box-shadow: var(--elevation-floating);
 }
 
-::ng-deep mat-card.elevation{
+::ng-deep mat-card.mat-card.elevation{
     box-shadow: var(--elevation-floating)!important;
+}
+
+mat-card.mat-card{
+    border-radius: 10px;
+    ;
+}
+mat-card.mat-card{
+    background: var(--background-white);
 }

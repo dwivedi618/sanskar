@@ -1,15 +1,18 @@
-input[type=search] { 	
-min-width: 50vw;
-height: 2rem;
-outline: none;
-border: none;
-padding: 0 1rem;
-border-radius: 2px;
-font-size: 1rem;
-color: #666;
+input[type=search] {
+    min-width: 10vw;
+    height: 2rem;
+    outline: none;
+    border: none;
+    padding: 0 1rem;
+    border-radius: 2px;
+    font-size: 1rem;
+    color: #222;
+    font-weight: 600;
 
 }
-input[type=search]::placeholder { 	
-    font-size: 1rem;
-    }
 
+input[type=search]::placeholder {
+    font-size: 1rem;
+    color: rgb(136, 136, 136);
+    font-weight: 600;
+}

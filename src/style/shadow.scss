@@ -1,12 +1,11 @@
-
-.elevation{
-    box-shadow: var(--elevation-floating)!important;
-    &-bottom{
-        box-shadow: var(--elevation-raised-bottom)!important;
-    }
-    &-top{
-        box-shadow: var(--elevation-raised-top)!important;
-    }
+.elevation {
+    box-shadow: var(--elevation-floating) !important;
 }
 
+.elevation-bottom {
+    box-shadow: var(--elevation-raised-bottom) !important;
+}
 
+.elevation-top {
+    box-shadow: var(--elevation-raised-top) !important;
+}

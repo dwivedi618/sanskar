@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class SearchComponent implements OnInit {
   searchOptionsToggle = false
   constructor() { }
+  
 
   ngOnInit(): void {
 

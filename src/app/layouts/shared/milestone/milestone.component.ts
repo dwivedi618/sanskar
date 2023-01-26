@@ -17,7 +17,8 @@ export class MilestoneComponent implements OnInit {
   @Output() continue = new EventEmitter();
   @Input() public vertical :Boolean = false;
   @Input() public sticky : Boolean = false;
-  @Input() public mileStones: MileStone[] = []
+  @Input() public set data(data : MileStone[]){this.mileStones = data || []}
+  mileStones: MileStone[];
   constructor() { }
 
   ngOnInit(): void {

@@ -29,7 +29,6 @@
                             <input matInput type="field.type" #input appInputMask="{{field.type}}"
                                 maxlength="{{field?.validators?.maxLength}}"
                                 minlength="{{field?.validators?.minLength}}" 
-                                email="{{field?.validators?.email}}"
                                 [formControlName]="field.name">
 
                             <strong *ngIf="field.name === 'amount'" matPrefix>Rs.&nbsp;</strong>

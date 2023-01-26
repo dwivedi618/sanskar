@@ -87,3 +87,9 @@ mat-card.mat-card{
 mat-card.mat-card{
     background: var(--background-white);
 }
+mat-card.elevation{
+    box-shadow: var(--elevation-floating)!important;
+}
+mat-card{
+    box-shadow: var(--elevation-floating)!important;
+}

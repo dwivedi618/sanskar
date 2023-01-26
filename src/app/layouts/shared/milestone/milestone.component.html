@@ -13,7 +13,10 @@
                 </div>
             </ng-container>
             <div class="{{vertical ? 'layout' : ''}}">
-                <button mat-raised-button class="ml-5 btn-mydark rounded-pill" (click)="onContinue()">Continue to complete {{getInProgress?.label || "Next Step"}}</button>
+                <button mat-raised-button class="ml-5 background-dark-secondary rounded-pill" (click)="onContinue()">
+                    {{getInProgress?.label || "Next Step"}}
+                    <mat-icon>arrow_right</mat-icon>
+                </button>
             </div>
         </mat-card>
     </section>

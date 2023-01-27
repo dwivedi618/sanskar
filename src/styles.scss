@@ -7,17 +7,17 @@
 
 @import './style/_variable.scss';
 
-@import url(./style/button.scss);
-@import url(./style/flex.scss);
-@import url(./style/font.style.scss);
-@import url(./style/glass.scss);
-@import url(./style/helper.scss);
-@import url(./style/images.scss);
-@import url(./style/keyframes.scss);
-@import url(./style/loader.scss);
-@import url(./style/material.override.scss);
-@import url(./style/scrollbar.scss);
-@import url(./style/background.scss);
+@import '~./style/button.scss';
+@import '~./style/flex.scss';
+@import '~./style/font.style.scss';
+@import '~./style/glass.scss';
+@import '~./style/helper.scss';
+@import '~./style/images.scss';
+@import '~./style/keyframes.scss';
+@import '~./style/loader.scss';
+@import '~./style/material.override.scss';
+@import '~./style/scrollbar.scss';
+@import '~./style/background.scss';
 
 
 

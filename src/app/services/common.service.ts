@@ -25,7 +25,7 @@ export const API_ROUTES = {
   mainMenuUrl: "assets/jsons/main-menu.json",
   studentMenuTabUrl: "assets/jsons/student.tabs.json",
   studentRegistrationMileStone: "assets/jsons/mile-stones/registration.milestone.json"
-
+ 
 }
 @Injectable({
   providedIn: 'root'

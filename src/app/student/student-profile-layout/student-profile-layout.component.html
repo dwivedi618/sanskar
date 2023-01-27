@@ -2,8 +2,8 @@
     <mat-sidenav-content style="background: #F5F5F5;">
         <app-toolbar [title]="name ? name : 'Go Back' " [routerLink]="'/student'"></app-toolbar>
   
-        <mat-toolbar class="justify-content-center s-elevation" 
-        [color]="'primary'"
+        <mat-toolbar class="justify-content-center glass" 
+        
          style="max-height: 3rem;position:sticky;top:3rem;z-index: 2;">
             <app-tab-nav [tabs]="routingService.studentTabs | async" 
             [selectedTabId]="selectedIndex" 

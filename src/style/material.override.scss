@@ -82,7 +82,6 @@
 
 mat-card.mat-card{
     border-radius: 10px;
-    ;
 }
 mat-card.mat-card{
     background: var(--background-white);
@@ -92,4 +91,5 @@ mat-card.elevation{
 }
 mat-card{
     box-shadow: var(--elevation-floating)!important;
+    border-radius: 10px;
 }

@@ -8,6 +8,7 @@ import { SectionActionService } from '../services/section-action.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { SectionApiService } from '../services/section-api.service';
 import { ClassApiService } from '../../services/class-api.service';
+import { ActionMenus } from 'src/app/layouts/shared/uiComponents/menu-button/action-menus';
 
 @Component({
   selector: 'app-master-section-list',
@@ -24,6 +25,7 @@ export class MasterSectionListComponent implements OnInit, OnDestroy {
   standardId: any;
   selectedStandardName: any;
   standardList: any;
+  actions = ActionMenus
   constructor(
     private commonService: CommonService,
     private sectionActionService: SectionActionService,

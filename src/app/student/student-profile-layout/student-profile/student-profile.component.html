@@ -1,8 +1,7 @@
 <section style="min-height: calc(100vh-6rem)" class="pb-5">
   <ng-container *ngIf="this.studentData">
     <div class="container mt-2 mb-5 pt-4 ">
-      <app-milestone></app-milestone>
-      <mat-card class="elevation border-bottom-0 ">
+      <mat-card>
         <div class="row justify-content-center p-5 m-0">
           <div class="col-md-4">
             <app-avatar [src]="studentData?.studentPhoto" [size]="'xl'" [gender]="studentData?.gender"

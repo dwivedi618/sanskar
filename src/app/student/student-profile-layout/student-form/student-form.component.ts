@@ -30,12 +30,12 @@ export class StudentFormComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
-      this.admissionFormFields = formJson.studentForm;
-      setTimeout(() => {
-        this.isFormLoading = false;
-      }, 3000)
-    });
+    // this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
+    //   this.admissionFormFields = formJson.studentForm;
+    //   setTimeout(() => {
+    //     this.isFormLoading = false;
+    //   }, 3000)
+    // });
     this.studentApiService.studentData.subscribe(studentData =>{
       this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
         this.admissionFormFields = formJson.studentForm;

@@ -12,6 +12,7 @@ import { FeeDepositComponent } from '../../fee-deposit/fee-deposit.component';
 import { ParentActionService } from '../../services/parent/parent-action.service';
 import { StudentActionService } from '../../services/student/student-action.service';
 import { StudentApiService } from '../../services/student/student-api.service';
+import { Address } from '../../student.interface';
 import { TransactionComponent } from '../../transaction/transaction.component';
 
 export type DisplayFields = {label : string,type : string}[]
@@ -65,9 +66,9 @@ export class StudentProfileComponent implements OnInit {
   menus: MainMenu[];
   showStudentForm: any;
   isStudentFormVisible: any;
-  address: import("/home/v-shekhar.rawat/Downloads/projects/nest/sanskar/src/app/student/student.interface").Address;
   $studentData : Observable<any>;
   $parentData :  Observable<any>;
+  address: Address;
 
   constructor(
     private activatedRoute: ActivatedRoute,

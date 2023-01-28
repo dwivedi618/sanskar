@@ -1,21 +1,25 @@
-<mat-progress-bar *ngIf="routing" style="position: fixed; top: 0;z-index: 1000;" mode="indeterminate"></mat-progress-bar>
+<mat-progress-bar *ngIf="routing" style="position: fixed; top: 0;z-index: 1000;"
+    mode="indeterminate"></mat-progress-bar>
 <div class="layout-wrapper">
 
     <app-topbar></app-topbar>
     <mat-sidenav-container class="sidenav-container" autosize>
-        <mat-sidenav #sidenav class="leftsidebar background-dark-secondary" position="start" [mode]="(isHandset$ | async) ? 'side' : 'side'"
-            opened>
+        <mat-sidenav #sidenav class="leftsidebar background-dark-secondary" position="start"
+            [mode]="(isHandset$ | async) ? 'side' : 'side'" opened>
             <app-left-sidebar-menu></app-left-sidebar-menu>
         </mat-sidenav>
         <mat-sidenav #sidenav1 class="rightsidebar" position="end" [mode]="(isHandset$ | async) ? 'side' : 'side'"
-           opened>
+            opened>
 
-<app-right-sidebar-menu></app-right-sidebar-menu>
+            <app-right-sidebar-menu></app-right-sidebar-menu>
         </mat-sidenav>
         <mat-sidenav-content class="vertical-sidenav-content">
-           <!-- <div class="wallpaper">
+            <!-- <div class="wallpaper">
                <img class="img-fluid" src="../../../assets/river" alt="">
            </div> -->
+            <mat-toolbar [color]="'primary'">
+                <app-breadcrumb></app-breadcrumb>
+            </mat-toolbar>
             <main>
                 <div class="">
                     <router-outlet></router-outlet>

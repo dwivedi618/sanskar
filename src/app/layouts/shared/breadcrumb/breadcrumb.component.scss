@@ -1,33 +1,19 @@
-.breadcrumb {
+.breadcrumb-container {
     background: none;
     display: flex;
     flex-direction: row;
-    font-size: 0.8em;
     margin: 0;
     flex-wrap: nowrap;
     a,
-    span {
-      color: darkgrey;
-    }
     a:hover,
     span:hover {
       color: dimgrey;
       text-decoration: none;
     }
-    li {
-      list-style: none;
-      float: left;
-    //   margin: 5px;
+    span:last-child span{
+      color: var(--color-white);
     }
-    li:last-child span{
-    //   margin-right: 20px;
-      color: whitesmoke;
-    }
-    // li::after {
-    //   content: "->";
-    //   color: darkgrey;
-    // }
-    li:last-child::after {
+    span:last-child::after {
       content: "";
     }
   }

@@ -3,14 +3,14 @@
         "name": "Overview",
         "id": "overview",
         "icon": "books",
-        "path": "./student/profile",
+        "path": "./student/overview",
         "url": "",
         "subMenus": [
             {
                 "pid": "overview",
                 "name": "Student",
                 "id": "self",
-                "path": "./student/profile",
+                "path": "./student/overview",
                 "icon": "",
                 "url": ""
             },
@@ -19,7 +19,7 @@
                 "name": "Parent",
                 "id": "parent",
                 "icon": "",
-                "path": "./student/profile/parent",
+                "path": "./student/parent",
                 "url": ""
             },
             {
@@ -27,7 +27,7 @@
                 "name": "Address",
                 "id": "address",
                 "icon": "",
-                "path": "./student/profile/address",
+                "path": "./student/address",
                 "url": ""
             }
         ]
@@ -36,14 +36,14 @@
         "name": "Accounts",
         "id": "account",
         "icon": "account_balance",
-        "path": "./student/profile/accounts",
+        "path": "./student/accounts",
         "url": ""
     },
     {
         "name": "Transactions",
         "id": "transaction",
         "icon": "receipt",
-        "path": "./student/profile/transactions",
+        "path": "./student/transactions",
         "url": ""
     }
 ]

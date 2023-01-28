@@ -79,7 +79,7 @@ export class QuickRegistrationComponent implements OnInit {
       // this.alertService.alertComponent(result.message);
       this.quickRegisterationDialogRef.close();
     }, (error) => {
-      console.log("getQuickRegistrationFormJson", error);
+      console.log("getQuickRegistrationFormJsons", error);
       // this.isSaving = true;
     })
     

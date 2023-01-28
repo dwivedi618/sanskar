@@ -1,7 +1,7 @@
 <mat-toolbar class="background-dark-primary">
     <small>Showing section for {{selectedStandardName}}</small>
     <div class="spacer"></div>
-   <app-dropdown [label]="'class'" [data]="[{_id : 1 , name : 'class 1'}]"></app-dropdown>
+   <app-dropdown [label]="'class'" [data]="this.$classesDropdown | async" (onSelect)="onSelect(selectionObj)"></app-dropdown>
 </mat-toolbar>
 <app-toolbar [title]="'Classes'" [sticky]="true"></app-toolbar>
 <mat-toolbar class="justify-content-center glass" style="max-height: 3rem;position:sticky;top:0rem;z-index: 2;">

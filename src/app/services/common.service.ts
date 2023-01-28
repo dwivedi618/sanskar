@@ -16,10 +16,11 @@ export const API_ROUTES = {
   fee: environment.apiUrl + '/' + 'fee',
   class: environment.apiUrl + '/' + 'class',
   academicYear: environment.apiUrl + '/' + 'academicYear',
-
-  section: environment.apiUrl + '/' + 'section',
   feeStructure: environment.apiUrl + '/' + 'feeStructure',
   student: environment.apiUrl + '/' + 'student',
+  parent: environment.apiUrl + '/' + 'parent',
+  address: environment.apiUrl + '/' + 'address',
+  section: environment.apiUrl + '/' + 'section',
   indianStatesUrl: "assets/jsons/indian.states.json",
   indianDistrictsUrl: "assets/jsons/indian.districts.json",
   mainMenuUrl: "assets/jsons/main-menu.json",

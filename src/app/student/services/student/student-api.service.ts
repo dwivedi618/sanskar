@@ -4,6 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, forkJoin, Observable, Subject } from 'rxjs';
 import { map, pluck } from 'rxjs/operators';
+import { API_ROUTES } from 'src/app/services/common.service';
 import { ApiResponse } from 'src/app/utils/apiResponce.interface';
 import { environment } from 'src/environments/environment';
 import { Address, Parent, Student } from '../../student.interface';
@@ -12,14 +13,7 @@ import { Address, Parent, Student } from '../../student.interface';
   providedIn: 'root'
 })
 export class StudentApiService {
-  private API_ROUTES = {
-    fee: environment.apiUrl + '/' + 'fee',
-    class: environment.apiUrl + '/' + 'class',
-    feeStructure: environment.apiUrl + '/' + 'feeStructure',
-    student: environment.apiUrl + '/' + 'student',
-    parent: environment.apiUrl + '/' + 'parent',
-    address: environment.apiUrl + '/' + 'address',
-  }
+  private API_ROUTES = API_ROUTES
 
   private $student = new Subject<Student>();
   private $parent = new Subject<any>();

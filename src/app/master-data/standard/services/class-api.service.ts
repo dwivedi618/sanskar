@@ -1,18 +1,26 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
+import { BehaviorSubject } from 'rxjs';
+import { map, pluck } from 'rxjs/operators';
+import { API_ROUTES } from 'src/app/services/common.service';
+import { Class } from '../class.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ClassApiService {
-  private API_ROUTES = {
-    fee: environment.apiUrl + '/' + 'fee',
-    class: environment.apiUrl + '/' + 'class',
-    feeStructure: environment.apiUrl + '/' + 'feeStructure',
-    student: environment.apiUrl + '/' + 'student'
-  }
+  private API_ROUTES = API_ROUTES
+  private $classesSub = new BehaviorSubject<Class[]>([]);
   constructor(private _http: HttpClient) { }
+
+  $classes = this.fetch().pipe(pluck("data"));
+  $classDropDown = this.fetch().pipe(
+    pluck("data"),
+    map((_classes: Class[]) => {
+      return _classes.map((_class : Class) => { return ({ _id: _class._id, name: _class.name }) })
+    }))
+
+
 
   delete(data) {
     let options = {

@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { MainMenu } from 'src/app/layouts/shared/uiComponents/left-sidebar-menu/sidebar.menus';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { CommonService } from 'src/app/services/common.service';
 import { RoutingService } from 'src/app/services/routing.service';
+import { ClassApiService } from '../services/class-api.service';
 
 @Component({
   selector: 'app-standard-layout',
@@ -15,12 +17,14 @@ export class StandardLayoutComponent implements OnInit {
   selectedIndex: any;
   menus: MainMenu[];
   name: string;
+  $classesDropdown = this.classApiService.$classDropDown
 
   constructor(
     private activatedRoute: ActivatedRoute,
     private commonService: CommonService,
     public routingService : RoutingService,
     private router: Router,
+    private classApiService : ClassApiService
   ) { 
     this.activatedRoute.queryParams.subscribe((data) => {
       if (data && data.id) {
@@ -41,8 +45,13 @@ export class StandardLayoutComponent implements OnInit {
       this.routingService.setStudentTabs(data)
       console.log("studentMenu",data);
     });
+
+    
   }
 
+  onSelect(selectionObj: { _id : String, name : String }){
+
+  }
   onMainTabChange(selectedTab:MainMenu){
     this.selectedIndex = selectedTab.id;
     this.routingService.onTriggerStudentTab(selectedTab.subMenus);

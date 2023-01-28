@@ -13,7 +13,7 @@ export class MasterDataLayoutComponent implements OnInit {
   links = [
     { path: 'fee-structure', name: 'Master Fee Structure' },
     { path: 'master-fee-category', name: 'Master Fee Category' },
-    { path: 'master-standard', name: 'Master Standard' },
+    { path: 'classes', name: 'Master Standard' },
 
 
   ];

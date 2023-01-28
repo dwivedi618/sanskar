@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { pluck } from 'rxjs/operators';
-import { MainMenu } from '../layouts/shared/uiComponents/left-sidebar-menu/sidebar.menus';
+import { MainMenu, SubMenu } from '../layouts/shared/uiComponents/left-sidebar-menu/sidebar.menus';
 import { API_SERVICE_METHODS } from './api.methods';
 
 //to fetch main menu , student menu and submenu declare routings
@@ -19,8 +19,17 @@ export class RoutingService {
   private $studentTabs = new BehaviorSubject<MainMenu[]>([]);
   private $activeStudentTabSubMenus = new BehaviorSubject<MainMenu[]>([]);
 
+  private $activeSubMenus = new BehaviorSubject<SubMenu[]>([]);
+
+
   onTriggerStudentTab(tabs:MainMenu[]){
     this.$activeStudentTabSubMenus.next(tabs);
+  }
+
+
+
+  onTriggerMainTab(tab:MainMenu){
+    this.$activeSubMenus.next(tab.subMenus);
   }
 
   setStudentTabs(tabs : MainMenu[]){

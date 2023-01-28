@@ -7,7 +7,7 @@ export interface MainMenu {
     subMenus? : SubMenu[]
 }
 
-interface SubMenu extends MainMenu {
+export interface SubMenu extends MainMenu {
     pid : string,
     subMenuId: string
 }

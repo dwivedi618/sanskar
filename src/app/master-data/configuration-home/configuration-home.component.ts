@@ -15,7 +15,7 @@ export class ConfigurationHomeComponent implements OnInit {
   configurationLink=[
     {
       title : 'Register Classes', 
-      url : './master-standard' ,
+      url : './classes' ,
       subtitle : '',
       text : 'Register your class,how many class your institute have?'
     },

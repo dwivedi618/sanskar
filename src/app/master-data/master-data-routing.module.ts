@@ -9,15 +9,18 @@ import { MasterDataLayoutComponent } from './master-data-layout/master-data-layo
 import { ConfigurationHomeComponent } from './configuration-home/configuration-home.component';
 import { MasterSectionListComponent } from './standard/section/master-section-list/master-section-list.component';
 import { AcademicYearListComponent } from './academic-year/academic-year-list/academic-year-list.component';
+import { StandardModule } from './standard/standard.module';
 
 const routes: Routes = [
   {
     path: '', component: MasterDataLayoutComponent,
     children: [
       { path: '', component: ConfigurationHomeComponent, },
-      { path: 'fee-structure', component: FeeStructureListComponent, data: { breadcrumb: 'Fee Structure', icon: '' } },
-      { path: 'section', component: MasterSectionListComponent, data: { breadcrumb: 'Section', icon: '' } },
-      { path: 'master-standard', component: MasterStandardListComponent, data: { breadcrumb: 'Class', icon: '' } },
+      {
+        path: 'classes', 
+        loadChildren: () => import('./standard/standard.module')
+        .then(m => m.StandardModule)
+      },
       { path: 'master-fee-category', component: MasterFeeCategoryListComponent, data: { breadcrumb: 'Fee', icon: '' } },
       { path: 'academic-year', component: AcademicYearListComponent, data: { breadcrumb: 'Academic Year', icon: 'calender' } }
     ]

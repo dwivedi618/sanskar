@@ -5,7 +5,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AuthenticationService } from './services/authentication.service';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { SettingsComponent } from './settings/settings.component';
 import { NavComponent } from './nav/nav.component';
 import { AdmissionModule } from './admission/admission.module'
 import { LayoutComponent } from './layouts/layout/layout.component';
@@ -20,7 +19,6 @@ import { JsonFormService } from './services/json-form.service';
 @NgModule({
   declarations: [
     AppComponent,
-    SettingsComponent,
     NavComponent,
     LayoutComponent,
     VerticalComponent,

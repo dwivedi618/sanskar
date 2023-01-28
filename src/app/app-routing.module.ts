@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { SettingsComponent } from './settings/settings.component';
 import { AdmissionComponent } from './admission/admission.component';
 import { LayoutComponent } from './layouts/layout/layout.component';
 
@@ -20,7 +19,6 @@ const routes: Routes = [
 
       { path: 'registration', loadChildren: () => import('./registration/registration.module').then(m => m.RegistrationModule), data: { breadcrumb: 'Registration', icon: '' } },
       { path: 'configuration', loadChildren: () => import('./master-data/master-data.module').then(m => m.MasterDataModule), data: { breadcrumb: 'My School', icon: 'settings' } },
-      { path: 'settings', component: SettingsComponent, data: { breadcrumb: 'Settings', icon: 'settings' } },
     ]
   },
 

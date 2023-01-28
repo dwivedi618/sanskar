@@ -48,11 +48,11 @@
             {
                 
                 "pid": "configuration",
-                "subMenuId": "registered-classes",
+                "subMenuId": "classes",
                 "icon": "",
-                "path": "./configuration/master-fee-category",
+                "path": "./configuration/classes",
                 "name": "Classes",
-                "url": "./configuration/master-standard"
+                "url": "./configuration/classes"
             } 
              
         ]

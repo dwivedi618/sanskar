@@ -1,0 +1,17 @@
+<mat-sidenav-container class="student-layout">
+    <mat-sidenav-content style="background: #F5F5F5;">  
+        <mat-toolbar class="justify-content-center glass" 
+        
+         style="max-height: 3rem;position:sticky;top:0rem;z-index: 2;">
+            <app-tab-nav [tabs]="routingService.studentTabs | async" 
+            [selectedTabId]="selectedIndex" 
+            [sticky]="true"
+            (onChange)="onMainTabChange($event)"></app-tab-nav>
+        </mat-toolbar>
+        <main>
+            <div class="">
+                <router-outlet></router-outlet>
+            </div>
+        </main>
+    </mat-sidenav-content>
+</mat-sidenav-container>

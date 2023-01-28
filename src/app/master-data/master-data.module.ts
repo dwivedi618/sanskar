@@ -25,12 +25,8 @@ import { ManageAcademicYearComponent } from './academic-year/manage-academic-yea
     MasterFeeCategoryListComponent,
     ManageFeeCategoryComponent,
     FeeStructureListComponent,
-    ManageFeeStructureComponent,
-    MasterStandardListComponent,
-    MasterSectionListComponent,
-    ManageMasterStandardComponent,
+    
     ConfigurationHomeComponent,
-    ManageSectionComponent,
     AcademicYearListComponent,
     ManageAcademicYearComponent
   ],

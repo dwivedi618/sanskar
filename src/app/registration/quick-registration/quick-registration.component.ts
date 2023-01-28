@@ -17,9 +17,9 @@ export class QuickRegistrationComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('init called');
     
     this.jsonFormService.getQuickRegistrationFormJson().subscribe(formJson => {
+      console.log('init called',formJson);
       this.formFields = formJson;
       this.prepareFormFields();
     });
@@ -46,5 +46,8 @@ export class QuickRegistrationComponent implements OnInit {
     console.log("patchObjValuesToFormFields",obj);
     this.formFields.controls = this.jsonFormService.patchValuesToFormFields(obj,this.formFields.controls);
   }
-
+  onSubmit(event){
+    console.log(event);
+    
+  }
 }

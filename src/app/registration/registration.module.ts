@@ -8,11 +8,12 @@ import { SharedModule } from '../layouts/shared/shared.module';
 
 
 @NgModule({
-  declarations: [StudentRegistrationComponent, QuickRegistrationComponent],
+  declarations: [StudentRegistrationComponent],
   imports: [
     CommonModule,
     RegistrationRoutingModule,
     SharedModule
-  ]
+  ],
+  exports : [  ]
 })
 export class RegistrationModule { }

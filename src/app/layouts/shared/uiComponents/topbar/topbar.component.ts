@@ -28,6 +28,7 @@ export class TopbarComponent implements OnInit {
     this.toggleService.leftSidebarToggle.emit()
   }
   manageQuickRegistration() {
+    console.log('quick Popup');
     this.dialogService.manageQuickRegistration().subscribe(()=>{this.refresh()});
   }
     refresh(){

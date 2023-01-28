@@ -33,6 +33,7 @@ import { TableComponent } from './table/table.component';
 import { BreadcrumbComponent } from './breadcrumb/breadcrumb.component';
 import { AvatarDescriptionComponent } from './avatar-description/avatar-description.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
+import { QuickRegistrationComponent } from 'src/app/registration/quick-registration/quick-registration.component';
 
 @NgModule({
   declarations: [
@@ -64,7 +65,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     TableComponent,
     BreadcrumbComponent,
     AvatarDescriptionComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    QuickRegistrationComponent
   ],
   imports: [
     CommonModule,
@@ -73,6 +75,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     FormsModule,
     ReactiveFormsModule,
     ImageCropperModule,
+
     
   ],
   exports: [
@@ -109,7 +112,8 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
     MilestoneComponent,
     TableComponent,
     BreadcrumbComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    QuickRegistrationComponent
   ]
 })
 export class SharedModule { }

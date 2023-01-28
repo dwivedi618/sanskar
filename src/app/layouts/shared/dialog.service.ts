@@ -9,6 +9,7 @@ import { ManageFeeStructureComponent } from 'src/app/master-data/fee-structure/m
 import { ManageSectionComponent } from 'src/app/master-data/standard/section/manage-section/manage-section.component';
 import { ManageAcademicYearComponent } from 'src/app/master-data/academic-year/manage-academic-year/manage-academic-year.component';
 import { ManageInstituteInformationComponent } from 'src/app/institute/manage-institute-information/manage-institute-information.component';
+import { QuickRegistrationComponent } from 'src/app/registration/quick-registration/quick-registration.component';
 
 
 @Injectable({
@@ -114,6 +115,22 @@ export class DialogService {
   manageMasterStandard(data = {}, action: Action = Action.ADD) {
     let afterCloseResult = new Subject;
     const dialogRef = this.dialog.open(ManageMasterStandardComponent, {
+      width: '40rem',
+      maxWidth: '100vw',
+      maxHeight: '100vh',
+      hasBackdrop: false,
+      // panelClass : 'dialog-container-pt-0',
+      data: { data, action }
+    })
+    dialogRef.afterClosed().subscribe(result => {
+      afterCloseResult.next(result)
+    })
+    return afterCloseResult.asObservable();
+  }
+
+  manageQuickRegistration(data = {}, action: Action = Action.ADD) {
+    let afterCloseResult = new Subject;
+    const dialogRef = this.dialog.open(QuickRegistrationComponent, {
       width: '40rem',
       maxWidth: '100vw',
       maxHeight: '100vh',

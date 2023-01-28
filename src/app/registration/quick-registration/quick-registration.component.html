@@ -1,0 +1,4 @@
+<app-dialog-header [dialogData]="{action : dialogData.action , name : 'Quick Registration'}"></app-dialog-header>
+<div mat-dialog-content>
+    <app-json-form [formFields] ="formFields"  (onSubmit)="onSubmit($event)"></app-json-form>
+</div>

@@ -8,8 +8,11 @@
         <img class="avatar-sm " src="../assets/sanskar.jpg" height="32">
       </button>
       <app-breadcrumb></app-breadcrumb>
-      <div class="d-flex align-items-center justify-content-center w-100" style="position: relative;">
-        <app-search></app-search>
+      <div class="d-flex align-items-end justify-content-end w-100" style="position: relative;">
+        <button mat-stroked-button color="accent"  (click)="manageQuickRegistration()" >Quick Register</button>
+    </div>
+      <div class="d-flex align-items-end justify-content-end" style="position: relative;">
+        <!-- <app-search></app-search> -->
         <button mat-icon-button color="primary" class="mx-2 mat-elevation-z1 text-light "
           (click)="isListView = !isListView">
           <mat-icon class="mat-icon-sm pt-0">{{isListView ? 'view_list' : 'grid_view'}}</mat-icon>

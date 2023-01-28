@@ -1,0 +1,120 @@
+{
+    "controls": [
+        {
+            "ctrlId": 1.1,
+            "name": "academicSession",
+            "label": "Academic Session",
+            "value": "2022-2023",
+            "type": "dropdown",
+            "validators": {
+                "required": true
+                
+            },
+            "disabled":true,
+            "hitHttp":false,
+            "method" : "",
+            "options":[
+                { "value" : "2022-2023" , "label" : "2022-2023" , "icon": "" }
+            ]
+        },
+        {
+            "ctrlId": 2,
+            "name": "studentMobile",
+            "label": "Contact Number",
+            "value": "",
+            "type": "tel",
+            "validators": {
+                "required": false,
+                "maxLength":10,
+                "minLength" :10
+            },
+            "disabled":false
+        },
+        {
+            "ctrlId": 3,
+            "name": "firstName",
+            "label": "First name",
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "maxLength":50,
+                "minLength" : 3
+            },
+            "disabled":false
+        },
+        {
+            "ctrlId": 3,
+            "name": "middleName",
+            "label": "Middle name",
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": false,
+                "maxLength": 50
+            }
+        },
+        {
+            "ctrlId": 4,
+            "name": "lastName",
+            "label": "Last Name",
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "maxLength": 50
+            }
+        },
+        {
+            "ctrlId": 5,
+            "name": "gender",
+            "label": "Gender",
+            "value": "",
+            "type": "radio",
+            "validators": {
+                "required": true
+            },
+            "options": [
+                {
+                    "value": "MALE",
+                    "label": "Male",
+                    "icon": "male"
+                },
+                {
+                    "value": "FEMALE",
+                    "label": "Female",
+                    "icon": "female"
+                },
+                {
+                    "value": "OTHER",
+                    "label": "Other",
+                    "icon": "transgender"
+                }
+            ]
+        },
+        {
+            "ctrlId": 10,
+            "name": "classId",
+            "label": "Seeking Admission In",
+            "value": "63948d487bd90996be350e6d",
+            "type": "dropdown",
+            "validators": {
+                "required": true
+            },
+            "hitHttp": true,
+            "method": "classes",
+            "options": []
+        },
+        {
+            "ctrlId": 12,
+            "name": "place",
+            "label": "Place",
+            "value": "",
+            "type": "text",
+            "validators": {
+                "required": true,
+                "maxLength": 50
+            }
+        }
+    ]
+}

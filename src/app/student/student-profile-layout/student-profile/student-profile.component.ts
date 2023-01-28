@@ -65,7 +65,7 @@ export class StudentProfileComponent implements OnInit {
   menus: MainMenu[];
   showStudentForm: any;
   isStudentFormVisible: any;
-  address: import("/home/v-shivam.dwivedi/Downloads/projects/nest/sanskar/src/app/student/student.interface").Address;
+  address: import("/home/v-shekhar.rawat/Downloads/projects/nest/sanskar/src/app/student/student.interface").Address;
   $studentData : Observable<any>;
   $parentData :  Observable<any>;
 

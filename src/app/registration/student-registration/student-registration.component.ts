@@ -1,6 +1,13 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { MatDialogRef } from '@angular/material/dialog';
 import { DialogService } from 'src/app/layouts/shared/dialog.service';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
+import { AcademicYearActionService } from 'src/app/master-data/academic-year/services/academic-year-action.service';
+import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
+import { API_ROUTES, CommonService } from 'src/app/services/common.service';
+import { UiService } from 'src/app/services/ui.service';
+import { AdmissionRequestListService } from '../services/admission-request-list.service';
+import { QuickRegistrationService } from '../services/quick-registration.service';
 
 @Component({
   selector: 'app-student-registration',
@@ -13,23 +20,52 @@ export class StudentRegistrationComponent implements OnInit {
   @Input() actions;
   @Output() actionTriggerd = new EventEmitter<{ action, data }>();
   isLoading: boolean = true;
+  admissionRequestList: any;
 
   constructor(
-    private dialogService : DialogService
+    private uiService: UiService,
+    private dialogService: DialogService,
+    private commonService: CommonService,
+    private admissionRequestApiService : AdmissionRequestListService,
+    private quickRegisterationDialogRef: MatDialogRef<QuickRegistrationService>,
   ) { }
 
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 3000);
+  ngOnInit() {
+    this.getAdmissionRequestList();
+  }
+
+  getAdmissionRequestList() {
+    this.uiService.loader.show("Fetching admissionRequestList...");
+    this.admissionRequestApiService.admissionRequestList().subscribe((result) => {
+      console.log("getQuickRegistrationFormJson", result);
+      this.admissionRequestList = result || null;
+      this.uiService.loader.hide();
+      // this.alertService.alertComponent(result.message);
+      this.quickRegisterationDialogRef.close();
+    }, (error) => {
+      console.log("getMasterFeeCategory error", error);
+      // this.uiService.loader.hide();
+    })
   }
 
   manageQuickRegistration() {
     this.dialogService.manageQuickRegistration().subscribe(()=>{this.refresh()});
   }
 
-  refresh(){
+  actionTriggerhandler(event: { action: Action, data: any }) {
+    let { action, data } = event;
+    console.log(true);
+    
+    this.menuClickHandler(action, data);
+  }
 
+
+  refresh() {
+    this.getAdmissionRequestList()
+  }
+  menuClickHandler(action, data) {
+    console.log("data", action, data)
+    this.dialogService.manageQuickRegistration().subscribe(()=>{this.refresh()});
   }
 
 }

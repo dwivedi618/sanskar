@@ -1,3 +1,11 @@
-<div class="px-4 py-4">
+<!-- <div class="px-4 py-4">
     <button mat-stroked-button color="primary"  (click)="manageQuickRegistration()" >Quick Register</button>
-</div>
+</div> -->
+<div class="">
+    <!--table heading-->
+    <app-toolbar [title]="'Admission Request'" [sticky]="true"></app-toolbar>
+  
+    <app-table [data]="admissionRequestList" [columns]="displayedColumns" [actions]="actions"
+      (actionTriggerd)="actionTriggerhandler($event)"></app-table>
+  
+  </div>

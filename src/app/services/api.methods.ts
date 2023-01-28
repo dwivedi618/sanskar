@@ -7,5 +7,5 @@ export const API_SERVICE_METHODS = {
     getMainMenus: "getMainMenus",
     getStudentMenuTab: "getStudentMenuTab",
     getInstituteMenuTab : "getInstituteMenuTab",
-    getAcademicYearList : "getAcademicYearList"
+    getAcademicYearList : "getAcademicYearList",
 }

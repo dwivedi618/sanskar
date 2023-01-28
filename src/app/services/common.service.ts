@@ -16,6 +16,8 @@ export const API_ROUTES = {
   fee: environment.apiUrl + '/' + 'fee',
   class: environment.apiUrl + '/' + 'class',
   academicYear: environment.apiUrl + '/' + 'academicYear',
+  quickRegistration : environment.apiUrl + '/' + 'student',
+  admissionRequestList : environment.apiUrl + '/' + 'newRegistrations',
 
   section: environment.apiUrl + '/' + 'section',
   feeStructure: environment.apiUrl + '/' + 'feeStructure',

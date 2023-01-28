@@ -8,14 +8,14 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CommonService } from 'src/app/services/common.service';
 import { HELPER as HELPER } from 'src/app/utils/helpers';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
-import { ClassActionService } from '../../standard/services/class-action.service';
-import { ClassApiService } from '../../standard/services/class-api.service';
 import { DialogService } from 'src/app/layouts/shared/dialog.service';
 import { ManageFeeStructureComponent } from '../manage-fee-structure/manage-fee-structure.component';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { ClasswiseFeesActionService } from '../services/classwise-fees-action.service';
 import { ClasswiseFeesApiService } from '../services/classwise-fees-api.service';
-import { Fee } from '../../fee-category/fee.interface';
+import { Fee } from '../../section/fee.interface';
+import { ClassActionService } from '../../services/class-action.service';
+import { ClassApiService } from '../../services/class-api.service';
 
 interface classWiseFee{
   amount : Number,

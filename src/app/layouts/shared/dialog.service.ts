@@ -5,11 +5,11 @@ import { ImageCropperComponent } from './image-cropper/image-cropper.component';
 import { ManageFeeCategoryComponent } from 'src/app/master-data/fee-category/manage-fee-category/manage-fee-category.component';
 import { ManageMasterStandardComponent } from 'src/app/master-data/standard/manage-master-standard/manage-master-standard.component';
 import { Action } from './uiComponents/menu-button/actions.enum';
-import { ManageFeeStructureComponent } from 'src/app/master-data/fee-structure/manage-fee-structure/manage-fee-structure.component';
 import { ManageSectionComponent } from 'src/app/master-data/standard/section/manage-section/manage-section.component';
 import { ManageAcademicYearComponent } from 'src/app/master-data/academic-year/manage-academic-year/manage-academic-year.component';
 import { ManageInstituteInformationComponent } from 'src/app/institute/manage-institute-information/manage-institute-information.component';
 import { QuickRegistrationComponent } from 'src/app/registration/quick-registration/quick-registration.component';
+import { ManageFeeStructureComponent } from 'src/app/master-data/standard/fee-structure/manage-fee-structure/manage-fee-structure.component';
 
 
 @Injectable({

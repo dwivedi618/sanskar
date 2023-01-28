@@ -1,5 +1,5 @@
-import { Fee } from "../fee-category/fee.interface";
-import { Class } from "../standard/class.interface";
+import { Class } from "../class.interface";
+import { Fee } from "../section/fee.interface";
 
 export interface FeeStructure {
     _id?: String

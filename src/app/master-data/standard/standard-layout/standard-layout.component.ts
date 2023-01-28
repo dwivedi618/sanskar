@@ -18,6 +18,8 @@ export class StandardLayoutComponent implements OnInit {
   menus: MainMenu[];
   name: string;
   $classesDropdown = this.classApiService.$classDropDown
+  selectedStandardName: any;
+  standardId: any;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -26,14 +28,13 @@ export class StandardLayoutComponent implements OnInit {
     private router: Router,
     private classApiService : ClassApiService
   ) { 
-    this.activatedRoute.queryParams.subscribe((data) => {
-      if (data && data.id) {
-        this.studentId = data.id;
-        this.name = data.name;
-        // this.getProfile();
-        // this.getFeeDetails();
-        if (data.find) {
-          this.selectedIndex = data.find
+    this.activatedRoute.queryParams.subscribe(data => {
+      if (data) {
+        if (data.standardId) {
+          this.standardId = data.standardId
+        }
+        if (data.n) {
+          this.selectedStandardName = data.n
         }
       }
     })
@@ -50,7 +51,8 @@ export class StandardLayoutComponent implements OnInit {
   }
 
   onSelect(selectionObj: { _id : String, name : String }){
-
+    console.log("on class select",selectionObj);
+    this.router.navigate([], { queryParams: { standardId: selectionObj._id, n: selectionObj.name }, queryParamsHandling: 'merge' });
   }
   onMainTabChange(selectedTab:MainMenu){
     this.selectedIndex = selectedTab.id;

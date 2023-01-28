@@ -1,18 +1,17 @@
 
 
-import { AlertService } from '../../../services/alert.service';
 import { FormGroup, FormBuilder, Validators, FormControl, FormArray } from '@angular/forms';
 import { Component, Inject, OnInit } from '@angular/core';
 import { CommonService } from 'src/app/services/common.service';
-import { Fee, feeFrequencyEnum, FEE_FREEQUENCY } from '../../fee-category/fee.interface'
 import { ButtonState, JsonFormService } from 'src/app/services/json-form.service';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
-import { ClassApiService } from '../../standard/services/class-api.service';
-import { ManageMasterStandardComponent } from '../../standard/manage-master-standard/manage-master-standard.component';
-import { ClassFee } from '../../standard/class.interface';
 import { JsonFormData, JsonFormArray, JsonFormControls } from 'src/app/layouts/shared/json-form/json-from.types';
+import { AlertService } from 'src/app/services/alert.service';
+import { ClassFee } from '../../class.interface';
+import { Fee, FEE_FREEQUENCY } from '../../section/fee.interface';
+import { ClassApiService } from '../../services/class-api.service';
 
 
 @Component({

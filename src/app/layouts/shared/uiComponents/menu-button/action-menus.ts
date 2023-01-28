@@ -47,3 +47,20 @@ export const classActionMenus = [
         url: ""
     }
 ]
+
+export const studentActionMenus = [
+    {
+        menuName: "Delete",
+        menuId: Action.DELETE,
+        icon: 'delete',
+        path: '',
+        url: ""
+    },
+    {
+        menuName: "Edit",
+        menuId: Action.EDIT,
+        icon: 'edit',
+        path: '',
+        url: ""
+    }
+]

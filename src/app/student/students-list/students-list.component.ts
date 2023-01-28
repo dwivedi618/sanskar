@@ -13,6 +13,8 @@ import { Router } from '@angular/router';
 import { StudentApiService } from '../services/student/student-api.service';
 import { StudentActionService } from '../services/student/student-action.service';
 import { UiService } from 'src/app/services/ui.service';
+import { studentActionMenus } from 'src/app/layouts/shared/uiComponents/menu-button/action-menus';
+import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 
 
 export interface Student {
@@ -34,9 +36,10 @@ export interface Student {
 export class StudentsListComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  displayedColumns: string[] = ['select', 'name', 'age', 'gender', 'standard', 'action'];
+  displayedColumns: string[] = ['firstName', 'lastName','dateOfBirth', 'gender', 'standard'];
   dataSource = new MatTableDataSource<Student>();
   selection = new SelectionModel<Student>(true, []);
+  studentActionMenus = studentActionMenus;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -156,6 +159,13 @@ export class StudentsListComponent implements OnInit {
         // return base64data;
       }
     }
+  }
+  actionTriggerhandler(actionEvent){
+    if(actionEvent.action === Action.NAVIGATE){
+      let profile = actionEvent.data
+      profile && profile._id && this.router.navigate(['student/overview'], { queryParams: { id: profile._id , name : this.name(profile) } });
+    }
+    
   }
   menuClickHandler(action,data){
     console.log("data",action , data)

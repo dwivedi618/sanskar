@@ -36,7 +36,6 @@ export class TableComponent implements AfterViewInit, OnInit {
   }
   setTabelDataSource(data) {
     this.dataSource = new MatTableDataSource(data);
-
     this.setDisplayedColumns(this.columns)
   }
 

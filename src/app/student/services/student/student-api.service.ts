@@ -15,19 +15,29 @@ import { Address, Parent, Student } from '../../student.interface';
 export class StudentApiService {
   private API_ROUTES = API_ROUTES
 
+  $studentsBasicInfo = this.fetchStudents().pipe(
+    pluck("data"),
+    map((_students: Student[]) => {
+      return _students.map((student: Student) => {
+        let name = this.name(student);
+        const admissionInClass = student?.classId["name"] || "";
+        return { ...student,name, admissionInClass}
+      })
+    }))
+
   private $student = new Subject<Student>();
   private $parent = new Subject<any>();
   private $address = new Subject<Address>();
 
 
-  public get studentData():Observable<Student> {
+  public get studentData(): Observable<Student> {
     return this.$student.asObservable()
   }
 
   public setStudentData(studentData: Student) {
     this.$student.next(studentData);
   }
-  public get parentData():Observable<Parent> {
+  public get parentData(): Observable<Parent> {
     return this.$parent.asObservable()
   }
 
@@ -56,17 +66,17 @@ export class StudentApiService {
   add(data) {
     return this._http.post<ApiResponse>(this.API_ROUTES.student, data);
   }
-  fetchStudents() {
+  fetchStudents():Observable<Student[]> {
     return this._http.get<Student[]>(this.API_ROUTES.student)
   }
   fetchStudentById(studentId: string): Observable<Student> {
     return this._http.get<Student>(this.API_ROUTES.student + '?' + 'studentId=' + studentId)
       .pipe(
         pluck('data'),
-        map((student:Student) => {
+        map((student: Student) => {
           let name = this.name(student);
-          const  admissionInClass = student?.classId["name"] || "";
-          return {name,admissionInClass,...student}
+          const admissionInClass = student?.classId["name"] || "";
+          return { name, admissionInClass, ...student }
         })
       )
   }
@@ -82,7 +92,7 @@ export class StudentApiService {
   fetchParentByStudentId(studentId): Observable<Parent> {
     return this._http.get<Parent>(this.API_ROUTES.parent + '?' + 'studentId=' + studentId).pipe(pluck('data'))
   }
- 
+
   fetchAddressByStudentId(studentId): Observable<Address> {
     return this._http.get<Parent>(this.API_ROUTES.address + '?' + 'studentId=' + studentId).pipe(pluck('data'))
   }

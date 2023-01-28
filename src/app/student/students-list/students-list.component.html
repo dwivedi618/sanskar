@@ -1,5 +1,5 @@
 <div class="">
   <app-toolbar [title]="'Students'"></app-toolbar>
-  <app-table [data]="dataSource.data" [columns]="displayedColumns" [actions]="studentActionMenus"
+  <app-table [data]="$studentsBasicInfo | async" [columns]="displayedColumns" [actions]="studentActionMenus"
   (actionTriggerd)="actionTriggerhandler($event)"></app-table>
 </div>

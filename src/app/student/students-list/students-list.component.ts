@@ -36,10 +36,11 @@ export interface Student {
 export class StudentsListComponent implements OnInit {
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-  displayedColumns: string[] = ['firstName', 'lastName','dateOfBirth', 'gender', 'standard'];
+  displayedColumns: string[] = ['name','dateOfBirth', 'gender', 'admissionInClass'];
   dataSource = new MatTableDataSource<Student>();
   selection = new SelectionModel<Student>(true, []);
   studentActionMenus = studentActionMenus;
+  $studentsBasicInfo = this.studentApiService.$studentsBasicInfo;
 
   /** Whether the number of selected elements matches the total number of rows. */
   isAllSelected() {
@@ -86,6 +87,7 @@ export class StudentsListComponent implements OnInit {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
     this.getStudents();
+    this.studentApiService.$studentsBasicInfo.subscribe(console.log)
   }
   refresh() {
     this.getStudents();
@@ -110,16 +112,7 @@ export class StudentsListComponent implements OnInit {
   }
 
 
-  openFeeSubmition(obj) {
-    obj.action = 'submitFee';
-    const dialogRef = this.dialog.open(TransactionComponent, {
-      width: '50vw',
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      data: { obj }
-    })
 
-  }
   /**
    * route to add student profile page
    * @param profile id,name,email

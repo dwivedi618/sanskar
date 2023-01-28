@@ -1,6 +1,6 @@
 <div class="breadcrumb-container">
     <ng-container *ngFor="let breadcrumb of breadcrumbs" >
-        <span [routerLink]="breadcrumb.url" routerLinkActive="router-link-active" class="pointer">
+        <span [routerLink]="breadcrumb.url" queryParamsHandling="merge" routerLinkActive="router-link-active" class="pointer">
             <strong class="fs-12"> {{ breadcrumb.label }} <span class="px-1 slace">/</span></strong>
         </span>
     </ng-container>

@@ -11,7 +11,7 @@ const studentroutes: Routes = [
         children: [
             { path: '', component: StudentsListComponent },
             {
-                path: 'profile',
+                path: '',
                 loadChildren: () => import('./student-profile-layout/student-profile-layout.module')
                 .then(m => m.StudentProfileLayoutModule),
                 

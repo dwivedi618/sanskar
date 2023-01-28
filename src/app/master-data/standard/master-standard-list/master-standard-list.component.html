@@ -1,6 +1,4 @@
 <div>
-  <!--table heading-->
-  <app-toolbar [title]="'Classes'" [sticky]="true"></app-toolbar>
   <app-table [data]="classes" [columns]="displayedColumns" [actions]="classActionMenus"
     (actionTriggerd)="actionTriggerhandler($event)"></app-table>
 </div>

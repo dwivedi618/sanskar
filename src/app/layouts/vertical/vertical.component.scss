@@ -1,9 +1,16 @@
 .sidenav-container {
     position: fixed;
     top:3rem;
-    width: 100vw;
+    width: 100%;
     height: 100%;
     font-family: 'Ubuntu',sans-serif!important;
+}
+main.main-outlet{
+    position: fixed;
+    top: 5rem;
+    width: calc(100% - var(--left-sidebar) - var(--right-sidebar));
+    height: calc(100% - 3rem);
+    background: red;
 }
 
 .leftsidebar{
@@ -11,7 +18,7 @@
     border: none!important;
 }
 .rightsidebar{
-    width: 4rem;
+    width: var(--right-sidebar);
 }
 .vertical-sidenav-content{
     // position: relative;

@@ -1,7 +1,6 @@
 <mat-progress-bar *ngIf="routing" style="position: fixed; top: 0;z-index: 1000;"
     mode="indeterminate"></mat-progress-bar>
 <div class="layout-wrapper">
-
     <app-topbar></app-topbar>
     <mat-sidenav-container class="sidenav-container" autosize>
         <mat-sidenav #sidenav class="leftsidebar background-dark-secondary" position="start"
@@ -14,14 +13,12 @@
             <app-right-sidebar-menu></app-right-sidebar-menu>
         </mat-sidenav>
         <mat-sidenav-content class="vertical-sidenav-content">
-            <!-- <div class="wallpaper">
-               <img class="img-fluid" src="../../../assets/river" alt="">
-           </div> -->
-            <mat-toolbar [color]="'primary'" style="position: sticky;top: 0;" class="elevation-bottom">
+            <mat-toolbar [color]="'primary'" style="position: absolute;top: 0rem;height: 32px!important;z-index: 1000000;"
+                class="elevation-bottom">
                 <app-breadcrumb></app-breadcrumb>
             </mat-toolbar>
-            <main>
-                <div class="">
+            <main class="main-outlet">
+                <div style="position: relative;">
                     <router-outlet></router-outlet>
                 </div>
             </main>

@@ -34,42 +34,11 @@ export interface MasterStandardList {
   styleUrls: ['./master-standard-list.component.scss']
 })
 
-export class MasterStandardListComponent implements AfterViewInit, OnInit {
-  @ViewChild(MatPaginator) paginator: MatPaginator;
-  @ViewChild(MatSort) sort: MatSort;
-  @ViewChild(MatTable) table: MatTable<MasterStandardList>;
-  dataSource = new MatTableDataSource<any>();
+export class MasterStandardListComponent implements OnInit {
+
   classActionMenus = classActionMenus;
-
-  /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['name'];
-  selection = new SelectionModel<MasterStandardList>(true, []);
   classes = [];
-
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-    const numSelected = this.selection.selected.length;
-    const numRows = this.dataSource.data.length;
-    return numSelected === numRows;
-  }
-
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  masterToggle() {
-    this.isAllSelected() ?
-        this.selection.clear() :
-        this.dataSource.data.forEach(row => this.selection.select(row));
-      }
-
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: MasterStandardList): string {
-    if (!row) {
-      return `${this.isAllSelected() ? 'select' : 'deselect'} all`;
-    }
-    return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.id + 1}`;
-  }
-
-  menuDataSession = ['2019-2020','2020-2021','2021-2022'];
-  selectedSession = this.menuDataSession[0]
   constructor(
     public commonService : CommonService,
     private dialogService : DialogService,
@@ -80,7 +49,6 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
   ){}
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource();
     this.getMasterStandardList();
   }
 
@@ -89,28 +57,11 @@ export class MasterStandardListComponent implements AfterViewInit, OnInit {
       this.classApiService.fetch().subscribe((result)=>{
         const standardList = result['data'] || null;
         this.classes = result['data'] || null;
-        this.dataSource.data = standardList
         this.loaderService.loader.hide();
       },(error)=>{
       })
   }
 
-  ngAfterViewInit() {
-    // this.dataSource.sort = this.sort;
-    // this.dataSource.paginator = this.paginator;
-    // this.table.dataSource = this.dataSource;
-  }
-
-  applyFilter(event: Event) {
-    
-    const filterValue = (event.target as HTMLInputElement).value || '';
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-    if (this.dataSource.paginator) {
-      this.dataSource.paginator.firstPage();
-    }
-  }
-
-  expandAnimation ='collapsed' ;
 
 
 

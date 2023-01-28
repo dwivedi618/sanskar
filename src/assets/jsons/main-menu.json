@@ -28,7 +28,6 @@
         "url": "",
         "subMenus": [
             {
-                
                 "pid": "configuration",
                 "icon": "",
                 "subMenuId": "academic-year",
@@ -37,7 +36,6 @@
                 "url": "./configuration/academic-year"
             },
             {
-                
                 "pid": "configuration",
                 "icon": "",
                 "subMenuId": "fee-category",
@@ -46,15 +44,31 @@
                 "url": "./configuration/master-fee-category"
             },
             {
-                
                 "pid": "configuration",
                 "subMenuId": "classes",
                 "icon": "",
                 "path": "./configuration/classes",
                 "name": "Classes",
-                "url": "./configuration/classes"
-            } 
-             
+                "url": "./configuration/classes",
+                "subMenus": [
+                    {
+                        "pid": "classes",
+                        "icon": "",
+                        "subMenuId": "feeStructure",
+                        "path": "./configuration/classes/fee-structure",
+                        "name": "Fee Structure",
+                        "url": "./configuration/classes/fee-structure"
+                    },
+                    {
+                        "pid": "classes",
+                        "icon": "",
+                        "subMenuId": "section",
+                        "path": "./configuration/classes/section",
+                        "name": "Section",
+                        "url": "./configuration/classes/section"
+                    }
+                ]
+            }
         ]
     },
     {

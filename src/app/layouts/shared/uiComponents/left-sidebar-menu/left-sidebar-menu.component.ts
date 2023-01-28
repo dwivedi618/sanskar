@@ -5,7 +5,8 @@ import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
 import { CommonService } from 'src/app/services/common.service';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
-import { MainMenu } from './sidebar.menus';
+import { MainMenu, SubMenu } from './sidebar.menus';
+import { RoutingService } from 'src/app/services/routing.service';
 
 @Component({
   selector: 'app-left-sidebar-menu',
@@ -20,7 +21,9 @@ export class LeftSidebarMenuComponent implements OnInit {
     private dialog: MatDialog,
     private router: Router,
     private route: ActivatedRoute,
-    private commonSerivice: CommonService
+    private commonSerivice: CommonService,
+    private routingSerivice: RoutingService,
+
   ) {
     router.events.pipe(
       filter(event => event instanceof NavigationEnd)
@@ -49,6 +52,11 @@ export class LeftSidebarMenuComponent implements OnInit {
 
   openConfigurationRoute(path:string) {
     this.router.navigate([`./${path}`])
+  }
+
+  setSubMenu(menu:SubMenu){
+    console.log("menu.subMenus",menu.subMenus);
+    this.routingSerivice.onTriggerMenu(menu.subMenus)
   }
 
 }

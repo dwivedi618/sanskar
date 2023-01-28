@@ -18,10 +18,11 @@
                         <small>{{menu.name}}</small>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-                <a *ngFor="let subMenu of menu.subMenus" (click)="$event.stopPropagation();" mat-list-item
+                <a *ngFor="let subMenu of menu.subMenus" (click)="setSubMenu(subMenu);$event.stopPropagation();" mat-list-item
                     routerLink="{{subMenu.url}}" routerLinkActive="background-gradient-primary  mx-auto rounded-lg"
                     class="text-light ">
-                    <small>{{subMenu.name}}</small></a>
+                    <small>{{subMenu.name}}</small>
+                </a>
             </mat-expansion-panel>
         </mat-accordion>
     </ng-container>

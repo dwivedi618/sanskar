@@ -3,7 +3,7 @@
         <mat-toolbar class="justify-content-center glass" 
         
          style="max-height: 3rem;position:sticky;top:0rem;z-index: 2;">
-            <app-tab-nav [tabs]="routingService.studentTabs | async" 
+            <app-tab-nav [tabs]="routingService.subMenus | async" 
             [selectedTabId]="selectedIndex" 
             [sticky]="true"
             (onChange)="onMainTabChange($event)"></app-tab-nav>

@@ -36,20 +36,17 @@ export class TableComponent implements AfterViewInit, OnInit {
   }
   setTabelDataSource(data) {
     this.dataSource = new MatTableDataSource(data);
-    console.log("data changed", data)
 
     this.setDisplayedColumns(this.columns)
   }
 
   setDisplayedColumns(data) {
-    console.log("column changed", data)
 
     if (data && data.length) {
       this.columns = data;
       this.displayedColumns = []
       this.displayedColumns = this.actions && this.actions?.length ? ['select', ...this.columns, 'action'] : ['select', ...this.columns]
     }
-    console.log("this.columns", this.columns)
   }
 
   addNew(){

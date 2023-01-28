@@ -25,11 +25,11 @@ export class RoutingService {
   onTriggerStudentTab(tabs:MainMenu[]){
     this.$activeStudentTabSubMenus.next(tabs);
   }
-
-
-
-  onTriggerMainTab(tab:MainMenu){
-    this.$activeSubMenus.next(tab.subMenus);
+  onTriggerMenu(tab:SubMenu[]){
+    this.$activeSubMenus.next(tab);
+  }
+  public get subMenus()  {
+    return this.$activeSubMenus.asObservable();
   }
 
   setStudentTabs(tabs : MainMenu[]){

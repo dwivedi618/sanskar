@@ -7,7 +7,7 @@
 }
 
 .leftsidebar{
-    width: 15rem;
+    width: var(--left-sidebar);
     border: none!important;
 }
 .rightsidebar{

@@ -13,13 +13,13 @@
                 </div>
             </div>
             <div class="d-flex justify-content-between flex-wrap">
-                <button *ngFor="let link of configurationLink" routerLink="{{link.url}}"  mat-button class="mb-4 mx-4  mat-elevation-z2">
+                <mat-card *ngFor="let link of configurationLink" routerLink="{{link.url}}"  mat-button class="mb-4 mx-4  mat-elevation-z2">
                     <div class="p-4">
                         <h3 class="strong">{{link.title | uppercase}}</h3>
                        <hr>
                         <p class="text-mylight">{{link.text}}</p>
                     </div>
-                </button>
+                </mat-card>
             </div>
          
 

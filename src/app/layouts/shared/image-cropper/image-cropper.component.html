@@ -1,10 +1,6 @@
-<div mat-dialog-title class="d-flex align-items-center mt-n4 mr-n4 ml-n4 background-dark-secondary">
-    <small class="text-light pr-3 pl-2 fs-14">Crop Image</small>
-    <div class="spacer"></div>
-    <button mat-mini-fab color="warn" [mat-dialog-close]="false" class="mat-elevation-z0 br-0">
-        <mat-icon class="material-icons-outlined ">close</mat-icon>
-    </button>
-</div>
+
+<app-dialog-header [dialogData]="{action : dialogData?.action , name : 'Crop Image'}"></app-dialog-header>
+
 <div mat-dialog-content class="py-2">
     
     <section class="d-flex justify-content-between image-cropper-layout">

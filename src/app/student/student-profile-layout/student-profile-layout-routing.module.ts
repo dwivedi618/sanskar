@@ -9,9 +9,9 @@ const profileRoutes: Routes = [
   {
     path: '', component: StudentProfileLayoutComponent,
     children: [
-      { path: '', component: StudentProfileComponent },
-      { path: 'accounts', component: AccountsComponent },
-      { path: 'transactions', component: TransactionComponent },
+      { path: '', component: StudentProfileComponent , data:{breadcrumb : 'Overview'}},
+      { path: 'accounts', component: AccountsComponent ,data:{breadcrumb : 'Accounts'}},
+      { path: 'transactions', component: TransactionComponent,data:{breadcrumb : 'Transactions'}},
 
 
     ]

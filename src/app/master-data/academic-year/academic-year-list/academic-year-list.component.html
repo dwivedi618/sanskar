@@ -1,6 +1,6 @@
 <div class="">
   <!--table heading-->
-  <app-toolbar [title]="'Academic Year'" [sticky]="true"></app-toolbar>
+  <app-toolbar [title]="'Academic Year'" [routerLink]="'/configuration'" [sticky]="true"></app-toolbar>
 
   <app-table [data]="academicYearList" [columns]="displayedColumns" [actions]="actions"
     (actionTriggerd)="actionTriggerhandler($event)"></app-table>

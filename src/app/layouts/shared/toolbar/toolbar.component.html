@@ -1,14 +1,16 @@
 <mat-toolbar class="background-dark-primary" [class.sticky]="sticky">
     <ng-container *ngIf="!routerLink">
-        <span class="fs-14">{{title | titlecase}}</span>
+        <span class="fs-14 text-uppercase">{{title | titlecase}}</span>
     </ng-container>
     <ng-container *ngIf="routerLink">
-        <button mat-icon-button [routerLink]="routerLink" class="fs-14">
+        <button mat-icon-button [routerLink]="routerLink" class="fs-14 text-uppercase">
             <mat-icon class="mat-icon-md text-mylight pt-0">arrow_back</mat-icon>
             <span>{{title | titlecase}}</span>
         </button>
     </ng-container>
     <div class="spacer"></div>
-   <app-dropdown [label]="'class'" [data]="classApiService.$classDropDown | async" (onSelect)="onClassSelect($event)" [selected]="{name : selectedStandardName, _id : standardId}"></app-dropdown>
+    <ng-container *ngIf="dropdowns.includes('class')">
+        <app-dropdown [label]="'class'" [data]="classApiService.$classDropDown | async" (onSelect)="onClassSelect($event)" [selected]="{name : selectedStandardName, _id : standardId}"></app-dropdown>
+    </ng-container>
     
 </mat-toolbar>

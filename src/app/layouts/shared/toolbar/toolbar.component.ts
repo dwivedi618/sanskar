@@ -12,6 +12,7 @@ export class ToolbarComponent implements OnInit {
   @Input() sticky :boolean = true;
   @Input() routerLink : string = null;
   @Output() onDropDownSelect = new EventEmitter<{_id : String , name : String}>();
+  @Input () dropdowns = [];
   constructor(
     public routingService : RoutingService,
     public classApiService : ClassApiService

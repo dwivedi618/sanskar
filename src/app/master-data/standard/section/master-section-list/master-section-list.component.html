@@ -2,10 +2,11 @@
   <!--table heading-->
   <app-toolbar [title]="selectedStandardName ? selectedStandardName + ' Sections' : '' "
     [routerLink]="'/configuration/classes'" 
+    [dropdowns]="['class']"
     (onDropDownSelect)="onSelect($event)"
     [selected]="{name : selectedStandardName, _id : standardId}"></app-toolbar>
 
-  <mat-toolbar class="justify-content-center glass" style="max-height: 3rem;position:sticky;top:0rem;z-index: 2;">
+  <mat-toolbar class="justify-content-center" style="max-height: 3rem;position:sticky;top:0rem;z-index: 2;">
     <app-tab-nav [tabs]="routingService.subMenus | async" [selectedTabId]="selectedIndex" [sticky]="true"
       (onChange)="onMainTabChange($event)"></app-tab-nav>
   </mat-toolbar>

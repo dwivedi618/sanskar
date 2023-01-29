@@ -47,3 +47,34 @@ export const classActionMenus = [
         url: ""
     }
 ]
+
+export const admissionRequestAction = [
+    {
+        menuName: "Delete",
+        menuId: Action.DELETE,
+        icon: 'delete',
+        path: '',
+        url: ""
+    },
+    {
+        menuName: "Complete Registration",
+        menuId: Action.EDIT,
+        icon: 'edit',
+        path: '',
+        url: ""
+    },
+    // {
+    //     menuName: "Show sections",
+    //     menuId: Action.EDIT,
+    //     icon: 'dataset',
+    //     path: 'configuration/section',
+    //     url: ""
+    // },
+    // {
+    //     menuName: "Show fee structure",
+    //     menuId: Action.NAVIGATE,
+    //     icon: 'folder_open',
+    //     path: 'configuration/fee-structure',
+    //     url: ""
+    // }
+]

@@ -8,6 +8,7 @@ import { API_ROUTES, CommonService } from 'src/app/services/common.service';
 import { UiService } from 'src/app/services/ui.service';
 import { AdmissionRequestListService } from '../services/admission-request-list.service';
 import { QuickRegistrationService } from '../services/quick-registration.service';
+import { admissionRequestAction } from 'src/app/layouts/shared/uiComponents/menu-button/action-menus';
 
 @Component({
   selector: 'app-student-registration',
@@ -15,10 +16,9 @@ import { QuickRegistrationService } from '../services/quick-registration.service
   styleUrls: ['./student-registration.component.scss']
 })
 export class StudentRegistrationComponent implements OnInit {
-
+  displayedColumns = ['firstName',"academicSession","studentMobile","gender","place","registrationCompleted"];
   Action = Action;
-  @Input() actions;
-  @Output() actionTriggerd = new EventEmitter<{ action, data }>();
+  admissionRequestAction=admissionRequestAction
   isLoading: boolean = true;
   admissionRequestList: any;
 
@@ -27,7 +27,6 @@ export class StudentRegistrationComponent implements OnInit {
     private dialogService: DialogService,
     private commonService: CommonService,
     private admissionRequestApiService : AdmissionRequestListService,
-    private quickRegisterationDialogRef: MatDialogRef<QuickRegistrationService>,
   ) { }
 
   ngOnInit() {
@@ -38,10 +37,9 @@ export class StudentRegistrationComponent implements OnInit {
     this.uiService.loader.show("Fetching admissionRequestList...");
     this.admissionRequestApiService.admissionRequestList().subscribe((result) => {
       console.log("getQuickRegistrationFormJson", result);
-      this.admissionRequestList = result || null;
+      this.admissionRequestList = result.data || null;
       this.uiService.loader.hide();
       // this.alertService.alertComponent(result.message);
-      this.quickRegisterationDialogRef.close();
     }, (error) => {
       console.log("getMasterFeeCategory error", error);
       // this.uiService.loader.hide();

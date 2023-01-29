@@ -5,7 +5,7 @@
     <!--table heading-->
     <app-toolbar [title]="'Admission Request'" [sticky]="true"></app-toolbar>
   
-    <app-table [data]="admissionRequestList" [columns]="displayedColumns" [actions]="actions"
+    <app-table [data]="admissionRequestList" [columns]="displayedColumns" [actions]="admissionRequestAction"
       (actionTriggerd)="actionTriggerhandler($event)"></app-table>
   
   </div>

@@ -115,6 +115,24 @@
                 "required": true,
                 "maxLength": 50
             }
+        },
+        {
+            "ctrlId": 7,
+            "name": "nationality",
+            "label": "Nationality",
+            "value": "India",
+            "type": "text",
+            "validators": {
+                "required": false
+            },
+            "options": [
+                {
+                    "value": "India",
+                    "label": "India",
+                    "icon": ""
+                }
+            ],
+            "disabled" : true
         }
     ]
 }

@@ -64,3 +64,19 @@ export const studentActionMenus = [
         url: ""
     }
 ]
+export const admissionRequestAction = [
+    {
+        menuName: "Delete",
+        menuId: Action.DELETE,
+        icon: 'delete',
+        path: '',
+        url: ""
+    },
+    {
+        menuName: "Complete Registration",
+        menuId: Action.EDIT,
+        icon: 'edit',
+        path: '',
+        url: ""
+    }
+]

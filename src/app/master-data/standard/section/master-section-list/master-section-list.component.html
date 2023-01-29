@@ -1,6 +1,15 @@
 <div class="bg-white">
   <!--table heading-->
- 
-  <app-table [data]="sections" [columns]="displayedColumns" (actionTriggerd)="actionTriggerhandler($event)" [actions]="actions"></app-table>
+  <app-toolbar [title]="selectedStandardName ? selectedStandardName + ' Sections' : '' "
+    [routerLink]="'/configuration/classes'" 
+    (onDropDownSelect)="onSelect($event)"
+    [selected]="{name : selectedStandardName, _id : standardId}"></app-toolbar>
+
+  <mat-toolbar class="justify-content-center glass" style="max-height: 3rem;position:sticky;top:0rem;z-index: 2;">
+    <app-tab-nav [tabs]="routingService.subMenus | async" [selectedTabId]="selectedIndex" [sticky]="true"
+      (onChange)="onMainTabChange($event)"></app-tab-nav>
+  </mat-toolbar>
+  <app-table [data]="sections" [columns]="displayedColumns" (actionTriggerd)="actionTriggerhandler($event)"
+    [actions]="actions"></app-table>
 
 </div>

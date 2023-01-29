@@ -16,10 +16,12 @@ import { ClasswiseFeesApiService } from '../services/classwise-fees-api.service'
 import { Fee } from '../../section/fee.interface';
 import { ClassActionService } from '../../services/class-action.service';
 import { ClassApiService } from '../../services/class-api.service';
+import { RoutingService } from 'src/app/services/routing.service';
+import { MainMenu } from 'src/app/layouts/shared/uiComponents/left-sidebar-menu/sidebar.menus';
 
-interface classWiseFee{
-  amount : Number,
-  fee : Fee
+interface classWiseFee {
+  amount: Number,
+  fee: Fee
 }
 @Component({
   selector: 'app-fee-structure-list',
@@ -27,7 +29,7 @@ interface classWiseFee{
   styleUrls: ['./fee-structure-list.component.scss']
 })
 
-export class FeeStructureListComponent implements  OnInit {
+export class FeeStructureListComponent implements OnInit {
   @ViewChild('selectStandardbtn', { static: false }) selectStandardbtn: HTMLElement
   /** Columns displayed in the table. Columns IDs can be added, removed, or reordered. */
   displayedColumns = ['name', 'frequency', 'isOptional', 'amount'];
@@ -45,16 +47,16 @@ export class FeeStructureListComponent implements  OnInit {
 
   selectedSession: string
   classWiseFeesOriginal: any;
+  selectedIndex: string;
   constructor(
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private alertService: AlertService,
     private commonService: CommonService,
-    private classActionService: ClassActionService,
-    private classApiService: ClassApiService,
+    public classApiService: ClassApiService,
     private classwiseFeeActionService: ClasswiseFeesActionService,
-    private classwiseFeesApiService : ClasswiseFeesApiService,
-    private dialogService: DialogService
+    private classwiseFeesApiService: ClasswiseFeesApiService,
+    public routingService : RoutingService,
   ) {
     this.activatedRoute.queryParams.subscribe(data => {
       if (data) {
@@ -84,8 +86,8 @@ export class FeeStructureListComponent implements  OnInit {
       if (HELPER.isObject(structureList)) {
         let classWiseFee = structureList?.fees || [] as classWiseFee[];
         let serializeClassWiseFee = []
-        classWiseFee.forEach((fees : classWiseFee) => {
-          let fee = { amount : fees.amount, ...fees.fee }
+        classWiseFee.forEach((fees: classWiseFee) => {
+          let fee = { amount: fees.amount, ...fees.fee }
           serializeClassWiseFee.push(fee);
         })
         this.classWiseFees = serializeClassWiseFee
@@ -171,8 +173,18 @@ export class FeeStructureListComponent implements  OnInit {
   refresh() {
     this.getFeeStructureList();
   }
-  actionTriggerhandler(event){
+  actionTriggerhandler(event) {
     this.clickToAction(Action.UPDATE)
+  }
+  onMainTabChange(selectedTab:MainMenu){
+    this.selectedIndex = selectedTab.id;
+    this.routingService.onTriggerStudentTab(selectedTab.subMenus);
+    this.router.navigate([selectedTab.path], { queryParams: { find: this.selectedIndex }, queryParamsHandling: 'merge' });
+  }
+
+  onSelect(selectionObj: { _id : String, name : String }){
+    console.log("on class select",selectionObj);
+    this.router.navigate([], { queryParams: { standardId: selectionObj._id, n: selectionObj.name }, queryParamsHandling: 'merge' });
   }
 }
 

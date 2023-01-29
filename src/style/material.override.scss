@@ -91,11 +91,12 @@ mat-card{
 }
 
 button.mat-mini-fab{
+    border-radius: 4px;
     &.br-4{
-        border-radius: 4px;;
+        border-radius: 4px;
     }
     &.br-0{
-        border-radius: 0px;;
+        border-radius: 0px;
     }
 }
 

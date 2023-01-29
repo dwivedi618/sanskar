@@ -16,6 +16,7 @@ export class TableComponent implements AfterViewInit, OnInit {
   dataSource: MatTableDataSource<[]>;
   selection = new SelectionModel<any>(true, []);
   displayedColumns: any[];
+  isListView : Boolean = true;
   // columns = [];
 
   @Input() set data(data: any[]) {

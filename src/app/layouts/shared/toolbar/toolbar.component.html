@@ -8,5 +8,7 @@
             <span>{{title | titlecase}}</span>
         </button>
     </ng-container>
+    <div class="spacer"></div>
+   <app-dropdown [label]="'class'" [data]="classApiService.$classDropDown | async" (onSelect)="onClassSelect($event)" [selected]="{name : selectedStandardName, _id : standardId}"></app-dropdown>
     
 </mat-toolbar>

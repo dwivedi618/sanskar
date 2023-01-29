@@ -9,6 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SectionApiService } from '../services/section-api.service';
 import { ClassApiService } from '../../services/class-api.service';
 import { ActionMenus } from 'src/app/layouts/shared/uiComponents/menu-button/action-menus';
+import { MainMenu } from 'src/app/layouts/shared/uiComponents/left-sidebar-menu/sidebar.menus';
+import { RoutingService } from 'src/app/services/routing.service';
 
 @Component({
   selector: 'app-master-section-list',
@@ -26,6 +28,7 @@ export class MasterSectionListComponent implements OnInit, OnDestroy {
   selectedStandardName: any;
   standardList: any;
   actions = ActionMenus
+  selectedIndex: string;
   constructor(
     private commonService: CommonService,
     private sectionActionService: SectionActionService,
@@ -34,7 +37,8 @@ export class MasterSectionListComponent implements OnInit, OnDestroy {
     private dialogService : DialogService,
     private activatedRoute : ActivatedRoute,
     private router : Router,
-    private classApiService : ClassApiService
+    private classApiService : ClassApiService,
+    public routingService : RoutingService,
   ) {
     this.activatedRoute.queryParams.subscribe(data => {
       if (data) {
@@ -102,6 +106,17 @@ export class MasterSectionListComponent implements OnInit, OnDestroy {
       this.standardList = result['data'] || [];
     }, (error) => {
     })
+  }
+
+  onMainTabChange(selectedTab:MainMenu){
+    this.selectedIndex = selectedTab.id;
+    this.routingService.onTriggerStudentTab(selectedTab.subMenus);
+    this.router.navigate([selectedTab.path], { queryParams: { find: this.selectedIndex }, queryParamsHandling: 'merge' });
+  }
+
+  onSelect(selectionObj: { _id : String, name : String }){
+    console.log("on class select",selectionObj);
+    this.router.navigate([], { queryParams: { standardId: selectionObj._id, n: selectionObj.name }, queryParamsHandling: 'merge' });
   }
 }
 

@@ -1,5 +1,8 @@
 .elevation{
     box-shadow: var(--elevation-floating) !important;
+    &-0{
+        box-shadow:none!important;
+    }
 }
 
 .elevation-bottom {

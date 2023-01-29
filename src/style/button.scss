@@ -10,4 +10,8 @@ button:-moz-loading{
 }
 button{
     letter-spacing: 0.5px;
+    font-weight: 600;
+}
+button.mat-raised-button span,small{
+    font-weight: 600;
 }

@@ -1,8 +1,13 @@
 <!--more action on selected row-->
 <mat-toolbar class="glass">
     <div class="px-1 " *ngIf="!this.selection.selected.length">
-        <button mat-icon-button (click)="refresh()">
-            <mat-icon class="mat-icon-md mat-icon-light pt-0">refresh</mat-icon>
+        <button mat-mini-fab (click)="refresh()" color="primary" class="elevation">
+            <mat-icon class="">refresh</mat-icon>
+        </button>
+    </div>
+    <div class="px-1" *ngIf="!this.selection.selected.length">
+        <button mat-mini-fab color="primary" class="mx-2 text-light br-4" (click)="isListView = !isListView">
+            <mat-icon class="">{{isListView ? 'view_list' : 'grid_view'}}</mat-icon>
         </button>
     </div>
     <ng-container *ngIf="this.selection.selected.length">
@@ -11,7 +16,7 @@
     <div class="spacer"></div>
     <ng-container *ngIf="!this.selection?.selected?.length">
         <app-filter (onEvent)="applyFilter($event)"></app-filter>
-        <button mat-stroked-button color="" (click)="addNew()" >
+        <button mat-raised-button color="primary" (click)="addNew()" class="mr-2">
             <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
             <small>
                 Add New
@@ -39,7 +44,7 @@
                         [aria-label]="checkboxLabel(row)">
                     </mat-checkbox>
                 </div>
-    
+
             </td>
         </ng-container>
         <ng-container *ngFor="let column of columns" [matColumnDef]="column">
@@ -61,7 +66,7 @@
                     (onMenuClick)="menuClickHandler($event,row);"></app-menu-button>
             </td>
         </ng-container>
-    
+
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="menuClickHandler(Action.NAVIGATE,row);"
             style="cursor:pointer"></tr>

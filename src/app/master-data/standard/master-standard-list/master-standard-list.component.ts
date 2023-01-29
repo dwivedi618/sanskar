@@ -35,7 +35,7 @@ export interface MasterStandardList {
 })
 
 export class MasterStandardListComponent implements OnInit {
-
+  
   classActionMenus = classActionMenus;
   displayedColumns = ['name'];
   classes = [];
@@ -46,9 +46,10 @@ export class MasterStandardListComponent implements OnInit {
     private classActionService : ClassActionService,
     private classApiService : ClassApiService,
     private router : Router
-  ){}
-
-  ngOnInit() {
+    ){}
+    
+    $classesDropdown = this.classApiService.$classDropDown
+    ngOnInit() {
     this.getMasterStandardList();
   }
 

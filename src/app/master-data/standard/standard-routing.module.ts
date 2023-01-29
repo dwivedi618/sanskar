@@ -7,14 +7,13 @@ import { StandardLayoutComponent } from './standard-layout/standard-layout.compo
 
 const routes: Routes = [
   {
-    path: "", component: StandardLayoutComponent,
+    path: '', component: StandardLayoutComponent,
     children : [
       { path: '', component: MasterStandardListComponent, data: { breadcrumb: 'Classes', icon: '' } },
       { path: 'fee-structure', component: FeeStructureListComponent, data: { breadcrumb: 'Fee Structure', icon: '' } },
       { path: 'section', component: MasterSectionListComponent, data: { breadcrumb: 'Section', icon: '' } },      
     ]
-  },
-
+  }
 ];
 
 @NgModule({

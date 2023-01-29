@@ -1,4 +1,4 @@
-<span class="px-2">
+<span class="px-2" (click)="$event.stopPropagation()">
     <button style="min-width: 8rem;" class="background-dark-secondary" mat-stroked-button
         [matMenuTriggerFor]="standards" #t="matMenuTrigger">
         <small *ngIf="label" class="mr-1 fs-12" style="color: rgba(204, 204, 204, 0.351)">{{label | titlecase}}

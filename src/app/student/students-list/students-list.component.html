@@ -1,5 +1,7 @@
 <div class="">
-  <app-toolbar [title]="'Students'"></app-toolbar>
+  <app-toolbar title="Students" [dropdowns]="['class']" (onDropDownSelect)="onSelect($event)"
+    [selected]="{name : selectedStandardName, _id : standardId}"></app-toolbar>
   <app-table [data]="$studentsBasicInfo | async" [columns]="displayedColumns" [actions]="studentActionMenus"
-  (actionTriggerd)="actionTriggerhandler($event)"></app-table>
+    (actionTriggerd)="actionTriggerhandler($event)">
+  </app-table>
 </div>

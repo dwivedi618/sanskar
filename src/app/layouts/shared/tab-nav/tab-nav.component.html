@@ -1,5 +1,5 @@
 <ng-container *ngIf="tabs && tabs.length">
-    <nav mat-tab-nav-bar [backgroundColor]="color" >
+    <nav mat-tab-nav-bar >
         <ng-container *ngFor="let tab of tabs">
             <a mat-tab-link  (click)="tabClickHandler(tab)" [active]="activeTabId == tab.id">
                 <mat-icon class="mr-2">{{tab.icon}}</mat-icon>

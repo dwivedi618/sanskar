@@ -1,31 +1,19 @@
 <header>
   <mat-toolbar color="primary" role="heading" class="mat-elevation-z8">
-    <mat-toolbar-row>
-      <div class="sideWidth d-flex justify-content-center">
-        <div class="mr-2">
-          <app-avatar [src]="'../assets/sanskar.jpg'" [size]="'sm'" [shape]="'square'"></app-avatar>
-        </div>
+
+    <div class="sideWidth d-flex justify-content-center">
+      <div class="mr-2">
+        <app-avatar [src]="'../assets/sanskar.jpg'" [size]="'sm'" [shape]="'square'"></app-avatar>
+      </div>
+      <div>
         Sankar Public School
       </div>
+    </div>
 
-      <div class="spacer"></div>
-      <div class="d-flex align-items-center justify-content-center" style="position: relative;">
-        <app-search></app-search>
-        <button mat-stroked-button color="accent"  (click)="manageQuickRegistration()" >Quick Register</button>
-        
-      </div>
-      <div>
-        <button mat-mini-fab color="primary" class="mx-2 text-light br-4">
-          <mat-icon>notifications</mat-icon>
-        </button>
-      </div>
-      <div>
-        <button mat-mini-fab color="primary" class="mx-2 text-light br-4">
-          <mat-icon>search</mat-icon>
-        </button>
-      </div>
-      <!-- <small>Sanskar Public School</small> -->
-
-    </mat-toolbar-row>
+    <div class="spacer"></div>
+    <ng-container>
+      <app-dropdown [label]="'Academic Year'" [data]="academicYearApiService.$academicYears | async" (onSelect)="onDropdownSelect($event)" color="primary"></app-dropdown>
+    </ng-container>
+    
   </mat-toolbar>
 </header>

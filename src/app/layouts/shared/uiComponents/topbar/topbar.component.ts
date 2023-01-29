@@ -1,37 +1,27 @@
 import { ToggleService } from '../../../../services/toggle.service';
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { DialogService } from '../../dialog.service';
+import { AcademicYearApiService } from 'src/app/master-data/academic-year/services/academic-year-api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-topbar',
   templateUrl: './topbar.component.html',
   styleUrls: ['./topbar.component.scss']
 })
-export class TopbarComponent implements OnInit {
-  
-  isListView = true ;
-  isLoading: boolean = true;
+export class TopbarComponent{
   constructor(
-    private toggleService : ToggleService,
-    private dialogService : DialogService
-  ) { }
+    private toggleService: ToggleService,
+    private dialogService: DialogService,
+    public academicYearApiService: AcademicYearApiService,
+    private router: Router
+  ) {}
 
-  ngOnInit(): void {
-    setTimeout(() => {
-      this.isLoading = false;
-    }, 3000);
+  public toggleLeftSidebar() {
+    this.toggleService.leftSidebarToggle.emit();
   }
-  /**
-   * menu sidebar open and close state control
-   */
-  public toggleLeftSidebar(){
-    this.toggleService.leftSidebarToggle.emit()
-  }
-  manageQuickRegistration() {
-    console.log('quick Popup');
-    this.dialogService.manageQuickRegistration().subscribe(()=>{this.refresh()});
-  }
-    refresh(){
-
+  
+  onDropdownSelect(selection: { _id: String, name: String }) {
+    this.router.navigate([], { queryParams: { academicYearId: selection._id, academicYearName: selection.name }, queryParamsHandling: 'merge' })
   }
 }

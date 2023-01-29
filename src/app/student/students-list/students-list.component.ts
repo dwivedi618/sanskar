@@ -167,4 +167,8 @@ export class StudentsListComponent implements OnInit {
     })
   }
  
+  onSelect(selectionObj: { _id : String, name : String }){
+    console.log("on class select",selectionObj);
+    this.router.navigate([], { queryParams: { standardId: selectionObj._id, n: selectionObj.name }, queryParamsHandling: 'merge' });
+  }
 }

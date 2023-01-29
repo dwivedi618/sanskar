@@ -6,7 +6,7 @@
         </button>
     </div>
     <div class="px-1" *ngIf="!this.selection.selected.length">
-        <button mat-mini-fab color="primary" class="mx-2 text-light br-4" (click)="isListView = !isListView">
+        <button mat-mini-fab color="primary" class="text-light br-4" (click)="isListView = !isListView">
             <mat-icon class="">{{isListView ? 'view_list' : 'grid_view'}}</mat-icon>
         </button>
     </div>

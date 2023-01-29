@@ -9,6 +9,8 @@ export class DropdownComponent{
   @Input() label : string = '';
   @Input() data : {_id , name}[] = [];
   @Input() selected : {_id : String, name : String};
+  @Input() color;
+
   selectedId = "";
   @Output() onSelect = new EventEmitter<{_id : String, name : String}>();
   dropdownSelectHandler(obj){

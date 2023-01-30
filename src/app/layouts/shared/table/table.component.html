@@ -25,8 +25,8 @@
     </ng-container>
 </mat-toolbar>
 
-<mat-card class="elevation p-0 m-4">
-    <table mat-table [dataSource]="dataSource" class="w-100 br-10" *ngIf="dataSource && dataSource.data.length != 0 ">
+<mat-card class="elevation p-0 m-3 table-container">
+    <table mat-table [dataSource]="dataSource" class="w-100 br-10 " *ngIf="dataSource && dataSource.data.length != 0 ">
         <!-- Checkbox Column -->
         <ng-container matColumnDef="select">
             <th mat-header-cell *matHeaderCellDef class="text-left" style="width: 2rem;">
@@ -67,7 +67,7 @@
             </td>
         </ng-container>
 
-        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns;sticky: true"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns" (click)="menuClickHandler(Action.NAVIGATE,row);"
             style="cursor:pointer"></tr>
     </table>
@@ -75,3 +75,10 @@
 <ng-container *ngIf="!dataSource.data.length && !isLoading">
     <app-empty-list></app-empty-list>
 </ng-container>
+
+<mat-toolbar class="glass mat-elevation-z8" >
+    <div class="spacer"> </div>
+    <mat-paginator style="height: 3rem;" [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
+    </mat-paginator>
+
+</mat-toolbar>

@@ -29,3 +29,7 @@ table ::ng-deep mat-checkbox .mat-checkbox-inner-container {
     outline: none;
     border: none;
 }
+.table-container{
+    max-height: calc(100% - var(--height-topbar) - var(--height-breadcrumb) - var(--height-breadcrumb) - var(--height-toolbar) - var(--height-toolbar) );
+    overflow-y: scroll;
+}

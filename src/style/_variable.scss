@@ -3,7 +3,6 @@
     --color-gray-secondary: #424242;
     --color-white: white;
     --color-primary:#673AB7;
-
     --elevation-raised-bottom: 0 -2px 8px rgba(0, 0, 0, 0.12);
     --elevation-raised-top: 0 2px 8px rgba(0, 0, 0, 0.12);
     --elevation-floating: 0 0 8px rgba(0, 0, 0, 0.1);
@@ -15,5 +14,8 @@
     --transition-bezier: .3s cubic-bezier(0, 0, 0.2, 1);
     --left-sidebar : 15rem;
     --right-sidebar : 3rem;
+    --height-topbar : 3rem;
+    --height-breadcrumb : 2rem;
+    --height-toolbar : 3rem;
 
 }

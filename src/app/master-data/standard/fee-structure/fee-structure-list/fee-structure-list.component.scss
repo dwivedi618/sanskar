@@ -20,3 +20,12 @@ tr.mat-footer-row {
     border: none;
     opacity: .5!important;
 }
+
+:host {
+    app-table{
+        height: calc(100% - 6rem);
+        width: calc(100% - var(--left-sidebar) - var(--right-sidebar));
+        position: fixed;
+        clear: both;
+    }
+}

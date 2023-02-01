@@ -1,0 +1,7 @@
+:host {
+    app-table{
+        height: calc(100% - 6rem);
+        width: calc(100% - var(--left-sidebar) - var(--right-sidebar));
+        position: fixed;
+    }
+}

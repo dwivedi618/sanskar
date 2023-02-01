@@ -15,6 +15,7 @@ import { AlertService } from './services/alert.service';
 import { MatSnackBarRef } from '@angular/material/snack-bar';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { JsonFormService } from './services/json-form.service';
+import { LayoutClassyComponent } from './layouts/layout-classy/layout-classy.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { JsonFormService } from './services/json-form.service';
     NavComponent,
     LayoutComponent,
     VerticalComponent,
+    LayoutClassyComponent,
   ],
   imports: [
     BrowserAnimationsModule,

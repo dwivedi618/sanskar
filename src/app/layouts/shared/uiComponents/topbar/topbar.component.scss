@@ -1,10 +1,10 @@
 
    header{
-    position: fixed;
+    position: absolute;
     display: block;
-    width: 100vw;
+    width: 100%;
     top : 0;
-    z-index: 2;
+    z-index: 100000;
 }
 
    header ::ng-deep mat-toolbar mat-toolbar-row  {

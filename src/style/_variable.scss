@@ -13,7 +13,7 @@
     --transition-effect-default: .3s ease;
     --transition-bezier: .3s cubic-bezier(0, 0, 0.2, 1);
     --left-sidebar : 18rem;
-    --right-sidebar : 3rem;
+    --right-sidebar : 4rem;
     --height-topbar : 3rem;
     --height-breadcrumb : 2rem;
     --height-toolbar : 3rem;
@@ -23,4 +23,5 @@
     --background-primary-active : #64748b;
     --background-opacity : .12;
     --transition :  0.5s all;
+    --text-secondary : rgb(148,163,184);
 }

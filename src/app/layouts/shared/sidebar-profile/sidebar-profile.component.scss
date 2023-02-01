@@ -1,0 +1,7 @@
+.mat-card,.mat-toolbar{
+    background: inherit!important;
+    color: white / (var(--text-opacity));
+}
+.mat-toolbar{
+    color:var(--text-secondary)
+}

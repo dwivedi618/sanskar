@@ -35,6 +35,7 @@ import { AvatarDescriptionComponent } from './avatar-description/avatar-descript
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { QuickRegistrationComponent } from 'src/app/registration/quick-registration/quick-registration.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
+import { SidebarProfileComponent } from './sidebar-profile/sidebar-profile.component';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { DropdownComponent } from './dropdown/dropdown.component';
     AvatarDescriptionComponent,
     ToolbarComponent,
     QuickRegistrationComponent,
-    DropdownComponent
+    DropdownComponent,
+    SidebarProfileComponent
   ],
   imports: [
     CommonModule,
@@ -116,7 +118,8 @@ import { DropdownComponent } from './dropdown/dropdown.component';
     BreadcrumbComponent,
     ToolbarComponent,
     QuickRegistrationComponent,
-    DropdownComponent
+    DropdownComponent,
+    SidebarProfileComponent
   ]
 })
 export class SharedModule { }

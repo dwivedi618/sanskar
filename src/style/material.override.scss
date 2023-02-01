@@ -80,6 +80,7 @@ mat-card.mat-card{
 }
 mat-card.mat-card{
     background: var(--background-white);
+    
 }
 mat-card.elevation{
     box-shadow: var(--elevation-floating)!important;
@@ -87,7 +88,8 @@ mat-card.elevation{
 mat-card{
     box-shadow: var(--elevation-floating)!important;
     border-radius: 10px;
-    transition: var(--transition-bezier);
+    --card-transition : 1s all;
+    transition: var(--card-transition);
 }
 
 button.mat-mini-fab{

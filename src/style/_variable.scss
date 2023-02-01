@@ -12,10 +12,15 @@
     --background-black-secondary: var(--color-gray-secondary);
     --transition-effect-default: .3s ease;
     --transition-bezier: .3s cubic-bezier(0, 0, 0.2, 1);
-    --left-sidebar : 15rem;
+    --left-sidebar : 18rem;
     --right-sidebar : 3rem;
     --height-topbar : 3rem;
     --height-breadcrumb : 2rem;
     --height-toolbar : 3rem;
-
+    --background-primary : #0f172a;
+    --background-primary-hover : #64748b;
+    --background-primary-hover-transition : 0.5s all;
+    --background-primary-active : #64748b;
+    --background-opacity : .12;
+    --transition :  0.5s all;
 }

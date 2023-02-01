@@ -1,12 +1,12 @@
 <!--more action on selected row-->
 <mat-toolbar class="glass">
     <div class="px-1 " *ngIf="!this.selection.selected.length">
-        <button mat-mini-fab (click)="refresh()" color="primary" class="elevation">
+        <button mat-mini-fab (click)="refresh()" color="priary" class="elevation">
             <mat-icon class="">refresh</mat-icon>
         </button>
     </div>
     <div class="px-1" *ngIf="!this.selection.selected.length">
-        <button mat-mini-fab color="primary" class="text-light br-4" (click)="isListView = !isListView">
+        <button mat-mini-fab color="pridmary" (click)="isListView = !isListView"  class="elevation">
             <mat-icon class="">{{isListView ? 'view_list' : 'grid_view'}}</mat-icon>
         </button>
     </div>
@@ -76,9 +76,9 @@
     <app-empty-list></app-empty-list>
 </ng-container>
 
-<mat-toolbar class="glass mat-elevation-z8" >
+<mat-toolbar class="mat-elevation-z16" color="primary" >
     <div class="spacer"> </div>
-    <mat-paginator style="height: 3rem;" [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
+    <mat-paginator style="height: 3rem;background: var(--color-primary);color: white;" [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]" aria-label="Select page">
     </mat-paginator>
 
 </mat-toolbar>

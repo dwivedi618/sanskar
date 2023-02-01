@@ -38,3 +38,8 @@
     background: -webkit-linear-gradient(to left, #FFB88C, #DE6262);
     background: linear-gradient(to left, #FFB88C, #DE6262);
 }
+
+.sidebar-background{
+    color: #ffffff;
+    background: var(--background-primary);
+}

@@ -16,7 +16,7 @@
     }
 
     &-13 {
-        font-size: 13px;
+        font-size: 13px!important;
     }
 
     &-14 {
@@ -48,4 +48,11 @@
     &-600{
         font-weight: 600!important;
     }
+    &-500{
+        font-weight: 500!important;
+    }
+}
+
+body {
+    font-size: .875rem;
 }

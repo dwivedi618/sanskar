@@ -1,4 +1,4 @@
-.sidenav_menus{
+.sidenav_menus {
     color: antiquewhite;
 }
 
@@ -7,6 +7,7 @@
     color: rgba(0, 0, 0, 0.87);
     /* padding: 0 16px ; */
 }
+
 .mat-expansion-panel-header {
     display: flex;
     flex-direction: row;
@@ -15,23 +16,92 @@
     border-radius: inherit;
     transition: height 225ms cubic-bezier(0.4, 0, 0.2, 1);
 }
+
 /* mat-list-item{
     max-width: 95%;
 } */
 
 
-::ng-deep .mat-expansion-panel-content::after{
-    content: '';
-    position: absolute;
-    border-left: 5px solid !important;
-    height: 100%;
-    top: 0;
-    border-image-slice: 1;
-    border-image-source: linear-gradient(135deg, #3a7bd500,#3a7bd5, #d53a9d00);
-}
-*{
+// ::ng-deep .mat-expansion-panel-content::after {
+//     content: '';
+//     position: absolute;
+//     border-left: 5px solid !important;
+//     height: 100%;
+//     top: 0;
+//     border-image-slice: 1;
+//     border-image-source: linear-gradient(135deg, #3a7bd500, #3a7bd5, #d53a9d00);
+// }
+
+* {
     font-size: 14px;
-    font-weight: 900;
+    // font-weight: 900;
     color: rgba(255, 255, 255, 0.784);
+}
+
+// a mat-list-item:hover{
+//    background: var(--background-primary-hover); 
+// }
+mat-accordion mat-expansion-panel mat-expansion-panel-header:hover.mat-expansion-panel-header {
+    background-color: rgb(255 255 255 / var(--background-opacity));
+    --background-opacity: .12;
+    transition: var(--background-primary-hover-transition);
+}
+
+.background-primary-active,
+a mat-list-item:hover {
+    background-color: rgb(255 255 255 / var(--background-opacity));
+    --background-opacity: .12;
+    transition: var(--background-primary-hover-transition);
+
+
+}
+
+a:hover .mat-list-item,
+.mat-list-item-content {
+    background-color: rgb(255 255 255 / var(--background-opacity));
+    --background-opacity: .12;
+    transition: var(--background-primary-hover-transition);
+}
+
+::ng-deep mat-accordion mat-expansion-panel .mat-expansion-panel-body {
+    /* padding: 0 24px 16px; */
+    padding: 0px !important;
+}
+
+::ng-deep mat-accordion mat-expansion-panel mat-expansion-panel-header .mat-expansion-indicator::after {
+    border-style: solid;
+    border-width: 0 2px 2px 0;
+    content: "";
+    display: inline-block;
+    padding: 3px;
+    transform: rotate(45deg);
+    vertical-align: middle;
+    color: white;
+}
+
+.navigation-item-title {
+    font-size: 12px!important;
+    text-transform: uppercase;
+    font-weight: 500!important;
+    --tw-text-opacity: 1;
+    --fuse-primary-400-rgb: 129,140,248;
+    color: rgba(var(--fuse-primary-400-rgb), var(--tw-text-opacity));
+
+}
+
+.navigation-item-subtitle {
+    font-size:11px!important;
+    color: rgb(255 255 255 / var(--text-opacity));
+    --text-opacity: 0.5;
+    line-height: 1;
+    
+}
+mat-nav-list mat-list-item small,span,a{
+    font-size: 13px;
+    font-weight: 500;
+}
+mat-accordion mat-panel-title small{
+    font-size: 13px;
+    font-weight: 500;
 }
 

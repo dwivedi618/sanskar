@@ -5,14 +5,18 @@ import { RegistrationRoutingModule } from './registration-routing.module';
 import { StudentRegistrationComponent } from './student-registration/student-registration.component';
 import { QuickRegistrationComponent } from './quick-registration/quick-registration.component';
 import { SharedModule } from '../layouts/shared/shared.module';
+import { AdmissionComponent } from '../admission/admission.component';
+import { AdmissionModule } from '../admission/admission.module';
+import { RegistrationLayoutComponent } from './registration-layout/registration-layout.component';
 
 
 @NgModule({
-  declarations: [StudentRegistrationComponent],
+  declarations: [StudentRegistrationComponent, RegistrationLayoutComponent],
   imports: [
     CommonModule,
     RegistrationRoutingModule,
-    SharedModule
+    SharedModule,
+    AdmissionModule
   ],
   exports : [  ]
 })

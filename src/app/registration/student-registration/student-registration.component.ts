@@ -9,6 +9,7 @@ import { UiService } from 'src/app/services/ui.service';
 import { AdmissionRequestListService } from '../services/admission-request-list.service';
 import { QuickRegistrationService } from '../services/quick-registration.service';
 import { admissionRequestAction } from 'src/app/layouts/shared/uiComponents/menu-button/action-menus';
+import { RegistrationActionService } from '../services/registration-action.service';
 
 @Component({
   selector: 'app-student-registration',
@@ -26,6 +27,7 @@ export class StudentRegistrationComponent implements OnInit {
     private uiService: UiService,
     private dialogService: DialogService,
     private commonService: CommonService,
+    private registrationActionService : RegistrationActionService,
     private admissionRequestApiService : AdmissionRequestListService,
   ) { }
 
@@ -61,9 +63,11 @@ export class StudentRegistrationComponent implements OnInit {
   refresh() {
     this.getAdmissionRequestList()
   }
-  menuClickHandler(action, data) {
-    console.log("data", action, data)
-    this.dialogService.manageQuickRegistration().subscribe(()=>{this.refresh()});
+  menuClickHandler(action,data){
+    console.log("action",action,data)
+    this.registrationActionService.actionTriggered(action,data).subscribe(()=>{
+      this.refresh();
+    })
   }
 
 }

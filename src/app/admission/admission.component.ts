@@ -55,9 +55,9 @@ export class AdmissionComponent implements OnInit {
 
   ) {
     this.activatedRoute.queryParams.subscribe((data) => {
-      if (data && data.action === 'update') {
+      if (data && data.registrationId ) {
         this.action = data.action;
-        this.studentId = data.id;
+        this.studentId = data.registrationId;
         this.getProfile();
       } else {
         this.action = data.action;
@@ -79,6 +79,7 @@ export class AdmissionComponent implements OnInit {
         this.isFormLoading = false;
       }, 3000)
     });
+
   }
 
   onImageSelect(image, formFieldName, formName) {
@@ -89,7 +90,7 @@ export class AdmissionComponent implements OnInit {
     this.studentApiService.fetchStudentCompleteProfileByStudentId(this.studentId)
       .subscribe((result) => {
         let [student,parent,address] = result || [];
-
+        console.log('StudentID DATA',result)
         this.isLoading = false;
       }, (error) => {
         console.log("error", error);

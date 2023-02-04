@@ -5,7 +5,7 @@
     <mat-sidenav-container class="sidenav-container" autosize>
         <mat-sidenav #sidenav class="leftsidebar sidebar-background" position="start"
             [mode]="(isHandset$ | async) ? 'side' : 'side'" opened>
-            <app-left-sidebar-menu ></app-left-sidebar-menu>
+            <app-sidebar-compact ></app-sidebar-compact>
         </mat-sidenav>
         <mat-sidenav #sidenav1 class="rightsidebar" position="end" [mode]="(isHandset$ | async) ? 'side' : 'side'"
             opened>
@@ -17,7 +17,7 @@
                 <app-breadcrumb></app-breadcrumb>
             </mat-toolbar>
             <main class="main-outlet">
-                <div style="position: relative;">
+                <div >
                     <router-outlet></router-outlet>
                 </div>
             </main>

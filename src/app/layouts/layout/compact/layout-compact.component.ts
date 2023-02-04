@@ -13,11 +13,11 @@ import {
 }
   from '@angular/router';
   @Component({
-    selector: 'app-compact',
-    templateUrl: './compact.component.html',
-    styleUrls: ['./compact.component.scss']
+    selector: 'app-layout-compact',
+    templateUrl: './layout-compact.component.html',
+    styleUrls: ['./layout-compact.component.scss']
   })
-  export class CompactComponent implements OnInit {
+  export class LayoutCompactComponent implements OnInit {
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(

@@ -1,0 +1,54 @@
+<mat-nav-list class="sidenav_menus mx-2" style="color: white!important;">
+    <div class="compact-menu menu">
+        <app-avatar></app-avatar>
+    </div>
+    <ng-container *ngFor="let menu of menus">
+        <div class="compact-menu menu" [class.background-primary-active]="activeLink == menu.path"
+            (click)="menuClickHandler(menu)">
+            <div>
+                <mat-icon>{{menu.icon}}</mat-icon>
+            </div>
+            <span>{{menu.name}}</span>
+        </div>
+    </ng-container>
+    <div (click)="close()" [class.overlay]="showOverlay">
+        <mat-nav-list *ngIf="showOverlay" @slideInOut  class="overlay-sidenav_menus sidebar-background px-2" (click)="$event.stopPropagation()">
+           <ng-container >
+            <ng-container *ngFor="let menu of routingSerivice.subMenus | async">
+                <a routerLink={{menu.path}} *ngIf="!menu.subMenus?.length || false">
+                    <mat-list-item [class.background-primary-active]="activeLink == menu.path"
+                        class="text-white  mx-auto rounded-lg mb-1">
+                        <mat-icon class="mat-icon-sm pt-1">{{menu.icon}}</mat-icon>
+                        <small>{{menu.name}}</small>
+                    </mat-list-item>
+                </a>
+               
+                <mat-accordion *ngIf="menu.subMenus" class="mat-elevation-z0" style="border-radius: 0;" o>
+                    <mat-expansion-panel (opened)="panelOpenState = true" class="mat-elevation-z0  rounded-lg mb-1"
+                        style="border-radius: 0;" (closed)="panelOpenState = false" [expanded]="true">
+                        <mat-expansion-panel-header [class.background-primary-active]="activeLink == menu.path">
+                            <mat-panel-title class="text-white">
+                                <mat-icon class="mat-icon-sm pt-1 ">{{menu.icon}}</mat-icon>
+                                <small>{{menu.name}}</small>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ng-container *ngFor="let menu of menu.subMenus">
+                            <a routerLink={{menu.path}} (click)="setSubMenu(menu);$event.stopPropagation();"
+                                routerLinkActive="background-primary-active">
+                                <mat-list-item [class.background-primary-active]="activeLink == menu.path"
+                                    class="text-white  mx-auto rounded-lg">
+                                    <mat-icon class="mat-icon-sm pt-1">{{menu.icon}}</mat-icon>
+                                    <small>{{menu.name}}</small>
+                                </mat-list-item>
+                            </a>
+                        </ng-container>
+                    </mat-expansion-panel>
+                </mat-accordion>
+            </ng-container>
+           </ng-container>
+        </mat-nav-list>
+    </div>
+</mat-nav-list>
+
+
+

@@ -1,3 +1,4 @@
+
 .sidenav-container {
     position: fixed;
     top: 3rem;
@@ -9,15 +10,16 @@
 main.main-outlet {
     position: fixed;
     top: 5rem;
-    width: calc(100% - var(--left-sidebar) - var(--right-sidebar));
+    width: calc(100% - var(--left-sidebar-compact) - var(--right-sidebar));
     height: calc(100% - 3rem);
 }
 
 .leftsidebar {
-    width: var(--left-sidebar);
+    width: var(--left-sidebar-compact);
     border: none !important;
     position: fixed;
     top: 0;
+    
 }
 
 .rightsidebar {
@@ -26,10 +28,10 @@ main.main-outlet {
 
 :host {
     app-topbar {
-        width: calc(100% - var(--left-sidebar) - var(--right-sidebar));
+        width: calc(100% - var(--left-sidebar-compact) - var(--right-sidebar));
         position: fixed;
         top: 0rem;
         right: var(--right-sidebar);
-        z-index: 1000000;
+        z-index: 1;
     }
 }

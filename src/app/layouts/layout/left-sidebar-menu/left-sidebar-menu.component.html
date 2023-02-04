@@ -1,5 +1,4 @@
 <mat-nav-list class="sidenav_menus mx-2" style="color: white!important;">
-
     <ng-container *ngFor="let menu of menus">
         <a routerLink={{menu.path}} *ngIf="!menu.subMenus?.length || false">
             <mat-list-item [class.background-primary-active]="activeLink == menu.path"
@@ -8,14 +7,11 @@
                 <small>{{menu.name}}</small>
             </mat-list-item>
         </a>
-
-
         <mat-list-item class="rounded-lg my-3 fs-10" *ngIf="menu.subMenus">
             <small mat-line class="navigation-item-title"> {{menu.name}}</small>
             <span mat-line class="navigation-item-subtitle"> Custom made application designs</span>
         </mat-list-item>
-        <mat-accordion *ngIf="menu.subMenus" class="mat-elevation-z0" style="border-radius: 0;"
-            >
+        <mat-accordion *ngIf="menu.subMenus" class="mat-elevation-z0" style="border-radius: 0;">
             <mat-expansion-panel (opened)="panelOpenState = true" class="mat-elevation-z0  rounded-lg mb-1"
                 style="border-radius: 0;" (closed)="panelOpenState = false">
                 <mat-expansion-panel-header [class.background-primary-active]="activeLink == menu.path">
@@ -24,7 +20,6 @@
                         <small>{{menu.name}}</small>
                     </mat-panel-title>
                 </mat-expansion-panel-header>
-
                 <ng-container *ngFor="let menu of menu.subMenus">
                     <a routerLink={{menu.path}} (click)="setSubMenu(menu);$event.stopPropagation();"
                         routerLinkActive="background-primary-active">

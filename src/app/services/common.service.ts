@@ -7,7 +7,7 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { METHODS as DROPDOWN_METHODS } from '../admission/dropdown.methods';
 import { API_SERVICE_METHODS } from './api.methods';
 import { filter, map, pluck } from 'rxjs/operators';
-import { MainMenu } from '../layouts/shared/uiComponents/left-sidebar-menu/sidebar.menus';
+import { MainMenu } from '../layouts/layout/left-sidebar-menu/sidebar.menus';
 
 export interface District {
   [stateCode: string]: string[];

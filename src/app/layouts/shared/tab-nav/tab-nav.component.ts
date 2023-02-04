@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ThemePalette } from '@angular/material/core';
 import { RoutingService } from 'src/app/services/routing.service';
-import { MainMenu } from '../uiComponents/left-sidebar-menu/sidebar.menus';
+import { MainMenu } from '../../layout/left-sidebar-menu/sidebar.menus';
 @Component({
   selector: 'app-tab-nav',
   templateUrl: './tab-nav.component.html',

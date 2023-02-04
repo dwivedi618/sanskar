@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { SectionApiService } from '../services/section-api.service';
 import { ClassApiService } from '../../services/class-api.service';
 import { ActionMenus } from 'src/app/layouts/shared/uiComponents/menu-button/action-menus';
-import { MainMenu } from 'src/app/layouts/shared/uiComponents/left-sidebar-menu/sidebar.menus';
+import { MainMenu } from 'src/app/layouts/layout/left-sidebar-menu/sidebar.menus';
 import { RoutingService } from 'src/app/services/routing.service';
 
 @Component({

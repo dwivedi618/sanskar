@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { pluck } from 'rxjs/operators';
-import { MainMenu, SubMenu } from '../layouts/shared/uiComponents/left-sidebar-menu/sidebar.menus';
+import { MainMenu, SubMenu } from '../layouts/layout/left-sidebar-menu/sidebar.menus';
 import { API_SERVICE_METHODS } from './api.methods';
 
 //to fetch main menu , student menu and submenu declare routings

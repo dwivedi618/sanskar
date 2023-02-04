@@ -1,5 +1,56 @@
 [
     {
+        "name": "Dashboard",
+        "id": "dashboard",
+        "icon": "dashboard",
+        "path": "dashboard",
+        "url": "",
+        "subMenus": [
+            {
+                "pid": "configuration",
+                "icon": "",
+                "subMenuId": "academic-year",
+                "path": "./configuration/academic-year",
+                "name": "Academic Year",
+                "url": "./configuration/academic-year"
+            },
+            {
+                "pid": "configuration",
+                "icon": "",
+                "subMenuId": "fee-category",
+                "path": "./configuration/master-fee-category",
+                "name": "Fees",
+                "url": "./configuration/master-fee-category"
+            },
+            {
+                "pid": "configuration",
+                "subMenuId": "classes",
+                "icon": "",
+                "path": "./configuration/classes",
+                "name": "Classes",
+                "url": "./configuration/classes",
+                "subMenus": [
+                    {
+                        "pid": "classes",
+                        "icon": "",
+                        "subMenuId": "feeStructure",
+                        "path": "./configuration/classes/fee-structure",
+                        "name": "Fee Structure",
+                        "url": "./configuration/classes/fee-structure"
+                    },
+                    {
+                        "pid": "classes",
+                        "icon": "",
+                        "subMenuId": "section",
+                        "path": "./configuration/classes/section",
+                        "name": "Section",
+                        "url": "./configuration/classes/section"
+                    }
+                ]
+            }
+        ]
+    },
+    {
         "name": "Registration",
         "id": "registration",
         "icon": "how_to_reg",

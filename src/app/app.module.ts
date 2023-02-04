@@ -8,14 +8,17 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NavComponent } from './nav/nav.component';
 import { AdmissionModule } from './admission/admission.module'
 import { LayoutComponent } from './layouts/layout/layout.component';
-import { VerticalComponent } from './layouts/vertical/vertical.component';
 import { SharedModule } from './layouts/shared/shared.module';
 import { LayoutModule } from './layouts/layout/layout.module';
 import { AlertService } from './services/alert.service';
 import { MatSnackBarRef } from '@angular/material/snack-bar';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { JsonFormService } from './services/json-form.service';
-import { LayoutClassyComponent } from './layouts/layout-classy/layout-classy.component';
+import { LayoutClassyComponent } from './layouts/layout/layout-classy/layout-classy.component';
+import { VerticalComponent } from './layouts/layout/vertical/vertical.component';
+import { CompactComponent } from './layouts/layout/compact/compact.component';
+import { LeftSidebarMenuComponent } from './layouts/layout/left-sidebar-menu/left-sidebar-menu.component';
+import { SidebarCompactComponent } from './layouts/layout/sidebar-compact/sidebar-compact.component';
 
 @NgModule({
   declarations: [
@@ -24,6 +27,10 @@ import { LayoutClassyComponent } from './layouts/layout-classy/layout-classy.com
     LayoutComponent,
     VerticalComponent,
     LayoutClassyComponent,
+    CompactComponent,
+    LeftSidebarMenuComponent,
+    SidebarCompactComponent
+
   ],
   imports: [
     BrowserAnimationsModule,

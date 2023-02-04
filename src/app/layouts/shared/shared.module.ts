@@ -12,10 +12,10 @@ import { BulkActionsComponent } from './uiComponents/bulk-actions/bulk-actions.c
 import { EmptyListComponent } from './uiComponents/empty-list/empty-list.component';
 import { FilterComponent } from './uiComponents/filter/filter.component';
 import { ImagePickerComponent } from './uiComponents/image-picker/image-picker.component';
-import { LeftSidebarMenuComponent } from './uiComponents/left-sidebar-menu/left-sidebar-menu.component';
+import { LeftSidebarMenuComponent } from '../layout/left-sidebar-menu/left-sidebar-menu.component';
 import { LoaderComponent } from './uiComponents/loader/loader.component';
 import { MenuButtonComponent } from './uiComponents/menu-button/menu-button.component';
-import { RightSidebarMenuComponent } from './uiComponents/right-sidebar-menu/right-sidebar-menu.component';
+import { RightSidebarMenuComponent } from '../layout/right-sidebar-menu/right-sidebar-menu.component';
 import { SearchComponent } from './uiComponents/search/search.component';
 import { AgePipe } from './customPipes/age.pipe';
 import { InputMaskDirective } from './customDirectives/input-mask.directive';
@@ -40,7 +40,6 @@ import { SidebarProfileComponent } from './sidebar-profile/sidebar-profile.compo
 @NgModule({
   declarations: [
     TopbarComponent,
-    LeftSidebarMenuComponent,
     AlertComponent,
     SearchComponent,
     RightSidebarMenuComponent,

@@ -17,7 +17,7 @@ import { Fee } from '../../section/fee.interface';
 import { ClassActionService } from '../../services/class-action.service';
 import { ClassApiService } from '../../services/class-api.service';
 import { RoutingService } from 'src/app/services/routing.service';
-import { MainMenu } from 'src/app/layouts/shared/uiComponents/left-sidebar-menu/sidebar.menus';
+import { MainMenu } from 'src/app/layouts/layout/left-sidebar-menu/sidebar.menus';
 
 interface classWiseFee {
   amount: Number,

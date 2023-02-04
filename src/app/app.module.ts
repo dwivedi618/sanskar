@@ -16,9 +16,9 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { JsonFormService } from './services/json-form.service';
 import { LayoutClassyComponent } from './layouts/layout/layout-classy/layout-classy.component';
 import { VerticalComponent } from './layouts/layout/vertical/vertical.component';
-import { CompactComponent } from './layouts/layout/compact/compact.component';
+import { LayoutCompactComponent } from './layouts/layout/compact/layout-compact.component';
 import { LeftSidebarMenuComponent } from './layouts/layout/left-sidebar-menu/left-sidebar-menu.component';
-import { SidebarCompactComponent } from './layouts/layout/sidebar-compact/sidebar-compact.component';
+import { SidebarCompactComponent } from './layouts/layout/compact/sidebar-compact/sidebar-compact.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +27,7 @@ import { SidebarCompactComponent } from './layouts/layout/sidebar-compact/sideba
     LayoutComponent,
     VerticalComponent,
     LayoutClassyComponent,
-    CompactComponent,
+    LayoutCompactComponent,
     LeftSidebarMenuComponent,
     SidebarCompactComponent
 

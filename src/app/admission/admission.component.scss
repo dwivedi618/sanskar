@@ -1,28 +1,11 @@
 
-::-webkit-scrollbar {
-  width: 10px;
-  height: 10px;
-  visibility: hidden;
+section{
+  overflow-y: scroll;
+  height: calc(100% - var(--height-topbar) - var(--height-breadcrumb)   );
 }
-:hover::-webkit-scrollbar {
-  visibility: visible;
-}
-::-webkit-scrollbar-thumb {
-  background-color: rgba(146, 146, 146, 0.404);
-  border-radius: 6rem;
-  visibility: hidden;
-}
-:hover::-webkit-scrollbar-thumb {
-  visibility: visible;
-}
+
 mat-step-header:hover {
   border-radius: 50px !important;
   background-color: rgba(0, 0, 0, .04);
 }
 
-::ng-deep mat-toolbar{
-  height: 48px!important;
-  font-size: 16px!important;
-  font-weight: 400;
-  letter-spacing: 1px!important;
-}

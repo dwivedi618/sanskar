@@ -1,4 +1,4 @@
-<div class="">
+<div class="w-100">
   <app-toolbar title="Students" [dropdowns]="['class']" (onDropDownSelect)="onSelect($event)"
     [selected]="{name : selectedStandardName, _id : standardId}"></app-toolbar>
   <app-table [data]="$studentsBasicInfo | async" [columns]="displayedColumns" [actions]="studentActionMenus"

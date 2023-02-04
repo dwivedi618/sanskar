@@ -74,9 +74,9 @@ export const admissionRequestAction = [
     },
     {
         menuName: "Complete Registration",
-        menuId: Action.EDIT,
+        menuId: Action.NAVIGATE,
         icon: 'edit',
-        path: '',
+        path: 'configuration/section',
         url: ""
     }
 ]

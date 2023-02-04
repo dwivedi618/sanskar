@@ -11,5 +11,8 @@ import { SharedModule } from '../layouts/shared/shared.module';
     SharedModule,
     ReactiveFormsModule,
   ],
+  exports:[
+    AdmissionComponent
+  ]
 })
 export class AdmissionModule { }

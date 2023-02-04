@@ -58,13 +58,6 @@
         "url": ""
     },
     {
-        "name": "Admission",
-        "id": "Admission",
-        "icon": "school",
-        "path": "admission",
-        "url": ""
-    },
-    {
         "name": "Find Student",
         "id": "find-student",
         "icon": "search",

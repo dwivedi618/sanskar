@@ -38,7 +38,7 @@ import { SidebarCompactComponent } from './layouts/layout/sidebar-compact/sideba
     AppRoutingModule,
     HttpClientModule,
     SharedModule,
-    AdmissionModule,
+    // AdmissionModule,
     LayoutModule,
   ],
   exports: [

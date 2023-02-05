@@ -35,6 +35,7 @@ export class ParentFormComponent implements OnInit {
         if (data && data.id) {
           this.studentId = data.id;
           this.action = data.action || Action.ADD
+          console.log("In Parent Form", this.studentId)
         }
       })
     }

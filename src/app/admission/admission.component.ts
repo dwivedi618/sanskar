@@ -18,141 +18,67 @@ import { Student } from '../student/student.interface';
 import { MileStoneService } from '../services/mile-stone.service';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 
+const registrationSteps = [
+  {
+    state : 'student',
+    index : 1,
+    label : "Student's Basic Information",
+    icon : 'account_circle',
+    html :" <h1>Hello Mo</h1>",
+    component : '<app-student-form></app-student-form>'
+  },
+  {
+    state : 'parent',
+    index : 2,
+    label : "Parent's Information",
+    icon : 'group',
+    html :" <h1>Hello Mo</h1>",
+    component : '<app-parent-form></app-parent-form>'
+  },
+  {
+    state : 'localAddress',
+    index : 3,
+    label : "Local Address",
+    icon : 'location',
+    html :" <h1>Hello Mo</h1>",
+    component : '<app-local-address-form></app-local-address-form>'
+  },
+  {
+    state : 'permanentAddress',
+    index : 4,
+    label : "Permanent Address",
+    icon : 'map',
+    html :" <h1>Hello Mo</h1>",
+    component : '<app-permanent-address-form></app-permanent-address-form>'
+  }
+]
+
 @Component({
   selector: 'app-admission',
   templateUrl: './admission.component.html',
   styleUrls: ['./admission.component.scss'],
 })
 export class AdmissionComponent implements OnInit {
-
-
-  action: any;
-  parents: any;
-  studentId: any;
-  standards: any;
-  isLoading: boolean;
-  studentData: any;
-
-  admissionFormFields: JsonFormData;
-
-  parentsFormFields: JsonFormData;
-  filteredOptions: Observable<JsonFormControlOptions[]>;
-  permanentAddressFormFields: JsonFormData;
-  localAddressFormFields: JsonFormData;
-  isFormLoading = true;
-
-
+  admissionSteps: any;
+  steps = registrationSteps;
   constructor(
     public dialog: MatDialog,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private fb: FormBuilder,
     public commonService: CommonService,
     public studentApiService: StudentApiService,
     public mileStoneService : MileStoneService,
-    private alertService : AlertService,
-    private jsonFormService: JsonFormService
-
   ) {
-    // this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
-    //   console.log("form profile called")
+    this.mileStoneService.studentRegistrationMileStone.subscribe(
+      steps =>{
 
-    //   this.admissionFormFields = formJson.studentForm;
-    //   this.parentsFormFields = formJson.parentForm;
-    //   this.permanentAddressFormFields = formJson.permanentAddressForm;
-    //   this.localAddressFormFields = formJson.localAddressForm;
-    //   setTimeout(() => {
-    //     this.isFormLoading = false;
-    //   }, 3000)
-    //   this.activatedRoute.queryParams.subscribe((data) => {
-    //     console.log("profile called")
-    //     if (data && data.registrationId ) {
-    //       this.action = data.action;
-    //       this.studentId = data.registrationId;
-    //       this.getProfile();
-    //     } else {
-    //       this.action = data.action;
-    //     }
-    //   })
-    // });
-    this.mileStoneService.studentRegistrationMileStone.subscribe(console.log);
-    
+      console.log(steps,"steps")
+      this.admissionSteps = steps
+        console.log("admission Steps",this.admissionSteps)
+      }
+    );
   }
-
-
 
   ngOnInit() {
-    // this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
-    //   this.admissionFormFields = formJson.studentForm;
-    //   this.parentsFormFields = formJson.parentForm;
-    //   this.permanentAddressFormFields = formJson.permanentAddressForm;
-    //   this.localAddressFormFields = formJson.localAddressForm;
-    //   setTimeout(() => {
-    //     this.isFormLoading = false;
-    //   }, 3000)
-    // });
-    this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
-      console.log("form profile called")
-
-      this.admissionFormFields = formJson.studentForm;
-      this.parentsFormFields = formJson.parentForm;
-      this.permanentAddressFormFields = formJson.permanentAddressForm;
-      this.localAddressFormFields = formJson.localAddressForm;
-      setTimeout(() => {
-        this.isFormLoading = false;
-      }, 3000)
-      this.activatedRoute.queryParams.subscribe((data) => {
-        console.log("profile called")
-        if (data && data.registrationId ) {
-          this.action = data.action;
-          this.studentId = data.registrationId;
-          this.getProfile();
-        } else {
-          this.action = data.action;
-        }
-      })
-    });
-
-  }
-
-  onImageSelect(image, formFieldName, formName) {
-    let form = this[formName];
-    form.patchValue({ [formFieldName]: image });
-  }
-  getProfile() {
-    this.studentApiService.fetchStudentCompleteProfileByStudentId(this.studentId)
-      .subscribe((result) => {
-        let [student,parent,address] = result || [];
-        console.log('StudentID DATA',result)
-        this.prepareFormFields(student);
-        this.isLoading = false;
-      }, (error) => {
-        console.log("error", error);
-      })
-  }
-
-  private prepareFormFields(studentData) {
-    let action = Action.UPDATE;
-    switch (action) {
-      case Action.UPDATE:
-      this.patchObjValuesToFormFields(studentData);
-      // case Action.ADD:
-      //   break;
-      // case Action.EDIT:
-      //   break;
-
-      default:
-        break;
-    }
-  }
-  private patchObjValuesToFormFields(obj){
-    console.log('student data',obj);
-    console.log('admissionFormFields',this.admissionFormFields);
-
-    
-    this.admissionFormFields.controls = this.jsonFormService.patchValuesToFormFields(obj,this.admissionFormFields.controls);
-    console.log("this.admissionFormFields",this.admissionFormFields)
-
+    console.log("steps arrayy^^^^^^^^^^^",this.steps)
   }
 
   onStudentFormSubmit(form:Student) {
@@ -171,6 +97,9 @@ export class AdmissionComponent implements OnInit {
   onSubmitLocalAddressFormFields(form){
     console.log("local address  form", form);
     
+  }
+  selectionChange(step){
+    console.log("step",step)
   }
 }
 

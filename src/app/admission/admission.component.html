@@ -1,82 +1,24 @@
-<section class="pb-5"> 
-      <app-toolbar [title]="'Student Registration'" [sticky]="true"></app-toolbar>
-    <div class="row justify-content-center m-0 my-4">
-            <!-- <mat-card class="background-white br-10 elevation m-0">
-                <app-milestone [data]="mileStoneService.studentRegistrationMileStone | async"  [sticky]="true"></app-milestone>
-            </mat-card>
-         -->
-        <div class="col-lg-8 col-md-8 fadeIn" >
-            <mat-card class="elevation" style="font-size: 12px;">
-                <mat-horizontal-stepper #stepper>
-                    <mat-divider></mat-divider>
-                    <mat-step label="Student's Information" state="student">
-                        <div class="my-5 glass">
-                            <mat-toolbar color="primary" class="justify-content-center border-top-radius">
-                                <span style="text-transform: uppercase;">Student Form</span>
-                            </mat-toolbar>
-                            <div class="row justify-content-center">
-                                <div class="col-12">
-                                    <ng-container>
-                                        <app-student-form></app-student-form>
-                                    </ng-container>
-                                </div>
-                            </div>
+<app-toolbar [title]="'Student Registration'" [sticky]="true"></app-toolbar>
+<section class="pb-5">
+    <mat-card class="mat-elevation-z0">
+        <mat-horizontal-stepper #stepper (selectionChange)="selectionChange($event)">
+            <mat-step label="{{step.label}}" state="{{step.state}}" *ngFor="let step of steps">
+                <div class="my-5 glass">
+                    <mat-toolbar color="primary" class="justify-content-center border-top-radius">
+                        <span style="text-transform: uppercase;">{{step.label}} Form</span>
+                    </mat-toolbar>
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <ng-container *ngIf="step.state == 'student'"><app-student-form></app-student-form></ng-container>
+                            <ng-container *ngIf="step.state == 'parent'"> <app-parent-form></app-parent-form></ng-container>
+                            <ng-container *ngIf="step.state == 'localAddress'">
+                                <app-local-address-form></app-local-address-form></ng-container>
+                            <ng-container
+                                *ngIf="step.state == 'permanentAddress'"><app-permanent-address-form></app-permanent-address-form></ng-container>
                         </div>
-                    </mat-step>
-                    <mat-step state="parent">
-                        <div class="my-4">
-                            <ng-template matStepLabel>Parents Information</ng-template>
-                            <mat-toolbar color="primary" class="justify-content-center border-top-radius">
-                                <span style="text-transform: uppercase;">Parents Information</span>
-                            </mat-toolbar>
-                            <div class="row justify-content-center">
-                                <div class="col-12">
-                                    <app-parent-form></app-parent-form>
-                                </div>
-                            </div>
-
-                        </div>
-                    </mat-step>
-                    <mat-step state="address">
-                        <div class="my-4">
-                            <ng-template matStepLabel>Permanent Address</ng-template>
-                            <mat-toolbar color="primary" class="justify-content-center">
-                                <span style="text-transform: uppercase;">Permanent Address</span>
-                            </mat-toolbar>
-                            <div class="row justify-content-center">
-                                <div class="col-12">
-                                    <app-permanent-address-form></app-permanent-address-form>
-                                </div>
-                            </div>
-
-                        </div>
-                    </mat-step>
-                    <mat-step state="address">
-                        <div class="my-4">
-                            <ng-template matStepLabel>Local Address</ng-template>
-                            <mat-toolbar color="primary" class="justify-content-center border-top-radius">
-                                <span style="text-transform: uppercase;">Local Address</span>
-                            </mat-toolbar>
-                            <div class="row justify-content-center">
-                                <div class="col-12">
-                                    <app-local-address-form></app-local-address-form>
-                                </div>
-                            </div>
-
-                        </div>
-                    </mat-step>
-                    <!-- Icon overrides. -->
-                    <ng-template matStepperIcon="student">
-                        <mat-icon>aacount_circle</mat-icon>
-                    </ng-template>
-                    <ng-template matStepperIcon="parent">
-                        <mat-icon>group</mat-icon>
-                    </ng-template>
-                    <ng-template matStepperIcon="address">
-                        <mat-icon>address</mat-icon>
-                    </ng-template>
-                </mat-horizontal-stepper>
-            </mat-card>
-        </div>
-    </div>
+                    </div>
+                </div>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </mat-card>
 </section>

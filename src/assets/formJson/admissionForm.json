@@ -358,7 +358,8 @@
                         "hitHttp" :true,
                         "method" : "districts",
                         "ctrlId": 33
-                    }
+                    },
+                    "resetChildControls" : ["district"]
                 },
                 "options" : []
             },
@@ -430,8 +431,8 @@
                         "hitHttp" : true,
                         "method" : "districts",
                         "ctrlId" : 43
-
-                    }
+                    },
+                    "resetChildControls" : ["district"]
                 },
                 "options" : []
             },

@@ -44,11 +44,14 @@ export class JsonFormComponent implements OnChanges, OnInit {
       this.isFormLoading =false;
     },1000)
     this.form = this.formFields && this.jsonFormService.createForm(this.formFields?.controls);
+    console.log(" this.form", this.form)
 
   }
   ngOnChanges(changes: SimpleChanges) {
     if (!changes.formFields.firstChange) {
       this.form = this.formFields && this.jsonFormService.createForm(this.formFields?.controls);
+    console.log(" this.form ngOnChanges", this.formFields)
+
   
     }
   }

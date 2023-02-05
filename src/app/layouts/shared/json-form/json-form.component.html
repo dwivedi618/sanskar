@@ -1,3 +1,4 @@
+<pre>{{formFields?.controls | json}}</pre>
 <form *ngIf="formFields && formFields.controls " [formGroup]="form" (ngSubmit)="onFormSubmit()" [ngClass]="ngClass"
     class="json-form background">
     <ng-container *ngIf="isFormLoading">

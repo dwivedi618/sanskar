@@ -14,6 +14,7 @@ import { FeeDepositComponent } from './fee-deposit/fee-deposit.component';
 import { CommonModule } from '@angular/common';
 import { StudentProfileLayoutComponent } from './student-profile-layout/student-profile-layout.component';
 import { AccountsComponent } from './student-profile-layout/accounts/accounts.component';
+import { ProfileUpdateLayoutComponent } from './profile-update-layout/profile-update-layout.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { AccountsComponent } from './student-profile-layout/accounts/accounts.co
     StudentsListComponent,
     StudentLayoutComponent,
     AdmissionFormPrintLayoutComponent,
-    FeeDepositComponent
+    FeeDepositComponent,
+    ProfileUpdateLayoutComponent
     ],
   imports: [
     CommonModule,

@@ -85,7 +85,6 @@ export class StudentProfileComponent implements OnInit {
       if (data && data.id) {
         this.studentId = data.id;
         this.fetchStudentCompleteProfileByStudentId();
-        this.getFeeDetails();
         if (data.find) {
           this.selectedIndex = data.find
         }
@@ -147,18 +146,7 @@ export class StudentProfileComponent implements OnInit {
   }
 
 
-  getFeeDetails() {
-    this.commonService.studentFeeDetails(this.studentId)
-      .subscribe((result) => {
-        console.log("Student profile", result);
-        let studentFeeDetails = result.data || null;
-        this.appliedFee = studentFeeDetails['feeStructures']
-        this.totalFeeDeposit = studentFeeDetails['totalDeposited']
-        this.isLoading = false;
-      }, (error) => {
-        console.log("error", error);
-      })
-  }
+ 
 
   getTotalCost() {
     return this.appliedFee.map(t => t.amount).reduce((acc, value) => acc + value, 0)
@@ -178,21 +166,7 @@ export class StudentProfileComponent implements OnInit {
     this.router.navigate([], { queryParams: { find: this.selectedIndex }, queryParamsHandling: 'merge' });
   }
  
-  openfeeDeposit() {
-    const data = <any>{}
-    data.studentId = this.studentId
-    const dialogRef = this.dialog.open(FeeDepositComponent, {
-      width: '40rem',
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      hasBackdrop: false,
-      data: data
-    })
 
-    dialogRef.afterClosed().subscribe((status: Boolean) => {
-      this.getFeeDetails();
-    })
-  }
 
  
   triggerAction(action:Action){

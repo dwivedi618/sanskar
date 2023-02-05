@@ -12,8 +12,6 @@ const profileRoutes: Routes = [
       { path: 'overview', component: StudentProfileComponent , data:{breadcrumb : 'Overview'}},
       { path: 'accounts', component: AccountsComponent ,data:{breadcrumb : 'Accounts'}},
       { path: 'transactions', component: TransactionComponent,data:{breadcrumb : 'Transactions'}},
-
-
     ]
   }
 ];

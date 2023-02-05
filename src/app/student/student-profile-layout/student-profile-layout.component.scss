@@ -1,4 +1,5 @@
 .student-layout{
     width: calc(100vw - var(--left-sidebar) - var(--right-sidebar));
-    height: 100%;
+    height: 90%;
+    overflow-y: scroll;
 }

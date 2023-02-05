@@ -1,12 +1,11 @@
 <pre>{{formFields?.controls | json}}</pre>
 <form *ngIf="formFields && formFields.controls " [formGroup]="form" (ngSubmit)="onFormSubmit()" [ngClass]="ngClass"
-    class="json-form background">
+    class="json-form">
     <ng-container *ngIf="isFormLoading">
         <app-skelton-loader [length]="formFields.controls.length || 2"></app-skelton-loader>
     </ng-container>
     <ng-container *ngIf="!isFormLoading">
-        <ng-container *ngFor="let field of formFields?.controls ">
-
+        <ng-container *ngFor="let field of formFields?.controls">
             <ng-container *ngIf="
                     [
                       'text',
@@ -93,11 +92,8 @@
                                     </mat-radio-button>
                                 </div>
                             </div>
-
-
                         </mat-radio-group>
                         <mat-error *ngIf="form.get(field.name).hasError('required')">Required</mat-error>
-
                     </div>
                 </div>
             </ng-container>
@@ -139,19 +135,6 @@
                 </div>
 
             </ng-container>
-
-            <!-- <mat-form-field appearance="fill">
-                <mat-label>Toppings</mat-label>
-                <mat-select [formControl]="toppings" multiple>
-                  <mat-select-trigger>
-                    {{toppings.value?.[0] || ''}}
-                    <span *ngIf="(toppings.value?.length || 0) > 1" class="example-additional-selection">
-                      (+{{(toppings.value?.length || 0) - 1}} {{toppings.value?.length === 2 ? 'other' : 'others'}})
-                    </span>
-                  </mat-select-trigger>
-                  <mat-option *ngFor="let topping of toppingList" [value]="topping">{{topping}}</mat-option>
-                </mat-select>
-              </mat-form-field> -->
 
               <ng-container *ngIf="field.type === 'dropdown' && field.isMultiSelectable">
                 <div class="row my-4">
@@ -271,9 +254,9 @@
             </ng-container>
         </ng-container>
     </ng-container>
-    <mat-toolbar class="justify-content-end my-4 p-0">
+    <div class="d-flex justify-content-end my-4 p-0">
         <button mat-stroked-button type="reset" class="mr-2"
             [disabled]="!(this.form.touched || this.form.dirty)">Reset</button>
         <button mat-raised-button type="submit" color="primary" [disabled]="this.form.invalid">Submit</button>
-    </mat-toolbar>
+    </div>
 </form>

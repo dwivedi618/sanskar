@@ -27,19 +27,6 @@ export class JsonFormComponent implements OnChanges, OnInit {
   ) { }
 
   ngOnInit(): void {
-    // this.jsonFormService.formButton.subscribe(buttonState => { 
-    //   console.log("buttonState",buttonState);
-    //   if(!buttonState.isClicked) return;
-    //   if(buttonState.type === 'reset'){
-    //     this.form.reset();
-    //     this.jsonFormService.clickFormButton({type : 'reset',isClicked :false})
-
-    //   }
-    //   if(buttonState.type === 'submit'){
-    //     this.onFormSubmit();
-    //     this.jsonFormService.clickFormButton({type : 'submit',isClicked :false})
-    //   }
-    //  })
     setTimeout(()=>{
       this.isFormLoading =false;
     },1000)
@@ -57,21 +44,30 @@ export class JsonFormComponent implements OnChanges, OnInit {
   }
 
 
-/**
- * It fetches the value of the field from the server if the field has the `hitHttp` property set to
- * true
- * @param {JsonFormControls} field - JsonFormControls - This is the field object that is passed to the
- * function.
- * @returns 1. If the method is not implemented, it returns an alert.
- *   2. If the method is implemented, it returns the value of the field.
- */
-  fetchValue(field: JsonFormControls ): JsonFormControlOptions[] {
+
+  /**
+   * Description placeholder
+   * @date 05/02/2023
+   * @author Shivam Dwivedi
+   *
+   * @param {JsonFormControls} field
+   * @param {?Boolean} [shouldClearDependentFieldValue]
+   * @returns {JsonFormControlOptions[]}
+   */
+  fetchValue(field: JsonFormControls,shouldClearDependentFieldValue ? : Boolean): JsonFormControlOptions[] {
     const { hitHttp, method,dependentControlName } = field;
     let shouldCallService: boolean = hitHttp && method ? true : false;
     if (!shouldCallService) return;
     if (!DYNAMIC_METHODS.includes(method)) {
       this.alertService.alertWithAction("METHOD NOT IMPLEMENTED", close);
       return
+    }
+
+    /**problem statement :  case 1 : on updating address , changing 'state' of india should clear its 'district' (child) */
+    if(typeof shouldClearDependentFieldValue !== "undefined" && shouldClearDependentFieldValue ){
+      field.actions.resetChildControls.forEach(controlName  => {
+        this.form.get(controlName).setValue("");
+      });
     }
     field.value = dependentControlName ? this.form.get(field.dependentControlName).value : field.value;
     return this.commonService[field.method](field);
@@ -97,7 +93,9 @@ export class JsonFormComponent implements OnChanges, OnInit {
         value: event.value,
         ctrlId : ctrlId
       }
-      this.fetchValue(argField);
+      const isValueChanged = field.value !== event.value ? true : false;
+      const shouldClearDependentFieldValue = isValueChanged && field?.actions?.resetChildControls.length ? true : false;
+      this.fetchValue(argField,shouldClearDependentFieldValue);
     }
   }
 

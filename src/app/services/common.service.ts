@@ -56,7 +56,7 @@ export class CommonService {
     return this.http.get<any>(this.API_ROUTES.section + '/' + id).pipe(pluck('data'));
   }
   [API_SERVICE_METHODS.getIndianStates]() {
-    return this.http.get<{ code: string, name: string }[]>(this.API_ROUTES.indianStatesUrl);
+    return this.http.get<{ _id: string, name: string }[]>(this.API_ROUTES.indianStatesUrl);
   }
   [API_SERVICE_METHODS.getIndianDistrctByState](stateCode) {
     return this.http.get<any>(this.API_ROUTES.indianDistrictsUrl)
@@ -127,7 +127,6 @@ export class CommonService {
     })
     return options;
   }
-
 
 
   [API_SERVICE_METHODS.getFees](id: String = '') {

@@ -8,22 +8,20 @@ import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { CommonService } from 'src/app/services/common.service';
 import { RoutingService } from 'src/app/services/routing.service';
 import { LABELS } from 'src/app/utils/keyparser';
-import { FeeDepositComponent } from '../../fee-deposit/fee-deposit.component';
 import { ParentActionService } from '../../services/parent/parent-action.service';
 import { StudentActionService } from '../../services/student/student-action.service';
 import { StudentApiService } from '../../services/student/student-api.service';
 import { Address } from '../../student.interface';
-import { TransactionComponent } from '../../transaction/transaction.component';
 
 export type DisplayFields = {label : string,type : string}[]
 
 
 @Component({
-  selector: 'app-student-profile',
-  templateUrl: './student-profile.component.html',
-  styleUrls: ['./student-profile.component.scss']
+  selector: 'app-student-overview',
+  templateUrl: './student-overview.component.html',
+  styleUrls: ['./student-overview.component.scss']
 })
-export class StudentProfileComponent implements OnInit {
+export class StudentOverviewComponent implements OnInit {
   studentId: any;
   isLoading: boolean;
   studentData: any;
@@ -56,6 +54,21 @@ export class StudentProfileComponent implements OnInit {
    
   ]
 
+  displayLocalAddressFields:DisplayFields = [
+    { label : "address",type : "string"},
+    { label : "state",type : "string"},
+    { label : "pin",type : "string"},
+    { label : "district",type : "string"},
+
+  ]
+  displayPermanentAddressFields:DisplayFields = [
+    { label : "address",type : "string"},
+    { label : "state",type : "string"},
+    { label : "pin",type : "string"},
+    { label : "district",type : "string"},
+
+  ]
+
   readonly LABELS = LABELS;
   readonly Action = Action;
 
@@ -69,6 +82,8 @@ export class StudentProfileComponent implements OnInit {
   $studentData : Observable<any>;
   $parentData :  Observable<any>;
   address: Address;
+  $addressData: Observable<Address>;
+  $address: Observable<Address>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -85,7 +100,6 @@ export class StudentProfileComponent implements OnInit {
       if (data && data.id) {
         this.studentId = data.id;
         this.fetchStudentCompleteProfileByStudentId();
-        this.getFeeDetails();
         if (data.find) {
           this.selectedIndex = data.find
         }
@@ -99,6 +113,10 @@ export class StudentProfileComponent implements OnInit {
     });
     this.fetchStudentCompleteProfileByStudentId();
     this.$studentData = this.studentApiService.studentData;
+    this.$parentData = this.studentApiService.parentData;
+    this.$address = this.studentApiService.address;
+
+
   }
 
   isIncluded(fields ,key:String){
@@ -128,37 +146,13 @@ export class StudentProfileComponent implements OnInit {
       })
   }
   
-
-  getStudentParent() {
-    this.studentApiService.fetchParentByStudentId(this.studentId)
-      .subscribe((result) => {
-        this.parentData = result || null;
-        // this.studentApiService.setStudentData(this.studentData);
-        this.isLoading = false;
-      }, (error) => {
-        console.log("error", error);
-      })
-  }
-
-
   public name(): string {
     const { firstName = '', middleName = '', lastName = '' } = this.studentData || {};
     return `${firstName} ${middleName} ${lastName}`
   }
 
 
-  getFeeDetails() {
-    this.commonService.studentFeeDetails(this.studentId)
-      .subscribe((result) => {
-        console.log("Student profile", result);
-        let studentFeeDetails = result.data || null;
-        this.appliedFee = studentFeeDetails['feeStructures']
-        this.totalFeeDeposit = studentFeeDetails['totalDeposited']
-        this.isLoading = false;
-      }, (error) => {
-        console.log("error", error);
-      })
-  }
+ 
 
   getTotalCost() {
     return this.appliedFee.map(t => t.amount).reduce((acc, value) => acc + value, 0)
@@ -178,33 +172,28 @@ export class StudentProfileComponent implements OnInit {
     this.router.navigate([], { queryParams: { find: this.selectedIndex }, queryParamsHandling: 'merge' });
   }
  
-  openfeeDeposit() {
-    const data = <any>{}
-    data.studentId = this.studentId
-    const dialogRef = this.dialog.open(FeeDepositComponent, {
-      width: '40rem',
-      maxWidth: '100vw',
-      maxHeight: '100vh',
-      hasBackdrop: false,
-      data: data
-    })
 
-    dialogRef.afterClosed().subscribe((status: Boolean) => {
-      this.getFeeDetails();
-    })
-  }
 
  
-  triggerAction(action:Action){
-    // menuClickHandler
-    // this.isStudentFormVisible = !this.isStudentFormVisible
-    // this.isStudentFormVisible ? this.studentActionService.hideStudentForm() : this.studentActionService.showStudentForm();
+  triggerAction(action:Action,actionOn:string){
+    if(action === Action.NAVIGATE){
+      if(actionOn === 'student'){
+        this.router.navigate(['student/overview/update'],{queryParams : { studentId : this.studentId },  queryParamsHandling : 'merge'})
+      }
+      if(actionOn === 'parent'){
+        this.router.navigate(['student/overview/update/parent'],{queryParams : { studentId : this.studentId , action : Action.UPDATE },  queryParamsHandling : 'merge'})
+      }
+      if(actionOn === 'localAddress'){
+        this.router.navigate(['student/overview/update/localAddress'],{queryParams : { studentId : this.studentId , action : Action.UPDATE },  queryParamsHandling : 'merge'})
+      }
+      if(actionOn === 'permanentAddress'){
+        this.router.navigate(['student/overview/update/permanentAddress'],{queryParams : { studentId : this.studentId , action : Action.UPDATE },  queryParamsHandling : 'merge'})
+      }
+    }
+
     this.menuClickHandler(action,this.studentData);
   }
   triggerParentAction(action:Action){
-    // menuClickHandler
-    // this.isStudentFormVisible = !this.isStudentFormVisible
-    // this.isStudentFormVisible ? this.studentActionService.hideStudentForm() : this.studentActionService.showStudentForm();
     this.menuClickHandlerParent(action,this.parentData);
   }
 

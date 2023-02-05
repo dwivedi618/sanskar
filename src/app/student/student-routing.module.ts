@@ -1,10 +1,15 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { StudentsListComponent } from './students-list/students-list.component';
-import { StudentProfileComponent } from './student-profile-layout/student-profile/student-profile.component'
+import { StudentOverviewComponent } from './student-profile-layout/overview/student-overview.component'
 import { StudentLayoutComponent } from './student-layout/student-layout.component';
 import { AdmissionFormPrintLayoutComponent } from './admission-form-print-layout/admission-form-print-layout.component';
 import { StudentProfileLayoutModule } from './student-profile-layout/student-profile-layout.module';
+import { ProfileUpdateLayoutComponent } from './profile-update-layout/profile-update-layout.component';
+import { StudentFormComponent } from './forms/student-form/student-form.component';
+import { ParentFormComponent } from './forms/parent-form/parent-form.component';
+import { LocalAddressFormComponent } from './forms/local-address-form/local-address-form.component';
+import { PermanentAddressFormComponent } from './forms/permanent-address-form/permanent-address-form.component';
 const studentroutes: Routes = [
     {
         path: '', component: StudentLayoutComponent,
@@ -16,6 +21,19 @@ const studentroutes: Routes = [
                 .then(m => m.StudentProfileLayoutModule),
                 
             },
+            { 
+                path: 'overview/update', 
+                component: ProfileUpdateLayoutComponent , 
+                children : [
+                  { path : '' , component : StudentFormComponent ,data:{breadcrumb : 'Update'}},
+                  { path : 'parent' , component : ParentFormComponent ,data:{breadcrumb : 'Update Parent'}},
+                  { path : 'localAddress' , component : LocalAddressFormComponent ,data:{breadcrumb : 'Update Local Address'}},
+                  { path : 'permanentAddress' , component : PermanentAddressFormComponent ,data:{breadcrumb : 'Update Permanent Address'}}
+
+
+                ],
+                data:{breadcrumb : 'Overview'}
+              },
             { path: 'print', component: AdmissionFormPrintLayoutComponent },
         ]
     }

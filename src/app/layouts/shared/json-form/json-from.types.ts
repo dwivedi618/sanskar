@@ -22,7 +22,8 @@ interface JsonFormValidators {
     icon ?: String
   }
   export interface OptionsActions{
-    onSelect ?: JsonFormControlsMethod
+    onSelect ?: JsonFormControlsMethod,
+    resetChildControls ? : string[]
   } 
 
   export interface JsonFormControlsMethod{

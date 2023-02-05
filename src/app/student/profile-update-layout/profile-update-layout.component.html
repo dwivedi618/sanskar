@@ -1,0 +1,8 @@
+<app-toolbar [title]="name ? 'Update Basic Information | ' + name : 'Go Back' " [routerLink]="['/student/overview']" queryParamsHandling="preserve"></app-toolbar>
+<section class="student-layout p-4">
+    <section class="container mt-2 mb-5 pt-4">
+        <mat-card class="elevation">
+            <router-outlet></router-outlet>
+        </mat-card>
+    </section>
+</section>

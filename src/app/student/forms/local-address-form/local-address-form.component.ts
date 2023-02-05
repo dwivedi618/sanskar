@@ -1,48 +1,51 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { JsonFormControls, JsonFormData } from 'src/app/layouts/shared/json-form/json-from.types';
+import { ActivatedRoute, Router } from '@angular/router';
+import { JsonFormData } from 'src/app/layouts/shared/json-form/json-from.types';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { AlertService } from 'src/app/services/alert.service';
 import { JsonFormService } from 'src/app/services/json-form.service';
-import { ParentApiService } from '../../services/parent/parent-api.service';
+import { LocalAddressApiService } from '../../services/local-address/local-address-api.service';
 import { StudentActionService } from '../../services/student/student-action.service';
-import { Parent } from '../../student.interface';
-import { Student } from '../../students-list/students-list.component';
+import { LocalAddress } from '../../student.interface';
 
 @Component({
-  selector: 'app-parent-form',
-  templateUrl: './parent-form.component.html',
-  styleUrls: ['./parent-form.component.scss']
+  selector: 'app-local-address-form',
+  templateUrl: './local-address-form.component.html',
+  styleUrls: ['./local-address-form.component.scss']
 })
-export class ParentFormComponent implements OnInit {
-  // @Input() public data : { action : Action , data : Student};
+export class LocalAddressFormComponent implements OnInit {
   isFormLoading: boolean;
-  admissionFormFields: JsonFormData;
+  localAddressFormFields: JsonFormData;
   isSaving: boolean;
+  studentId: any;
+  action: any;
+  dialogData : { data : LocalAddress ,  action: Action };
 
   constructor(
-    private parentApiService: ParentApiService,
+    private localAddressApiService: LocalAddressApiService,
     public studentActionService: StudentActionService,
     private alertService : AlertService,
     private jsonFormService : JsonFormService,
-    private dialogRef : MatDialogRef<ParentFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData : { data : Parent, action: Action }
-    ) { }
+    private activatedRoute : ActivatedRoute,
+    private router : Router,
+    ) { 
+      this.activatedRoute.queryParams.subscribe((data) => {
+        if (data && data.id) {
+          this.studentId = data.id;
+          this.action = data.action || Action.ADD
+        }
+      })
+    }
 
   ngOnInit(): void {
-    this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
-      this.admissionFormFields = formJson.studentForm;
-      setTimeout(() => {
-        this.isFormLoading = false;
-      }, 3000)
-    });
-
-    let studentId = this.dialogData.data.studentId;
-    
-    this.parentApiService.fetchParentByStudentId(studentId).subscribe(studentData =>{
+    this.localAddressApiService.fetchLocalAddressByStudentId(this.studentId).subscribe(data =>{
       this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
-        this.admissionFormFields = formJson.parentForm;
-        this.prepareFormFields(studentData);
+        this.localAddressFormFields = formJson.localAddressForm;
+        if(this.action === Action.UPDATE && !data || !data?._id){
+          this.action = Action.ADD
+        }
+        this.dialogData = { data : data , action : this.action}
+        this.prepareFormFields(data);
         setTimeout(() => {
           this.isFormLoading = false;
         }, 3000)
@@ -70,14 +73,14 @@ export class ParentFormComponent implements OnInit {
   private patchObjValuesToFormFields(obj){
     console.log("patchObjValuesToFormFields::before",obj);
     
-    this.admissionFormFields.controls = this.jsonFormService.patchValuesToFormFields(obj,this.admissionFormFields.controls);
-    console.log("patchObjValuesToFormFields::after",this.admissionFormFields.controls);
+    this.localAddressFormFields.controls = this.jsonFormService.patchValuesToFormFields(obj,this.localAddressFormFields.controls);
+    console.log("patchObjValuesToFormFields::after",this.localAddressFormFields.controls);
 
   }
 
   onSubmit(formValues) {
     console.log("feeForm", formValues)
-    let form = formValues;
+    formValues = {...formValues , studentId : this.studentId};
     let action : Action = this.dialogData?.action;
     switch (action) {
       case Action.ADD:
@@ -97,10 +100,9 @@ export class ParentFormComponent implements OnInit {
   }
 
   private add(formValues){
-    formValues.studentId = this.dialogData.data.studentId;
-    this.parentApiService.addParent(formValues).subscribe((result) => {
+    this.localAddressApiService.addLocalAddress(formValues).subscribe((result) => {
       this.alertService.alertComponent(result.message);
-      return this.dialogRef.close();
+      return 
     }, (error) => {
       console.log("error", error);
     })
@@ -108,12 +110,14 @@ export class ParentFormComponent implements OnInit {
 
   private update(formValues){
     formValues.studentId = this.dialogData.data.studentId;
-    this.parentApiService.updateParent(formValues).subscribe((result) => {
+    this.localAddressApiService.updateLocalAddress(formValues).subscribe((result) => {
       this.alertService.alertComponent(result.message);
-      return this.dialogRef.close();
+      return
     }, (error) => {
       console.log("error", error);
     })
   }
 
 }
+
+

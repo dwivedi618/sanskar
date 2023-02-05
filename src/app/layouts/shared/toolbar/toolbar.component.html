@@ -3,7 +3,7 @@
         <span class="fs-14 text-uppercase">{{title | titlecase}}</span>
     </ng-container>
     <ng-container *ngIf="routerLink" >
-        <button mat-icon-button [routerLink]="routerLink" class="fs-14 text-uppercase" matTooltip="Go Back">
+        <button mat-icon-button [routerLink]="routerLink" queryParamsHandling="preserve" class="fs-14 text-uppercase" matTooltip="Go Back">
             <mat-icon class="mat-icon-md text-mylight pt-0">arrow_back</mat-icon>
             <span>{{title | titlecase}}</span>
         </button>

@@ -3,6 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MainMenu } from 'src/app/layouts/layout/left-sidebar-menu/sidebar.menus';
+import { studentActionMenus } from 'src/app/layouts/shared/uiComponents/menu-button/action-menus';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { CommonService } from 'src/app/services/common.service';
@@ -98,6 +99,8 @@ export class StudentProfileComponent implements OnInit {
     });
     this.fetchStudentCompleteProfileByStudentId();
     this.$studentData = this.studentApiService.studentData;
+    this.$parentData = this.studentApiService.parentData;
+
   }
 
   isIncluded(fields ,key:String){
@@ -127,19 +130,6 @@ export class StudentProfileComponent implements OnInit {
       })
   }
   
-
-  getStudentParent() {
-    this.studentApiService.fetchParentByStudentId(this.studentId)
-      .subscribe((result) => {
-        this.parentData = result || null;
-        // this.studentApiService.setStudentData(this.studentData);
-        this.isLoading = false;
-      }, (error) => {
-        console.log("error", error);
-      })
-  }
-
-
   public name(): string {
     const { firstName = '', middleName = '', lastName = '' } = this.studentData || {};
     return `${firstName} ${middleName} ${lastName}`
@@ -169,16 +159,16 @@ export class StudentProfileComponent implements OnInit {
 
 
  
-  triggerAction(action:Action){
-    // menuClickHandler
-    // this.isStudentFormVisible = !this.isStudentFormVisible
-    // this.isStudentFormVisible ? this.studentActionService.hideStudentForm() : this.studentActionService.showStudentForm();
+  triggerAction(action:Action,actionOn:string){
+    if(action === Action.NAVIGATE){
+      if(actionOn === 'student'){
+        this.router.navigate(['student/overview/update'],{queryParams : { studentId : this.studentId },  queryParamsHandling : 'merge'})
+      }
+    }
+
     this.menuClickHandler(action,this.studentData);
   }
   triggerParentAction(action:Action){
-    // menuClickHandler
-    // this.isStudentFormVisible = !this.isStudentFormVisible
-    // this.isStudentFormVisible ? this.studentActionService.hideStudentForm() : this.studentActionService.showStudentForm();
     this.menuClickHandlerParent(action,this.parentData);
   }
 

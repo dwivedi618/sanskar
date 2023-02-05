@@ -1,5 +1,6 @@
 import { Component, Inject, Input, OnInit } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ActivatedRoute, Router } from '@angular/router';
 import { JsonFormControls, JsonFormData } from 'src/app/layouts/shared/json-form/json-from.types';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { AlertService } from 'src/app/services/alert.service';
@@ -14,32 +15,34 @@ import { Student } from '../../students-list/students-list.component';
   styleUrls: ['./student-form.component.scss']
 })
 export class StudentFormComponent implements OnInit {
-  // @Input() public data : { action : Action , data : Student};
   isFormLoading: boolean;
   admissionFormFields: JsonFormData;
   isSaving: boolean;
+  studentId: any;
+  dialogData: { data: import("/home/v-shivam.dwivedi/Downloads/projects/nest/sanskar/src/app/student/student.interface").Student; action: Action; };
 
   constructor(
     private studentApiService: StudentApiService,
     public studentActionService: StudentActionService,
     private alertService : AlertService,
     private jsonFormService : JsonFormService,
-    private dialogRef : MatDialogRef<StudentFormComponent>,
-    @Inject(MAT_DIALOG_DATA) public dialogData : { data : Student, action: Action }
-    ) { }
+    private activatedRoute : ActivatedRoute,
+    private router : Router
+    ) {
+      this.activatedRoute.queryParams.subscribe((data) => {
+        if (data && data.id) {
+          this.studentId = data.id;
+        }
+      })
+     }
 
   ngOnInit(): void {
-
-    // this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
-    //   this.admissionFormFields = formJson.studentForm;
-    //   setTimeout(() => {
-    //     this.isFormLoading = false;
-    //   }, 3000)
-    // });
-    this.studentApiService.studentData.subscribe(studentData =>{
+    this.studentApiService.fetchStudentById(this.studentId).subscribe(studentData =>{
       this.jsonFormService.getAdmissionFormJson().subscribe(formJson => {
         this.admissionFormFields = formJson.studentForm;
-        this.prepareFormFields(studentData);
+        this.dialogData = { data : studentData , action : Action.UPDATE}
+        this.prepareFormFields();
+        console.log("student Data",studentData)
         setTimeout(() => {
           this.isFormLoading = false;
         }, 3000)
@@ -48,9 +51,8 @@ export class StudentFormComponent implements OnInit {
     })
   }
   
-  onStudentFormSubmit(form:Student) {
+  onStudentFormSubmit(form:any) {
     console.log("student form", form);
-    this.dialogData = this.dialogData;
     form.studentId = this.dialogData.data._id;
     
     this.studentApiService.update(form).subscribe(result =>{
@@ -58,7 +60,7 @@ export class StudentFormComponent implements OnInit {
     })
   }
 
-  private prepareFormFields(studentData) {
+  private prepareFormFields() {
     const { data, action } = this.dialogData
     console.log("prepareFormFields",this.dialogData);
     switch (action) {
@@ -103,7 +105,9 @@ export class StudentFormComponent implements OnInit {
     formValues.studentId = this.dialogData.data._id;
     this.studentApiService.add(formValues).subscribe((result) => {
       this.alertService.alertComponent(result.message);
-      return this.dialogRef.close();
+      // return this.dialogRef.close();
+      this.router.navigate([],{queryParamsHandling : 'preserve'})
+
     }, (error) => {
       console.log("error", error);
     })
@@ -113,7 +117,7 @@ export class StudentFormComponent implements OnInit {
     formValues.studentId = this.dialogData.data._id;
     this.studentApiService.update(formValues).subscribe((result) => {
       this.alertService.alertComponent(result.message);
-      return this.dialogRef.close();
+      this.router.navigate([],{queryParamsHandling : 'preserve'})
     }, (error) => {
       console.log("error", error);
     })

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-profile-update-layout',
@@ -6,8 +7,15 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./profile-update-layout.component.scss']
 })
 export class ProfileUpdateLayoutComponent implements OnInit {
+  name: any;
 
-  constructor() { }
+  constructor(private activatedRoute : ActivatedRoute) {
+    this.activatedRoute.queryParams.subscribe((data) => {
+      if (data && data.id) {
+        this.name = data.name;
+      }
+    })
+   }
 
   ngOnInit(): void {
   }

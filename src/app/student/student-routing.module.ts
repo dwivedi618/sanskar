@@ -7,6 +7,7 @@ import { AdmissionFormPrintLayoutComponent } from './admission-form-print-layout
 import { StudentProfileLayoutModule } from './student-profile-layout/student-profile-layout.module';
 import { ProfileUpdateLayoutComponent } from './profile-update-layout/profile-update-layout.component';
 import { StudentFormComponent } from './student-profile-layout/student-form/student-form.component';
+import { ParentFormComponent } from './student-profile-layout/parent-form/parent-form.component';
 const studentroutes: Routes = [
     {
         path: '', component: StudentLayoutComponent,
@@ -22,7 +23,9 @@ const studentroutes: Routes = [
                 path: 'overview/update', 
                 component: ProfileUpdateLayoutComponent , 
                 children : [
-                  { path : '' , component : StudentFormComponent ,data:{breadcrumb : 'Update'}}
+                  { path : '' , component : StudentFormComponent ,data:{breadcrumb : 'Update'}},
+                  { path : 'parent' , component : ParentFormComponent ,data:{breadcrumb : 'Update'}}
+
                 ],
                 data:{breadcrumb : 'Overview'}
               },

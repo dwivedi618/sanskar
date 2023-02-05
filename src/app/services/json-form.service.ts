@@ -168,7 +168,7 @@ export class JsonFormService {
 
     controls.forEach((field:JsonFormControls,index) =>{
       // console.log("forEach field",field,obj[field.name]);
-      if(!!obj[field.name]){
+      if(!!obj && obj[field.name]){
         controls[index].value = obj[field.name] == ('true' || 'false') ? 
         Boolean(obj[field.name]): 
         obj[field.name];

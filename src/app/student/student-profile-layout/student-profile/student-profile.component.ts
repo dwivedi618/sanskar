@@ -164,6 +164,9 @@ export class StudentProfileComponent implements OnInit {
       if(actionOn === 'student'){
         this.router.navigate(['student/overview/update'],{queryParams : { studentId : this.studentId },  queryParamsHandling : 'merge'})
       }
+      if(actionOn === 'parent'){
+        this.router.navigate(['student/overview/update/parent'],{queryParams : { studentId : this.studentId , action : Action.UPDATE },  queryParamsHandling : 'merge'})
+      }
     }
 
     this.menuClickHandler(action,this.studentData);

@@ -7,5 +7,7 @@ export enum Action{
     "FETCH" = "FETCH",
     "REFRESH" = "REFRESH",
     "CLOSE" = "CLOSE",
-    "NAVIGATE" = "NAVIGATE"
+    "NAVIGATE" = "NAVIGATE",
+    "PROCEED" = "PROCEED"
+
 }

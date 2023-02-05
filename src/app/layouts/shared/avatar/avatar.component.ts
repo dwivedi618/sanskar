@@ -15,6 +15,8 @@ export class AvatarComponent {
   @Input() public age: number = 14;
 
   public get imgSrc(): string {
-    return this.src || (this.gender ? `assets/user_profiles/${this.gender.toLocaleLowerCase()}.png` : `assets/user_profiles/male.png`)
+    // return this.src || (this.gender ? `assets/user_profiles/${this.gender.toLocaleLowerCase()}.png` : `assets/user_profiles/user.svg`)
+    return this.src || (this.gender ? `assets/user_profiles/user.svg` : `assets/user_profiles/user.svg`)
+
   }
 }

@@ -57,6 +57,17 @@ export class StudentOverviewComponent implements OnInit {
    
   ]
 
+  displayLocalAddressFields:DisplayFields = [
+    { label : "address",type : "string"},
+    { label : "state",type : "string"},
+    { label : "pin",type : "string"},
+  ]
+  displayPermanentAddressFields:DisplayFields = [
+    { label : "address",type : "string"},
+    { label : "state",type : "string"},
+    { label : "pin",type : "string"},
+  ]
+
   readonly LABELS = LABELS;
   readonly Action = Action;
 
@@ -70,6 +81,8 @@ export class StudentOverviewComponent implements OnInit {
   $studentData : Observable<any>;
   $parentData :  Observable<any>;
   address: Address;
+  $addressData: Observable<Address>;
+  $address: Observable<Address>;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -100,6 +113,8 @@ export class StudentOverviewComponent implements OnInit {
     this.fetchStudentCompleteProfileByStudentId();
     this.$studentData = this.studentApiService.studentData;
     this.$parentData = this.studentApiService.parentData;
+    this.$address = this.studentApiService.address;
+
 
   }
 
@@ -166,6 +181,12 @@ export class StudentOverviewComponent implements OnInit {
       }
       if(actionOn === 'parent'){
         this.router.navigate(['student/overview/update/parent'],{queryParams : { studentId : this.studentId , action : Action.UPDATE },  queryParamsHandling : 'merge'})
+      }
+      if(actionOn === 'localAddress'){
+        this.router.navigate(['student/overview/update/localAddress'],{queryParams : { studentId : this.studentId , action : Action.UPDATE },  queryParamsHandling : 'merge'})
+      }
+      if(actionOn === 'permanentAddress'){
+        this.router.navigate(['student/overview/update/permanentAddress'],{queryParams : { studentId : this.studentId , action : Action.UPDATE },  queryParamsHandling : 'merge'})
       }
     }
 

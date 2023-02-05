@@ -13,12 +13,12 @@
                 <span><mat-icon matTooltip="Verified" class="mat-icon-sm text-success">verified_user</mat-icon></span>
               </h3>
               <strong class="text-uppercase">{{this.studentData?.classId?.name}}</strong>
-              
+
               <div class="d-flex my-2">
                 <button mat-stroked-button (click)="triggerAction(Action.NAVIGATE,'student')" class="mr-1">
                   <small class="text-mylight">UPDATE</small>
                 </button>
-                  <app-menu-button ></app-menu-button>
+                <app-menu-button></app-menu-button>
               </div>
             </div>
           </div>
@@ -35,7 +35,7 @@
               <mat-icon>arrow_right</mat-icon>
             </button>
           </mat-toolbar>
-          <ng-container >
+          <ng-container>
             <div class="row justify-content-center  m-0 py-5">
               <div class="col-md-6">
                 <ng-container *ngFor="let data of ($studentData | async) | keyvalue">
@@ -62,6 +62,10 @@
               </div>
             </div>
           </ng-container>
+
+          <ng-container *ngIf="!($studentData | async)">
+            <app-empty-list></app-empty-list>
+          </ng-container>
         </mat-card>
       </ng-container>
 
@@ -76,7 +80,7 @@
               <mat-icon>arrow_right</mat-icon>
             </button>
           </mat-toolbar>
-          <ng-container >
+          <ng-container>
             <div class="row justify-content-center  m-0 py-5">
               <div class="col-md-6">
                 <ng-container *ngFor="let data of ($parentData | async) | keyvalue">
@@ -103,9 +107,100 @@
               </div>
             </div>
           </ng-container>
+          <ng-container *ngIf="!($parentData | async)">
+            <app-empty-list></app-empty-list>
+          </ng-container>
         </mat-card>
       </ng-container>
-     
+
+      <ng-container>
+        <mat-card class="mt-5 mb-5 p-0">
+          <mat-toolbar class="glass">
+            <span>Local Address</span>
+            <span class="spacer"></span>
+            <button mat-raised-button type="button" color="primary" class="btn-mydark text-uppercase"
+              (click)="triggerAction(Action.NAVIGATE,'localAddress')">
+              <span>Update</span>
+              <mat-icon>arrow_right</mat-icon>
+            </button>
+          </mat-toolbar>
+          <ng-container>
+            <div class="row justify-content-center  m-0 py-5">
+              <div class="col-md-6">
+                <ng-container *ngFor="let data of ($address.localAddress | async) | keyvalue">
+                  <ng-container *ngIf="isIncluded(displayLocalAddressFields,data.key)">
+                    <div class="row">
+                      <div class="col-6 text-left">
+                        <p class="titlecase">{{data.key | label}}</p>
+                      </div>
+                      <div class="col-6 text-left">
+                        <p class="strong">
+                          {{
+                          fieldType(displayLocalAddressFields,data.key) === "date" ?
+                          (data.value | date) :
+                          (data.value || '')
+                          }}
+                        </p>
+                      </div>
+                    </div>
+                    <p>
+                      <mat-divider></mat-divider>
+                    </p>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="!($address.localAddress | async)">
+            <app-empty-list></app-empty-list>
+          </ng-container>
+        </mat-card>
+      </ng-container>
+
+      <ng-container>
+        <mat-card class="mt-5 mb-5 p-0">
+          <mat-toolbar class="glass">
+            <span>Permanent Address</span>
+            <span class="spacer"></span>
+            <button mat-raised-button type="button" color="primary" class="btn-mydark text-uppercase"
+              (click)="triggerAction(Action.NAVIGATE,'permanentAddress')">
+              <span>Update</span>
+              <mat-icon>arrow_right</mat-icon>
+            </button>
+          </mat-toolbar>
+          <ng-container>
+            <div class="row justify-content-center  m-0 py-5">
+              <div class="col-md-6">
+                <ng-container *ngFor="let data of ($address.permanentAddress | async) | keyvalue">
+                  <ng-container *ngIf="isIncluded(displayPermanentAddressFields,data.key)">
+                    <div class="row">
+                      <div class="col-6 text-left">
+                        <p class="titlecase">{{data.key | label}}</p>
+                      </div>
+                      <div class="col-6 text-left">
+                        <p class="strong">
+                          {{
+                          fieldType(displayPermanentAddressFields,data.key) === "date" ?
+                          (data.value | date) :
+                          (data.value || '')
+                          }}
+                        </p>
+                      </div>
+                    </div>
+                    <p>
+                      <mat-divider></mat-divider>
+                    </p>
+                  </ng-container>
+                </ng-container>
+              </div>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="!($address.permanentAddress | async)">
+            <app-empty-list></app-empty-list>
+          </ng-container>
+        </mat-card>
+      </ng-container>
+
     </div>
   </ng-container>
 

@@ -44,7 +44,7 @@ export class StudentApiService {
   public setParentData(data: Parent) {
     this.$parent.next(data);
   }
-  public get address() {
+  public get address():Observable<Address> {
     return this.$address.asObservable()
   }
 

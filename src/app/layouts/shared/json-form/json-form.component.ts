@@ -81,7 +81,6 @@ export class JsonFormComponent implements OnChanges, OnInit {
    */
   onSelectOption(event: { source: any, value: any }, field: JsonFormControls) {
     let actions = field?.actions as OptionsActions;
-    debugger
     const { hitHttp , method , ctrlId } = actions && actions?.onSelect || {};
     if (hitHttp && method && ctrlId) {
       const argField: JsonFormControls = {

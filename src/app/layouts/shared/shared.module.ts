@@ -36,6 +36,11 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { QuickRegistrationComponent } from 'src/app/registration/quick-registration/quick-registration.component';
 import { DropdownComponent } from './dropdown/dropdown.component';
 import { SidebarProfileComponent } from './sidebar-profile/sidebar-profile.component';
+import { StudentFormComponent } from 'src/app/student/forms/student-form/student-form.component';
+import { AddressFormComponent } from 'src/app/student/forms/address-form/address-form.component';
+import { LocalAddressFormComponent } from 'src/app/student/forms/local-address-form/local-address-form.component';
+import { ParentFormComponent } from 'src/app/student/forms/parent-form/parent-form.component';
+import { PermanentAddressFormComponent } from 'src/app/student/forms/permanent-address-form/permanent-address-form.component';
 
 @NgModule({
   declarations: [
@@ -69,7 +74,12 @@ import { SidebarProfileComponent } from './sidebar-profile/sidebar-profile.compo
     ToolbarComponent,
     QuickRegistrationComponent,
     DropdownComponent,
-    SidebarProfileComponent
+    SidebarProfileComponent,
+    StudentFormComponent,
+    ParentFormComponent,
+    AddressFormComponent,
+    PermanentAddressFormComponent,
+    LocalAddressFormComponent
   ],
   imports: [
     CommonModule,
@@ -118,7 +128,12 @@ import { SidebarProfileComponent } from './sidebar-profile/sidebar-profile.compo
     ToolbarComponent,
     QuickRegistrationComponent,
     DropdownComponent,
-    SidebarProfileComponent
+    SidebarProfileComponent,
+    StudentFormComponent,
+    ParentFormComponent,
+    AddressFormComponent,
+    PermanentAddressFormComponent,
+    LocalAddressFormComponent
   ]
 })
 export class SharedModule { }

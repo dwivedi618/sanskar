@@ -17,8 +17,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-12">
                                     <ng-container>
-                                        <app-json-form [formFields]="admissionFormFields"
-                                            (onSubmit)="onStudentFormSubmit($event)"></app-json-form>
+                                        <app-student-form></app-student-form>
                                     </ng-container>
                                 </div>
                             </div>
@@ -32,8 +31,7 @@
                             </mat-toolbar>
                             <div class="row justify-content-center">
                                 <div class="col-12">
-                                    <app-json-form [formFields]="parentsFormFields"
-                                        (onSubmit)="onSubmitParentFormFields($event)"></app-json-form>
+                                    <app-parent-form></app-parent-form>
                                 </div>
                             </div>
 
@@ -47,8 +45,7 @@
                             </mat-toolbar>
                             <div class="row justify-content-center">
                                 <div class="col-12">
-                                    <app-json-form [formFields]="permanentAddressFormFields"
-                                        (onSubmit)="onSubmitPermanentAddressFormFields($event)"></app-json-form>
+                                    <app-permanent-address-form></app-permanent-address-form>
                                 </div>
                             </div>
 
@@ -62,8 +59,7 @@
                             </mat-toolbar>
                             <div class="row justify-content-center">
                                 <div class="col-12">
-                                    <app-json-form [formFields]="localAddressFormFields"
-                                        (onSubmit)="onSubmitLocalAddressFormFields($event)"></app-json-form>
+                                    <app-local-address-form></app-local-address-form>
                                 </div>
                             </div>
 

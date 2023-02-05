@@ -43,7 +43,7 @@ export class RegistrationActionService {
         }); break;
       case Action.NAVIGATE: 
         console.log("data",data)
-        this.router.navigate(['registration/admission'], { queryParams: { registrationId: data._id, n: data.name } });
+        this.router.navigate(['registration/admission'], { queryParams: { id : data._id, name: data.name } });
         break; 
       default:
         break;

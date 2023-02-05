@@ -8,11 +8,6 @@ import { StudentProfileLayoutComponent } from './student-profile-layout.componen
 import { RouterModule } from '@angular/router';
 import { AccountsComponent } from './accounts/accounts.component';
 import { TransactionComponent } from './transaction/transaction.component';
-import { StudentFormComponent } from '../forms/student-form/student-form.component';
-import { ParentFormComponent } from '../forms/parent-form/parent-form.component';
-import { AddressFormComponent } from '../forms/address-form/address-form.component';
-import { PermanentAddressFormComponent } from '../forms/permanent-address-form/permanent-address-form.component';
-import { LocalAddressFormComponent } from '../forms/local-address-form/local-address-form.component';
 
 
 @NgModule({
@@ -20,12 +15,7 @@ import { LocalAddressFormComponent } from '../forms/local-address-form/local-add
     StudentProfileLayoutComponent,
     StudentOverviewComponent,
     AccountsComponent,
-    TransactionComponent,
-    StudentFormComponent,
-    ParentFormComponent,
-    AddressFormComponent,
-    PermanentAddressFormComponent,
-    LocalAddressFormComponent
+    TransactionComponent
   ],
   imports: [
     CommonModule,

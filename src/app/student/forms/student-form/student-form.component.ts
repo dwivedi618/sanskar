@@ -19,7 +19,7 @@ export class StudentFormComponent implements OnInit {
   admissionFormFields: JsonFormData;
   isSaving: boolean;
   studentId: any;
-  dialogData: { data: import("/home/v-shivam.dwivedi/Downloads/projects/nest/sanskar/src/app/student/student.interface").Student; action: Action; };
+  dialogData: { data: any; action: Action; };
 
   constructor(
     private studentApiService: StudentApiService,

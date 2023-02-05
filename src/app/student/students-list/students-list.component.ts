@@ -4,8 +4,8 @@ import { Component, OnInit, Inject, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
 import { CommonService } from '../../services/common.service';
-import { StudentProfileComponent } from '../student-profile-layout/student-profile/student-profile.component';
-import { TransactionComponent } from '../transaction/transaction.component';
+import { StudentOverviewComponent } from '../student-profile-layout/overview/student-overview.component';
+import { TransactionComponent } from '../student-profile-layout/transaction/transaction.component';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';

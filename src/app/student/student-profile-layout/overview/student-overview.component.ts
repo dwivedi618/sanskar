@@ -14,17 +14,17 @@ import { ParentActionService } from '../../services/parent/parent-action.service
 import { StudentActionService } from '../../services/student/student-action.service';
 import { StudentApiService } from '../../services/student/student-api.service';
 import { Address } from '../../student.interface';
-import { TransactionComponent } from '../../transaction/transaction.component';
+import { TransactionComponent } from '../transaction/transaction.component';
 
 export type DisplayFields = {label : string,type : string}[]
 
 
 @Component({
-  selector: 'app-student-profile',
-  templateUrl: './student-profile.component.html',
-  styleUrls: ['./student-profile.component.scss']
+  selector: 'app-student-overview',
+  templateUrl: './student-overview.component.html',
+  styleUrls: ['./student-overview.component.scss']
 })
-export class StudentProfileComponent implements OnInit {
+export class StudentOverviewComponent implements OnInit {
   studentId: any;
   isLoading: boolean;
   studentData: any;

@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from "@angular/router";
 import { StudentsListComponent } from './students-list/students-list.component';
-import { StudentProfileComponent } from './student-profile-layout/student-profile/student-profile.component'
+import { StudentOverviewComponent } from './student-profile-layout/overview/student-overview.component'
 import { StudentLayoutComponent } from './student-layout/student-layout.component';
 import { AdmissionFormPrintLayoutComponent } from './admission-form-print-layout/admission-form-print-layout.component';
 import { StudentProfileLayoutModule } from './student-profile-layout/student-profile-layout.module';
 import { ProfileUpdateLayoutComponent } from './profile-update-layout/profile-update-layout.component';
-import { StudentFormComponent } from './student-profile-layout/student-form/student-form.component';
-import { ParentFormComponent } from './student-profile-layout/parent-form/parent-form.component';
+import { StudentFormComponent } from './forms/student-form/student-form.component';
+import { ParentFormComponent } from './forms/parent-form/parent-form.component';
 const studentroutes: Routes = [
     {
         path: '', component: StudentLayoutComponent,

@@ -3,8 +3,8 @@ import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { DialogService } from 'src/app/layouts/shared/dialog.service';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { AlertService } from 'src/app/services/alert.service';
-import { ParentFormComponent } from '../../student-profile-layout/parent-form/parent-form.component';
-import { StudentFormComponent } from '../../student-profile-layout/student-form/student-form.component';
+import { ParentFormComponent } from '../../forms/parent-form/parent-form.component';
+import { StudentFormComponent } from '../../forms/student-form/student-form.component';
 import { StudentApiService } from '../student/student-api.service';
 
 

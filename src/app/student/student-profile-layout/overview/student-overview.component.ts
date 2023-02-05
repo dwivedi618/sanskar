@@ -3,18 +3,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { MainMenu } from 'src/app/layouts/layout/left-sidebar-menu/sidebar.menus';
-import { studentActionMenus } from 'src/app/layouts/shared/uiComponents/menu-button/action-menus';
 import { Action } from 'src/app/layouts/shared/uiComponents/menu-button/actions.enum';
 import { API_SERVICE_METHODS } from 'src/app/services/api.methods';
 import { CommonService } from 'src/app/services/common.service';
 import { RoutingService } from 'src/app/services/routing.service';
 import { LABELS } from 'src/app/utils/keyparser';
-import { FeeDepositComponent } from '../../fee-deposit/fee-deposit.component';
 import { ParentActionService } from '../../services/parent/parent-action.service';
 import { StudentActionService } from '../../services/student/student-action.service';
 import { StudentApiService } from '../../services/student/student-api.service';
 import { Address } from '../../student.interface';
-import { TransactionComponent } from '../transaction/transaction.component';
 
 export type DisplayFields = {label : string,type : string}[]
 

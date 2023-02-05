@@ -127,7 +127,7 @@
           <ng-container>
             <div class="row justify-content-center  m-0 py-5">
               <div class="col-md-6">
-                <ng-container *ngFor="let data of ($address.localAddress | async) | keyvalue">
+                <ng-container *ngFor="let data of ($address | async)?.localAddress | keyvalue">
                   <ng-container *ngIf="isIncluded(displayLocalAddressFields,data.key)">
                     <div class="row">
                       <div class="col-6 text-left">
@@ -151,7 +151,7 @@
               </div>
             </div>
           </ng-container>
-          <ng-container *ngIf="!($address.localAddress | async)">
+          <ng-container *ngIf="!($address | async)?.localAddress ">
             <app-empty-list></app-empty-list>
           </ng-container>
         </mat-card>
@@ -171,7 +171,7 @@
           <ng-container>
             <div class="row justify-content-center  m-0 py-5">
               <div class="col-md-6">
-                <ng-container *ngFor="let data of ($address.permanentAddress | async) | keyvalue">
+                <ng-container *ngFor="let data of ($address | async)?.permanentAddress | keyvalue">
                   <ng-container *ngIf="isIncluded(displayPermanentAddressFields,data.key)">
                     <div class="row">
                       <div class="col-6 text-left">
@@ -195,7 +195,7 @@
               </div>
             </div>
           </ng-container>
-          <ng-container *ngIf="!($address.permanentAddress | async)">
+          <ng-container *ngIf="!($address | async)?.permanentAddress">
             <app-empty-list></app-empty-list>
           </ng-container>
         </mat-card>

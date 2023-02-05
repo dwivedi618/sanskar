@@ -61,11 +61,15 @@ export class StudentOverviewComponent implements OnInit {
     { label : "address",type : "string"},
     { label : "state",type : "string"},
     { label : "pin",type : "string"},
+    { label : "district",type : "string"},
+
   ]
   displayPermanentAddressFields:DisplayFields = [
     { label : "address",type : "string"},
     { label : "state",type : "string"},
     { label : "pin",type : "string"},
+    { label : "district",type : "string"},
+
   ]
 
   readonly LABELS = LABELS;

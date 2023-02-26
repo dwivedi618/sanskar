@@ -37,7 +37,7 @@ export interface MasterStandardList {
 export class MasterStandardListComponent implements OnInit {
   
   classActionMenus = classActionMenus;
-  displayedColumns = ['name'];
+  displayedColumns = ['name','feeStructure','section'];
   classes = [];
   constructor(
     public commonService : CommonService,
@@ -56,8 +56,14 @@ export class MasterStandardListComponent implements OnInit {
   getMasterStandardList(){
       this.loaderService.loader.show("Fetching classes...")
       this.classApiService.fetch().subscribe((result)=>{
-        const standardList = result['data'] || null;
         this.classes = result['data'] || null;
+        let section = `<div><button mat-button routerLink="configuration/classes/section">Section</button></div>`;
+        let feeStructure = `<a mat-button routerLink="configuration/classes/fee-structure">Fee Structure</a>`;
+
+        const classWithLink = this.classes.map((_class:any) => {return { ..._class,section,feeStructure }});
+        this.classes = classWithLink;
+        console.log("classWithLink",classWithLink);
+        
         this.loaderService.loader.hide();
       },(error)=>{
       })

@@ -1,9 +1,9 @@
 <span class="px-2" (click)="$event.stopPropagation()">
-    <button mat-button style="min-width: 8rem;" color="{{color}}" 
+    <button mat-button style="min-width: 8rem;"  
     class="{{color ? '' : 'background-dark-secondary'}}" 
         [matMenuTriggerFor]="standards" #t="matMenuTrigger">
-        <small  class="mr-1 "><span *ngIf="label" class="label fs-10">{{label | uppercase}}&nbsp;|&nbsp;&nbsp;</span>  <span style="color:white;">{{(selected?.name | titlecase )|| 'Select'}}</span></small>
-        <mat-icon class="mat-icon-sm pt-1 text-light">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
+        <small  class="mr-1 "><span *ngIf="label" class=" fs-10">{{label | uppercase}}&nbsp;|&nbsp;&nbsp;</span>  <span >{{(selected?.name | titlecase )|| 'Select'}}</span></small>
+        <mat-icon class="mat-icon-sm pt-1">{{t.menuOpen? 'arrow_drop_up' : 'arrow_drop_down'}}</mat-icon>
     </button>
     <mat-menu #standards="matMenu" hasBackdrop="true" class="w-100" >
         <button mat-menu-item *ngFor="let d of data" class="w-100" (click)="dropdownSelectHandler(d);">

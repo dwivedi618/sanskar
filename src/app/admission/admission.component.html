@@ -2,23 +2,37 @@
 <section class="pb-5">
     <mat-card class="mat-elevation-z0">
         <mat-horizontal-stepper #stepper (selectionChange)="selectionChange($event)">
-            <mat-step label="{{step.label}}" state="{{step.state}}" *ngFor="let step of steps">
+            <mat-step label="student">
                 <div class="my-5 glass">
                     <mat-toolbar color="primary" class="justify-content-center border-top-radius">
-                        <span style="text-transform: uppercase;">{{step.label}} Form</span>
+                        <span style="text-transform: uppercase;">student Form</span>
                     </mat-toolbar>
                     <div class="row justify-content-center">
                         <div class="col-lg-8">
-                            <ng-container *ngIf="step.state == 'student'"><app-student-form></app-student-form></ng-container>
-                            <ng-container *ngIf="step.state == 'parent'"> <app-parent-form></app-parent-form></ng-container>
-                            <ng-container *ngIf="step.state == 'localAddress'">
-                                <app-local-address-form></app-local-address-form></ng-container>
-                            <ng-container
-                                *ngIf="step.state == 'permanentAddress'"><app-permanent-address-form></app-permanent-address-form></ng-container>
+                            <ng-container ><app-student-form></app-student-form></ng-container>
+                            <!-- <ng-container *ngIf="step.state == 'localAddress' && selectedState  == 'localAddress'">
+                                <app-local-address-form></app-local-address-form>
+                            </ng-container>
+                            <ng-container *ngIf="step.state == 'permanentAddress' &&  selectedState  == 'permanentAddress'">
+                                <app-permanent-address-form></app-permanent-address-form>
+                            </ng-container> -->
                         </div>
                     </div>
                 </div>
-            </mat-step>
+            </mat-step> 
+            <mat-step label="parent">
+
+            <div class="my-5 glass">
+                <mat-toolbar color="primary" class="justify-content-center border-top-radius">
+                    <span style="text-transform: uppercase;">parent Form</span>
+                </mat-toolbar>
+                <div class="row justify-content-center">
+                    <div class="col-lg-8">
+                        <app-parent-form></app-parent-form>
+                    </div>
+                </div>
+            </div>
+        </mat-step>
         </mat-horizontal-stepper>
     </mat-card>
 </section>

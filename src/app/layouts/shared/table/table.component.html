@@ -1,12 +1,12 @@
 <!--more action on selected row-->
 <mat-toolbar class="glass">
     <div class="px-1 " *ngIf="!this.selection.selected.length">
-        <button mat-mini-fab (click)="refresh()" color="priary" class="elevation">
+        <button mat-mini-fab (click)="refresh()" color="priary" class="mat-elevation-z0">
             <mat-icon class="">refresh</mat-icon>
         </button>
     </div>
     <div class="px-1" *ngIf="!this.selection.selected.length">
-        <button mat-mini-fab color="pridmary" (click)="isListView = !isListView"  class="elevation">
+        <button mat-mini-fab color="pridmary" (click)="isListView = !isListView"  class="mat-elevation-z0">
             <mat-icon class="">{{isListView ? 'view_list' : 'grid_view'}}</mat-icon>
         </button>
     </div>
@@ -16,7 +16,7 @@
     <div class="spacer"></div>
     <ng-container *ngIf="!this.selection?.selected?.length">
         <app-filter (onEvent)="applyFilter($event)"></app-filter>
-        <button mat-raised-button color="primary" (click)="addNew()" class="mr-2">
+        <button mat-raised-button color="ff" (click)="addNew()" class="mr-2">
             <mat-icon class="mat-icon-sm pt-1">add_box</mat-icon>
             <small>
                 Add New
@@ -47,14 +47,15 @@
 
             </td>
         </ng-container>
-        <ng-container *ngFor="let column of columns" [matColumnDef]="column">
+        <ng-container *ngFor="let column of columns" [matColumnDef]="column" >
             <th mat-header-cell *matHeaderCellDef>{{ (column | label ) | titlecase}}</th>
             <td mat-cell *matCellDef="let row">
                 <span *ngIf="column == 'amount'">
                     {{ row[column] | currency : "INR" }}
                 </span>
-                <span *ngIf="column !== 'amount'">
-                    {{ row[column]}}
+                <span *ngIf="column !== 'amount'"  (click)="$event.stopPropagation()">
+                    <!-- {{ row[column]}} -->
+                    <span [innerHTML]="row[column]"></span>
                 </span>
             </td>
         </ng-container>

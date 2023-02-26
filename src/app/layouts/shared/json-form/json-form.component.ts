@@ -1,11 +1,10 @@
 import { Component, OnInit, Input, ChangeDetectionStrategy, SimpleChanges, OnChanges, Output, EventEmitter, AfterViewInit, AfterViewChecked } from '@angular/core';
-import { resetFakeAsyncZone } from '@angular/core/testing';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { DYNAMIC_METHODS } from 'src/app/admission/dropdown.methods';
 import { AlertService } from 'src/app/services/alert.service';
 import { CommonService } from 'src/app/services/common.service';
-import { ButtonType, JsonFormService } from 'src/app/services/json-form.service';
-import { Field, JsonFormControlOptions, JsonFormControls, JsonFormControlsMethod, JsonFormData, OptionsActions } from './json-from.types';
+import { JsonFormService } from 'src/app/services/json-form.service';
+import { JsonFormControlOptions, JsonFormControls, JsonFormData, OptionsActions } from './json-from.types';
 
 @Component({
   selector: 'app-json-form',

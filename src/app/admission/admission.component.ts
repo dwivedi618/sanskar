@@ -50,6 +50,14 @@ const registrationSteps = [
     icon : 'map',
     html :" <h1>Hello Mo</h1>",
     component : '<app-permanent-address-form></app-permanent-address-form>'
+  },
+  {
+    state : 'review',
+    index : 5,
+    label : "Review",
+    icon : 'document',
+    html :" <h1>Hello Mo</h1>",
+    component : '<app-permanent-address-form></app-permanent-address-form>'
   }
 ]
 
@@ -61,6 +69,7 @@ const registrationSteps = [
 export class AdmissionComponent implements OnInit {
   admissionSteps: any;
   steps = registrationSteps;
+  selectedState = 'student';
   constructor(
     public dialog: MatDialog,
     public commonService: CommonService,
@@ -100,6 +109,7 @@ export class AdmissionComponent implements OnInit {
   }
   selectionChange(step){
     console.log("step",step)
+    this.selectedState = step.selectedStep.state
   }
 }
 

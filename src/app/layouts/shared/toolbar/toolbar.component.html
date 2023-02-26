@@ -1,4 +1,4 @@
-<mat-toolbar class="background-dark-primary" [class.sticky]="sticky">
+<mat-toolbar class="bg-white" [class.sticky]="sticky">
     <ng-container *ngIf="!routerLink">
         <span class="fs-14 text-uppercase">{{title | titlecase}}</span>
     </ng-container>
@@ -10,7 +10,7 @@
     </ng-container>
     <div class="spacer"></div>
     <ng-container *ngIf="dropdowns.includes('class')">
-        <app-dropdown [label]="'class'" [data]="classApiService.$classDropDown | async" (onSelect)="onClassSelect($event)" [selected]="{name : selectedStandardName, _id : standardId}"></app-dropdown>
+        <app-dropdown [label]="'class'" [data]="classApiService.$classDropDown | async" (onSelect)="onClassSelect($event)" [selected]="{name : selectedStandardName, _id : standardId}" color="primary"></app-dropdown>
     </ng-container>
     
 </mat-toolbar>

@@ -134,7 +134,7 @@ export class DialogService {
       width: '40rem',
       maxWidth: '100vw',
       maxHeight: '100vh',
-      hasBackdrop: false,
+      hasBackdrop: true,
       // panelClass : 'dialog-container-pt-0',
       data: { data, action }
     })

@@ -14,4 +14,10 @@ export class FilterComponent implements OnInit {
   onTyping(event: Event){
     this.onEvent.emit(event);
   }
+
+  filterActive = false;
+
+  toggleFilter() {
+    this.filterActive = !this.filterActive;
+  }
 }

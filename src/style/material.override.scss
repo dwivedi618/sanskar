@@ -111,3 +111,12 @@ button.mat-mini-fab{
     }
 }
 
+.mat-stepper-horizontal .mat-horizontal-stepper-header {
+    display: flex;
+    height: 48px;
+    overflow: hidden;
+    align-items: center;
+    padding: 0px 24px;
+    border-radius: 4px;
+}
+

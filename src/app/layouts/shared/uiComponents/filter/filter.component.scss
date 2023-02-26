@@ -1,8 +1,9 @@
-input::placeholder{
+input::placeholder {
     color: #666;
     font-size: 14px;
 }
-input{
+
+input {
     color: #666;
     font-size: 14px;
     outline: none;
@@ -10,8 +11,48 @@ input{
     background: rgb(0 0 0 / 7%);
     border-radius: 2px;
 }
-.reset-button{
-    position: absolute;right: 8px;
+
+.reset-button {
+    position: absolute;
+    right: 8px;
     border-left: 1px solid #00000024;
     height: 97%;
+}
+
+.filter {
+    display: flex;
+    align-items: center;
+}
+
+.filter-icon {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+    transition: all 0.5s ease;
+}
+
+.filter-icon i {
+    font-size: 1.5rem;
+}
+
+.filter-input {
+    border: none;
+    background-color: #f4f4f4;
+    padding: 1px 4px;
+    width: 0px;
+    transition: all 0.5s ease;
+    color: #666;
+    font-size: 14px;
+    outline: none;
+    // background: rgb(0 0 0 / 7%);
+    border-radius: 2px;
+}
+
+.filter-input:focus {
+    outline: none;
+}
+
+.filter-input.active {
+    width: 200px;
+    // margin-left: 1rem;
 }
